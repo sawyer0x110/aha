@@ -12,9 +12,9 @@ import { researchFixture } from './helpers/research.js';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const cli = path.join(root, 'dist', 'cli', 'aha.mjs');
 
-function invoke(cwd: string, args: string[], entry = cli, status = 0): string {
+function invoke(cwd: string, args: string[], entry = cli, status = 0, environment: NodeJS.ProcessEnv = {}): string {
   const result = spawnSync(process.execPath, [entry, ...args], {
-    cwd, encoding: 'utf8', timeout: 120000, env: { ...process.env, NODE_OPTIONS: '', NODE_PATH: '' },
+    cwd, encoding: 'utf8', timeout: 120000, env: { ...process.env, NODE_OPTIONS: '', NODE_PATH: '', ...environment },
   });
   if (result.error) throw result.error;
   assert.equal(result.status, status, `${result.stdout}\n${result.stderr}`);
@@ -40,7 +40,7 @@ async function research(dir: string, entry = cli) {
 async function author(dir: string, format: 'html' | 'pptx', entry = cli): Promise<string> {
   const draft = await research(dir, entry);
   const projectName = `topic-${format}`;
-  invoke(dir, ['explain-init', 'topic.research', format, projectName], entry);
+  invoke(dir, ['explain-init', 'topic.research', format, projectName, '--language', 'en'], entry);
   const project = path.join(dir, projectName);
   const file = path.join(project, 'artifact.json');
   const artifact = JSON.parse(await fs.readFile(file, 'utf8'));
@@ -86,6 +86,15 @@ test('model-free research builds a dossier and a freely authored HTML article', 
 
 test('draft scaffolds cannot masquerade as completed research or authored output', async () => temp(async dir => {
   invoke(dir, ['research-init', 'An unanswered question', 'empty.json', '--kind', 'public']);
+  const original = await fs.readFile(path.join(dir, 'empty.json'));
+  const draftCheck = JSON.parse(invoke(dir, ['research-check', 'empty.json', '--draft']));
+  assert.equal(draftCheck.status, 'draft-checked');
+  assert.equal(draftCheck.ready, false);
+  assert.ok(draftCheck.pending.length > 0);
+  assert.equal('researchHash' in draftCheck, false);
+  assert.deepEqual(await fs.readFile(path.join(dir, 'empty.json')), original);
+  invoke(dir, ['research-check', 'empty.json'], cli, 1);
+  invoke(dir, ['research-build', 'empty.json', 'draft-mode-not-supported', '--draft'], cli, 1);
   invoke(dir, ['research-build', 'empty.json', 'unearned.research'], cli, 1);
   await assert.rejects(fs.stat(path.join(dir, 'unearned.research')), { code: 'ENOENT' });
   await research(dir);
@@ -95,6 +104,37 @@ test('draft scaffolds cannot masquerade as completed research or authored output
   await assert.rejects(fs.stat(path.join(dir, 'not-ready.html')), { code: 'ENOENT' });
 }));
 
+test('scoped doctor does not require optional media tools for research, HTML or PPTX', async () => temp(async dir => {
+  for (const target of ['research', 'html', 'pptx']) {
+    const result = JSON.parse(invoke(dir, ['doctor', '--for', target], cli, 0, {
+      AHA_PYTHON: path.join(dir, 'missing-python'),
+      AHA_FFMPEG: path.join(dir, 'missing-ffmpeg'),
+      AHA_FFPROBE: path.join(dir, 'missing-ffprobe'),
+      AHA_BROWSER_EXECUTABLE: path.join(dir, 'missing-browser'),
+    }));
+    assert.equal(result.status, 'ok');
+    assert.equal(result.dependencyScope, target);
+    assert.deepEqual(result.requiredProbes, []);
+    assert.equal('pythonRuntime' in result, false);
+  }
+  assert.match(invoke(dir, ['doctor', '--for', 'image', '--media'], cli, 1), /USAGE/);
+  assert.match(invoke(dir, ['doctor', '--for', 'unknown'], cli, 1), /USAGE/);
+}));
+
+test('CLI language defaults and explicit Chinese apply without changing research', async () => temp(async dir => {
+  await research(dir);
+  const original = await fs.readFile(path.join(dir, 'topic.research', 'manifest.json'));
+  const defaults = JSON.parse(invoke(dir, ['explain-init', 'topic.research', 'html', 'bilingual']));
+  assert.equal(defaults.language, 'bilingual');
+  for (const format of ['image', 'pptx', 'video']) {
+    assert.equal(JSON.parse(invoke(dir, ['explain-init', 'topic.research', format, `en-${format}`])).language, 'en');
+    assert.equal(JSON.parse(invoke(dir, ['explain-init', 'topic.research', format, `zh-${format}`, '--language', 'zh'])).language, 'zh');
+    assert.match(invoke(dir, ['explain-init', 'topic.research', format, `bad-${format}`, '--language', 'bilingual'], cli, 1), /ARTIFACT_LANGUAGE/);
+  }
+  assert.match(invoke(dir, ['explain-init', 'topic.research', 'html', 'invalid', '--language', 'fr'], cli, 1), /ARTIFACT_LANGUAGE/);
+  await assert.rejects(fs.stat(path.join(dir, 'invalid')), { code: 'ENOENT' });
+  assert.deepEqual(await fs.readFile(path.join(dir, 'topic.research', 'manifest.json')), original);
+}));
 test('HTML publication is stable and refuses overwrite, wrong extension and source destinations', async () => temp(async dir => {
   const project = await author(dir, 'html');
   invoke(dir, ['render-html', project, 'one.html']);

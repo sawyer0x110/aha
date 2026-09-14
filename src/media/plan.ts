@@ -87,7 +87,7 @@ export async function prepareVideoPlan(directory: string): Promise<VideoPlan> {
   return validateVideoPlan(directory, {
     schemaVersion: '1.0.0', status: 'draft', researchHash: dossier.manifest.contentHash,
     sourceHash: await sourceHash(directory), provider: 'edge-tts',
-    voice: 'zh-CN-XiaoxiaoNeural', rate: '+0%',
+    voice: artifact.language === 'zh' ? 'zh-CN-XiaoxiaoNeural' : 'en-US-JennyNeural', rate: '+0%',
     duration: { minSeconds: 1, maxSeconds: MAX_SECONDS }, segments,
   });
 }

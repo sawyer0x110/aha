@@ -13,7 +13,7 @@ async function renderDiagrams(): Promise<void> {
     startOnLoad: false,
     securityLevel: 'strict',
     theme: 'base',
-    fontFamily: '"Segoe UI", Aptos, Calibri, sans-serif',
+    fontFamily: getComputedStyle(document.body).fontFamily,
     themeVariables: {
       primaryColor: color('--cp-surface'),
       primaryTextColor: color('--cp-text'),
@@ -48,7 +48,10 @@ async function renderDiagrams(): Promise<void> {
   document.head.append(style);
   for (const [index, source] of sources.entries()) {
     const text = source.textContent ?? '';
-    const label = source.dataset.caption || source.getAttribute('aria-label') || `Diagram ${index + 1}`;
+    const branchLanguage = source.closest<HTMLElement>('[data-aha-lang]')?.dataset.ahaLang;
+    const isChinese = (): boolean => (branchLanguage ?? document.documentElement.lang).startsWith('zh');
+    const customLabel = source.dataset.caption || source.getAttribute('aria-label');
+    const label = customLabel || (isChinese() ? `图 ${index + 1}` : `Diagram ${index + 1}`);
     const figure = document.createElement('figure');
     figure.className = 'aha-diagram';
     figure.setAttribute('aria-label', label);
@@ -57,7 +60,6 @@ async function renderDiagrams(): Promise<void> {
     const viewport = document.createElement('div');
     viewport.className = 'aha-diagram-viewport';
     viewport.tabIndex = 0;
-    viewport.setAttribute('aria-label', `${label}; use arrow keys to pan and plus/minus to zoom`);
     const canvas = document.createElement('div');
     canvas.className = 'aha-diagram-canvas';
     const caption = document.createElement('figcaption');
@@ -87,7 +89,7 @@ async function renderDiagrams(): Promise<void> {
       const expanded = figure.dataset.expanded !== 'true';
       figure.dataset.expanded = String(expanded);
       expandButton.setAttribute('aria-expanded', String(expanded));
-      expandButton.textContent = expanded ? '收起 / Collapse' : '展开 / Expand';
+      localize();
       reset();
     };
     const addButton = (labelText: string, action: () => void): HTMLButtonElement => {
@@ -98,11 +100,24 @@ async function renderDiagrams(): Promise<void> {
       controls.append(button);
       return button;
     };
-    addButton('+', () => zoom(1.2)).setAttribute('aria-label', 'Zoom in');
-    addButton('−', () => zoom(1 / 1.2)).setAttribute('aria-label', 'Zoom out');
-    addButton('重置 / Reset', reset);
-    expandButton = addButton('展开 / Expand', expand);
+    const zoomInButton = addButton('+', () => zoom(1.2));
+    const zoomOutButton = addButton('−', () => zoom(1 / 1.2));
+    const resetButton = addButton('', reset);
+    expandButton = addButton('', expand);
     expandButton.setAttribute('aria-expanded', 'false');
+    function localize(): void {
+      const zh = isChinese();
+      const currentLabel = customLabel || (zh ? `图 ${index + 1}` : `Diagram ${index + 1}`);
+      caption.textContent = currentLabel;
+      figure.setAttribute('aria-label', currentLabel);
+      viewport.setAttribute('aria-label', `${currentLabel}; ${zh ? '方向键平移，加减键缩放' : 'use arrow keys to pan and plus/minus to zoom'}`);
+      zoomInButton.setAttribute('aria-label', zh ? '放大' : 'Zoom in');
+      zoomOutButton.setAttribute('aria-label', zh ? '缩小' : 'Zoom out');
+      resetButton.textContent = zh ? '重置' : 'Reset';
+      expandButton.textContent = figure.dataset.expanded === 'true' ? (zh ? '收起' : 'Collapse') : (zh ? '展开' : 'Expand');
+    }
+    localize();
+    window.addEventListener('aha:languagechange', localize);
     viewport.addEventListener('wheel', event => {
       if (!event.ctrlKey && !event.metaKey) return;
       event.preventDefault();

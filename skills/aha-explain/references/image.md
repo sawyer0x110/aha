@@ -1,12 +1,16 @@
 # Image infographic
 
-Read [artifact authoring](artifact-authoring.md) and [execution](execution.md). Use an independent HTML/SVG composition for a PNG, not a shrunken screenshot of the whole HTML article.
+Use [artifact authoring](artifact-authoring.md) for project metadata and [execution](execution.md) before capture. Use an independent HTML/SVG composition for a PNG, not a shrunken screenshot of the whole HTML article.
 
-Choose dimensions and a resolution budget for the reading/sharing context. Design a coherent visual argument with title, purposeful sections, connecting relationships, key figures, units, limitations, and concise sources. A single argument may need multiple subclaims; it need not be a tiny card. Preserve the scaffold's Clawpilot theme roles while freely composing a vertical infographic, landscape diagram, or poster.
+Select metadata language under [language](language.md), then author the title, labels, chart text, sources, and limitations in that language. Inspect glyph coverage and long labels at actual reading size; metadata alone does not prove legible translation.
+
+Choose dimensions and a resolution budget for the reading/sharing context. Design a coherent visual argument with title, purposeful sections, connecting relationships, key figures, units, limitations, and concise sources. A single argument may need multiple subclaims; it need not be a tiny card. Use [visual design](visual-design.md) and optionally one [theme section](design-themes.md). Compose a vertical infographic, landscape diagram, research plate, or poster for the argument rather than a universal card grid.
+
+Set an explicit root light/dark author preference when capture appearance must be stable; inspect a pilot at the actual delivery size before expanding. Reuse visual identity across media, not the HTML article's geometry.
 
 Author the full image composition in the HTML entry, sized to `artifact.json`'s `width` and `height`. The runtime captures that viewport, not an arbitrary root-selector API; image overflow is an error. Keep fonts/assets local and licensed. Wait for actual font/image readiness before capture. If dimensions exceed the available browser/resource budget, report it and propose a changed size or explicit split; do not silently crop.
 
-After authoring and obtaining approval to execute reviewed page code:
+After authoring and obtaining approval to execute reviewed page code, use `doctor --for image` if capture capabilities are unknown:
 
 ```text
 node "<absolute installed skill>/scripts/aha.mjs" explain-check <project-directory>

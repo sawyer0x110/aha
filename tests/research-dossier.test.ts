@@ -4,7 +4,7 @@ import * as fs from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 import { AhaError } from '../src/core/errors.js';
-import { buildDossier, createResearchDraft, readDossier, validateDossier, writeDossier } from '../src/research/dossier.js';
+import { buildDossier, checkResearchDraft, createResearchDraft, readDossier, validateDossier, writeDossier } from '../src/research/dossier.js';
 import { MAX_DOCUMENT_BYTES, checkSize } from '../src/research/io.js';
 import type { ResearchDraft } from '../src/research/schema.js';
 import { researchFixture } from './helpers/research.js';
@@ -83,6 +83,148 @@ test('scaffold cannot seal unchanged or with only title/report/status edits', as
   draft.status = 'complete';
   draft.stopReason = 'Report headings written.';
   await assert.rejects(buildDossier(draft), errorCode('RESEARCH_INCOMPLETE'));
+});
+
+test('draft structural check accepts a scaffold but never certifies or seals it', async () => {
+  const draft = createResearchDraft('An open question', 'public');
+  const before = structuredClone(draft);
+  const result = checkResearchDraft(draft);
+  assert.equal(result.status, 'draft-checked');
+  assert.equal(result.ready, false);
+  assert.deepEqual(result.pending.map(issue => issue.code), ['RESEARCH_INCOMPLETE', 'COVERAGE_INVALID']);
+  assert.equal(result.pending[1]!.location, '/subquestions/q1');
+  assert.match(result.verification, /Only normal check\/build/);
+  assert.equal('manifest' in result, false);
+  assert.equal('contentHash' in result, false);
+  assert.deepEqual(JSON.parse(JSON.stringify(result)), result);
+  assert.deepEqual(draft, before);
+  await assert.rejects(buildDossier(draft), errorCode('RESEARCH_INCOMPLETE'));
+  const finished = checkResearchDraft(authored());
+  assert.deepEqual(finished.pending, []);
+  assert.equal(finished.ready, false);
+});
+
+test('incremental support, reverse coverage and gaps are pending only while unfilled', async () => {
+  const draft = authored();
+  draft.claims[0]!.subquestionIds = ['q1'];
+  draft.claims[0]!.evidenceIds = [];
+  draft.evidence = [];
+  draft.subquestions[0]!.claimIds = [];
+  let result = checkResearchDraft(draft);
+  assert.ok(result.pending.some(issue => issue.code === 'CLAIM_UNSUPPORTED'));
+  assert.ok(result.pending.some(issue => issue.code === 'COVERAGE_INVALID'));
+  await assert.rejects(buildDossier(draft), errorCode('COVERAGE_INVALID'));
+  draft.subquestions[0]!.claimIds = ['c1'];
+  await assert.rejects(buildDossier(draft), errorCode('CLAIM_UNSUPPORTED'));
+  draft.claims[0]!.kind = 'unresolved';
+  draft.claims[0]!.limitations = [];
+  draft.subquestions[0]!.status = 'unresolved';
+  result = checkResearchDraft(draft);
+  assert.ok(result.pending.some(issue => issue.code === 'UNRESOLVED_INVALID'));
+  draft.subquestions[0]!.gapIds = ['g1'];
+  draft.gaps.push({ id: 'g1', description: 'No original memo.', subquestionIds: [] });
+  assert.ok(checkResearchDraft(draft).pending.some(issue => issue.location === '/gaps/g1'));
+  draft.gaps[0]!.subquestionIds = ['q1'];
+  draft.subquestions[0]!.gapIds = [];
+  assert.ok(checkResearchDraft(draft).pending.some(issue => issue.location === '/gaps/g1'));
+  draft.subquestions[0]!.gapIds = ['g1'];
+  draft.claims[0]!.limitations = ['No original memo.'];
+  assert.deepEqual(checkResearchDraft(draft).pending, []);
+  await buildDossier(draft);
+});
+
+test('draft checks reject contradictory explicit reverse links and unresolved answers', () => {
+  const claim = authored();
+  claim.claims.push({ ...claim.claims[0]!, id: 'c2', subquestionIds: ['q1'] });
+  assert.throws(() => checkResearchDraft(claim), errorCode('COVERAGE_INVALID'));
+  const gap = authored();
+  gap.subquestions.push({ id: 'q2', question: 'Another question?', status: 'unresolved', claimIds: [], gapIds: [] });
+  gap.subquestions[0]!.gapIds = ['g1'];
+  gap.gaps.push({ id: 'g1', description: 'Missing detail.', subquestionIds: ['q2'] });
+  assert.throws(() => checkResearchDraft(gap), errorCode('COVERAGE_INVALID'));
+  gap.gaps[0]!.subquestionIds = ['q1'];
+  gap.gaps.push({ id: 'g2', description: 'Another detail.', subquestionIds: ['q1'] });
+  assert.throws(() => checkResearchDraft(gap), errorCode('COVERAGE_INVALID'));
+  const unresolved = authored();
+  unresolved.claims[0]!.kind = 'unresolved';
+  assert.throws(() => checkResearchDraft(unresolved), errorCode('UNRESOLVED_INVALID'));
+});
+
+test('unfinished drafts still reject unknown references, duplicate IDs and malformed schema', () => {
+  const mutations: [string, (draft: ResearchDraft) => void][] = [
+    ['REFERENCE_INVALID', draft => { draft.claims[0]!.evidenceIds = ['missing']; }],
+    ['REFERENCE_INVALID', draft => { draft.claims[0]!.subquestionIds = ['missing']; }],
+    ['REFERENCE_INVALID', draft => { draft.subquestions[0]!.claimIds = ['missing']; }],
+    ['REFERENCE_INVALID', draft => { draft.subquestions[0]!.gapIds = ['missing']; }],
+    ['REFERENCE_INVALID', draft => { draft.gaps.push({ id: 'g1', description: 'Unknown', subquestionIds: ['missing'] }); }],
+    ['REFERENCE_INVALID', draft => { draft.researchLog[0]!.evidenceIds = ['missing']; }],
+    ['REFERENCE_INVALID', draft => { draft.researchLog[0]!.subquestionIds = ['missing']; }],
+    ['DUPLICATE_ID', draft => { draft.evidence.push({ ...draft.evidence[0]! }); }],
+    ['DUPLICATE_ID', draft => { draft.evidence[0]!.id = draft.id; }],
+    ['DUPLICATE_ID', draft => { draft.evidence[0]!.id = 'c1'; }],
+    ['SCHEMA_INVALID', draft => { draft.claims[0]!.evidenceIds.push('e1'); }],
+  ];
+  for (const [code, mutate] of mutations) {
+    const draft = webDraft();
+    draft.status = 'draft';
+    draft.report = '';
+    draft.stopReason = '';
+    mutate(draft);
+    assert.throws(() => checkResearchDraft(draft), errorCode(code));
+  }
+  for (const patch of [{ claims: null }, { status: 'pending' }, { report: 42 }, { evidence: [{}] }, { extra: true }]) {
+    assert.throws(() => checkResearchDraft({ ...createResearchDraft('Question'), ...patch }), errorCode('SCHEMA_INVALID'));
+  }
+  for (const patch of [{ schemaVersion: '0.1.0' }, { modelSpec: {} }]) {
+    assert.throws(() => checkResearchDraft({ ...authored(), ...patch }), errorCode('UNSUPPORTED_SCHEMA'));
+  }
+});
+
+test('drafts distinguish missing reads from malformed asserted logs, metadata and hashes', async () => {
+  const draft = webDraft();
+  draft.researchLog = [];
+  assert.deepEqual(checkResearchDraft(draft).pending.map(issue => issue.code), ['SOURCE_UNREAD']);
+  await assert.rejects(buildDossier(draft), errorCode('SOURCE_UNREAD'));
+  const mutations: [string, (draft: ResearchDraft) => void][] = [
+    ['SOURCE_URL', draft => { draft.evidence[0]!.url = 'file:///memo'; }],
+    ['SOURCE_URL', draft => { draft.evidence[0]!.url = 'https://user:password@example.org/memo'; }],
+    ['SOURCE_DATE', draft => { draft.evidence[0]!.retrievedAt = '2026-02-30T12:00:00Z'; }],
+    ['SOURCE_DATE', draft => { draft.researchLog[0]!.occurredAt = 'yesterday'; }],
+    ['SOURCE_METADATA', draft => { delete draft.evidence[0]!.retrievedAt; }],
+    ['SOURCE_METADATA', draft => { draft.evidence[0]!.kind = 'code'; }],
+    ['SOURCE_HASH', draft => { draft.evidence[0]!.content = 'changed'; draft.evidence[0]!.contentHash = 'a'.repeat(64); }],
+    ['SCHEMA_INVALID', draft => { draft.evidence[0]!.contentHash = 'not-a-hash'; }],
+    ['LOG_INVALID', draft => { delete draft.researchLog[0]!.readRange; }],
+    ['LOG_INVALID', draft => { draft.researchLog[0]!.outcome = 'failure'; }],
+    ['LOG_INVALID', draft => { draft.researchLog[0]!.evidenceIds = []; }],
+  ];
+  for (const [code, mutate] of mutations) {
+    const input = webDraft();
+    input.status = 'draft';
+    mutate(input);
+    const before = structuredClone(input);
+    assert.throws(() => checkResearchDraft(input), errorCode(code));
+    assert.deepEqual(input, before);
+  }
+  const frozen = webDraft();
+  Object.freeze(frozen);
+  Object.freeze(frozen.claims[0]!.evidenceIds);
+  assert.deepEqual(checkResearchDraft(frozen).pending, []);
+});
+
+test('draft checks enforce UTF-8 and serialized document bounds and reject non-JSON snapshots', () => {
+  const draft = createResearchDraft('Question');
+  draft.report = '研'.repeat(1_500_000);
+  assert.throws(() => checkResearchDraft(draft), errorCode('FILE_SIZE'));
+  draft.report = '';
+  draft.evidence = Array.from({ length: 5 }, (_, index) => ({
+    id: `e${index}`, kind: 'provided', title: 'Large source', locator: 'Supplied text',
+    summary: 'Large text', sourceVersion: '1', content: 'x'.repeat(900_000),
+  }));
+  assert.throws(() => checkResearchDraft(draft), errorCode('FILE_SIZE'));
+  const cyclic = authored() as ResearchDraft & { cycle?: unknown };
+  cyclic.cycle = cyclic;
+  assert.throws(() => checkResearchDraft(cyclic), errorCode('JSON_DEPTH'));
 });
 
 test('invalid references in claims, questions, gaps and logs are rejected', async () => {

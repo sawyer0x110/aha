@@ -64,7 +64,7 @@ export const benchmarkPromptFixtures: Fixture[] = [
     references: ['research-workflow.md', 'artifact-authoring.md', 'html.md', 'artifact-qa.md'],
     manualChecks: [
       'Performs iterative research and source review, then authors actual topic-specific source and coverage instead of declaring the scaffold authored.',
-      'Uses free document structure, Clawpilot theme roles, a readable prose measure, a meaningful diagram, and independent wide-content expansion.',
+      'Uses free document structure, optional theme recipes with consistent runtime color roles, readable prose measure, and independent wide-content expansion.',
       'Diagram relationships and interaction help answer the question; no invented causal slider or mandatory quiz.',
       'Opens the delivered HTML offline at desktop and narrow sizes, operates controls with keyboard, and tests reduced motion and font loading.',
       'Uses local resources without CDN fallback and distinguishes browser receipts from actual visual review.',
@@ -119,6 +119,30 @@ export const benchmarkPromptFixtures: Fixture[] = [
       'A changed narration/voice plan requires fresh approval; imported audio is explicitly labelled provided-audio, never a fake Edge success.',
       'Uses measured audio timing and deterministic browser-captured frames with FFmpeg, not a nonexistent Remotion command.',
       'Actually watches/listens to pilot and final output, checks subtitle safe area and timing, and reports any blocked playback or missing dependency.',
+    ],
+  },
+  {
+    id: 'unspecified-visual-format', skill: 'aha-explain', priority: 'html',
+    prompt: 'Use this reviewed research to explain the mechanism visually for a general reader. I have not chosen a file format; avoid unnecessary questions and do not create extra deliverables.',
+    materials: ['Reviewed Dossier', 'No requested format or decisive delivery context'],
+    references: ['format-selection.md', 'visual-design.md', 'design-themes.md', 'html.md'],
+    manualChecks: [
+      'Defaults to HTML and briefly explains the choice without asking a routine format question.',
+      'Does not make PNG, PPTX, video, or speech merely because the skill supports them.',
+      'Selects an appropriate visual direction and content-specific reading path rather than uniform cards.',
+      'Still reviews authored code and obtains execution permission independently of format selection.',
+    ],
+  },
+  {
+    id: 'explicit-multiple-formats-with-brand', skill: 'aha-explain', priority: 'pptx',
+    prompt: 'Create HTML and an editable PPT from the same research, no video or image. Follow our supplied editorial brand guide rather than the scaffold theme; vary the layouts for mechanisms and comparisons.',
+    materials: ['Reviewed Dossier', 'Authorized brand guide with local fonts', 'Two requested deliverables'],
+    references: ['format-selection.md', 'visual-design.md', 'design-themes.md', 'artifact-qa.md'],
+    manualChecks: [
+      'Creates exactly two separate projects bound to the same reviewed Dossier, without using an all-format CLI flag.',
+      'Follows the supplied brand instead of forcing Clawpilot or an optional recipe onto the work.',
+      'Adapts HTML and native slides independently, preserving material limitations and source facts.',
+      'Records actual medium-specific inspection and any missing application rather than declaring both visually approved.',
     ],
   },
   {
@@ -260,6 +284,32 @@ test('format references describe free authoring and truthful media capabilities'
   for (const concept of [/Edge TTS/, /complete.*narration/i, /planHash/, /renderFrame/, /segmentFrames/, /FFmpeg/, /measured|actual audio/i, /provided-audio/, /pilot/i]) assert.match(video, concept);
 });
 
+test('format routing and optional visual recipes are available in the portable skill', async () => {
+  const entrance = await fs.readFile(path.join(root, 'skills', 'aha-explain', 'SKILL.md'), 'utf8');
+  for (const file of ['format-selection.md', 'visual-design.md', 'design-themes.md']) {
+    assert.ok(relativeLinks(entrance).includes(`references/${file}`));
+    await reference(file);
+  }
+  const selection = await reference('format-selection.md');
+  for (const concept of [/default to HTML/i, /research-only/i, /no.*auto.*all/i, /unsupported/i, /one project per medium/i, /permission/i]) {
+    assert.match(selection, concept);
+  }
+  for (const file of ['artifact-authoring.md', 'html.md', 'image.md', 'pptx.md', 'video.md']) {
+    const markdown = await reference(file);
+    assert.ok(relativeLinks(markdown).includes('visual-design.md'), `${file}: design workflow`);
+    assert.doesNotMatch(markdown, /keep the Clawpilot theme|retaining the theme|preserve the scaffold's Clawpilot theme|keep a coherent Clawpilot-derived/i);
+  }
+});
+
+test('language guidance distinguishes bilingual HTML, English media defaults and translation review', async () => {
+  const language = await reference('language.md');
+  for (const concept of [/initially English/i, /data-aha-lang/, /data-aha-title/, /English\/中文/, /en-US-JennyNeural/, /zh-CN-XiaoxiaoNeural/, /legacy/i, /negation/i, /fresh approval/i]) {
+    assert.match(language, concept);
+  }
+  for (const name of ['artifact-authoring.md', 'html.md', 'image.md', 'pptx.md', 'video.md', 'artifact-qa.md']) {
+    assert.ok(relativeLinks(await reference(name)).includes('language.md'), `${name}: language contract`);
+  }
+});
 test('documented CLI invocations use only the canonical installed entry and command set', async () => {
   const commands = new Set([
     'doctor', 'research-init', 'research-check', 'research-build', 'research-validate',
@@ -276,6 +326,24 @@ test('documented CLI invocations use only the canonical installed entry and comm
     }
   }
   assert.deepEqual([...seen].sort(), [...commands].sort());
+});
+
+test('worked research example is a complete valid dossier, not only a documentation placeholder', async () => {
+  const example = await reference('research-example.md', 'aha-research');
+  const json = example.match(/```json\r?\n([\s\S]*?)\r?\n```/)?.[1];
+  assert.ok(json, 'example must contain a complete JSON draft');
+  const input: unknown = JSON.parse(json);
+  const { buildDossier, checkResearchDraft, validateDossier } = await import('../src/research/dossier.js');
+  const draftCheck = checkResearchDraft(input);
+  assert.equal(draftCheck.ready, false);
+  assert.deepEqual(draftCheck.pending, []);
+  const dossier = await buildDossier(input);
+  await validateDossier(dossier);
+  assert.equal(dossier.research.kind, 'provided');
+  assert.equal(dossier.research.researchLog.length, 0);
+  assert.match(dossier.research.report, /synthetic example/i);
+  assert.match(dossier.research.report, /Tuesday/);
+  assert.ok(dossier.research.subquestions.some(question => question.status === 'unresolved' && question.gapIds.length));
 });
 
 test('manual benchmark fixtures cover both entry points and all media without pretending to run host QA', async () => {

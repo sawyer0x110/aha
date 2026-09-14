@@ -81,7 +81,7 @@ export async function renderHtml(directory: string, output: string): Promise<obj
 
 interface BrowserResult {
   bytes?: Buffer;
-  diagnostics: { width: number; height: number; scrollWidth: number; scrollHeight: number; clipped: number; missingImages: number };
+  diagnostics: { width: number; height: number; scrollWidth: number; scrollHeight: number; clipped: number; missingImages: number; checkedLanguages?: string[] };
 }
 
 async function inspectPage(page: Page | Frame): Promise<BrowserResult['diagnostics']> {
@@ -145,6 +145,20 @@ async function browserRender(html: string, artifact: Artifact, capture: boolean)
           if (failure) throw new Error(failure);
         });
         const diagnostics = await inspectPage(frame);
+        if (artifact.language === 'bilingual') {
+          await frame.locator('.aha-language-controls button[data-language="zh"]').click();
+          await frame.evaluate(async () => {
+            await document.fonts.ready;
+            await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+          });
+          const chinese = await inspectPage(frame);
+          diagnostics.clipped += chinese.clipped;
+          diagnostics.missingImages = Math.max(diagnostics.missingImages, chinese.missingImages);
+          diagnostics.scrollWidth = Math.max(diagnostics.scrollWidth, chinese.scrollWidth);
+          diagnostics.scrollHeight = Math.max(diagnostics.scrollHeight, chinese.scrollHeight);
+          diagnostics.checkedLanguages = ['en', 'zh'];
+          await frame.locator('.aha-language-controls button[data-language="en"]').click();
+        }
         if (external.length || errors.length) fail('ARTIFACT_BROWSER_ERROR', 'Authored page attempted blocked networking or raised a browser error.', [...external, ...errors].slice(0, 5).join('\n'));
         if (diagnostics.missingImages) fail('ARTIFACT_IMAGE_MISSING', 'One or more packaged images failed to decode.');
         if (diagnostics.clipped || (artifact.format === 'image' && (diagnostics.scrollWidth > artifact.width + 1 || diagnostics.scrollHeight > artifact.height + 1))) {

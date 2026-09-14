@@ -1,12 +1,16 @@
 # Rich HTML
 
-Read [artifact authoring](artifact-authoring.md) and [execution](execution.md). Author the project's HTML source directly; it is the editable authority, not a generated fixed-card layout.
+Use [artifact authoring](artifact-authoring.md) for project metadata; apply [execution](execution.md) before browser execution. Author the project's HTML source directly; it is the editable authority, not a generated fixed-card layout.
+
+## Language and localized roots
+
+When authoring metadata or bilingual content, use [the language contract](language.md) for the exact localized roots, titles, offline switch, hiding, and `aha:languagechange` behavior. Keep interactions branch-aware so initially hidden diagrams work after switching. Layouts remain free-form; Aha packages authored translations, not automatically translated research.
 
 ## Compose for the question
 
 Use a readable long-form document with headings, prose, lists, tables, code, quotations, and natural source links. Choose relationships deliberately: architecture/topology, sequence, comparison, timeline, data, or argument. Mix structures when useful. Use consistent arrow meanings, object identities, type hierarchy, spacing, and color semantics.
 
-Start from the scaffold's Clawpilot theme variables, retaining the theme while freely changing structure. Give prose a comfortable measure; let wide tables and complex diagrams expand independently instead of squeezing them into the text column or turning the whole article into a slideshow.
+At composition, follow [visual design](visual-design.md) for runtime `--cp-*` roles, light/dark selectors, author/system preference, and `scoutTheme` overrides; optionally read only a chosen [theme section](design-themes.md). Give prose a comfortable measure; let wide tables and complex diagrams expand independently instead of squeezing them into the text column or turning the whole article into a slideshow.
 
 Author SVG or local Mermaid diagrams as appropriate. The built-in path recognizes `.mermaid` elements (normally `<pre class="mermaid">`) and embeds the installed local Mermaid runtime, which initializes strict mode, renders SVG in the browser, and provides figure captions and zoom/pan/expansion controls. Keep diagram text properly escaped; never add a CDN or a competing initialization/control wrapper. This is browser-time rendering, not precomputed SVG.
 
@@ -24,7 +28,7 @@ Author inline SVG for complex graphics; external SVG assets must be inert and se
 
 ## Build and inspect
 
-Use the installed CLI:
+Use `doctor --for html` if packaging capabilities are unknown, or `doctor --for browser` before preview diagnostics. Use the installed CLI:
 
 ```text
 node "<absolute installed skill>/scripts/aha.mjs" explain-check <project-directory>
@@ -35,3 +39,5 @@ node "<absolute installed skill>/scripts/aha.mjs" browser-check <project-directo
 `render-html` packages source without executing authored code; it is not evidence of visual quality. Browser execution needs reviewed code approval even when the HTML was packaged without execution. The CLI check does not replace actually opening and interacting with the delivered output.
 
 Check offline with network unavailable: fonts, diagrams, scripts, assets, Chinese/non-Latin text, long body, wide table, sequence diagram, and every useful interaction. Test desktop and narrow-screen layouts, keyboard navigation, zoom/reset, reduced motion, console errors, and source links. Inspect screenshots and the actual document; record what was and was not observed. Follow [artifact QA](artifact-qa.md).
+
+For bilingual output, switch and inspect both complete branches under the language acceptance checklist in QA; the initial English view and schema success cannot certify translation.

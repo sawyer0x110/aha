@@ -11,7 +11,25 @@
 
 ## Resources and publication
 
-Run `doctor` or `doctor --media` through the installed `scripts/aha.mjs`. Use installed dependencies; no automatic installs, browser downloads, remote fonts, or CDN resources. Ask for explicit installation authorization if needed and record the blocker.
+Use the narrowest diagnostic for the current step:
+
+```text
+node "<absolute installed skill>/scripts/aha.mjs" doctor
+node "<absolute installed skill>/scripts/aha.mjs" doctor --for research
+node "<absolute installed skill>/scripts/aha.mjs" doctor --for html
+node "<absolute installed skill>/scripts/aha.mjs" doctor --for browser
+node "<absolute installed skill>/scripts/aha.mjs" doctor --for image
+node "<absolute installed skill>/scripts/aha.mjs" doctor --for pptx
+node "<absolute installed skill>/scripts/aha.mjs" doctor --for video
+node "<absolute installed skill>/scripts/aha.mjs" doctor --for speech
+node "<absolute installed skill>/scripts/aha.mjs" doctor --media
+```
+
+Plain `doctor` checks basic bundle integrity. `--for research`, `html`, and `pptx` need no external optional probes; `browser` and `image` probe only an installed browser. `video` probes the browser, FFmpeg, and ffprobe, not speech. `speech` probes FFmpeg, ffprobe, and the local Python `edge-tts` adapter without browser or network access. These are local probes, not installs or permission to execute authored source.
+
+`--media` is the legacy all-diagnostics view, mutually exclusive with `--for`; it is not a global workflow gate. A missing browser blocks capture/preview, not research or HTML packaging; missing speech dependencies do not block provided-audio video rendering. Diagnose only the corresponding step and report its blocker.
+
+Use installed dependencies; no automatic installs, browser downloads, remote fonts, or CDN resources. Ask for explicit installation authorization if needed and record the blocker.
 
 Default to offline resources with a declared local inventory. Verify image, font, library, and audio provenance and licensing; do not copy noncommercial reference-project code under an assumed permissive license. Embed only resources whose redistribution is allowed.
 

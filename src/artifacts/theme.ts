@@ -1,7 +1,10 @@
 export const themeScript = `(() => {
   const param = new URLSearchParams(window.location.search).get("scoutTheme");
+  const authored = document.documentElement.getAttribute("data-theme");
   const theme =
-    param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    param === "light" || param === "dark" ? param :
+    authored === "light" || authored === "dark" ? authored :
+    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   document.documentElement.setAttribute("data-theme", theme);
 })();`;
 

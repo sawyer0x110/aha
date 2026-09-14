@@ -5,6 +5,7 @@ import { fail } from '../core/errors.js';
 import { assertAuthored } from './project.js';
 import { localPath, readBounded, sourceFiles, MAX_SOURCE_BYTES } from './files.js';
 import { themeCss, themeScript } from './theme.js';
+import { languageCss, languageScript } from './language.js';
 
 interface Node {
   nodeName: string;
@@ -75,6 +76,7 @@ export async function prepareHtml(directory: string): Promise<string> {
   const document = parse(source) as unknown as Node;
   let mermaid = false;
   let inlinedBytes = 0;
+  const languageRoots: Node[] = [];
   function resource(reference: string, from: string): { name: string; bytes: Buffer } {
     const name = localReference(reference, from);
     const bytes = files.get(name);
@@ -122,6 +124,7 @@ export async function prepareHtml(directory: string): Promise<string> {
   async function visit(node: Node, from: string): Promise<void> {
     if (node.tagName) {
       const tag = node.tagName.toLowerCase();
+      if (artifact.language === 'bilingual' && attr(node, 'data-aha-lang') !== undefined) languageRoots.push(node);
       if (UNSUPPORTED.has(tag)) fail('HTML_CONTEXT', `Unsupported offline HTML element: ${tag}.`);
       if (tag === 'meta' && attr(node, 'http-equiv')) fail('HTML_CONTEXT', 'Authored http-equiv metadata is unsupported; Aha supplies offline CSP.');
       if (tag === 'script') {
@@ -183,6 +186,38 @@ export async function prepareHtml(directory: string): Promise<string> {
   const head = html?.childNodes?.find(node => node.tagName === 'head');
   const body = html?.childNodes?.find(node => node.tagName === 'body');
   if (!head || !body) fail('HTML_DOCUMENT', 'Expected an HTML document.');
+  if (artifact.language === 'bilingual') {
+    if (languageRoots.length !== 2 || !['en', 'zh'].every(language =>
+      languageRoots.filter(node => attr(node, 'data-aha-lang') === language).length === 1)) {
+      fail('HTML_LANGUAGE', 'Bilingual HTML needs exactly one en and one zh data-aha-lang root.');
+    }
+    for (const root of languageRoots) {
+      if (root.tagName !== 'section' || (attr(root, 'class') ?? '').split(/\s+/).includes('mermaid')) {
+        fail('HTML_LANGUAGE', 'Language roots must be section containers, with diagrams nested inside them.');
+      }
+      let ancestor = root.parentNode;
+      while (ancestor && ancestor !== body) {
+        if (languageRoots.includes(ancestor)) fail('HTML_LANGUAGE', 'Language roots cannot be nested.');
+        ancestor = ancestor.parentNode;
+      }
+      if (ancestor !== body || !text(root).trim() || !attr(root, 'data-aha-title')?.trim()) {
+        fail('HTML_LANGUAGE', 'Each language root must be inside the body with content and a data-aha-title.');
+      }
+      setAttr(root, 'lang', attr(root, 'data-aha-lang') === 'zh' ? 'zh-CN' : 'en');
+      if (attr(root, 'data-aha-lang') === 'zh') setAttr(root, 'hidden', '');
+      else removeAttr(root, 'hidden');
+    }
+    const styles = fragment(`<style>${languageCss}</style>`);
+    for (const node of styles) node.parentNode = head;
+    head.childNodes = [...(head.childNodes ?? []), ...styles];
+    const scripts = fragment('<script></script>');
+    setText(scripts[0]!, languageScript);
+    scripts[0]!.parentNode = body;
+    body.childNodes = [...(body.childNodes ?? []), ...scripts];
+    setAttr(html!, 'lang', 'en');
+  } else if (artifact.language) {
+    setAttr(html!, 'lang', artifact.language === 'zh' ? 'zh-CN' : 'en');
+  }
   const additions = fragment(`<meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="${OFFLINE_CSP}"><script>${themeScript}</script><style>${themeCss}</style>`);
   for (const node of additions) node.parentNode = head;
   head.childNodes = [...additions, ...(head.childNodes ?? [])];
