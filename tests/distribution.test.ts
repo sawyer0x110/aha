@@ -55,6 +55,7 @@ test('release ZIP, inventory and SHA256 assets are deterministic and retain earl
     assert.equal(installer.sha256(await fs.readFile(path.join(release.directory, name!))), hash);
   }
   const manifest = JSON.parse(await fs.readFile(path.join(extracted, 'release-manifest.json'), 'utf8'));
+  assert.deepEqual(names, ['aha-research', 'aha-explain']);
   assert.deepEqual(manifest.skills, names);
   const files: Record<string, Buffer> = await installer.inventory(extracted);
   assert.equal(Object.keys(files).length, Object.keys(manifest.files).length + 1);
@@ -136,19 +137,22 @@ export async function resolve(specifier, context, next) {
     });
     assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
     const doctor = JSON.parse(result.stdout);
-    assert.equal(doctor.capabilities.lab, true);
+    assert.equal(doctor.capabilities.research, true);
+    assert.equal(doctor.capabilities.freeHtml, true);
+    assert.equal(doctor.capabilities.mermaid, true);
     assert.equal(doctor.capabilities.pptx, true);
+    assert.equal('lab' in doctor.capabilities, false);
     assert.match(doctor.mediaReadiness, /not-probed/);
   }
 });
 
 test('collision preflight preserves every existing target and creates no other skills', async () => {
   const project = path.join(workspace, 'collision');
-  const existing = path.join(project, '.github', 'skills', 'aha-story');
+  const existing = path.join(project, '.github', 'skills', 'aha-explain');
   await fs.mkdir(existing, { recursive: true });
   await fs.writeFile(path.join(existing, 'keep.txt'), 'existing work');
   assert.match(invoke(['--host', 'copilot', '--project', project, '--apply'], 1).stderr, /already exists/);
-  assert.deepEqual(await fs.readdir(path.dirname(existing)), ['aha-story']);
+  assert.deepEqual(await fs.readdir(path.dirname(existing)), ['aha-explain']);
   assert.equal(await fs.readFile(path.join(existing, 'keep.txt'), 'utf8'), 'existing work');
   assert.deepEqual(await fs.readdir(project), ['.github']);
 });
@@ -186,7 +190,7 @@ test('symlink/junction defenses cover destination ancestors, project and source'
   const alias = path.join(workspace, 'project alias');
   await fs.symlink(project, alias, process.platform === 'win32' ? 'junction' : 'dir');
   assert.match(invoke(['--host', 'codex', '--project', alias, '--apply'], 1).stderr, /Symlink\/junction/);
-  const sourceLink = path.join(extracted, 'skills', 'aha-lab', 'escape');
+  const sourceLink = path.join(extracted, 'skills', 'aha-explain', 'escape');
   await fs.symlink(outside, sourceLink, process.platform === 'win32' ? 'junction' : 'dir');
   try {
     assert.match(invoke(['--host', 'codex', '--project', project], 1).stderr, /Symlink\/junction/);
@@ -197,7 +201,7 @@ test('symlink/junction defenses cover destination ancestors, project and source'
 test('tampering and extra files are refused before target mutation', async () => {
   const project = path.join(workspace, 'tampered install');
   await fs.mkdir(project);
-  const skill = path.join(extracted, 'skills', 'aha-lab', 'SKILL.md');
+  const skill = path.join(extracted, 'skills', 'aha-explain', 'SKILL.md');
   const original = await fs.readFile(skill);
   try {
     await fs.appendFile(skill, '\ntampered');
@@ -212,4 +216,17 @@ test('tampering and extra files are refused before target mutation', async () =>
   assert.match(invoke(['--host', 'copilot', '--project', '.'], 1).stderr, /explicit absolute/);
   assert.match(invoke(['--host', 'copilot', '--project', project, '--force'], 1).stderr, /Unknown argument/);
   assert.match(invoke(['--host', 'copilot', '--project', project, '--dry-run', '--apply'], 1).stderr, /Choose/);
+});
+
+test('legacy skills in any discovery directory block installation without deleting user content', async () => {
+  for (const discovery of ['.github', '.agents', '.claude']) {
+    const project = path.join(workspace, `legacy-${discovery.slice(1)}`);
+    const legacy = path.join(project, discovery, 'skills', 'aha-story');
+    await fs.mkdir(legacy, { recursive: true });
+    await fs.writeFile(path.join(legacy, 'keep.txt'), 'user-owned previous installation');
+    assert.match(invoke(['--host', 'copilot', '--project', project, '--apply'], 1).stderr, /Legacy Skill remains/);
+    assert.equal(await fs.readFile(path.join(legacy, 'keep.txt'), 'utf8'), 'user-owned previous installation');
+    assert.deepEqual(await fs.readdir(path.dirname(legacy)), ['aha-story']);
+    assert.deepEqual(await fs.readdir(project), [discovery]);
+  }
 });

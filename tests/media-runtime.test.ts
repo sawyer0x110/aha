@@ -1,13 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises';
-import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { pythonRuntime } from '../src/media/process.js';
 
 test('Python resolution uses only explicit, active, current-project and PATH candidates in order', async () => {
-  const cwd = await mkdtemp(path.join(os.tmpdir(), 'aha-python-'));
+  const cwd = await mkdtemp(path.resolve('.aha-python-'));
   try {
     for (const platform of ['win32', 'linux'] as const) {
       const suffix = platform === 'win32' ? ['Scripts', 'python.exe'] : ['bin', 'python'];
@@ -30,7 +29,7 @@ test('Python resolution uses only explicit, active, current-project and PATH can
 });
 
 test('invalid explicit Python configuration fails and a parent project environment is not searched', async () => {
-  const root = await mkdtemp(path.join(os.tmpdir(), 'aha-python-scope-'));
+  const root = await mkdtemp(path.resolve('.aha-python-scope-'));
   try {
     const child = path.join(root, 'child');
     await mkdir(child);
@@ -60,5 +59,6 @@ test('media doctor reports an unusable explicit runtime without success-shaped f
   assert.equal(report.pythonRuntime.source, 'override');
   assert.equal(report.pythonRuntime.executable, 'aha-missing-python-for-test');
   assert.match(report.mediaReadiness.edgeTts, /^unavailable:/);
-  assert.match(report.mediaSetup, /No dependencies were installed/);
+  assert.match(report.execution, /not an OS sandbox/);
+  assert.equal(report.capabilities.videoEngine, 'authored-browser-frames');
 });

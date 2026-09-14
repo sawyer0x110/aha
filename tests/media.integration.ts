@@ -1,22 +1,57 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as fs from 'node:fs/promises';
-import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
+import { buildDossier, createResearchDraft, writeDossier } from '../src/research/dossier.js';
+import { initArtifact } from '../src/artifacts/project.js';
+import { approvePlan, prepareVideoPlan, validateVideoPlan } from '../src/media/plan.js';
+import { fileHash, importAudio, readAudio } from '../src/media/audio.js';
+import { createFrameRenderer, openBrowser } from '../src/media/browser.js';
+import { renderVideo } from '../src/media/video.js';
+import { hashValue } from '../src/core/identity.js';
 import { runTool, ffmpeg } from '../src/media/process.js';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const cli = path.join(root, 'dist', 'cli', 'aha.mjs');
-test('packaged Python adapter does not shadow edge_tts and passes only the narration request', async () => {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'aha-edge-adapter-'));
+const source = `<!doctype html><html><head><style>
+html,body{margin:0;width:1280px;height:720px;background:#17243a}
+#dot{position:absolute;top:220px;width:160px;height:160px;background:#38e6b5}
+</style></head><body><div id="dot"></div><script>
+window.ahaVideo={async renderFrame({frame}) {
+document.getElementById('dot').style.left=(50+frame*20)+'px';
+}};</script></body></html>`;
+
+async function fixture(directory: string): Promise<string> {
+  const draft = createResearchDraft('Does the fixture move?', 'provided');
+  draft.status = 'complete';
+  draft.report = 'The synthetic fixture moves a square by frame number. This tests rendering, not research truth.';
+  draft.stopReason = 'The supplied fixture suffices for this bounded pipeline test.';
+  draft.claims = [{ id: 'Claim_1', text: 'The square moves by frame number.', evidenceIds: ['e1'], limitations: ['Synthetic test only.'] }];
+  draft.evidence = [{
+    id: 'e1', kind: 'provided', title: 'Synthetic fixture source', locator: 'tests/media.integration.ts',
+    summary: 'Explicit frame position changes.', sourceVersion: 'fixture-v1',
+  }];
+  draft.subquestions = [{ id: 'q1', question: draft.question, status: 'answered', claimIds: ['Claim_1'], gapIds: [] }];
+  await writeDossier(path.join(directory, 'research'), await buildDossier(draft));
+  const project = path.join(directory, 'project');
+  await initArtifact(path.join(directory, 'research'), 'video', project);
+  const metadata = JSON.parse(await fs.readFile(path.join(project, 'artifact.json'), 'utf8'));
+  metadata.status = 'authored';
+  metadata.coverage = [{ id: 'motion', claimIds: ['Claim_1'] }];
+  await fs.writeFile(path.join(project, 'artifact.json'), JSON.stringify(metadata));
+  await fs.writeFile(path.join(project, 'html', 'index.html'), source);
+  return project;
+}
+
+test('Python adapter passes only the approved narration request to an offline stub', async () => {
+  const dir = await fs.mkdtemp(path.resolve('.aha-edge-adapter-'));
   try {
     const request = path.join(dir, 'request.json');
     const output = path.join(dir, 'result.json');
     await fs.writeFile(request, JSON.stringify({ text: 'approved fixture', voice: 'zh-CN-XiaoxiaoNeural', rate: '+0%' }));
     const result = spawnSync(process.env.AHA_PYTHON ?? 'python', [
-      path.join(root, 'dist', 'assets', 'media', 'edge_speech.py'), request, output,
+      path.join(root, 'src', 'media', 'edge_speech.py'), request, output,
     ], { env: { ...process.env, PYTHONPATH: path.join(root, 'tests', 'fixtures') }, encoding: 'utf8', timeout: 30000 });
     if (result.error) throw result.error;
     assert.equal(result.status, 0, result.stderr);
@@ -29,53 +64,118 @@ test('packaged Python adapter does not shadow edge_tts and passes only the narra
   } finally { await fs.rm(dir, { recursive: true, force: true }); }
 });
 
-function invoke(cwd: string, args: string[], status = 0, entry = cli) {
-  const result = spawnSync(process.execPath, [entry, ...args], { cwd, encoding: 'utf8', timeout: 180000 });
-  if (result.error) throw result.error;
-  assert.equal(result.status, status, `${result.stdout}\n${result.stderr}`);
-  return JSON.parse(result.stdout);
-}
-
-test('actual offline PNG and H.264/AAC workflow preserves speech approval, timing and identity', async () => {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'aha-media-integration-'));
+test('representative source frames change, replay identically, and hostile subtitle markup is inert', async () => {
+  const browser = await openBrowser();
   try {
-    invoke(dir, ['example', 'compound', 'topic.aha']);
-    invoke(dir, ['render-image', 'topic.aha', 'card.png']);
-    const png = await fs.readFile(path.join(dir, 'card.png'));
-    assert.equal(png.subarray(1, 4).toString(), 'PNG');
-    assert.equal(png.readUInt32BE(16), 1080);
-    assert.ok(png.readUInt32BE(20) <= 2400);
-    invoke(dir, ['prepare-video', 'topic.aha', 'plan.json']);
-    const plan = JSON.parse(await fs.readFile(path.join(dir, 'plan.json'), 'utf8'));
-    plan.duration = { minSeconds: 5, maxSeconds: 7 };
-    plan.segments = [plan.segments.find((segment: { text: string }) => segment.text.includes('10800.00'))];
-    plan.segments[0].text = 'Offline synthetic tone fixture, not generated speech.';
-    await fs.writeFile(path.join(dir, 'plan.json'), JSON.stringify(plan));
-    const approved = invoke(dir, ['video-plan-check', 'topic.aha', 'plan.json']).planHash;
-    await runTool(ffmpeg(), [
-      '-v', 'error', '-nostdin', '-n', '-f', 'lavfi', '-i', 'sine=frequency=440:duration=6',
-      '-ac', '1', '-ar', '48000', path.join(dir, 'fixture.wav'),
-    ]);
-    await fs.writeFile(path.join(dir, 'audio-files.json'), JSON.stringify({
-      segments: [{ id: plan.segments[0].id, file: 'fixture.wav' }],
-    }));
-    invoke(dir, ['import-audio', 'topic.aha', 'plan.json', 'audio-files.json', 'audio', '--approve', approved]);
-    assert.equal(invoke(dir, ['render-video', 'topic.aha', 'plan.json', 'audio', 'rejected.mp4', '--approve', 'bad'], 1).error.code, 'NARRATION_APPROVAL_REQUIRED');
-    const receipt = invoke(dir, ['render-video', 'topic.aha', 'plan.json', 'audio', 'test.mp4', '--approve', approved]);
+    const renderer = await createFrameRenderer(source, browser);
+    try {
+      const input = { frame: 0, fps: 30, segmentIndex: 0, segmentFrame: 0, segmentFrames: 30, text: '<script>throw Error("not text")</script>' };
+      const first = await renderer.render(input, true);
+      const middle = await renderer.render({ ...input, frame: 15, segmentFrame: 15 }, true);
+      const replay = await renderer.render(input, true);
+      assert.notEqual(first.visualHash, middle.visualHash);
+      assert.equal(first.visualHash, replay.visualHash);
+      assert.equal(first.png.readUInt32BE(16), 1280);
+      assert.equal(first.png.readUInt32BE(20), 720);
+    } finally { await renderer.close(); }
+    const broken = source.replace("document.getElementById('dot').style.left=(50+frame*20)+'px';", 'throw new Error("private script error");');
+    const renderer2 = await createFrameRenderer(broken, browser);
+    try {
+      await assert.rejects(renderer2.render({ frame: 0, fps: 30, segmentIndex: 0, segmentFrame: 0, segmentFrames: 30, text: 'Fixture.' }));
+    } finally { await renderer2.close(); }
+    const staticRenderer = await createFrameRenderer(source.replace("(50+frame*20)", '50'), browser);
+    try {
+      const input = { frame: 0, fps: 30, segmentIndex: 0, segmentFrame: 0, segmentFrames: 30, text: 'Static fixture.' };
+      const first = await staticRenderer.render(input, true);
+      const later = await staticRenderer.render({ ...input, frame: 15, segmentFrame: 15 }, true);
+      assert.equal(first.visualHash, later.visualHash, 'Function presence alone is not visual-change evidence.');
+    } finally { await staticRenderer.close(); }
+    const networkRenderer = await createFrameRenderer(source.replace("document.getElementById('dot').style.left=(50+frame*20)+'px';",
+      'await fetch("https://example.invalid/never-request").catch(()=>{});'), browser);
+    try {
+      await assert.rejects(networkRenderer.render({ frame: 0, fps: 30, segmentIndex: 0, segmentFrame: 0, segmentFrames: 30, text: 'Offline fixture.' }),
+        { code: 'MEDIA_PAGE_ERROR' });
+    } finally { await networkRenderer.close(); }
+  } finally { await browser.close(); }
+});
+
+test('offline authored video uses measured synthetic audio and publishes verified transactional outputs', async () => {
+  const dir = await fs.mkdtemp(path.resolve('.aha-media-integration-'));
+  try {
+    const project = await fixture(dir);
+    const plan = await prepareVideoPlan(project);
+    assert.equal(plan.status, 'draft');
+    await assert.rejects(approvePlan(plan, await hashValue(plan)), { code: 'NARRATION_DRAFT' });
+    plan.status = 'authored';
+    plan.provider = 'provided-audio';
+    plan.voice = 'user-provided';
+    plan.duration = { minSeconds: 1, maxSeconds: 2 };
+    plan.segments[0]!.text = 'Synthetic test audio, not generated speech.';
+    await validateVideoPlan(project, plan);
+    await assert.rejects(validateVideoPlan(project, { ...plan, segments: [{ ...plan.segments[0], claimIds: ['missing'] }] }), { code: 'VIDEO_CLAIM' });
+    await assert.rejects(validateVideoPlan(project, { ...plan, segments: [{ ...plan.segments[0], claimIds: [] }] }), { code: 'VIDEO_CLAIM' });
+    await runTool(ffmpeg(), ['-v', 'error', '-nostdin', '-n', '-f', 'lavfi', '-i', 'sine=frequency=440:duration=1',
+      '-ac', '1', '-ar', '48000', path.join(dir, 'fixture.wav')]);
+    const audioDir = path.join(dir, 'audio');
+    await importAudio(plan, { segments: [{ id: plan.segments[0]!.id, file: 'fixture.wav' }] }, dir, audioDir);
+    await assert.rejects(readAudio({ ...plan, rate: '+1%' }, audioDir), { code: 'AUDIO_PLAN_MISMATCH' });
+    const manifestFile = path.join(audioDir, 'manifest.json');
+    const manifestText = await fs.readFile(manifestFile, 'utf8');
+    const mistimed = JSON.parse(manifestText);
+    mistimed.segments[0].frames = 31;
+    await fs.writeFile(manifestFile, JSON.stringify(mistimed));
+    await assert.rejects(readAudio(plan, audioDir), { code: 'AUDIO_TIMING' });
+    await fs.writeFile(manifestFile, manifestText);
+    await assert.rejects(renderVideo(project, plan, audioDir, path.join(dir, 'no-code.mp4'), false), { code: 'AUTHOR_CODE_PERMISSION' });
+    const output = path.join(dir, 'test.mp4');
+    const receipt = await renderVideo(project, plan, audioDir, output, true) as Record<string, unknown>;
     assert.equal(receipt.provider, 'provided-audio');
-    assert.equal(receipt.totalFrames, 180);
-    assert.equal(receipt.durationSeconds, 6);
+    assert.equal(receipt.totalFrames, 30);
+    assert.equal(receipt.durationSeconds, 1);
     assert.equal(receipt.codec, 'h264');
-    assert.equal(receipt.subtitles, 'sentence-level-burned-and-srt');
-    assert.match(await fs.readFile(path.join(dir, 'test.mp4.srt'), 'utf8'), /00:00:06,000/);
-    assert.equal(invoke(dir, ['render-video', 'topic.aha', 'plan.json', 'audio', 'test.mp4', '--approve', approved], 1).error.code, 'OUTPUT_EXISTS');
-    await fs.appendFile(path.join(dir, 'audio', 'segment-001.wav'), Buffer.from('changed'));
-    assert.equal(invoke(dir, ['render-video', 'topic.aha', 'plan.json', 'audio', 'tampered.mp4', '--approve', approved], 1).error.code, 'AUDIO_HASH_MISMATCH');
+    assert.equal(receipt.sampledVisualChange, true);
+    assert.equal(receipt.artifactHash, await fileHash(output));
+    assert.match(await fs.readFile(`${output}.srt`, 'utf8'), /00:00:01,000/);
+    assert.equal(JSON.parse(await fs.readFile(`${output}.json`, 'utf8')).status, 'delivered');
+    await assert.rejects(renderVideo(project, plan, audioDir, output, true), { code: 'OUTPUT_EXISTS' });
+    await fs.appendFile(path.join(project, 'html', 'index.html'), '\n<!-- visual revision -->');
+    await assert.rejects(renderVideo(project, plan, audioDir, path.join(dir, 'stale.mp4'), true), { code: 'VIDEO_SOURCE_MISMATCH' });
+    await assert.rejects(fs.stat(path.join(dir, 'stale.mp4')));
+    const refreshed = await prepareVideoPlan(project);
+    refreshed.status = 'authored';
+    refreshed.provider = 'provided-audio';
+    refreshed.voice = plan.voice;
+    refreshed.duration = plan.duration;
+    refreshed.segments = plan.segments;
+    await approvePlan(refreshed, await hashValue(refreshed));
+    const reusedDirectory = path.join(dir, 'reused-audio');
+    await importAudio(refreshed, { segments: [{ id: refreshed.segments[0]!.id, file: path.join('audio', 'segment-001.wav') }] }, dir, reusedDirectory);
+    assert.equal((await readAudio(refreshed, reusedDirectory)).planHash, await hashValue(refreshed));
+    await fs.writeFile(path.join(project, 'html', 'index.html'), source);
+    await fs.appendFile(path.join(audioDir, 'segment-001.wav'), 'changed');
+    await assert.rejects(renderVideo(project, plan, audioDir, path.join(dir, 'tampered.mp4'), true), { code: 'AUDIO_HASH_MISMATCH' });
     await assert.rejects(fs.stat(path.join(dir, 'tampered.mp4')));
-    const isolated = path.join(dir, 'isolated-skill');
-    await fs.cp(path.join(root, 'dist', 'skills', 'aha-story'), isolated, { recursive: true });
-    invoke(dir, ['render-image', 'topic.aha', 'isolated.png'], 0, path.join(isolated, 'scripts', 'aha.mjs'));
-  } finally {
-    await fs.rm(dir, { recursive: true, force: true });
-  }
+  } finally { await fs.rm(dir, { recursive: true, force: true }); }
+});
+
+test('a failed authored render leaves a failure receipt but no successful movie or sidecars', async () => {
+  const dir = await fs.mkdtemp(path.resolve('.aha-media-failure-'));
+  try {
+    const project = await fixture(dir);
+    await fs.writeFile(path.join(project, 'html', 'index.html'), source.replace("document.getElementById('dot').style.left=(50+frame*20)+'px';", 'throw Error("private");'));
+    const plan = await prepareVideoPlan(project);
+    plan.status = 'authored';
+    plan.provider = 'provided-audio';
+    plan.voice = 'user-provided';
+    plan.duration = { minSeconds: 1, maxSeconds: 2 };
+    await runTool(ffmpeg(), ['-v', 'error', '-nostdin', '-n', '-f', 'lavfi', '-i', 'sine=frequency=440:duration=1', path.join(dir, 'fixture.wav')]);
+    await importAudio(plan, { segments: [{ id: plan.segments[0]!.id, file: 'fixture.wav' }] }, dir, path.join(dir, 'audio'));
+    const output = path.join(dir, 'failed.mp4');
+    await assert.rejects(renderVideo(project, plan, path.join(dir, 'audio'), output, true));
+    for (const file of [output, `${output}.srt`, `${output}.json`]) await assert.rejects(fs.stat(file));
+    const failure = await fs.readFile(`${output}.failure.json`, 'utf8');
+    assert.equal(JSON.parse(failure).status, 'failed');
+    assert.ok(!failure.includes('private'));
+    assert.ok(!(await fs.readdir(dir)).some(name => name.startsWith('.aha-video-')));
+  } finally { await fs.rm(dir, { recursive: true, force: true }); }
 });

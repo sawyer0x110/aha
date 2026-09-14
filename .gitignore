@@ -3,7 +3,7 @@ dist/
 test-results/
 playwright-report/
 .agents/skills/
-artifacts/
+/artifacts/
 *.tsbuildinfo
 .venv-media/
 .host-smoke/

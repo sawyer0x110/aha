@@ -4,7 +4,7 @@ import os from 'node:os';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
-export const skillNames = ['aha-research', 'aha-lab', 'aha-story'];
+export const skillNames = ['aha-research', 'aha-explain'];
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 const json = value => `${JSON.stringify(value, null, 2)}\n`;
 
@@ -21,15 +21,13 @@ export function safeRelative(value) {
 export function allowedSkillFile(relative) {
   safeRelative(relative);
   if (relative.split('/').filter(part => part === 'node_modules').length > 1) return false;
-  if (relative.split('/').some(part => /^(?:\.|__pycache__$|\.venv$|examples$|logs?$|tokens?$)/i.test(part)) &&
-      !/^assets\/examples\/(retry|compound|evidence)\.draft\.json$/.test(relative)) return false;
+  if (relative.split('/').some(part => /^(?:\.|__pycache__$|\.venv$|examples$|logs?$|tokens?$)/i.test(part))) return false;
   if (/(^|\/)(?:secrets?|tokens?|credentials?|cookies?)(?:[.-]|$)|\.(?:log|pyc|pem|key|pfx)$/i.test(relative)) return false;
   return /^(SKILL\.md|THIRD-PARTY-NOTICES\.txt|runtime-manifest\.json|scripts\/aha\.mjs)$/.test(relative) ||
     /^references\/[a-z0-9-]+\.md$/.test(relative) ||
-    /^schemas\/(draft|pack|exploration|video-plan|audio-manifest|provided-audio)\.schema\.json$/.test(relative) ||
-    /^assets\/runtime\/(lab\.js|slides\.js|reveal\.js|reveal\.css)$/.test(relative) ||
+    /^schemas\/(research-draft|dossier|artifact|video-plan|audio-manifest|provided-audio)\.schema\.json$/.test(relative) ||
+    /^assets\/runtime\/mermaid\.js$/.test(relative) ||
     /^assets\/media\/(edge_speech\.py|requirements-media\.txt)$/.test(relative) ||
-    /^assets\/examples\/(retry|compound|evidence)\.draft\.json$/.test(relative) ||
     /^node_modules\/playwright-core\/(?!.*\/node_modules\/).+$/.test(relative);
 }
 
@@ -194,6 +192,18 @@ export async function install({ host, project, apply = false, source = path.dirn
   const identity = sha256(json({ version: manifest.version, skills: skillNames, files: manifest.files }));
   if (identity !== manifest.contentHash) throw new Error('Release identity mismatch');
   const destination = path.join(project, host === 'copilot' ? '.github' : '.agents', 'skills');
+  for (const discovery of ['.github', '.agents', '.claude']) {
+    for (const name of ['aha-lab', 'aha-story']) {
+      const legacy = path.join(project, discovery, 'skills', name);
+      await assertSafePath(legacy);
+      try {
+        await fs.lstat(legacy);
+        throw new Error(`Legacy Skill remains: ${legacy}. Review and move it out of discovery before installing; no legacy files were deleted.`);
+      } catch (error) {
+        if (error.code !== 'ENOENT') throw error;
+      }
+    }
+  }
   for (const name of skillNames) {
     const files = Object.fromEntries(Object.entries(release).filter(([key]) => key.startsWith(`skills/${name}/`))
       .map(([key, bytes]) => [key.slice(`skills/${name}/`.length), bytes]));

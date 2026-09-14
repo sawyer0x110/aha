@@ -5,124 +5,133 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const skillNames = ['aha-research', 'aha-lab', 'aha-story'] as const;
-const sharedReferences = ['authoring.md', 'research-codebase.md', 'research-public.md', 'audience.md', 'formats.md'];
+const skillNames = ['aha-research', 'aha-explain'] as const;
 type SkillName = typeof skillNames[number];
 type Fixture = {
   id: string;
   skill: SkillName;
-  priority: 'codebase' | 'public' | 'html' | 'image' | 'pptx' | 'video' | 'audience';
+  priority: 'codebase' | 'public' | 'html' | 'image' | 'pptx' | 'video';
   prompt: string;
   materials: string[];
   references: string[];
   manualChecks: string[];
 };
 
+// These are host-run evaluation cases, not claims of automated semantic or visual acceptance.
 export const benchmarkPromptFixtures: Fixture[] = [
   {
-    id: 'dirty-retry-path', skill: 'aha-research', priority: 'codebase',
-    prompt: '先研究这个工作区中请求失败后的重试和取消行为。比较指定 base 与当前含未提交改动的版本，先交付可追溯草案，不要制作页面或运行仓库。',
-    materials: ['获准读取的版本固定代码库，含 staged、unstaged 和 untracked 改动', '指定 base commit'],
-    references: ['research-codebase.md', 'authoring.md'],
-    manualChecks: ['固定 diff 两侧和 dirty 文件内容身份', '追踪入口、定义、调用者及错误／重试／取消', '核对测试、配置与相关历史，未执行测试标未观察', '交付主张台账与缺口，明确审阅前不建包'],
+    id: 'deep-public-conflicting-results', skill: 'aha-research', priority: 'public',
+    prompt: 'Investigate whether this public intervention improved outcomes. Follow original methods, compare contrary findings, and explain what remains uncertain. Spend at most eight substantive source reads; deliver research only.',
+    materials: ['Primary report and methods appendix', 'Two derivative articles sharing that report', 'Independent null-result study', 'A later correction'],
+    references: ['research-workflow.md', 'research-public.md', 'research-contract.md'],
+    manualChecks: [
+      'Question tree evolves after the correction; actual queries, source reads, failures, and stopping reason are logged separately from plans.',
+      'Reads methods and contrary evidence, follows primary citations, and does not count derivative articles as independent support.',
+      'Reconciles units, denominators, population, time window, causal strength, and uncertainty in the direct answer.',
+      'Reverse-checks consequential claims against source context; preserves gaps rather than manufacturing consensus.',
+      'Delivers an independently useful report and valid Dossier without requiring slides, a model, or teaching tests.',
+    ],
   },
   {
-    id: 'navigation-fallback', skill: 'aha-lab', priority: 'codebase',
-    prompt: '解释这份授权代码为何提前退出。宿主没有 LSP，只允许读取文件；先用窄范围文本证据调查，再判断能否做来源探索，不要安装工具。',
-    materials: ['局部代码快照和实际可用工具清单'],
-    references: ['research-codebase.md'],
-    manualChecks: ['说明导航降级与覆盖范围', '定义和调用点有版本、行范围与真实哈希', '不执行安装或把教学模型当仓库实测'],
+    id: 'dirty-codebase-cancellation', skill: 'aha-research', priority: 'codebase',
+    prompt: 'Investigate request cancellation and retry behavior from the supplied base commit to this dirty workspace. Follow state and failure paths; tools are read-only and LSP is unavailable. Do not execute or install anything.',
+    materials: ['Authorized repository with staged, unstaged, and relevant untracked changes', 'Base commit', 'Tests and configuration', 'Read-only file/search tools'],
+    references: ['research-codebase.md', 'research-workflow.md', 'execution.md'],
+    manualChecks: [
+      'Fixes both diff endpoints and actual dirty content identities with accurate file/symbol locators.',
+      'Uses bounded text navigation and traces definitions, callers, cancellation, retry state, cleanup, and a plausible counterexample.',
+      'Cross-checks tests and configuration while distinguishing source implications from observed execution.',
+      'Does not run repository scripts, install navigation tools, or claim unread branches and unexecuted tests passed.',
+      'Updates questions and contradictions, delivers remaining gaps and a defensible stopping reason.',
+    ],
   },
   {
-    id: 'public-contradiction', skill: 'aha-research', priority: 'public',
-    prompt: '这组公开材料声称一种措施显著改善结果。请拆解问题、核对数值口径，追到原始方法并查相反证据；先做研究草案，预算最多八份深入阅读来源。',
-    materials: ['公开原始报告', '同源转载两份', '与报告结论不同的独立调查'],
-    references: ['research-public.md', 'authoring.md'],
-    manualChecks: ['记录精确查询、实际标题、日期、链接和 UTC 获取时间', '实际读引用段落、方法和限制', '不将转载计作独立佐证', '核对单位、时间范围、相关与因果，保留反证与停止理由'],
+    id: 'unread-public-source', skill: 'aha-explain', priority: 'public',
+    prompt: 'Make an infographic about this public article, but only its abstract is available and the full text requires access we do not have. Establish what can be supported before creating the image.',
+    materials: ['Authorized abstract', 'Title and inaccessible full-text URL', 'No login or extraction capability'],
+    references: ['research-public.md', 'research-workflow.md', 'image.md'],
+    manualChecks: [
+      'Uses the shared research method directly without assuming host dispatch to another skill.',
+      'Records abstract-only read extent and failed access; never invents full-text conclusions or page locators.',
+      'Narrows the explanation to supported claims or reports a research blocker before authoring.',
+      'Does not turn unavailable evidence into a confident visual claim or bypass access controls.',
+    ],
   },
   {
-    id: 'paywall-honesty', skill: 'aha-story', priority: 'public',
-    prompt: '想把这篇付费文章做成讲解，但我只提供了标题和一段摘要，宿主无法登录。先告诉我目前到底能研究到什么，不要补写正文。',
-    materials: ['文章标题、合法提供的摘要与不可读取正文的 URL'],
-    references: ['research-public.md'],
-    manualChecks: ['不声称读过全文或虚构事实', '把摘要范围、权限缺口和未解决主张保留下来', '研究审阅先于演示'],
+    id: 'topic-to-rich-offline-html', skill: 'aha-explain', priority: 'html',
+    prompt: 'Starting from this public technical topic, research the important tradeoffs and make a rich offline explanation with long prose, a wide comparison table, a sequence diagram, and useful keyboard-accessible interaction. No simulator is needed.',
+    materials: ['Topic and target audience knowledge', 'Primary standards and competing implementation notes', 'Installed local browser and optional Mermaid tool'],
+    references: ['research-workflow.md', 'artifact-authoring.md', 'html.md', 'artifact-qa.md'],
+    manualChecks: [
+      'Performs iterative research and source review, then authors actual topic-specific source and coverage instead of declaring the scaffold authored.',
+      'Uses free document structure, Clawpilot theme roles, a readable prose measure, a meaningful diagram, and independent wide-content expansion.',
+      'Diagram relationships and interaction help answer the question; no invented causal slider or mandatory quiz.',
+      'Opens the delivered HTML offline at desktop and narrow sizes, operates controls with keyboard, and tests reduced motion and font loading.',
+      'Uses local resources without CDN fallback and distinguishes browser receipts from actual visual review.',
+    ],
   },
   {
-    id: 'offline-html-evidence', skill: 'aha-lab', priority: 'html',
-    prompt: '把已审阅的这组对照证据做成离线可探索 HTML。先显示结论和边界，再允许查看依据；主题没有计算引擎，不要造因果滑杆。',
-    materials: ['获批 source-based Pack'],
-    references: ['formats.md', 'authoring.md'],
-    manualChecks: ['保持来源模式与既有事实，直接解释主题而非字段清单', '用具体对照／步骤与有理由的理解题答案帮助学习，来源查阅从属', '离线交互不等于因果实验，必要条件自然保留', '可见页面无受众标签、来源计数、Claim ID／哈希或生产指令', '检查实际文件，区分渲染成功与视觉审阅'],
+    id: 'mixed-version-explanation', skill: 'aha-explain', priority: 'codebase',
+    prompt: 'Explain this local implementation against the latest public specification in HTML. The supplied research predates the dirty change; supplement only the affected questions, preserve the old snapshot, and show the remaining mismatch.',
+    materials: ['Existing Dossier', 'Authorized dirty source change', 'New public specification revision'],
+    references: ['research-codebase.md', 'research-public.md', 'research-contract.md', 'artifact-authoring.md'],
+    manualChecks: [
+      'Checks freshness and coverage, records exact local and public versions, and investigates the affected path.',
+      'Does not use the public specification as proof of implemented behavior or silently mutate the prior snapshot.',
+      'Rebuilds research at a new destination and binds authored coverage to the new research identity.',
+      'The explanation distinguishes actual source evidence, specification requirements, and unresolved observations.',
+    ],
   },
   {
-    id: 'native-image-card', skill: 'aha-story', priority: 'image',
-    prompt: '把这个已审阅 Pack 做成一张能分享的中文图片卡片，突出一个结论和限制。不要截图整个 Lab，不允许外部字体或 CDN。',
-    materials: ['获批 Pack', '本地浏览器能力清单'],
-    references: ['formats.md', 'audience.md'],
-    manualChecks: ['专用卡片直接解释概念图示或保存状态，保留单位／依据与自然条件', '不是 Brief 摘抄或制作说明，读者能理解对照并核对答案', '使用实际支持的 PNG 路径，无浏览器则报告阻塞，不承诺图像生成 API', '检查真实图片的裁切和中文，不冒称截图原系统'],
+    id: 'full-size-image-infographic', skill: 'aha-explain', priority: 'image',
+    prompt: 'Turn this reviewed research into a tall shareable infographic with a connected visual argument, several necessary subclaims, readable Chinese labels, units, and source notes. Preserve editable source and do not screenshot the whole article.',
+    materials: ['Reviewed Dossier', 'Local licensed font/assets', 'Explicit size and resource budget'],
+    references: ['artifact-authoring.md', 'image.md', 'artifact-qa.md'],
+    manualChecks: [
+      'Designs a medium-specific layout and complete image root rather than a fixed card or scaled article.',
+      'Reviews authored page code before approved local rendering; no remote font or dependency download occurs.',
+      'Checks the full PNG and realistic reading-size crops for all edges, connectors, glyphs, source notes, and legibility.',
+      'Reports capture-size limits without silent cropping and fact-checks labels, relationships, and numerical comparisons.',
+    ],
   },
   {
-    id: 'editable-presentation', skill: 'aha-story', priority: 'pptx',
-    prompt: '用这个批准过的 Pack 做可编辑 PPTX 给工程团队，保留原生文本和形状、失败边界及来源。不要交一组整页截图。',
-    materials: ['获批 Pack'],
-    references: ['formats.md', 'audience.md'],
-    manualChecks: ['使用 render-pptx 而非改扩展名', '从已有 Claims 的主题图示或原生状态适配文本／形状，不截图整页 Lab', '正文直接给最终读者解释和有理由的答案，不展示生产交接或审计字段', '事实、单位和限制与 Pack 一致，实际可编辑性需人工检查'],
+    id: 'native-detailed-pptx', skill: 'aha-explain', priority: 'pptx',
+    prompt: 'Create a detailed native editable PPTX from this research for a technically knowledgeable team. Cover mechanisms, comparisons, evidence, failure boundaries, and an appendix; use as many pages as the agreed budget requires, not a twelve-slide cap.',
+    materials: ['Reviewed Dossier', 'Coverage needs requiring more than twelve slides', 'Local assets and presentation application'],
+    references: ['artifact-authoring.md', 'pptx.md', 'execution.md', 'artifact-qa.md'],
+    manualChecks: [
+      'Plans complete coverage and varied layouts within the agreed budget instead of truncating content or shrinking text.',
+      'Authors native text, shapes, tables, and charts via the supplied PptxGenJS instance; discloses noneditable inserted graphics.',
+      'Reviews and explicitly approves the Node source before execution with timeout; does not call the runtime sandboxed.',
+      'Checks OOXML/text coverage and notes separately from actual slide rendering and representative native editing.',
+      'Inspects every actual slide and continuity in a presentation application; unavailable application means visual QA blocked, not passed.',
+    ],
   },
   {
-    id: 'private-video-signoff', skill: 'aha-story', priority: 'video',
-    prompt: '想把这个含私有材料的 Pack 做成带中文语音的视频。我愿意考虑 Edge TTS，但请先完整展示只读计划的旁白、声线与提供方让我审阅，未批准不能外发。',
-    materials: ['私有测试 Pack，不含真实敏感信息', '浏览器／FFmpeg／Python 能力清单'],
-    references: ['formats.md', 'authoring.md'],
-    manualChecks: ['prepare-video 后展示完整旁白、provider／voice／rate、时间安排和时长策略，不只给哈希', '任何计划编辑后 video-plan-check 返回当前哈希和完整旁白，再审批；不发明封存命令', '当前 planHash 审批和网络授权是分离门槛，已选 Edge TTS 不代表后续版本自动获授权', '仅发送已确认旁白而非完整 Pack，离线替代明确 provider=provided-audio 而非 Edge 成功', '使用已有浏览器不自动下载，以实测音频做 pilot／正式版 QC，超出范围不扭曲语速', '旁白与卡片解释主题而非生产流程，审阅信息不印入视频', '报告静态卡片／短淡入淡出的真实能力；缺文件不称视频已生成，未试听不声称完成验收'],
+    id: 'approved-dynamic-video', skill: 'aha-explain', priority: 'video',
+    prompt: 'Produce a dynamic narrated video from this private test research, beginning with a 20–30 second mechanism pilot. Before any Edge TTS upload show the complete narration, provider, voice, rate, and disclosure scope. No external speech call is authorized yet.',
+    materials: ['Private synthetic Dossier without real sensitive data', 'Local browser and FFmpeg', 'Optional user-provided audio'],
+    references: ['artifact-authoring.md', 'video.md', 'video-contract.md', 'execution.md', 'artifact-qa.md'],
+    manualChecks: [
+      'Writes topic-specific scene source and complete segment narration; pilot includes within-scene state/relationship changes, not just page fades.',
+      'Shows the entire current plan narration and voice configuration before asking approval bound to the current planHash.',
+      'Separates narration consent, external network permission, and reviewed local code execution; does not transmit the whole Dossier.',
+      'A changed narration/voice plan requires fresh approval; imported audio is explicitly labelled provided-audio, never a fake Edge success.',
+      'Uses measured audio timing and deterministic browser-captured frames with FFmpeg, not a nonexistent Remotion command.',
+      'Actually watches/listens to pilot and final output, checks subtitle safe area and timing, and reports any blocked playback or missing dependency.',
+    ],
   },
   {
-    id: 'manager-known-context', skill: 'aha-story', priority: 'audience',
-    prompt: '给熟悉服务运维的管理者解释这份研究结论。重点是需要做的决策、影响与权衡，保留会改变决策的技术条件，不要假设经理不懂技术或编造 ROI。',
-    materials: ['同一获批事实集和受众已知背景'],
-    references: ['audience.md'],
-    manualChecks: ['基于已知背景而非岗位推定知识', '决策与风险 framing 不虚构量化影响', 'takeaway、术语、事实与单位忠实'],
-  },
-  {
-    id: 'engineer-new-domain', skill: 'aha-research', priority: 'audience',
-    prompt: '为首次接触此领域的工程师解释研究结果。说明机制、契约和失败路径，但首次出现的领域词要解释；保持同一证据集，不因工程师身份假设全都懂。',
-    materials: ['同一获批事实集和受众背景'],
-    references: ['audience.md', 'research-codebase.md'],
-    manualChecks: ['机制／契约／失败 framing 与真实证据对应', '不推定跨领域知识', '适配不新增事实或删掉关键限制'],
-  },
-  {
-    id: 'adult-bounded-analogy', skill: 'aha-lab', priority: 'audience',
-    prompt: '我是成人初学者。请用这个已经查证的机制给我一层层解释，最多一个有边界的类比，再问一个能检验我是否会应用的问题；不要儿童化。',
-    materials: ['同一获批事实集'],
-    references: ['audience.md'],
-    manualChecks: ['一个核心类比写明 limitations', '关键术语准确解释，check question 检验迁移，answer 说明理由而非只复述问题', '保持成人默认，无年龄／角色刻板印象，受众标签不展示给读者', '不把类比或生成文字用作外部证据'],
-  },
-  {
-    id: 'synthetic-reader-explanation', skill: 'aha-lab', priority: 'html',
-    prompt: '把已经审阅的合成候车材料做成给普通读者的离线解释页。数据只是教学假设；请用概念对照讲清楚，再给有答案的理解题，不要把选择来源当主要学习活动。',
-    materials: ['已审阅合成材料 Claims／Evidence 与 Draft', '明确的比较条件及未解决问题'],
-    references: ['authoring.md', 'audience.md', 'formats.md'],
-    manualChecks: ['直接解释两种可能原因及具体对照，图示不是生产管线', '保留合成范围及比较条件，不暗示实际调查', 'TeachingVisual 只含普通字符串且 claimIds 引用既有主张，不新增模型或观察', '给有理由的理解题答案，来源为次级入口', '可见成品无受众标签、来源计数、Claim ID／哈希和审计／生产说明'],
-  },
-  {
-    id: 'config-reader-comparison', skill: 'aha-story', priority: 'pptx',
-    prompt: '基于这份已审阅的合成配置规则做直接给读者看的 PPTX。用具体对照解释编辑、选择与读取，给一个带理由的理解题答案；不要演示并不存在的实时软件执行。',
-    materials: ['同一已审阅合成规则 Claims／Evidence 与规范 Draft', '编辑和选定配置相互独立的明确规则'],
-    references: ['authoring.md', 'audience.md', 'formats.md'],
-    manualChecks: ['图区分编辑、选择与读取，不暗示持续同步', '保留结果读取选定配置这一关键条件', '直接讲解而非来源计数或作者工作清单，理解题答案说明判断依据', '图示只表达既有主张，不暗示软件执行或观察轨迹', '事实、Claim／Evidence ID 和来源内容身份保持不变'],
-  },
-  {
-    id: 'reviewed-presentation-correction', skill: 'aha-story', priority: 'image',
-    prompt: '这份图片里的“为谁讲解”“原解释包讲解要点”和审计信息不该给读者看。现有事实和证据都已审阅且不变，请直接改成有概念对照、条件和理解题答案的成品，保存旧版。',
-    materials: ['已审阅 Pack、原 Draft 和图片', '用户明确的仅呈现纠正请求，Claim／Evidence 不变'],
-    references: ['authoring.md', 'audience.md', 'formats.md'],
-    manualChecks: ['明确请求授权对应本地呈现修订，不重复索要纯 UI／排版批准', '记录原 Pack、修订范围和新 Draft 哈希，写新路径并保留旧输出', '保留 Claim／Evidence ID、事实、单位、模型输入、关键限制和研究台账', '不只去标签，实际编写直接解释、概念对照及有理由的答案', '首次研究／Draft 审阅仍不可跳过，新发现需补证审阅，呈现请求不授权外部 TTS'],
-  },
-  {
-    id: 'evidence-import-preserves-lesson', skill: 'aha-story', priority: 'html',
-    prompt: '把这份来源探索记录导回精确原 Pack，再输出讲解页。请保留原本已写好的主题解释、图示和条件；材料选择只是记录，不要替换成让下一位作者继续加工的交接幻灯片。',
-    materials: ['精确原 source-based Pack，含已编写 narrative.slides[].visual／conditions', '对应身份的 exploration 与笔记'],
-    references: ['authoring.md', 'formats.md'],
-    manualChecks: ['核对原 Pack 身份，不手改 hash 绕过', '实际操作讲解选择器、次级来源选择器及浏览器下载，不用 CLI 导出冒充', '来源模式导入保留原 narrative、图示和条件，不制造作者交接页', '选择与原笔记保留在新修订／导入记录，不升级为事实', '主 HTML、卡片及原生 PPTX 使用实际导入的 Pack，产物／回执身份一致，不退回源 Pack', '成品直接解释主题，简洁来源为次级入口，审计信息不在可见画面', '未完成的 PPTX 布局不因 HTML 成功就标为验收通过'],
+    id: 'source-only-presentation-revision', skill: 'aha-explain', priority: 'html',
+    prompt: 'Revise this approved explanation’s layout and diagram to improve narrow-screen reading, keeping its research facts unchanged. Preserve the old output; do not ask for new research approval or execute revised code without reviewing it.',
+    materials: ['Authored project and original output', 'Unchanged Dossier', 'User presentation-only revision request'],
+    references: ['artifact-authoring.md', 'execution.md', 'artifact-qa.md'],
+    manualChecks: [
+      'Edits the authoritative source and updates coverage if block locations change; does not patch only the final output.',
+      'Preserves the original output and research identity without fabricating new facts or mandatory reapproval of unchanged research.',
+      'Reviews changed executable behavior and obtains any needed local execution permission; presentation authorization is not TTS consent.',
+      'Rebuilds a new file and actually checks narrow-screen interaction; does not invent human feedback.',
+    ],
   },
 ];
 
@@ -142,173 +151,150 @@ function relativeLinks(markdown: string): string[] {
     .filter(link => !/^(?:[a-z][a-z0-9+.-]*:|#)/i.test(link));
 }
 
-test('three short independent entrances declare trigger frontmatter and shared research links', async () => {
+async function publishedFiles(name: SkillName): Promise<Map<string, string>> {
+  const ownRoot = path.join(root, 'skills', name);
+  const sharedRoot = path.join(root, 'skills', 'shared', 'references');
+  const published = new Map<string, string>();
+  for (const file of await markdownFiles(ownRoot)) published.set(path.relative(ownRoot, file), file);
+  for (const file of await markdownFiles(sharedRoot)) {
+    const relative = path.join('references', path.relative(sharedRoot, file));
+    assert.ok(!published.has(relative), `${name}: shared reference collision ${relative}`);
+    published.set(relative, file);
+  }
+  return published;
+}
+
+async function reference(name: string, skill: SkillName = 'aha-explain'): Promise<string> {
+  const files = await publishedFiles(skill);
+  const file = files.get(path.join('references', name));
+  assert.ok(file, `${skill}: missing reference ${name}`);
+  return fs.readFile(file, 'utf8');
+}
+
+test('only two short independent skill entrances have research and creation triggers', async () => {
+  const entrances = (await markdownFiles(path.join(root, 'skills')))
+    .filter(file => path.basename(file) === 'SKILL.md')
+    .map(file => path.basename(path.dirname(file))).sort();
+  assert.deepEqual(entrances, [...skillNames].sort());
   for (const name of skillNames) {
     const markdown = await fs.readFile(path.join(root, 'skills', name, 'SKILL.md'), 'utf8');
     const frontmatter = markdown.match(/^---\r?\n([\s\S]+?)\r?\n---(?:\r?\n|$)/)?.[1];
-    assert.ok(frontmatter, `${name}: YAML frontmatter exists`);
+    assert.ok(frontmatter, `${name}: frontmatter`);
     assert.match(frontmatter, new RegExp(`^name: ${name}$`, 'm'));
-    assert.match(frontmatter, /^description: .+/m);
-    assert.match(frontmatter, /代码|仓库/);
-    assert.match(frontmatter, /公开/);
-    assert.match(frontmatter, /研究/);
-    assert.ok(markdown.split(/\r?\n/).length < 200, `${name}: short entry, details live in references`);
-    for (const reference of sharedReferences) {
-      assert.ok(relativeLinks(markdown).includes(`references/${reference}`), `${name}: directly links ${reference}`);
-    }
+    const description = frontmatter.match(/^description: (.+)$/m)?.[1];
+    assert.ok(description);
+    assert.match(description, /codebases?/i);
+    assert.match(description, /public topics|open-world/i);
+    assert.match(description, /research/i);
+    assert.ok(markdown.split(/\r?\n/).length < 80, `${name}: progressive disclosure`);
+    assert.ok(relativeLinks(markdown).includes('references/research-workflow.md'));
+    assert.ok(relativeLinks(markdown).includes('references/execution.md'));
+    assert.match(markdown, /absolute installed skill.*scripts\/aha\.mjs/);
+  }
+  const explain = await fs.readFile(path.join(root, 'skills', 'aha-explain', 'SKILL.md'), 'utf8');
+  for (const format of ['html', 'image', 'pptx', 'video']) {
+    assert.ok(relativeLinks(explain).includes(`references/${format}.md`));
   }
 });
 
-test('all relative links resolve in each portable skill merged reference layout', async () => {
-  const sharedRoot = path.join(root, 'skills', 'shared', 'references');
+test('all relative links resolve inside each distributable merged reference layout', async () => {
   for (const name of skillNames) {
-    const ownRoot = path.join(root, 'skills', name);
-    const published = new Map<string, string>();
-    for (const file of await markdownFiles(ownRoot)) {
-      published.set(path.relative(ownRoot, file), file);
-    }
-    for (const file of await markdownFiles(sharedRoot)) {
-      published.set(path.join('references', path.relative(sharedRoot, file)), file);
-    }
+    const published = await publishedFiles(name);
     for (const [relative, file] of published) {
       for (const link of relativeLinks(await fs.readFile(file, 'utf8'))) {
         const destination = path.normalize(path.join(path.dirname(relative), decodeURIComponent(link.split('#')[0]!)));
         assert.ok(published.has(destination), `${name}/${relative}: unresolved portable link ${link}`);
+        assert.ok(!destination.startsWith('..'), `${name}: link escapes installation`);
       }
     }
   }
 });
 
-test('each independent entrance declares reader delivery and narrow revision approval boundaries', async () => {
-  for (const name of skillNames) {
-    const markdown = await fs.readFile(path.join(root, 'skills', name, 'SKILL.md'), 'utf8');
-    for (const required of [
-      '最终读者', '受众是内部编写输入', '概念对照／步骤', '有理由的理解题答案',
-      '来源计数', 'Claim ID', '哈希', '研究台账', '回执', '来源元数据', '来源查阅是次级入口',
-      '首次构建前', '事实／证据不变', '新 Draft 哈希', '保留旧输出',
-      '不为纯 UI／排版另造审批循环',
-    ]) {
-      assert.ok(markdown.includes(required), `${name}: missing written contract ${required}`);
-    }
-    assert.match(markdown, /图示解释主题而非制作管线|图示解释主题而不是制作管线/);
-    assert.match(markdown, /新模型或观察轨迹|新模型、执行代码或观察轨迹/);
-    assert.match(markdown, /provider.*voice.*rate.*时间安排.*planHash/);
-    assert.match(markdown, /新发现.*补证.*审阅|新增事实.*补证.*审阅/);
-    assert.match(markdown, /新旁白.*外发/);
-  }
-});
-
-test('shared authoring reference specifies TeachingVisual strings, bounds and identity preservation', async () => {
-  const markdown = await fs.readFile(path.join(root, 'skills', 'shared', 'references', 'authoring.md'), 'utf8');
-  for (const field of [
-    'brief.explanation.visual', 'brief.explanation.conditions', 'brief.explanation.answer',
-    'narrative.slides[].visual', 'narrative.slides[].conditions',
-  ]) {
-    assert.ok(markdown.includes(field), `authoring: missing ${field}`);
-  }
-  assert.match(markdown, /导出的 `TeachingVisual`/);
-  assert.match(markdown, /`layout`.*`"cards"`.*`"steps"`/);
-  assert.match(markdown, /`title`.*80 字符/);
-  assert.match(markdown, /`items`.*2–4.*label.*body.*40 字符.*160 字符/);
-  assert.match(markdown, /`claimIds`.*非空.*现有 Claims/);
-  assert.match(markdown, /最多 6 条.*180 字符/);
-  assert.match(markdown, /最多 400 字符/);
-  assert.match(markdown, /所有文本都是普通字符串，不是 HTML、脚本或可执行代码/);
-  assert.match(markdown, /不是新模型、新证据或观察轨迹/);
-  assert.match(markdown, /保持 Claim／Evidence ID、来源内容身份和研究台账不变/);
-  assert.match(markdown, /来源模式导入保留已编写的 `narrative`/);
-  assert.match(markdown, /不能宣称已有自动语义审计/);
-});
-
-test('shared reader references require actual teaching, natural limits and secondary source lookup', async () => {
-  for (const name of ['audience.md', 'formats.md']) {
-    const markdown = await fs.readFile(path.join(root, 'skills', 'shared', 'references', name), 'utf8');
-    for (const required of ['最终读者', '不是主要学习活动', 'Claim ID', '哈希', '答案']) {
-      assert.ok(markdown.includes(required), `${name}: missing reader contract ${required}`);
-    }
-    assert.match(markdown, /普通字符串/);
-    assert.match(markdown, /不是新模型|新模型或观察轨迹/);
-    assert.match(markdown, /事实条件/);
-    assert.match(markdown, /制作管线/);
-    assert.match(markdown, /planHash/);
-  }
-});
-
-test('imported-delivery references require actual revision identity and browser interaction checks', async () => {
-  for (const relative of [
-    ['shared', 'references', 'authoring.md'],
-    ['shared', 'references', 'formats.md'],
-    ['aha-story', 'references', 'story-workflow.md'],
-    ['aha-lab', 'references', 'lab-workflow.md'],
-  ]) {
-    const markdown = await fs.readFile(path.join(root, 'skills', ...relative), 'utf8');
-    assert.match(markdown, /实际导入的 Pack/, `${relative.join('/')}: imported revision is the renderer input`);
-    assert.match(markdown, /源 Pack/, `${relative.join('/')}: warns against rendering the source instead`);
-  }
-  const workflow = await fs.readFile(path.join(root, 'skills', 'aha-lab', 'references', 'lab-workflow.md'), 'utf8');
-  for (const required of ['讲解选择器', '次级来源选择器', '浏览器下载', '不能替代浏览器下载验收']) {
-    assert.ok(workflow.includes(required), `lab workflow: missing manual check ${required}`);
-  }
-});
-
-test('written contract separates native PPTX audit notes from Pack narration used by TTS', async () => {
-  for (const relative of [
-    ['skills', 'shared', 'references', 'authoring.md'],
-    ['skills', 'shared', 'references', 'audience.md'],
-    ['skills', 'shared', 'references', 'formats.md'],
-    ['skills', 'aha-story', 'SKILL.md'],
-    ['skills', 'aha-story', 'references', 'story-workflow.md'],
-    ['README.md'],
-    ['docs', 'RESEARCH.md'],
-  ]) {
-    const file = path.join(root, ...relative);
+test('legacy entrances, authoring contracts, and command aliases are not published', async () => {
+  const files = await markdownFiles(path.join(root, 'skills'));
+  for (const file of files) {
+    assert.ok(!['authoring.md', 'audience.md', 'formats.md', 'quality-loop.md', 'teaching-design.md'].includes(path.basename(file)));
     const markdown = await fs.readFile(file, 'utf8');
-    assert.match(markdown, /narrative\.slides\[\]\.notes/, `${file}: identifies the Pack narration field`);
-    assert.match(markdown, /原生 PPTX 审计备注与内嵌 Pack/, `${file}: retains native audit storage`);
-    assert.match(markdown, /完整来源身份和研究元数据/, `${file}: retains audit provenance`);
-    assert.match(markdown, /原生 PPTX 审计备注不会送入 TTS|不(?:使用|读取)原生 PPTX 审计备注/, `${file}: audit notes are not TTS input`);
+    assert.doesNotMatch(markdown, /aha-lab|aha-story|TeachingVisual|narrative\.slides|build-pack|render-card|init-draft/);
   }
 });
 
-test('research and adoption documentation exists with resolvable local references', async () => {
-  for (const name of ['RESEARCH.md', 'REFERENCE-ADOPTION.md']) {
-    const file = path.join(root, 'docs', name);
+test('research references require iterative, source-grounded inquiry rather than media planning', async () => {
+  const workflow = await reference('research-workflow.md', 'aha-research');
+  for (const concept of [/question tree/i, /counterevidence/i, /targeted follow-up/i, /stopping reason/i, /semantic/i, /structural/i, /observed execution/i]) {
+    assert.match(workflow, concept);
+  }
+  const publicResearch = await reference('research-public.md', 'aha-research');
+  for (const concept of [/primary/i, /methods/i, /independent/i, /denominator/i, /actual read extent/i, /paywall/i, /source support/i]) {
+    assert.match(publicResearch, concept);
+  }
+  const code = await reference('research-codebase.md', 'aha-research');
+  for (const concept of [/diff endpoints/i, /unstaged/i, /content hashes/i, /callers/i, /cancellation/i, /read-only/i, /does not mean it passed/i]) {
+    assert.match(code, concept);
+  }
+});
+
+test('authored source, provenance, permissions, and actual QA remain distinct contracts', async () => {
+  const authoring = await reference('artifact-authoring.md');
+  for (const concept of [/editable.*source|source.*authority/i, /coverage/i, /omissions/i, /draft/i, /authored/i, /explain-check/, /snapshot/i]) {
+    assert.match(authoring, concept);
+  }
+  const execution = await reference('execution.md');
+  for (const concept of [/not a sandbox/i, /explicit.*execution approval/i, /timeout/i, /no automatic installs/i, /offline/i, /license/i, /--allow-code/, /--allow-network/, /planHash/]) {
+    assert.match(execution, concept);
+  }
+  const qa = await reference('artifact-qa.md');
+  for (const concept of [/not semantic proof/i, /source context/i, /actually operate/i, /presentation application/i, /watch and listen/i, /do not fabricate human feedback/i, /blocked/i]) {
+    assert.match(qa, concept);
+  }
+});
+
+test('format references describe free authoring and truthful media capabilities', async () => {
+  const html = await reference('html.md');
+  for (const concept of [/Mermaid/, /SVG/, /keyboard/i, /reduced.motion/i, /narrow.screen/i, /offline/i]) assert.match(html, concept);
+  const image = await reference('image.md');
+  for (const concept of [/independent.*composition/i, /reading.size/i, /crop/i, /editable source/i]) assert.match(image, concept);
+  const pptx = await reference('pptx.md');
+  for (const concept of [/export default async/, /pptx, research/, /native text/i, /12-slide/, /OOXML/, /not visual review/i]) assert.match(pptx, concept);
+  const video = await reference('video.md');
+  for (const concept of [/Edge TTS/, /complete.*narration/i, /planHash/, /renderFrame/, /segmentFrames/, /FFmpeg/, /measured|actual audio/i, /provided-audio/, /pilot/i]) assert.match(video, concept);
+});
+
+test('documented CLI invocations use only the canonical installed entry and command set', async () => {
+  const commands = new Set([
+    'doctor', 'research-init', 'research-check', 'research-build', 'research-validate',
+    'explain-init', 'explain-check', 'render-html', 'render-image', 'render-pptx', 'browser-check',
+    'prepare-video', 'video-plan-check', 'synthesize', 'import-audio', 'render-video',
+  ]);
+  const seen = new Set<string>();
+  for (const file of await markdownFiles(path.join(root, 'skills'))) {
     const markdown = await fs.readFile(file, 'utf8');
-    assert.match(markdown, /^# .+/);
-    for (const link of relativeLinks(markdown)) {
-      const destination = path.resolve(path.dirname(file), decodeURIComponent(link.split('#')[0]!));
-      assert.ok((await fs.stat(destination)).isFile(), `${name}: missing ${link}`);
+    for (const match of markdown.matchAll(/^node "([^"]+)" ([a-z][a-z-]*)\b/gm)) {
+      assert.equal(match[1], '<absolute installed skill>/scripts/aha.mjs');
+      assert.ok(commands.has(match[2]!), `${file}: unknown command ${match[2]}`);
+      seen.add(match[2]!);
     }
   }
+  assert.deepEqual([...seen].sort(), [...commands].sort());
 });
 
-test('original benchmark prompts have complete manual rubrics; no host semantics are executed', async () => {
+test('manual benchmark fixtures cover both entry points and all media without pretending to run host QA', async () => {
   const ids = new Set<string>();
   const priorities = new Set<string>();
+  const coveredSkills = new Set<string>();
   for (const fixture of benchmarkPromptFixtures) {
     assert.match(fixture.id, /^[a-z][a-z0-9-]+$/);
     assert.ok(!ids.has(fixture.id), `duplicate fixture ${fixture.id}`);
     ids.add(fixture.id);
     assert.ok(skillNames.includes(fixture.skill));
-    assert.ok(fixture.prompt.length >= 30);
-    assert.ok(fixture.materials.length > 0 && fixture.materials.every(item => item.trim().length > 0));
-    assert.ok(fixture.manualChecks.length >= 3 && fixture.manualChecks.every(item => item.trim().length > 0));
-    assert.ok(fixture.references.length > 0);
-    for (const reference of fixture.references) {
-      assert.ok(sharedReferences.includes(reference), `${fixture.id}: unknown reference`);
-      assert.ok((await fs.stat(path.join(root, 'skills', 'shared', 'references', reference))).isFile());
-    }
+    assert.ok(fixture.prompt.length > 60);
+    assert.ok(fixture.materials.length > 0 && fixture.materials.every(item => item.trim()));
+    assert.ok(fixture.manualChecks.length >= 4 && fixture.manualChecks.every(item => item.length > 40));
+    assert.ok(fixture.references.length >= 2);
+    for (const name of fixture.references) await reference(name, fixture.skill);
     priorities.add(fixture.priority);
+    coveredSkills.add(fixture.skill);
   }
-  assert.deepEqual([...priorities].sort(), ['audience', 'codebase', 'html', 'image', 'pptx', 'public', 'video']);
-  const researchDoc = await fs.readFile(path.join(root, 'docs', 'RESEARCH.md'), 'utf8');
-  assert.match(researchDoc, /人工语义评估/);
-  assert.match(researchDoc, /静态结构测试/);
-  assert.match(researchDoc, /不是已实现的自动语义审计/);
-  for (const id of [
-    'synthetic-reader-explanation', 'config-reader-comparison',
-    'reviewed-presentation-correction', 'evidence-import-preserves-lesson',
-  ]) {
-    assert.ok(ids.has(id), `missing reader-delivery manual fixture ${id}`);
-  }
+  assert.deepEqual([...priorities].sort(), ['codebase', 'html', 'image', 'pptx', 'public', 'video']);
+  assert.deepEqual([...coveredSkills].sort(), [...skillNames].sort());
 });

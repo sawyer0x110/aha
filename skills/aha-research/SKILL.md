@@ -1,88 +1,22 @@
 ---
 name: aha-research
-description: 先研究、后解释：对获准读取的代码仓库、代码变更、公开文章、报告或用户材料建立可追溯主张台账与 Aha draft.json。适用于“研究这个仓库的机制”“核实这篇文章”“比较公开证据”“先调查再做讲解”；覆盖版本、调用路径、反证、检索记录与未知项。可独立使用，不要求先生成 HTML、图片、PPTX 或视频，也不自动调用其他 Skill。
+description: Investigate complex questions about public topics, open-world sources, provided materials, or authorized codebases and diffs. Use for deep research, competing explanations, evidence comparisons, mechanism tracing, and source-grounded fact checking. Deliver an independent report and Research Dossier with iterative questions, evidence, counterevidence, scope, and research logs; media generation is not required.
 ---
 
-# Aha Research：先知道依据，再决定怎么讲
+# Aha Research
 
-## 入口与边界
+Answer the question before choosing a presentation. Research is a standalone deliverable, not a search-summary prelude to slides.
 
-- 研究本身是可交付任务，不是渲染前的一次泛泛搜索。先回答问题，再决定是否展示。
-- 默认成人初学者、中文、一个可检验的问题；职业与年龄不代表已有知识。儿童版不在当前范围。
-- 读取 [编写契约](references/authoring.md) 与 [受众适配](references/audience.md)，再按来源读取 [代码库研究](references/research-codebase.md) 和／或 [公开内容研究](references/research-public.md)。
-- 这些参考随本 Skill 一起发布；无需另一个 Skill 自动加载，也不依赖 Canvas、MCP、子 Agent 或某一种搜索服务。
-- 宿主负责获准的搜索、文件读取和代码导航。CLI 不联网研究、不执行用户仓库、不验证所有事实；模型生成的内容不是外部证据。
+1. Read [the shared research workflow](references/research-workflow.md). Reuse the user's purpose, language, knowledge, time horizon, budget, and authorized materials; resolve only consequential ambiguity.
+2. Follow [public/topic research](references/research-public.md), [codebase research](references/research-codebase.md), or both. Iterate a question tree through evidence, counterevidence, gaps, and targeted follow-up.
+3. Use [the research contract](references/research-contract.md) to initialize and maintain an editable draft, check it, and build a new versioned Dossier. Read [execution and privacy](references/execution.md) before any code execution or network use.
+4. Reverse-check consequential claims against actual sources. Distinguish structural validity, semantic support, and observed execution. Report unresolved contradictions, access limits, and the real stopping reason.
+5. Deliver the readable report, Dossier location, scope, source identities, and remaining uncertainty. Stop here when only research was requested.
 
-## 最终读者交付
+No required engine, scenarios, simulator, slides, or quiz. Do not invent evidence or mark planned searches as completed. An existing Dossier can be reused after checking freshness and coverage; new evidence produces a new snapshot rather than silently changing existing works.
 
-- 研究台账是给委托人审阅的材料；若交付知识成品，HTML、图片、PPTX、MP4 默认面向最终读者，不是向另一位作者／Agent 分派任务。
-- 直接解释主题，用已有 Claims 支持的概念对照／步骤、必要条件和有理由的理解题答案；可用 `brief.explanation.visual`／`conditions`／`answer` 与 Slide 的 `visual`／`conditions`，精确约束见 [编写契约](references/authoring.md)。图示不是新模型或观察轨迹。
-- 受众是内部编写输入。可见正文、图示和旁白不放受众标签、来源计数、Claim ID、哈希、生产／协议／审批指令；这些保留在 Pack、研究台账、回执与来源元数据。来源查阅是次级入口；简洁来源和自然语言事实条件不能省略。
-- 图示解释主题而非制作管线；不能只清除标签，仍交付 Brief／审计字段清单。不给未生成的图片／视频或未执行的 Git／天气模拟背书。
-- 需要讲解时按 [解释设计](references/teaching-design.md) 将事实转为预测／解释／迁移目标，列误解、先备知识和具体内容例子；来源事实不是脚本，同一事实集不等于同一布局。仅有来源支持的状态变化才用可选 `teaching`，不强迫所有主题套序列；独立研究可止于台账与结论。
+## Tools
 
-## 1. 立题与预算
+Resolve this installed skill's directory, not the user's current directory. All commands use `node "<absolute installed skill>/scripts/aha.mjs" ...`; arguments and contracts are in the references. Start with `doctor` when capabilities are unknown. Never install dependencies automatically.
 
-1. 复用已有上下文，写清具体问题、用途、受众的已知背景、范围、排除项和期望时效。
-2. 把问题拆成 2–5 个可分别支持或推翻的子问题。列出初步解释及可能推翻它的证据，不把假说写成事实。
-3. 明确允许读取的仓库／域名／材料、隐私边界、时间或来源预算，以及停止条件。未指定时采用参考中的有界预算，并在交付中披露。
-4. 需要改变授权范围时停止该部分；不为填满页面而无限搜索或悄悄扩大范围。
-
-## 2. 实际取证
-
-### 代码库／变更
-
-- 先锁定 commit、比较的 base/target 与 staged/unstaged/untracked 状态；dirty 内容不能冒充 HEAD。
-- 定位入口与符号，优先可信代码智能／LSP 的定义、调用者、调用图，再用窄文件范围的文本搜索与实际源码核实。
-- 追踪一条代表路径：输入 → 分发 → 关键状态／依赖 → 输出；同时检查错误、重试、取消和配置选择。不存在或找不到的分支写成缺口。
-- 交叉读取定义、调用者、测试、配置和相关历史。测试与提交说明不是单独的行为证明；未运行测试就写“未执行／未观察”，不能写“通过”。
-- 断言绑定文件、符号、行范围、`sourceVersion` 与真实 `contentHash`。细则见 [代码库研究](references/research-codebase.md)。
-
-### 公开内容／争议
-
-- 按子问题保存精确查询及目的；优先原始规范、原始研究／数据、官方记录，再寻找真正独立的核查。
-- 实际打开并阅读引用段落、方法和限制；搜索摘要、标题、转载数量不是已读证据。
-- 保存标题、原文日期／版本、完整链接及 UTC 获取时间。付费墙、登录、失效链接和工具缺失要诚实保留。
-- 核对数值单位、分母、时间窗、地区／样本、方法；分开相关与因果，主动检索反例与相反结果。
-- 区分原始来源、独立佐证与同源转载；按预算和 [公开内容研究](references/research-public.md) 的停止条件结束。
-
-混合问题分别完成两条路径，再对齐时间和版本；不能用公开产品文档证明本地 dirty 代码已经实现某行为。
-
-## 3. 主张台账与质量门槛
-
-为每项结论记录：Claim ID、可检验文本、范围、类型、Evidence ID、支持／冲突／未知、理由、假设与限制。
-
-- 原文说法用 `source-claim`；作者推理用 `inference`；内置模型结果用 `model-result`；缺少依据用 `unresolved`。不使用当前未支持的 `observation`。
-- 每个非 `unresolved` 主张必须有对应证据；推理写明推导所需假设，不能把模型回答、生成图或合成模板当外部来源。
-- 反证要进入相关 Claim 的证据和限制，不只埋在附录；存在冲突不强行合并成确定答案。
-- 每条结论接受反向核对：来源真的支持这句话、这个版本、这个数值和范围吗？来源可定位但结论不受支持，仍不合格。
-- 交付 scope gaps：未读范围、工具／访问缺失、未观察的运行行为、冲突和下一步最小取证动作。
-
-## 4. 可复用草案与明确审阅
-
-1. 按 [编写契约](references/authoring.md) 生成规范 `draft.json`。只有 `retry`／`compound` 与问题规则确实吻合时才用模型，否则使用 `evidence`；不虚构计算引擎。
-2. `init <engine> <新草案.json>` 只生成没有研究元数据的合成模板。必须替换示例内容；`example` 也不是研究成果。
-3. 顶层可选 `research` 保存 `question`、`kind`、`queries`、`findings`、`gaps`、`stopReason`。实际研究任务应填写它；完整字段见契约。既有无此字段的草案仍可使用。
-4. 每个 Claim（包括未知项）恰好进入一条 `findings`；保留同一 Claim 的全部证据，不能借不相关的来源凑覆盖或丢弃反证。保留完整检索记录，不添加 Schema 外字段。
-5. 用 [受众适配](references/audience.md) 调整词汇、深度与 framing，不改事实、单位或不确定性。规范 Draft 的叙事手工编写 1–12 页，不强制凑 5–8 页；应是可直接讲解的内容，不是作者待办。独立研究报告不必渲染；数值 Story 导入模板仍为 1–4 个案例、5–8 页。
-6. 首次构建前提交问题、结论、证据台账、关键反证、缺口、停止理由及 Draft 让用户明确审阅；无审阅时只交付草案。用户明确要求纠正已审阅且事实／证据不变的呈现，授权对应本地修订：保持 Claim／Evidence ID 与内容身份，记录范围和新 Draft 哈希、保留旧输出，不为纯 UI／排版另造审批循环。新增事实须补证审阅；新旁白外发仍须另批完整文本、provider、voice、rate、时间安排及当前 `planHash`，详见 [审阅范围](references/authoring.md)。
-
-## 5. 工具检查与后续交付
-
-找到当前 Skill 的真实安装目录。允许执行可信的随附 CLI 时：
-
-```powershell
-node "<技能绝对目录>\scripts\aha.mjs" doctor
-node "<技能绝对目录>\scripts\aha.mjs" research-check ".\draft.json"
-# 仅在研究与草案已获明确审阅后：
-node "<技能绝对目录>\scripts\aha.mjs" build-pack ".\draft.json" ".\topic-v1.aha"
-node "<技能绝对目录>\scripts\aha.mjs" validate ".\topic-v1.aha"
-```
-
-POSIX 使用正斜杠替换安装路径分隔符；Node.js 22+，不自动安装。`research-check` 要求存在 `research`，在内存构建／校验草案，检查结构、引用与覆盖，不落盘写 Pack、不执行搜索，也不证明语义质量。没有工具时可交付未验证草案与人工台账，不能声称检查通过或 Pack 已生成。
-
-- 后续可由用户选择 Lab、HTML slides、图片、原生 PPTX 或经审阅的语音视频，见 [格式交付](references/formats.md)。不因研究完成自动上传；没有格式请求时不擅自渲染，已有明确请求和相应审批时不重复索要选择。
-- 按 [检查—修订闭环](references/quality-loop.md) 检查结论与来源。选媒体时再按 [格式交付](references/formats.md) 分别设计并生成代表性 pilot 截图，检查颜色编码、delta、关系、焦点、可读性与媒介适配；先修设计／通用实现再重新生成，不手改最终 HTML／PPTX。
-- 同一问题两次局部修补仍失败就返回设计层，不设任意全局通过轮数；继续到阻塞项关闭或报告真实限制。独立 Agent 视觉审阅只是启发式，学习任务成绩须基于实际回答，未测不得编造。保留证据、身份、错误与未完成项；来源变化重新核实受影响结论。
-- 生成物、批准输入／证据／Pack／必要回执和迭代截图／日志默认放忽略的 artifacts 或获准会话工作目录；保留旧版可回滚归档。用户指定交付目录后，显式 promotion 一套当前成品，不静默覆盖用户文件。
-- 向委托人的完成报告说明研究范围、实际读取／检查、`draft.json` 路径、已生成的 Pack（如有）、检索记录与未解决项，与最终读者成品分开。清楚区分结构检查、人工语义审阅、未执行的运行／视觉检查；没有自动语义审计或宿主安装验收的保证。
+Media creation belongs to `aha-explain`; do not assume the host automatically dispatches between skills.
