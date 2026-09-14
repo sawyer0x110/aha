@@ -9,10 +9,10 @@ const json = value => `${JSON.stringify(value, null, 2)}\n`;
 export const installationGuide = `# Aha portable skills: local release
 
 Requires Node.js 22+. Extract the ZIP to a new, empty directory. Keep all files.
-No npm installation is needed. Each of aha-research, aha-lab and aha-story is
+No npm installation is needed. Each of aha-research and aha-explain is
 independently usable, including its own runtime, bundled dependencies and notices.
-Only the three named skills are installed; the workspace is never copied.
-The assets/examples drafts are built-in synthetic templates, not workspace examples.
+Only the two named skills are installed; the workspace is never copied.
+No user research or generated works are included.
 
 From the extracted directory, using PowerShell (replace the project path):
 
@@ -22,11 +22,11 @@ node .\\install-skills.mjs --host copilot --project "C:\\your-project" --apply
 # Or choose Codex instead; do not duplicate skills across discovery locations:
 node .\\install-skills.mjs --host codex --project "C:\\your-project"
 node .\\install-skills.mjs --host codex --project "C:\\your-project" --apply
-node "C:\\your-project\\.github\\skills\\aha-lab\\scripts\\aha.mjs" doctor
+node "C:\\your-project\\.github\\skills\\aha-explain\\scripts\\aha.mjs" doctor
 \`\`\`
 
 For Codex the doctor path uses .agents instead of .github. Repeat doctor for
-aha-research and aha-story. In POSIX shells use forward slashes and an absolute
+aha-research and aha-explain. In POSIX shells use forward slashes and an absolute
 project path. The default is dry-run: it verifies content and targets without
 writing. --apply installs project-locally only; there is no global option.
 The project must already exist and cannot be the home or filesystem root.
@@ -35,7 +35,7 @@ are refused. No force/overwrite mode exists. Upgrade by reviewing and moving
 the old skills out of discovery yourself, then installing into empty destinations.
 Do not run a host while installation is in progress. File publication uses
 exclusive hard links and directory reservations (no replacement); files become
-visible individually, not as an atomic three-directory swap. Failure rolls back
+visible individually, not as an atomic two-directory swap. Failure rolls back
 only directories reserved by this invocation; empty discovery parents may remain.
 Use a local filesystem supporting hard links and do not concurrently mutate the
 source or target tree. Ancestor checks reject links but cannot provide an OS-level
@@ -59,13 +59,17 @@ After installation, launch/refresh the host in that project and inspect its skil
 list. Copilot CLI versions with this command (including 1.0.84-5) support:
 copilot -C "C:\\your-project" skill list
 Copilot also discovers .agents/skills and .claude/skills; do not duplicate the
-same names there. Explicitly select aha-research, aha-lab or aha-story, then separately test a
+same names there. Legacy aha-lab/aha-story directories in any of these locations
+must be reviewed and moved out of discovery before installation; no aliases or
+automatic deletion are provided. Select aha-research or aha-explain, then separately test a
 natural-language request matching its description. Filesystem installation and
 CLI doctor are not evidence of host discovery or natural-language routing.
 Live host acceptance is a separate manual check; this release script does not
 run Copilot/Codex or claim that either host's language triggers were verified.
 
-HTML/PPTX need Node only. PNG needs installed Edge/Chrome; MP4 additionally
+HTML packaging and PPTX need Node only. Rendering authored scripts requires
+explicit --allow-code after source review, which is not an OS sandbox.
+PNG needs installed Edge/Chrome; MP4 additionally
 needs FFmpeg/ffprobe. Online narration needs separately installed Python/Edge TTS
 and explicit approval; the installer does not install those or contact TTS.
 Python selection is AHA_PYTHON, then VIRTUAL_ENV, then an existing .venv-media

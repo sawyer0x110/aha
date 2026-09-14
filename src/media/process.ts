@@ -28,15 +28,15 @@ export async function runTool(executable: string, args: string[], options: {
     child.stdout.on('data', (data: Buffer) => collect('out', data));
     child.stderr.on('data', (data: Buffer) => collect('err', data));
     const timer = setTimeout(() => { timedOut = true; child.kill(); }, options.timeoutMs ?? 60000);
-    child.once('error', error => {
+    child.once('error', () => {
       clearTimeout(timer);
-      reject(new AhaError('MEDIA_TOOL_MISSING', `${executable} could not start: ${error.message}. Install explicitly or configure its AHA_* path.`));
+      reject(new AhaError('MEDIA_TOOL_MISSING', 'Media tool could not start. Install explicitly or configure its AHA_* path.'));
     });
     child.once('close', code => {
       clearTimeout(timer);
       if (timedOut) reject(new AhaError('MEDIA_TIMEOUT', `${executable} exceeded its time budget.`));
       else if (overflow) reject(new AhaError('MEDIA_OUTPUT_LIMIT', `${executable} exceeded its output budget.`));
-      else if (code !== 0) reject(new AhaError('MEDIA_TOOL_FAILED', `${executable} failed (${code}): ${stderr.slice(-3000)}`));
+      else if (code !== 0) reject(new AhaError('MEDIA_TOOL_FAILED', `Media tool failed (exit ${code}). Provider output is withheld to avoid exposing narration or credentials.`));
       else resolve(stdout);
     });
   });

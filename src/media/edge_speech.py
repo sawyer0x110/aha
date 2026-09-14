@@ -9,7 +9,7 @@ import edge_tts
 
 async def synthesize(request_path: str, output: str) -> None:
     request = json.loads(Path(request_path).read_text(encoding="utf-8"))
-    # This file is written by the validated Node caller, not loaded from a Pack.
+    # The validated Node caller writes only the approved sentence and voice options.
     communicator = edge_tts.Communicate(
         text=request["text"],
         voice=request["voice"],

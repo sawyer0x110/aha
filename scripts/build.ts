@@ -3,8 +3,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { build } from 'esbuild';
-import { createDraft } from '../src/core/examples.js';
-import { DraftSchema, PackSchema, ExplorationSchema, type Engine } from '../src/core/schema.js';
+import { ResearchDraftSchema, DossierSchema } from '../src/research/schema.js';
+import { ArtifactSchema } from '../src/artifacts/project.js';
 import { VideoPlanSchema, AudioManifestSchema } from '../src/media/plan.js';
 import { ProvidedAudioSchema } from '../src/media/audio.js';
 
@@ -16,27 +16,24 @@ const output = path.join(root, 'dist');
 const runtime = path.join(output, 'assets', 'runtime');
 await assertSafePath(runtime);
 await assertSafePath(path.join(output, 'cli', 'aha.mjs'));
-const notices = `Third-party components bundled in Aha HTML ${version}
-
-@sinclair/typebox 0.34.41
-${await fs.readFile(path.join(root, 'node_modules', '@sinclair', 'typebox', 'license'), 'utf8')}
-
-reveal.js 5.2.1
-${await fs.readFile(path.join(root, 'node_modules', 'reveal.js', 'LICENSE'), 'utf8')}
-`;
 await fs.mkdir(runtime, { recursive: true });
 await fs.mkdir(path.join(output, 'cli'), { recursive: true });
 
-for (const name of ['lab', 'slides']) {
-  await build({
-    entryPoints: [path.join(root, 'src', 'browser', `${name}.ts`)],
-    outfile: path.join(runtime, `${name}.js`), bundle: true, platform: 'browser',
-    format: 'iife', target: 'es2022', minify: true, legalComments: 'inline',
-    banner: { js: `/*! ${notices.replaceAll('*/', '* /')} */` },
-  });
+for (const name of ['lab.js', 'slides.js', 'reveal.js', 'reveal.css']) {
+  const obsolete = path.join(runtime, name);
+  await assertSafePath(obsolete);
+  await fs.rm(obsolete, { force: true });
 }
-await fs.copyFile(path.join(root, 'node_modules', 'reveal.js', 'dist', 'reveal.js'), path.join(runtime, 'reveal.js'));
-await fs.copyFile(path.join(root, 'node_modules', 'reveal.js', 'dist', 'reveal.css'), path.join(runtime, 'reveal.css'));
+for (const name of ['aha-lab', 'aha-story']) {
+  const obsolete = path.join(output, 'skills', name);
+  await assertSafePath(obsolete);
+  await fs.rm(obsolete, { recursive: true, force: true });
+}
+const browserBuild = await build({
+  entryPoints: [path.join(root, 'src', 'browser', 'mermaid.ts')],
+  outfile: path.join(runtime, 'mermaid.js'), bundle: true, platform: 'browser',
+  format: 'iife', target: 'es2022', minify: true, legalComments: 'inline', metafile: true,
+});
 const cliBuild = await build({
   entryPoints: [path.join(root, 'src', 'cli', 'main.ts')],
   outfile: path.join(output, 'cli', 'aha.mjs'),
@@ -45,8 +42,8 @@ const cliBuild = await build({
   banner: { js: "import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);" },
 });
 
-const packageRoots = new Set<string>([path.join(root, 'node_modules', 'playwright-core'), path.join(root, 'node_modules', 'reveal.js')]);
-for (const input of Object.keys(cliBuild.metafile.inputs)) {
+const packageRoots = new Set<string>([path.join(root, 'node_modules', 'playwright-core')]);
+for (const input of [...Object.keys(cliBuild.metafile.inputs), ...Object.keys(browserBuild.metafile.inputs)]) {
   const absolute = path.resolve(root, input);
   const parts = absolute.split(path.sep);
   const marker = parts.lastIndexOf('node_modules');
@@ -83,7 +80,8 @@ await fs.rm(playwright, { recursive: true, force: true });
 await fs.mkdir(path.dirname(playwright), { recursive: true });
 await fs.cp(path.join(root, 'node_modules', 'playwright-core'), playwright, { recursive: true });
 const schemas = {
-  'draft.schema.json': DraftSchema, 'pack.schema.json': PackSchema, 'exploration.schema.json': ExplorationSchema,
+  'research-draft.schema.json': ResearchDraftSchema, 'dossier.schema.json': DossierSchema,
+  'artifact.schema.json': ArtifactSchema,
   'video-plan.schema.json': VideoPlanSchema, 'audio-manifest.schema.json': AudioManifestSchema,
   'provided-audio.schema.json': ProvidedAudioSchema,
 };
@@ -102,7 +100,7 @@ async function copyReferences(source: string, destination: string): Promise<void
     await copySkillText(path.join(source, entry), path.join(destination, entry));
   }
 }
-for (const name of ['aha-research', 'aha-lab', 'aha-story']) {
+for (const name of ['aha-research', 'aha-explain']) {
   const skill = path.join(output, 'skills', name);
   await assertSafePath(skill);
   await fs.rm(skill, { recursive: true, force: true });
@@ -124,10 +122,6 @@ for (const name of ['aha-research', 'aha-lab', 'aha-story']) {
   await fs.cp(media, path.join(skill, 'assets', 'media'), { recursive: true });
   await fs.mkdir(path.join(skill, 'node_modules'), { recursive: true });
   await fs.cp(playwright, path.join(skill, 'node_modules', 'playwright-core'), { recursive: true });
-  await fs.mkdir(path.join(skill, 'assets', 'examples'), { recursive: true });
-  for (const engine of ['retry', 'compound', 'evidence'] satisfies Engine[]) {
-    await fs.writeFile(path.join(skill, 'assets', 'examples', `${engine}.draft.json`), `${JSON.stringify(createDraft(engine), null, 2)}\n`);
-  }
   await fs.mkdir(path.join(skill, 'schemas'), { recursive: true });
   for (const [file, schema] of Object.entries(schemas)) {
     await fs.writeFile(path.join(skill, 'schemas', file), `${JSON.stringify(schema, null, 2)}\n`);
@@ -147,8 +141,8 @@ for (const name of ['aha-research', 'aha-lab', 'aha-story']) {
   }
   await inventory(skill);
   await fs.writeFile(path.join(skill, 'runtime-manifest.json'), `${JSON.stringify({
-    skill: name, version, schemaVersion: '0.1.0', engineVersion: '1.0.0',
+    skill: name, version, schemaVersion: '1.0.0',
     node: '>=22', files: hashes,
   }, null, 2)}\n`);
 }
-console.log('Built three portable skills in dist/skills (optional local browser/FFmpeg/Python required for media).');
+console.log('Built aha-research and aha-explain in dist/skills (local browser/FFmpeg/Python remain optional external tools).');

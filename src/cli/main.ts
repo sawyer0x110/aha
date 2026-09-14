@@ -1,95 +1,72 @@
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { createHash } from 'node:crypto';
 import { check } from '../core/check.js';
 import { AhaError, fail } from '../core/errors.js';
-import { createDraft, createExample } from '../core/examples.js';
-import { createExploration, importExploration } from '../core/exploration.js';
-import { canonicalize, hashValue } from '../core/identity.js';
-import { buildPack } from '../core/pack.js';
-import { EngineSchema, type Pack } from '../core/schema.js';
-import { renderHtml, type RenderAssets } from '../renderers/html.js';
-import { renderCardHtml } from '../renderers/card.js';
-import { renderPptx } from '../renderers/pptx.js';
-import { captureHtml, openBrowser } from '../media/browser.js';
-import { prepareVideoPlan, validateVideoPlan, approvePlan } from '../media/plan.js';
+import { hashValue } from '../core/identity.js';
+import { ResearchKindSchema } from '../research/schema.js';
+import { createResearchDraft, buildDossier, readDossier, writeDossier } from '../research/dossier.js';
+import { FORMATS, type Format, initArtifact, checkArtifact } from '../artifacts/project.js';
+import { renderHtml, renderImage, renderPptx, checkBrowser, runPptxWorker } from '../artifacts/render.js';
+import { openBrowser } from '../media/browser.js';
+import { prepareVideoPlan, validateVideoPlan, type VideoPlan } from '../media/plan.js';
 import { importAudio, synthesize } from '../media/audio.js';
 import { renderVideo } from '../media/video.js';
 import { ffmpeg, ffprobe, pythonRuntime, runTool } from '../media/process.js';
-import { assertOutsidePack, limitedJsonText, readJson, readPack, writeNewFile, writePack, writeReceipt } from './files.js';
+import { assertOutsideSource, limitedJsonText, readJson, writeNewFile } from './files.js';
 
-const VERSION = '0.2.0';
+const VERSION = '0.3.0';
 const USAGE = [
   'doctor [--media]',
-  'init <retry|compound|evidence> <new-draft.json>',
-  'build-pack <draft.json> <new-pack.aha>',
-  'example <retry|compound|evidence> <new-pack.aha>',
-  'validate <pack.aha>',
-  'run <pack.aha> <scenario-id>',
-  'render-lab <pack.aha> <new-output.html>',
-  'render-slides <pack.aha> <new-output.html>',
+  'research-init <question> <new-draft.json> [--kind public|codebase|mixed|provided]',
   'research-check <draft.json>',
-  'render-card <pack.aha> <new-output.html>',
-  'render-image <pack.aha> <new-output.png>',
-  'render-pptx <pack.aha> <new-output.pptx>',
-  'prepare-video <pack.aha> <new-plan.json>',
-  'video-plan-check <pack.aha> <plan.json>',
-  'synthesize <pack.aha> <plan.json> <new-audio-dir> --approve <planHash> --allow-network',
-  'import-audio <pack.aha> <plan.json> <audio-files.json> <new-audio-dir> --approve <planHash>',
-  'export-exploration <pack.aha> <new-output.json> [scenario-id ...]',
-  'import-exploration <original-pack.aha> <exploration.json> <new-pack.aha>',
-  'render-video <pack.aha> <plan.json> <audio-dir> <new-output.mp4> --approve <planHash>',
+  'research-build <draft.json> <new-research-directory>',
+  'research-validate <research-directory>',
+  'explain-init <research-directory> <html|image|pptx|video> <new-project-directory>',
+  'explain-check <project-directory>',
+  'render-html <project-directory> <new-output.html>',
+  'render-image <project-directory> <new-output.png> --allow-code',
+  'render-pptx <project-directory> <new-output.pptx> --allow-code',
+  'browser-check <project-directory> --allow-code',
+  'prepare-video <project-directory> <new-plan.json>',
+  'video-plan-check <project-directory> <plan.json>',
+  'synthesize <project-directory> <plan.json> <new-audio-directory> --approve <planHash> --allow-network',
+  'import-audio <project-directory> <plan.json> <audio-list.json> <new-audio-directory> --approve <planHash>',
+  'render-video <project-directory> <plan.json> <audio-directory> <new-output.mp4> --approve <planHash> --allow-code',
 ];
 
-function arity(args: string[], min: number, max = min): void {
-  if (args.length < min || args.length > max) {
-    fail('USAGE', `Expected ${min === max ? min : `${min}..${max}`} arguments. Run help for syntax.`);
+function parse(args: string[], count: number, valueFlags: string[] = [], switches: string[] = []) {
+  const positional: string[] = [];
+  const values: Record<string, string> = {};
+  const enabled = new Set<string>();
+  for (let index = 0; index < args.length; index++) {
+    const token = args[index]!;
+    if (!token.trim()) fail('USAGE', 'Empty arguments are not supported.');
+    if (!token.startsWith('--')) { positional.push(token); continue; }
+    if (enabled.has(token) || token in values) fail('USAGE', `Duplicate option: ${token}.`);
+    if (switches.includes(token)) enabled.add(token);
+    else if (valueFlags.includes(token)) {
+      const value = args[++index];
+      if (!value || value.startsWith('--')) fail('USAGE', `Expected a value after ${token}.`);
+      values[token] = value;
+    } else fail('USAGE', `Unknown option ${token}. Run help for syntax.`);
   }
-}
-
-function arg(args: string[], index: number): string {
-  const value = args[index];
-  if (value === undefined || !value.trim()) fail('USAGE', `Missing argument ${index + 1}.`);
-  return value;
+  if (positional.length !== count) fail('USAGE', `Expected ${count} positional arguments. Run help for syntax.`);
+  const at = (index: number): string => positional[index]!;
+  return { at, values, enabled };
 }
 
 function extension(file: string, expected: string): void {
-  if (path.extname(file).toLowerCase() !== expected) fail('OUTPUT_EXTENSION', `Output must use the ${expected} extension.`, file);
+  if (path.extname(file).toLowerCase() !== expected) fail('OUTPUT_EXTENSION', `Output must use ${expected}.`, file);
 }
 
-async function assets(): Promise<RenderAssets> {
-  const root = fileURLToPath(new URL('../assets/runtime/', import.meta.url));
-  return {
-    labJs: await readFile(path.join(root, 'lab.js'), 'utf8'),
-    slidesJs: await readFile(path.join(root, 'slides.js'), 'utf8'),
-    revealJs: await readFile(path.join(root, 'reveal.js'), 'utf8'),
-    revealCss: await readFile(path.join(root, 'reveal.css'), 'utf8'),
-  };
-}
-
-function validateHtml(html: string, pack: Pack): void {
-  if (!/^<!doctype html>/i.test(html.trimStart()) || !html.includes('</html>')) {
-    fail('HTML_INVALID', 'Renderer did not produce a complete HTML document.');
+async function approvedPlan(project: string, file: string, approval?: string): Promise<VideoPlan> {
+  const plan = await validateVideoPlan(project, await readJson(file));
+  const planHash = await hashValue(plan);
+  if (!approval || approval !== planHash) {
+    fail('NARRATION_APPROVAL_REQUIRED', 'Review the complete current plan and pass its exact hash using --approve.');
   }
-  if (Buffer.byteLength(html, 'utf8') > 5 * 1024 * 1024) fail('HTML_SIZE', 'Offline HTML exceeds the 5 MiB release limit.');
-  if (/<(?:script|img|iframe)\b[^>]*\bsrc\s*=\s*["']\s*(?:https?:)?\/\//i.test(html)
-    || /<link\b[^>]*\bhref\s*=\s*["']\s*(?:https?:)?\/\//i.test(html)) {
-    fail('HTML_EXTERNAL_RESOURCE', 'Rendered HTML must not load remote dependencies.');
-  }
-  const data = /<script\b[^>]*\bid=["']aha-pack["'][^>]*>([\s\S]*?)<\/script>/i.exec(html)?.[1];
-  if (!data) fail('HTML_PACK_MISSING', 'Rendered HTML must embed its Pack identity.');
-  if (canonicalize(JSON.parse(data)) !== canonicalize(pack)) {
-    fail('HTML_PACK_MISMATCH', 'Renderer changed the embedded Pack.');
-  }
-}
-
-function bindStaticPack(html: string, pack: Pack): string {
-  if (/<script\b[^>]*\bid=["']aha-pack["']/i.test(html)) return html;
-  const data = JSON.stringify(pack).replace(/[<>&\u2028\u2029]/gu, character =>
-    `\\u${character.charCodeAt(0).toString(16).padStart(4, '0')}`);
-  if (!html.includes('</body>')) fail('HTML_INVALID', 'Static renderer must produce a complete body.');
-  return html.replace('</body>', `<script id="aha-pack" type="application/json">${data}</script></body>`);
+  return plan;
 }
 
 async function execute(command: string, args: string[]): Promise<object> {
@@ -97,16 +74,15 @@ async function execute(command: string, args: string[]): Promise<object> {
     case 'help':
     case '--help':
     case '-h':
-      arity(args, 0);
-      return { status: 'ok', version: VERSION, commands: USAGE };
+      parse(args, 0);
+      return { status: 'ok', version: VERSION, skills: ['aha-research', 'aha-explain'], commands: USAGE };
     case 'doctor': {
-      arity(args, 0, 1);
-      if (args[0] && args[0] !== '--media') fail('USAGE', 'Only --media is supported by doctor.');
-      const major = Number(process.versions.node.split('.')[0]);
-      if (major < 22) fail('NODE_VERSION', 'Node 22 or newer is required.');
-      const runtime = await assets();
+      const { enabled } = parse(args, 0, [], ['--media']);
+      if (Number(process.versions.node.split('.')[0]) < 22) fail('NODE_VERSION', 'Node 22 or newer is required.');
+      const runtime = await readFile(fileURLToPath(new URL('../assets/runtime/mermaid.js', import.meta.url)), 'utf8');
+      if (!runtime.length) fail('RUNTIME_MISSING', 'Local diagram runtime is missing; rebuild the complete Skill.');
       const readiness: Record<string, string> = {};
-      const selectedPython = args[0] === '--media' ? pythonRuntime() : undefined;
+      const selectedPython = enabled.has('--media') ? pythonRuntime() : undefined;
       if (selectedPython) {
         const probes: Array<[string, () => Promise<unknown>]> = [
           ['ffmpeg', () => runTool(ffmpeg(), ['-version'])],
@@ -124,192 +100,118 @@ async function execute(command: string, args: string[]): Promise<object> {
       }
       return {
         status: Object.values(readiness).some(value => value !== 'ready') ? 'degraded' : 'ok',
-        version: VERSION, node: process.versions.node,
+        version: VERSION, node: process.versions.node, skills: ['aha-research', 'aha-explain'],
         capabilities: {
-          lab: runtime.labJs.length > 0, slides: runtime.slidesJs.length > 0,
-          video: true, image: true, pptx: true, researchLedger: true,
-          sourcedStateTeaching: true, predictionFeedback: true,
-          realExecution: false, networkRequiredForHtml: false, networkRequiredForEdgeTts: true,
+          research: true, modelFreeDossier: true, freeHtml: true, mermaid: true,
+          image: true, pptx: true, video: true, realExecution: false,
+          videoEngine: 'authored-browser-frames', networkRequiredForHtml: false,
+          networkRequiredForEdgeTts: true,
         },
-        mediaReadiness: args[0] ? readiness : 'not-probed; run doctor --media (local checks only)',
+        execution: 'Authored browser/Node code requires --allow-code after review; not an OS sandbox.',
+        mediaReadiness: selectedPython ? readiness : 'not-probed; run doctor --media (local checks only)',
         ...(selectedPython ? { pythonRuntime: selectedPython } : {}),
-        ...(readiness.edgeTts?.startsWith('unavailable') ? {
-          mediaSetup: 'Use an approved Python environment with edge-tts==7.2.8. AHA_PYTHON overrides the active virtualenv, then the current project .venv-media, then PATH. No dependencies were installed.',
-        } : {}),
         mediaRequirements: ['installed Edge/Chrome', 'ffmpeg + ffprobe', 'Python + edge-tts==7.2.8 only for online synthesis'],
+        semanticReview: 'Neither doctor nor structural checks certify facts, visual quality or host routing.',
       };
     }
-    case 'init': {
-      arity(args, 2);
-      const engine = check(EngineSchema, arg(args, 0));
-      const output = arg(args, 1);
-      extension(output, '.json');
-      await writeNewFile(output, limitedJsonText(createDraft(engine), output));
-      return { status: 'draft', output: path.resolve(output), syntheticTemplate: true };
+    case 'research-init': {
+      const { at, values } = parse(args, 2, ['--kind']);
+      extension(at(1), '.json');
+      const kind = values['--kind'] === undefined ? undefined : check(ResearchKindSchema, values['--kind']);
+      await writeNewFile(at(1), limitedJsonText(createResearchDraft(at(0), kind), at(1)));
+      return { status: 'draft', output: path.resolve(at(1)), researchPerformed: false };
     }
-    case 'build-pack':
-    case 'example': {
-      arity(args, 2);
-      const output = arg(args, 1);
-      extension(output, '.aha');
-      const pack = command === 'example'
-        ? await createExample(check(EngineSchema, arg(args, 0)))
-        : await buildPack(await readJson(arg(args, 0)));
-      await writePack(output, pack);
-      return { status: 'validated', output: path.resolve(output), packHash: pack.manifest.contentHash, syntheticTemplate: command === 'example' };
-    }
-    case 'validate': {
-      arity(args, 1);
-      const pack = await readPack(arg(args, 0));
-      return { status: 'validated', packHash: pack.manifest.contentHash, scenarios: pack.scenarios.length, semanticScope: 'registered-model-and-references-only' };
-    }
-    case 'research-check': {
-      arity(args, 1);
-      const pack = await buildPack(await readJson(arg(args, 0)));
-      if (!pack.research) fail('RESEARCH_MISSING', 'A research ledger is required for this command.', '/research');
+    case 'research-check':
+    case 'research-build': {
+      const { at } = parse(args, command === 'research-check' ? 1 : 2);
+      const dossier = await buildDossier(await readJson(at(0)));
+      if (command === 'research-build') await writeDossier(at(1), dossier);
       return {
-        status: 'validated', claims: pack.claims.length, findings: pack.research.findings.length,
-        semanticScope: 'schema-and-claim-evidence-coverage-only',
-        externalTruthVerified: false, sourceRetrievalPerformed: false, gaps: pack.research.gaps,
+        status: 'validated', researchHash: dossier.manifest.contentHash,
+        claims: dossier.research.claims.length, evidence: dossier.research.evidence.length,
+        ...(command === 'research-build' ? { output: path.resolve(at(1)) } : {}),
+        semanticScope: 'structure-reference-coverage-and-content-identity',
+        sourceRetrievalPerformed: false, externalTruthVerified: false,
       };
+    }
+    case 'research-validate': {
+      const { at } = parse(args, 1);
+      const dossier = await readDossier(at(0));
+      return { status: 'validated', researchHash: dossier.manifest.contentHash, externalTruthVerified: false };
+    }
+    case 'explain-init': {
+      const { at } = parse(args, 3);
+      const format = at(1);
+      if (!FORMATS.includes(format as Format)) fail('ARTIFACT_FORMAT', 'Choose html, image, pptx or video.');
+      return initArtifact(at(0), format as Format, at(2));
+    }
+    case 'explain-check': {
+      const { at } = parse(args, 1);
+      const result = await checkArtifact(at(0));
+      if ('ready' in result && result.ready === false) process.exitCode = 1;
+      return result;
+    }
+    case 'render-html': {
+      const { at } = parse(args, 2);
+      extension(at(1), '.html');
+      return renderHtml(at(0), at(1));
+    }
+    case 'render-image':
+    case 'render-pptx': {
+      const { at, enabled } = parse(args, 2, [], ['--allow-code']);
+      extension(at(1), command === 'render-image' ? '.png' : '.pptx');
+      return command === 'render-image'
+        ? renderImage(at(0), at(1), enabled.has('--allow-code'))
+        : renderPptx(at(0), at(1), enabled.has('--allow-code'));
+    }
+    case '_pptx-worker': {
+      const { at, enabled } = parse(args, 2, [], ['--allow-code']);
+      if (!enabled.has('--allow-code')) fail('CODE_PERMISSION', 'PPTX author code needs explicit --allow-code.');
+      await runPptxWorker(at(0), at(1));
+      return { status: 'rendered' };
+    }
+    case 'browser-check': {
+      const { at, enabled } = parse(args, 1, [], ['--allow-code']);
+      return checkBrowser(at(0), enabled.has('--allow-code'));
     }
     case 'prepare-video':
     case 'video-plan-check': {
-      arity(args, 2);
-      const pack = await readPack(arg(args, 0));
+      const { at } = parse(args, 2);
       const plan = command === 'prepare-video'
-        ? prepareVideoPlan(pack) : validateVideoPlan(pack, await readJson(arg(args, 1)));
+        ? await prepareVideoPlan(at(0))
+        : await validateVideoPlan(at(0), await readJson(at(1)));
+      const planHash = await hashValue(plan);
       if (command === 'prepare-video') {
-        extension(arg(args, 1), '.json');
-        await assertOutsidePack(arg(args, 0), arg(args, 1));
-        await writeNewFile(arg(args, 1), limitedJsonText(plan, arg(args, 1)));
+        extension(at(1), '.json');
+        await assertOutsideSource(at(0), at(1));
+        await writeNewFile(at(1), limitedJsonText(plan, at(1)));
       }
-      return {
-        status: 'awaiting-narration-review', planHash: await hashValue(plan),
-        provider: 'edge-tts (community client for Microsoft online speech, not offline or Azure)',
-        networkRequestPerformed: false, approvalRequiredFor: 'exact narration, voice, rate and timing policy',
-        plan, truthReview: 'Host/user must verify sentences against linked Claims; this checker does not certify wording.',
-      };
+      return { status: 'awaiting-review', planHash, provider: plan.provider, plan, approvalRecorded: false };
     }
     case 'synthesize': {
-      arity(args, 6);
-      if (args[3] !== '--approve' || args[5] !== '--allow-network') fail('TTS_NETWORK_PERMISSION', 'Expected --approve <current-plan-hash> --allow-network after explicit narration review.');
-      const pack = await readPack(arg(args, 0));
-      const plan = await approvePlan(pack, await readJson(arg(args, 1)), arg(args, 4));
-      await assertOutsidePack(arg(args, 0), arg(args, 2));
-      const audio = await synthesize(plan, arg(args, 2), true, fileURLToPath(new URL('../assets/media/edge_speech.py', import.meta.url)));
-      return { status: 'audio-ready', output: path.resolve(arg(args, 2)), ...audio, durationSeconds: audio.segments.reduce((sum, item) => sum + item.frames, 0) / 30 };
+      const { at, values, enabled } = parse(args, 3, ['--approve'], ['--allow-network']);
+      const plan = await approvedPlan(at(0), at(1), values['--approve']);
+      await assertOutsideSource(at(0), at(2));
+      const script = fileURLToPath(new URL('../assets/media/edge_speech.py', import.meta.url));
+      const audio = await synthesize(plan, at(2), enabled.has('--allow-network'), script);
+      return { status: 'generated', output: path.resolve(at(2)), audio, listeningReview: 'not-performed' };
     }
     case 'import-audio': {
-      arity(args, 6);
-      if (args[4] !== '--approve') fail('NARRATION_APPROVAL_REQUIRED', 'Expected --approve <current-plan-hash>.');
-      const pack = await readPack(arg(args, 0));
-      const plan = await approvePlan(pack, await readJson(arg(args, 1)), arg(args, 5));
-      await assertOutsidePack(arg(args, 0), arg(args, 3));
-      const audio = await importAudio(plan, await readJson(arg(args, 2)), path.dirname(path.resolve(arg(args, 2))), arg(args, 3));
-      return { status: 'audio-ready', output: path.resolve(arg(args, 3)), ...audio, narrationContentVerified: false };
-    }
-    case 'render-card':
-    case 'render-image':
-    case 'render-pptx': {
-      arity(args, 2);
-      const root = arg(args, 0);
-      const output = arg(args, 1);
-      extension(output, command === 'render-card' ? '.html' : command === 'render-image' ? '.png' : '.pptx');
-      const pack = await readPack(root);
-      await assertOutsidePack(root, output);
-      let content: string | Uint8Array;
-      if (command === 'render-pptx') content = await renderPptx(pack);
-      else {
-        const html = bindStaticPack(renderCardHtml(pack), pack);
-        validateHtml(html, pack);
-        if (command === 'render-card') content = html;
-        else {
-          const browser = await openBrowser();
-          try { content = await captureHtml(html, '#aha-card', browser); }
-          finally { await browser.close(); }
-        }
-      }
-      const artifactHash = createHash('sha256').update(content).digest('hex');
-      await writeNewFile(output, content);
-      const receipt = await writeReceipt(root, {
-        status: 'delivered', kind: command.slice(7), rendererVersion: VERSION,
-        packHash: pack.manifest.contentHash, output: path.resolve(output), artifactHash,
-        visualReview: 'not-performed-by-this-command',
-      });
-      return { status: 'delivered', output: path.resolve(output), packHash: pack.manifest.contentHash, artifactHash, receipt };
-    }
-    case 'run': {
-      arity(args, 2);
-      const pack = await readPack(arg(args, 0));
-      const trace = pack.traces.find(item => item.scenarioId === arg(args, 1));
-      if (!trace) fail('SCENARIO_UNKNOWN', 'Scenario does not exist.', '/scenarioId');
-      return { status: 'ok', trace };
-    }
-    case 'render-lab':
-    case 'render-slides': {
-      arity(args, 2);
-      const root = arg(args, 0);
-      const output = arg(args, 1);
-      extension(output, '.html');
-      const pack = await readPack(root);
-      await assertOutsidePack(root, output);
-      const kind = command === 'render-lab' ? 'lab' : 'slides';
-      const html = renderHtml(pack, kind, await assets());
-      validateHtml(html, pack);
-      const artifactHash = createHash('sha256').update(html, 'utf8').digest('hex');
-      await writeNewFile(output, html);
-      const receipt = await writeReceipt(root, {
-        status: 'delivered', kind, rendererVersion: VERSION,
-        packHash: pack.manifest.contentHash, narrativeVersion: pack.narrative.version,
-        output: path.resolve(output), artifactHash,
-        checks: ['pack-schema', 'references', 'registered-model-replay', 'embedded-pack', 'html-size', 'no-remote-dependency-tags'],
-        visualReview: 'not-performed-by-this-command',
-      });
-      return { status: 'delivered', output: path.resolve(output), packHash: pack.manifest.contentHash, artifactHash, receipt };
-    }
-    case 'export-exploration': {
-      arity(args, 2, 12);
-      const pack = await readPack(arg(args, 0));
-      const output = arg(args, 1);
-      extension(output, '.json');
-      await assertOutsidePack(arg(args, 0), output);
-      const ids = args.length > 2 ? args.slice(2) : pack.scenarios.map(scenario => scenario.id);
-      if (ids.length > 10 || new Set(ids).size !== ids.length) {
-        fail('EXPLORATION_SELECTION', 'Select 1 to 10 unique scenario IDs.');
-      }
-      const cases = ids.map(id => {
-        const scenario = pack.scenarios.find(item => item.id === id);
-        const trace = pack.traces.find(item => item.scenarioId === id);
-        if (!scenario || !trace) fail('SCENARIO_UNKNOWN', `Unknown scenario ${id}.`);
-        return { scenario, trace, note: '' };
-      });
-      const exploration = await createExploration(pack, cases);
-      await writeNewFile(output, limitedJsonText(exploration, output));
-      return { status: 'delivered', output: path.resolve(output), packHash: exploration.packHash, cases: ids };
-    }
-    case 'import-exploration': {
-      arity(args, 3);
-      const original = await readPack(arg(args, 0));
-      const exploration = await readJson(arg(args, 1));
-      const output = arg(args, 2);
-      extension(output, '.aha');
-      await assertOutsidePack(arg(args, 0), output);
-      const next = await importExploration(original, exploration);
-      await writePack(output, next, exploration);
-      return { status: 'validated', output: path.resolve(output), parentHash: original.manifest.contentHash, packHash: next.manifest.contentHash, revision: next.manifest.revision };
+      const { at, values } = parse(args, 4, ['--approve']);
+      const plan = await approvedPlan(at(0), at(1), values['--approve']);
+      await assertOutsideSource(at(0), at(3));
+      const audio = await importAudio(plan, await readJson(at(2)), path.dirname(path.resolve(at(2))), at(3));
+      return { status: 'generated', output: path.resolve(at(3)), audio, listeningReview: 'not-performed' };
     }
     case 'render-video': {
-      arity(args, 6);
-      if (args[4] !== '--approve') fail('NARRATION_APPROVAL_REQUIRED', 'Expected --approve <current-plan-hash>.');
-      extension(arg(args, 3), '.mp4');
-      const pack = await readPack(arg(args, 0));
-      const plan = await approvePlan(pack, await readJson(arg(args, 1)), arg(args, 5));
-      await assertOutsidePack(arg(args, 0), arg(args, 3));
-      return renderVideo(pack, plan, arg(args, 2), arg(args, 3));
+      const { at, values, enabled } = parse(args, 4, ['--approve'], ['--allow-code']);
+      extension(at(3), '.mp4');
+      const plan = await approvedPlan(at(0), at(1), values['--approve']);
+      await assertOutsideSource(at(0), at(3));
+      return renderVideo(at(0), plan, at(2), at(3), enabled.has('--allow-code'));
     }
     default:
-      return fail('COMMAND_UNKNOWN', `Unknown command ${command}. Run help for syntax.`);
+      return fail('COMMAND_UNKNOWN', `Unknown command ${command}. Only research/explain workflows are supported; run help.`);
   }
 }
 

@@ -1,87 +1,19 @@
-# 代码库研究：从版本到可证伪的行为解释
+# Codebase and diff research
 
-本流程由 aha-research、aha-lab、aha-story 各自直接读取，不依赖 Skill 互调。目标是回答一个具体代码问题，而非列出目录名。约束与输出结构见 [编写契约](authoring.md)；公开背景资料另走 [公开内容研究](research-public.md)。
+Read [the shared workflow](research-workflow.md) first. Authorization to read a repository is not authorization to execute it.
 
-## 1. 研究契约与内容身份
+## Establish the actual version
 
-先填写：问题、预期输入／结果、仓库范围、分支／commit、比较基准、已知背景、预算和排除项。例：调查某入口遇到特定错误后是否重试，取消何时生效；不是“全面理解整个系统”。
+- Fix repository identity, commit, branch when useful, and both diff endpoints. For a dirty workspace distinguish committed, staged, unstaged, and relevant untracked contents; record content hashes and locators for the material actually read.
+- Start from the user's question and related entry points, not a whole-repository dump. Prefer available code intelligence, then LSP, then narrow file and text searches. State navigation/tool limitations rather than automatically installing tools.
+- Trace definitions, callers, state transitions, data flow, configuration, and invariants. Check failure, retry, cancellation, cleanup, concurrency, and boundary behavior when relevant. Separate independent subquestions; do not require delegation support.
+- Cross-check tests, docs, configuration, and relevant history. A comment, test name, or commit message is a lead, not proof of current behavior. Follow assertions and actual code paths.
+- Record precise file/line or symbol locators and version/content identity for supporting and opposing evidence. External documentation does not prove a dirty local implementation matches it.
 
-默认先做一条代表路径、最多两轮定向补证；用户给定更小预算时遵守它。预算到期可以交付不完整台账，不可以把“没查到”写成“不存在”。
+## Claims and observations
 
-建立读取清单：
+Distinguish “source implies,” “test asserts,” “command was run,” and “runtime was observed.” Reading a test does not mean it passed. Source reading cannot establish live latency, production frequency, or environment-specific behavior.
 
-| 内容 | 必须记录的身份 |
-| --- | --- |
-| 干净已提交文件 | 仓库标识、完整 commit、文件路径、符号、行范围 |
-| 代码差异 | base 与 target 的完整版本，比较语义（两端／merge-base），每侧的路径与行范围 |
-| dirty 工作区 | HEAD、读取的 staged／unstaged／untracked 状态、各实际文件字节哈希；不能只写分支名 |
-| 非 Git 材料 | 提供方式、快照日期、相对路径、文件字节哈希，明确无 commit |
+If an authorized experiment is necessary, first review the command and inputs, obtain explicit execution approval, and use an appropriately restricted environment. Record environment, input, exact command, output, and limitations. Do not execute untrusted source repository scripts, hooks, package installs, or binaries merely to improve research confidence. Without adequate permission/isolation, remain read-only and mark the missing observation.
 
-对每份用于代码断言的 Evidence：
-
-- `kind: "code"`，`locator` 写文件、符号和实际读取的行范围；调用关系另指出调用点。
-- `sourceVersion` 说明精确 commit 或 dirty 快照身份；变更两侧分别建 Evidence，不用一个模糊版本覆盖两侧。
-- `contentHash` 为实际读取内容的 SHA-256（64 位十六进制），**不是 commit SHA**。推荐对完整文件原始字节计算，并在 `locator` 说明哈希对象为完整文件、引用范围为哪些行。
-- 若工具只提供片段，对完整收到的片段精确字节计算并写明片段边界、编码／换行约定；不得冒称完整文件哈希。没有可靠字节访问／哈希工具时标记身份缺口，不编造值。
-- 读取、定位、哈希必须来自同一稳定快照；工作区可能变动时，在核对结束重新比对哈希。变化则重读和修正受影响主张。
-
-`git status`、`diff`、`log` 等仅用于获准的只读调查；避免外部 diff/textconv、仓库钩子或插件执行。提交记录中的日期和说明不代替内容身份。
-
-## 2. 导航：先语义，再窄文本
-
-1. 从问题识别真实入口：CLI 注册、HTTP 路由、导出 API、事件订阅或 UI handler；配置／manifest 只是候选入口，需追到定义和调用点。
-2. 优先宿主已有可信代码智能／LSP：符号定义、引用／调用者、调用图、类型与接口实现。记录查询目标；图索引版本与工作区不一致时不能直接当最新事实。
-3. 在实际源码核对关键边与分支，尤其动态分派、依赖注入、异步回调、条件编译和生成代码。导航图不是完整运行轨迹。
-4. 无代码智能时：先定位文件／目录，再限定语言、路径与确切标识符做窄文本搜索；读取命中周围定义和调用点。不能用全库泛词命中量代替调用关系。
-5. 不存在可信导航工具时说明降级；不自动下载语言服务器、构建索引或执行陌生仓库配置。
-
-输出一个小型调用／数据流表即可，不要求作图：
-
-| 步骤 | 输入或状态 | 文件／符号与调用点 | 转换／分支 | 证据 ID |
-| --- | --- | --- | --- | --- |
-| 入口到结果 | 写真实读取到的内容 | 精确定位 | 正常路径及旁路 | 对应已读源码 |
-
-不要先写架构结论，再挑几个文件为既有印象背书。
-
-## 3. 一条代表路径，连同失败边界
-
-沿“输入 → 校验／分发 → 关键状态修改 → 依赖调用 → 返回／持久化”追踪一条有代表性的路径。每一步核对值如何产生、传递、改变和终止。
-
-- **错误**：谁抛出／返回错误，谁捕获，转换后的错误是否丢失类型或上下文，外部可见结果是什么？
-- **重试**：错误分类、首次尝试与重试计数、延迟单位／上限、预算耗尽及幂等性；没有重试代码不臆造指数退避。
-- **取消**：信号从何处传入、在哪个等待或调用边界检查、资源如何清理、取消与成功／重试竞态；无法追到就写未知。
-- **配置**：默认值、用户覆盖、环境变量与特性开关的优先级；结论明确依赖哪个配置组合。
-- **状态／并发**：共享状态、事务边界、锁、回调和重入仅在与问题相关时展开；外部系统行为未读到实现则保留契约假设。
-
-“不适用”“该范围未发现”“存在且已追踪”不同。否定断言须给出搜索范围和定位依据，不能由一段代码中没有某词推导系统完全没有该机制。
-
-## 4. 五面交叉核实
-
-每个关键行为至少检查下表相关面；找不到也记为缺口：
-
-| 面 | 要检查什么 | 不能据此单独断言什么 |
-| --- | --- | --- |
-| 定义 | 条件、返回、状态、错误语义 | 定义一定被当前入口使用 |
-| 调用者 | 实际参数、分支选择、异常处理 | 所有调用者都符合一个案例 |
-| 测试 | 对应断言、fixture、mock、漏测边界 | 测试文件存在即通过；mock 等同生产依赖 |
-| 配置 | 默认、覆盖、构建／部署选择 | 样例配置就是当前生产值 |
-| 历史 | 相关 diff、引入／修改背景 | commit 消息、PR 描述就是现状的行为证明 |
-
-历史需要读实际相关差异，再回到目标版本核实；注释和文档同样可能过时。冲突时保留双方及版本，不掩盖不一致。
-
-**本 Skill 不执行不可信仓库**，包括 install、build、test、样例、迁移或仓库自带脚本。可信 Aha 内置模型重放不是原仓库执行。仅阅读测试必须写“检查测试源码，未执行测试／未观察运行行为”。用户提供测试输出作为带版本和环境限制的材料，不自动升级为本次亲自观察，也不单独证明全部行为。
-
-## 5. 主张台账、停止与交接
-
-每行一个可证伪结论：`claimId`、具体行为与输入条件、类型、源码 Evidence、辅助测试／配置／历史 Evidence、`supported|contested|unresolved`、推理、限制。
-
-- 源码足以支持的静态解释仍是来源解释；`source-based` 不表示独立证明、运行验证或等价模拟。
-- 测试／历史可补充置信理由，核心行为断言必须能回到实现及实际调用路径。
-- 没有源码或缺失关键动态分派时保留 `unresolved`；不要用模型补全缺失实现。
-- 数字明确单位；逻辑等待、真实耗时、上限和累计值不能混称。
-
-满足以下条件可停止：问题范围清楚；目标快照可识别；代表路径及错误／重试／取消已核实或明确缺口；定义／调用者／测试／配置／历史已核对或说明不可得；反例已尝试；每个非未知主张都有相关证据。预算耗尽也要停止，并写出 `stopReason` 和未完成的子问题。
-
-交付规范 `draft.json`、可读台账及 scope gaps。`research.queries` 记录实际符号／文件查询与目的，`findings` 记录关联和判断；详细调用链与检索过程放审阅材料，不能发明 Draft 字段。首次建包前研究与读者解释 Draft 须明确审阅；已审阅且事实／证据不变的呈现纠正按 [审阅范围](authoring.md) 处理，不重做无关取证或纯 UI 审批。新发现仍需补证审阅，新旁白外发另行授权。
-
-研究台账不直接充当成品正文。给最终读者直接解释代码的机制、具体对照／步骤和理解题答案，保留简洁来源与自然语言事实条件；受众、Claim ID／哈希、来源计数和生产协议留在 Pack、台账、回执及来源元数据。图示基于已有主张，不是新模型或已执行轨迹；[结构检查](authoring.md) 无法替代人工语义审阅。
+Reverse-check the central path and a plausible counterexample before concluding. Preserve scope gaps and version mismatches; do not merge incompatible observations into one apparently verified mechanism.
