@@ -1,0 +1,2 @@
+# Optional: required only for explicitly approved Edge TTS network calls.
+edge-tts==7.2.8

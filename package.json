@@ -1,0 +1,34 @@
+{
+  "name": "aha-skills",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Portable explanation skills with deterministic offline experiments and stories.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsx scripts/build.ts",
+    "typecheck": "tsc --noEmit",
+    "pretest": "npm run build",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "pretest:browser": "npm run build",
+    "test:browser": "playwright test",
+    "test:media": "node --import tsx --test tests/media.integration.ts",
+    "aha": "node dist/cli/aha.mjs"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "0.34.41",
+    "jszip": "3.10.1",
+    "playwright-core": "1.55.1",
+    "pptxgenjs": "4.0.1",
+    "reveal.js": "5.2.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.55.1",
+    "@types/node": "24.10.1",
+    "esbuild": "0.25.10",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3"
+  }
+}
