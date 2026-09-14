@@ -2,10 +2,12 @@
 
 An artifact is a medium-specific project bound to a Research Dossier snapshot. Its editable source is the authority; metadata records identity, entry points, coverage, omissions, resources, and review results. It is not a fixed card DSL or a universal scene graph.
 
+Use one explicit format per project; consult [format selection](format-selection.md) only for unresolved routing or multiple outputs. When authoring metadata or bilingual content, load [language](language.md), the authority for defaults, localized roots, and translation behavior. Keep artifact translations separate from the bound Dossier so presentation choices do not change evidence identity.
+
 ## Initialize, then actually author
 
 ```text
-node "<absolute installed skill>/scripts/aha.mjs" explain-init <research-directory> <html|image|pptx|video> <new-project-directory>
+node "<absolute installed skill>/scripts/aha.mjs" explain-init <research-directory> <html|image|pptx|video> <new-project-directory> [--language en|zh|bilingual]
 node "<absolute installed skill>/scripts/aha.mjs" explain-check <project-directory>
 ```
 
@@ -17,12 +19,13 @@ The initialized scaffold has `status: "draft"` and is intentionally incomplete. 
 
 Initialization writes `artifact.json`, a copied Dossier under `research/`, and `html/index.html` (HTML/image/video) or `pptx/main.mjs` (PPTX). There is no required `provenance.json` or shared slide schema. Keep optional content/design plans and resource/license notes as ordinary local source documents; put review notes in `qa/`.
 
-All `artifact.json` fields are required; extra properties are rejected:
+The following `artifact.json` fields are required except `language`, which is optional for legacy compatibility; extra properties are rejected:
 
 | Field | Meaning |
 | --- | --- |
 | `schemaVersion` | Exactly `"1.0.0"`. |
 | `format` | `"html"`, `"image"`, `"pptx"`, or `"video"`. |
+| `language` | Optional `"en"`, `"zh"`, or `"bilingual"`; bilingual is HTML-only. New projects always include it. Absence preserves legacy single-source behavior, with effective English voice fallback, not automatic translation or bilingual conversion. |
 | `researchHash` | Dossier `manifest.contentHash`, set by initialization; do not fabricate or edit to bypass identity checks. |
 | `title`, `status` | Human title and `"draft"` or `"authored"`. |
 | `entry` | Project-relative HTML path for visual formats or `.mjs` path for PPTX. |
@@ -48,11 +51,11 @@ New substantive assertions go back through research and source review. A layout-
 
 ## Design and source
 
-Choose hierarchy, reading path, graphical relationships, density, typography, and interaction for the medium. Start with the scaffold's Clawpilot theme variables/roles and keep the theme, while freely changing content structure and layout. No mandatory cards, teaching tests, simulator, or uniform page count.
+At composition, use [visual design](visual-design.md) for hierarchy, reading path, relationships, typography, and runtime `--cp-*` compatibility. Read only a chosen [theme recipe section](design-themes.md), if useful. User/project branding takes precedence over optional recipes and the Clawpilot fallback. No mandatory cards, teaching tests, simulator, or uniform page count.
 
 Use full HTML/CSS/JS, Mermaid source, SVG, PptxGenJS author modules, or deterministic video scene code as appropriate. Load only [HTML](html.md), [image](image.md), [PPTX](pptx.md), or [video](video.md) guidance for the requested output. Do not force every medium through one HTML screenshot or shared slide representation.
 
-Keep resource dependencies local, inventoried, and licensed. Treat research strings as data and escape them for the target syntax. Review all authored execution with [the execution contract](execution.md), including local Node privileges and timeout, before rendering.
+Before executing source, apply [the execution contract](execution.md), including reviewed approval, local resource provenance, escaping, and Node privileges. Loading an authoring guide grants no execution permission.
 
 ## Check, revise, preserve
 

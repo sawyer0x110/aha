@@ -25,7 +25,7 @@ Aha 只发布 `aha-research` 和 `aha-explain`。外部项目是方法参考，�
 
 差异：Aha 独立研究档案与原生 PPTX 直接创作不依赖 HTML 转 PPT；本地依赖内嵌和实际浏览器检查独立实现。没有复制上游视觉模板或将 quick Schema 变成所有媒介的必经协议。
 
-上游标注 MIT；复用实质代码或文本仍需保留许可与归属。当前采用的是高层工作法，Aha 保留自己的主题与实现。
+上游标注 MIT；复用实质代码或文本仍需保留许可与归属。当前采用的是高层工作法和内容驱动的美学方法，Aha 的主题配方与实现为独立编写，不要求固定 Clawpilot 外观。
 
 ## anything2explainer：制作链而非导出按钮
 
@@ -41,6 +41,8 @@ Aha 只发布 `aha-research` 和 `aha-explain`。外部项目是方法参考，�
 独立实现：Aha 使用作者编写的浏览器逐帧 HTML／SVG／canvas 与本地 FFmpeg，不声称集成 Remotion 或具备其整套动效库。Edge TTS 配音、句级字幕、音频身份与时长检查是 Aha 自己的工具链。
 
 不照搬特定黑底紫光风格、所有镜头必须持续运动的阈值或大规模多 Agent 制作；静止可服务阅读，动效应表达机制而非装饰。
+
+视觉参考落实在 [设计流程](../skills/aha-explain/references/visual-design.md)与[主题配方](../skills/aha-explain/references/design-themes.md)：借鉴 visual-explainer 的内容驱动布局／主题选择，以及 anything2explainer 的高对比、焦点控制、镜头内机制变化。配方给出可操作的字体、色彩角色与构图建议，但不复制上游提示词、样式文件、图形或素材，也不强制所有作品套用某一种风格。
 
 许可边界：上游 README 标注 PolyForm Noncommercial 1.0.0，商业使用需作者授权；字体另有许可。公开可读不等于可按 MIT 商用复制。Aha 不复制其模板、镜头、提示词正文、脚本或样片素材。
 

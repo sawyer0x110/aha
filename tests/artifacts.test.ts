@@ -9,6 +9,7 @@ import { buildDossier, createResearchDraft, writeDossier } from '../src/research
 import { initArtifact, readArtifact, checkArtifact, sourceHash, type Format, type Artifact } from '../src/artifacts/project.js';
 import { prepareHtml } from '../src/artifacts/html.js';
 import { renderHtml, renderImage, renderPptx, runPptxWorker, checkBrowser } from '../src/artifacts/render.js';
+import { prepareVideoPlan } from '../src/media/plan.js';
 
 const code = (value: string) => (error: unknown) => error instanceof AhaError && error.code === value;
 async function fixture(run: (root: string, project: string) => Promise<void>, format: Format = 'html'): Promise<void> {
@@ -29,7 +30,7 @@ async function fixture(run: (root: string, project: string) => Promise<void>, fo
     });
     await writeDossier(path.join(root, 'dossier'), dossier);
     const project = path.join(root, 'project');
-    await initArtifact(path.join(root, 'dossier'), format, project);
+    await initArtifact(path.join(root, 'dossier'), format, project, 'en');
     await run(root, project);
   } finally { await fs.rm(root, { recursive: true, force: true }); }
 }
@@ -59,6 +60,50 @@ test('draft source remains editable, but cannot pass readiness with only status 
   await assert.rejects(checkArtifact(project), code('ARTIFACT_DRAFT'));
 }));
 
+test('new artifacts default to bilingual HTML or English media and reject unsupported combinations', async () => fixture(async (root) => {
+  for (const format of ['html', 'image', 'pptx', 'video'] as const) {
+    const project = path.join(root, `default-${format}`);
+    await initArtifact(path.join(root, 'dossier'), format, project);
+    const { artifact } = await readArtifact(project);
+    assert.equal(artifact.language, format === 'html' ? 'bilingual' : 'en');
+    if (format === 'html') {
+      const source = await fs.readFile(path.join(project, artifact.entry), 'utf8');
+      assert.match(source, /data-aha-lang="en"/);
+      assert.match(source, /data-aha-lang="zh"/);
+    }
+    if (format === 'video') {
+      assert.equal((await prepareVideoPlan(project)).voice, 'en-US-JennyNeural');
+      await metadata(project, a => { a.language = 'zh'; });
+      assert.equal((await prepareVideoPlan(project)).voice, 'zh-CN-XiaoxiaoNeural');
+      await metadata(project, a => { delete a.language; });
+      assert.equal((await prepareVideoPlan(project)).voice, 'en-US-JennyNeural');
+    }
+    if (format !== 'html') {
+      await assert.rejects(initArtifact(path.join(root, 'dossier'), format, path.join(root, `invalid-${format}`), 'bilingual'), code('ARTIFACT_LANGUAGE'));
+    }
+  }
+}));
+
+test('bilingual branches are structural requirements and legacy single-language projects remain readable', async () => fixture(async (_root, project) => {
+  await author(project);
+  await metadata(project, a => { delete a.language; });
+  assert.doesNotMatch(await prepareHtml(project), /className = "aha-language-controls"/);
+  await metadata(project, a => { a.language = 'bilingual'; });
+  for (const source of [
+    '<main>Only one language</main>',
+    '<section data-aha-lang="en" data-aha-title="Title">English</section>',
+    '<section data-aha-lang="en" data-aha-title="Title">English<section data-aha-lang="zh" data-aha-title="标题">中文</section></section>',
+    '<section data-aha-lang="en" data-aha-title="Title">English</section><section data-aha-lang="zh" data-aha-title="标题"></section>',
+    '<section data-aha-lang="en" data-aha-title="Title">English</section><section data-aha-lang="zh">中文</section>',
+    '<div data-aha-lang="en" data-aha-title="Title">English</div><section data-aha-lang="zh" data-aha-title="标题">中文</section>',
+  ]) {
+    await author(project, `<!doctype html><html><body>${source}</body></html>`);
+    await assert.rejects(checkArtifact(project), code('HTML_LANGUAGE'));
+  }
+  await author(project, '<!doctype html><html><body><section data-aha-lang="en" data-aha-title="Title">Monday plan, not completion.</section><section data-aha-lang="zh" data-aha-title="标题">周一的计划，不代表已完成。</section></body></html>');
+  await checkArtifact(project);
+  assert.match(await prepareHtml(project), /aha:languagechange/);
+}));
 test('custom authored layout is packaged without execution or research leakage and has a revision receipt', async () => fixture(async (root, project) => {
   await author(project, '<!doctype html><main id="argument"><h1>One custom argument</h1><script>throw new Error("not executed during packaging");</script></main>');
   const checked = await checkArtifact(project) as { ready: boolean };

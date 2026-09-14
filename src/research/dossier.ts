@@ -49,9 +49,25 @@ function date(value: string, location: string): void {
   }
 }
 
-function validateResearch(research: ResearchDraft): void {
+export interface ResearchDraftCheck {
+  status: 'draft-checked';
+  ready: false;
+  pending: { code: string; message: string; location?: string }[];
+  verification: string;
+}
+
+function validateResearch(research: ResearchDraft, pending?: ResearchDraftCheck['pending']): void {
+  function incomplete(code: string, message: string, location?: string): void {
+    if (pending === undefined) fail(code, message, location);
+    pending.push({ code, message, ...(location === undefined ? {} : { location }) });
+  }
+  function reverseLink(missing: boolean, explicit: string[], message: string, location: string): void {
+    if (!missing) return;
+    if (explicit.length > 0) fail('COVERAGE_INVALID', message, location);
+    incomplete('COVERAGE_INVALID', message, location);
+  }
   if (research.status !== 'complete' || !research.report.trim() || !research.stopReason.trim() || research.claims.length === 0) {
-    fail('RESEARCH_INCOMPLETE', 'Author a report, claims, evidence/explicit unknowns, coverage and stop reason, then set status to complete.');
+    incomplete('RESEARCH_INCOMPLETE', 'Author a report, claims, evidence/explicit unknowns, coverage and stop reason, then set status to complete.');
   }
   const globalIds = new Set<string>([research.id]);
   for (const [name, records] of [
@@ -79,34 +95,41 @@ function validateResearch(research: ResearchDraft): void {
     refs(claim.evidenceIds, evidence, `/claims/${claim.id}/evidenceIds`);
     refs(claim.subquestionIds ?? [], questions, `/claims/${claim.id}/subquestionIds`);
     const coverage = research.subquestions.filter(question => question.claimIds.includes(claim.id));
-    if (coverage.length === 0) fail('COVERAGE_INVALID', 'Every claim must belong to a subquestion.', `/claims/${claim.id}`);
-    if (claim.subquestionIds?.some(id => !questions.get(id)?.claimIds.includes(claim.id))) {
-      fail('COVERAGE_INVALID', 'Claim/subquestion references must agree.', `/claims/${claim.id}`);
+    if (coverage.length === 0) incomplete('COVERAGE_INVALID', 'Every claim must belong to a subquestion.', `/claims/${claim.id}`);
+    for (const id of claim.subquestionIds ?? []) {
+      const reverse = questions.get(id)!.claimIds;
+      reverseLink(!reverse.includes(claim.id), reverse, 'Claim/subquestion references must agree.', `/claims/${claim.id}`);
     }
     if (claim.kind === 'unresolved') {
       if (!claim.limitations.length || coverage.some(question => question.status === 'answered' || !question.gapIds.length)) {
-        fail('UNRESOLVED_INVALID', 'Unresolved claims need limitations and explicit gaps; they cannot answer a subquestion.', `/claims/${claim.id}`);
+        const message = 'Unresolved claims need limitations and explicit gaps; they cannot answer a subquestion.';
+        if (coverage.some(question => question.status === 'answered')) fail('UNRESOLVED_INVALID', message, `/claims/${claim.id}`);
+        incomplete('UNRESOLVED_INVALID', message, `/claims/${claim.id}`);
       }
     } else if (claim.evidenceIds.length === 0) {
-      fail('CLAIM_UNSUPPORTED', 'A claim needs evidence, or must explicitly be unresolved with limitations and a gap.', `/claims/${claim.id}`);
+      incomplete('CLAIM_UNSUPPORTED', 'A claim needs evidence, or must explicitly be unresolved with limitations and a gap.', `/claims/${claim.id}`);
     }
   }
   for (const question of research.subquestions) {
     if (question.status === 'answered' || question.status === 'partial') {
       if (!question.claimIds.some(id => claims.get(id)?.kind !== 'unresolved')) {
-        fail('COVERAGE_INVALID', 'Answered or partial questions require supported claims.', `/subquestions/${question.id}`);
+        incomplete('COVERAGE_INVALID', 'Answered or partial questions require supported claims.', `/subquestions/${question.id}`);
       }
     }
     if (question.status !== 'answered' && question.gapIds.length === 0) {
-      fail('COVERAGE_INVALID', 'Unanswered, partial and out-of-scope questions require an explicit gap.', `/subquestions/${question.id}`);
+      incomplete('COVERAGE_INVALID', 'Unanswered, partial and out-of-scope questions require an explicit gap.', `/subquestions/${question.id}`);
     }
-    if (question.gapIds.some(id => !gaps.get(id)?.subquestionIds.includes(question.id))) {
-      fail('COVERAGE_INVALID', 'Gap/subquestion references must agree.', `/subquestions/${question.id}`);
+    for (const id of question.gapIds) {
+      const reverse = gaps.get(id)!.subquestionIds;
+      reverseLink(!reverse.includes(question.id), reverse, 'Gap/subquestion references must agree.', `/subquestions/${question.id}`);
     }
   }
   for (const gap of research.gaps) {
-    if (!gap.subquestionIds.length || gap.subquestionIds.some(id => !questions.get(id)?.gapIds.includes(gap.id))) {
-      fail('COVERAGE_INVALID', 'Every gap must be linked from its subquestions.', `/gaps/${gap.id}`);
+    const message = 'Every gap must be linked from its subquestions.';
+    if (!gap.subquestionIds.length) incomplete('COVERAGE_INVALID', message, `/gaps/${gap.id}`);
+    for (const id of gap.subquestionIds) {
+      const reverse = questions.get(id)!.gapIds;
+      reverseLink(!reverse.includes(gap.id), reverse, message, `/gaps/${gap.id}`);
     }
   }
   for (const log of research.researchLog) {
@@ -145,9 +168,26 @@ function validateResearch(research: ResearchDraft): void {
     }
     if (source.kind !== 'provided' && !research.researchLog.some(log =>
       log.action === 'read' && log.outcome === 'success' && log.evidenceIds.includes(source.id))) {
-      fail('SOURCE_UNREAD', 'Web/code evidence needs an actual successful read record; search results alone do not establish reading.', location);
+      incomplete('SOURCE_UNREAD', 'Web/code evidence needs an actual successful read record; search results alone do not establish reading.', location);
     }
   }
+}
+
+/** Checks an unfinished snapshot without sealing it or certifying publication readiness. */
+export function checkResearchDraft(input: unknown): ResearchDraftCheck {
+  supported(input, false);
+  const snapshot = canonicalize(input);
+  checkSize([snapshot], '/');
+  const research = check(ResearchDraftSchema, JSON.parse(snapshot));
+  checkSize([`${JSON.stringify(research, null, 2)}\n`, research.report], '/');
+  const pending: ResearchDraftCheck['pending'] = [];
+  validateResearch(research, pending);
+  return {
+    status: 'draft-checked',
+    ready: false,
+    pending,
+    verification: `Draft structure only; no manifest was created. Only normal check/build certifies deliverable structure. ${VALIDATION_SCOPE}`,
+  };
 }
 
 function documents(dossier: Dossier): Map<string, string> {

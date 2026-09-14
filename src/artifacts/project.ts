@@ -11,10 +11,13 @@ import { themeCss, themeScript } from './theme.js';
 
 export const FORMATS = ['html', 'image', 'pptx', 'video'] as const;
 export type Format = typeof FORMATS[number];
+export const LANGUAGES = ['en', 'zh', 'bilingual'] as const;
+export type ArtifactLanguage = typeof LANGUAGES[number];
 const id = Type.String({ minLength: 1, maxLength: 160 });
 export const ArtifactSchema = Type.Object({
   schemaVersion: Type.Literal('1.0.0'),
   format: Type.Union(FORMATS.map(format => Type.Literal(format))),
+  language: Type.Optional(Type.Union(LANGUAGES.map(language => Type.Literal(language)))),
   researchHash: Type.String({ pattern: '^[a-f0-9]{64}$' }),
   title: Type.String({ minLength: 1, maxLength: 1000 }),
   status: Type.Union([Type.Literal('draft'), Type.Literal('authored')]),
@@ -35,7 +38,7 @@ function escapeHtml(text: string): string {
   return text.replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]!);
 }
 
-function scaffold(format: Format, title: string): string {
+function scaffold(format: Format, title: string, language: ArtifactLanguage): string {
   if (format === 'pptx') return `// ${SCAFFOLD_MARKER}: replace this example with your authored native slides.
 // Runs as arbitrary Node code only after --allow-code. This is NOT a sandbox.
 export default async function ({ pptx, research }) {
@@ -48,14 +51,15 @@ export default async function ({ pptx, research }) {
 }
 `;
   return `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="${language === 'zh' ? 'zh-CN' : 'en'}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escapeHtml(title)}</title><script>${themeScript}</script><style>${themeCss}
 main { padding: 32px; } h1 { line-height: 1.2; } svg { width: 100%; }
 ${format === 'video' ? 'html, body { width: 1280px; height: 720px; overflow: hidden; }' : ''}
 </style></head><body>
 <!-- ${SCAFFOLD_MARKER}: author this source, map claims or explain omissions, remove this marker, then set artifact.json status to authored. -->
-<main><h1>${escapeHtml(title)}</h1><p>Replace this scaffold with an explanation designed for your audience.</p>
-${format === 'video' ? `<svg viewBox="0 0 1200 360" role="img" aria-label="Replace this sample animation"><circle id="moving-point" cx="80" cy="180" r="48" fill="var(--cp-accent)"/></svg><p id="caption"></p>` : '<p>Use any layout, local assets, interactive JavaScript, or &lt;pre class="mermaid"&gt; diagram source.</p>'}
+<main>${language === 'bilingual' ? `<section data-aha-lang="en" lang="en" data-aha-title="Author the English title"><h1>Author the English explanation</h1><p>Write the complete English argument and its limitations.</p></section>
+<section data-aha-lang="zh" lang="zh-CN" data-aha-title="编写中文标题"><h1>编写中文讲解</h1><p>编写完整的中文论证与限定条件。</p></section>` : `<h1>${escapeHtml(title)}</h1><p>Replace this scaffold with an explanation designed for your audience.</p>`}
+${format === 'video' ? `<svg viewBox="0 0 1200 360" role="img" aria-label="Replace this sample animation"><circle id="moving-point" cx="80" cy="180" r="48" fill="var(--cp-accent)"/></svg><p id="caption"></p>` : language === 'bilingual' ? '' : '<p>Use any layout, local assets, interactive JavaScript, or &lt;pre class="mermaid"&gt; diagram source.</p>'}
 </main>${format === 'video' ? `<script>
 window.ahaVideo = { renderFrame({ frame, fps, segmentIndex, segmentFrame, segmentFrames, text }) {
   const progress = segmentFrames > 1 ? segmentFrame / (segmentFrames - 1) : 0;
@@ -67,23 +71,26 @@ window.ahaVideo = { renderFrame({ frame, fps, segmentIndex, segmentFrame, segmen
 `;
 }
 
-export async function initArtifact(researchDirectory: string, format: Format, destination: string): Promise<object> {
+export async function initArtifact(researchDirectory: string, format: Format, destination: string, language: ArtifactLanguage = format === 'html' ? 'bilingual' : 'en'): Promise<object> {
   if (!FORMATS.includes(format)) fail('ARTIFACT_FORMAT', 'Unsupported artifact format.');
+  if (!LANGUAGES.includes(language) || (language === 'bilingual' && format !== 'html')) {
+    fail('ARTIFACT_LANGUAGE', 'Choose en or zh; bilingual is supported only for HTML.');
+  }
   const dossier = await readDossier(researchDirectory);
   const output = await outsideProject(researchDirectory, destination);
   await noLinks(output, true);
   const entry = format === 'pptx' ? 'pptx/main.mjs' : 'html/index.html';
   const artifact: Artifact = {
-    schemaVersion: '1.0.0', format, researchHash: dossier.manifest.contentHash,
+    schemaVersion: '1.0.0', format, language, researchHash: dossier.manifest.contentHash,
     title: dossier.research.title, status: 'draft', entry, coverage: [], omissions: [],
     width: format === 'image' ? 1080 : 1280, height: format === 'image' ? 1600 : 720,
   };
   await fs.mkdir(path.dirname(output), { recursive: true });
   await fs.mkdir(output);
   await writeDossier(path.join(output, 'research'), dossier);
-  await writeNewFile(path.join(output, entry), scaffold(format, artifact.title));
+  await writeNewFile(path.join(output, entry), scaffold(format, artifact.title, language));
   await writeNewFile(path.join(output, 'artifact.json'), limitedJsonText(artifact, 'artifact.json'));
-  return { directory: output, format, status: 'draft', entry, researchHash: artifact.researchHash };
+  return { directory: output, format, language, status: 'draft', entry, researchHash: artifact.researchHash };
 }
 
 export async function readArtifact(directory: string): Promise<{ root: string; artifact: Artifact; dossier: Dossier }> {
@@ -95,6 +102,9 @@ export async function readArtifact(directory: string): Promise<{ root: string; a
   try { value = JSON.parse(metadata.toString('utf8').replace(/^\uFEFF/, '')); }
   catch { fail('JSON_SYNTAX', 'Invalid artifact.json.'); }
   const artifact = check(ArtifactSchema, value);
+  if (artifact.language === 'bilingual' && artifact.format !== 'html') {
+    fail('ARTIFACT_LANGUAGE', 'Bilingual output is supported only for HTML.');
+  }
   localPath(artifact.entry);
   if (!files.has(artifact.entry)) fail('ARTIFACT_ENTRY', 'Authored entry does not exist.', artifact.entry);
   if (artifact.format === 'pptx' ? !artifact.entry.endsWith('.mjs') : !/\.html?$/i.test(artifact.entry)) {

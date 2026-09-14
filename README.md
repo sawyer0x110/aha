@@ -19,7 +19,15 @@ runtime **0.3.0**，研究与作品协议 **1.0.0**。不再发布 `aha-lab`／`
 
 共用事实，不共用固定布局。模板只是待编写的起点，未经编写的 scaffold 不会被当成完成作品。改变结构不需要给共享 Schema 增加一个题材专属字段。
 
+**格式按请求选择，不默认全生成。**“网页／HTML”对应 HTML，“一图流／海报”对应 PNG，“PPT／演示文稿”对应原生 PPTX，“讲解视频”对应视频；明确说“网页幻灯片”则仍是 HTML。已请求视觉解释但没指定格式、场景也没有明确指向时，默认 HTML 并简短说明；只要文字回答或调研时不启动这个默认。只有影响用途、成本或权限的歧义才询问。多格式须明确请求，每种分别创作；CLI 仍需显式传入单个格式，没有 `auto`／`all` 参数。详见 [格式选择](skills/aha-explain/references/format-selection.md)。
+
+**主题可借鉴，不强制固定。**[视觉设计流程](skills/aha-explain/references/visual-design.md)与[主题配方](skills/aha-explain/references/design-themes.md)提供编辑式研究、工程图解、证据数据、高对比动态机制、演示叙事及 Clawpilot 基线等方向，包含配色、字体、构图、适用场景与跨媒介调整。优先遵循用户／项目品牌；Clawpilot 只是缺省起点，不要求所有主题长得一样。这些是原创设计指导，不是复制上游模板或已验收的作品集。
+
+HTML 的 `--cp-*` 是运行时图表与控件的颜色角色，可在作者 CSS 中重新定义；同时处理浅／深色选择器，正文和 Mermaid 字体保持一致。作者可在 `html` 上设置 `data-theme="light"` 或 `"dark"` 固定初始模式；有效 `scoutTheme=light|dark` 查询参数优先，其次作者设置，最后系统偏好。不自动添加主题切换界面。
+
 工具检查结构、引用、版本、资源和产物；宿主 Agent 负责实际研究与内容设计。CLI 不内置联网搜索，不证明来源支持每句结论，也不执行被研究仓库。
+
+两个入口按最终交付分工：报告／调查结论用 `aha-research`；视觉作品用 `aha-explain`，它按需完成前置研究。普通文字问答不升级为研究档案或媒体制作。参考按阶段读取：取证时选来源路线，创作时选媒介，构图时选主题章节，验收时读取 QA；不要求一开始加载所有参考。
 
 ## 开发与发布
 
@@ -65,6 +73,14 @@ node .\dist\cli\aha.mjs research-init "这个代码库如何处理请求失败�
 
 这只创建未完成草案，不执行任何调研。按 `aha-research` 工作法实际读取材料，编辑草案的报告、子问题、主张、来源、日志、反证、缺口与停止理由。精确字段以构建生成的 `schemas\research-draft.schema.json` 和 Skill 参考为准。
 
+研究中可运行以下检查；结构正确但尚未完成时返回 `draft-checked`、`ready: false` 和 `pending`，不生成快照或哈希。未知引用、重复 ID、错误日期／日志／来源元数据和不匹配的哈希仍会报错。它不会修改草稿，也不能代替最终检查。
+
+```powershell
+node .\dist\cli\aha.mjs research-check ".\artifacts\topic.draft.json" --draft
+```
+
+完整操作示例见[带纠正材料的研究案例](skills/shared/references/research-example.md)，明确使用虚构材料，不冒充真实调研。完成内容后，原有严格检查与封存流程不变：
+
 ```powershell
 node .\dist\cli\aha.mjs research-check ".\artifacts\topic.draft.json"
 node .\dist\cli\aha.mjs research-build ".\artifacts\topic.draft.json" ".\artifacts\topic.research"
@@ -80,6 +96,21 @@ node .\dist\cli\aha.mjs explain-init ".\artifacts\topic.research" html ".\artifa
 ```
 
 格式可选 `html`、`image`、`pptx`、`video`。在新作品目录编辑 `artifact.json` 指定的入口源；替换占位内容，填写所覆盖 Claim 的位置映射和有理由的省略项，再设为 `authored`。研究快照不随排版被修改。
+
+语言参数语法为 `explain-init <research-directory> <html|image|pptx|video> <new-project-directory> [--language en|zh|bilingual]`：
+
+| 新作品 | 未指定语言时 | 显式语言 |
+| --- | --- | --- |
+| HTML | `bilingual`，初始英语，内置 English/中文切换按钮 | `en`、`zh`、`bilingual` |
+| image／pptx／video | `en`，即使问题或研究为中文 | `en`、`zh`；拒绝 `bilingual` |
+
+明确要求中文输出时使用 `--language zh`，不能仅因提问语言推断输出偏好。新项目总写入 `artifact.language`；该字段为兼容旧项目而可选，缺失时保留旧单源行为，不自动转为双语，视频声线有效回退为英语。语言只作用于作品：由 Agent 编写译文，不翻译／修改绑定的研究档案，也不调用在线自动翻译。
+
+双语 HTML 必须编写恰好两个不嵌套的顶层本地化根：`<section data-aha-lang="en" lang="en" data-aha-title="English title">` 和 `<section data-aha-lang="zh" lang="zh-CN" data-aha-title="中文标题">`，各自闭合并包含完整内容。标题、正文、图表、Mermaid 控件／图注、无障碍标签、限制和引用措辞须准确对应，保留证据、Claim ID、单位、否定与不确定性。可共享中性图形／资源，根之外不得遗留未翻译的读者正文；布局和样式仍由作者自由设计。
+
+运行时校验两个分支非空及其标题，注入离线按钮，切换 `html lang` 和文档标题，以 `hidden` 加 CSS 隐藏非活动分支及其焦点目标，并在 `window` 派发 `aha:languagechange`（`detail.language` 为 `en` 或 `zh`）供作者交互选用。Mermaid 运行时标签按所在分支／根本地化。不使用 `localStorage`、网络或语言 URL 参数，不推断／保存语言偏好；主题参数与语言无关。单语 HTML 允许且无需双语切换。详见 [语言契约](skills/aha-explain/references/language.md)。
+
+新 scaffold 仍是草稿，双语作品必须实际编写两种语言内容后再验收；Schema 通过不等于译文认证。双语作品需真实切换并检查两分支、键盘、中文字体和较长英文标签，并回查单位、否定、不确定性及引用是否一致。
 
 ```powershell
 node .\dist\cli\aha.mjs explain-check ".\artifacts\topic-html"
@@ -104,7 +135,7 @@ PNG 捕获专门编写的一图流，不截图整个文章作为海报。PPTX �
 视频作品定义 `window.ahaVideo.renderFrame({ frame, fps, segmentIndex, segmentFrame, segmentFrames, text })`。运行时按实测音频逐帧调用，捕获动态场景并用 FFmpeg 编码，不是循环静态卡片，也不是 Remotion 集成。作者需使用确定性时间计算；工具不会自动把任意脚本变成确定性动画。
 
 ```powershell
-node .\dist\cli\aha.mjs doctor --media
+node .\dist\cli\aha.mjs doctor --for video
 node .\dist\cli\aha.mjs prepare-video ".\artifacts\topic-video" ".\artifacts\video-plan.json"
 node .\dist\cli\aha.mjs video-plan-check ".\artifacts\topic-video" ".\artifacts\video-plan.json"
 ```
@@ -116,11 +147,25 @@ node .\dist\cli\aha.mjs synthesize ".\artifacts\topic-video" ".\artifacts\video-
 node .\dist\cli\aha.mjs render-video ".\artifacts\topic-video" ".\artifacts\video-plan.json" ".\artifacts\audio-v1" ".\artifacts\topic.mp4" --approve "<已批准的planHash>" --allow-code
 ```
 
-默认中文声线，在线客户端固定 `edge-tts==7.2.8`；只外发获准旁白和声音参数。用户逐句音频使用 `import-audio` 和明确的 `provided-audio` 提供方，不能冒称在线合成成功。命令见 `help`。
+`prepare-video` 新计划按作品语言选择声线：`en`（以及缺失旧语言字段）为 `en-US-JennyNeural`，`zh` 为 `zh-CN-XiaoxiaoNeural`。计划仍显式保存 `voice`，不会重写已有作者计划；草稿主张建议也不是自动译好的旁白。在线客户端固定 `edge-tts==7.2.8`，只外发获准旁白和声音参数。用户逐句音频使用 `import-audio` 和明确的 `provided-audio` 提供方，不能冒称在线合成成功。命令见 `help`。
+
+翻译旁白会改变计划哈希，必须重新校验并让用户完整批准当前旁白、提供方、声线、语速和外发范围。烧录字幕与 SRT 来自作者编写的 `segments[].text`，不自动翻译。
 
 720p30 H.264 / AAC、句级烧录字幕、SRT 与回执。时间取自真实音频；超出批准范围明确失败，不偷偷拉伸语速。源码或计划身份不符时拒绝直接复用；新计划重新确认，不手改音频 hash。只改画面而保留旁白时，可将旧音频作为 `provided-audio`，在新计划获准后重新导入新音频目录；这不需要再次联网合成，但不再冒称新一轮 Edge 合成。
 
-先做短小样再扩展正式片。编码成功不代表听审／视觉通过；`doctor --media` 不联网合成，在线可用性和实际配音需另行验收。
+先做短小样再扩展正式片。编码成功不代表听审／视觉通过；在线配音前运行 `doctor --for speech`，此命令只检查本地工具，不联网合成，在线可用性和实际配音需另行验收。
+
+### 按当前步骤检查依赖
+
+| 命令 | 实际探测的可选工具 |
+| --- | --- |
+| `doctor`／`doctor --for research`／`doctor --for html`／`doctor --for pptx` | 无；检查基础运行时完整性。PPTX 的实际视觉验收仍需演示应用 |
+| `doctor --for browser`／`doctor --for image` | 已安装浏览器 |
+| `doctor --for video` | 浏览器、FFmpeg、ffprobe，不要求语音依赖 |
+| `doctor --for speech` | FFmpeg、ffprobe、Python／Edge TTS，不要求浏览器 |
+| `doctor --media` | 全部媒体工具的兼容诊断入口，不作为所有任务的统一门槛 |
+
+`--for` 与 `--media` 不能同时使用。缺失工具只阻塞相关步骤，不能因为未安装 Edge TTS 就阻塞 HTML 打包；诊断不自动安装、不外发内容，也不替代作品代码执行授权。
 
 ## 本地依赖与执行边界
 

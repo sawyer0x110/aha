@@ -5,24 +5,23 @@ import { check } from '../core/check.js';
 import { AhaError, fail } from '../core/errors.js';
 import { hashValue } from '../core/identity.js';
 import { ResearchKindSchema } from '../research/schema.js';
-import { createResearchDraft, buildDossier, readDossier, writeDossier } from '../research/dossier.js';
-import { FORMATS, type Format, initArtifact, checkArtifact } from '../artifacts/project.js';
+import { createResearchDraft, checkResearchDraft, buildDossier, readDossier, writeDossier } from '../research/dossier.js';
+import { FORMATS, LANGUAGES, type Format, type ArtifactLanguage, initArtifact, checkArtifact } from '../artifacts/project.js';
 import { renderHtml, renderImage, renderPptx, checkBrowser, runPptxWorker } from '../artifacts/render.js';
-import { openBrowser } from '../media/browser.js';
 import { prepareVideoPlan, validateVideoPlan, type VideoPlan } from '../media/plan.js';
 import { importAudio, synthesize } from '../media/audio.js';
 import { renderVideo } from '../media/video.js';
-import { ffmpeg, ffprobe, pythonRuntime, runTool } from '../media/process.js';
+import { doctorRequirements, inspectDependencies } from './doctor.js';
 import { assertOutsideSource, limitedJsonText, readJson, writeNewFile } from './files.js';
 
 const VERSION = '0.3.0';
 const USAGE = [
-  'doctor [--media]',
+  'doctor [--for research|html|browser|image|pptx|video|speech | --media]',
   'research-init <question> <new-draft.json> [--kind public|codebase|mixed|provided]',
-  'research-check <draft.json>',
+  'research-check <draft.json> [--draft]',
   'research-build <draft.json> <new-research-directory>',
   'research-validate <research-directory>',
-  'explain-init <research-directory> <html|image|pptx|video> <new-project-directory>',
+  'explain-init <research-directory> <html|image|pptx|video> <new-project-directory> [--language en|zh|bilingual]',
   'explain-check <project-directory>',
   'render-html <project-directory> <new-output.html>',
   'render-image <project-directory> <new-output.png> --allow-code',
@@ -77,27 +76,12 @@ async function execute(command: string, args: string[]): Promise<object> {
       parse(args, 0);
       return { status: 'ok', version: VERSION, skills: ['aha-research', 'aha-explain'], commands: USAGE };
     case 'doctor': {
-      const { enabled } = parse(args, 0, [], ['--media']);
+      const { enabled, values } = parse(args, 0, ['--for'], ['--media']);
+      const requirements = doctorRequirements(values['--for'], enabled.has('--media'));
       if (Number(process.versions.node.split('.')[0]) < 22) fail('NODE_VERSION', 'Node 22 or newer is required.');
       const runtime = await readFile(fileURLToPath(new URL('../assets/runtime/mermaid.js', import.meta.url)), 'utf8');
       if (!runtime.length) fail('RUNTIME_MISSING', 'Local diagram runtime is missing; rebuild the complete Skill.');
-      const readiness: Record<string, string> = {};
-      const selectedPython = enabled.has('--media') ? pythonRuntime() : undefined;
-      if (selectedPython) {
-        const probes: Array<[string, () => Promise<unknown>]> = [
-          ['ffmpeg', () => runTool(ffmpeg(), ['-version'])],
-          ['ffprobe', () => runTool(ffprobe(), ['-version'])],
-          ['edgeTts', () => runTool(selectedPython.executable, ['-c', 'import edge_tts; assert edge_tts.__version__ == "7.2.8", "Expected edge-tts==7.2.8"; print(edge_tts.__version__)'])],
-          ['browser', async () => { const browser = await openBrowser(); await browser.close(); }],
-        ];
-        await Promise.all(probes.map(async ([name, probe]) => {
-          try { await probe(); readiness[name] = 'ready'; }
-          catch (error) {
-            if (!(error instanceof Error)) throw error;
-            readiness[name] = `unavailable: ${error.message}`;
-          }
-        }));
-      }
+      const { readiness, selectedPython } = await inspectDependencies(requirements);
       return {
         status: Object.values(readiness).some(value => value !== 'ready') ? 'degraded' : 'ok',
         version: VERSION, node: process.versions.node, skills: ['aha-research', 'aha-explain'],
@@ -108,9 +92,12 @@ async function execute(command: string, args: string[]): Promise<object> {
           networkRequiredForEdgeTts: true,
         },
         execution: 'Authored browser/Node code requires --allow-code after review; not an OS sandbox.',
-        mediaReadiness: selectedPython ? readiness : 'not-probed; run doctor --media (local checks only)',
+        dependencyScope: enabled.has('--media') ? 'all-media-diagnostics' : values['--for'] ?? 'basic',
+        requiredProbes: requirements,
+        mediaReadiness: requirements.length ? readiness : 'not-probed; not-required-for-this-step; use doctor --for for optional tools',
         ...(selectedPython ? { pythonRuntime: selectedPython } : {}),
         mediaRequirements: ['installed Edge/Chrome', 'ffmpeg + ffprobe', 'Python + edge-tts==7.2.8 only for online synthesis'],
+        scopeNote: 'Missing tools block only the corresponding step. No network synthesis or presentation-application visual review was performed.',
         semanticReview: 'Neither doctor nor structural checks certify facts, visual quality or host routing.',
       };
     }
@@ -123,8 +110,10 @@ async function execute(command: string, args: string[]): Promise<object> {
     }
     case 'research-check':
     case 'research-build': {
-      const { at } = parse(args, command === 'research-check' ? 1 : 2);
-      const dossier = await buildDossier(await readJson(at(0)));
+      const { at, enabled } = parse(args, command === 'research-check' ? 1 : 2, [], command === 'research-check' ? ['--draft'] : []);
+      const input = await readJson(at(0));
+      if (enabled.has('--draft')) return checkResearchDraft(input);
+      const dossier = await buildDossier(input);
       if (command === 'research-build') await writeDossier(at(1), dossier);
       return {
         status: 'validated', researchHash: dossier.manifest.contentHash,
@@ -140,10 +129,14 @@ async function execute(command: string, args: string[]): Promise<object> {
       return { status: 'validated', researchHash: dossier.manifest.contentHash, externalTruthVerified: false };
     }
     case 'explain-init': {
-      const { at } = parse(args, 3);
+      const { at, values } = parse(args, 3, ['--language']);
       const format = at(1);
       if (!FORMATS.includes(format as Format)) fail('ARTIFACT_FORMAT', 'Choose html, image, pptx or video.');
-      return initArtifact(at(0), format as Format, at(2));
+      const language = values['--language'];
+      if (language !== undefined && !LANGUAGES.includes(language as ArtifactLanguage)) {
+        fail('ARTIFACT_LANGUAGE', 'Choose en, zh or bilingual (HTML only).');
+      }
+      return initArtifact(at(0), format as Format, at(2), language as ArtifactLanguage | undefined);
     }
     case 'explain-check': {
       const { at } = parse(args, 1);

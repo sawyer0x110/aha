@@ -143,6 +143,9 @@ export async function resolve(specifier, context, next) {
     assert.equal(doctor.capabilities.pptx, true);
     assert.equal('lab' in doctor.capabilities, false);
     assert.match(doctor.mediaReadiness, /not-probed/);
+    assert.equal(doctor.dependencyScope, 'basic');
+    assert.deepEqual(doctor.requiredProbes, []);
+    assert.match(doctor.mediaReadiness, /not-required-for-this-step/);
   }
 });
 
