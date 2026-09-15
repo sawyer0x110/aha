@@ -15,6 +15,12 @@ runtime **0.3.0**，研究与作品协议 **1.0.0**。研究独立于媒体格�
 
 实际案例见 [examples](examples/README.md)：降噪耳机与 Git merge 双语交互 HTML，附调研、可编辑源和当前检查记录。
 
+## 安装到你的 Agent
+
+**从 [Releases](https://github.com/sawyer0x110/aha/releases) 获取完整安装包，按 [INSTALL.md](INSTALL.md) 安装。** 支持 Copilot 与 Codex 的项目级安装，需要 Node.js 22+；接收方无需 `npm install`。源码 `skills` 目录不是可直接安装的包。
+
+也可以将 [安装指南链接](https://github.com/sawyer0x110/aha/blob/main/INSTALL.md) 交给 Agent，要求它确认宿主与安装授权，下载校验、预检安装，再检查宿主发现与最小任务。若尚无正式 Release，指南提供经授权的源码构建路线；不将未发布的包或未执行的宿主验收标为可用／通过。
+
 ## 自由创作，不是填写统一卡片
 
 研究档案保存结论、证据、报告与身份。每个媒介有独立作品源和内容覆盖：HTML 可以是图解主导的单屏、比较、交互探索、长文或混合结构，使用表格、SVG、Mermaid 和受离线契约约束的本地交互；不默认要求写成长文章。图片按目标尺寸重新构图；PPTX 使用原生对象；视频由作者编写按帧变化的 HTML／SVG／canvas 场景。
