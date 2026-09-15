@@ -21,20 +21,20 @@ No user research or generated works are included.
 From the extracted directory, using PowerShell (replace the project path):
 
 \`\`\`powershell
-node .\\install-skills.mjs --host copilot --project "C:\\your-project"
-node .\\install-skills.mjs --host copilot --project "C:\\your-project" --apply
-# Or choose Codex instead; do not duplicate skills across discovery locations:
-node .\\install-skills.mjs --host codex --project "C:\\your-project"
-node .\\install-skills.mjs --host codex --project "C:\\your-project" --apply
-node "C:\\your-project\\.github\\skills\\aha-explain\\scripts\\aha.mjs" doctor
+node .\\install-skills.mjs --project "C:\\your-project"
+node .\\install-skills.mjs --project "C:\\your-project" --apply
+node "C:\\your-project\\.agents\\skills\\aha-explain\\scripts\\aha.mjs" doctor
 \`\`\`
 
-For Codex the doctor path uses .agents instead of .github. Repeat doctor for
+All hosts use the recommended project .agents/skills directory. No host name is
+required; optional --host accepts any nonempty label as result metadata only,
+never as a path selector or a compatibility guarantee. Repeat doctor for
 aha-research and aha-explain. In POSIX shells use forward slashes and an absolute
 project path. The default is dry-run: it verifies content and targets without
 writing. --apply installs project-locally only; there is no global option.
 The project must already exist and cannot be the home or filesystem root.
-Existing skill directories, symlinks/junctions, unsafe paths and hash mismatches
+Existing skill directories (including same-name copies under .github/skills or
+.claude/skills), symlinks/junctions, unsafe paths and hash mismatches
 are refused. No force/overwrite mode exists. Upgrade by reviewing and moving
 the old skills out of discovery yourself, then installing into empty destinations.
 Do not run a host while installation is in progress. File publication uses
@@ -52,17 +52,24 @@ all entries, the content identity and each skill runtime manifest before writing
 Hashes detect corruption, not publisher authenticity; use a trusted release source.
 The installer itself is executable code: review/trust it before running.
 
-Official project discovery locations verified 2026-09-14:
-- Copilot: .github/skills
+The shared .agents/skills location is recommended for every agent. Installer
+host cases cover Copilot and Codex, not a host allowlist or live host acceptance.
+Their discovery documentation was checked 2026-09-14:
+- Copilot: .agents/skills
   https://docs.github.com/en/copilot/concepts/agents/about-agent-skills
 - Codex: .agents/skills (not the historical .codex/skills)
   https://developers.openai.com/codex/skills/
   (redirects to https://learn.chatgpt.com/docs/build-skills)
 
+Other agents must check their own discovery paths, reference-file support,
+Node/shell execution and permissions. If adaptation is required, explain it and
+obtain authorization rather than silently duplicating installations. Unsupported
+or unverified discovery is a blocker, not evidence that the files failed to install.
+
 After installation, launch/refresh the host in that project and inspect its skill
 list. Copilot CLI versions with this command (including 1.0.84-5) support:
 copilot -C "C:\\your-project" skill list
-Copilot also discovers .agents/skills and .claude/skills; do not duplicate the
+Copilot also discovers .github/skills and .claude/skills; do not duplicate the
 same names there. Legacy aha-lab/aha-story directories in any of these locations
 must be reviewed and moved out of discovery before installation; no aliases or
 automatic deletion are provided. Select aha-research or aha-explain, then separately test a

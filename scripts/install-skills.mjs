@@ -165,7 +165,7 @@ export async function publishDirectories(plans) {
 }
 
 export async function install({ host, project, apply = false, source = path.dirname(fileURLToPath(import.meta.url)) }) {
-  if (!['copilot', 'codex'].includes(host)) throw new Error('--host must be copilot or codex');
+  if (host !== undefined && (typeof host !== 'string' || !host.trim())) throw new Error('--host must be a nonempty label when provided');
   if (!project || !path.isAbsolute(project)) throw new Error('--project must be an explicit absolute project directory');
   if (!path.isAbsolute(source)) throw new Error('--source must be an absolute extracted release directory');
   project = path.resolve(project);
@@ -191,14 +191,16 @@ export async function install({ host, project, apply = false, source = path.dirn
   if (json(Object.entries(actual).sort()) !== json(Object.entries(manifest.files ?? {}).sort())) throw new Error('Release SHA256 mismatch');
   const identity = sha256(json({ version: manifest.version, skills: skillNames, files: manifest.files }));
   if (identity !== manifest.contentHash) throw new Error('Release identity mismatch');
-  const destination = path.join(project, host === 'copilot' ? '.github' : '.agents', 'skills');
+  const destination = path.join(project, '.agents', 'skills');
   for (const discovery of ['.github', '.agents', '.claude']) {
-    for (const name of ['aha-lab', 'aha-story']) {
+    for (const name of ['aha-lab', 'aha-story', ...skillNames]) {
+      if (discovery === '.agents' && skillNames.includes(name)) continue;
       const legacy = path.join(project, discovery, 'skills', name);
       await assertSafePath(legacy);
       try {
         await fs.lstat(legacy);
-        throw new Error(`Legacy Skill remains: ${legacy}. Review and move it out of discovery before installing; no legacy files were deleted.`);
+        const reason = skillNames.includes(name) ? 'Skill exists in another discovery directory' : 'Legacy Skill remains';
+        throw new Error(`${reason}: ${legacy}. Review and move it out of discovery before installing; no existing files were deleted.`);
       } catch (error) {
         if (error.code !== 'ENOENT') throw error;
       }

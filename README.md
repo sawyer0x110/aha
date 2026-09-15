@@ -17,7 +17,7 @@ runtime **0.3.0**，研究与作品协议 **1.0.0**。研究独立于媒体格�
 
 ## 安装到你的 Agent
 
-**从 [Releases](https://github.com/sawyer0x110/aha/releases) 获取完整安装包，按 [INSTALL.md](INSTALL.md) 安装。** 支持 Copilot 与 Codex 的项目级安装，需要 Node.js 22+；接收方无需 `npm install`。源码 `skills` 目录不是可直接安装的包。
+**从 [Releases](https://github.com/sawyer0x110/aha/releases) 获取完整安装包，按 [INSTALL.md](INSTALL.md) 安装。** 统一推荐项目级 `.agents\skills`，不限定 Agent 品牌，需要 Node.js 22+；接收方无需 `npm install`。源码 `skills` 目录不是可直接安装的包。
 
 也可以将 [安装指南链接](https://github.com/sawyer0x110/aha/blob/main/INSTALL.md) 交给 Agent，要求它确认宿主与安装授权，下载校验、预检安装，再检查宿主发现与最小任务。若尚无正式 Release，指南提供经授权的源码构建路线；不将未发布的包或未执行的宿主验收标为可用／通过。
 
@@ -56,17 +56,16 @@ node .\scripts\release.mjs
 发布器生成版本化 ZIP、清单、SHA256 和安装指南，不上传或全局注册。接收方解压到新目录，检查哈希后运行：
 
 ```powershell
-node .\install-skills.mjs --host copilot --project "C:\你的项目"
-node .\install-skills.mjs --host copilot --project "C:\你的项目" --apply
-# Codex 使用 --host codex
+node .\install-skills.mjs --project "C:\你的项目"
+node .\install-skills.mjs --project "C:\你的项目" --apply
 ```
 
-默认 dry-run；Copilot 安装到项目 `.github\skills`，Codex 到 `.agents\skills`。不覆盖现有安装；发现 `.github`／`.agents`／`.claude` 中的旧 Aha 入口会拒绝并提示先审阅移走，不自动删除用户目录。
+默认 dry-run，统一安装到项目 `.agents\skills`；无需指定宿主，可选 `--host` 仅记录任意非空宿主标签，不改变路径。安装流程的宿主案例覆盖 Copilot／Codex，不代表已完成真实宿主验收；其他 Agent 自行判断发现路径与执行能力。不覆盖现有安装；发现其他发现目录中的同名 Skill 或 `.github`／`.agents`／`.claude` 中的旧 Aha 入口会拒绝并提示先审阅移走，不自动删除用户目录。
 
 源码 `skills` 不是完整安装包。安装后从任何作品目录调用：
 
 ```powershell
-node "C:\你的项目\.github\skills\aha-explain\scripts\aha.mjs" doctor
+node "C:\你的项目\.agents\skills\aha-explain\scripts\aha.mjs" doctor
 ```
 
 POSIX 使用对应正斜杠路径。文件安装、哈希与 doctor 不等于真实宿主发现或自然语言触发，需在目标宿主单独确认。
