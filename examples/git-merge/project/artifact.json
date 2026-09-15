@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0.0",
+  "format": "html",
+  "language": "bilingual",
+  "researchHash": "a2fdac6b2c1050a8eeea8e86c736791a7675070544b99b1a8915684909762c27",
+  "title": "Why can Git merge bring back a change we reverted?",
+  "status": "authored",
+  "entry": "html/index.html",
+  "coverage": [
+    { "id": "en-opening", "claimIds": ["c-snapshots", "c-one-side"] },
+    { "id": "zh-opening", "claimIds": ["c-snapshots", "c-one-side"] },
+    { "id": "en-inputs", "claimIds": ["c-base", "c-snapshots"] },
+    { "id": "zh-inputs", "claimIds": ["c-base", "c-snapshots"] },
+    { "id": "en-records", "claimIds": ["c-one-side", "c-independent", "c-conflict"] },
+    { "id": "zh-records", "claimIds": ["c-one-side", "c-independent", "c-conflict"] },
+    { "id": "en-fast-forward", "claimIds": ["c-ff"] },
+    { "id": "zh-fast-forward", "claimIds": ["c-ff"] },
+    { "id": "en-safety", "claimIds": ["c-safety"] },
+    { "id": "zh-safety", "claimIds": ["c-safety"] }
+  ],
+  "omissions": [],
+  "width": 1280,
+  "height": 720
+}

@@ -25,6 +25,8 @@ This is a calling-convention sketch, not an authored scene. Create actual conten
 
 Begin with a representative 20–30 second pilot: show a mechanism moving from A to B, a condition change, localized emphasis, two coherent narration sentences, captions, and a natural source cue. Obtain any necessary revised narration approval for a separately prepared pilot plan. Watch and listen before scaling to the complete video.
 
+Before requesting speech, inspect representative authored scene states with the planned narration and caption area in mind, especially dense diagrams and long labels. This catches layout defects before audio becomes source-bound; it does not replace the rendered pilot, listening or execution approval. For replay checks, render state A, a different state B, then A again and compare both A captures. Sampled reproducibility is not proof of every frame's correctness or meaningful motion.
+
 ## Prepare, review, approve
 
 All commands use the installed entry:
@@ -72,4 +74,6 @@ The current renderer places burned captions in a separate overlay: centered 28px
 
 Inspect the rendered pilot and final file by actual playback: listen for pronunciation, missing or clipped speech, pacing, and segment continuity; watch mechanism changes, narration alignment, readable labels, glyphs, caption safe areas, and end frames. Record capture/encoding success separately from this review. Sampled pixel changes are not proof of a meaningful animation, and a successful render does not verify deterministic replay. Report only the affected stage as blocked: synthesis needs speech dependencies, provided-audio import does not need Edge TTS, and rendering needs browser/FFmpeg/ffprobe. Missing playback leaves actual QA unperformed.
 
-Preserve editable source, complete approved narration, plan identity, audio manifest, captions, render settings, and actual QA notes. A color-only source revision does not itself authorize or require another online synthesis; reuse audio only if runtime plan and project identity checks still accept it. If they do not, rebuild and revalidate rather than forging identity or assuming visual edits cannot affect timing.
+Include the complete approved narration, plan identity, audio manifest, captions and render settings in the working record under [artifact authoring's delivery lifecycle](artifact-authoring.md#working-history-and-current-delivery). A color-only source revision does not itself authorize or require another online synthesis; reuse audio only if runtime plan and project identity checks still accept it. If they do not, rebuild and revalidate rather than forging identity or assuming visual edits cannot affect timing.
+
+When a visual revision invalidates the binding but narration is unchanged, an explicitly approved option is a new `provided-audio` plan importing the previously authorized recordings through [the audio-list contract](video-contract.md). Show the complete narration and new plan hash for approval, retain original speech provenance, and label the new receipt as an import rather than another Edge synthesis. Check the new measured timing and captions; normalization or padding can change frame counts even with unchanged words. Do not edit hashes to force reuse or treat prior consent as approval of the new plan.

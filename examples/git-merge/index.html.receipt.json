@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "delivered",
+  "format": "html",
+  "title": "Why can Git merge bring back a change we reverted?",
+  "researchHash": "a2fdac6b2c1050a8eeea8e86c736791a7675070544b99b1a8915684909762c27",
+  "sourceHash": "b25d6436168daf9ac572af0bd0b0f2f6051a9573c039db46c94c5ac4b87b9c3e",
+  "outputHash": "82f7878254abd33782e995a6288dd9cfe5c0caa107ea73ce7732028c0020dd4a",
+  "output": "index.html",
+  "createdAt": "2026-09-15T03:21:38.654Z",
+  "codeExecuted": false,
+  "selfContained": true,
+  "verification": "Source/output hashes and declared claim coverage, not semantic truth or visual quality. Receipts describe a specific source revision; recheck the source hash after edits."
+}

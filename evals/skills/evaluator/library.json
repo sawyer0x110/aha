@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "rubricVersion": 2,
+  "process_checks": "evaluator/process-checks.json",
+  "eval_id": 4,
+  "rubric": {
+    "correctness_source_support": [
+      {"id": "observed", "text": "Reports 40% to 58%, an 18 percentage-point difference (45% relative increase if used), from different reservations; not 18% relative and not within-person change.", "locators": ["inputs/library/records.md#L1"]},
+      {"id": "missing-bridge", "text": "Does not assert warmer feelings, reminder readership, motivation or the wording's causal effect as established. Explicitly treats the manager's story as untested, not evidence of psychology.", "locators": ["inputs/library/records.md#L3", "inputs/library/records.md#L4"]},
+      {"id": "alternatives", "text": "Makes concurrent deadline and opening-hours changes concrete alternatives; identifies missing delivery/readership, comparison and patron-composition information without inventing follow-up results.", "locators": ["inputs/library/records.md#L1", "inputs/library/records.md#L2", "inputs/library/records.md#L3", "inputs/library/records.md#L5"]},
+      {"id": "follow-up", "text": "Proposes feasible prospective discriminating evidence, e.g. compare wording with hours/deadline held constant plus delivery/outcome tracking. A causal outcome comparison alone must not be sold as proof of a particular mental mechanism; interviews can probe it with caveats.", "locators": ["inputs/library/records.md#L2", "inputs/library/records.md#L3", "inputs/library/records.md#L5"]}
+    ],
+    "structure_operation": [
+      {"id": "deliverable", "text": "Local Chinese HTML is present with precise record references and no invented measurements in its content. Structural success is not presented as evidence of editorial correctness or learner comprehension."}
+    ],
+    "clarity_visual": [
+      {"id": "uncertainty", "text": "Observed change and plausible explanations are visually/rhetorically distinct and useful for the editor. Does not hide uncertainty in a footnote beneath a confident causal headline; no layout prescription."}
+    ],
+    "human_comprehension": [
+      {"id": "transfer", "text": "Use a different-domain scenario to test whether a learner distinguishes observed improvement, causal effect and mechanism. Scores require actual anonymized responses."}
+    ]
+  },
+  "transfer": [
+    {"id": "l1", "question": "一家食堂换菜单字体的同一周降价，销量上升。可以说大字体让人更有食欲所以卖得更多吗？哪些环节尚未有证据？", "expected_reasoning": "Sales increase does not isolate font effect from price or other changes; appetite mechanism is unmeasured even if a font effect were later identified."},
+    {"id": "l2", "question": "若想知道提醒措辞是否有用，下月只记录一次总取书率够吗？请提出一个更能区分解释的设计。", "expected_reasoning": "No; compare wording groups concurrently with same deadline/hours, preferably randomized, record delivery and collection with appropriate denominators; avoid claiming the design was already run."},
+    {"id": "l3", "question": "随机比较确认新措辞提高了取书率。这是否已经证明原因是读者感到被欢迎？下一步能收集什么？", "expected_reasoning": "Causal effect of wording is not identification of mental mediator; collect carefully designed measures/interviews and consider alternative pathways, with measurement/mediation caveats."}
+  ]
+}

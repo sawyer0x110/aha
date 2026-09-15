@@ -1,0 +1,51 @@
+{
+  "skill_name": "aha-explain",
+  "scope": "Short editorial evaluation only: answer-rich rewriting regression, not evidence of autonomous research or skill uplift; not full media generation, blind testing or learner acceptance. Raw-material tasks and withheld rubrics live in evals/skills.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "anc-opening",
+      "prompt": "为普通读者写一段解释页的首屏文案，回答：为什么降噪耳机减弱了飞机轰鸣，却仍可能听见人声？输出中文和英文各一个标题及两段短正文，不写 HTML、不联网。已有调研支持：在耳边同一点、同一时刻，两路声压相加；大小接近、起伏相反时叠加后的起伏减小。低频变化较慢，同样残余时间误差占一个周期的比例较小，这是通常更有利于主动降噪的原因之一。人声含多种频率及随时间变化的成分，部分减弱不等于所有语音线索消失。耳垫或耳塞贴合影响被动隔音，也影响主动控制的声学条件。不能推出所有人声都不能被降低、固定高低频分界或实测降噪量。作者草记：难点是正确时刻产生恰当声压并在耳边匹配。低频是有利情况。人声是组合。密封仍重要。请把这些材料写成面向读者的解释，不输出过程说明。",
+      "expected_output": "Natural independently readable Chinese and English copy connecting the local cancellation mechanism to the rumble/speech contrast without measurement claims.",
+      "files": [],
+      "assertions": [
+        "Both languages identify the two pressure contributions, their common ear location and opposing changes; matching is not left unspecified.",
+        "Both languages connect low frequency with slower change or a smaller relative timing error rather than merely calling it favorable.",
+        "Both languages connect remaining speech components or cues to possible audibility without categorically excluding speech from ANC.",
+        "The copy explains a role of fit without an equal split or universal frequency boundary.",
+        "Titles and body preserve qualifications and introduce no measured attenuation or product-performance guarantee.",
+        "Each title alone identifies noise-cancelling headphones and the rumble/speech question, without requiring the prompt or a subtitle."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "git-net-change",
+      "prompt": "为刚开始协作开发的读者写一段 Git merge 解释页文案，中文和英文各一个标题及两段短正文，不写 HTML、不运行代码。问题：我方提交多，还把 timeout 改了又还原，为什么合并时却保留了对方的修改？本题已经验证的普通文本合并输入：共同基准 timeout=30；我方经历 30→60→30，当前内容为30；对方从30改成60；没有其他相关变化，合并结果为60。Git 比较双方最终快照相对于共同基准的变化，而不是按提交数投票或逐个重放提交。还原不构成对其他分支修改的永久否决。该案例是普通分叉合并，不推广到所有驱动和历史；文本合并成功不证明程序行为正确。作者草记：Three snapshots. Not a replay. 我方尖端等于基准，对方有净变化。请组织成自然解释，保留必要范围但不要用审计说明淹没主线。",
+      "expected_output": "Concrete three-way reasoning anchored to 30/60 values, natural novice terminology and preserved scope in both languages.",
+      "files": [],
+      "assertions": [
+        "Both languages name or explain the common baseline and both current branch versions using the supplied values.",
+        "Both languages explain why ours contributes no net change and why the result is 60 rather than just announcing the result.",
+        "Neither language treats commit count, replay or revert as a vote overriding the other branch.",
+        "Novice-facing terminology is introduced intelligibly instead of leaving branch tip or 尖端 unexplained.",
+        "The copy scopes the text-merge example and does not equate a clean merge with correct program behavior.",
+        "Each title alone identifies Git merge and reverted changes rather than using unexplained 30/60 values; the lead names timeout before introducing its values and treats the change, not the number, as reverted."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "cold-glass-transfer",
+      "prompt": "为普通读者写一段生活科普页文案，中文和英文各一个标题及两段短正文，不写 HTML、不联网。问题：冷饮杯外的水珠是从杯子里漏出来的吗？请只依据给定材料写作：这里讨论完整、不漏水的杯子；空气含水蒸气，杯中冷饮使杯壁温度降低；当杯壁低于周围空气的露点时，空气中的水蒸气可在外壁凝结成液滴。水珠主要来自周围空气，不是透过杯壁的饮料。露点是给定空气开始凝结所对应的温度；湿度条件不同，是否凝结也会不同。不能据此断言每个冷杯都会有水珠，不能用本例排除真实破损杯子的漏水。作者草记：关键是温差。水是空气里的。湿度仍然重要。请写得有吸引力而且读得懂，不添加具体温度或未经给定材料支持的机制。",
+      "expected_output": "A held-out topic testing whether the guidance supplies the cold surface/condensation bridge and defines the relevant condition without relying on the ANC/Git examples.",
+      "files": [],
+      "assertions": [
+        "Both languages trace the droplets to air water vapor on the outside rather than drink passing through the wall.",
+        "Both languages connect the cold drink, cooler wall and condensation rather than leaving temperature difference unspecified.",
+        "The dew-point condition is explained in approachable terms in both languages, not merely named.",
+        "Both languages preserve conditional condensation and the intact-cup scope without excluding actual leaks in damaged cups.",
+        "No unsupported numerical threshold or unrelated physical mechanism is added; the two versions preserve the same conditions.",
+        "Each title alone identifies droplets on a cold cup and their origin question, without relying on an unexplained pronoun or a later definition."
+      ]
+    }
+  ]
+}

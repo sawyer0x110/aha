@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "rubricVersion": 2,
+  "process_checks": "evaluator/process-checks.json",
+  "eval_id": 2,
+  "rubric": {
+    "correctness_source_support": [
+      {"id": "cancel-path", "text": "In the working tree, a nonfinal send rejection with AbortError enters an uninterruptible 80 ms sleep before the next pre-attempt signal check. Close and deadline clear are delayed; this is not necessarily an extra send if signal remains aborted. Pre-aborted signal is checked only after transport.open.", "locators": ["inputs/code-retry/worker.mjs#L11-L14", "inputs/code-retry/worker.mjs#L23-L31", "inputs/code-retry/config.mjs#L1-L3"], "state": "worktree"},
+      {"id": "deadline-cleanup", "text": "Per-attempt deadline timers are eventually cleared in finally, not permanently leaked on ordinary rejection. Promise.race does not cancel an unresolved send; timeout retry may overlap it. Signal is only passed through to send; an ignoring transport can still resolve successfully after abort.", "locators": ["inputs/code-retry/worker.mjs#L16-L28", "inputs/code-retry/worker.mjs#L30-L31"], "state": "worktree"},
+      {"id": "dirty-identity", "text": "Names actual snapshot identity and differentiates HEAD attempts=2 from staged/worktree attempts=3, unstaged doubled delay, and untracked ticket. Does not attribute every file to HEAD. Uses captured real Git status/hash rather than fictional commit IDs.", "locators": ["inputs/code-retry/config.mjs#L1", "inputs/code-retry/worker.mjs#L25", "inputs/code-retry/ticket.md#L3"], "state": "HEAD/index/worktree/untracked"},
+      {"id": "tests", "text": "Existing tests cover immediate success/cleanup and final failure, not in-flight abort, abort during backoff, ignored signal, unresolved timed-out send or failed close. The report proposes targeted verification and distinguishes proposals from observed runtime evidence.", "locators": ["inputs/code-retry/worker.test.mjs#L5-L31", "inputs/code-retry/README.md#L7"]}
+    ],
+    "structure_operation": [
+      {"id": "traceability", "text": "The report includes reproducible code/state locators and concrete proposed tests."},
+      {"id": "dossier", "text": "Any CLI/schema result described in the report is distinguished from runtime behavior evidence; a schema pass is not presented as proof of cancellation correctness."}
+    ],
+    "clarity_visual": [
+      {"id": "trace", "text": "Separates paths/conditions so a maintainer can follow cancellation timing and pending work; no mandated diagram or section recipe."}
+    ],
+    "human_comprehension": [
+      {"id": "transfer", "text": "Use withheld new-code scenarios with consenting developers; do not infer learning from report correctness."}
+    ]
+  },
+  "transfer": [
+    {"id": "c1", "question": "另一个重试器只在每轮开始检查取消信号，catch 后等待固定 200 ms。请求在等待前取消并报错。下一次调用一定会发生吗？资源何时有机会释放？", "expected_reasoning": "No next call if next loop check sees abort; cancellation/cleanup can still be delayed until the non-abortable wait finishes. Distinguish responsiveness from extra calls."},
+    {"id": "c2", "question": "Promise.race 的超时分支先完成，底层上传 Promise 没有结束。可以认为上传已停止并安全重试吗？为什么？", "expected_reasoning": "No; race settles its wrapper but does not stop the losing operation. Need explicit cancellation/settlement or idempotency/concurrency handling."},
+    {"id": "c3", "question": "报告标注了提交号，但实际阅读的文件有未提交修改。别人只检出提交号能复现结论吗？还需要保留什么？", "expected_reasoning": "Not necessarily; retain HEAD identity, index and working-tree content hashes/diffs plus untracked contents and relevant environment."}
+  ]
+}

@@ -2,7 +2,7 @@
 
 An artifact is a medium-specific project bound to a Research Dossier snapshot. Its editable source is the authority; metadata records identity, entry points, coverage, omissions, resources, and review results. It is not a fixed card DSL or a universal scene graph.
 
-Use one explicit format per project; consult [format selection](format-selection.md) only for unresolved routing or multiple outputs. When authoring metadata or bilingual content, load [language](language.md), the authority for defaults, localized roots, and translation behavior. Keep artifact translations separate from the bound Dossier so presentation choices do not change evidence identity.
+Use one explicit format per project; consult [format selection](format-selection.md) only for unresolved routing or multiple outputs. [Language](language.md) owns language selection and localized roots; [execution](execution.md) owns permissions and dependencies; [artifact QA](artifact-qa.md) owns final acceptance. This guide owns source identity, coverage and delivery lifecycle. Load a referenced contract at its decision point rather than copying its full checklist into each medium's plan.
 
 ## Initialize, then actually author
 
@@ -39,11 +39,13 @@ After replacing the sample with actual work, remove its `AHA_UNAUTHORED_SCAFFOLD
 
 Use forward slashes in metadata paths and HTML resource URLs; these are portable paths, not native shell paths. The metadata `entry`, such as `html/index.html`, must be project-relative with no `.` or `..` segments. HTML resource URLs resolve relative to their source file: `../assets/pic.png` is allowed when the normalized target stays inside the project. No escaping the project, URL encoding, symlinks, or hardlinks. Source entries/resources cannot reference reserved `research/`, `dist/`, or `qa/` directories. Keep the copied Dossier intact.
 
-Source identity covers included project files, including `artifact.json`; `research/`, `dist/`, and `qa/` are excluded from this source hash, with research checked by its separate identity. Source budgets are 16 MiB per file and 64 MiB total. Do not put rendered files or audio/plan outputs into the source tree: choose new sibling destinations outside the project. Render receipts bind source, research, and output hashes, not truth or visual acceptance.
+Source identity covers included project files, including `artifact.json`; `research/`, `dist/`, and `qa/` are excluded from this source hash, with research checked by its separate identity. Source budgets are 16 MiB per file and 64 MiB total. Put rendered files and audio/plan outputs outside the project, using the delivery lifecycle below. Render receipts bind source, research, and output hashes, not truth or visual acceptance.
 
 ## Content plan
 
 Identify the question the work answers, required claims and mechanisms, concrete examples/data, essential conditions, and intentional omissions with reasons. Match depth to the audience's known background, not a job-title stereotype. Add definitions where needed. Use bounded analogies only when they help; do not substitute them for evidence.
+
+Before layout, use [explanation editing](explanation-writing.md) to review the direct answer and a representative mechanism passage. Preserve the reasoning between claims, not just their coverage IDs. Compress secondary detail rather than leaving disconnected outline fragments; review the complete authored copy again at final QA.
 
 Map stable output blocks, diagram parts, pages, or scenes to existing research claims. Include numerical units and data provenance, preserve uncertainty, and keep reader-facing citations natural. Internal IDs and review notes are not the explanation itself. Coverage and omissions must agree with the source and do not certify the truth of either.
 
@@ -59,6 +61,18 @@ Before executing source, apply [the execution contract](execution.md), including
 
 ## Check, revise, preserve
 
-Run `explain-check` after actual authoring. Then use the medium's render command and perform [source-grounded fact checking and actual QA](artifact-qa.md). Record static checks, source support review, runtime observations, and visual/native review separately.
+Run `explain-check` after actual authoring, then the medium's render command and [artifact QA](artifact-qa.md). Edit the source when revising; do not leave a one-off patched output that cannot be reproduced.
 
-Edit the source when revising; do not leave a one-off patched output that cannot be reproduced. Publish to new destinations and retain the old work. Deliver requested output, editable project/source, research snapshot identity, resources/license notes, and candid QA results. Do not include the full private Dossier in the public output unless explicitly authorized.
+## Working history and current delivery
+
+Separate three locations, without adding schema fields or a new CLI mode:
+
+- **Editable project:** authoritative source and the bound research copy.
+- **Working history:** new render destinations outside the project, with receipts and useful revision/failure notes. Keep these outside a user-facing gallery by default.
+- **Current delivery:** only the selected current output, its matching receipt, source/research references, necessary licensed resources and current QA. A gallery is not an archive of every attempt.
+
+Render into a fresh working destination; the CLI still rejects overwrites. Review that candidate before updating a current delivery. For replacement, archiving or deletion, establish the exact files and user-authorized scope first. Preserve user edits and the recoverable previous version unless the user explicitly requested its removal. Never clear a directory or delete user files merely because this guide recommends tidy delivery.
+
+Promote the output and its receipt together, preserving their bytes and original output filename; the on-disk receipt records that filename, while the CLI result also reports the resolved destination. If a different published filename is needed, render a fresh candidate with that name in a new directory rather than editing the receipt. Update gallery links and QA bindings to the selected version, and verify hashes and local links after promotion. Do not hand-edit receipt identities or present stale QA as current. This is an agent-managed workflow, not an atomic publishing feature of the CLI.
+
+Deliver requested output, editable project/source, research snapshot identity, resources/license notes, and candid QA results. Keep the full private Dossier separate from public output unless explicitly authorized. If cleanup was not authorized, leave the history intact and identify the current version clearly rather than silently removing it.

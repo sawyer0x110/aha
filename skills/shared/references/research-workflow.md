@@ -26,6 +26,8 @@ For each bounded round:
 
 Write a direct answer with mechanisms or argument, concrete comparisons/examples where useful, counterevidence, uncertainties, and natural source citations. Explain disagreement rather than voting by source count. Keep the report independent of any medium; no required engine, scenarios, slides, quiz, or simulation.
 
+Check the reasoning bridge between the evidence and each conclusion. Name the entities, what changes or is compared, the relevant condition, and why the result follows; distinguish a source-supported mechanism from your own inference. Several supported facts do not by themselves establish a causal chain. If a necessary link is missing, follow up or narrow the conclusion and record the gap, rather than leaving a future artifact author to invent it. Explain essential terms in the readable report without adding new schema fields.
+
 From each major conclusion, work backward to the precise supporting source context. Check wording, units, dates, denominators, causal strength, boundary conditions, and whether contrary evidence changes it. Classify review outcomes as supported, revise, insufficient, or unverifiable in review notes, without inventing schema enum values.
 
 Keep three distinct records: structural validation, semantic source review, and any explicitly authorized observed execution. A hash proves identity, not truth.

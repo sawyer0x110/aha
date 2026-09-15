@@ -40,6 +40,7 @@ Palette suggestions are not prevalidated contrast pairs. Check normal text at le
 - Label direction, state, units, and boundaries where they change interpretation. Separate observed measurements from estimates, hypothetical mechanisms, and inferred links.
 - For charts, make axes, scales, denominators, and time windows explicit; keep comparable quantities on comparable scales. For maps or atlases, avoid implying a geographic or quantitative coordinate system where none exists.
 - Prefer fewer crossings and shorter labels; move supporting prose outside nodes. Test labels, edge paths, and runtime controls in the actual rendered diagram, not just its source.
+- Follow each rendered branch from its start to its intended endpoint, including arrowheads and nearby labels. In SVG, `marker-end` marks the end of a path, not every disconnected subpath: use separate paths when separate branches need terminal arrowheads. A valid SVG or an unclipped text box does not prove that connectors avoid labels or express the intended relation.
 
 ## Run a short visual pilot before expanding
 

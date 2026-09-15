@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "skill_name": "aha-skills",
+  "scope": "Original synthetic, fixed provided-material evaluation. Not live-web research or real research datasets.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "public-topic",
+      "skill": "aha-research",
+      "prompt": "请根据 inputs 中的材料，为社区编辑写一份遮阳公交站试点的研究报告：目前能说什么，是否值得扩大试点？注明依据和仍需核实的事项。只使用提供的材料。",
+      "expected_output": "A source-linked research report/dossier that reconciles versions, distinguishes independent evidence and scopes conclusions to the synthetic provided materials.",
+      "files": [
+        "inputs/public-topic/01-initial-report.md",
+        "inputs/public-topic/02-news-brief.md",
+        "inputs/public-topic/03-field-methods.md",
+        "inputs/public-topic/04-correction.md",
+        "inputs/public-topic/05-independent-note.md"
+      ],
+      "evaluator": "evaluator/public-topic.json"
+    },
+    {
+      "id": 2,
+      "name": "code-retry",
+      "skill": "aha-research",
+      "prompt": "请只读调查 inputs 中的 Parcel relay 工作区：取消、重试和清理行为是否符合 README 的要求？给维护者一份有具体代码依据的报告，说明现有测试覆盖和建议验证的风险。不要运行或修改这个输入仓库。",
+      "expected_output": "A revision-aware investigation tracing cancellation, retry, deadline and cleanup behavior, with concrete source locators and proposed tests; no claims that the author ran the fixture.",
+      "files": [
+        "inputs/code-retry/README.md",
+        "inputs/code-retry/config.mjs",
+        "inputs/code-retry/worker.mjs",
+        "inputs/code-retry/worker.test.mjs"
+      ],
+      "preparation": "dirty-git-v1",
+      "evaluator": "evaluator/code-retry.json"
+    },
+    {
+      "id": 3,
+      "name": "tank",
+      "skill": "aha-explain",
+      "prompt": "朋友看了 inputs 里的水箱记录，问：泵一直开着，为什么两次的水位变化不一样，后来会怎样？请做一个能离线打开的中文 HTML，帮他看懂。呈现方式由你决定，依据限于这些记录。",
+      "expected_output": "An offline HTML explanation with evidence-calibrated predictions and an effective freely chosen visual form, not a prescribed layout.",
+      "files": ["inputs/tank/observations.md"],
+      "evaluator": "evaluator/tank.json"
+    },
+    {
+      "id": 4,
+      "name": "library",
+      "skill": "aha-explain",
+      "prompt": "请把 inputs 里的图书馆取书记录做成一份给普通读者看的中文 HTML 解读，回答：这次改动为什么可能有用，下个月应该怎么做？可以直接交给编辑使用，不要补写材料中没有的事实。",
+      "expected_output": "An accessible HTML editorial that explains what is and is not known without inventing a psychological or causal bridge, and proposes useful follow-up.",
+      "files": ["inputs/library/records.md"],
+      "evaluator": "evaluator/library.json"
+    }
+  ]
+}

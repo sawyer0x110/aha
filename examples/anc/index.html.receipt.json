@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "delivered",
+  "format": "html",
+  "title": "Why voices can remain when the rumble fades / 为什么轰鸣变轻了，人声却还在？",
+  "researchHash": "bc53101b3b731f1e25ebfd1a8e2e88f16d4940acb17fc2e1d94f3d8269496c2b",
+  "sourceHash": "5c15b68a572b92425e79d13628829c548119db733a3738cef3a76dc9a98e1ff1",
+  "outputHash": "7ab2f5f7e7198a9c8a0de2ae550b4c5800ebbefe04f58886ede7e97fb0214d4e",
+  "output": "index.html",
+  "createdAt": "2026-09-15T03:13:08.926Z",
+  "codeExecuted": false,
+  "selfContained": true,
+  "verification": "Source/output hashes and declared claim coverage, not semantic truth or visual quality. Receipts describe a specific source revision; recheck the source hash after edits."
+}

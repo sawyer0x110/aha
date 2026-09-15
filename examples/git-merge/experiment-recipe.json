@@ -1,0 +1,52 @@
+{
+  "authoritativeResults": "experiment-results-v2.json",
+  "rejectedResults": "experiment-results.json",
+  "gitVersion": "git version 2.53.0.windows.4",
+  "upstreamSource": "git/git 683c54c999c301c2cd6f715c411407c413b1d84e (v2.49.0), read as inert text, never executed",
+  "root": "C:\\Users\\yusu\\.copilot\\session-state\\91afaab1-20bc-466e-b6e7-951c04a9aac4\\files\\aha-examples\\git-merge",
+  "environment": {
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "NUL",
+    "GIT_TERMINAL_PROMPT": "0",
+    "localConfig": {
+      "user.name": "Aha Local Fixture",
+      "user.email": "aha-fixture@example.invalid",
+      "core.hooksPath": "<root>\\empty-hooks",
+      "core.autocrlf": "false",
+      "commit.gpgsign": "false"
+    }
+  },
+  "commandsActuallyUsed": [
+    "git init --quiet --initial-branch=ours <root>\\fixtures-v2\\<scenario>",
+    "git -C <repo> config <local key> <value> (each localConfig entry above)",
+    "Copy-Item <root>\\inputs\\base.txt <repo>\\policy.txt",
+    "git -C <repo> hash-object -w -- policy.txt; git -C <repo> update-index --add --cacheinfo 100644,<returned-blob>,policy.txt",
+    "git -C <repo> commit --quiet -m base; git -C <repo> rev-parse HEAD",
+    "git -C <repo> branch theirs",
+    "Copy-Item <root>\\inputs\\timeout60.txt <repo>\\policy.txt; repeat exact blob staging",
+    "git -C <repo> commit --quiet -m 'ours timeout 60'",
+    "one-side only: git -C <repo> revert --no-edit HEAD",
+    "git -C <repo> rev-parse HEAD; git -C <repo> switch --quiet theirs",
+    "Copy-Item <root>\\inputs\\<scenario-input> <repo>\\policy.txt; repeat exact blob staging",
+    "git -C <repo> commit --quiet -m 'theirs change'; git -C <repo> rev-parse HEAD",
+    "git -C <repo> switch --quiet ours",
+    "git -C <repo> show <base>:policy.txt; git -C <repo> show <ours>:policy.txt; git -C <repo> show <theirs>:policy.txt",
+    "git -C <repo> -c merge.conflictStyle=diff3 merge --no-edit -s ort theirs",
+    "git -C <repo> merge-base <ours> <theirs>; git -C <repo> rev-parse HEAD",
+    "git -C <repo> ls-files -u; git -C <repo> show -s --format=%P HEAD",
+    "Read policy.txt result bytes and serialize stdout, exit code, input/output texts, hashes and parents to experiment-results-v2.json"
+  ],
+  "scenarioInputs": {
+    "one-side": "timeout60.txt",
+    "independent": "retries4.txt",
+    "conflict": "timeout90.txt"
+  },
+  "correction": "First attempt used commit -am after same-size file copies; Git did not reliably stage intended bytes. Fresh v2 fixtures stage actual blob IDs explicitly. Only v2 observations support the intended scenarios.",
+  "limitations": [
+    "No application behavior was executed; files are inert text.",
+    "No current repository history or global config was modified.",
+    "Fixture version is not the inspected upstream version.",
+    "The conflict fixture is intentionally preserved in its unresolved state.",
+    "No fast-forward fixture was run; that claim is documented and source-read only."
+  ]
+}

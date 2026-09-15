@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "rubricVersion": 2,
+  "supersedes_lock_sha256": "23282bdc4d87e5dbfdb0bc952cd2060c6c30c0a57f04e265720eb8e33296230c",
+  "algorithm": "sha256",
+  "normalization": "utf8-lf",
+  "files": {
+    "evals.json": "28c089370aed0482d315a686a4dbd467489075756d4d60e3733df4d69047aea8",
+    "evaluator/code-retry.json": "3419af3e554f35b385823340d4be6adf20b150afe2c0ab0964df306c4c66411d",
+    "evaluator/git-state.json": "7bcf6faeeb0375f87a3b6e78466519ba749b9a06653187bcad7b65c114c538d3",
+    "evaluator/human-response-template.json": "1f14d5ad79b0ef74172c20a2261e99d5afa628cb3897c6f9c32c209612de4179",
+    "evaluator/library.json": "3c8010333c9a745d6ad6cf5b23342bdc818586071a5c9d89876788e798d05565",
+    "evaluator/process-checks.json": "84e8c6d5d81d533bfb5a48c73dceb24264ae29dd3c6b94acfdccbb25906e00a4",
+    "evaluator/public-topic.json": "1d3b194e4f7f3fee037597c65ffae3ce46447fc2586fb06fb544adcf7257e047",
+    "evaluator/tank.json": "501512ffd63401af78f1d1f7c0d01f9f6b8c0baea497d73313c8fb1be8261d47",
+    "inputs/code-retry/README.md": "49f66512bc86c5f7d3040e12634c9714b15446d45df03daa0eac2073ecbb2440",
+    "inputs/code-retry/config.mjs": "65aa804b2191af314d71394df79072b2bbad1a10903d4d11fbb6e745302b9e62",
+    "inputs/code-retry/worker.mjs": "758fb5bd5d73bbb2d61b5640b34d54d88dd82c136bace97ebf2c8056a0abdee9",
+    "inputs/code-retry/worker.test.mjs": "1fa7fc9c30975c8e0218ff40ed6b3c870478052cfb13d5e97d9e01cae10ce134",
+    "inputs/library/records.md": "6b1e8e997e7a4252858565b6605cc32effc7b3aaee271996c1f94d4a0b5d3535",
+    "inputs/public-topic/01-initial-report.md": "211e44db6d727baff11220caab194a132b4c4e00cbf233c78d2ede8dbfd53af9",
+    "inputs/public-topic/02-news-brief.md": "bed2bc68ee91153bfcf19b2e57bd64362341d99f9577a3e487fdbb1ce42f39d4",
+    "inputs/public-topic/03-field-methods.md": "6f61dc609be317ef8170df10045447a27cdc48dca8ca733f63295f0fbc9ccd9d",
+    "inputs/public-topic/04-correction.md": "47aa995cdd0153cffdfb87aeee69c6fb9c62128317a6f1ca0b704b68e8c27220",
+    "inputs/public-topic/05-independent-note.md": "0118c518964ba700ac9635199e9f11ed7d5719af9ba16c154dfa2641be502dc9",
+    "inputs/tank/observations.md": "ab200e0556a0572383bbf218dbb594743a88aecca4d4f96508c73a679bfe5ed1"
+  }
+}

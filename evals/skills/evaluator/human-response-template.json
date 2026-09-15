@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "status": "pending",
+  "consent": null,
+  "anonymous_participant_id": null,
+  "case_id": null,
+  "blind_artifact_label": null,
+  "design": null,
+  "phase": null,
+  "presentation_order": null,
+  "prior_experience": null,
+  "responses": [],
+  "comprehension_score": null,
+  "rater_id": null,
+  "notes": null
+}

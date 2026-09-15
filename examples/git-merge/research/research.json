@@ -1,0 +1,353 @@
+{
+  "claims": [
+    {
+      "evidenceIds": [
+        "e-base-doc",
+        "e-entry"
+      ],
+      "id": "c-base",
+      "kind": "fact",
+      "limitations": [
+        "There can be multiple best bases; the diagram uses one and does not implement virtual-base construction."
+      ],
+      "subquestionIds": [
+        "q-base"
+      ],
+      "text": "The merge base is selected by common ancestry; a simple three-way merge uses base, ours and theirs snapshots."
+    },
+    {
+      "evidenceIds": [
+        "e-diffs",
+        "e-strategies",
+        "e-experiment"
+      ],
+      "id": "c-snapshots",
+      "kind": "fact",
+      "limitations": [
+        "Commit ancestry still matters for selecting merge bases; fixture Git differs from pinned source."
+      ],
+      "subquestionIds": [
+        "q-history"
+      ],
+      "text": "For three-way content merging, Git compares tip snapshots with the base rather than replaying all individual commits; a reverted change on one side can reappear from the other."
+    },
+    {
+      "evidenceIds": [
+        "e-identity",
+        "e-experiment"
+      ],
+      "id": "c-one-side",
+      "kind": "fact",
+      "limitations": [
+        "Regular text file without separate path/type conflicts; not the similarly named ours strategy."
+      ],
+      "subquestionIds": [
+        "q-rules"
+      ],
+      "text": "When one side's ordinary file content equals the base, the other side's changed content can be selected."
+    },
+    {
+      "evidenceIds": [
+        "e-merge-doc",
+        "e-overlap",
+        "e-experiment"
+      ],
+      "id": "c-independent",
+      "kind": "fact",
+      "limitations": [
+        "Not a guarantee for arbitrary different line numbers: alignment, nearby changes and refinement matter."
+      ],
+      "subquestionIds": [
+        "q-rules"
+      ],
+      "text": "Well-separated base-relative edits in one text file can merge automatically, combining both sides."
+    },
+    {
+      "evidenceIds": [
+        "e-driver",
+        "e-overlap",
+        "e-merge-doc",
+        "e-experiment"
+      ],
+      "id": "c-conflict",
+      "kind": "fact",
+      "limitations": [
+        "Identical overlapping edits need not conflict; stages may differ for non-text or add/delete cases."
+      ],
+      "subquestionIds": [
+        "q-rules"
+      ],
+      "text": "In the demonstrated incompatible same-region text edit, Git leaves conflict markers and base/ours/theirs index stages while HEAD remains unchanged; no merge commit has yet been created."
+    },
+    {
+      "evidenceIds": [
+        "e-merge-doc"
+      ],
+      "id": "c-ff",
+      "kind": "fact",
+      "limitations": [
+        "Options such as --no-ff alter this behavior; documented and source-read, not separately fixture-tested."
+      ],
+      "subquestionIds": [
+        "q-history"
+      ],
+      "text": "When our head is an ancestor of the other tip, a fast-forward can update the branch pointer without creating a merge commit."
+    },
+    {
+      "evidenceIds": [
+        "e-overlap",
+        "e-strategies"
+      ],
+      "id": "c-safety",
+      "kind": "inference",
+      "limitations": [
+        "Comment and cross-file rename examples are reasoned illustrations, not executed application tests."
+      ],
+      "subquestionIds": [
+        "q-safety"
+      ],
+      "text": "Textual conflict does not prove semantic incompatibility, and a clean textual merge does not prove correct application behavior."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e-base-doc",
+      "kind": "web",
+      "locator": "Documentation/git-merge-base.adoc:21-26",
+      "retrievedAt": "2026-09-14T17:45:59.952+08:00",
+      "sourceVersion": "git/git 683c54c999c301c2cd6f715c411407c413b1d84e (v2.49.0)",
+      "summary": "Read the definition of best common ancestor and explicit multiple-base exception. Supports ancestry, not newest timestamp.",
+      "title": "Official git-merge-base manual at v2.49.0",
+      "url": "https://github.com/git/git/blob/683c54c999c301c2cd6f715c411407c413b1d84e/Documentation/git-merge-base.adoc#L21-L26"
+    },
+    {
+      "id": "e-merge-doc",
+      "kind": "web",
+      "locator": "Documentation/git-merge.adoc:145-206,235-244",
+      "retrievedAt": "2026-09-14T17:45:59.952+08:00",
+      "sourceVersion": "git/git 683c54c999c301c2cd6f715c411407c413b1d84e (v2.49.0)",
+      "summary": "Read preconditions, fast-forward, true merge, index stages and conflict presentation. Distinguishes non-overlapping edits from unresolved same-region edits.",
+      "title": "Official git-merge manual at v2.49.0",
+      "url": "https://github.com/git/git/blob/683c54c999c301c2cd6f715c411407c413b1d84e/Documentation/git-merge.adoc#L160-L206"
+    },
+    {
+      "id": "e-strategies",
+      "kind": "web",
+      "locator": "Documentation/merge-strategies.adoc:9-23,116-122,157-163",
+      "retrievedAt": "2026-09-14T17:45:59.952+08:00",
+      "sourceVersion": "git/git 683c54c999c301c2cd6f715c411407c413b1d84e (v2.49.0)",
+      "summary": "Read ort's two-head/reference-tree description, warning about mismerges from unimportant matching lines, and explicit explanation that heads/base—not individual commits—drive the reverted-change result. This contradicts a commit-replay model.",
+      "title": "Official merge-strategies manual at v2.49.0",
+      "url": "https://github.com/git/git/blob/683c54c999c301c2cd6f715c411407c413b1d84e/Documentation/merge-strategies.adoc#L157-L163"
+    },
+    {
+      "content": "\telse if (!remoteheads->next) {\n\t\tif (repo_get_merge_bases(the_repository, head_commit,\n\t\t\t\t\t remoteheads->item, &common) < 0) {\n\t\t\tret = 2;\n\t\t\tgoto done;\n\t\t}\n",
+      "contentHash": "0c11bc18aec37daa038323c7823a690e4a6b971c8846cf7a252dddd9ed47247e",
+      "id": "e-entry",
+      "kind": "code",
+      "locator": "git/git builtin/merge.c:1549-1554; surrounding dispatch read at 745-755,1585-1618",
+      "sourceVersion": "683c54c999c301c2cd6f715c411407c413b1d84e",
+      "summary": "The two-head branch calls repo_get_merge_bases; surrounding source dispatches to ort and recognizes fast-forward. Preserved excerpt is only the base lookup.",
+      "title": "Merge command requests common bases"
+    },
+    {
+      "content": "\tif (oideq(&a->oid, &b->oid) || oideq(&a->oid, &o->oid))\n\t\toidcpy(&result->oid, &b->oid);\n\telse if (oideq(&b->oid, &o->oid))\n\t\toidcpy(&result->oid, &a->oid);\n",
+      "contentHash": "62092969d0c0d50dbaebe7e33305fca1be209e905f5eaad43ebd3ed411d78b56",
+      "id": "e-identity",
+      "kind": "code",
+      "locator": "git/git merge-ort.c:2184-2187; surrounding content handling 2176-2228, blob dispatch 2099-2105",
+      "sourceVersion": "683c54c999c301c2cd6f715c411407c413b1d84e",
+      "summary": "Object-ID equality against the base selects the opposite side. Surrounding ordinary-file path calls merge_3way and flags positive status unclean.",
+      "title": "Trivial content identity selection"
+    },
+    {
+      "content": "\tstatus = xdl_merge(orig, src1, src2, &xmp, result);\n\tret = (status > 0) ? LL_MERGE_CONFLICT : status;\n\treturn ret;\n",
+      "contentHash": "431170140b16d5e308bc8aaa24daed07fe3d5460dc04131701766f5d83ef72a8",
+      "id": "e-driver",
+      "kind": "code",
+      "locator": "git/git merge-ll.c:144-146; actual read 103-146",
+      "sourceVersion": "683c54c999c301c2cd6f715c411407c413b1d84e",
+      "summary": "After binary/size guard, ll_xdl_merge passes orig and both sides to xdl_merge, converting positive status to LL_MERGE_CONFLICT. No upstream execution.",
+      "title": "Text driver converts xdiff status to conflict"
+    },
+    {
+      "content": "\tif (xdl_do_diff(orig, mf1, xpp, &xe1) < 0)\n\t\treturn -1;\n\n\tif (xdl_do_diff(orig, mf2, xpp, &xe2) < 0)\n\t\tgoto free_xe1; /* avoid double free of xe2 */\n",
+      "contentHash": "2696c0ca325fc81c6e408052f67af7be41be88d1e4dc56d91bfc9007a44058f1",
+      "id": "e-diffs",
+      "kind": "code",
+      "locator": "git/git xdiff/xmerge.c:695-699; actual surrounding read 684-737",
+      "sourceVersion": "683c54c999c301c2cd6f715c411407c413b1d84e",
+      "summary": "The text merge separately diffs orig against mf1 and orig against mf2. Subsequent no-change-script branches copy the other side, otherwise xdl_do_merge reconciles scripts.",
+      "title": "Two base-relative comparisons"
+    },
+    {
+      "content": "\t\tif (level == XDL_MERGE_MINIMAL || xscr1->i1 != xscr2->i1 ||\n\t\t\t\txscr1->chg1 != xscr2->chg1 ||\n\t\t\t\txscr1->chg2 != xscr2->chg2 ||\n\t\t\t\txdl_merge_cmp_lines(xe1, xscr1->i2,\n\t\t\t\t\txe2, xscr2->i2,\n\t\t\t\t\txscr1->chg2, xpp->flags)) {\n\t\t\t/* conflict */\n",
+      "contentHash": "08e20d93f3a9b5bac8d42207955f691f24c38630bef8ee235811eaf4558aa0b0",
+      "id": "e-overlap",
+      "kind": "code",
+      "locator": "git/git xdiff/xmerge.c:578-584; actual read 543-620,630-683",
+      "sourceVersion": "683c54c999c301c2cd6f715c411407c413b1d84e",
+      "summary": "Earlier branches append separated changes; overlap uses coordinates, lengths and line equality. Later refinement changes conflict boundaries. This is text machinery, not a semantic program analyzer.",
+      "title": "Line-range overlap and content tests"
+    },
+    {
+      "content": "Command in each dedicated fixture: git -c merge.conflictStyle=diff3 merge --no-edit -s ort theirs\none-side: exit 0; timeout=60; retries=2; no unmerged stages; HEAD=b026178198b50922044bc8d4fec440a594d41538\nindependent: exit 0; timeout=60; retries=4; no unmerged stages; HEAD=0b8ae8e9f5b3f3de0df85276353bee611dd3839e\nconflict: exit 1; CONFLICT (content); HEAD=f8d48345a7b07e11470924d70194cf51a2da0acb unchanged; stage1=2a24c7d046fd1c19fdb93e51a78ac06414320a32; stage2=d8ee5d69105a951bec5f39abb0727c9d8101d107; stage3=e88aa33aa9f874a3c03df54636339335774e76b9\n",
+      "id": "e-experiment",
+      "kind": "provided",
+      "locator": "experiment-results-v2.json; fixtures-v2/{one-side,independent,conflict}/policy.txt and local object databases",
+      "sourceVersion": "git version 2.53.0.windows.4; observed 2026-09-14T17:47:58.0972695+08:00; distinct from inspected v2.49.0",
+      "summary": "Actual trusted installed Git commands on inert text. One-side with real revert: exit 0, 60/2, two parents. Independent: exit 0, 60/4, two parents. Conflict: exit 1, markers 60/30/90, HEAD unchanged and stages 1/2/3. Failed first attempt was rejected and corrected with explicit byte staging.",
+      "title": "Observed local Git fixture results v2"
+    }
+  ],
+  "gaps": [],
+  "id": "git-merge-c7",
+  "kind": "mixed",
+  "language": "en",
+  "question": "What does Git merge actually merge, and why do conflicts happen?",
+  "report": "# What Git merge actually merges\n\n## Direct answer\nFor the ordinary divergent two-head text merge studied here, Git reconciles changes between three snapshots: a merge base, our tip, and their tip. History helps select the base; the file-content merge compares each tip with that base. It does not simply replay every intervening commit. A textual conflict means the selected merge machinery could not automatically reconcile a region, not that Git understood an application's intentions. A clean merge is not a behavioral test.\n\n## Scope and research design\nAudience: developers who know commit and branch vocabulary, seeking a useful 5–8 minute explanation. Purpose: predict one-sided, independent, and conflicting changes; inspect the right inputs rather than guessing from commit count. Scope: two ordinary branches, regular text files, default-style ort merging and diff3 conflict display. Excluded: exhaustive strategies, rename/delete cases, binary files, custom merge drivers, submodules, unrelated histories, octopus and rebase-specific ours/theirs meanings. Time horizon: a pinned historical implementation (Git v2.49.0), not a claim about the newest release. Budget: a bounded direct source trace, official documentation, and three small local text experiments; no upstream builds, browser execution, network-dependent artifact assets, installation, or production measurements.\n\nQuestion tree: q-base establishes inputs; q-rules depends on those inputs and distinguishes three outcomes; q-history tests the replay hypothesis and fast-forward counterexample; q-safety separates textual success from program correctness. The decisive alternative hypothesis was 'a revert on ours cancels their change because commits are replayed.' Documentation and a real revert fixture contradict it.\n\n## Version and source route\nGitHub API `gh api repos/git/git/commits/v2.49.0 --jq '.sha'` resolved git/git to **683c54c999c301c2cd6f715c411407c413b1d84e**. All upstream source and official manuals were retrieved as inert raw text at that exact commit. Files are preserved under sources/. The first documentation request used the obsolete .txt suffix and returned HTTP 404; a contents API lookup located .adoc. No upstream code was executed. This is one primary-source lineage, not independent corroboration from multiple publishers.\n\n## Mechanism and narrow implementation trace\n1. `builtin/merge.c:1549–1554` calls `repo_get_merge_bases`. The official merge-base manual defines a best common ancestor by ancestry, not by wall-clock timestamp. Multiple best bases are possible; ort can merge them into a reference tree. The illustration deliberately uses one base. [e-base-doc, e-entry]\n2. `builtin/merge.c:745–755` supplies both heads and common bases to `merge_ort_recursive`. For file content, `merge-ort.c:2099–2105` reads base/side blobs and calls `ll_merge`. `merge-ll.c:103–146` selects the textual xdiff route after checking binary/size conditions; `xdiff/xmerge.c:695–699` actually diffs orig against each side. This is base-relative snapshot reconciliation. [e-diffs, e-driver]\n3. A trivial object-ID match can select the changed side: `merge-ort.c:2184–2187` takes b when a equals base (or a equals b), and a when b equals base. This is not 'the newer commit wins.' The analogous no-change-script paths are visible in `xdiff/xmerge.c:711–724`. [e-identity]\n4. `xdiff/xmerge.c:548–577` accepts separated change ranges from either side; `578–609` handles overlap with coordinate/length/content tests. Identical edits need not conflict. Later refinement (`654–681`) can adjust conflict regions. Thus 'different line numbers always merge' is too strong: nearby insertions, repeated context, and algorithms affect hunk alignment. [e-overlap, e-merge-doc]\n5. `merge-ll.c:144–146` maps positive xdiff status to a conflict; `merge-ort.c:2225–2228` makes a positive merge status unclean. The official merge manual states that HEAD stays put and conflicting index entries retain base/ours/theirs at stages 1/2/3. [e-driver, e-merge-doc]\n\n## Actual observations, distinct from inspected upstream\nThe executable was **git version 2.53.0.windows.4**, NOT the inspected v2.49.0 commit. Three new dedicated fixture repositories used inert policy.txt files, local-only author identity, disabled global/system config, an empty hooks directory, no signing, and core.autocrlf=false. The merge command was `git -c merge.conflictStyle=diff3 merge --no-edit -s ort theirs`. Base/ours/theirs bytes were verified using `git show`; index stages and final parent IDs were captured. `experiment-results-v2.json` is the authoritative observation record.\n\nThe first fixture attempt did not reliably stage same-size copied edits; inspection caught 'nothing to commit', a modify/delete result, and unchanged commit IDs. Those results were rejected as evidence for the intended scenarios. Fresh v2 repositories explicitly staged file bytes using `git hash-object -w -- policy.txt` followed by `git update-index --add --cacheinfo 100644,<blob>,policy.txt`. The failed run remains separately recorded, not silently represented as success.\n\n- One-side / actual revert: base timeout=30; ours changed to 60 then was reverted to 30; theirs=60. Exit 0, result timeout=60/retries=2, no unmerged entries, two-parent merge commit. Ours has additional history but no net content change at the tip. A revert on one branch is not a veto over the other branch. [e-experiment, e-strategies]\n- Well-separated edits: base timeout=30/retries=2; ours timeout=60; theirs retries=4, with stable lines between. Exit 0, result timeout=60/retries=4, no unmerged entries, two-parent merge commit. Same file does not imply conflict. [e-experiment]\n- Same-region edits: ours timeout=60, theirs timeout=90, base=30. Exit 1 with `CONFLICT (content)`; diff3 markers contain 60 / 30 / 90. HEAD remains f8d48345a7b07e11470924d70194cf51a2da0acb; index has three entries, stages 1/2/3. No merge commit exists yet. [e-experiment]\n\n## Counterexamples and consequences\nFast-forward is a topology exception, not a fourth kind of conflict resolution: when our head is already an ancestor of the other tip, Git can move the current branch to that existing commit without a new merge commit (unless options such as --no-ff request otherwise). Supported by the manual and read source at builtin/merge.c:1585–1618; not separately executed here. [e-merge-doc]\n\nText and meaning are different layers. The source compares line regions, not program behavior. Two differently worded comments can conflict despite no executable effect; conversely, a function renamed in one file and a new call to its old name in another can combine textually while leaving a broken call. These are explanatory inferences, not executed application tests. The official strategy document also warns that unimportant matching lines can cause mismerges. Do not infer semantic correctness from exit 0. [e-overlap, e-strategies]\n\nPractical transfer: inspect `git show :1:policy.txt`, `:2:policy.txt`, `:3:policy.txt` during this ordinary merge, decide the intended behavior, edit and remove markers, run relevant checks, then stage and commit. Do not pick 'ours' solely because its timestamp or commit count is larger. This advice does not apply unchanged to rebase terminology.\n\n## Reverse-check and limits\nc-base: supported by ancestry definition and actual merge-base call; revised away from 'latest timestamp'. c-snapshots: supported by two base-relative diff calls and official revert discussion; actual fixture agrees but is a different Git version. c-one-side and c-independent: supported under ordinary text/path conditions and observed exact fixtures. c-conflict: supported by marker/index documentation and actual exit/stage output; no claim that every overlap necessarily conflicts. c-ff: documented/source-read only, explicitly not observed. c-safety: inference from textual machinery, supported by mismerge warning; no program execution claimed. Coverage/hash checks are separate from this manual semantic review. Renames, binary drivers, multiple-base construction and strategy exhaustiveness remain scoped out. HTML translation, runtime layout and interaction QA are not research observations.\n\n## Stopping reason\nThe core predictive questions are supported by a pinned narrow source trace, official definitions, a disconfirming revert example, and three corrected fixture observations. Additional strategies are outside the teaching scope; no unresolved central evidence blocker remains. Runtime HTML QA is intentionally deferred pending reviewed execution approval.",
+  "researchLog": [
+    {
+      "action": "search",
+      "evidenceIds": [],
+      "id": "log-pin",
+      "occurredAt": "2026-09-14T17:45:45.670+08:00",
+      "outcome": "success",
+      "query": "gh api repos/git/git/commits/v2.49.0 --jq '.sha'",
+      "subquestionIds": [
+        "q-base",
+        "q-rules",
+        "q-history"
+      ],
+      "summary": "GitHub commit API resolved v2.49.0 to 683c54c999c301c2cd6f715c411407c413b1d84e; then exact raw files were fetched inertly."
+    },
+    {
+      "action": "failure",
+      "evidenceIds": [],
+      "id": "log-404",
+      "locator": "https://raw.githubusercontent.com/git/git/683c54c999c301c2cd6f715c411407c413b1d84e/Documentation/git-merge.txt",
+      "occurredAt": "2026-09-14T17:45:45.670+08:00",
+      "outcome": "failure",
+      "subquestionIds": [
+        "q-history"
+      ],
+      "summary": "Obsolete .txt documentation path returned HTTP 404. Contents API discovery found .adoc; later reads succeeded."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-base-doc",
+        "e-merge-doc",
+        "e-strategies"
+      ],
+      "id": "log-docs",
+      "locator": "sources/Documentation__git-merge.adoc; sources/Documentation__git-merge-base.adoc; sources/Documentation__merge-strategies.adoc",
+      "occurredAt": "2026-09-14T17:50:12.932+08:00",
+      "outcome": "success",
+      "readRange": "merge 145-206,226-247; merge-base 20-27; strategies 1-24,75-90,105-128,154-165",
+      "subquestionIds": [
+        "q-base",
+        "q-rules",
+        "q-history",
+        "q-safety"
+      ],
+      "summary": "Read exact fetched official manuals with line numbering; timestamp records completed read round including later strategy warning follow-up."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-entry",
+        "e-identity",
+        "e-driver",
+        "e-diffs",
+        "e-overlap"
+      ],
+      "id": "log-code",
+      "locator": "sources/builtin__merge.c; merge-ort.c; merge-ll.c; xdiff__xmerge.c",
+      "occurredAt": "2026-09-14T17:50:12.932+08:00",
+      "outcome": "success",
+      "readRange": "builtin 740-765,1546-1618; ort 2049-2059,2090-2111,2170-2230; ll 103-149; xmerge 543-620,630-737",
+      "subquestionIds": [
+        "q-base",
+        "q-rules",
+        "q-history",
+        "q-safety"
+      ],
+      "summary": "Completed direct narrow trace read; timestamp records completed round. Minimal exact excerpts retained with real SHA256. No upstream execution."
+    },
+    {
+      "action": "failure",
+      "evidenceIds": [],
+      "id": "log-fixture-failure",
+      "locator": "experiment-results.json",
+      "occurredAt": "2026-09-14T17:47:10.697+08:00",
+      "outcome": "failure",
+      "subquestionIds": [
+        "q-rules",
+        "q-history"
+      ],
+      "summary": "Initial fixture commits did not include same-size copied edits reliably; outputs showed nothing-to-commit and unintended modify/delete. Rejected as evidence for intended scenarios and repeated in fresh fixtures-v2 with exact blob staging."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-experiment"
+      ],
+      "id": "log-fixture-read",
+      "locator": "experiment-results-v2.json",
+      "occurredAt": "2026-09-14T17:47:58.097+08:00",
+      "outcome": "success",
+      "readRange": "Entire result record, all three scenarios",
+      "subquestionIds": [
+        "q-rules",
+        "q-history"
+      ],
+      "summary": "Ran trusted local Git fixture commands and read recorded source tips, result bytes, merge stdout/exit codes, stages and parent IDs. V2 inputs match intended scenarios."
+    }
+  ],
+  "schemaVersion": "1.0.0",
+  "status": "complete",
+  "stopReason": "Pinned source, official docs, and three corrected local observations answer the bounded core questions; strategy breadth is intentionally excluded. Static HTML authoring is authorized, runtime QA deferred pending approval.",
+  "subquestions": [
+    {
+      "claimIds": [
+        "c-base"
+      ],
+      "gapIds": [],
+      "id": "q-base",
+      "question": "Which inputs does a three-way merge use?",
+      "status": "answered"
+    },
+    {
+      "claimIds": [
+        "c-one-side",
+        "c-independent",
+        "c-conflict"
+      ],
+      "gapIds": [],
+      "id": "q-rules",
+      "question": "How do one-sided, separated and incompatible same-region edits differ?",
+      "status": "answered"
+    },
+    {
+      "claimIds": [
+        "c-snapshots",
+        "c-ff"
+      ],
+      "gapIds": [],
+      "id": "q-history",
+      "question": "Does Git replay commits, and must every merge create a new commit?",
+      "status": "answered"
+    },
+    {
+      "claimIds": [
+        "c-safety"
+      ],
+      "gapIds": [],
+      "id": "q-safety",
+      "question": "Does a textual merge outcome establish behavioral correctness?",
+      "status": "answered"
+    }
+  ],
+  "title": "Git merge: three snapshots, two comparisons, one decision"
+}
