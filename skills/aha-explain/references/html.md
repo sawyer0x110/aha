@@ -8,7 +8,9 @@ When authoring metadata or bilingual content, use [the language contract](langua
 
 ## Compose for the question
 
-Use a readable long-form document with headings, prose, lists, tables, code, quotations, and natural source links. Choose relationships deliberately: architecture/topology, sequence, comparison, timeline, data, or argument. Mix structures when useful. Use consistent arrow meanings, object identities, type hierarchy, spacing, and color semantics.
+Choose the reading structure from the question: a diagram-led single view, a direct comparison, an interactive exploration, a long-form document, or a mixture. HTML is a delivery medium, not a requirement to write an article. Use prose where it supplies a necessary relationship or qualification, and keep an accessible textual explanation of the visual argument. Do not add sections merely to make the page longer.
+
+Choose relationships deliberately: architecture/topology, sequence, comparison, timeline, data, or argument. Mix structures when useful. Use consistent arrow meanings, object identities, type hierarchy, spacing, and color semantics. Keep natural source links near supported claims.
 
 At composition, follow [visual design](visual-design.md) for runtime `--cp-*` roles, light/dark selectors, author/system preference, and `scoutTheme` overrides; optionally read only a chosen [theme section](design-themes.md). Give prose a comfortable measure; let wide tables and complex diagrams expand independently instead of squeezing them into the text column or turning the whole article into a slideshow.
 
@@ -38,6 +40,4 @@ node "<absolute installed skill>/scripts/aha.mjs" browser-check <project-directo
 
 `render-html` packages source without executing authored code; it is not evidence of visual quality. Browser execution needs reviewed code approval even when the HTML was packaged without execution. The CLI check does not replace actually opening and interacting with the delivered output.
 
-Check offline with network unavailable: fonts, diagrams, scripts, assets, Chinese/non-Latin text, long body, wide table, sequence diagram, and every useful interaction. Test desktop and narrow-screen layouts, keyboard navigation, zoom/reset, reduced motion, console errors, and source links. Inspect screenshots and the actual document; record what was and was not observed. Follow [artifact QA](artifact-qa.md).
-
-For bilingual output, switch and inspect both complete branches under the language acceptance checklist in QA; the initial English view and schema success cannot certify translation.
+Follow [artifact QA](artifact-qa.md) for offline desktop/narrow-screen, keyboard, reduced-motion, font and bilingual checks. Inspect every authored interaction and the structures actually present; long prose, wide tables and sequence diagrams are capability-test cases, not mandatory ingredients of every work. Record what was and was not observed.

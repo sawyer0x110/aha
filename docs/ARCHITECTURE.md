@@ -1,0 +1,135 @@
+# Aha 架构与实现边界
+
+当前 runtime 为 `0.3.0`，研究及作品协议为 `1.0.0`。产品行为见 [PRD](PRD.md)，命令与安装见 [README](../README.md)。
+
+## 1. 职责划分
+
+`宿主 Agent 调研 → 独立 Research Dossier → 媒介专属作品源 → 本地打包／渲染 → 分层 QA`
+
+| 层 | 职责 | 不负责 |
+| --- | --- | --- |
+| `aha-research` | 问题分解、实际取证、反证、综合和独立研究交付 | 强制选择呈现格式或预写讲稿 |
+| `aha-explain` | 必要的前置研究、内容与视觉设计、作品源和用户所选输出 | 统一页面 DSL、自动生成所有格式 |
+| runtime | 协议校验、身份、资源打包、渲染、音频计划与收据 | 联网搜索、自动判断证据真假、认证美观或理解 |
+| 宿主与评审 | 工具授权、隔离、实际内容／视觉检查、读者评估 | 用结构通过代替上述观察 |
+
+只发布两个独立 Skill。共享研究参考不是第三个入口；`aha-explain` 直接使用共享研究流程，不依赖宿主自动调用另一个 Skill。
+
+参考按职责和时机加载：研究时选来源路线，创作时选媒介，构图时选主题章节，验收时读 QA。
+
+## 2. 研究档案
+
+```text
+topic.research/
+  manifest.json
+  research.json
+  report.md
+```
+
+- `manifest.json` 保存协议版本、研究 ID 和内容哈希。
+- `research.json` 保存问题、类型、语言、报告、子问题、主张、证据、读取记录、缺口与停止理由。
+- `report.md` 与数据中的报告字符串一致；报告独立于任何媒介。
+
+子问题在协议中是扁平列表；问题树、受众、范围和预算写入报告，不添加未经声明的字段。代码证据保留必要的 UTF-8 内容、实际 SHA-256 和 commit／dirty／diff 身份。当前档案没有任意附件目录。
+
+`research-init` 创建待填草稿。`research-check --draft` 区分结构错误与待补内容，始终不授予交付身份。严格检查、build 和 validate 要求完整内容及一致引用；build 写入新目录，不覆盖已有档案。补证建立新快照，不修改已有作品绑定的事实底座。
+
+每份研究文档上限 4 MiB，整个 Dossier 上限 10 MiB。准确字段见[研究契约](../skills/shared/references/research-contract.md)及构建生成的 Schema；哈希和引用校验不证明来源支持主张。
+
+## 3. 作品项目
+
+```text
+topic-project/
+  artifact.json
+  research/
+    manifest.json
+    research.json
+    report.md
+  html/index.html       # HTML / image / video
+  pptx/main.mjs         # PPTX
+  qa/                  # 检查记录
+```
+
+每个项目只有一种格式，初始化只创建对应入口。可添加许可明确的本地资源；元数据不是统一布局或场景图。
+
+`artifact.json` 记录格式、研究身份、入口、尺寸、语言、标题、草稿／已编写状态、`coverage` 与 `omissions`。每个研究主张都需覆盖或明确省略；映射只检查引用，不证明正文存在、正确或可读。
+
+新项目包含 `language`。未声明该字段的项目保留单源行为，不自动翻译；完整选择规则见[语言契约](../skills/aha-explain/references/language.md)。
+
+源身份包含元数据及源文件，排除顶层 `research/`、`dist/`、`qa/`；研究单独验证。每个源文件上限 16 MiB，源总量上限 64 MiB。资源不得逃出项目或利用链接绕过限制，渲染产物及音频／计划目录放在项目外。
+
+共同契约各有权威位置：
+
+| 参考 | 管理内容 |
+| --- | --- |
+| [artifact-authoring](../skills/aha-explain/references/artifact-authoring.md) | 项目、源身份、覆盖、省略和交付生命周期 |
+| [execution](../skills/shared/references/execution.md) | 执行权限、诊断、依赖与隐私 |
+| [language](../skills/aha-explain/references/language.md) | 语言默认值、本地化根、切换与翻译 |
+| [artifact-qa](../skills/aha-explain/references/artifact-qa.md) | 内容、视觉、运行、编辑和理解的分层验收 |
+
+## 4. 媒介管线
+
+### HTML 与 PNG
+
+作者自由编写 HTML/CSS/JS、SVG 和 Mermaid；可选图解、比较、探索、长文或混合结构。
+
+`render-html` 内嵌受支持的本地资源并注入离线 CSP，不执行作者脚本。内置 Mermaid 使用随包本地库在浏览器中渲染，提供图形操作控件；检查或捕获前等待 `window.ahaMermaidReady`。不使用 CDN 或竞争的初始化器。
+
+运行时先提供缺省样式，作者 CSS 随后生效。`--cp-*` 是颜色角色接口，不是固定色值；自定义样式需处理浅深色选择器与控件。主题优先级为有效 `scoutTheme` 参数、作者根 `data-theme`、系统偏好；不自动添加主题切换 UI。
+
+双语 HTML 有英语和中文两个本地化根。运行时注入语言按钮，初始显示英语，切换标题、`html lang` 与非活动分支的隐藏状态，并派发 `aha:languagechange`。无在线翻译、语言 URL 参数或偏好存储。
+
+本地 classic JS、受支持的图片和字体可内嵌；模块脚本、动态导入、CDN、嵌入媒体等不属于打包契约。准确资源边界见 [HTML 指南](../skills/aha-explain/references/html.md)。
+
+PNG 使用独立 HTML/SVG 构图，经批准后由浏览器捕获元数据指定的完整视口。图像尺寸为宽 320–4096、高 240–16000；超限或溢出明确报错，不静默裁切。
+
+### 原生 PPTX
+
+`pptx/main.mjs` 导出接收 `{ pptx, research }` 的作者函数；运行时提供 PptxGenJS 实例并负责写文件。作者创建原生文字、形状、表格、图表和备注，不自行替换运行时或调用 `writeFile`。
+
+作者模块在 Node 中执行，有 60 秒超时但无 OS 沙箱。结构／OOXML 检查与实际演示应用渲染、代表对象编辑检查分别执行。没有演示应用时，视觉和编辑 QA 保持未完成。
+
+### 讲解视频
+
+画面由作者提供的 `window.ahaVideo.renderFrame(...)` 按帧设置，时间来自实际音频。每帧应由输入独立确定，不依赖随机数、墙钟或累积状态；捕获禁用自主 CSS 动画与过渡。
+
+`prepare-video` 创建待编写计划，旁白位于 `segments[].text`。当前完整计划经用户批准后，才允许 Edge TTS 外发或明确的 `provided-audio` 导入；本地渲染授权另行处理。
+
+当前固定 1280 × 720、30 fps、H.264/AAC，交付句／段级烧录字幕、SRT 和收据；上限 600 秒、200 段。没有逐字对齐或自定义字幕样式 API，画面需为固定字幕区域留空间。
+
+计划绑定整个作品源身份。即使只改颜色，也可能使音频绑定失效；不得手改哈希。旁白不变时，可在新计划获准后通过 `provided-audio` 重新导入已有授权音频，如实保留原合成来源并核对新时长。
+
+准确计划和音频字段见[视频契约](../skills/aha-explain/references/video-contract.md)，制作与播放检查见[视频指南](../skills/aha-explain/references/video.md)。
+
+## 5. 执行、分发与许可
+
+研究材料是数据，不授予执行权限。浏览器预览使用独立环境、阻断未批准网络；Node 作者代码仍具有本地权限。`--allow-code`、超时及静态扫描不构成沙箱，无法获得合适授权／隔离时只交源并说明阻塞。
+
+依赖按步骤诊断，缺失只影响相关操作：研究和 HTML 打包不需要浏览器，PNG 需要浏览器，视频渲染需要浏览器及 FFmpeg／ffprobe，在线配音另需 Python／Edge TTS。诊断不安装软件或证明在线服务可用。
+
+构建输出为 `dist/skills/aha-research` 和 `dist/skills/aha-explain`，各自携带 CLI、Schema、合并参考、本地 Mermaid、Playwright 库和第三方声明；源码 `skills/` 不是独立安装包。发布器生成 ZIP、清单、SHA-256 和安装工具，不自动上传；安装默认 dry-run，拒绝冲突及覆盖。
+
+实际依赖包括 Mermaid、parse5、PptxGenJS、TypeBox 和 Playwright，按锁定版本分发并保留 `THIRD-PARTY-NOTICES.txt`。浏览器、FFmpeg、Python 和 Edge TTS 客户端不随包分发；客户端许可不替代在线服务条款及数据授权。字体、图片、音频等素材需单独核实来源与再分发权限，不能把公开可读或非商业许可当作任意商用许可。
+
+## 6. 修订与交付身份
+
+新候选渲染到项目外的新位置，检查后才提升为当前交付。工作记录与公开目录分开；替换、归档、删除和公开发布限于用户授权范围。
+
+输出与收据成对保留原字节和文件名。磁盘收据记录输出文件名，CLI 返回完整目标路径；需新名字时在新目录按该名字重建，不改写收据。更新目录链接及 QA 身份，不将已失效的检查用于新产物。
+
+源码、研究和输出身份必须一致；不支持的协议版本、引用错误、链接路径和覆盖冲突明确失败。用户直接编辑成品时需说明是否同步回源，不能下次重建静默抹去。
+
+## 7. 代码与验证入口
+
+| 位置 | 职责 |
+| --- | --- |
+| `skills/` | 两个入口及渐进式指导 |
+| `src/research/` | 研究 Schema、台账、三文件档案与检查 |
+| `src/artifacts/` | 作品、源身份、资源打包、HTML／PNG／PPTX 和收据 |
+| `src/browser/` | 本地 Mermaid 与图形操作 |
+| `src/media/` | 旁白计划、音频、浏览器帧、编码与字幕 |
+| `src/cli/`、`src/core/` | 命令、检查、错误与通用身份 |
+| `scripts/` | 构建、发布、安装和评估准备 |
+| `tests/`、`evals/skills/` | 程序回归、固定材料及独立评分协议 |
+
+程序测试验证其直接覆盖的行为，不认证实际作品美观或研究结论。作品须做对应媒介的实际 QA，技能效果另按[评估协议](EVALUATION.md)比较；未收集的读者理解、未播放的音频和未执行的交互不写成通过。

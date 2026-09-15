@@ -12,7 +12,9 @@ Identity and reference checks establish metadata consistency, not semantic proof
 
 Apply [explanation editing](explanation-writing.md) to the actual reader-facing copy, including controls' feedback, headings, captions and narration. Read the title alone as a cold reader: the subject and question should be identifiable without the prompt or body. Check browser titles, gallery labels and covers too, separately in each language. Read prose without decorative layout, then check its correspondence with the visual. Flag unspecified referents, missing logical steps, unexplained terms, translated fragments and headlines that overstate the body. Record a locator, the ambiguity, the correction and remaining review gaps.
 
-Keep factual support, explanatory clarity, language quality, visual/native usability, and runtime/media integrity as separate observations in existing QA notes, not new required metadata. Passing byte comparisons, text-length checks, language switching or video decoding does not pass the editorial review. Agent editorial judgments are not human comprehension results; if comprehension is tested, ask readers to explain a new case and record their reasoning rather than counting functioning quiz buttons.
+Keep factual support, explanatory clarity, language quality, visual/native usability, and runtime/media integrity as separate observations in existing QA notes, not new required metadata. Passing byte comparisons, text-length checks, language switching or video decoding does not pass the editorial review. Agent editorial judgments are not human comprehension results.
+
+When the user requests evidence of understanding, agree a small learner evaluation separately from production QA. Ask intended readers to explain an unseen case that changes a meaningful condition, justify a prediction and identify where the explanation no longer applies. Collect their reasoning before revealing answers; self-reported understanding and copied page answers are not transfer evidence. Record prior knowledge, exposure and assistance, anonymized responses with consent, the rubric and unperformed items. For version comparisons, use anonymous labels and balanced allocation or matched tasks to reduce order and practice effects. Do not test the same reader on the same question twice and attribute practice gains to the skill. This is not a mandatory quiz in the artifact or a substitute for actual human participation.
 
 ## Review the requested medium
 
@@ -56,6 +58,6 @@ Generate and review only the formats the user requested. A single-medium request
 
 ## Revise and deliver
 
-Record actual tools, files, observations, defects, revisions, and unperformed checks in project QA notes. Fix the editable source, rebuild into a new destination, and inspect again. Do not only patch final output or cache. Keep previous snapshots.
+Record actual tools, files, observations, defects, revisions, and unperformed checks in project QA notes. Fix source, rebuild and inspect again. Use [artifact authoring's delivery lifecycle](artifact-authoring.md#working-history-and-current-delivery) for history, replacement, receipt pairing and the final handoff; do not repeat that checklist in each medium.
 
-Report: delivered paths and format, source/project path, bound research identity, factual limitations, resource/license notes, performed QA, remaining defects, and blocked checks. Do not claim a video or presentation is complete when required files or actual QA are missing. Keep audit metadata out of reader-facing content except natural sources and meaningful limitations.
+Do not claim a video or presentation is complete when required files or actual QA are missing. Keep audit metadata out of reader-facing content except natural sources and meaningful limitations.

@@ -17,4 +17,4 @@ node "<absolute installed skill>/scripts/aha.mjs" explain-check <project-directo
 node "<absolute installed skill>/scripts/aha.mjs" render-image <project-directory> <new.png> --allow-code
 ```
 
-Inspect the complete PNG and a realistic reading-size view. Check clipping, edge padding, tiny text, glyph fallback, connectors, legend consistency, image loading, and source readability. Recheck numbers and visual comparisons against research. A screenshot being produced proves neither full capture nor legibility. Deliver PNG plus editable source and report limitations; see [artifact QA](artifact-qa.md).
+Inspect the complete PNG and a realistic reading-size view. Check clipping, edge padding, tiny text, glyph fallback, connectors, legend consistency, image loading, and source readability. A screenshot being produced proves neither full capture nor legibility. Use [artifact QA](artifact-qa.md) for source review and acceptance, and [artifact authoring](artifact-authoring.md#working-history-and-current-delivery) for delivery.

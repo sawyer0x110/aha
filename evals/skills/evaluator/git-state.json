@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "recipe": "dirty-git-v1",
+  "commit_timestamp": "2030-01-01T00:00:00Z",
+  "staged": {
+    "path": "config.mjs",
+    "before": "export const maxAttempts = 2;",
+    "after": "export const maxAttempts = 3;"
+  },
+  "unstaged": {
+    "path": "worker.mjs",
+    "before": "await clock.sleep(retryDelayMs);",
+    "after": "await clock.sleep(retryDelayMs * 2);"
+  },
+  "untracked": {
+    "path": "ticket.md",
+    "content": "# Maintainer ticket\n\nOriginal synthetic fixture note. Please investigate a caller cancelling while a response is pending, not only before the first send. The transport in that scenario rejects with an AbortError. We also care about a transport that never settles after its deadline.\n"
+  }
+}

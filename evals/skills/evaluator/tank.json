@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "rubricVersion": 2,
+  "process_checks": "evaluator/process-checks.json",
+  "eval_id": 3,
+  "rubric": {
+    "correctness_source_support": [
+      {"id": "balance", "text": "Explains stored volume changing by inflow minus outflow, not pump-on implying constant rise. Distinguishes water amount/height from flow rates. Units, conversions and arithmetic are correct if used; no particular numerical derivation or initial height-rate calculation is required.", "locators": ["inputs/tank/observations.md#T1", "inputs/tank/observations.md#T2", "inputs/tank/observations.md#T3", "inputs/tank/observations.md#T4"]},
+      {"id": "changing-rate", "text": "Connects A's decreasing increments to larger calibrated outlet flow at greater height. B rises faster at the same pump setting; reduced drainage is consistent with the insert, not an observed stronger pump.", "locators": ["inputs/tank/observations.md#T3", "inputs/tank/observations.md#T4", "inputs/tank/observations.md#T5", "inputs/tank/observations.md#T6"]},
+      {"id": "boundary", "text": "A's 20 cm outlet calibration equals pump inflow, consistent with approaching balance at the capacity boundary if conditions persist; not a measured late-time plateau. No precise B equilibrium, overflow time, square-root law or fitted parameters are presented as observed facts. Assumptions/predictions are distinguished from records.", "locators": ["inputs/tank/observations.md#T1", "inputs/tank/observations.md#T2", "inputs/tank/observations.md#T3", "inputs/tank/observations.md#T6"]}
+    ],
+    "structure_operation": [
+      {"id": "offline", "text": "A local HTML deliverable is present and its statically inspectable dependencies support offline use. File/schema validity is not presented as evidence of learner comprehension."},
+      {"id": "source", "text": "Provides usable notebook/section provenance and labels synthetic observations and any model assumptions. No invented real-world experimental claim."}
+    ],
+    "clarity_visual": [
+      {"id": "open-form", "text": "Visual choices help distinguish amount, rates and changing behavior with legible labels/units. Reward useful charts, comparisons, sketches or other effective forms equally; no forced longform, flowchart or diagram quota."}
+    ],
+    "human_comprehension": [
+      {"id": "transfer", "text": "A learner must reason about a changed tank, not merely recall pictured values or say they understood. Leave uncollected scores null."}
+    ]
+  },
+  "transfer": [
+    {"id": "t1", "question": "新水箱当前进水 12 mL/s，出水 8 mL/s，底面积 80 cm²。十秒内高度大约怎样变化？忽略这十秒里的流量变化，并解释。", "expected_reasoning": "Net +4 mL/s, +40 mL over 10 s, +0.5 cm after dividing by 80 cm². Uses difference and volume-to-height, not inflow alone."},
+    {"id": "t2", "question": "一个水箱的水位暂时不变，能否认定泵坏了？给出另一种可能及可区分它们的测量。", "expected_reasoning": "Nonzero inflow can equal outflow; measure inlet/outlet rates instead of equating steady stock with no flow."},
+    {"id": "t3", "question": "保持进水不变，把出口收窄后，只测了前一分钟水位。能否据此精确报出一小时后的水位？还需要什么？", "expected_reasoning": "No exact extrapolation without new height-dependent outlet relation, capacity/overflow conditions and stability assumptions; narrower outlet tends toward greater accumulation initially, not a guaranteed measured final height."}
+  ]
+}

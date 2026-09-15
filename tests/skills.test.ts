@@ -277,7 +277,8 @@ test('format references describe free authoring and truthful media capabilities'
   const html = await reference('html.md');
   for (const concept of [/Mermaid/, /SVG/, /keyboard/i, /reduced.motion/i, /narrow.screen/i, /offline/i]) assert.match(html, concept);
   const image = await reference('image.md');
-  for (const concept of [/independent.*composition/i, /reading.size/i, /crop/i, /editable source/i]) assert.match(image, concept);
+  for (const concept of [/independent.*composition/i, /reading.size/i, /crop/i]) assert.match(image, concept);
+  assert.ok(relativeLinks(image).includes('artifact-authoring.md#working-history-and-current-delivery'));
   const pptx = await reference('pptx.md');
   for (const concept of [/export default async/, /pptx, research/, /native text/i, /12-slide/, /OOXML/, /not visual review/i]) assert.match(pptx, concept);
   const video = await reference('video.md');
@@ -365,6 +366,38 @@ test('editorial guidance checks standalone entry points before introducing examp
   assert.match(await reference('artifact-qa.md'), /title alone as a cold reader/i);
 });
 
+test('HTML structures are alternatives rather than mandatory article ingredients', async () => {
+  const html = await reference('html.md');
+  assert.match(html, /diagram-led single view/);
+  assert.match(html, /interactive exploration/);
+  assert.match(html, /accessible textual explanation/);
+  assert.match(html, /not mandatory ingredients/);
+  assert.doesNotMatch(html, /Use a readable long-form document/);
+});
+
+test('common contracts have explicit owners and delivery distinguishes history from current output', async () => {
+  const authoring = await reference('artifact-authoring.md');
+  for (const concept of [
+    /owns permissions and dependencies/, /owns final acceptance/, /owns source identity/,
+    /Working history/, /Current delivery/, /CLI still rejects overwrites/,
+    /user-authorized scope/, /output and its receipt together/, /original output filename/,
+    /not an atomic publishing feature/, /cleanup was not authorized/,
+  ]) assert.match(authoring, concept);
+  const lifecycle = 'artifact-authoring.md#working-history-and-current-delivery';
+  for (const name of ['artifact-qa.md', 'image.md', 'pptx.md', 'video.md']) {
+    assert.ok(relativeLinks(await reference(name)).includes(lifecycle), `${name}: shared delivery contract`);
+  }
+});
+
+test('learner acceptance requires unseen reasoning and does not treat model judgment as human evidence', async () => {
+  const qa = await reference('artifact-qa.md');
+  for (const concept of [
+    /unseen case/, /before revealing answers/, /prior knowledge/,
+    /anonymized responses with consent/, /balanced allocation or matched tasks/,
+    /practice gains/, /not a mandatory quiz/,
+  ]) assert.match(qa, concept);
+});
+
 test('editorial evaluation prompts preserve concrete evidence and held-out topic coverage', async () => {
   const fixtures = JSON.parse(await fs.readFile(path.join(root, 'tests', 'fixtures', 'explanation-writing-evals.json'), 'utf8')) as {
     skill_name: string;
@@ -373,6 +406,7 @@ test('editorial evaluation prompts preserve concrete evidence and held-out topic
   };
   assert.equal(fixtures.skill_name, 'aha-explain');
   assert.match(fixtures.scope, /not full media generation/);
+  assert.match(fixtures.scope, /answer-rich rewriting regression/i);
   assert.deepEqual(fixtures.evals.map(item => item.id), [1, 2, 3]);
   assert.deepEqual(fixtures.evals.map(item => item.name), ['anc-opening', 'git-net-change', 'cold-glass-transfer']);
   for (const item of fixtures.evals) {

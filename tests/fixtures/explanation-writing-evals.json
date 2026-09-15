@@ -1,6 +1,6 @@
 {
   "skill_name": "aha-explain",
-  "scope": "Short editorial evaluation only; not full media generation, blind testing or learner acceptance.",
+  "scope": "Short editorial evaluation only: answer-rich rewriting regression, not evidence of autonomous research or skill uplift; not full media generation, blind testing or learner acceptance. Raw-material tasks and withheld rubrics live in evals/skills.",
   "evals": [
     {
       "id": 1,

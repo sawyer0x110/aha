@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "rubricVersion": 2,
+  "process_checks": "evaluator/process-checks.json",
+  "eval_id": 1,
+  "rubric": {
+    "correctness_source_support": [
+      {"id": "revision", "text": "Uses corrected 30.3 vs 31.8 °C / 1.5 °C observed difference, reconciles obsolete 2.0 °C rather than averaging versions.", "locators": ["inputs/public-topic/01-initial-report.md#B2", "inputs/public-topic/03-field-methods.md#M3", "inputs/public-topic/04-correction.md#C1", "inputs/public-topic/04-correction.md#C2"]},
+      {"id": "independence", "text": "CW-02 repeats CW-01 and is not independent corroboration. ML-07 is independent but measures different surfaces/materials; 3.0 °C plate difference is not a replicated 3 °C bus-stop air reduction.", "locators": ["inputs/public-topic/02-news-brief.md#N2", "inputs/public-topic/05-independent-note.md#I1", "inputs/public-topic/05-independent-note.md#I2"]},
+      {"id": "limits", "text": "Distinguishes nonrandom observed groups from causal effect and comfort cards from health/safety outcomes. No live search, real study, approved expansion or medical benefit is invented.", "locators": ["inputs/public-topic/03-field-methods.md#M1", "inputs/public-topic/03-field-methods.md#M4", "inputs/public-topic/01-initial-report.md#B3", "inputs/public-topic/01-initial-report.md#B4", "inputs/public-topic/05-independent-note.md#I3"]},
+      {"id": "decision", "text": "Offers proportionate next-step advice; any scale-up endorsement is conditional on uncertainties rather than falsely settled effectiveness.", "locators": ["inputs/public-topic/04-correction.md#C3", "inputs/public-topic/03-field-methods.md#M1"]}
+    ],
+    "structure_operation": [
+      {"id": "traceability", "text": "The report includes readable exact document/section locators and provided-material synthetic scope. Any described schema checks are distinguished from empirical research evidence."}
+    ],
+    "clarity_visual": [
+      {"id": "editor-utility", "text": "An editor can find the current conclusion, confidence and supporting evidence without reconstructing an evidence dump. Judge communication, not prescribed heading count or diagram count."}
+    ],
+    "human_comprehension": [
+      {"id": "transfer", "text": "Score only consented learner reasoning on withheld transfer questions. Artifact quality and self-reported understanding are not learner scores."}
+    ]
+  },
+  "transfer": [
+    {"id": "p1", "question": "另一个试点有四篇新闻都引用同一份办公室表格。这相当于几次独立测量？你还想要什么证据？", "expected_reasoning": "One originating measurement set, not four replications; request independent observations with comparable methods/outcomes and check provenance."},
+    {"id": "p2", "question": "新通知把温差从 2.4 改成 1.8 度，同时说明有校准误差。应把两个数字平均吗？修正后能否确定是设施造成了降温？", "expected_reasoning": "Use superseding corrected value with version explanation, not average a known error; calibration correction alone does not remove allocation/environment confounding."},
+    {"id": "p3", "question": "另一材料实验使座椅表面降低 4 度，但没有乘客数据。这能证明中暑人数减少吗？", "expected_reasoning": "No: surface temperature is a different endpoint and setting; requires passenger exposure/health evidence, not endpoint substitution."}
+  ]
+}

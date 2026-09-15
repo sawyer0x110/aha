@@ -9,15 +9,15 @@
 | `aha-research` | 分解复杂问题、实际取证、多轮补查、反证与综合判断 | 独立研究档案、报告、来源与缺口 |
 | `aha-explain` | 内容策划、媒介设计、编写作品源、渲染与检查 | 富文本 HTML／Mermaid／交互图、一图流 PNG、原生 PPTX、Edge TTS 视频 |
 
-runtime **0.3.0**，研究与作品协议 **1.0.0**。不再发布 `aha-lab`／`aha-story` 或旧命令别名，不要求研究先选模型、建立实验或编写 slides。旧 Pack 不会被自动转换或删除。
+runtime **0.3.0**，研究与作品协议 **1.0.0**。研究独立于媒体格式，不要求先选模型、建立实验或编写 slides。不支持的协议或命令明确报错，不自动转换或删除用户数据。
 
-产品需求见 [PRD](docs/PRD.md)，架构取舍见 [重构方案](docs/SKILLS-REDESIGN.md)，研究工作法见 [研究协议](docs/RESEARCH.md)，上游方法与许可边界见 [参考记录](docs/REFERENCE-ADOPTION.md)。
+产品需求见 [PRD](docs/PRD.md)，实现与许可边界见 [架构说明](docs/ARCHITECTURE.md)，研究工作法见 [研究协议](docs/RESEARCH.md)，技能效果验证见 [评估协议](docs/EVALUATION.md)。
 
-实际案例见 [examples](examples/README.md)：基于最新写作指导重新创作的降噪耳机与 Git merge 双语交互 HTML，附必要的调研、可编辑源和当前检查记录。旧的多格式产物与历史评估已清理。
+实际案例见 [examples](examples/README.md)：降噪耳机与 Git merge 双语交互 HTML，附调研、可编辑源和当前检查记录。
 
 ## 自由创作，不是填写统一卡片
 
-研究档案保存结论、证据、报告与身份。每个媒介有独立作品源和内容覆盖：HTML 可以是长文、表格、SVG、Mermaid 和任意本地交互；图片按目标尺寸重新构图；PPTX 使用原生对象；视频由作者编写按帧变化的 HTML／SVG／canvas 场景。
+研究档案保存结论、证据、报告与身份。每个媒介有独立作品源和内容覆盖：HTML 可以是图解主导的单屏、比较、交互探索、长文或混合结构，使用表格、SVG、Mermaid 和受离线契约约束的本地交互；不默认要求写成长文章。图片按目标尺寸重新构图；PPTX 使用原生对象；视频由作者编写按帧变化的 HTML／SVG／canvas 场景。
 
 共用事实，不共用固定布局。模板只是待编写的起点，未经编写的 scaffold 不会被当成完成作品。改变结构不需要给共享 Schema 增加一个题材专属字段。
 
@@ -81,7 +81,7 @@ node .\dist\cli\aha.mjs research-init "这个代码库如何处理请求失败�
 node .\dist\cli\aha.mjs research-check ".\artifacts\topic.draft.json" --draft
 ```
 
-完整操作示例见[带纠正材料的研究案例](skills/shared/references/research-example.md)，明确使用虚构材料，不冒充真实调研。完成内容后，原有严格检查与封存流程不变：
+完整操作示例见[带纠正材料的研究案例](skills/shared/references/research-example.md)，明确使用虚构材料，不冒充真实调研。完成内容后执行严格检查与封存：
 
 ```powershell
 node .\dist\cli\aha.mjs research-check ".\artifacts\topic.draft.json"
@@ -106,7 +106,7 @@ node .\dist\cli\aha.mjs explain-init ".\artifacts\topic.research" html ".\artifa
 | HTML | `bilingual`，初始英语，内置 English/中文切换按钮 | `en`、`zh`、`bilingual` |
 | image／pptx／video | `en`，即使问题或研究为中文 | `en`、`zh`；拒绝 `bilingual` |
 
-明确要求中文输出时使用 `--language zh`，不能仅因提问语言推断输出偏好。新项目总写入 `artifact.language`；该字段为兼容旧项目而可选，缺失时保留旧单源行为，不自动转为双语，视频声线有效回退为英语。语言只作用于作品：由 Agent 编写译文，不翻译／修改绑定的研究档案，也不调用在线自动翻译。
+明确要求中文输出时使用 `--language zh`，不能仅因提问语言推断输出偏好。新项目总写入 `artifact.language`；协议允许该字段缺失，此时保留单源行为，不自动转为双语，视频声线有效回退为英语。语言只作用于作品：由 Agent 编写译文，不翻译／修改绑定的研究档案，也不调用在线自动翻译。
 
 双语 HTML 必须编写恰好两个不嵌套的顶层本地化根：`<section data-aha-lang="en" lang="en" data-aha-title="English title">` 和 `<section data-aha-lang="zh" lang="zh-CN" data-aha-title="中文标题">`，各自闭合并包含完整内容。标题、正文、图表、Mermaid 控件／图注、无障碍标签、限制和引用措辞须准确对应，保留证据、Claim ID、单位、否定与不确定性。可共享中性图形／资源，根之外不得遗留未翻译的读者正文；布局和样式仍由作者自由设计。
 
@@ -130,7 +130,7 @@ node .\dist\cli\aha.mjs render-image ".\artifacts\topic-image" ".\artifacts\topi
 node .\dist\cli\aha.mjs render-pptx ".\artifacts\topic-pptx" ".\artifacts\topic.pptx" --allow-code
 ```
 
-PNG 捕获专门编写的一图流，不截图整个文章作为海报。PPTX 入口接收随运行时提供的 PptxGenJS 实例，自由添加文本、形状、图表与页面，没有旧版 12 页限制；不能把“写出了 PPTX”当作原生编辑和逐页视觉都已验收。
+PNG 捕获专门编写的一图流，不截图整个文章作为海报。PPTX 入口接收随运行时提供的 PptxGenJS 实例，自由添加文本、形状、图表与页面，按内容需要安排页数；不能把“写出了 PPTX”当作原生编辑和逐页视觉都已验收。
 
 ## 3. Edge TTS 与动态讲解视频
 
@@ -149,7 +149,7 @@ node .\dist\cli\aha.mjs synthesize ".\artifacts\topic-video" ".\artifacts\video-
 node .\dist\cli\aha.mjs render-video ".\artifacts\topic-video" ".\artifacts\video-plan.json" ".\artifacts\audio-v1" ".\artifacts\topic.mp4" --approve "<已批准的planHash>" --allow-code
 ```
 
-`prepare-video` 新计划按作品语言选择声线：`en`（以及缺失旧语言字段）为 `en-US-JennyNeural`，`zh` 为 `zh-CN-XiaoxiaoNeural`。计划仍显式保存 `voice`，不会重写已有作者计划；草稿主张建议也不是自动译好的旁白。在线客户端固定 `edge-tts==7.2.8`，只外发获准旁白和声音参数。用户逐句音频使用 `import-audio` 和明确的 `provided-audio` 提供方，不能冒称在线合成成功。命令见 `help`。
+`prepare-video` 新计划按作品语言选择声线：`en`（以及未声明语言）为 `en-US-JennyNeural`，`zh` 为 `zh-CN-XiaoxiaoNeural`。计划仍显式保存 `voice`，不会重写已有作者计划；草稿主张建议也不是自动译好的旁白。在线客户端固定 `edge-tts==7.2.8`，只外发获准旁白和声音参数。用户逐句音频使用 `import-audio` 和明确的 `provided-audio` 提供方，不能冒称在线合成成功。命令见 `help`。
 
 翻译旁白会改变计划哈希，必须重新校验并让用户完整批准当前旁白、提供方、声线、语速和外发范围。烧录字幕与 SRT 来自作者编写的 `segments[].text`，不自动翻译。
 
@@ -183,7 +183,7 @@ node .\dist\cli\aha.mjs render-video ".\artifacts\topic-video" ".\artifacts\vide
 
 不自动安装软件、下载浏览器、搜索私有目录或公开上传。浏览器预览隔离登录状态并阻断外部资源；**Node 作者代码仍具有本地进程权限，超时与 `--allow-code` 不是 OS 沙箱**。有疑虑时在真正隔离的环境构建，不能授权时只交待执行源并说明未渲染。
 
-来源命令是材料，不执行。新输出不覆盖旧文件；发布目标位于作品目录外，研究与创作源可保留。分享前检查正文、备注与资源清单，私有标签不提供加密。
+来源命令是材料，不执行。新候选输出位于作品目录外，不覆盖旧文件；工作历史与当前交付目录分开，后者只展示选定版本和必要材料。只有用户授权明确范围后才替换、归档或删除；成品与收据成对保留、校验身份并更新链接及 QA。磁盘收据记录输出文件名，CLI 结果另含完整目标路径；复制时保留原文件名，需要改名则在新目录按目标名字重建，不手改收据。完整生命周期见[创作契约](skills/aha-explain/references/artifact-authoring.md#working-history-and-current-delivery)。分享前检查正文、备注与资源清单，私有标签不提供加密。
 
 ## 验证与质量
 
@@ -197,3 +197,5 @@ npm run test:media
 单元／分发／CLI、浏览器交互、媒体集成分开运行。媒体集成使用本地测试音频，不替代真实 Edge TTS 或人工听审；PPTX 包内容检查不替代实际演示程序中的视觉检查。
 
 最终质量还需对关键断言回查来源、核对媒介内容覆盖、检查实际尺寸下的版式与交互、观看完整视频。不以静态 Skill 文本检查或一个成功退出码冒充这些验收。
+
+技能效果评估见[评估协议](docs/EVALUATION.md)：固定原始材料和具体代码夹具，用准备工具分离作者输入与评分答案，比较相同条件下的候选与基线。内容断言与过程证据分别评分；改写回归不证明技能能主动补足推理或产生稳定增益。真实读者需解释未展示的新案例并给出理由；没有真人数据时保持待验证。评估产出放独立工作目录，不污染 `examples` 当前作品集。

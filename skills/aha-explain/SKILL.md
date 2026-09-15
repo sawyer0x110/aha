@@ -18,4 +18,4 @@ Create only the requested medium. For a visual explanation with no specified med
 
 All commands use `node "<absolute installed skill>/scripts/aha.mjs" ...`, resolved from this installation, never an assumed working-directory path. When capabilities are unknown, use `doctor --for <current-step>` as described in execution; missing optional tools block only the corresponding step, not unrelated authoring.
 
-Deliver the requested output plus editable source, research snapshot identity, resource/license notes, and honest QA results or blockers. Do not expose full private research by default. Metadata consistency is not semantic proof; static checks are not visual review, and the runtime is not a sandbox.
+Use [artifact authoring's delivery lifecycle](references/artifact-authoring.md#working-history-and-current-delivery) to distinguish current deliverables from working history and provide source, research identity, resource notes and QA limits. Do not expose full private research by default. Metadata consistency is not semantic proof; static checks are not visual review, and the runtime is not a sandbox.
