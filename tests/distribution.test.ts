@@ -94,16 +94,19 @@ test('release allowlist rejects workspace files, unsafe names and unexpected dep
   }
 });
 
-test('extracted builtin-only installer defaults to dry-run and installs both project hosts', async () => {
-  for (const host of ['copilot', 'codex']) {
-    const project = path.join(workspace, `project ${host}`);
+test('installer defaults to the shared path with optional Copilot and Codex labels', async () => {
+  for (const host of [undefined, 'copilot', 'codex']) {
+    const project = path.join(workspace, `project ${host ?? 'default'}`);
     await fs.mkdir(project);
-    const dry = JSON.parse(invoke(['--host', host, '--project', project]).stdout);
+    const args = [...(host ? ['--host', host] : []), '--project', project];
+    const dry = JSON.parse(invoke(args).stdout);
     assert.equal(dry.mode, 'dry-run');
+    assert.equal(dry.host, host);
     assert.deepEqual(await fs.readdir(project), []);
-    const applied = JSON.parse(invoke(['--host', host, '--project', project, '--apply']).stdout);
-    const discovery = path.join(project, host === 'copilot' ? '.github' : '.agents', 'skills');
+    const applied = JSON.parse(invoke([...args, '--apply']).stdout);
+    const discovery = path.join(project, '.agents', 'skills');
     assert.equal(applied.destination, discovery);
+    assert.equal(applied.host, host);
     assert.deepEqual((await fs.readdir(discovery)).sort(), [...names].sort());
     assert.ok(!(await fs.readdir(project)).some(name => name.startsWith('.aha-install-')));
     for (const name of names) {
@@ -111,8 +114,19 @@ test('extracted builtin-only installer defaults to dry-run and installs both pro
       const original: Record<string, Buffer> = await installer.inventory(path.join(extracted, 'skills', name));
       assert.deepEqual(installed, original);
     }
-    assert.match(invoke(['--host', host, '--project', project, '--apply'], 1).stderr, /already exists/);
+    assert.deepEqual(await fs.readdir(project), ['.agents']);
+    assert.match(invoke([...args, '--apply'], 1).stderr, /already exists/);
   }
+});
+
+test('optional host metadata does not impose a host allowlist or choose a discovery path', async () => {
+  const project = path.join(workspace, 'custom host label');
+  await fs.mkdir(project);
+  const dry = JSON.parse(invoke(['--host', 'another-agent', '--project', project]).stdout);
+  assert.equal(dry.host, 'another-agent');
+  assert.equal(dry.destination, path.join(project, '.agents', 'skills'));
+  assert.deepEqual(await fs.readdir(project), []);
+  assert.match(invoke(['--host', ' ', '--project', project], 1).stderr, /nonempty label/);
 });
 
 test('each packaged skill doctor resolves only builtins and that independent skill', async () => {
@@ -151,13 +165,25 @@ export async function resolve(specifier, context, next) {
 
 test('collision preflight preserves every existing target and creates no other skills', async () => {
   const project = path.join(workspace, 'collision');
-  const existing = path.join(project, '.github', 'skills', 'aha-explain');
+  const existing = path.join(project, '.agents', 'skills', 'aha-explain');
   await fs.mkdir(existing, { recursive: true });
   await fs.writeFile(path.join(existing, 'keep.txt'), 'existing work');
   assert.match(invoke(['--host', 'copilot', '--project', project, '--apply'], 1).stderr, /already exists/);
   assert.deepEqual(await fs.readdir(path.dirname(existing)), ['aha-explain']);
   assert.equal(await fs.readFile(path.join(existing, 'keep.txt'), 'utf8'), 'existing work');
-  assert.deepEqual(await fs.readdir(project), ['.github']);
+  assert.deepEqual(await fs.readdir(project), ['.agents']);
+});
+
+test('prior host-specific installations block duplicate discovery without deleting files', async () => {
+  for (const discovery of ['.github', '.claude']) {
+    const project = path.join(workspace, `existing-${discovery.slice(1)}`);
+    const existing = path.join(project, discovery, 'skills', 'aha-explain');
+    await fs.mkdir(existing, { recursive: true });
+    await fs.writeFile(path.join(existing, 'keep.txt'), 'existing installation');
+    assert.match(invoke(['--project', project, '--apply'], 1).stderr, /another discovery directory/);
+    assert.deepEqual(await fs.readdir(project), [discovery]);
+    assert.equal(await fs.readFile(path.join(existing, 'keep.txt'), 'utf8'), 'existing installation');
+  }
 });
 
 test('exclusive publication rolls back only its own reservations on a late collision', async () => {
@@ -187,7 +213,7 @@ test('symlink/junction defenses cover destination ancestors, project and source'
   const project = path.join(workspace, 'link project');
   await fs.mkdir(outside);
   await fs.mkdir(project);
-  const junction = path.join(project, '.github');
+  const junction = path.join(project, '.agents');
   await fs.symlink(outside, junction, process.platform === 'win32' ? 'junction' : 'dir');
   assert.match(invoke(['--host', 'copilot', '--project', project, '--apply'], 1).stderr, /Symlink\/junction/);
   const alias = path.join(workspace, 'project alias');
