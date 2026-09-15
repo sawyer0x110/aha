@@ -1,0 +1,81 @@
+name: Release portable skills
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  package:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Check release version
+        run: |
+          $Package = Get-Content .\package.json -Raw | ConvertFrom-Json
+          $Lock = Get-Content .\package-lock.json -Raw | ConvertFrom-Json -AsHashtable
+          if ($env:GITHUB_REF_NAME -notmatch '^v\d+\.\d+\.\d+$') {
+            throw 'Only stable v<major>.<minor>.<patch> tags can be published.'
+          }
+          if ($env:GITHUB_REF_NAME -ne "v$($Package.version)" -or
+              $Lock.version -ne $Package.version -or
+              $Lock.packages[''].version -ne $Package.version) {
+            throw 'Release tag, package version and lockfile version must match.'
+          }
+      - run: npm ci --ignore-scripts
+      - run: npm run typecheck
+      - run: npm run build
+      - name: Check distribution and installed command contracts
+        run: node --import tsx --test .\tests\distribution.test.ts .\tests\cli.test.ts .\tests\skills.test.ts
+      - name: Create release assets
+        id: package
+        run: |
+          $Result = node .\scripts\release.mjs
+          if ($LASTEXITCODE -ne 0) { throw 'Release packaging failed.' }
+          $Release = $Result | ConvertFrom-Json
+          "directory=$($Release.directory)" >> $env:GITHUB_OUTPUT
+      - uses: actions/upload-artifact@v4
+        with:
+          name: portable-skills
+          path: ${{ steps.package.outputs.directory }}\*
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: package
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: portable-skills
+          path: release-assets
+      - name: Publish versioned release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $Version = $env:GITHUB_REF_NAME.Substring(1)
+          gh release create $env:GITHUB_REF_NAME `
+            ".\release-assets\aha-skills-$Version.zip" `
+            .\release-assets\release-manifest.json `
+            .\release-assets\SHA256SUMS.txt `
+            .\release-assets\INSTALL.md `
+            --repo $env:GITHUB_REPOSITORY --verify-tag `
+            --title "Aha Skills $Version" --generate-notes
+          if ($LASTEXITCODE -ne 0) { throw 'Release publishing failed; existing releases are not overwritten.' }

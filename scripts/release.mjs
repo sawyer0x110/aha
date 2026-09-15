@@ -8,6 +8,10 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const json = value => `${JSON.stringify(value, null, 2)}\n`;
 export const installationGuide = `# Aha portable skills: local release
 
+Repository installation entry (release discovery, upgrades and host acceptance):
+https://github.com/sawyer0x110/aha/blob/main/INSTALL.md
+Use this packaged guide for the commands belonging to this release.
+
 Requires Node.js 22+. Extract the ZIP to a new, empty directory. Keep all files.
 No npm installation is needed. Each of aha-research and aha-explain is
 independently usable, including its own runtime, bundled dependencies and notices.
