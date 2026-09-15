@@ -1,0 +1,31 @@
+{
+  "createdAt": "2026-09-15T08:46:25.426Z",
+  "researchHashes": {
+    "core": "b547322594e90fb21a9aad36c40b7658cfe6c73d591e69481d95fdc20408a3bf",
+    "examples": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d"
+  },
+  "formats": {
+    "html": {
+      "researchHash": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d",
+      "outputHash": "52d1fec35750ceef8757ea1c42bd4c04844f9070d97a2772fcff21f828179782",
+      "sourceHash": "63811189513a479cae35abe0f99bb57398a2c849fc0f38b4d4a417b8b8940a89"
+    },
+    "image": {
+      "researchHash": "b547322594e90fb21a9aad36c40b7658cfe6c73d591e69481d95fdc20408a3bf",
+      "outputHash": "0cf4c56c8bb9b692383bdc8c0e427fe567742be78df1d13a10e96a052038d2d2",
+      "sourceHash": "e65a85881aca35bf11db8acf903b8cc3053f09ef0f6b68065167db1a220c20c8"
+    },
+    "pptx": {
+      "researchHash": "b547322594e90fb21a9aad36c40b7658cfe6c73d591e69481d95fdc20408a3bf",
+      "outputHash": "cb802ae47df7fdffaa61f4d52bd98c5d7c174636fc01129b4670ab229bf2d290",
+      "sourceHash": "9f268f29af320f688ac833cbd38deb356d12e7fb44c4a9eaa062fb583c81d542"
+    },
+    "video": {
+      "researchHash": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d",
+      "outputHash": "b729e3e02a411b61b69ee7fa132ba3a8565c78eacd9fecdd0d92a8abb47aed02",
+      "sourceHash": "3945fa289781baf14d094d1e1c962af2c3f7cd53cfe38a9822b7069e9a1471a9",
+      "seconds": 111,
+      "frames": 3330
+    }
+  }
+}

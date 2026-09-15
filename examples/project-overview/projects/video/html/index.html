@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aha: turn a difficult question into a visual explanation</title><script>(() => {
+  const param = new URLSearchParams(window.location.search).get("scoutTheme");
+  const authored = document.documentElement.getAttribute("data-theme");
+  const theme =
+    param === "light" || param === "dark" ? param :
+    authored === "light" || authored === "dark" ? authored :
+    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  document.documentElement.setAttribute("data-theme", theme);
+})();</script><style>
+:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--cp-bg); color: var(--cp-text); font: 16px/1.6 "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif; }
+code, pre { font-family: Consolas, "Courier New", Courier, monospace; }
+a { color: var(--cp-link); }
+button { font: inherit; min-height: 44px; padding: 8px 12px; border: 1px solid var(--cp-border); border-radius: 0.625rem; color: var(--cp-text); background: var(--cp-surface); cursor: pointer; }
+button:hover { background: var(--cp-accent-soft); }
+:focus-visible { outline: 3px solid var(--cp-accent); outline-offset: 3px; }
+
+main { width: 1280px; height: 720px; }
+[hidden] { display: none !important; }
+.scene { position: absolute; inset: 38px 64px 184px; }
+.eyebrow { color: var(--cp-accent); font: 650 18px/1.5 Consolas, "Courier New", Courier, monospace; letter-spacing: .1em; }
+h1, h2, h3, p { margin: 0; }
+h1 { font-size: 72px; line-height: 1.05; letter-spacing: -.035em; margin-top: 24px; }
+h2 { font-size: 40px; line-height: 1.15; max-width: 1100px; margin-top: 20px; }
+h3 { font-size: 28px; line-height: 1.2; }
+.lead { font-size: 28px; line-height: 1.4; max-width: 920px; margin-top: 28px; }
+.mark { color: var(--cp-accent); font-size: 96px; font-weight: 700; line-height: 1; margin-top: 24px; }
+.tagline { font-size: 42px; font-weight: 600; line-height: 1.25; margin-top: 22px; max-width: 970px; }
+.chips { display: flex; gap: 16px; margin-top: 28px; }
+.chip { padding: 12px 20px; border: 1px solid var(--cp-accent); border-radius: 8px; font-size: 22px; }
+.split-title { width: 340px; font-size: 36px; }
+.explanation { width: 330px; font-size: 23px; line-height: 1.45; margin-top: 24px; }
+.sample { position: absolute; object-fit: contain; background: var(--cp-surface); border: 1px solid var(--cp-border); border-radius: 10px; }
+.pressure-plot { left: 380px; top: 134px; width: 480px; height: 353px; }
+.phase-control { left: 898px; top: 144px; width: 250px; height: 350px; object-position: top; }
+.sample-note { position: absolute; bottom: -10px; left: 0; font-size: 16px; color: var(--cp-text-soft); }
+.history { left: 426px; top: 170px; width: 260px; height: 309px; }
+.result { left: 752px; top: 170px; width: 386px; height: 315px; }
+.sample-label { position: absolute; top: 76px; font-size: 21px; font-weight: 600; color: var(--cp-text-muted); }
+.sample-label[data-current="true"] { color: var(--cp-accent); text-decoration: underline; text-underline-offset: 8px; }
+.plot-legend { position: absolute; left: 388px; top: 112px; display: flex; gap: 16px; font-size: 17px; }
+.plot-legend span::before { content: ""; display: inline-block; width: 26px; margin-right: 6px; vertical-align: middle; border-top: 2px solid var(--cp-text); }
+.plot-legend .speaker::before { border-top: 3px dashed var(--cp-accent); }
+.plot-legend .residual::before { border-top: 5px solid var(--cp-accent); }
+.reading-step { position: absolute; top: 33px; left: 388px; font-size: 18px; color: var(--cp-text-soft); }
+.workflow { display: grid; grid-template-columns: 1fr 55px 1fr 55px 1fr; align-items: center; margin-top: 34px; }
+.step { background: var(--cp-surface); border: 2px solid var(--cp-border-strong); border-radius: 12px; padding: 24px; min-height: 230px; }
+.step p { font-size: 22px; margin-top: 18px; }
+.step[data-active="true"] { border-color: var(--cp-accent); background: var(--cp-accent-soft); }
+.arrow { text-align: center; color: var(--cp-accent); font-size: 38px; }
+.workflow-foot { font-size: 23px; margin-top: 22px; }
+.format-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; margin-top: 24px; }
+.format-card { height: 330px; border: 2px solid var(--cp-border); border-radius: 12px; padding: 20px; background: var(--cp-surface); }
+.format-card[data-active="true"] { border: 4px solid var(--cp-accent); padding: 18px; }
+.format-card h3 { color: var(--cp-accent); font-size: 24px; }
+.format-card p { font-size: 20px; margin-top: 12px; }
+.format-card img { width: 100%; height: 166px; object-fit: contain; margin-top: 14px; }
+.video-icon { display: flex; gap: 10px; height: 175px; align-items: center; justify-content: center; }
+.bar { width: 18px; height: 60px; border-radius: 8px; background: var(--cp-accent); }
+.end-note { font-size: 20px; margin-top: 26px; color: var(--cp-text-soft); }
+.spoken[data-speaking="true"], .sample-note[data-speaking="true"], .end-note[data-speaking="true"] { color: var(--cp-accent); }
+.workflow-foot [data-speaking="true"] { color: var(--cp-accent); text-decoration: underline; text-underline-offset: 5px; }
+.chip[data-speaking="true"] { background: var(--cp-accent); color: var(--cp-accent-fg); }
+html, body { width: 1280px; height: 720px; overflow: hidden; }
+</style></head><body>
+<main>
+<section class="scene" id="opening"><div class="eyebrow">MEET AHA / TWO SKILLS FOR YOUR AGENT</div><div class="mark">Aha</div>
+<h1><span class="spoken" data-headline="0">A difficult question.</span><br><span class="spoken" data-headline="1">A visual explanation.</span></h1><p class="lead">Research it deeply. Help someone else understand it.</p></section>
+<section class="scene" id="anc" hidden><div class="eyebrow">REAL ARTIFACT / NOISE-CANCELLING HEADPHONES</div>
+<h2 class="split-title">The rumble fades.<br>Why can you still<br>hear voices?</h2>
+<p class="explanation">An existing HTML explanation pairs a diagram with a phase-mismatch slider.</p>
+<p class="explanation">The reader can explore the model—not just read an answer.</p>
+<p class="reading-step">READ THE EXAMPLE IN TWO STEPS</p>
+<span class="sample-label" data-guide="0" style="left:388px">1. Compare the pressure curves</span>
+<span class="sample-label" data-guide="1" style="left:898px">2. Inspect the control</span>
+<div class="plot-legend"><span>Incoming</span><span class="speaker">Speaker</span><span class="residual">Sum / residual</span></div>
+<img class="sample pressure-plot" src="../assets/anc-plot-en.png" alt="English ANC example: actual pressure curves at 60 degrees of phase mismatch.">
+<img class="sample phase-control" src="../assets/anc-control-en.png" alt="English phase-mismatch slider at 60 degrees, with a residual ratio of 1.00.">
+<p class="sample-note">Existing English HTML, at 60° phase mismatch. Ideal model, not a headphone measurement. Screenshots are static.</p></section>
+<section class="scene" id="git" hidden><div class="eyebrow">REAL ARTIFACT / GIT MERGE</div>
+<h2 class="split-title">Why can a merge<br>bring back a<br>reverted change?</h2>
+<p class="explanation">Another HTML example lets readers compare three recorded outcomes.</p><p class="explanation">History, files and results appear together.</p>
+<p class="reading-step">READ THE SAVED CASE IN TWO STEPS</p>
+<span class="sample-label" data-guide="0" style="left:426px;top:120px">1. Read branch history</span><span class="sample-label" data-guide="1" style="left:752px;top:120px">2. Compare the saved result</span>
+<img class="sample history" src="../assets/git-history.png" alt="Actual Git example history diagram showing base and two branches.">
+<img class="sample result" src="../assets/git-result.png" alt="English heading and conflict-marker excerpt from the actual saved Git working file.">
+<p class="sample-note">Existing English HTML: saved conflict history and a cropped working-file excerpt. Not a live Git run.</p></section>
+<section class="scene" id="workflow" hidden><div class="eyebrow">HOW AHA GETS THERE</div>
+<h2>Start with the question and the reader.</h2>
+<div class="workflow"><div class="step"><h3>1. Investigate</h3><p>Read sources.<br>Check competing answers.<br>Keep evidence and gaps.</p></div><div class="arrow">→</div><div class="step"><h3>2. Design</h3><p>Choose the explanation.<br>Write for the audience.<br>Author the selected medium.</p></div><div class="arrow">→</div><div class="step"><h3>3. Deliver</h3><p>A usable artifact.<br>Editable source.<br>Research you can revisit.</p></div></div>
+<p class="workflow-foot"><strong data-skill="0">aha-research</strong> for a report. <strong data-skill="1">aha-explain</strong> for a visual artifact, with research when needed.</p></section>
+<section class="scene" id="formats" hidden><div class="eyebrow">CHOOSE THE READER EXPERIENCE</div><h2>Explore. Scan. Present. Watch.</h2>
+<div class="format-grid">
+<div class="format-card"><h3>HTML / Explore</h3><p>Try controls and inspect diagrams.</p><img src="../assets/anc-detail.png" alt="Actual ANC HTML example detail."></div>
+<div class="format-card"><h3>PNG / Scan</h3><p>Read one purpose-built visual.</p><img src="../assets/poster.png" alt="Actual Aha project overview poster, shown as a thumbnail."></div>
+<div class="format-card"><h3>PPTX / Present</h3><p>Edit native text and diagrams.</p><img src="../assets/slides.png" alt="Actual slide from the Aha overview presentation, shown as a thumbnail."></div>
+<div class="format-card"><h3>Video / Watch</h3><p>Follow motion with narration.</p><div class="video-icon" aria-label="Measured narration energy, updated from the current audio frame"><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i><i class="bar"></i></div></div>
+</div><p class="sample-note">Existing examples: ANC HTML, Aha PNG and PPTX. Each requested medium is authored separately; not automatic conversion.</p></section>
+<section class="scene" id="closing" hidden><div class="eyebrow">AHA / FROM A QUESTION TO AN EXPLANATION</div>
+<div class="mark">Aha</div><p class="tagline"><span class="spoken" data-takeaway="0">Research the question.</span><br><span class="spoken" data-takeaway="1">Design the explanation.</span><br><span class="spoken" data-takeaway="2">Give people something they can use.</span></p>
+<div class="chips"><div class="chip" data-usecase="0">Learning a difficult idea</div><div class="chip" data-usecase="1">Explaining a codebase</div><div class="chip" data-usecase="2">Sharing what you found</div></div>
+<p class="end-note">Sources and the finished work still need review. Clear presentation is not proof that every claim is true.</p></section>
+</main><script src="./narration-timing.js"></script><script>
+const scenes = [...document.querySelectorAll('.scene')];
+const timing = window.ahaNarrationTiming;
+if (!timing || timing.fps !== 30 || timing.segments.length !== 12) throw new Error('Narration timing data is missing or invalid.');
+window.ahaVideo = { renderFrame({ segmentIndex, segmentFrame, fps }) {
+  const segment = timing.segments[segmentIndex];
+  if (!segment || fps !== timing.fps || !Number.isInteger(segmentFrame) || segmentFrame < 0) throw new Error('Unsupported narration frame.');
+  const scene = Math.floor(segmentIndex / 2);
+  const state = { brand: scene !== 0, headline: -1, guide: -1, step: -1, skill: -1, format: -1, takeaway: -1, usecase: -1, note: false, ...segment.base };
+  for (const cue of segment.cues) {
+    if (cue.frame <= segmentFrame) state[cue.property] = cue.value;
+  }
+  scenes.forEach((el, index) => { el.hidden = index !== scene; });
+  document.documentElement.setAttribute('data-theme', scene === 0 || scene === 5 ? 'dark' : 'light');
+  document.querySelectorAll('.mark').forEach(el => {
+    el.style.opacity = state.brand ? '1' : '.65';
+  });
+  document.querySelectorAll('[data-guide]').forEach(el => {
+    el.dataset.current = String(Number(el.dataset.guide) === state.guide);
+  });
+  document.querySelectorAll('.step').forEach((el, index) => {
+    el.dataset.active = String(index === state.step);
+  });
+  document.querySelectorAll('.format-card').forEach((el, index) => { el.dataset.active = String(index === state.format); });
+  for (const property of ['headline', 'skill', 'takeaway', 'usecase']) {
+    document.querySelectorAll(`[data-${property}]`).forEach(el => {
+      el.dataset.speaking = String(Number(el.dataset[property]) === state[property]);
+    });
+  }
+  document.querySelectorAll('.sample-note,.end-note').forEach(el => { el.dataset.speaking = String(state.note); });
+  document.querySelectorAll('.bar').forEach((el, index) => {
+    const energy = state.format === 3 ? (segment.envelope[segmentFrame - Math.abs(index - 2)] ?? 0) : 0;
+    el.style.height = `${Math.round(24 + 100 * energy)}px`;
+  });
+} };
+</script>
+</body></html>

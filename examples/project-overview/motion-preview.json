@@ -1,0 +1,16 @@
+{
+  "kind": "silent-illustrative-preview",
+  "sourceHash": "3f864819cf7edac3e007acbceaa94dd5994fcddb561a7f2ff16f525d8ac0d139",
+  "outputHash": "e8225bce88f9e3c20cf1f44d0dd21b829d7cd0b7bb59620c200112bf211bceda",
+  "width": 960,
+  "height": 540,
+  "fps": 15,
+  "frames": 120,
+  "seconds": 8,
+  "scenes": [
+    2,
+    3
+  ],
+  "timing": "Four illustrative seconds per scene; not measured narration timing.",
+  "boundary": "Supplementary GIF for slide illustration. Not an Aha narrated MP4 or successful Edge TTS receipt."
+}

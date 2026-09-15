@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "1.0.0",
+  "planHash": "8e7494725ad0e9bd18a2b60ad3cff5cdfeaffef008404dc7c6e9abcc9242fcb1",
+  "provider": "provided-audio",
+  "voice": "edge-jenny-authorized-recordings",
+  "segments": [
+    {
+      "id": "meet-aha-a",
+      "filename": "segment-001.wav",
+      "frames": 213,
+      "sha256": "7f4285dac7e0deae9ff9ea8aa34536a588c7a3f53edf642520fcb14f46e68929"
+    },
+    {
+      "id": "meet-aha-b",
+      "filename": "segment-002.wav",
+      "frames": 225,
+      "sha256": "4b667cf24367d2d7b9b3ac110f83ff9414a74819148f82e4561aa76ce50d9e2c"
+    },
+    {
+      "id": "headphones-a",
+      "filename": "segment-003.wav",
+      "frames": 327,
+      "sha256": "ffc73e9e3435dff9120d2ea1791822a892bde4a9fd1d7ad88910eddbc2561af8"
+    },
+    {
+      "id": "headphones-b",
+      "filename": "segment-004.wav",
+      "frames": 222,
+      "sha256": "6e41827d256174b0383f4a5fefbd1eabf3e10cb9a3e047c9a1ed419d82b61978"
+    },
+    {
+      "id": "git-a",
+      "filename": "segment-005.wav",
+      "frames": 324,
+      "sha256": "dce24bdd2e19ba183a72e8de53aa41997d2932013522cca6f259c0e819d35a4f"
+    },
+    {
+      "id": "git-b",
+      "filename": "segment-006.wav",
+      "frames": 267,
+      "sha256": "28fbfd05f815ea59ba555a34fb62fa3cfeb9b8c30c535ce985d96886006d3937"
+    },
+    {
+      "id": "workflow-a",
+      "filename": "segment-007.wav",
+      "frames": 345,
+      "sha256": "27845111a9c5313ab9989e10fc198be1efcf44cb1c9db89df2624d5d2ca0beab"
+    },
+    {
+      "id": "workflow-b",
+      "filename": "segment-008.wav",
+      "frames": 214,
+      "sha256": "46602b2fc9b00ec76776e025e2839e3d849f5539b7e3f9d197f89ab98712d04c"
+    },
+    {
+      "id": "formats-a",
+      "filename": "segment-009.wav",
+      "frames": 405,
+      "sha256": "bcf9336215cbcf0836751047c7d1c12fded4be40bd4f857f65ae7899ebde01fa"
+    },
+    {
+      "id": "formats-b",
+      "filename": "segment-010.wav",
+      "frames": 235,
+      "sha256": "4663ca6d73044c2d28ae4a8446a8aa636773e01b7bcc4aa426d78378e51abc34"
+    },
+    {
+      "id": "takeaway-a",
+      "filename": "segment-011.wav",
+      "frames": 366,
+      "sha256": "bd31aec65cebb6b8246f68e127e4c27310d361917730564be39576094f699fd7"
+    },
+    {
+      "id": "takeaway-b",
+      "filename": "segment-012.wav",
+      "frames": 187,
+      "sha256": "c68cc8dd69496c75857250c9bfd68963ff63f0a8317493d9de05de66916572a7"
+    }
+  ]
+}

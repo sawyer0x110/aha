@@ -13,7 +13,7 @@ runtime **0.3.0**，研究与作品协议 **1.0.0**。研究独立于媒体格�
 
 产品需求见 [PRD](docs/PRD.md)，实现与许可边界见 [架构说明](docs/ARCHITECTURE.md)，研究工作法见 [研究协议](docs/RESEARCH.md)，技能效果验证见 [评估协议](docs/EVALUATION.md)。
 
-实际案例见 [examples](examples/README.md)：降噪耳机与 Git merge 双语交互 HTML，附调研、可编辑源和当前检查记录。
+实际案例见 [examples](examples/README.md)：降噪耳机与 Git merge 双语交互 HTML，以及基于实际源码的 [Aha 项目多格式导览](examples/project-overview/README.md)。新版网页和六幕配音视频从真实作品解释 Aha 的用途；另附一图流、9 页原生 PPTX 和独立动效示例。各例均保留调研、可编辑源和当前检查记录。
 
 ## 安装到你的 Agent
 

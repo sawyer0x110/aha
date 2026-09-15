@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "authored",
+  "researchHash": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d",
+  "sourceHash": "26eb69310f2a6faa1a444d02d95d3c8fbbaea9124d7a7e4919a985e187dbbf9c",
+  "provider": "edge-tts",
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "duration": {
+    "minSeconds": 75,
+    "maxSeconds": 150
+  },
+  "segments": [
+    {
+      "id": "meet-aha-a",
+      "text": "Meet Aha: two skills that help your AI agent investigate a difficult question and create a visual explanation.",
+      "claimIds": ["c-purpose"]
+    },
+    {
+      "id": "meet-aha-b",
+      "text": "The goal is not just a longer answer. It is something another person can explore, present, or watch.",
+      "claimIds": ["c-purpose"]
+    },
+    {
+      "id": "headphones-a",
+      "text": "Take noise-cancelling headphones. Why does the rumble fade while voices remain? This existing web example combines a diagram with a phase-mismatch slider.",
+      "claimIds": ["c-examples"]
+    },
+    {
+      "id": "headphones-b",
+      "text": "Readers can explore an ideal model. We are showing a screenshot, not measuring a real pair of headphones.",
+      "claimIds": ["c-examples"]
+    },
+    {
+      "id": "git-a",
+      "text": "Or take Git merge. How can a merge bring back a reverted change? Another existing web explanation puts history, files, and results together.",
+      "claimIds": ["c-examples"]
+    },
+    {
+      "id": "git-b",
+      "text": "Readers switch between three recorded cases to compare what happened. This is an explanation of saved results, not a live Git run.",
+      "claimIds": ["c-examples"]
+    },
+    {
+      "id": "workflow-a",
+      "text": "Start with your question and your audience. Aha guides the agent to investigate sources, keep evidence and open questions, then design the explanation for the chosen medium.",
+      "claimIds": ["c-purpose", "c-dossier"]
+    },
+    {
+      "id": "workflow-b",
+      "text": "Use the research skill for a report, or the explanation skill for a visual artifact, with research when needed.",
+      "claimIds": ["c-purpose"]
+    },
+    {
+      "id": "formats-a",
+      "text": "Choose the experience your reader needs. An interactive web page to explore. A single image to scan. Editable slides to present. Or a narrated video to watch.",
+      "claimIds": ["c-formats"]
+    },
+    {
+      "id": "formats-b",
+      "text": "Each requested format is authored for its purpose, rather than automatically converting one finished piece into all the others.",
+      "claimIds": ["c-formats"]
+    },
+    {
+      "id": "takeaway-a",
+      "text": "That is Aha: research the question, design the explanation, and give people something they can use. Think of learning a difficult idea, explaining a codebase, or sharing what you found.",
+      "claimIds": ["c-purpose"]
+    },
+    {
+      "id": "takeaway-b",
+      "text": "Review the sources and the finished work, then judge whether your audience can actually understand it.",
+      "claimIds": ["c-qa"]
+    }
+  ]
+}

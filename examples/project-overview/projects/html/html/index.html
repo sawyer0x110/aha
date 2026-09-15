@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aha: research a difficult question, explain it visually</title><script>(() => {
+  const param = new URLSearchParams(window.location.search).get("scoutTheme");
+  const authored = document.documentElement.getAttribute("data-theme");
+  const theme =
+    param === "light" || param === "dark" ? param :
+    authored === "light" || authored === "dark" ? authored :
+    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  document.documentElement.setAttribute("data-theme", theme);
+})();</script><style>
+:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--cp-bg); color: var(--cp-text); font: 16px/1.6 "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif; }
+code, pre { font-family: Consolas, "Courier New", Courier, monospace; }
+a { color: var(--cp-link); }
+button { font: inherit; min-height: 44px; padding: 8px 12px; border: 1px solid var(--cp-border); border-radius: 0.625rem; color: var(--cp-text); background: var(--cp-surface); cursor: pointer; }
+button:hover { background: var(--cp-accent-soft); }
+:focus-visible { outline: 3px solid var(--cp-accent); outline-offset: 3px; }
+
+[hidden] { display: none !important; }
+main { max-width: 1160px; margin: auto; padding: 88px 32px 36px; }
+h1, h2, h3, p, figure { margin: 0; }
+h1 { font-size: clamp(36px, 4.7vw, 60px); line-height: 1.09; letter-spacing: -.035em; max-width: 19ch; margin: 16px 0 20px; }
+h2 { font-size: clamp(27px, 3vw, 36px); line-height: 1.2; letter-spacing: -.02em; margin: 8px 0 16px; }
+h3 { font-size: 21px; line-height: 1.35; margin-bottom: 8px; }
+p + p { margin-top: 12px; }
+a { text-underline-offset: 3px; }
+code, .label, .step-number { font-family: Consolas, "Courier New", Courier, monospace; }
+code { font-size: .9em; overflow-wrap: anywhere; }
+.label { color: var(--cp-accent); font-size: 13px; font-weight: 700; letter-spacing: .08em; }
+.lead { font-size: 21px; max-width: 48ch; }
+.muted, figcaption, .source, .meta { color: var(--cp-text-muted); }
+.source, figcaption, .meta { font-size: 14px; }
+.source { margin-top: 16px; }
+.hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 36px; align-items: start; }
+.brief { border-left: 3px solid var(--cp-accent); padding: 12px 0 12px 20px; margin-top: 24px; }
+.brief strong { display: block; margin-bottom: 4px; }
+.chapter { margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--cp-border-strong); }
+.example-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+.example { min-width: 0; }
+.example img { display: block; width: 100%; height: auto; border: 1px solid var(--cp-border); border-radius: 10px; background: var(--cp-surface); }
+.example figcaption { margin-top: 10px; }
+.example h3 { margin-top: 16px; }
+.hero-question { padding: 24px; border: 1px solid var(--cp-border); border-radius: 16px; background: var(--cp-surface); }
+.hero-question h2 { font-size: clamp(24px, 2.6vw, 32px); }
+.hero-question .sample-note { margin-top: 12px; font-size: 15px; color: var(--cp-text-muted); }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 0; margin: 24px 0 0; list-style: none; }
+.steps li { min-width: 0; }
+.step-number { display: block; color: var(--cp-accent); margin-bottom: 12px; }
+.skills { padding: 16px 20px; border-radius: 10px; background: var(--cp-accent-soft); margin-top: 24px; }
+.format-layout { display: grid; grid-template-columns: 1.05fr .95fr; gap: 32px; margin-top: 24px; align-items: start; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+.controls button { padding: 8px 16px; border-color: var(--cp-border-strong); }
+button[aria-pressed="true"] { background: var(--cp-accent); color: var(--cp-accent-fg); border-color: var(--cp-accent); }
+.format-result { padding: 20px; border: 1px solid var(--cp-border); border-radius: 16px; background: var(--cp-surface); min-height: 228px; }
+.format-result .label { display: block; margin-bottom: 8px; }
+.format-result .muted { margin-top: 12px; font-size: 15px; }
+.format-preview { margin: 16px 0 0; }
+.format-preview img { width: 100%; height: 360px; object-fit: contain; }
+.closing { padding: 24px; border-radius: 16px; background: var(--cp-accent-soft); margin-top: 40px; }
+.closing h2 { margin-top: 0; }
+footer { margin-top: 24px; }
+details { border-top: 1px solid var(--cp-border); padding: 16px 0; }
+summary { cursor: pointer; font-weight: 600; min-height: 44px; padding: 8px 0; }
+.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 28px; margin: 16px 0; }
+.detail-grid h3 { font-size: 18px; }
+.detail-grid p { font-size: 15px; }
+.meta { margin-top: 16px; }
+@media (max-width: 700px) {
+  main { padding: 80px 20px 24px; }
+  .hero, .example-grid, .steps, .format-layout, .detail-grid { grid-template-columns: 1fr; gap: 24px; }
+  h1 { max-width: 22ch; }
+  .lead { font-size: 19px; }
+  .hero-question, .closing { padding: 20px; }
+  .chapter { margin-top: 32px; padding-top: 24px; }
+  .steps { gap: 20px; }
+  .step-number { margin-bottom: 4px; }
+  .format-result { min-height: 0; }
+}
+
+</style></head><body>
+<main>
+<section data-aha-lang="en" lang="en" data-aha-title="Aha: research a difficult question, explain it visually">
+  <header id="en-purpose" class="hero">
+    <div>
+      <p class="label">AHA / RESEARCH + VISUAL EXPLANATION</p>
+      <h1>Aha: research a difficult question.<br>Explain it visually.</h1>
+      <p class="lead">Aha is a pair of agent skills for turning questions and source material into a researched explanation people can read, explore or present.</p>
+      <div class="brief"><strong>You bring four things</strong><p>A question, any starting material, your audience, and the output you need.</p></div>
+      <p class="source">For example: “Explain headphone noise cancellation to curious non-specialists as an interactive HTML page.”</p>
+    </div>
+    <aside class="hero-question">
+      <p class="label">START WITH A QUESTION PEOPLE HAVE</p>
+      <h2>Why does headphone rumble fade while voices remain?</h2>
+      <p>A visual explanation can put the incoming sound, the headphone’s response and their combined pressure side by side. The existing ANC example lets readers change a phase mismatch in an idealized model.</p>
+      <p class="sample-note">See the actual work below—not a mockup of a future result.</p>
+    </aside>
+  </header>
+
+  <div id="en-examples" class="chapter">
+    <p class="label">01 / EXISTING WORK</p>
+    <h2>From an everyday puzzle to a codebase question</h2>
+    <p>These are two existing bilingual, offline HTML explanations in the repository. Each uses a different comparison to make its topic inspectable.</p>
+    <div class="example-grid">
+      <article class="example">
+        <figure><img src="../assets/anc-en.png" alt="English-language ANC HTML: incoming pressure, speaker pressure and their sum, with the phase-mismatch control at 60 degrees."><figcaption>English example · Actual screenshot at 60° phase mismatch; static here. The original page has a phase slider and reset button.</figcaption></figure>
+        <h3>Noise cancellation: compare the sounds at the ear</h3>
+        <p>The original control changes the model’s pressure curves and residual readout. It gives the reader a concrete relationship to inspect, rather than only the phrase “opposite sound.”</p>
+        <p class="source">Source: <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/examples/anc/project/html/index.html">existing ANC HTML and its model controls</a>.</p>
+      </article>
+      <article class="example">
+        <figure><img src="../assets/git-en.png" alt="English-language Git merge HTML in its saved conflict case, comparing commit history, base, ours, theirs and the result."><figcaption>English example · Screenshot of the saved conflict case; static here. The original page has three selectable cases.</figcaption></figure>
+        <h3>Why can Git merge bring back a reverted change?</h3>
+        <p>The original page compares the common base, both branch snapshots and the result. Its controls switch between a reverted change, separated edits and conflicting replacements.</p>
+        <p class="source">Source: <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/examples/git-merge/project/html/index.html">existing Git merge HTML and its case controls</a>.</p>
+      </article>
+    </div>
+  </div>
+
+  <div id="en-workflow" class="chapter">
+    <p class="label">02 / FROM QUESTION TO SOMETHING USEFUL</p>
+    <h2>Investigate first. Design for the reader.</h2>
+    <ol class="steps">
+      <li><span class="step-number">01 / INVESTIGATE</span><h3>Find what supports the answer</h3><p>Read sources, compare contradictory evidence and record gaps. Keep the claims and their evidence in a research snapshot so the explanation has something to build on.</p></li>
+      <li><span class="step-number">02 / DESIGN</span><h3>Choose what the audience needs to see</h3><p>Turn the supported reasoning into a comparison, diagram or sequence. A reader exploring alternatives needs a different composition from a team watching a short briefing.</p></li>
+      <li><span class="step-number">03 / DELIVER</span><h3>Keep both the work and the result</h3><p>Deliver editable source plus the usable output for the requested medium. Review the actual result so the explanation, controls and layout can be checked together.</p></li>
+    </ol>
+    <p class="skills"><strong>Two skills, two entry points.</strong> Use <code>aha-research</code> when you want a research report. Use <code>aha-explain</code> when you want a visual artifact; it can use the shared research workflow itself.</p>
+    <p class="source">Sources: <a href="https://github.com/sawyer0x110/aha/tree/a013ea795312eab9ae2e4224998a1314eea8f718/skills">Skill entry points</a> and <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/docs/ARCHITECTURE.md">research and artifact architecture</a>.</p>
+  </div>
+
+  <div id="en-formats" class="chapter">
+    <p class="label">03 / CHOOSE THE READER’S EXPERIENCE</p>
+    <h2>An artifact is something people can read or use</h2>
+    <p>An HTML page, a PNG image, editable PowerPoint slides or a narrated video. Choose the format for the situation—not four exports of the same layout.</p>
+    <div class="format-layout">
+      <div>
+        <div class="controls" role="group" aria-label="Compare output formats">
+          <button type="button" data-format="html" aria-pressed="true">HTML</button>
+          <button type="button" data-format="image" aria-pressed="false">PNG</button>
+          <button type="button" data-format="pptx" aria-pressed="false">PPTX</button>
+          <button type="button" data-format="video" aria-pressed="false">Video</button>
+        </div>
+        <div class="format-result" aria-live="polite" aria-atomic="true">
+          <span class="label" data-medium-label>EXPLORE / HTML</span>
+          <h3 data-medium-title>Let the reader compare alternatives</h3>
+          <p data-medium-copy>A page combines explanation, diagrams and purposeful controls. Example: explore the three Git merge cases shown above in the original offline HTML.</p>
+          <p class="muted" data-medium-note>Existing examples: ANC and Git merge HTML. Their screenshots on this page are not live controls.</p>
+        </div>
+        <p class="source">Each button changes the explanation and the matching preview. These are static previews, not file generators. Each requested medium is authored separately. <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/docs/ARCHITECTURE.md">How the media pipelines work</a>.</p>
+      </div>
+      <div class="format-preview" aria-live="polite" aria-label="Selected format preview" data-current-format="html">
+        <figure class="example" data-preview="html"><img src="../assets/anc-en.png" alt="HTML preview: English ANC webpage with pressure curves and a phase slider."><figcaption><strong>HTML · Explore a webpage.</strong> Actual English ANC example; controls are static in this screenshot.</figcaption></figure>
+        <figure class="example" data-preview="image" hidden><img src="../assets/project-poster.png" alt="PNG preview: the actual Aha project-overview poster."><figcaption><strong>PNG · One complete visual.</strong> The existing 1080 × 1800 Aha poster, shown in full.</figcaption></figure>
+        <figure class="example" data-preview="pptx" hidden><img src="../assets/slides-preview.png" alt="PPTX preview: slide 5 of the editable Aha overview presentation."><figcaption><strong>PPTX · Present and edit.</strong> Actual slide 5 from the nine-slide Aha presentation. The deck is editable; this screenshot is not.</figcaption></figure>
+        <figure class="example" data-preview="video" hidden><img src="../assets/video-preview.png" alt="Video preview: the opening frame of the narrated Aha overview, introducing a difficult question and a visual explanation."><figcaption><strong>Video · Watch and listen.</strong> Opening frame rendered from the current Aha video source, with its narration caption. Static cover, not a player.</figcaption></figure>
+      </div>
+    </div>
+  </div>
+
+  <div id="en-closing" class="closing">
+    <h2>Use Aha when the answer needs a bridge</h2>
+    <p>You have a difficult concept, scattered evidence or code behavior to explain—and an audience that needs more than a conclusion. Bring the question and the reader; choose a report or a visual artifact they can actually use.</p>
+  </div>
+  <footer id="en-details">
+    <details>
+      <summary>Implementation, provenance and review limits</summary>
+      <div class="detail-grid">
+        <div><h3>Research and revision identity</h3><p>The research snapshot’s <code>manifest.json</code>, <code>research.json</code> and <code>report.md</code> preserve research independently of any medium. Each project declares claim coverage or omissions. HTML, PNG and PPTX receipts link research, source and output hashes. Changed source needs a new output and receipt; matching hashes identify revisions, not factual quality.</p></div>
+        <div><h3>Execution and narration approval</h3><p>HTML packaging does not execute author scripts. Browser checks, image capture, video frames and native PPTX code need explicit local-execution approval. <code>--allow-code</code> is not a sandbox. Edge TTS separately requires approval of the current complete narration plan, provider, voice, rate and disclosure scope.</p></div>
+        <div><h3>Video has its own timing work</h3><p>The narration plan binds to the research and source. Authored frame states and measured audio durations drive the sequence and captions. A changed plan invalidates stale approval. Successful encoding does not replace watching and listening to the result.</p></div>
+        <div><h3>Language is authored, not inferred</h3><p>New HTML defaults to English and Chinese, initially English. PNG, PPTX and video default to English, with explicit Chinese available. The agent writes the translation; changing artifact language does not change the bound research.</p></div>
+        <div><h3>Installation and dependencies</h3><p>Install a built Skill package with its CLI, schemas, references and local libraries—not the source <code>skills</code> directory. Browsers and media tools are separate dependencies; prepare those needed for the chosen step.</p></div>
+        <div><h3>What this introduction does not establish</h3><p>Source checks, factual review, language review and actual output inspection are distinct. These examples do not establish learner comprehension, host discovery or online voice availability. This page uses the host’s Clawpilot theme; it is not an Aha-only quality evaluation.</p></div>
+      </div>
+      <p class="source">Technical references: <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/src/artifacts/render.ts">render receipts</a> · <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/skills/shared/references/execution.md">execution permissions</a> · <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/skills/aha-explain/references/language.md">language</a> · <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/INSTALL.md">installation</a> · <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/skills/aha-explain/references/artifact-qa.md">artifact QA</a>.</p>
+      <p class="meta">Repository source snapshot: a013ea795312 · 15 September 2026 · runtime 0.3.0 · protocol 1.0.0. Images are repository assets; no remote resources are loaded by this page.</p>
+    </details>
+  </footer>
+</section>
+
+<section data-aha-lang="zh" lang="zh-CN" data-aha-title="Aha：研究难题，用视觉讲清楚" hidden>
+  <header id="zh-purpose" class="hero">
+    <div>
+      <p class="label">AHA / 研究 + 视觉讲解</p>
+      <h1>Aha：研究一个难题，<br>用视觉讲清楚。</h1>
+      <p class="lead">Aha 是一组包含两个 Skill 的 Agent 技能：把问题和原始材料，变成有研究依据、可供阅读、探索或演示的讲解。</p>
+      <div class="brief"><strong>你带来四样东西</strong><p>想弄清的问题、已有材料、讲给谁听，以及需要什么形式的成品。</p></div>
+      <p class="source">例如：“给好奇的非专业读者解释耳机主动降噪，做成可交互的 HTML 页面。”</p>
+    </div>
+    <aside class="hero-question">
+      <p class="label">从读者真的会问的问题开始</p>
+      <h2>戴上降噪耳机，为什么轰鸣变轻了，人声还在？</h2>
+      <p>视觉讲解可以把传入声、耳机发出的声音，以及两者叠加后的声压放在一起比较。现有 ANC 示例让读者在理想模型中改变相位偏差，观察变化。</p>
+      <p class="sample-note">下面展示的是已经做出的作品，不是设想中的效果图。</p>
+    </aside>
+  </header>
+
+  <div id="zh-examples" class="chapter">
+    <p class="label">01 / 已有作品</p>
+    <h2>从生活中的疑问，到代码库里的问题</h2>
+    <p>下面两件作品都已存在于仓库中，都是可离线阅读的中英双语 HTML。它们用不同的比较方式，让读者看见解释所说的关系。</p>
+    <div class="example-grid">
+      <article class="example">
+        <figure><img src="../assets/anc-example.png" alt="现有主动降噪 HTML 的中文示例：并列展示传入声压、耳机声压与叠加结果，以及相位偏差控件。"><figcaption>中文示例 · 已有作品的截图；此处为静态图片。原页面提供相位滑块和重置按钮。</figcaption></figure>
+        <h3>主动降噪：比较耳边的两种声音</h3>
+        <p>原页面的控件会改变模型中的声压曲线和残余声压读数。读者能观察具体关系，而不只是记住“反向声音”这个说法。</p>
+        <p class="source">来源：<a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/examples/anc/project/html/index.html">已有 ANC HTML 及其模型控件</a>。</p>
+      </article>
+      <article class="example">
+        <figure><img src="../assets/git-example.png" alt="现有 Git 合并 HTML 的中文冲突案例：比较提交历史、共同基线、双方文件快照及合并结果。"><figcaption>中文示例 · 已有作品的截图；此处为静态图片。原页面提供三个可切换的合并案例。</figcaption></figure>
+        <h3>为什么 Git 合并会带回已撤销的修改？</h3>
+        <p>原页面把共同基线、双方分支的文件快照和结果放在一起。读者可以切换“撤销后的修改”“相隔较远的修改”和“同一位置的冲突替换”三种情形。</p>
+        <p class="source">来源：<a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/examples/git-merge/project/html/index.html">已有 Git 合并 HTML 及其案例控件</a>。</p>
+      </article>
+    </div>
+  </div>
+
+  <div id="zh-workflow" class="chapter">
+    <p class="label">02 / 从问题到可用的作品</p>
+    <h2>先调查，再为读者设计讲法。</h2>
+    <ol class="steps">
+      <li><span class="step-number">01 / 调查</span><h3>找出答案依据什么</h3><p>阅读来源，对照相互矛盾的证据，记录尚未解决的缺口。把主张及其证据保存为研究快照，给后续讲解提供依据。</p></li>
+      <li><span class="step-number">02 / 设计</span><h3>决定读者需要看见什么</h3><p>把有依据的推理组织成比较、图解或过程。想自己探索不同情况的读者，与听简短汇报的团队，需要不同的构图和顺序。</p></li>
+      <li><span class="step-number">03 / 交付</span><h3>留下源码，也交付成品</h3><p>交付所选媒介的可编辑源码与可用成品。检查实际输出，让内容、控件和版式一起接受审阅。</p></li>
+    </ol>
+    <p class="skills"><strong>两个技能，两个入口。</strong>想要研究报告，用 <code>aha-research</code>；想要视觉作品，用 <code>aha-explain</code>，它可以直接使用共享研究流程。</p>
+    <p class="source">来源：<a href="https://github.com/sawyer0x110/aha/tree/a013ea795312eab9ae2e4224998a1314eea8f718/skills">Skill 入口</a>与<a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/docs/ARCHITECTURE.md">研究和作品架构</a>。</p>
+  </div>
+
+  <div id="zh-formats" class="chapter">
+    <p class="label">03 / 选择读者的使用方式</p>
+    <h2>“作品”就是别人能阅读或使用的东西</h2>
+    <p>可以是 HTML 页面、PNG 图片、可编辑的 PowerPoint 幻灯片，或带旁白的视频。按使用场景选形式，而不是把同一套版式导出四遍。</p>
+    <div class="format-layout">
+      <div>
+        <div class="controls" role="group" aria-label="比较作品格式">
+          <button type="button" data-format="html" aria-pressed="true">HTML</button>
+          <button type="button" data-format="image" aria-pressed="false">PNG</button>
+          <button type="button" data-format="pptx" aria-pressed="false">PPTX</button>
+          <button type="button" data-format="video" aria-pressed="false">视频</button>
+        </div>
+        <div class="format-result" aria-live="polite" aria-atomic="true">
+          <span class="label" data-medium-label>自主探索 / HTML</span>
+          <h3 data-medium-title>让读者自己比较不同情况</h3>
+          <p data-medium-copy>把正文、图解和有用的控件放在同一页。例如，在上方 Git 合并作品的原始离线 HTML 中探索三种合并情形。</p>
+          <p class="muted" data-medium-note>已有示例：ANC 与 Git 合并 HTML。本页中的截图不能当作原页面控件操作。</p>
+        </div>
+        <p class="source">按钮会同时切换用途说明和对应预览；预览为静态图片，不会生成文件。每种所需媒介都单独创作。<a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/docs/ARCHITECTURE.md">了解媒介管线</a>。</p>
+      </div>
+      <div class="format-preview" aria-live="polite" aria-label="当前格式预览" data-current-format="html">
+        <figure class="example" data-preview="html"><img src="../assets/anc-example.png" alt="HTML 预览：中文主动降噪网页的声压曲线与相位滑块。"><figcaption><strong>HTML · 自主探索。</strong> 已有 ANC 中文网页的实际截图；图中控件不可操作。</figcaption></figure>
+        <figure class="example" data-preview="image" hidden><img src="../assets/project-poster.png" alt="PNG 预览：实际 Aha 项目介绍英文海报。"><figcaption><strong>PNG · 一张完整的图。</strong> 已有的 1080 × 1800 英文项目海报，完整展示，不裁切。</figcaption></figure>
+        <figure class="example" data-preview="pptx" hidden><img src="../assets/slides-preview.png" alt="PPTX 预览：Aha 英文演示文稿的第 5 页。"><figcaption><strong>PPTX · 演示与编辑。</strong> 9 页英文演示的实际第 5 页。原文稿可编辑；这里是静态截图。</figcaption></figure>
+        <figure class="example" data-preview="video" hidden><img src="../assets/video-preview.png" alt="视频预览：Aha 英文配音视频的开场，介绍从难题到视觉讲解。"><figcaption><strong>Video · 观看与聆听。</strong> 从当前英文视频源码渲染的开场画面，含旁白字幕。这里是静态封面，不是播放器。</figcaption></figure>
+      </div>
+    </div>
+  </div>
+
+  <div id="zh-closing" class="closing">
+    <h2>不只要给结论，还要把道理讲通时，用 Aha。</h2>
+    <p>你需要解释一个难懂的概念、一组零散证据，或一段代码的行为，而读者需要知道“为什么”。带上问题，说明讲给谁听，再选择他们用得上的研究报告或视觉作品。</p>
+  </div>
+  <footer id="zh-details">
+    <details>
+      <summary>展开实现细节、来源与审阅边界</summary>
+      <div class="detail-grid">
+        <div><h3>研究和版本身份</h3><p>研究快照的 <code>manifest.json</code>、<code>research.json</code> 与 <code>report.md</code> 独立于媒介保存研究。每个作品项目声明主张的覆盖或省略。HTML、PNG 与 PPTX 的收据关联研究、源码和输出哈希。源码改变后，需要新输出和收据；哈希匹配只能识别版本，不能证明内容正确。</p></div>
+        <div><h3>执行与旁白批准</h3><p>HTML 打包不执行作者脚本。浏览器检查、图片捕获、视频画面和原生 PPTX 代码都需要明确的本地执行批准。<code>--allow-code</code> 不是沙箱。Edge TTS 另需批准当前完整旁白计划、提供方、声线、语速与外发范围。</p></div>
+        <div><h3>视频还要单独安排时间</h3><p>旁白计划绑定研究与源码。编写的逐帧状态与实测音频时长共同决定画面顺序和字幕。计划改变后，旧批准失效。编码成功不能代替实际观看和听审。</p></div>
+        <div><h3>语言由作者选择，不靠猜测</h3><p>新 HTML 默认中英双语，先显示英语。PNG、PPTX 和视频默认英语，也可明确选择中文。译文由 Agent 编写；改变作品语言不会改变绑定的研究。</p></div>
+        <div><h3>安装与依赖</h3><p>安装带有 CLI、Schema、参考资料和本地库的构建后 Skill 包，而不是源码中的 <code>skills</code> 目录。浏览器和媒体工具是额外依赖，按当前步骤准备。</p></div>
+        <div><h3>本介绍不能证明什么</h3><p>源码检查、事实审阅、语言审阅和实际成品检查各不相同。这些示例不证明真人理解、宿主发现技能或在线语音可用性。本页使用宿主的 Clawpilot 主题，不是 Aha 单独作用的质量评估。</p></div>
+      </div>
+      <p class="source">技术参考：<a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/src/artifacts/render.ts">渲染收据</a> · <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/skills/shared/references/execution.md">执行权限</a> · <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/skills/aha-explain/references/language.md">语言</a> · <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/INSTALL.md">安装</a> · <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/skills/aha-explain/references/artifact-qa.md">作品验收</a>。</p>
+      <p class="meta">仓库源码快照：a013ea795312 · 2026 年 9 月 15 日 · runtime 0.3.0 · 协议 1.0.0。图片来自仓库；本页不加载远程资源。</p>
+    </details>
+  </footer>
+</section>
+</main>
+<script>
+const media = {
+  en: {
+    html: ["EXPLORE / HTML", "Let the reader compare alternatives", "A page combines explanation, diagrams and purposeful controls. Example: explore the three Git merge cases shown above in the original offline HTML.", "Existing examples: ANC and Git merge HTML. Their screenshots on this page are not live controls."],
+    image: ["KEEP A REFERENCE / PNG", "Put the central explanation in one image", "A fixed composition gives the reader one view to keep or include in a document. Example: the existing Aha overview poster beside this comparison.", "The poster is an actual PNG. A new topic needs its own image composition, not a shrunken screenshot of a long article."],
+    pptx: ["PRESENT + EDIT / PPTX", "Give the presenter material they can revise", "Native text, shapes, tables and charts can be edited in PowerPoint. The matching preview shows a real slide from the nine-slide Aha project introduction.", "This is an Aha presentation, not an ANC or Git merge deck. Open the PPTX to edit; the preview itself is a static image."],
+    video: ["WATCH + LISTEN / VIDEO", "Guide the viewer through an explanation", "Pair a timed visual sequence with narration and captions. The matching cover is the opening of the actual Aha project video.", "The video introduces Aha with existing HTML examples. This cover is not a player, and screenshots within the video are not live controls."]
+  },
+  zh: {
+    html: ["自主探索 / HTML", "让读者自己比较不同情况", "把正文、图解和有用的控件放在同一页。例如，在上方 Git 合并作品的原始离线 HTML 中探索三种合并情形。", "已有示例：ANC 与 Git 合并 HTML。本页中的截图不能当作原页面控件操作。"],
+    image: ["留作参考 / PNG", "把核心解释放进一张图", "用固定构图提供一张可以保存或放进文档的参考图。例如，这组比较旁边已有的 Aha 项目介绍海报。", "这里的海报是实际 PNG。新主题需要单独设计构图，而不是把长文章截图缩小。"],
+    pptx: ["演示与修改 / PPTX", "让讲解者拿到可以修改的材料", "原生文字、形状、表格和图表可以在 PowerPoint 中编辑。右侧展示 9 页 Aha 项目介绍中的实际一页。", "这是 Aha 项目的演示，不是 ANC 或 Git 合并幻灯片。编辑需打开 PPTX；预览本身为静态图片。"],
+    video: ["观看与聆听 / 视频", "带观众逐步理解解释", "把有时间顺序的画面与旁白、字幕配合起来。右侧封面来自实际 Aha 项目视频的开场。", "该视频借助已有 HTML 案例介绍 Aha。封面不是播放器，视频内的网页截图也不是实时控件。"]
+  }
+};
+for (const root of document.querySelectorAll("[data-aha-lang]")) {
+  for (const button of root.querySelectorAll("[data-format]")) {
+    button.addEventListener("click", () => {
+      const copy = media[root.dataset.ahaLang][button.dataset.format];
+      for (const peer of root.querySelectorAll("[data-format]")) {
+        peer.setAttribute("aria-pressed", String(peer === button));
+      }
+      ["data-medium-label", "data-medium-title", "data-medium-copy", "data-medium-note"].forEach((attribute, index) => {
+        root.querySelector(`[${attribute}]`).textContent = copy[index];
+      });
+      const preview = root.querySelector('.format-preview');
+      preview.dataset.currentFormat = button.dataset.format;
+      for (const panel of preview.querySelectorAll('[data-preview]')) {
+        panel.hidden = panel.dataset.preview !== button.dataset.format;
+      }
+    });
+  }
+}
+</script>
+</body></html>

@@ -1,0 +1,214 @@
+{
+  "status": "delivered",
+  "format": "mp4",
+  "rendererVersion": "0.3.0",
+  "researchHash": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d",
+  "sourceHash": "3945fa289781baf14d094d1e1c962af2c3f7cd53cfe38a9822b7069e9a1471a9",
+  "planHash": "8e7494725ad0e9bd18a2b60ad3cff5cdfeaffef008404dc7c6e9abcc9242fcb1",
+  "audioManifestHash": "5e5d6da54a10f19efeef345d5d2e3e2fcc2cb6fd7bea4a834333077ec493d63f",
+  "durationSeconds": 111,
+  "totalFrames": 3330,
+  "codec": "h264",
+  "width": 1280,
+  "height": 720,
+  "fps": 30,
+  "subtitles": "sentence-level-burned-and-srt",
+  "provider": "provided-audio",
+  "renderer": "browser-authored-per-frame-ffmpeg",
+  "sampledSourceFrames": [
+    {
+      "frame": 0,
+      "segmentIndex": 0,
+      "sha256": "2e402e1c56eb53461fca60be1bf2abc75a95ed6f42225dda681b3a7750d015e6"
+    },
+    {
+      "frame": 106,
+      "segmentIndex": 0,
+      "sha256": "43f674e5938c2330578c9a1d0214b46eb1645ca008888772da74555005d7ad5a"
+    },
+    {
+      "frame": 212,
+      "segmentIndex": 0,
+      "sha256": "ad91c7b51ab662e61bcaeed4e43d3e9b5f7f37f13f3dffdf1a277f4ff77799b6"
+    },
+    {
+      "frame": 213,
+      "segmentIndex": 1,
+      "sha256": "ad91c7b51ab662e61bcaeed4e43d3e9b5f7f37f13f3dffdf1a277f4ff77799b6"
+    },
+    {
+      "frame": 325,
+      "segmentIndex": 1,
+      "sha256": "ad91c7b51ab662e61bcaeed4e43d3e9b5f7f37f13f3dffdf1a277f4ff77799b6"
+    },
+    {
+      "frame": 437,
+      "segmentIndex": 1,
+      "sha256": "ad91c7b51ab662e61bcaeed4e43d3e9b5f7f37f13f3dffdf1a277f4ff77799b6"
+    },
+    {
+      "frame": 438,
+      "segmentIndex": 2,
+      "sha256": "ece18f201a2e9d065baaf1986ed0d73cfdd401f562ffebfc8f64e29b179d53fa"
+    },
+    {
+      "frame": 601,
+      "segmentIndex": 2,
+      "sha256": "ece18f201a2e9d065baaf1986ed0d73cfdd401f562ffebfc8f64e29b179d53fa"
+    },
+    {
+      "frame": 764,
+      "segmentIndex": 2,
+      "sha256": "e4efd9ddb98c03080e24316db88352aeb27e3cf461577d09eef78f5261964fdd"
+    },
+    {
+      "frame": 765,
+      "segmentIndex": 3,
+      "sha256": "ece18f201a2e9d065baaf1986ed0d73cfdd401f562ffebfc8f64e29b179d53fa"
+    },
+    {
+      "frame": 876,
+      "segmentIndex": 3,
+      "sha256": "db9b9c145f7ab2255975e944178a5f12f7f9bb49cf5360cbf8db1f8d1141cccf"
+    },
+    {
+      "frame": 986,
+      "segmentIndex": 3,
+      "sha256": "db9b9c145f7ab2255975e944178a5f12f7f9bb49cf5360cbf8db1f8d1141cccf"
+    },
+    {
+      "frame": 987,
+      "segmentIndex": 4,
+      "sha256": "070e1e4688197a91cd942c14e68a0c4c7351a7a4bf67c16e6a8992644e8daa08"
+    },
+    {
+      "frame": 1149,
+      "segmentIndex": 4,
+      "sha256": "070e1e4688197a91cd942c14e68a0c4c7351a7a4bf67c16e6a8992644e8daa08"
+    },
+    {
+      "frame": 1310,
+      "segmentIndex": 4,
+      "sha256": "171b1ec97b0a5f5e593a84bf4c902f30be110907aaf6d2332cd9eda60c11ddf0"
+    },
+    {
+      "frame": 1311,
+      "segmentIndex": 5,
+      "sha256": "070e1e4688197a91cd942c14e68a0c4c7351a7a4bf67c16e6a8992644e8daa08"
+    },
+    {
+      "frame": 1444,
+      "segmentIndex": 5,
+      "sha256": "91c8133d3dfd3b8f35b4110188a9304130d7d6bca6ec769782c8e2f14c913060"
+    },
+    {
+      "frame": 1577,
+      "segmentIndex": 5,
+      "sha256": "91c8133d3dfd3b8f35b4110188a9304130d7d6bca6ec769782c8e2f14c913060"
+    },
+    {
+      "frame": 1578,
+      "segmentIndex": 6,
+      "sha256": "b41961dee7cf5d1f453aa11cb1fcb19aee6533bfb024784e20109a55d4f12d57"
+    },
+    {
+      "frame": 1750,
+      "segmentIndex": 6,
+      "sha256": "617f8e8b9351315fbb2d6fe8ad0ba072d0e602efe481eb90237cb1fe70aa59bb"
+    },
+    {
+      "frame": 1922,
+      "segmentIndex": 6,
+      "sha256": "5591a48742d0d507a91eebfe9b543129fa87df1f9b7f04e89ee0477c20244a29"
+    },
+    {
+      "frame": 1923,
+      "segmentIndex": 7,
+      "sha256": "b41961dee7cf5d1f453aa11cb1fcb19aee6533bfb024784e20109a55d4f12d57"
+    },
+    {
+      "frame": 2030,
+      "segmentIndex": 7,
+      "sha256": "fef33169abb3a27da4527de9c2baae1dcfbf079e8bd3410c4c2464fb8f116788"
+    },
+    {
+      "frame": 2136,
+      "segmentIndex": 7,
+      "sha256": "347f1fc4d82a098676145672a74521801bf3058b2f091671184e74d0cdbc0914"
+    },
+    {
+      "frame": 2137,
+      "segmentIndex": 8,
+      "sha256": "fb01e7f84483faeac3b5e7f660e7d6d883c2ad78e2ad6fc14baff8c7827f7afe"
+    },
+    {
+      "frame": 2339,
+      "segmentIndex": 8,
+      "sha256": "17ad29fc397468959099207d581459a2be3e1fa043ff19f13f353c0d72811515"
+    },
+    {
+      "frame": 2541,
+      "segmentIndex": 8,
+      "sha256": "12a518d328e67f2170629cad98ad691eba8273ec54c23ced52afde12387b304e"
+    },
+    {
+      "frame": 2542,
+      "segmentIndex": 9,
+      "sha256": "fb01e7f84483faeac3b5e7f660e7d6d883c2ad78e2ad6fc14baff8c7827f7afe"
+    },
+    {
+      "frame": 2659,
+      "segmentIndex": 9,
+      "sha256": "a52a72937a8df2fc35aeb749827dc6aaf68b71cc531fc2c717535dedfd2e1b84"
+    },
+    {
+      "frame": 2776,
+      "segmentIndex": 9,
+      "sha256": "a52a72937a8df2fc35aeb749827dc6aaf68b71cc531fc2c717535dedfd2e1b84"
+    },
+    {
+      "frame": 2777,
+      "segmentIndex": 10,
+      "sha256": "b0298f7ff8f1762ab7bec03ff6fd770650a60044e912bbb3ff33c80a6c63d087"
+    },
+    {
+      "frame": 2960,
+      "segmentIndex": 10,
+      "sha256": "39fcbfa13cd7fe0658b5a149a7ba05b78409eaaca0c720208b754278643d9228"
+    },
+    {
+      "frame": 3142,
+      "segmentIndex": 10,
+      "sha256": "eb96b7925ed40154eff4059d154b6a15ad0c010868320c353bfc862d53d48159"
+    },
+    {
+      "frame": 3143,
+      "segmentIndex": 11,
+      "sha256": "b0298f7ff8f1762ab7bec03ff6fd770650a60044e912bbb3ff33c80a6c63d087"
+    },
+    {
+      "frame": 3236,
+      "segmentIndex": 11,
+      "sha256": "2d06a7255a44d308f7ead3593ecbd763e255ac2568f7de0928639f5f9a9edfe8"
+    },
+    {
+      "frame": 3329,
+      "segmentIndex": 11,
+      "sha256": "2d06a7255a44d308f7ead3593ecbd763e255ac2568f7de0928639f5f9a9edfe8"
+    }
+  ],
+  "sampledVisualChange": true,
+  "determinism": "not-verified-author-must-avoid-time-random-and-uncontrolled-state",
+  "audioReuse": "visual-source-edits-invalidate-plan-and-audio-reimport-or-resynthesis-requires-explicit-approval",
+  "visualQuality": "requires-human-review-frame-capability-is-not-art-quality-assurance",
+  "artifactHash": "b729e3e02a411b61b69ee7fa132ba3a8565c78eacd9fecdd0d92a8abb47aed02",
+  "subtitleHash": "98191ba3ad8554c96baec07ab1777effd50fa83899d9974c716aafea2a37dd8f",
+  "checks": [
+    "research-source-plan-identity",
+    "audio-hashes-and-measured-timing",
+    "isolated-offline-frames",
+    "ffprobe-codec-frames-and-audio"
+  ],
+  "narrationTruthReview": "requires-human-source-review",
+  "providerProvenance": "recorded-local-manifest-not-independent-service-attestation"
+}

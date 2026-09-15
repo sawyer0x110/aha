@@ -1,0 +1,1680 @@
+{
+  "method": "Offline Windows Speech Recognition, exact narration grammar, temporary mono 16 kHz input. Word offsets obtained with GetAudioForWordRange relative to the recognized phrase start. Estimated times, not human-verified phonetic alignment.",
+  "segments": [
+    {
+      "words": [
+        {
+          "start": 0.13,
+          "confidence": 0.8810867,
+          "word": "Meet",
+          "end": 0.4
+        },
+        {
+          "start": 0.4,
+          "confidence": 0.81683147,
+          "word": "Aha:",
+          "end": 0.79
+        },
+        {
+          "start": 1.02,
+          "confidence": 0.9834304,
+          "word": "two",
+          "end": 1.22
+        },
+        {
+          "start": 1.2200000000000002,
+          "confidence": 0.98786926,
+          "word": "skills",
+          "end": 1.5700000000000003
+        },
+        {
+          "start": 1.5699999999999998,
+          "confidence": 0.9896721,
+          "word": "that",
+          "end": 1.7399999999999998
+        },
+        {
+          "start": 1.7400000000000002,
+          "confidence": 0.9898198,
+          "word": "help",
+          "end": 1.9300000000000002
+        },
+        {
+          "start": 1.9300000000000002,
+          "confidence": 0.99221975,
+          "word": "your",
+          "end": 2.1
+        },
+        {
+          "start": 2.1,
+          "confidence": 0.9935399,
+          "word": "AI",
+          "end": 2.4
+        },
+        {
+          "start": 2.4,
+          "confidence": 0.99125487,
+          "word": "agent",
+          "end": 2.82
+        },
+        {
+          "start": 2.82,
+          "confidence": 0.99084544,
+          "word": "investigate",
+          "end": 3.44
+        },
+        {
+          "start": 3.44,
+          "confidence": 0.98903424,
+          "word": "a",
+          "end": 3.52
+        },
+        {
+          "start": 3.52,
+          "confidence": 0.9910377,
+          "word": "difficult",
+          "end": 3.94
+        },
+        {
+          "start": 3.94,
+          "confidence": 0.9888978,
+          "word": "question",
+          "end": 4.49
+        },
+        {
+          "start": 4.51,
+          "confidence": 0.9910545,
+          "word": "and",
+          "end": 4.67
+        },
+        {
+          "start": 4.67,
+          "confidence": 0.9929558,
+          "word": "create",
+          "end": 4.97
+        },
+        {
+          "start": 4.97,
+          "confidence": 0.98958755,
+          "word": "a",
+          "end": 5.02
+        },
+        {
+          "start": 5.02,
+          "confidence": 0.98912305,
+          "word": "visual",
+          "end": 5.3999999999999995
+        },
+        {
+          "start": 5.3999999999999995,
+          "confidence": 0.9888169,
+          "word": "explanation.",
+          "end": 6.27
+        }
+      ],
+      "id": "meet-aha-a",
+      "phraseStart": 0.13,
+      "recognizedText": "Meet Aha: two skills that help your AI agent investigate a difficult question and create a visual explanation.",
+      "audioHash": "7f4285dac7e0deae9ff9ea8aa34536a588c7a3f53edf642520fcb14f46e68929",
+      "narration": "Meet Aha: two skills that help your AI agent investigate a difficult question and create a visual explanation.",
+      "confidence": 0.97350144
+    },
+    {
+      "words": [
+        {
+          "start": 0.05,
+          "confidence": 0.9629804,
+          "word": "The",
+          "end": 0.27
+        },
+        {
+          "start": 0.27,
+          "confidence": 0.99057573,
+          "word": "goal",
+          "end": 0.56
+        },
+        {
+          "start": 0.56,
+          "confidence": 0.9924057,
+          "word": "is",
+          "end": 0.7000000000000001
+        },
+        {
+          "start": 0.7000000000000001,
+          "confidence": 0.99092627,
+          "word": "not",
+          "end": 0.9400000000000001
+        },
+        {
+          "start": 0.9400000000000001,
+          "confidence": 0.9880314,
+          "word": "just",
+          "end": 1.1600000000000001
+        },
+        {
+          "start": 1.1600000000000001,
+          "confidence": 0.9724135,
+          "word": "a",
+          "end": 1.2300000000000002
+        },
+        {
+          "start": 1.23,
+          "confidence": 0.9926966,
+          "word": "longer",
+          "end": 1.58
+        },
+        {
+          "start": 1.58,
+          "confidence": 0.99042654,
+          "word": "answer.",
+          "end": 2.15
+        },
+        {
+          "start": 2.9499999999999997,
+          "confidence": 0.9920667,
+          "word": "It",
+          "end": 3.1199999999999997
+        },
+        {
+          "start": 3.1199999999999997,
+          "confidence": 0.9912282,
+          "word": "is",
+          "end": 3.2299999999999995
+        },
+        {
+          "start": 3.23,
+          "confidence": 0.9918589,
+          "word": "something",
+          "end": 3.59
+        },
+        {
+          "start": 3.59,
+          "confidence": 0.99169713,
+          "word": "another",
+          "end": 3.92
+        },
+        {
+          "start": 3.92,
+          "confidence": 0.99186546,
+          "word": "person",
+          "end": 4.36
+        },
+        {
+          "start": 4.359999999999999,
+          "confidence": 0.99167883,
+          "word": "can",
+          "end": 4.52
+        },
+        {
+          "start": 4.52,
+          "confidence": 0.99229085,
+          "word": "explore,",
+          "end": 5.27
+        },
+        {
+          "start": 5.29,
+          "confidence": 0.9894446,
+          "word": "present,",
+          "end": 5.86
+        },
+        {
+          "start": 5.88,
+          "confidence": 0.9922646,
+          "word": "or",
+          "end": 6.08
+        },
+        {
+          "start": 6.08,
+          "confidence": 0.98822314,
+          "word": "watch.",
+          "end": 6.640000000000001
+        }
+      ],
+      "id": "meet-aha-b",
+      "phraseStart": 0.05,
+      "recognizedText": "The goal is not just a longer answer. It is something another person can explore, present, or watch.",
+      "audioHash": "8c9ec439a8d21367bb7e6431fba8b0ca680057e72dc4d32659034201d2a0e76b",
+      "narration": "The goal is not just a longer answer. It is something another person can explore, present, or watch.",
+      "confidence": 0.98964685
+    },
+    {
+      "words": [
+        {
+          "start": 0.11,
+          "confidence": 0.99060804,
+          "word": "Take",
+          "end": 0.41
+        },
+        {
+          "start": 0.41,
+          "confidence": 0.99137557,
+          "word": "noise-cancelling",
+          "end": 1.21
+        },
+        {
+          "start": 1.2100000000000002,
+          "confidence": 0.9886134,
+          "word": "headphones.",
+          "end": 1.9700000000000002
+        },
+        {
+          "start": 2.81,
+          "confidence": 0.991644,
+          "word": "Why",
+          "end": 3.0300000000000002
+        },
+        {
+          "start": 3.03,
+          "confidence": 0.9889679,
+          "word": "does",
+          "end": 3.1999999999999997
+        },
+        {
+          "start": 3.1999999999999997,
+          "confidence": 0.9827871,
+          "word": "the",
+          "end": 3.3299999999999996
+        },
+        {
+          "start": 3.33,
+          "confidence": 0.99342996,
+          "word": "rumble",
+          "end": 3.63
+        },
+        {
+          "start": 3.63,
+          "confidence": 0.98969215,
+          "word": "fade",
+          "end": 3.96
+        },
+        {
+          "start": 3.96,
+          "confidence": 0.9927758,
+          "word": "while",
+          "end": 4.15
+        },
+        {
+          "start": 4.15,
+          "confidence": 0.9924943,
+          "word": "voices",
+          "end": 4.61
+        },
+        {
+          "start": 4.61,
+          "confidence": 0.98369557,
+          "word": "remain?",
+          "end": 5.09
+        },
+        {
+          "start": 5.92,
+          "confidence": 0.99184686,
+          "word": "This",
+          "end": 6.2
+        },
+        {
+          "start": 6.2,
+          "confidence": 0.99253017,
+          "word": "existing",
+          "end": 6.68
+        },
+        {
+          "start": 6.680000000000001,
+          "confidence": 0.99193585,
+          "word": "web",
+          "end": 6.930000000000001
+        },
+        {
+          "start": 6.930000000000001,
+          "confidence": 0.9930173,
+          "word": "example",
+          "end": 7.48
+        },
+        {
+          "start": 7.48,
+          "confidence": 0.99182194,
+          "word": "combines",
+          "end": 7.94
+        },
+        {
+          "start": 7.94,
+          "confidence": 0.9905176,
+          "word": "a",
+          "end": 8.02
+        },
+        {
+          "start": 8.02,
+          "confidence": 0.99296147,
+          "word": "diagram",
+          "end": 8.549999999999999
+        },
+        {
+          "start": 8.549999999999999,
+          "confidence": 0.9924287,
+          "word": "with",
+          "end": 8.68
+        },
+        {
+          "start": 8.68,
+          "confidence": 0.9935353,
+          "word": "a",
+          "end": 8.75
+        },
+        {
+          "start": 8.75,
+          "confidence": 0.991641,
+          "word": "phase-mismatch",
+          "end": 9.5
+        },
+        {
+          "start": 9.5,
+          "confidence": 0.9911375,
+          "word": "slider.",
+          "end": 10.01
+        }
+      ],
+      "id": "headphones-a",
+      "phraseStart": 0.11,
+      "recognizedText": "Take noise-cancelling headphones. Why does the rumble fade while voices remain? This existing web example combines a diagram with a phase-mismatch slider.",
+      "audioHash": "ecb008ba4cf0dd09b10e1143b544686e088546b2e9fc7ce6cf23c322be82f04c",
+      "narration": "Take noise-cancelling headphones. Why does the rumble fade while voices remain? This existing web example combines a diagram with a phase-mismatch slider.",
+      "confidence": 0.99094194
+    },
+    {
+      "words": [
+        {
+          "start": 0.13,
+          "confidence": 0.9773114,
+          "word": "Readers",
+          "end": 0.54
+        },
+        {
+          "start": 0.54,
+          "confidence": 0.9891048,
+          "word": "can",
+          "end": 0.7000000000000001
+        },
+        {
+          "start": 0.7,
+          "confidence": 0.9923517,
+          "word": "explore",
+          "end": 1.14
+        },
+        {
+          "start": 1.1400000000000001,
+          "confidence": 0.9918896,
+          "word": "an",
+          "end": 1.2300000000000002
+        },
+        {
+          "start": 1.23,
+          "confidence": 0.9920799,
+          "word": "ideal",
+          "end": 1.57
+        },
+        {
+          "start": 1.5699999999999998,
+          "confidence": 0.9923523,
+          "word": "model.",
+          "end": 2.0599999999999996
+        },
+        {
+          "start": 2.9,
+          "confidence": 0.99000335,
+          "word": "We",
+          "end": 3.07
+        },
+        {
+          "start": 3.07,
+          "confidence": 0.9931358,
+          "word": "are",
+          "end": 3.1799999999999997
+        },
+        {
+          "start": 3.1799999999999997,
+          "confidence": 0.987319,
+          "word": "showing",
+          "end": 3.4899999999999998
+        },
+        {
+          "start": 3.4899999999999998,
+          "confidence": 0.98625404,
+          "word": "a",
+          "end": 3.5599999999999996
+        },
+        {
+          "start": 3.56,
+          "confidence": 0.9922023,
+          "word": "screenshot,",
+          "end": 4.38
+        },
+        {
+          "start": 4.42,
+          "confidence": 0.9918107,
+          "word": "not",
+          "end": 4.7299999999999995
+        },
+        {
+          "start": 4.7299999999999995,
+          "confidence": 0.98930156,
+          "word": "measuring",
+          "end": 5.1499999999999995
+        },
+        {
+          "start": 5.1499999999999995,
+          "confidence": 0.999,
+          "word": "a",
+          "end": 5.22
+        },
+        {
+          "start": 5.22,
+          "confidence": 0.99365354,
+          "word": "real",
+          "end": 5.4799999999999995
+        },
+        {
+          "start": 5.4799999999999995,
+          "confidence": 0.9930067,
+          "word": "pair",
+          "end": 5.75
+        },
+        {
+          "start": 5.75,
+          "confidence": 0.9906112,
+          "word": "of",
+          "end": 5.85
+        },
+        {
+          "start": 5.85,
+          "confidence": 0.9900593,
+          "word": "headphones.",
+          "end": 6.56
+        }
+      ],
+      "id": "headphones-b",
+      "phraseStart": 0.13,
+      "recognizedText": "Readers can explore an ideal model. We are showing a screenshot, not measuring a real pair of headphones.",
+      "audioHash": "6e41827d256174b0383f4a5fefbd1eabf3e10cb9a3e047c9a1ed419d82b61978",
+      "narration": "Readers can explore an ideal model. We are showing a screenshot, not measuring a real pair of headphones.",
+      "confidence": 0.99027747
+    },
+    {
+      "words": [
+        {
+          "start": 0.13,
+          "confidence": 0.99180067,
+          "word": "Or",
+          "end": 0.33999999999999997
+        },
+        {
+          "start": 0.33999999999999997,
+          "confidence": 0.9901511,
+          "word": "take",
+          "end": 0.59
+        },
+        {
+          "start": 0.5900000000000001,
+          "confidence": 0.9887755,
+          "word": "Git",
+          "end": 0.77
+        },
+        {
+          "start": 0.77,
+          "confidence": 0.99142355,
+          "word": "merge.",
+          "end": 1.35
+        },
+        {
+          "start": 2.23,
+          "confidence": 0.98588663,
+          "word": "How",
+          "end": 2.41
+        },
+        {
+          "start": 2.4099999999999997,
+          "confidence": 0.97920024,
+          "word": "can",
+          "end": 2.57
+        },
+        {
+          "start": 2.57,
+          "confidence": 0.9900182,
+          "word": "a",
+          "end": 2.6199999999999997
+        },
+        {
+          "start": 2.62,
+          "confidence": 0.9922855,
+          "word": "merge",
+          "end": 2.93
+        },
+        {
+          "start": 2.9299999999999997,
+          "confidence": 0.999,
+          "word": "bring",
+          "end": 3.1399999999999997
+        },
+        {
+          "start": 3.1399999999999997,
+          "confidence": 0.9912298,
+          "word": "back",
+          "end": 3.3699999999999997
+        },
+        {
+          "start": 3.37,
+          "confidence": 0.54103726,
+          "word": "a",
+          "end": 3.44
+        },
+        {
+          "start": 3.44,
+          "confidence": 0.9921097,
+          "word": "reverted",
+          "end": 3.83
+        },
+        {
+          "start": 3.83,
+          "confidence": 0.98777306,
+          "word": "change?",
+          "end": 4.48
+        },
+        {
+          "start": 5.25,
+          "confidence": 0.98991585,
+          "word": "Another",
+          "end": 5.75
+        },
+        {
+          "start": 5.75,
+          "confidence": 0.9919499,
+          "word": "existing",
+          "end": 6.28
+        },
+        {
+          "start": 6.28,
+          "confidence": 0.99011195,
+          "word": "web",
+          "end": 6.5200000000000005
+        },
+        {
+          "start": 6.52,
+          "confidence": 0.9924829,
+          "word": "explanation",
+          "end": 7.26
+        },
+        {
+          "start": 7.26,
+          "confidence": 0.99066997,
+          "word": "puts",
+          "end": 7.5
+        },
+        {
+          "start": 7.5,
+          "confidence": 0.9929425,
+          "word": "history,",
+          "end": 8.05
+        },
+        {
+          "start": 8.07,
+          "confidence": 0.9932368,
+          "word": "files,",
+          "end": 8.74
+        },
+        {
+          "start": 8.760000000000002,
+          "confidence": 0.99226934,
+          "word": "and",
+          "end": 8.940000000000001
+        },
+        {
+          "start": 8.940000000000001,
+          "confidence": 0.99278516,
+          "word": "results",
+          "end": 9.330000000000002
+        },
+        {
+          "start": 9.33,
+          "confidence": 0.9890804,
+          "word": "together.",
+          "end": 9.9
+        }
+      ],
+      "id": "git-a",
+      "phraseStart": 0.13,
+      "recognizedText": "Or take Git merge. How can a merge bring back a reverted change? Another existing web explanation puts history, files, and results together.",
+      "audioHash": "a4c4be68b3f3d95533dae5eeaa673f1f76f8d27282e7a866119940afd8b99b29",
+      "narration": "Or take Git merge. How can a merge bring back a reverted change? Another existing web explanation puts history, files, and results together.",
+      "confidence": 0.9871729
+    },
+    {
+      "words": [
+        {
+          "start": 0.13,
+          "confidence": 0.9889973,
+          "word": "Readers",
+          "end": 0.51
+        },
+        {
+          "start": 0.51,
+          "confidence": 0.98990136,
+          "word": "switch",
+          "end": 0.81
+        },
+        {
+          "start": 0.81,
+          "confidence": 0.9897939,
+          "word": "between",
+          "end": 1.2000000000000002
+        },
+        {
+          "start": 1.2000000000000002,
+          "confidence": 0.99021703,
+          "word": "three",
+          "end": 1.4700000000000002
+        },
+        {
+          "start": 1.4700000000000002,
+          "confidence": 0.9909249,
+          "word": "recorded",
+          "end": 1.9300000000000002
+        },
+        {
+          "start": 1.9300000000000002,
+          "confidence": 0.9929021,
+          "word": "cases",
+          "end": 2.41
+        },
+        {
+          "start": 2.4099999999999997,
+          "confidence": 0.9924519,
+          "word": "to",
+          "end": 2.53
+        },
+        {
+          "start": 2.53,
+          "confidence": 0.99186486,
+          "word": "compare",
+          "end": 2.94
+        },
+        {
+          "start": 2.94,
+          "confidence": 0.9924399,
+          "word": "what",
+          "end": 3.11
+        },
+        {
+          "start": 3.11,
+          "confidence": 0.9857838,
+          "word": "happened.",
+          "end": 4.46
+        },
+        {
+          "start": 4.49,
+          "confidence": 0.99139225,
+          "word": "This",
+          "end": 4.7700000000000005
+        },
+        {
+          "start": 4.77,
+          "confidence": 0.99173516,
+          "word": "is",
+          "end": 4.88
+        },
+        {
+          "start": 4.88,
+          "confidence": 0.9912379,
+          "word": "an",
+          "end": 5.0
+        },
+        {
+          "start": 5.0,
+          "confidence": 0.9925577,
+          "word": "explanation",
+          "end": 5.72
+        },
+        {
+          "start": 5.72,
+          "confidence": 0.99292606,
+          "word": "of",
+          "end": 5.83
+        },
+        {
+          "start": 5.83,
+          "confidence": 0.992091,
+          "word": "saved",
+          "end": 6.15
+        },
+        {
+          "start": 6.1499999999999995,
+          "confidence": 0.9920118,
+          "word": "results,",
+          "end": 6.829999999999999
+        },
+        {
+          "start": 6.85,
+          "confidence": 0.9915336,
+          "word": "not",
+          "end": 7.13
+        },
+        {
+          "start": 7.13,
+          "confidence": 0.92509586,
+          "word": "a",
+          "end": 7.2
+        },
+        {
+          "start": 7.2,
+          "confidence": 0.9926782,
+          "word": "live",
+          "end": 7.470000000000001
+        },
+        {
+          "start": 7.47,
+          "confidence": 0.989588,
+          "word": "Git",
+          "end": 7.6499999999999995
+        },
+        {
+          "start": 7.6499999999999995,
+          "confidence": 0.98359907,
+          "word": "run.",
+          "end": 8.059999999999999
+        }
+      ],
+      "id": "git-b",
+      "phraseStart": 0.13,
+      "recognizedText": "Readers switch between three recorded cases to compare what happened. This is an explanation of saved results, not a live Git run.",
+      "audioHash": "28fbfd05f815ea59ba555a34fb62fa3cfeb9b8c30c535ce985d96886006d3937",
+      "narration": "Readers switch between three recorded cases to compare what happened. This is an explanation of saved results, not a live Git run.",
+      "confidence": 0.98949337
+    },
+    {
+      "words": [
+        {
+          "start": 0.15,
+          "confidence": 0.98302114,
+          "word": "Start",
+          "end": 0.48
+        },
+        {
+          "start": 0.48,
+          "confidence": 0.002087883,
+          "word": "with",
+          "end": 0.59
+        },
+        {
+          "start": 0.59,
+          "confidence": 0.97220194,
+          "word": "your",
+          "end": 0.74
+        },
+        {
+          "start": 0.74,
+          "confidence": 0.9913992,
+          "word": "question",
+          "end": 1.29
+        },
+        {
+          "start": 1.2899999999999998,
+          "confidence": 0.9807242,
+          "word": "and",
+          "end": 1.42
+        },
+        {
+          "start": 1.42,
+          "confidence": 0.9894517,
+          "word": "your",
+          "end": 1.5499999999999998
+        },
+        {
+          "start": 1.5499999999999998,
+          "confidence": 0.9899688,
+          "word": "audience.",
+          "end": 2.23
+        },
+        {
+          "start": 3.03,
+          "confidence": 0.22146823,
+          "word": "Aha",
+          "end": 3.3899999999999997
+        },
+        {
+          "start": 3.39,
+          "confidence": 0.99060696,
+          "word": "guides",
+          "end": 3.7
+        },
+        {
+          "start": 3.6999999999999997,
+          "confidence": 0.99161655,
+          "word": "the",
+          "end": 3.8499999999999996
+        },
+        {
+          "start": 3.85,
+          "confidence": 0.99189794,
+          "word": "agent",
+          "end": 4.25
+        },
+        {
+          "start": 4.25,
+          "confidence": 0.9921277,
+          "word": "to",
+          "end": 4.4
+        },
+        {
+          "start": 4.4,
+          "confidence": 0.9923212,
+          "word": "investigate",
+          "end": 5.0600000000000005
+        },
+        {
+          "start": 5.0600000000000005,
+          "confidence": 0.99045134,
+          "word": "sources,",
+          "end": 5.7700000000000005
+        },
+        {
+          "start": 5.79,
+          "confidence": 0.9914298,
+          "word": "keep",
+          "end": 6.0600000000000005
+        },
+        {
+          "start": 6.0600000000000005,
+          "confidence": 0.98984146,
+          "word": "evidence",
+          "end": 6.6000000000000005
+        },
+        {
+          "start": 6.62,
+          "confidence": 0.99132407,
+          "word": "and",
+          "end": 6.8
+        },
+        {
+          "start": 6.800000000000001,
+          "confidence": 0.99120235,
+          "word": "open",
+          "end": 7.080000000000001
+        },
+        {
+          "start": 7.08,
+          "confidence": 0.9914234,
+          "word": "questions,",
+          "end": 7.87
+        },
+        {
+          "start": 8.0,
+          "confidence": 0.98949987,
+          "word": "then",
+          "end": 8.2
+        },
+        {
+          "start": 8.200000000000001,
+          "confidence": 0.9919911,
+          "word": "design",
+          "end": 8.57
+        },
+        {
+          "start": 8.57,
+          "confidence": 0.992988,
+          "word": "the",
+          "end": 8.700000000000001
+        },
+        {
+          "start": 8.700000000000001,
+          "confidence": 0.9921122,
+          "word": "explanation",
+          "end": 9.47
+        },
+        {
+          "start": 9.47,
+          "confidence": 0.9905898,
+          "word": "for",
+          "end": 9.610000000000001
+        },
+        {
+          "start": 9.610000000000001,
+          "confidence": 0.9916108,
+          "word": "the",
+          "end": 9.700000000000001
+        },
+        {
+          "start": 9.700000000000001,
+          "confidence": 0.9897382,
+          "word": "chosen",
+          "end": 10.090000000000002
+        },
+        {
+          "start": 10.09,
+          "confidence": 0.9918138,
+          "word": "medium.",
+          "end": 10.65
+        }
+      ],
+      "id": "workflow-a",
+      "phraseStart": 0.15,
+      "recognizedText": "Start with your question and your audience. Aha guides the agent to investigate sources, keep evidence and open questions, then design the explanation for the chosen medium.",
+      "audioHash": "27845111a9c5313ab9989e10fc198be1efcf44cb1c9db89df2624d5d2ca0beab",
+      "narration": "Start with your question and your audience. Aha guides the agent to investigate sources, keep evidence and open questions, then design the explanation for the chosen medium.",
+      "confidence": 0.9499486
+    },
+    {
+      "words": [
+        {
+          "start": 0.13,
+          "confidence": 0.98757666,
+          "word": "Use",
+          "end": 0.4
+        },
+        {
+          "start": 0.4,
+          "confidence": 0.9891599,
+          "word": "the",
+          "end": 0.53
+        },
+        {
+          "start": 0.53,
+          "confidence": 0.9925297,
+          "word": "research",
+          "end": 1.03
+        },
+        {
+          "start": 1.03,
+          "confidence": 0.99173814,
+          "word": "skill",
+          "end": 1.3
+        },
+        {
+          "start": 1.2999999999999998,
+          "confidence": 0.9813138,
+          "word": "for",
+          "end": 1.4699999999999998
+        },
+        {
+          "start": 1.4700000000000002,
+          "confidence": 0.98731196,
+          "word": "a",
+          "end": 1.5100000000000002
+        },
+        {
+          "start": 1.5099999999999998,
+          "confidence": 0.99105847,
+          "word": "report,",
+          "end": 2.1399999999999997
+        },
+        {
+          "start": 2.23,
+          "confidence": 0.99165136,
+          "word": "or",
+          "end": 2.4
+        },
+        {
+          "start": 2.4,
+          "confidence": 0.99074346,
+          "word": "the",
+          "end": 2.53
+        },
+        {
+          "start": 2.53,
+          "confidence": 0.99246204,
+          "word": "explanation",
+          "end": 3.26
+        },
+        {
+          "start": 3.26,
+          "confidence": 0.999,
+          "word": "skill",
+          "end": 3.5999999999999996
+        },
+        {
+          "start": 3.6,
+          "confidence": 0.978067,
+          "word": "for",
+          "end": 3.79
+        },
+        {
+          "start": 3.79,
+          "confidence": 0.99075884,
+          "word": "a",
+          "end": 3.85
+        },
+        {
+          "start": 3.85,
+          "confidence": 0.9892438,
+          "word": "visual",
+          "end": 4.21
+        },
+        {
+          "start": 4.21,
+          "confidence": 0.9913971,
+          "word": "artifact,",
+          "end": 4.96
+        },
+        {
+          "start": 5.01,
+          "confidence": 0.9880298,
+          "word": "with",
+          "end": 5.21
+        },
+        {
+          "start": 5.21,
+          "confidence": 0.9934231,
+          "word": "research",
+          "end": 5.68
+        },
+        {
+          "start": 5.68,
+          "confidence": 0.95676565,
+          "word": "when",
+          "end": 5.85
+        },
+        {
+          "start": 5.85,
+          "confidence": 0.9794885,
+          "word": "needed.",
+          "end": 6.33
+        }
+      ],
+      "id": "workflow-b",
+      "phraseStart": 0.13,
+      "recognizedText": "Use the research skill for a report, or the explanation skill for a visual artifact, with research when needed.",
+      "audioHash": "46602b2fc9b00ec76776e025e2839e3d849f5539b7e3f9d197f89ab98712d04c",
+      "narration": "Use the research skill for a report, or the explanation skill for a visual artifact, with research when needed.",
+      "confidence": 0.9890696
+    },
+    {
+      "words": [
+        {
+          "start": 0.14,
+          "confidence": 0.99092925,
+          "word": "Choose",
+          "end": 0.44
+        },
+        {
+          "start": 0.44,
+          "confidence": 0.98747736,
+          "word": "the",
+          "end": 0.56
+        },
+        {
+          "start": 0.56,
+          "confidence": 0.98844105,
+          "word": "experience",
+          "end": 1.1800000000000002
+        },
+        {
+          "start": 1.1800000000000002,
+          "confidence": 0.9891544,
+          "word": "your",
+          "end": 1.3200000000000003
+        },
+        {
+          "start": 1.3199999999999998,
+          "confidence": 0.99242544,
+          "word": "reader",
+          "end": 1.5899999999999999
+        },
+        {
+          "start": 1.5899999999999999,
+          "confidence": 0.9900639,
+          "word": "needs.",
+          "end": 2.19
+        },
+        {
+          "start": 3.0,
+          "confidence": 0.9877588,
+          "word": "An",
+          "end": 3.2
+        },
+        {
+          "start": 3.2,
+          "confidence": 0.9912644,
+          "word": "interactive",
+          "end": 3.81
+        },
+        {
+          "start": 3.81,
+          "confidence": 0.9917244,
+          "word": "web",
+          "end": 4.03
+        },
+        {
+          "start": 4.03,
+          "confidence": 0.99174774,
+          "word": "page",
+          "end": 4.36
+        },
+        {
+          "start": 4.359999999999999,
+          "confidence": 0.992338,
+          "word": "to",
+          "end": 4.529999999999999
+        },
+        {
+          "start": 4.529999999999999,
+          "confidence": 0.9881979,
+          "word": "explore.",
+          "end": 5.969999999999999
+        },
+        {
+          "start": 6.06,
+          "confidence": 0.98637766,
+          "word": "A",
+          "end": 6.1899999999999995
+        },
+        {
+          "start": 6.1899999999999995,
+          "confidence": 0.98913187,
+          "word": "single",
+          "end": 6.579999999999999
+        },
+        {
+          "start": 6.58,
+          "confidence": 0.9921955,
+          "word": "image",
+          "end": 6.88
+        },
+        {
+          "start": 6.88,
+          "confidence": 0.99315166,
+          "word": "to",
+          "end": 7.02
+        },
+        {
+          "start": 7.02,
+          "confidence": 0.99141663,
+          "word": "scan.",
+          "end": 7.6
+        },
+        {
+          "start": 8.42,
+          "confidence": 0.99016595,
+          "word": "Editable",
+          "end": 8.9
+        },
+        {
+          "start": 8.9,
+          "confidence": 0.992157,
+          "word": "slides",
+          "end": 9.3
+        },
+        {
+          "start": 9.3,
+          "confidence": 0.9907028,
+          "word": "to",
+          "end": 9.440000000000001
+        },
+        {
+          "start": 9.440000000000001,
+          "confidence": 0.9874607,
+          "word": "present.",
+          "end": 10.810000000000002
+        },
+        {
+          "start": 10.89,
+          "confidence": 0.99127537,
+          "word": "Or",
+          "end": 11.100000000000001
+        },
+        {
+          "start": 11.100000000000001,
+          "confidence": 0.99133813,
+          "word": "a",
+          "end": 11.150000000000002
+        },
+        {
+          "start": 11.15,
+          "confidence": 0.99338764,
+          "word": "narrated",
+          "end": 11.610000000000001
+        },
+        {
+          "start": 11.610000000000001,
+          "confidence": 0.9911579,
+          "word": "video",
+          "end": 11.930000000000001
+        },
+        {
+          "start": 11.93,
+          "confidence": 0.9924112,
+          "word": "to",
+          "end": 12.1
+        },
+        {
+          "start": 12.100000000000001,
+          "confidence": 0.9877137,
+          "word": "watch.",
+          "end": 12.650000000000002
+        }
+      ],
+      "id": "formats-a",
+      "phraseStart": 0.14,
+      "recognizedText": "Choose the experience your reader needs. An interactive web page to explore. A single image to scan. Editable slides to present. Or a narrated video to watch.",
+      "audioHash": "64d9b1b5716a539f500aabad80cb8b487b1e49862055f6067d037bfcf94b625f",
+      "narration": "Choose the experience your reader needs. An interactive web page to explore. A single image to scan. Editable slides to present. Or a narrated video to watch.",
+      "confidence": 0.98988366
+    },
+    {
+      "words": [
+        {
+          "start": 0.14,
+          "confidence": 0.97300917,
+          "word": "Each",
+          "end": 0.38
+        },
+        {
+          "start": 0.38,
+          "confidence": 0.9870256,
+          "word": "requested",
+          "end": 0.91
+        },
+        {
+          "start": 0.91,
+          "confidence": 0.99197394,
+          "word": "format",
+          "end": 1.42
+        },
+        {
+          "start": 1.42,
+          "confidence": 0.9927018,
+          "word": "is",
+          "end": 1.5899999999999999
+        },
+        {
+          "start": 1.5899999999999999,
+          "confidence": 0.991191,
+          "word": "authored",
+          "end": 1.96
+        },
+        {
+          "start": 1.96,
+          "confidence": 0.9752509,
+          "word": "for",
+          "end": 2.11
+        },
+        {
+          "start": 2.11,
+          "confidence": 0.99086964,
+          "word": "its",
+          "end": 2.27
+        },
+        {
+          "start": 2.27,
+          "confidence": 0.9901235,
+          "word": "purpose,",
+          "end": 2.93
+        },
+        {
+          "start": 3.04,
+          "confidence": 0.9907264,
+          "word": "rather",
+          "end": 3.38
+        },
+        {
+          "start": 3.3800000000000003,
+          "confidence": 0.9913144,
+          "word": "than",
+          "end": 3.5800000000000005
+        },
+        {
+          "start": 3.58,
+          "confidence": 0.9926622,
+          "word": "automatically",
+          "end": 4.3100000000000005
+        },
+        {
+          "start": 4.31,
+          "confidence": 0.992022,
+          "word": "converting",
+          "end": 4.84
+        },
+        {
+          "start": 4.84,
+          "confidence": 0.99205655,
+          "word": "one",
+          "end": 5.09
+        },
+        {
+          "start": 5.09,
+          "confidence": 0.99050677,
+          "word": "finished",
+          "end": 5.54
+        },
+        {
+          "start": 5.54,
+          "confidence": 0.999,
+          "word": "piece",
+          "end": 5.88
+        },
+        {
+          "start": 5.88,
+          "confidence": 0.99210066,
+          "word": "into",
+          "end": 6.13
+        },
+        {
+          "start": 6.13,
+          "confidence": 0.98828554,
+          "word": "all",
+          "end": 6.31
+        },
+        {
+          "start": 6.31,
+          "confidence": 0.999,
+          "word": "the",
+          "end": 6.4799999999999995
+        },
+        {
+          "start": 6.4799999999999995,
+          "confidence": 0.9901366,
+          "word": "others.",
+          "end": 7.05
+        }
+      ],
+      "id": "formats-b",
+      "phraseStart": 0.14,
+      "recognizedText": "Each requested format is authored for its purpose, rather than automatically converting one finished piece into all the others.",
+      "audioHash": "4663ca6d73044c2d28ae4a8446a8aa636773e01b7bcc4aa426d78378e51abc34",
+      "narration": "Each requested format is authored for its purpose, rather than automatically converting one finished piece into all the others.",
+      "confidence": 0.9905017
+    },
+    {
+      "words": [
+        {
+          "start": 0.06,
+          "confidence": 0.9767444,
+          "word": "That",
+          "end": 0.39
+        },
+        {
+          "start": 0.39,
+          "confidence": 0.9721808,
+          "word": "is",
+          "end": 0.52
+        },
+        {
+          "start": 0.52,
+          "confidence": 0.7179927,
+          "word": "Aha:",
+          "end": 0.94
+        },
+        {
+          "start": 1.09,
+          "confidence": 0.986084,
+          "word": "research",
+          "end": 1.56
+        },
+        {
+          "start": 1.56,
+          "confidence": 0.98989534,
+          "word": "the",
+          "end": 1.6700000000000002
+        },
+        {
+          "start": 1.6700000000000002,
+          "confidence": 0.99072903,
+          "word": "question,",
+          "end": 2.3000000000000003
+        },
+        {
+          "start": 2.39,
+          "confidence": 0.99334335,
+          "word": "design",
+          "end": 2.7800000000000002
+        },
+        {
+          "start": 2.7800000000000002,
+          "confidence": 0.9905955,
+          "word": "the",
+          "end": 2.9000000000000004
+        },
+        {
+          "start": 2.9,
+          "confidence": 0.99004287,
+          "word": "explanation,",
+          "end": 3.81
+        },
+        {
+          "start": 3.93,
+          "confidence": 0.95627886,
+          "word": "and",
+          "end": 4.13
+        },
+        {
+          "start": 4.13,
+          "confidence": 0.9808813,
+          "word": "give",
+          "end": 4.28
+        },
+        {
+          "start": 4.279999999999999,
+          "confidence": 0.99355394,
+          "word": "people",
+          "end": 4.6
+        },
+        {
+          "start": 4.6,
+          "confidence": 0.99205256,
+          "word": "something",
+          "end": 4.97
+        },
+        {
+          "start": 4.97,
+          "confidence": 0.99145436,
+          "word": "they",
+          "end": 5.1
+        },
+        {
+          "start": 5.1,
+          "confidence": 0.9880331,
+          "word": "can",
+          "end": 5.29
+        },
+        {
+          "start": 5.29,
+          "confidence": 0.9865442,
+          "word": "use.",
+          "end": 6.59
+        },
+        {
+          "start": 6.6499999999999995,
+          "confidence": 0.99117637,
+          "word": "Think",
+          "end": 6.9399999999999995
+        },
+        {
+          "start": 6.9399999999999995,
+          "confidence": 0.98854405,
+          "word": "of",
+          "end": 7.039999999999999
+        },
+        {
+          "start": 7.04,
+          "confidence": 0.9921572,
+          "word": "learning",
+          "end": 7.38
+        },
+        {
+          "start": 7.38,
+          "confidence": 0.98925245,
+          "word": "a",
+          "end": 7.46
+        },
+        {
+          "start": 7.46,
+          "confidence": 0.9921994,
+          "word": "difficult",
+          "end": 7.91
+        },
+        {
+          "start": 7.909999999999999,
+          "confidence": 0.9919839,
+          "word": "idea,",
+          "end": 8.459999999999999
+        },
+        {
+          "start": 8.520000000000001,
+          "confidence": 0.9925629,
+          "word": "explaining",
+          "end": 9.120000000000001
+        },
+        {
+          "start": 9.120000000000001,
+          "confidence": 0.98917353,
+          "word": "a",
+          "end": 9.180000000000001
+        },
+        {
+          "start": 9.18,
+          "confidence": 0.98751634,
+          "word": "codebase,",
+          "end": 9.95
+        },
+        {
+          "start": 9.97,
+          "confidence": 0.999,
+          "word": "or",
+          "end": 10.16
+        },
+        {
+          "start": 10.16,
+          "confidence": 0.99298215,
+          "word": "sharing",
+          "end": 10.540000000000001
+        },
+        {
+          "start": 10.540000000000001,
+          "confidence": 0.99177593,
+          "word": "what",
+          "end": 10.73
+        },
+        {
+          "start": 10.73,
+          "confidence": 0.95925355,
+          "word": "you",
+          "end": 10.83
+        },
+        {
+          "start": 10.83,
+          "confidence": 0.9916178,
+          "word": "found.",
+          "end": 11.35
+        }
+      ],
+      "id": "takeaway-a",
+      "phraseStart": 0.06,
+      "recognizedText": "That is Aha: research the question, design the explanation, and give people something they can use. Think of learning a difficult idea, explaining a codebase, or sharing what you found.",
+      "audioHash": "bd31aec65cebb6b8246f68e127e4c27310d361917730564be39576094f699fd7",
+      "narration": "That is Aha: research the question, design the explanation, and give people something they can use. Think of learning a difficult idea, explaining a codebase, or sharing what you found.",
+      "confidence": 0.97810644
+    },
+    {
+      "words": [
+        {
+          "start": 0.13,
+          "confidence": 0.9040273,
+          "word": "Review",
+          "end": 0.49
+        },
+        {
+          "start": 0.49,
+          "confidence": 0.98752004,
+          "word": "the",
+          "end": 0.59
+        },
+        {
+          "start": 0.5900000000000001,
+          "confidence": 0.99197894,
+          "word": "sources",
+          "end": 1.1800000000000002
+        },
+        {
+          "start": 1.1800000000000002,
+          "confidence": 0.9906084,
+          "word": "and",
+          "end": 1.3200000000000003
+        },
+        {
+          "start": 1.3199999999999998,
+          "confidence": 0.99187064,
+          "word": "the",
+          "end": 1.41
+        },
+        {
+          "start": 1.4100000000000001,
+          "confidence": 0.9905012,
+          "word": "finished",
+          "end": 1.83
+        },
+        {
+          "start": 1.83,
+          "confidence": 0.9905078,
+          "word": "work,",
+          "end": 2.31
+        },
+        {
+          "start": 2.4,
+          "confidence": 0.9905825,
+          "word": "then",
+          "end": 2.6399999999999997
+        },
+        {
+          "start": 2.6399999999999997,
+          "confidence": 0.9911294,
+          "word": "judge",
+          "end": 2.9299999999999997
+        },
+        {
+          "start": 2.9299999999999997,
+          "confidence": 0.9895969,
+          "word": "whether",
+          "end": 3.1999999999999997
+        },
+        {
+          "start": 3.1999999999999997,
+          "confidence": 0.9932594,
+          "word": "your",
+          "end": 3.4399999999999995
+        },
+        {
+          "start": 3.44,
+          "confidence": 0.9925312,
+          "word": "audience",
+          "end": 3.88
+        },
+        {
+          "start": 3.88,
+          "confidence": 0.99099255,
+          "word": "can",
+          "end": 4.08
+        },
+        {
+          "start": 4.08,
+          "confidence": 0.993778,
+          "word": "actually",
+          "end": 4.53
+        },
+        {
+          "start": 4.53,
+          "confidence": 0.9929265,
+          "word": "understand",
+          "end": 5.12
+        },
+        {
+          "start": 5.12,
+          "confidence": 0.9630355,
+          "word": "it.",
+          "end": 5.34
+        }
+      ],
+      "id": "takeaway-b",
+      "phraseStart": 0.13,
+      "recognizedText": "Review the sources and the finished work, then judge whether your audience can actually understand it.",
+      "audioHash": "c68cc8dd69496c75857250c9bfd68963ff63f0a8317493d9de05de66916572a7",
+      "narration": "Review the sources and the finished work, then judge whether your audience can actually understand it.",
+      "confidence": 0.98426265
+    }
+  ],
+  "recognizer": "MS-1033-80-DESK"
+}
