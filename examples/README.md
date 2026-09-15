@@ -1,13 +1,16 @@
 # Aha examples
 
-从[本地入口](index.html)开始。两篇均为独立、可离线阅读的 HTML，默认英文，支持 English / 中文切换。GitHub 源码预览不会执行页面。
+从[本地入口](index.html)开始。三篇 HTML 均可独立、离线阅读，默认英文，支持 English / 中文切换。项目导览另有 PNG、原生 PPTX 和配音 MP4。GitHub 源码预览不会执行页面。
 
 | 主题 | 当前作品 | 可编辑源 |
 | --- | --- | --- |
 | 飞机轰鸣变轻了，为什么人声还在？ | [降噪耳机](anc/index.html) | [HTML 源码](anc/project/html/index.html) |
 | 为什么 Git 合并会带回已撤销的修改？ | [Git merge](git-merge/index.html) | [HTML 源码](git-merge/project/html/index.html) |
+| Aha 如何把研究转化为不同媒介的讲解？ | [项目导览及多格式交付](project-overview/README.md) | [四种作品项目](project-overview/projects/) |
 
 降噪页解释两路声压在耳边怎样相加，并用相位偏差滑块展示理想模型；Git 页用共同基线、当前版本和三组真实记录，解释净变化、独立修改与冲突。
+
+项目导览回答“Aha 是什么、能帮读者做什么”：新版 HTML 和六幕英文视频展示降噪耳机与 Git merge 的实际网页细节，再介绍调研、创作和四种阅读用途，首尾明确总结。实现细节放入网页折叠补充。另保留一图流、9 页原生 PPTX 和用于幻灯片的独立 GIF 示例。视频旁白经单独批准外发配音，附字幕及原始收据。检查与复现入口见 [project-overview](project-overview/README.md)，不属于下面旧两例的 `check-html.mjs` 范围。
 
 ## 目录内容
 

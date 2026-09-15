@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "delivered",
+  "format": "image",
+  "title": "Aha: research once, author for each medium",
+  "researchHash": "b547322594e90fb21a9aad36c40b7658cfe6c73d591e69481d95fdc20408a3bf",
+  "sourceHash": "e65a85881aca35bf11db8acf903b8cc3053f09ef0f6b68065167db1a220c20c8",
+  "outputHash": "0cf4c56c8bb9b692383bdc8c0e427fe567742be78df1d13a10e96a052038d2d2",
+  "output": "overview.png",
+  "createdAt": "2026-09-15T06:14:54.983Z",
+  "codeExecuted": true,
+  "browser": {
+    "width": 1080,
+    "height": 1800,
+    "scrollWidth": 1080,
+    "scrollHeight": 1800,
+    "clipped": 0,
+    "missingImages": 0
+  },
+  "verification": "Source/output hashes and declared claim coverage, not semantic truth or visual quality. Receipts describe a specific source revision; recheck the source hash after edits."
+}

@@ -1,0 +1,47 @@
+1
+00:00:00,000 --> 00:00:07,100
+Meet Aha: two skills that help your AI agent investigate a difficult question and create a visual explanation.
+
+2
+00:00:07,100 --> 00:00:14,600
+The goal is not just a longer answer. It is something another person can explore, present, or watch.
+
+3
+00:00:14,600 --> 00:00:25,500
+Take noise-cancelling headphones. Why does the rumble fade while voices remain? This existing web example combines a diagram with a phase-mismatch slider.
+
+4
+00:00:25,500 --> 00:00:32,900
+Readers can explore an ideal model. We are showing a screenshot, not measuring a real pair of headphones.
+
+5
+00:00:32,900 --> 00:00:43,700
+Or take Git merge. How can a merge bring back a reverted change? Another existing web explanation puts history, files, and results together.
+
+6
+00:00:43,700 --> 00:00:52,600
+Readers switch between three recorded cases to compare what happened. This is an explanation of saved results, not a live Git run.
+
+7
+00:00:52,600 --> 00:01:04,100
+Start with your question and your audience. Aha guides the agent to investigate sources, keep evidence and open questions, then design the explanation for the chosen medium.
+
+8
+00:01:04,100 --> 00:01:11,233
+Use the research skill for a report, or the explanation skill for a visual artifact, with research when needed.
+
+9
+00:01:11,233 --> 00:01:24,733
+Choose the experience your reader needs. An interactive web page to explore. A single image to scan. Editable slides to present. Or a narrated video to watch.
+
+10
+00:01:24,733 --> 00:01:32,567
+Each requested format is authored for its purpose, rather than automatically converting one finished piece into all the others.
+
+11
+00:01:32,567 --> 00:01:44,767
+That is Aha: research the question, design the explanation, and give people something they can use. Think of learning a difficult idea, explaining a codebase, or sharing what you found.
+
+12
+00:01:44,767 --> 00:01:51,000
+Review the sources and the finished work, then judge whether your audience can actually understand it.

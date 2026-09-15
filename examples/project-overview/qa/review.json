@@ -1,0 +1,83 @@
+{
+  "researchHashes": {
+    "core": "b547322594e90fb21a9aad36c40b7658cfe6c73d591e69481d95fdc20408a3bf",
+    "examples": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d"
+  },
+  "scope": "Agent-authored project introduction at commit a013ea795312eab9ae2e4224998a1314eea8f718; not an Aha-only skill benchmark.",
+  "content": {
+    "review": "Core claims retain fixed-commit evidence. The revised HTML/video lead with Aha's reader-facing purpose and existing ANC/Git HTML examples, then explain research, authoring and format choice. Identity/permissions no longer drive the introductory story. Existing screenshots are labelled static; no new headphone measurements or live Git experiments are claimed.",
+    "languages": "Chinese research, independently authored English/Chinese HTML branches, English PNG/PPTX/video. Quantities, negation, scope and citations were compared; not independent human translation acceptance.",
+    "omissions": "The revised HTML covers all ten expanded-research claims. Video covers purpose, research, formats, examples and review; implementation identity, permissions, video internals, language defaults and distribution are explicitly omitted. Unchanged PNG/PPTX retain their original nine-claim research binding.",
+    "readerStudy": "not-performed"
+  },
+  "html": {
+    "sourceHash": "63811189513a479cae35abe0f99bb57398a2c849fc0f38b4d4a417b8b8940a89",
+    "outputHash": "52d1fec35750ceef8757ea1c42bd4c04844f9070d97a2772fcff21f828179782",
+    "observed": "English/Chinese branches at 1280/390px and light/dark themes. Each of the four format buttons selects exactly one corresponding preview, updates its explanation and caption, and shows a different successfully decoded image. Keyboard selection and pointer reset checked.",
+    "visualSampling": "Screenshots retained for all eight language/format preview combinations. Video uses a static opening cover, not an embedded player. PNG preview uses contain sizing to show the whole poster.",
+    "notObserved": "Independent complete-page visual acceptance, screen-reader session, phone hardware and reader comprehension.",
+    "coverUpdate": "The static video cover was refreshed from the aligned visual source; format-switching behavior and other previews remain unchanged."
+  },
+  "image": {
+    "sourceHash": "e65a85881aca35bf11db8acf903b8cc3053f09ef0f6b68065167db1a220c20c8",
+    "outputHash": "0cf4c56c8bb9b692383bdc8c0e427fe567742be78df1d13a10e96a052038d2d2",
+    "dimensions": [
+      1080,
+      1800
+    ],
+    "revision": "Initial 1600px viewport overflowed; expanded the authored composition to 1800px instead of clipping or shrinking body text.",
+    "observed": "Complete captured dimensions, no clipped text or missing images. Independent portrait composition, not a long-page screenshot."
+  },
+  "pptx": {
+    "sourceHash": "9f268f29af320f688ac833cbd38deb356d12e7fb44c4a9eaa062fb583c81d542",
+    "outputHash": "cb802ae47df7fdffaa61f4d52bd98c5d7c174636fc01129b4670ab229bf2d290",
+    "slides": 9,
+    "renderer": "Built-in PowerPoint canvas; actual PPTX rendered to SVG, then local Edge rasterized the SVG for inspection.",
+    "review": "Initial seven-slide deck received a separate image review. Final deck retains dark bookends, adds actual companion HTML/PNG examples and a silent animated GIF, raises/enlarges footers, clarifies separate authoring, and fixes screenshot aspect ratio. Actual nine-slide canvas render obtained; new example slides visually inspected.",
+    "nativeEditProbe": {
+      "deliveredOriginalUnchanged": true,
+      "copyOutputHashAfterEdit": "696bda0f9e0b5f0760cf42f8f8058702bc0bf092005b5d7a069c7bc31f96f99e",
+      "operations": [
+        "Slide 3: change Research Dossier label to Research snapshot.",
+        "Slide 3: change the research-node native fill.",
+        "Slide 4: change one native table cell."
+      ],
+      "observed": "All three canvas edits succeeded on a separate copy; slides 3/4 were re-rendered with the changed text, fill and table cell."
+    },
+    "motion": "The embedded GIF byte-matches the original 120-frame, 960x540, 15fps loop. Its original source is now retained separately as projects/motion-preview. It is not a trailer for the revised video and not native per-shape animation. Static canvas render shows a frame.",
+    "notObserved": "Desktop PowerPoint slideshow/GIF playback, cross-machine fonts, independent final-deck human acceptance."
+  },
+  "video": {
+    "sourceHash": "3945fa289781baf14d094d1e1c962af2c3f7cd53cfe38a9822b7069e9a1471a9",
+    "planHash": "8e7494725ad0e9bd18a2b60ad3cff5cdfeaffef008404dc7c6e9abcc9242fcb1",
+    "outputHash": "b729e3e02a411b61b69ee7fa132ba3a8565c78eacd9fecdd0d92a8abb47aed02",
+    "approval": "User explicitly approved the complete unchanged narration and offline original-recording import under the new word-aligned visual plan.",
+    "provider": "provided-audio",
+    "voice": "edge-jenny-authorized-recordings",
+    "origin": "Originally approved Edge TTS / en-US-JennyNeural / +0%. Original plan, manifest and WAV files retained in audio-origin.",
+    "observedSource": "Removed normalized scene-percentage triggers. Every diagram/control, history/result, workflow, skill-name, format-card and closing-text emphasis derives from an estimated spoken-word onset in the existing recording. No early card cycling. All 28 cue boundaries checked at the preceding, exact and following frame, plus rewind.",
+    "examples": "ANC: exact existing English plot and controls at 60 degrees, residual ratio 1.00. Git: existing English saved-conflict history and a top-cropped working-file excerpt. Source pages run offline only to display existing states; no new experiment or Git command.",
+    "visualSampling": "Representative aligned scene states inspected, including closing-text/use-case emphasis. Existing English example crops and caption spacing retained. Encoded and browser playback records are separate from listening acceptance.",
+    "speech": "All original decoded speech samples verified byte-for-byte. Import adds four frames of zero-valued end padding across four segments, for 6400 added mono 48 kHz samples total. See audio-reuse.json.",
+    "render": "3330 frames, 111 seconds, 1280x720, 30fps H.264/AAC, burned captions and SRT.",
+    "playback": "See playback.json for complete muted Edge playback of this exact output hash. Muted playback is not listening review.",
+    "notObserved": "Full attentive human viewing/listening and audience comprehension; source, encoding and sample comparisons do not substitute.",
+    "alignment": {
+      "method": "Installed Windows offline English recognition with exact narration grammar and 16 kHz temporary input. Phrase-relative word audio ranges plus phrase start provide estimated times.",
+      "minimumSegmentRecognitionConfidence": 0.9499486,
+      "maximumCueFrameOffsetSeconds": 0.03,
+      "boundary": "The maximum is quantization error relative to the estimate, not measured perceptual alignment error. No independent human listening review is claimed.",
+      "evidence": [
+        "word-timings.json",
+        "cue-sheet.json",
+        "alignment.json"
+      ]
+    },
+    "waveform": "Per-frame mono 48 kHz PCM RMS energy from the original authorized recordings, normalized to the segment 95th percentile. Bars stop cycling when the video card is not the spoken focus; no synthetic sine-wave animation remains."
+  },
+  "resources": {
+    "fonts": "Local system fonts only; Segoe UI/Aptos/Consolas references are not embedded font redistributions.",
+    "images": "English screenshots captured offline from the original ANC/Git English branches, with original-source hashes, selectors, selected states and crop recorded in example-assets.json. Chinese HTML retains the original Chinese examples. Existing project PNG/PPTX remain unchanged.",
+    "mixedTools": "Repository Aha workflows, host document skills, native canvas, PptxGenJS, Playwright, FFmpeg and explicitly approved Edge TTS."
+  }
+}

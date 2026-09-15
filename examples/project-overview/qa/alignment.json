@@ -1,0 +1,287 @@
+{
+  "sourceHash": "3945fa289781baf14d094d1e1c962af2c3f7cd53cfe38a9822b7069e9a1471a9",
+  "method": "Offline Windows Speech Recognition, exact narration grammar, temporary mono 16 kHz input. Word offsets obtained with GetAudioForWordRange relative to the recognized phrase start. Estimated times, not human-verified phonetic alignment.",
+  "checks": [
+    {
+      "segment": "meet-aha-a",
+      "word": "Aha:",
+      "property": "brand",
+      "value": true,
+      "wordStart": 0.4,
+      "frame": 12,
+      "offsetSeconds": 0,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "meet-aha-a",
+      "word": "difficult",
+      "property": "headline",
+      "value": 0,
+      "wordStart": 3.52,
+      "frame": 106,
+      "offsetSeconds": 0.013333333333333197,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "meet-aha-a",
+      "word": "visual",
+      "property": "headline",
+      "value": 1,
+      "wordStart": 5.02,
+      "frame": 151,
+      "offsetSeconds": 0.013333333333333641,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "headphones-a",
+      "word": "diagram",
+      "property": "guide",
+      "value": 0,
+      "wordStart": 8.02,
+      "frame": 241,
+      "offsetSeconds": 0.013333333333333641,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "headphones-a",
+      "word": "phase-mismatch",
+      "property": "guide",
+      "value": 1,
+      "wordStart": 8.75,
+      "frame": 263,
+      "offsetSeconds": 0.016666666666667496,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "headphones-b",
+      "word": "screenshot,",
+      "property": "note",
+      "value": true,
+      "wordStart": 3.56,
+      "frame": 107,
+      "offsetSeconds": 0.006666666666666821,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "git-a",
+      "word": "history,",
+      "property": "guide",
+      "value": 0,
+      "wordStart": 7.5,
+      "frame": 225,
+      "offsetSeconds": 0,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "git-a",
+      "word": "results",
+      "property": "guide",
+      "value": 1,
+      "wordStart": 8.940000000000001,
+      "frame": 269,
+      "offsetSeconds": 0.026666666666665506,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "git-b",
+      "word": "recorded",
+      "property": "note",
+      "value": true,
+      "wordStart": 1.4700000000000002,
+      "frame": 45,
+      "offsetSeconds": 0.029999999999999805,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "git-b",
+      "word": "compare",
+      "property": "guide",
+      "value": 1,
+      "wordStart": 2.53,
+      "frame": 76,
+      "offsetSeconds": 0.0033333333333334103,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "workflow-a",
+      "word": "investigate",
+      "property": "step",
+      "value": 0,
+      "wordStart": 4.4,
+      "frame": 132,
+      "offsetSeconds": 0,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "workflow-a",
+      "word": "design",
+      "property": "step",
+      "value": 1,
+      "wordStart": 8.200000000000001,
+      "frame": 246,
+      "offsetSeconds": -1.7763568394002505e-15,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "workflow-b",
+      "word": "research",
+      "property": "skill",
+      "value": 0,
+      "wordStart": 0.53,
+      "frame": 16,
+      "offsetSeconds": 0.0033333333333332993,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "workflow-b",
+      "word": "report,",
+      "property": "step",
+      "value": 2,
+      "wordStart": 1.5099999999999998,
+      "frame": 46,
+      "offsetSeconds": 0.02333333333333365,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "workflow-b",
+      "word": "explanation",
+      "property": "skill",
+      "value": 1,
+      "wordStart": 2.53,
+      "frame": 76,
+      "offsetSeconds": 0.0033333333333334103,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "workflow-b",
+      "word": "research",
+      "property": "skill",
+      "value": 0,
+      "wordStart": 5.21,
+      "frame": 157,
+      "offsetSeconds": 0.023333333333333428,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "formats-a",
+      "word": "An",
+      "property": "format",
+      "value": 0,
+      "wordStart": 3,
+      "frame": 90,
+      "offsetSeconds": 0,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "formats-a",
+      "word": "single",
+      "property": "format",
+      "value": 1,
+      "wordStart": 6.1899999999999995,
+      "frame": 186,
+      "offsetSeconds": 0.010000000000000675,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "formats-a",
+      "word": "Editable",
+      "property": "format",
+      "value": 2,
+      "wordStart": 8.42,
+      "frame": 253,
+      "offsetSeconds": 0.013333333333333641,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "formats-a",
+      "word": "narrated",
+      "property": "format",
+      "value": 3,
+      "wordStart": 11.15,
+      "frame": 335,
+      "offsetSeconds": 0.01666666666666572,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "formats-b",
+      "word": "authored",
+      "property": "note",
+      "value": true,
+      "wordStart": 1.5899999999999999,
+      "frame": 48,
+      "offsetSeconds": 0.010000000000000231,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "takeaway-a",
+      "word": "research",
+      "property": "takeaway",
+      "value": 0,
+      "wordStart": 1.09,
+      "frame": 33,
+      "offsetSeconds": 0.010000000000000009,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "takeaway-a",
+      "word": "design",
+      "property": "takeaway",
+      "value": 1,
+      "wordStart": 2.39,
+      "frame": 72,
+      "offsetSeconds": 0.009999999999999787,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "takeaway-a",
+      "word": "give",
+      "property": "takeaway",
+      "value": 2,
+      "wordStart": 4.13,
+      "frame": 124,
+      "offsetSeconds": 0.0033333333333338544,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "takeaway-a",
+      "word": "learning",
+      "property": "usecase",
+      "value": 0,
+      "wordStart": 7.04,
+      "frame": 212,
+      "offsetSeconds": 0.026666666666666394,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "takeaway-a",
+      "word": "explaining",
+      "property": "usecase",
+      "value": 1,
+      "wordStart": 8.520000000000001,
+      "frame": 256,
+      "offsetSeconds": 0.013333333333331865,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "takeaway-a",
+      "word": "sharing",
+      "property": "usecase",
+      "value": 2,
+      "wordStart": 10.16,
+      "frame": 305,
+      "offsetSeconds": 0.0066666666666659324,
+      "boundaryAndReplay": true
+    },
+    {
+      "segment": "takeaway-b",
+      "word": "Review",
+      "property": "note",
+      "value": true,
+      "wordStart": 0.13,
+      "frame": 4,
+      "offsetSeconds": 0.003333333333333327,
+      "boundaryAndReplay": true
+    }
+  ],
+  "scope": "Every emphasis transition tested immediately before, at and after the estimated spoken-word cue. DOM rewind checked. Each cue lies within one video frame of its estimated word onset. Not a human listening verdict."
+}

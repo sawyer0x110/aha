@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0.0",
+  "format": "pptx",
+  "language": "en",
+  "researchHash": "b547322594e90fb21a9aad36c40b7658cfe6c73d591e69481d95fdc20408a3bf",
+  "title": "Aha: traceable research, freely authored explanations",
+  "status": "authored",
+  "entry": "pptx/main.mjs",
+  "coverage": [
+    { "id": "slide-01-purpose", "claimIds": ["c-purpose", "c-formats"] },
+    { "id": "slide-02-responsibilities", "claimIds": ["c-purpose", "c-dossier", "c-qa"] },
+    { "id": "slide-03-identity", "claimIds": ["c-dossier", "c-identity"] },
+    { "id": "slide-04-media", "claimIds": ["c-formats", "c-video"] },
+    { "id": "slide-demo-static", "claimIds": ["c-formats", "c-language"] },
+    { "id": "slide-demo-motion", "claimIds": ["c-formats", "c-identity", "c-video", "c-permission"] },
+    { "id": "slide-05-permissions", "claimIds": ["c-permission", "c-video"] },
+    { "id": "slide-06-language-distribution", "claimIds": ["c-language", "c-distribution"] },
+    { "id": "slide-07-quality", "claimIds": ["c-qa", "c-identity", "c-purpose"] }
+  ],
+  "omissions": [],
+  "width": 1280,
+  "height": 720
+}

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "delivered",
+  "format": "html",
+  "title": "Aha: research a difficult question, explain it visually",
+  "researchHash": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d",
+  "sourceHash": "63811189513a479cae35abe0f99bb57398a2c849fc0f38b4d4a417b8b8940a89",
+  "outputHash": "52d1fec35750ceef8757ea1c42bd4c04844f9070d97a2772fcff21f828179782",
+  "output": "index.html",
+  "createdAt": "2026-09-15T08:31:22.199Z",
+  "codeExecuted": false,
+  "selfContained": true,
+  "verification": "Source/output hashes and declared claim coverage, not semantic truth or visual quality. Receipts describe a specific source revision; recheck the source hash after edits."
+}
