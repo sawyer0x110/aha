@@ -93,10 +93,14 @@ function validateResearch(research: ResearchDraft, pending?: ResearchDraftCheck[
   for (const gap of research.gaps) refs(gap.subquestionIds, questions, `/gaps/${gap.id}/subquestionIds`);
   for (const claim of research.claims) {
     refs(claim.evidenceIds, evidence, `/claims/${claim.id}/evidenceIds`);
-    refs(claim.subquestionIds ?? [], questions, `/claims/${claim.id}/subquestionIds`);
+    const reverseIds = claim.subquestionIds;
+    refs(reverseIds ?? [], questions, `/claims/${claim.id}/subquestionIds`);
     const coverage = research.subquestions.filter(question => question.claimIds.includes(claim.id));
     if (coverage.length === 0) incomplete('COVERAGE_INVALID', 'Every claim must belong to a subquestion.', `/claims/${claim.id}`);
-    for (const id of claim.subquestionIds ?? []) {
+    if (reverseIds !== undefined && coverage.some(question => !reverseIds.includes(question.id))) {
+      fail('COVERAGE_INVALID', 'Explicit claim/subquestion reverse links must include every covering subquestion.', `/claims/${claim.id}/subquestionIds`);
+    }
+    for (const id of reverseIds ?? []) {
       const reverse = questions.get(id)!.claimIds;
       reverseLink(!reverse.includes(claim.id), reverse, 'Claim/subquestion references must agree.', `/claims/${claim.id}`);
     }

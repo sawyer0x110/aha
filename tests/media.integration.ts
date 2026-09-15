@@ -6,7 +6,8 @@ import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import { buildDossier, createResearchDraft, writeDossier } from '../src/research/dossier.js';
 import { initArtifact } from '../src/artifacts/project.js';
-import { approvePlan, prepareVideoPlan, validateVideoPlan } from '../src/media/plan.js';
+import { prepareHtml } from '../src/artifacts/html.js';
+import { approvePlan, prepareVideoPlan, validateVideoPlan, type VideoPlan } from '../src/media/plan.js';
 import { fileHash, importAudio, readAudio } from '../src/media/audio.js';
 import { createFrameRenderer, openBrowser } from '../src/media/browser.js';
 import { renderVideo } from '../src/media/video.js';
@@ -99,6 +100,27 @@ test('representative source frames change, replay identically, and hostile subti
   } finally { await browser.close(); }
 });
 
+test('deferred packaged video scripts initialize in the offline frame renderer', async () => {
+  const dir = await fs.mkdtemp(path.resolve('.aha-media-deferred-'));
+  let browser: Awaited<ReturnType<typeof openBrowser>> | undefined;
+  try {
+    const project = await fixture(dir);
+    const script = source.match(/<script>([\s\S]*)<\/script>/)![1]!;
+    await fs.writeFile(path.join(project, 'html', 'animation.js'), script);
+    await fs.writeFile(path.join(project, 'html', 'index.html'),
+      source.replace(/<script>[\s\S]*<\/script>/, '').replace('</head>', '<script defer src="animation.js"></script></head>'));
+    browser = await openBrowser();
+    const renderer = await createFrameRenderer(await prepareHtml(project), browser);
+    try {
+      const result = await renderer.render({ frame: 0, fps: 30, segmentIndex: 0, segmentFrame: 0, segmentFrames: 2, text: 'Fixture.' });
+      assert.equal(result.png.readUInt32BE(16), 1280);
+    } finally { await renderer.close(); }
+  } finally {
+    await browser?.close();
+    await fs.rm(dir, { recursive: true, force: true });
+  }
+});
+
 test('offline authored video uses measured synthetic audio and publishes verified transactional outputs', async () => {
   const dir = await fs.mkdtemp(path.resolve('.aha-media-integration-'));
   try {
@@ -155,6 +177,40 @@ test('offline authored video uses measured synthetic audio and publishes verifie
     await fs.appendFile(path.join(audioDir, 'segment-001.wav'), 'changed');
     await assert.rejects(renderVideo(project, plan, audioDir, path.join(dir, 'tampered.mp4'), true), { code: 'AUDIO_HASH_MISMATCH' });
     await assert.rejects(fs.stat(path.join(dir, 'tampered.mp4')));
+  } finally { await fs.rm(dir, { recursive: true, force: true }); }
+});
+
+test('exact audio frame boundaries survive import, tight duration limits and normalized reimport', async () => {
+  const dir = await fs.mkdtemp(path.resolve('.aha-audio-timing-'));
+  try {
+    for (const [samples, expectedFrames] of [[3200, 2], [3201, 3], [32000, 20]] as const) {
+      const wav = Buffer.alloc(44 + samples * 2);
+      wav.write('RIFF'); wav.writeUInt32LE(wav.length - 8, 4); wav.write('WAVEfmt ', 8);
+      wav.writeUInt32LE(16, 16); wav.writeUInt16LE(1, 20); wav.writeUInt16LE(1, 22);
+      wav.writeUInt32LE(48000, 24); wav.writeUInt32LE(96000, 28); wav.writeUInt16LE(2, 32);
+      wav.writeUInt16LE(16, 34); wav.write('data', 36); wav.writeUInt32LE(samples * 2, 40);
+      const file = `input-${samples}.wav`;
+      await fs.writeFile(path.join(dir, file), wav);
+      const plan: VideoPlan = {
+        schemaVersion: '1.0.0', status: 'authored', researchHash: '1'.repeat(64), sourceHash: '2'.repeat(64),
+        provider: 'provided-audio', voice: 'user-provided', rate: '+0%',
+        duration: { minSeconds: expectedFrames / 30, maxSeconds: expectedFrames / 30 },
+        segments: [{ id: 'sentence-1', text: 'Synthetic sample-count test.', claimIds: [] }],
+      };
+      const audioDir = path.join(dir, `audio-${samples}`);
+      const audio = await importAudio(plan, { segments: [{ id: 'sentence-1', file }] }, dir, audioDir);
+      assert.equal(audio.segments[0]!.frames, expectedFrames);
+      assert.equal((await readAudio(plan, audioDir)).segments[0]!.frames, expectedFrames);
+      const reimported = await importAudio(plan, {
+        segments: [{ id: 'sentence-1', file: path.join(audioDir, 'segment-001.wav') }],
+      }, dir, path.join(dir, `reimport-${samples}`));
+      assert.equal(reimported.segments[0]!.frames, expectedFrames);
+      if (samples === 3201) {
+        await assert.rejects(importAudio({ ...plan, duration: { minSeconds: 1 / 30, maxSeconds: 2 / 30 } },
+          { segments: [{ id: 'sentence-1', file }] }, dir, path.join(dir, 'too-short')), { code: 'VIDEO_DURATION_RANGE' });
+        await assert.rejects(fs.stat(path.join(dir, 'too-short')));
+      }
+    }
   } finally { await fs.rm(dir, { recursive: true, force: true }); }
 });
 

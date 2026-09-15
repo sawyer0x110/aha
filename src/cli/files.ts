@@ -41,7 +41,11 @@ export async function readText(file: string, maxBytes = MAX_JSON_BYTES): Promise
       length += read.bytesRead;
     }
     if (length > maxBytes) fail('FILE_SIZE', `File exceeds the ${maxBytes} byte limit.`, file);
-    return bytes.subarray(0, length).toString('utf8');
+    try {
+      return new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(bytes.subarray(0, length));
+    } catch {
+      return fail('FILE_ENCODING', 'Input files must contain valid UTF-8.', file);
+    }
   } finally {
     await handle.close();
   }

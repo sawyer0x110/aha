@@ -26,8 +26,8 @@
     "consolidation": "Regenerated under the canonical research binding; output bytes exactly match the previously reviewed PNG."
   },
   "pptx": {
-    "sourceHash": "43c86a617fbe8acb26897d8770812ed76323118873efde4f875723f513a8d93b",
-    "outputHash": "0f73f69ab3a05e51a3dbe78cbbb3d68a67f54ddd06f1da6de02fc5eeb42309a1",
+    "sourceHash": "ca3a6954160c23965387dacb582faa04a0c15bb4798866e2c6d80df9a0d0db59",
+    "outputHash": "481bd3f44b346b04be9b4ad93a390ace30d318634c004e57f085e1f2fc35766f",
     "slides": 9,
     "renderer": "Built-in PowerPoint canvas; actual PPTX rendered to SVG, then local Edge rasterized the SVG for inspection.",
     "review": "Initial seven-slide deck received a separate image review. Final deck retains dark bookends, adds actual companion HTML/PNG examples and a silent animated GIF, raises/enlarges footers, clarifies separate authoring, and fixes screenshot aspect ratio. Actual nine-slide canvas render obtained; new example slides visually inspected.",
@@ -44,7 +44,8 @@
     },
     "motion": "The embedded GIF byte-matches the original 120-frame, 960x540, 15fps loop. Its original source is now retained separately as projects/motion-preview. It is not a trailer for the revised video and not native per-shape animation. Static canvas render shows a frame.",
     "notObserved": "Desktop PowerPoint slideshow/GIF playback, cross-machine fonts, independent final-deck human acceptance.",
-    "consolidation": "Regenerated under the canonical research binding; all slide, relationship, style and media parts exactly match the previously reviewed PPTX. Only research references in speaker notes and core timestamps changed. Prior visual/native-edit observations are retained, not newly performed."
+    "consolidation": "consolidation.json describes the preceding research-only revision. The current correction links from that output; it does not relabel the old visual/native-edit observations as newly performed.",
+    "correction": "See pptx-correction.json for the current slide-6 clarification, package-part comparison and actual canvas-render inspection."
   },
   "video": {
     "sourceHash": "3945fa289781baf14d094d1e1c962af2c3f7cd53cfe38a9822b7069e9a1471a9",
@@ -76,7 +77,7 @@
   },
   "resources": {
     "fonts": "Local system fonts only; Segoe UI/Aptos/Consolas references are not embedded font redistributions.",
-    "images": "English screenshots captured offline from the original ANC/Git English branches, with original-source hashes, selectors, selected states and crop recorded in example-assets.json. Chinese HTML retains the original Chinese examples. PNG bytes and PPTX slide/media parts remain unchanged after research consolidation.",
+    "images": "English screenshots captured offline from the original ANC/Git English branches, with original-source hashes, selectors, selected states and crop recorded in example-assets.json. Chinese HTML retains the original Chinese examples. PNG bytes and PPTX media remain unchanged. Current slide-6 text correction is recorded separately.",
     "mixedTools": "Repository Aha workflows, host document skills, native canvas, PptxGenJS, Playwright, FFmpeg and explicitly approved Edge TTS."
   },
   "researchHash": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d"

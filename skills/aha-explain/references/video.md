@@ -60,6 +60,8 @@ This is user-supplied audio, not successful Edge TTS. Check that supplied speech
 
 Use actual audio durations and plan/segment identities to derive timing. The current renderer delivers 1280 × 720 at 30 fps, H.264/AAC, with sentence/segment-level burned captions and an SRT sidecar; it does not provide word alignment. Do not force target length by distorting speech speed. The implemented resource ceiling is 600 seconds, with a maximum of 200 narration segments; choose a smaller working budget or split a longer work explicitly.
 
+Frame budgets use exact stream ticks and their time base when available, including sample counts for normalized PCM. Already frame-aligned recordings therefore do not gain a frame from ffprobe's decimal rounding when reimported. A remaining partial frame is padded up, never rounded down to discard samples. If exact ticks are unavailable, the measured decimal duration is used conservatively rather than applying a guessed tolerance.
+
 Burned captions and SRT derive from authored `segments[].text`, not automatic translation. Check Chinese fonts or longer English labels, pronunciation, units, negation, and uncertainty against the approved narration and research.
 
 Review source code and obtain separate local execution approval before browser capture:

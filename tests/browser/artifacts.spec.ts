@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import * as fs from 'node:fs/promises';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
+import { pathToFileURL } from 'node:url';
 import { buildDossier, createResearchDraft, writeDossier } from '../../src/research/dossier.js';
 import { initArtifact, type ArtifactLanguage } from '../../src/artifacts/project.js';
 import { prepareHtml } from '../../src/artifacts/html.js';
@@ -43,6 +44,80 @@ test('arbitrary interactive explanation works offline with full Clawpilot light/
     await expect(page.locator('body')).toHaveCSS('font-family', /Segoe UI/);
     await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'dark'));
     await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(61, 59, 58)');
+  });
+});
+
+test('packaged deferred scripts preserve native ordering, globals and DOMContentLoaded', async ({ context }) => {
+  await fixture(`<!doctype html><head><script>
+    window.events = ["head:" + document.readyState];
+    document.addEventListener("DOMContentLoaded", () => events.push("early:" + sharedLexical));
+    </script><script defer src="first.js"></script><script src="blocking.js"></script>
+    <script defer src="second.js"></script></head><body><p id="target">Monday</p><script>
+    events.push("body:" + document.readyState);
+    var bodyGlobal = "body";
+    </script></body>`, async (root, project) => {
+    await fs.writeFile(path.join(project, 'html', 'blocking.js'), 'events.push("blocking:" + document.readyState);');
+    await fs.writeFile(path.join(project, 'html', 'first.js'), `
+      let sharedLexical = 41;
+      function readShared() { return sharedLexical; }
+      events.push("first:" + document.readyState + ":" + bodyGlobal + ":" + (this === window));
+      document.getElementById("target").textContent = "Updated";
+      document.addEventListener("DOMContentLoaded", () => events.push("late:" + readShared()));
+    `);
+    await fs.writeFile(path.join(project, 'html', 'second.js'), `
+      sharedLexical++;
+      events.push("second:" + document.readyState + ":" + readShared());
+    `);
+    const packaged = path.join(root, 'packaged.html');
+    await fs.writeFile(packaged, await prepareHtml(project));
+    await context.setOffline(true);
+    for (const file of [path.join(project, 'html', 'index.html'), packaged]) {
+      const page = await context.newPage();
+      const errors: string[] = [];
+      page.on('pageerror', error => errors.push(error.message));
+      await page.goto(pathToFileURL(file).href);
+      await expect(page.locator('#target')).toHaveText('Updated');
+      expect(await page.evaluate(() => (window as unknown as { events: string[] }).events)).toEqual([
+        'head:loading', 'blocking:loading', 'body:loading', 'first:interactive:body:true',
+        'second:interactive:42', 'early:42', 'late:42',
+      ]);
+      expect(errors).toEqual([]);
+      await page.close();
+    }
+    await expect(checkBrowser(project, true)).resolves.toMatchObject({ ok: true });
+  });
+});
+
+test('scheduled scripts retain separate classic executions, async eligibility and inert types', async ({ context }) => {
+  await fixture(`<!doctype html><head>
+    <script>window.events=[];</script>
+    <script defer src="one.js"></script><script defer src="duplicate.js"></script>
+    <script defer src="last.js"></script><script async defer src="async.js"></script>
+    <script defer type="application/json" src="inert.js"></script>
+    </head><body><p>Argument</p></body>`, async (root, project) => {
+    const scripts = {
+      'one.js': 'const collision = 1; events.push("one");',
+      'duplicate.js': 'const collision = 2; events.push("must-not-run");',
+      'last.js': 'events.push("last:" + collision);',
+      'async.js': 'events.push("async:" + document.currentScript.async + ":" + document.currentScript.defer);',
+      'inert.js': 'throw new Error("data blocks must not execute");',
+    };
+    for (const [name, script] of Object.entries(scripts)) await fs.writeFile(path.join(project, 'html', name), script);
+    const packaged = path.join(root, 'packaged.html');
+    await fs.writeFile(packaged, await prepareHtml(project));
+    await context.setOffline(true);
+    for (const file of [path.join(project, 'html', 'index.html'), packaged]) {
+      const page = await context.newPage();
+      const errors: string[] = [];
+      page.on('pageerror', error => errors.push(error.message));
+      await page.goto(pathToFileURL(file).href);
+      const events = await page.evaluate(() => (window as unknown as { events: string[] }).events);
+      expect(events.filter(event => !event.startsWith('async:'))).toEqual(['one', 'last:1']);
+      expect(events).toContain('async:true:true');
+      expect(errors).toHaveLength(1);
+      expect(errors[0]).toMatch(/collision.*already been declared/);
+      await page.close();
+    }
   });
 });
 

@@ -104,6 +104,23 @@ test('draft scaffolds cannot masquerade as completed research or authored output
   await assert.rejects(fs.stat(path.join(dir, 'not-ready.html')), { code: 'ENOENT' });
 }));
 
+test('research import rejects malformed UTF-8 before creating a dossier', async () => temp(async dir => {
+  const text = JSON.stringify({ ...researchFixture(), title: 'encoding-marker' });
+  const marker = text.indexOf('encoding-marker');
+  const bytes = Buffer.concat([Buffer.from(text.slice(0, marker)), Buffer.from([0xff]), Buffer.from(text.slice(marker + 1))]);
+  await fs.writeFile(path.join(dir, 'invalid.json'), bytes);
+  for (const args of [
+    ['research-check', 'invalid.json'],
+    ['research-check', 'invalid.json', '--draft'],
+    ['research-build', 'invalid.json', 'invalid.research'],
+  ]) {
+    const result = JSON.parse(invoke(dir, args, cli, 1));
+    assert.equal(result.error.code, 'FILE_ENCODING');
+  }
+  await assert.rejects(fs.stat(path.join(dir, 'invalid.research')), { code: 'ENOENT' });
+  assert.deepEqual(await fs.readFile(path.join(dir, 'invalid.json')), bytes);
+}));
+
 test('scoped doctor does not require optional media tools for research, HTML or PPTX', async () => temp(async dir => {
   for (const target of ['research', 'html', 'pptx']) {
     const result = JSON.parse(invoke(dir, ['doctor', '--for', target], cli, 0, {

@@ -205,15 +205,15 @@ export default async function ({ pptx, research }) {
   // slide-demo-motion
   {
     const s = slide();
-    heading(s, '05  /  PPTX + VIDEO IN ACTION', 'Watch a source revision change, then an approval gate open');
+    heading(s, '05  /  PPTX: SILENT ILLUSTRATION', 'Watch a source revision change, then an approval gate open');
     s.addImage({ path: 'assets/motion-preview.gif', x: 0.6, y: 2.03, w: 8.1, h: 4.56, altText: 'Animated eight-second loop: source revision A becomes B and the output is rebuilt; then approved narration passes a gate.' });
     label(s, 'THE PPTX EXAMPLE IS THIS SLIDE', 9.04, 2.07, 3.68);
     text(s, 'Native text stays editable.\nThe motion is an embedded GIF.', 9.04, 2.52, 3.58, 0.94, 23, C.berry, { bold: true });
     text(s, 'Play in a slideshow to see the loop. A static preview may show only its first frame.', 9.04, 3.82, 3.58, 0.96, 19);
-    text(s, 'Video source supplies both scenes. The final narrated video uses measured speech timing—not this silent preview’s four seconds per scene.', 9.04, 5.05, 3.58, 1.34, 17, C.muted);
+    text(s, 'This loop illustrates source changes and approval. It is separate from the narrated ANC and Git walkthrough.', 9.04, 5.05, 3.58, 1.34, 17, C.muted);
     footer(s, 6, 'Actual frame-driven scenes · silent 8 s preview · not an embedded narrated MP4');
     notes(s, 'slide-demo-motion',
-      'PptxGenJS does not expose a native animation/transition API in this locked version. This example therefore embeds a genuine multi-frame GIF as a supporting animated image instead of inventing APIs, rewriting runtime receipts, or rasterizing the entire slide. Native headings and explanatory text remain editable; the animated illustration is edited through its HTML video source and regenerated. The GIF replays source/receipt revision and exact-plan approval scenes. Its illustrative duration is 8 seconds at 15 fps, not real speech timing. Static renderers may display only a still frame; slideshow playback requires a compatible presentation app.',
+      'PptxGenJS does not expose a native animation/transition API in this locked version. This example therefore embeds a genuine multi-frame GIF as a supporting animated image instead of inventing APIs, rewriting runtime receipts, or rasterizing the entire slide. Native headings and explanatory text remain editable; the animated illustration is edited through projects/motion-preview and regenerated. The GIF replays source/receipt revision and exact-plan approval scenes. These are independent illustrations, not scenes from the final narrated ANC/Git video. Its illustrative duration is 8 seconds at 15 fps, not real speech timing. Static renderers may display only a still frame; slideshow playback requires a compatible presentation app.',
       ['src/artifacts/render.ts#L203-L251', 'src/media/plan.ts#L58-L101', 'skills/aha-explain/references/video.md']);
   }
 
