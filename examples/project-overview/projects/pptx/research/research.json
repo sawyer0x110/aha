@@ -138,6 +138,20 @@
         "q-purpose"
       ],
       "text": "研究支持、解释清晰度、作品视觉与编辑、运行完整性及真人理解是不同层次的验收，不能相互替代。"
+    },
+    {
+      "evidenceIds": [
+        "e-existing-examples"
+      ],
+      "id": "c-examples",
+      "kind": "fact",
+      "limitations": [
+        "本次只展示已有作品及其已声明的交互，不重新认证声学/Git结论，也不声称这些题材已有 PNG、PPTX 或配音视频成品。"
+      ],
+      "subquestionIds": [
+        "q-examples"
+      ],
+      "text": "仓库已有降噪耳机和 Git merge 两个中英双语离线 HTML 案例：前者含相位偏差滑块，后者可切换三组预录合并结果；它们展示具体作品，不是新做的耳机实测或实时 Git 实验。"
     }
   ],
   "evidence": [
@@ -260,6 +274,16 @@
       "sourceVersion": "a013ea795312eab9ae2e4224998a1314eea8f718",
       "summary": "测试代码断言草稿拒绝、语言默认、收据身份与覆盖错误；读取不等于执行。",
       "title": "tests/artifacts.test.ts"
+    },
+    {
+      "content": "# Aha examples\r\n\r\n从[本地入口](index.html)开始。两篇均为独立、可离线阅读的 HTML，默认英文，支持 English / 中文切换。GitHub 源码预览不会执行页面。\r\n\r\n| 主题 | 当前作品 | 可编辑源 |\r\n| --- | --- | --- |\r\n| 飞机轰鸣变轻了，为什么人声还在？ | [降噪耳机](anc/index.html) | [HTML 源码](anc/project/html/index.html) |\r\n| 为什么 Git 合并会带回已撤销的修改？ | [Git merge](git-merge/index.html) | [HTML 源码](git-merge/project/html/index.html) |\r\n\r\n降噪页解释两路声压在耳边怎样相加，并用相位偏差滑块展示理想模型；Git 页用共同基线、当前版本和三组真实记录，解释净变化、独立修改与冲突。\r\n\r\n## 目录内容\r\n\r\n- 各主题的 `index.html` 和收据：当前作品及其源码、研究、输出身份。\r\n- `project/`：作品元数据、可编辑 HTML，以及运行时要求的研究副本。\r\n- `research/`：封存的研究报告、证据台账与清单。作品复用这些档案，不代表额外完成了联网调研。\r\n- `git-merge/inputs/`、`sources/`、`experiment-recipe.json`、`experiment-results-v2.json`：原始材料、来源许可与有效实验记录。页面复用已记录的结果，不实时执行 Git。\r\n- `evaluation/`：当前运行结果、分别记录的文字与图形审阅、代表性截图；不代表真人验收。\r\n- `check-html.mjs`：当前页面的离线检查脚本。\r\n\r\n`examples` 是当前作品集，不是每次试跑的历史目录。之后的候选产物和技能对照实验放在独立工作目录；经检查并获相应替换／清理授权后，才更新这里的成品、匹配收据、链接与 QA。技能评估材料和读者迁移理解流程见[评估协议](../docs/EVALUATION.md)，其试跑结果不替代这里的成品验收。\r\n\r\n## 内容和验收边界\r\n\r\n降噪滑块表示单一频率、相等振幅、同一位置的理想声压模型；不是耳机实测性能、分贝或主观响度。语音部分讨论剩余线索，不保证具体耳机能让谈话消失。\r\n\r\nGit 阅读的源码和手册固定为 v2.49.0，实验记录使用 2.53.0.windows.4；页面明确区分两者。控件展示预录结果，不是 Git 模拟器。文本合并成功不证明程序行为正确。\r\n\r\n`experiment-recipe.json` 保留执行路径及失败说明，是实验方法记录，不是当前目录的可执行脚本；结论以 `experiment-results-v2.json` 为依据。`project/qa/author-review.json` 记录源码交接时的审阅范围，最终浏览器状态以 `evaluation/` 为准。\r\n\r\n当前检查和审阅见 [运行记录](evaluation/runtime.json)与[审阅记录](evaluation/review.json)。文字已分别按中文、英文审读，再核对事实；页面检查覆盖两种语言、浅深主题、1280/390px 宽度和键盘交互。真人理解效果、独立人工翻译验收、手机真机及读屏器检查仍未完成。\r\n\r\n制作时同时遵循宿主 `web-artifacts-builder` 的 Clawpilot 配色和系统字体要求，不能将视觉结果当作 Aha 单独作用的对照实验。图形为原创；没有下载字体或素材。Git 来源保留其上游许可。\r\n\r\n## 本地复现\r\n\r\n先使用仓库已有依赖构建。HTML 打包本身不执行作者脚本：\r\n\r\n```powershell\r\nnpm run build\r\nnode .\\dist\\skills\\aha-explain\\scripts\\aha.mjs render-html .\\examples\\anc\\project .\\examples\\anc\\rebuilt.html\r\nnode .\\dist\\skills\\aha-explain\\scripts\\aha.mjs render-html .\\examples\\git-merge\\project .\\examples\\git-merge\\rebuilt.html\r\n```\r\n\r\n检查前审阅脚本、页面并取得本地执行授权。检查需要已安装的 Edge，不会联网、安装依赖或运行 Git：\r\n\r\n```powershell\r\nnode .\\examples\\check-html.mjs --allow-code --screenshots\r\n```\r\n\r\n该命令检查两个当前 `index.html`，将运行结果写入 `evaluation/runtime.json`；`--screenshots` 可选，会更新代表性截图。复现的新文件先另存，确认后再替换当前作品及配套收据。\r\n",
+      "contentHash": "1c5e4a25672ef6fc9b266141e0aeaf5b41805b2693a718da3249d589851b7921",
+      "id": "e-existing-examples",
+      "kind": "code",
+      "locator": "examples/README.md at a013ea795312eab9ae2e4224998a1314eea8f718, complete file",
+      "sourceVersion": "a013ea795312eab9ae2e4224998a1314eea8f718",
+      "summary": "The existing gallery describes two offline bilingual HTML artifacts: an ANC phase-mismatch model and three recorded Git merge cases. This establishes artifact examples, not new verification of acoustics or Git behavior.",
+      "title": "Existing ANC and Git merge artifact catalog"
     }
   ],
   "gaps": [
@@ -271,11 +295,11 @@
       ]
     }
   ],
-  "id": "aha-project-overview-20260915",
+  "id": "aha-project-overview-examples-20260915",
   "kind": "codebase",
   "language": "zh-CN",
   "question": "Aha 如何把可追溯研究转化为不同媒介的讲解作品，运行时能保证什么、不能保证什么？",
-  "report": "# Aha：把可追溯研究与自由表达分开\n\n## 直接结论\nAha 不是“输入一句话就自动证明事实并生成所有媒体”的引擎，而是两个可移植 Skill 加一套本地运行时。宿主 Agent 负责调查、推理和内容设计；运行时负责协议、身份、资源打包与渲染。两者分工让同一组有来源的结论可以被重新组织为交互网页、一图流、原生幻灯片和动态讲解视频，而不必让研究报告服从某种固定版式。[e-readme, e-research-skill, e-explain-skill]\n\n## 范围、读者与方法\n本报告为第一次接触项目的使用者和贡献者介绍当前仓库。调研固定在 sawyer0x110/aha 提交 a013ea795312eab9ae2e4224998a1314eea8f718，runtime 0.3.0、研究/作品协议 1.0.0；日期 2026-09-15。读取当前工作树并用固定提交片段复核。预算为一轮定位、一次实现/测试反查和一次逐主张语义回查，不做外网搜索、生产性能实验或全库安全审计。\n\n问题树先回答 q-purpose（项目解决什么），再回答 q-identity（研究怎样与作品绑定），由此展开 q-formats（为何要分别创作）与 q-permission（执行和声音外发的界线），最后回答 q-distribution（如何携带给宿主）。q-live 单独保留，避免从文档及测试代码推断线上服务、真实宿主和真人理解已经通过。\n\n## 从问题到作品，数据怎样走\n用户只要报告时，aha-research 完成问题分解、取证、反证与综合，交付独立档案。用户要视觉作品时，aha-explain 直接使用共享研究流程，不要求宿主自动转发给另一个 Skill。[e-research-skill, e-explain-skill]\n\nResearch Dossier 是保存一份研究的目录：research.json 保存主张、来源、读取日志、缺口及完整报告；report.md 提供直接阅读的同一报告；manifest.json 记录协议、研究 ID 和派生的内容哈希。严格构建会检查完整性和引用，验证时重算身份。这里的哈希相当于内容的指纹：能发现内容是否改变，不能说明一句结论是否成立。[e-dossier, e-architecture]\n\n每份媒介项目持有研究副本，并在 artifact.json 中声明一种格式、作品入口、语言、尺寸、研究哈希与主张覆盖。每条主张必须出现在覆盖表，或以明确理由省略；草稿标记未移除时拒绝作为已编写作品。这是防止漏交与身份混淆的机械门槛，不会替作者证明图中的箭头或文字真的表达了所映射的主张。[e-project]\n\nHTML、PNG、PPTX 交付收据记录 researchHash、sourceHash、outputHash。若作者修改源码，旧输出仍能作为历史版本保留，但不能把旧收据说成新源码的渲染结果。研究改动则建立新的研究快照，再有意识地重新绑定作品。视频另有绑定源码的计划和音频身份链，因此只改画面也可能使旧音频的绑定失效。[e-render, e-plan, e-architecture]\n\n## 四种格式，共用事实而非版式\nHTML 适合读者自己探索关系：本地资源内嵌，可有 SVG、Mermaid 和离线控件。PNG 需要为固定视口重新构图，不是把长文章缩小。PPTX 由作者函数添加原生文字、形状、表格或图表，运行时负责写文件，不接受只有整页截图的幻灯片。视频由作者按帧回调设置画面状态，实际音频确定帧数，并输出烧录字幕及 SRT；不是自动把任意脚本变成动画。[e-architecture]\n\n新 HTML 默认双语、先英语；其他格式默认英语。中文提问本身不更改作品语言默认值，明确 --language zh 才选择中文。Agent 编写译文，本地切换不调用翻译服务，不改研究快照。这是语言与事实身份解耦，而不是自动翻译能力。[e-language, e-project]\n\n## 权限为什么分两层\nrender-html 打包时不执行作者脚本，所以不需要为了打包而开放本地代码执行。图片捕获、浏览器检查、视频画面和 PPTX 作者函数会执行代码，需先审阅并取得明确本地授权。Node 模块拥有宿主进程权限；超时和 --allow-code 都不是 OS 沙箱。[e-render, e-execution]\n\n在线 Edge TTS 还会向提供方发送旁白，因此必须另行批准当前完整文本、提供方、声线、语速、外发范围和 planHash。源码、旁白或声音参数改变时，原批准不能通过手改哈希移植过来。检查实现中的 VIDEO_SOURCE_MISMATCH 与精确 planHash 比较支持这个拒绝路径，但不证明本机已经成功联网合成。[e-plan, e-execution]\n\n## 如何使用与贡献\n接收方需要完整构建/发布包，不是直接复制源码 skills 目录。构建脚本输出恰好 aha-research 和 aha-explain 两套 Skill，各带 CLI、Schema、渐进参考、Mermaid、Playwright 和第三方声明；浏览器、Python、FFmpeg 不随包分发。开发者可从 src/research、src/artifacts、src/media 追踪研究、作品和视频链，tests 中的断言验证对应程序行为，evals 另行处理技能效果研究。[e-build, e-architecture]\n\n## 反证与语义回查\n最初可能将“四种格式”理解成统一自动生成命令。检查 FORMATS 与单项目 format 字段后，将结论收窄为分别初始化、分别编写、分别验收。另一种误读是“检查通过等于事实正确”；checkArtifact 的声明与收据 verification 明确反对这一推断。测试源码也分别断言覆盖缺失、草稿、语言默认和源码变化，不对真人理解做断言。[e-project, e-render, e-tests]\n\n逐主张回查结果：c-purpose、c-dossier、c-formats、c-identity、c-permission、c-video、c-language、c-distribution、c-qa 均限制为当前实现或契约的描述，没有推断性能、线上可用率或效果增益。没有将未运行的测试称为通过。制作期间实际生成与检查的结果放在案例 QA，不倒灌为固定研究快照的事实。\n\n## 未解决与停止理由\n本地 doctor 已观察到浏览器、FFmpeg、ffprobe 可用，而选中的 Python 缺少可用的指定 Edge TTS 环境；这是制作阶段诊断，不证明远程服务可用。真实宿主发现、正式 Release、桌面 PowerPoint 跨机兼容、在线语音服务条款适用性及真人理解效果仍需各自独立观察。本报告不访问私人材料，也不外发仓库代码。\n\n核心项目介绍已由入口、实现和测试断言交叉支撑；继续查未授权线上环境不会改善这些有限结论，故以明确缺口停止。后续作品会复用此快照并分别记录格式、执行与视觉验收。\n",
+  "report": "# Aha：把难懂的问题调研清楚，再做成可用的讲解\n\n## 面向新用户的直接答案\nAha 是给 Agent 使用的两个技能：先深入研究一个问题，再把有证据的解释做成用户选定的作品。用户提供问题或材料、目标读者及所需格式；Agent 调研和创作，运行时负责检查、打包与渲染。成品可以是能交互的网页、适合一眼阅读的图、可修改的幻灯片，或有旁白的动态视频。它不是只写一段回答，也不是保证正确的一键转换器。[c-purpose, c-formats, c-qa]\n\n## 先看作品，再讲实现\n仓库已有两个非本项目题材的真实 HTML 作品。降噪耳机案例以“飞机轰鸣变轻了，为什么人声还在？”为问题，并提供一个明确标为理想模型的相位滑块。Git merge 案例以“为什么合并会带回已撤销的修改？”为问题，让读者对照三个预先记录的合并案例。它们说明具体输出可以包含图解和受限定的交互；本次展示不是重新完成声学实测、实时 Git 实验或真人理解测试。[c-examples]\n\n示例截图只是对已有作品的展示，原网页才有交互。新介绍不能把截图做成假的实时实验，也不能声称这些题材已经生成了其他三种格式。图片、PPTX 和视频的形态可用当前项目自己的实际成品补足，并明确区分来源。\n\n## 本轮讲解的主线与取舍\n先点明 Aha 是什么，再给一个问题和实际输出，接着说明“调研问题—为受众设计所选媒介—交付作品与可编辑源”，最后总结何时使用。两种 Skill 的职责保留；哈希、源码重建和执行权限降为开发/制作补充资料，不再让新用户先理解协议才能理解产品。研究身份、授权和限制仍实际遵守，不能因弱化展示而省略执行。\n\n本轮是在原有固定源码研究上补充一个作品目录来源，核心实现结论没有更改。HTML/video 绑定这个新快照；先前 PNG/PPTX 仍可保留原快照身份。旧快照不被覆盖。\n\n## 原有实现研究与审阅记录\n# Aha：把可追溯研究与自由表达分开\n\n## 直接结论\nAha 不是“输入一句话就自动证明事实并生成所有媒体”的引擎，而是两个可移植 Skill 加一套本地运行时。宿主 Agent 负责调查、推理和内容设计；运行时负责协议、身份、资源打包与渲染。两者分工让同一组有来源的结论可以被重新组织为交互网页、一图流、原生幻灯片和动态讲解视频，而不必让研究报告服从某种固定版式。[e-readme, e-research-skill, e-explain-skill]\n\n## 范围、读者与方法\n本报告为第一次接触项目的使用者和贡献者介绍当前仓库。调研固定在 sawyer0x110/aha 提交 a013ea795312eab9ae2e4224998a1314eea8f718，runtime 0.3.0、研究/作品协议 1.0.0；日期 2026-09-15。读取当前工作树并用固定提交片段复核。预算为一轮定位、一次实现/测试反查和一次逐主张语义回查，不做外网搜索、生产性能实验或全库安全审计。\n\n问题树先回答 q-purpose（项目解决什么），再回答 q-identity（研究怎样与作品绑定），由此展开 q-formats（为何要分别创作）与 q-permission（执行和声音外发的界线），最后回答 q-distribution（如何携带给宿主）。q-live 单独保留，避免从文档及测试代码推断线上服务、真实宿主和真人理解已经通过。\n\n## 从问题到作品，数据怎样走\n用户只要报告时，aha-research 完成问题分解、取证、反证与综合，交付独立档案。用户要视觉作品时，aha-explain 直接使用共享研究流程，不要求宿主自动转发给另一个 Skill。[e-research-skill, e-explain-skill]\n\nResearch Dossier 是保存一份研究的目录：research.json 保存主张、来源、读取日志、缺口及完整报告；report.md 提供直接阅读的同一报告；manifest.json 记录协议、研究 ID 和派生的内容哈希。严格构建会检查完整性和引用，验证时重算身份。这里的哈希相当于内容的指纹：能发现内容是否改变，不能说明一句结论是否成立。[e-dossier, e-architecture]\n\n每份媒介项目持有研究副本，并在 artifact.json 中声明一种格式、作品入口、语言、尺寸、研究哈希与主张覆盖。每条主张必须出现在覆盖表，或以明确理由省略；草稿标记未移除时拒绝作为已编写作品。这是防止漏交与身份混淆的机械门槛，不会替作者证明图中的箭头或文字真的表达了所映射的主张。[e-project]\n\nHTML、PNG、PPTX 交付收据记录 researchHash、sourceHash、outputHash。若作者修改源码，旧输出仍能作为历史版本保留，但不能把旧收据说成新源码的渲染结果。研究改动则建立新的研究快照，再有意识地重新绑定作品。视频另有绑定源码的计划和音频身份链，因此只改画面也可能使旧音频的绑定失效。[e-render, e-plan, e-architecture]\n\n## 四种格式，共用事实而非版式\nHTML 适合读者自己探索关系：本地资源内嵌，可有 SVG、Mermaid 和离线控件。PNG 需要为固定视口重新构图，不是把长文章缩小。PPTX 由作者函数添加原生文字、形状、表格或图表，运行时负责写文件，不接受只有整页截图的幻灯片。视频由作者按帧回调设置画面状态，实际音频确定帧数，并输出烧录字幕及 SRT；不是自动把任意脚本变成动画。[e-architecture]\n\n新 HTML 默认双语、先英语；其他格式默认英语。中文提问本身不更改作品语言默认值，明确 --language zh 才选择中文。Agent 编写译文，本地切换不调用翻译服务，不改研究快照。这是语言与事实身份解耦，而不是自动翻译能力。[e-language, e-project]\n\n## 权限为什么分两层\nrender-html 打包时不执行作者脚本，所以不需要为了打包而开放本地代码执行。图片捕获、浏览器检查、视频画面和 PPTX 作者函数会执行代码，需先审阅并取得明确本地授权。Node 模块拥有宿主进程权限；超时和 --allow-code 都不是 OS 沙箱。[e-render, e-execution]\n\n在线 Edge TTS 还会向提供方发送旁白，因此必须另行批准当前完整文本、提供方、声线、语速、外发范围和 planHash。源码、旁白或声音参数改变时，原批准不能通过手改哈希移植过来。检查实现中的 VIDEO_SOURCE_MISMATCH 与精确 planHash 比较支持这个拒绝路径，但不证明本机已经成功联网合成。[e-plan, e-execution]\n\n## 如何使用与贡献\n接收方需要完整构建/发布包，不是直接复制源码 skills 目录。构建脚本输出恰好 aha-research 和 aha-explain 两套 Skill，各带 CLI、Schema、渐进参考、Mermaid、Playwright 和第三方声明；浏览器、Python、FFmpeg 不随包分发。开发者可从 src/research、src/artifacts、src/media 追踪研究、作品和视频链，tests 中的断言验证对应程序行为，evals 另行处理技能效果研究。[e-build, e-architecture]\n\n## 反证与语义回查\n最初可能将“四种格式”理解成统一自动生成命令。检查 FORMATS 与单项目 format 字段后，将结论收窄为分别初始化、分别编写、分别验收。另一种误读是“检查通过等于事实正确”；checkArtifact 的声明与收据 verification 明确反对这一推断。测试源码也分别断言覆盖缺失、草稿、语言默认和源码变化，不对真人理解做断言。[e-project, e-render, e-tests]\n\n逐主张回查结果：c-purpose、c-dossier、c-formats、c-identity、c-permission、c-video、c-language、c-distribution、c-qa 均限制为当前实现或契约的描述，没有推断性能、线上可用率或效果增益。没有将未运行的测试称为通过。制作期间实际生成与检查的结果放在案例 QA，不倒灌为固定研究快照的事实。\n\n## 未解决与停止理由\n本地 doctor 已观察到浏览器、FFmpeg、ffprobe 可用，而选中的 Python 缺少可用的指定 Edge TTS 环境；这是制作阶段诊断，不证明远程服务可用。真实宿主发现、正式 Release、桌面 PowerPoint 跨机兼容、在线语音服务条款适用性及真人理解效果仍需各自独立观察。本报告不访问私人材料，也不外发仓库代码。\n\n核心项目介绍已由入口、实现和测试断言交叉支撑；继续查未授权线上环境不会改善这些有限结论，故以明确缺口停止。后续作品会复用此快照并分别记录格式、执行与视觉验收。\n\n",
   "researchLog": [
     {
       "action": "read",
@@ -456,11 +480,26 @@
         "q-identity"
       ],
       "summary": "固定提交取回并核对已审阅工作树片段：测试代码断言草稿拒绝、语言默认、收据身份与覆盖错误；读取不等于执行。"
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-existing-examples"
+      ],
+      "id": "read-existing-examples-v2",
+      "locator": "examples/README.md at fixed commit a013ea795312eab9ae2e4224998a1314eea8f718",
+      "occurredAt": "2026-09-15T06:45:43.351Z",
+      "outcome": "success",
+      "readRange": "Complete file",
+      "subquestionIds": [
+        "q-examples"
+      ],
+      "summary": "Read the fixed-commit example catalog after user asked for artifact examples beyond the project itself."
     }
   ],
   "schemaVersion": "1.0.0",
   "status": "complete",
-  "stopReason": "项目定位、身份链、四种管线及权限边界已有当前提交证据；线上及真人验收明确不在本次代码介绍范围。",
+  "stopReason": "原有实现证据已回答用途与职责；补读固定提交的现有案例目录回答具体输出样例。科学结论重验、真人理解与线上宿主验收不在本轮范围。",
   "subquestions": [
     {
       "claimIds": [
@@ -519,7 +558,16 @@
       "id": "q-live",
       "question": "线上服务、真实宿主及真人理解效果是否已被本次调研验证？",
       "status": "out-of-scope"
+    },
+    {
+      "claimIds": [
+        "c-examples"
+      ],
+      "gapIds": [],
+      "id": "q-examples",
+      "question": "有什么现成作品能让新用户先看见 Aha 交付的具体形态？",
+      "status": "answered"
     }
   ],
-  "title": "Aha：从可追溯研究到多媒介讲解"
+  "title": "Aha：把难懂的问题调研清楚，再做成可用的讲解"
 }

@@ -1,13 +1,9 @@
 {
-  "researchHashes": {
-    "core": "b547322594e90fb21a9aad36c40b7658cfe6c73d591e69481d95fdc20408a3bf",
-    "examples": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d"
-  },
   "scope": "Agent-authored project introduction at commit a013ea795312eab9ae2e4224998a1314eea8f718; not an Aha-only skill benchmark.",
   "content": {
     "review": "Core claims retain fixed-commit evidence. The revised HTML/video lead with Aha's reader-facing purpose and existing ANC/Git HTML examples, then explain research, authoring and format choice. Identity/permissions no longer drive the introductory story. Existing screenshots are labelled static; no new headphone measurements or live Git experiments are claimed.",
     "languages": "Chinese research, independently authored English/Chinese HTML branches, English PNG/PPTX/video. Quantities, negation, scope and citations were compared; not independent human translation acceptance.",
-    "omissions": "The revised HTML covers all ten expanded-research claims. Video covers purpose, research, formats, examples and review; implementation identity, permissions, video internals, language defaults and distribution are explicitly omitted. Unchanged PNG/PPTX retain their original nine-claim research binding.",
+    "omissions": "All outputs use one ten-claim research snapshot. HTML covers all claims. Video retains its declared omissions. PNG, PPTX and the silent GIF explicitly omit ANC/Git case studies, which remain in HTML/video.",
     "readerStudy": "not-performed"
   },
   "html": {
@@ -19,18 +15,19 @@
     "coverUpdate": "The static video cover was refreshed from the aligned visual source; format-switching behavior and other previews remain unchanged."
   },
   "image": {
-    "sourceHash": "e65a85881aca35bf11db8acf903b8cc3053f09ef0f6b68065167db1a220c20c8",
+    "sourceHash": "f5ea92f652c0942b504f4fac8dfa730f666be3e5db574097efcdd84216c90fe6",
     "outputHash": "0cf4c56c8bb9b692383bdc8c0e427fe567742be78df1d13a10e96a052038d2d2",
     "dimensions": [
       1080,
       1800
     ],
     "revision": "Initial 1600px viewport overflowed; expanded the authored composition to 1800px instead of clipping or shrinking body text.",
-    "observed": "Complete captured dimensions, no clipped text or missing images. Independent portrait composition, not a long-page screenshot."
+    "observed": "Complete captured dimensions, no clipped text or missing images. Independent portrait composition, not a long-page screenshot.",
+    "consolidation": "Regenerated under the canonical research binding; output bytes exactly match the previously reviewed PNG."
   },
   "pptx": {
-    "sourceHash": "9f268f29af320f688ac833cbd38deb356d12e7fb44c4a9eaa062fb583c81d542",
-    "outputHash": "cb802ae47df7fdffaa61f4d52bd98c5d7c174636fc01129b4670ab229bf2d290",
+    "sourceHash": "43c86a617fbe8acb26897d8770812ed76323118873efde4f875723f513a8d93b",
+    "outputHash": "0f73f69ab3a05e51a3dbe78cbbb3d68a67f54ddd06f1da6de02fc5eeb42309a1",
     "slides": 9,
     "renderer": "Built-in PowerPoint canvas; actual PPTX rendered to SVG, then local Edge rasterized the SVG for inspection.",
     "review": "Initial seven-slide deck received a separate image review. Final deck retains dark bookends, adds actual companion HTML/PNG examples and a silent animated GIF, raises/enlarges footers, clarifies separate authoring, and fixes screenshot aspect ratio. Actual nine-slide canvas render obtained; new example slides visually inspected.",
@@ -42,10 +39,12 @@
         "Slide 3: change the research-node native fill.",
         "Slide 4: change one native table cell."
       ],
-      "observed": "All three canvas edits succeeded on a separate copy; slides 3/4 were re-rendered with the changed text, fill and table cell."
+      "observed": "All three canvas edits succeeded on a separate copy; slides 3/4 were re-rendered with the changed text, fill and table cell.",
+      "testedOriginalOutputHash": "cb802ae47df7fdffaa61f4d52bd98c5d7c174636fc01129b4670ab229bf2d290"
     },
     "motion": "The embedded GIF byte-matches the original 120-frame, 960x540, 15fps loop. Its original source is now retained separately as projects/motion-preview. It is not a trailer for the revised video and not native per-shape animation. Static canvas render shows a frame.",
-    "notObserved": "Desktop PowerPoint slideshow/GIF playback, cross-machine fonts, independent final-deck human acceptance."
+    "notObserved": "Desktop PowerPoint slideshow/GIF playback, cross-machine fonts, independent final-deck human acceptance.",
+    "consolidation": "Regenerated under the canonical research binding; all slide, relationship, style and media parts exactly match the previously reviewed PPTX. Only research references in speaker notes and core timestamps changed. Prior visual/native-edit observations are retained, not newly performed."
   },
   "video": {
     "sourceHash": "3945fa289781baf14d094d1e1c962af2c3f7cd53cfe38a9822b7069e9a1471a9",
@@ -77,7 +76,8 @@
   },
   "resources": {
     "fonts": "Local system fonts only; Segoe UI/Aptos/Consolas references are not embedded font redistributions.",
-    "images": "English screenshots captured offline from the original ANC/Git English branches, with original-source hashes, selectors, selected states and crop recorded in example-assets.json. Chinese HTML retains the original Chinese examples. Existing project PNG/PPTX remain unchanged.",
+    "images": "English screenshots captured offline from the original ANC/Git English branches, with original-source hashes, selectors, selected states and crop recorded in example-assets.json. Chinese HTML retains the original Chinese examples. PNG bytes and PPTX slide/media parts remain unchanged after research consolidation.",
     "mixedTools": "Repository Aha workflows, host document skills, native canvas, PptxGenJS, Playwright, FFmpeg and explicitly approved Edge TTS."
-  }
+  },
+  "researchHash": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d"
 }

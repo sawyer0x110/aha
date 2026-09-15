@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "format": "pptx",
   "language": "en",
-  "researchHash": "b547322594e90fb21a9aad36c40b7658cfe6c73d591e69481d95fdc20408a3bf",
+  "researchHash": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d",
   "title": "Aha: traceable research, freely authored explanations",
   "status": "authored",
   "entry": "pptx/main.mjs",
@@ -17,7 +17,9 @@
     { "id": "slide-06-language-distribution", "claimIds": ["c-language", "c-distribution"] },
     { "id": "slide-07-quality", "claimIds": ["c-qa", "c-identity", "c-purpose"] }
   ],
-  "omissions": [],
+  "omissions": [
+    { "claimId": "c-examples", "reason": "The deck illustrates media with this project's companion artifacts; the ANC and Git case studies are covered in the companion HTML and narrated video." }
+  ],
   "width": 1280,
   "height": 720
 }

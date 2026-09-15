@@ -12,15 +12,19 @@ import { hashValue } from '../../src/core/identity.ts';
 const base = process.argv[3] ? path.resolve(process.argv[3]) : path.dirname(fileURLToPath(import.meta.url));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const json = async name => JSON.parse(await readFile(path.join(base, name), 'utf8'));
-const core = await readDossier(path.join(base, 'research'));
-const examples = await readDossier(path.join(base, 'research-v2'));
-const result = { createdAt: new Date().toISOString(), researchHashes: { core: core.manifest.contentHash, examples: examples.manifest.contentHash }, formats: {} };
+const research = await readDossier(path.join(base, 'research'));
+const result = { createdAt: new Date().toISOString(), researchHash: research.manifest.contentHash, formats: {} };
+for (const format of ['html', 'image', 'pptx', 'video', 'motion-preview']) {
+  const copy = await readDossier(path.join(base, 'projects', format, 'research'));
+  assert.deepEqual(copy, research, `${format} must use the single canonical research snapshot.`);
+}
+await assert.rejects(access(path.join(base, 'research-v2')), { code: 'ENOENT' });
 for (const [format, filename] of [['html', 'index.html'], ['image', 'overview.png'], ['pptx', 'overview.pptx']]) {
   const project = path.join(base, 'projects', format);
   await checkArtifact(project);
   const receipt = await json(`${filename}.receipt.json`);
   const bytes = await readFile(path.join(base, filename));
-  assert.equal(receipt.researchHash, (format === 'html' ? examples : core).manifest.contentHash);
+  assert.equal(receipt.researchHash, research.manifest.contentHash);
   assert.equal(receipt.sourceHash, await sourceHash(project));
   assert.equal(receipt.output, filename);
   assert.equal(receipt.outputHash, sha(bytes));
@@ -63,7 +67,7 @@ for (const [index, check] of reuse.checks.entries()) {
   assert.equal(check.originalSamplesUnchanged, true);
 }
 const video = await json('overview.mp4.json');
-assert.equal(video.researchHash, examples.manifest.contentHash);
+assert.equal(video.researchHash, research.manifest.contentHash);
 assert.equal(video.sourceHash, await sourceHash(videoProject));
 assert.equal(video.planHash, await hashValue(plan));
 assert.equal(video.audioManifestHash, await hashValue(audio));
@@ -79,6 +83,13 @@ assert.equal(motion.sourceHash, await sourceHash(motionProject));
 assert.equal(motion.outputHash, sha(await readFile(path.join(base, 'motion-preview.gif'))));
 const runtime = await json('qa\\runtime.json');
 const review = await json('qa\\review.json');
+assert.equal(review.researchHash, research.manifest.contentHash);
+const consolidation = await json('qa\\consolidation.json');
+assert.equal(consolidation.researchHash, research.manifest.contentHash);
+assert.equal(consolidation['overview.png'].outputHash, result.formats.image.outputHash);
+assert.equal(consolidation['motion-preview.gif'].outputHash, motion.outputHash);
+assert.equal(consolidation.pptx.outputHash, result.formats.pptx.outputHash);
+assert.equal(consolidation.pptx.slideAndMediaPartsUnchanged, true);
 for (const format of ['html', 'image', 'video']) assert.equal(runtime.sourceHashes[format], result.formats[format].sourceHash);
 assert(runtime.checks.every(check => check.passed === true));
 assert.equal(runtime.checks.filter(check => check.id.startsWith('video-scene-')).length, 6);

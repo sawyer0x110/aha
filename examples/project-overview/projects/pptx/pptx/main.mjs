@@ -54,7 +54,7 @@ export default async function ({ pptx, research }) {
     s.addNotes([
       `${id}\n${body}`,
       'Research scope: fixed repository commit a013ea795312eab9ae2e4224998a1314eea8f718; reviewed 2026-09-15. Runtime 0.3.0; research/artifact protocol 1.0.0.',
-      'Bound Research Dossier: b547322594e90fb21a9aad36c40b7658cfe6c73d591e69481d95fdc20408a3bf. This deck translates the supported conclusions into English; it does not alter the research snapshot.',
+      `Bound Research Dossier: ${research.id}. The companion render receipt records its content hash. This deck translates the supported conclusions into English; it does not alter the research snapshot.`,
       `Fixed repository references:\n${sources.map((source) => BASE + source).join('\n')}`,
     ]);
   }

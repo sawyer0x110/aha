@@ -7,7 +7,7 @@ import assert from 'node:assert/strict';
 
 if (!process.argv.includes('--allow-code')) throw new Error('Review the source and obtain local browser execution approval, then pass --allow-code.');
 const base = dirname(fileURLToPath(import.meta.url));
-const output = join(base, 'evaluation');
+const output = join(base, '..', 'evals', 'examples');
 await mkdir(output, { recursive: true });
 const screenshots = process.argv.includes('--screenshots');
 if (screenshots) await mkdir(join(output, 'screenshots'), { recursive: true });

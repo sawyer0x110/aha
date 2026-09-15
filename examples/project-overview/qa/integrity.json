@@ -1,9 +1,6 @@
 {
-  "createdAt": "2026-09-15T08:46:25.426Z",
-  "researchHashes": {
-    "core": "b547322594e90fb21a9aad36c40b7658cfe6c73d591e69481d95fdc20408a3bf",
-    "examples": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d"
-  },
+  "createdAt": "2026-09-15T09:37:16.002Z",
+  "researchHash": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d",
   "formats": {
     "html": {
       "researchHash": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d",
@@ -11,14 +8,14 @@
       "sourceHash": "63811189513a479cae35abe0f99bb57398a2c849fc0f38b4d4a417b8b8940a89"
     },
     "image": {
-      "researchHash": "b547322594e90fb21a9aad36c40b7658cfe6c73d591e69481d95fdc20408a3bf",
+      "researchHash": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d",
       "outputHash": "0cf4c56c8bb9b692383bdc8c0e427fe567742be78df1d13a10e96a052038d2d2",
-      "sourceHash": "e65a85881aca35bf11db8acf903b8cc3053f09ef0f6b68065167db1a220c20c8"
+      "sourceHash": "f5ea92f652c0942b504f4fac8dfa730f666be3e5db574097efcdd84216c90fe6"
     },
     "pptx": {
-      "researchHash": "b547322594e90fb21a9aad36c40b7658cfe6c73d591e69481d95fdc20408a3bf",
-      "outputHash": "cb802ae47df7fdffaa61f4d52bd98c5d7c174636fc01129b4670ab229bf2d290",
-      "sourceHash": "9f268f29af320f688ac833cbd38deb356d12e7fb44c4a9eaa062fb583c81d542"
+      "researchHash": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d",
+      "outputHash": "0f73f69ab3a05e51a3dbe78cbbb3d68a67f54ddd06f1da6de02fc5eeb42309a1",
+      "sourceHash": "43c86a617fbe8acb26897d8770812ed76323118873efde4f875723f513a8d93b"
     },
     "video": {
       "researchHash": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d",

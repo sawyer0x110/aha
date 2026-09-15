@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-09-15T08:31:26.409Z",
+  "createdAt": "2026-09-15T09:36:15.992Z",
   "checks": [
     {
       "id": "html-1280-light-en",
@@ -190,7 +190,7 @@
   ],
   "sourceHashes": {
     "html": "63811189513a479cae35abe0f99bb57398a2c849fc0f38b4d4a417b8b8940a89",
-    "image": "e65a85881aca35bf11db8acf903b8cc3053f09ef0f6b68065167db1a220c20c8",
+    "image": "f5ea92f652c0942b504f4fac8dfa730f666be3e5db574097efcdd84216c90fe6",
     "video": "3945fa289781baf14d094d1e1c962af2c3f7cd53cfe38a9822b7069e9a1471a9"
   },
   "boundary": "Offline browser and sampled replay checks only. Replay requires identical DOM state and permits at most one 8-bit color level of browser rasterization variance. Visual/editorial, presentation editing, video listening and human comprehension are separate."
