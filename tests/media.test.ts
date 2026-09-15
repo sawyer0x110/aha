@@ -66,7 +66,7 @@ test('subtitles preserve cumulative measured timing and escape markup without ex
   assert.match(srt, /00:00:00,000 --> 00:00:01,033/);
   assert.match(srt, /00:00:01,033 --> 00:00:03,033/);
   assert.match(srt, /&lt;script&gt;alert\("x"\)&lt;\/script&gt; &amp;/);
-  assert.throws(() => subtitles(plan, { ...audio, segments: audio.segments.toReversed() }), code('AUDIO_SEGMENTS'));
+  assert.throws(() => subtitles(plan, { ...audio, segments: [...audio.segments].reverse() }), code('AUDIO_SEGMENTS'));
   assert.throws(() => subtitles(plan, { ...audio, provider: 'edge-tts' }), code('AUDIO_PLAN_MISMATCH'));
 });
 
