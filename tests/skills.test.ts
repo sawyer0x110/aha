@@ -328,6 +328,63 @@ test('documented CLI invocations use only the canonical installed entry and comm
   assert.deepEqual([...seen].sort(), [...commands].sort());
 });
 
+test('explanation editing is reachable before styling and distinct from runtime acceptance', async () => {
+  const entrance = await fs.readFile(path.join(root, 'skills', 'aha-explain', 'SKILL.md'), 'utf8');
+  assert.ok(relativeLinks(entrance).includes('references/explanation-writing.md'));
+  assert.match(entrance, /Before styling/);
+  for (const name of ['artifact-authoring.md', 'language.md', 'artifact-qa.md']) {
+    assert.ok(relativeLinks(await reference(name)).includes('explanation-writing.md'), `${name}: editorial workflow`);
+  }
+  const writing = await reference('explanation-writing.md');
+  for (const concept of [/missing relationship/i, /not a required paragraph template/i, /secondary branch/i, /headings|headlines/i, /return to research/i, /full reader-facing copy/i]) {
+    assert.match(writing, concept);
+  }
+  const language = await reference('language.md');
+  assert.match(language, /each branch independently first/i);
+  assert.match(language, /revise both versions/i);
+  assert.match(await reference('artifact-qa.md'), /does not pass the editorial review/i);
+  assert.match(await reference('research-workflow.md', 'aha-research'), /reasoning bridge/i);
+});
+
+test('production guidance covers relationship inspection, useful editing and truthful audio reuse', async () => {
+  assert.match(await reference('visual-design.md'), /marker-end/);
+  assert.match(await reference('pptx.md'), /editing usability/i);
+  assert.match(await reference('pptx.md'), /On a copy/i);
+  const video = await reference('video.md');
+  assert.match(video, /state A, a different state B, then A again/);
+  assert.match(video, /new `provided-audio` plan/);
+  assert.match(video, /normalization or padding/i);
+  assert.match(await reference('artifact-qa.md'), /mixed-tool run/i);
+});
+
+test('editorial guidance checks standalone entry points before introducing example values', async () => {
+  const writing = await reference('explanation-writing.md');
+  for (const concept of [/Read the title alone/i, /without the prompt/i, /after naming the entity/i, /do not invent them/i, /Revert a change, not a number/i, /separately in each language/i, /browser titles, gallery labels/i]) {
+    assert.match(writing, concept);
+  }
+  assert.match(await reference('artifact-qa.md'), /title alone as a cold reader/i);
+});
+
+test('editorial evaluation prompts preserve concrete evidence and held-out topic coverage', async () => {
+  const fixtures = JSON.parse(await fs.readFile(path.join(root, 'tests', 'fixtures', 'explanation-writing-evals.json'), 'utf8')) as {
+    skill_name: string;
+    scope: string;
+    evals: { id: number; name: string; prompt: string; expected_output: string; files: string[]; assertions: string[] }[];
+  };
+  assert.equal(fixtures.skill_name, 'aha-explain');
+  assert.match(fixtures.scope, /not full media generation/);
+  assert.deepEqual(fixtures.evals.map(item => item.id), [1, 2, 3]);
+  assert.deepEqual(fixtures.evals.map(item => item.name), ['anc-opening', 'git-net-change', 'cold-glass-transfer']);
+  for (const item of fixtures.evals) {
+    assert.ok(item.prompt.length > 200);
+    assert.match(item.prompt, /中文和英文/);
+    assert.ok(item.expected_output.length > 60);
+    assert.equal(item.assertions.length, 6);
+    assert.ok(item.assertions.some(assertion => /Each title alone/.test(assertion)));
+    assert.deepEqual(item.files, []);
+  }
+});
+
 test('worked research example is a complete valid dossier, not only a documentation placeholder', async () => {
   const example = await reference('research-example.md', 'aha-research');
   const json = example.match(/```json\r?\n([\s\S]*?)\r?\n```/)?.[1];

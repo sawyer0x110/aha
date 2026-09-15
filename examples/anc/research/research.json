@@ -1,0 +1,497 @@
+{
+  "claims": [
+    {
+      "evidenceIds": [
+        "e-physics",
+        "e-apple",
+        "e-sony"
+      ],
+      "id": "c-superposition",
+      "kind": "fact",
+      "limitations": [
+        "Ideal equality is a model, not complete real-world cancellation."
+      ],
+      "subquestionIds": [
+        "q-mechanism"
+      ],
+      "text": "ANC generates anti-noise; equal opposite pressure waveforms can reduce their sum at the ear."
+    },
+    {
+      "evidenceIds": [
+        "e-physics",
+        "e-topology"
+      ],
+      "id": "c-local",
+      "kind": "fact",
+      "limitations": [
+        "Diagram is conceptual hybrid ANC, not every headset topology."
+      ],
+      "subquestionIds": [
+        "q-mechanism"
+      ],
+      "text": "Headphone ANC targets a local listening region, not silence throughout the surrounding room or cabin."
+    },
+    {
+      "evidenceIds": [
+        "e-sony",
+        "e-general"
+      ],
+      "id": "c-rumble",
+      "kind": "fact",
+      "limitations": [
+        "Aircraft noise is not one pure tone; no universal cutoff or product attenuation is claimed."
+      ],
+      "subquestionIds": [
+        "q-frequency"
+      ],
+      "text": "Low-frequency vehicle noise and aircraft hum are generally favorable applications of headphone ANC."
+    },
+    {
+      "evidenceIds": [
+        "e-wave",
+        "e-physics",
+        "e-topology"
+      ],
+      "id": "c-error",
+      "kind": "inference",
+      "limitations": [
+        "Normalized one-point equal-amplitude illustration only; no actual latency, dB, loudness or headset guarantee."
+      ],
+      "subquestionIds": [
+        "q-frequency"
+      ],
+      "text": "For an ideal sinusoid, the same residual timing error creates a larger phase mismatch at higher frequency; real control also depends on acoustic paths and amplitude matching."
+    },
+    {
+      "evidenceIds": [
+        "e-voice"
+      ],
+      "id": "c-speech",
+      "kind": "fact",
+      "limitations": [
+        "No universal spectrum is assigned to all speakers or phonemes."
+      ],
+      "subquestionIds": [
+        "q-voices"
+      ],
+      "text": "Speech mixes voiced harmonics with broadband unvoiced sounds and time-varying articulation; it is not simply all high-frequency or all unpredictable."
+    },
+    {
+      "evidenceIds": [
+        "e-voice",
+        "e-sony",
+        "e-topology"
+      ],
+      "id": "c-voices",
+      "kind": "inference",
+      "limitations": [
+        "No measured intelligibility result; the categorical no-speech FAQ in e-topology is rejected as an overgeneralization, not hidden."
+      ],
+      "subquestionIds": [
+        "q-voices",
+        "q-prediction"
+      ],
+      "text": "Voices are not categorically exempt from ANC: some components may be reduced while remaining cues are still audible or intelligible."
+    },
+    {
+      "evidenceIds": [
+        "e-isolation",
+        "e-topology"
+      ],
+      "id": "c-isolation",
+      "kind": "fact",
+      "limitations": [
+        "Fit and construction matter; no universal crossover or guaranteed reduction."
+      ],
+      "subquestionIds": [
+        "q-fit"
+      ],
+      "text": "Passive isolation physically attenuates sound without anti-noise and complements ANC, with frequency-dependent behavior and an important role at higher frequencies."
+    },
+    {
+      "evidenceIds": [
+        "e-sony",
+        "e-apple",
+        "e-isolation"
+      ],
+      "id": "c-fit",
+      "kind": "fact",
+      "limitations": [
+        "Practical expectation-setting, not product troubleshooting certification or hearing-safety guidance."
+      ],
+      "subquestionIds": [
+        "q-fit",
+        "q-prediction"
+      ],
+      "text": "Wearing conditions and fit affect noise reduction, and transparency/listening modes can deliberately admit outside sound."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e-physics",
+      "kind": "web",
+      "locator": "Pressure interference; Two Source Sound Interference; headphone application; Important Note",
+      "retrievedAt": "2026-09-14T17:46:00+08:00",
+      "sourceVersion": "Live page; publication/update date not displayed",
+      "summary": "Read first 18000 extracted characters. Supports pressure superposition, local nodes/antinodes, reflected residual sound and pressure-versus-time interpretation. Exercise tail not read.",
+      "title": "The Physics Classroom — Interference and Beats",
+      "url": "https://www.physicsclassroom.com/tutorial/sound-waves/properties-of-sound-waves/interference-and-beats"
+    },
+    {
+      "id": "e-apple",
+      "kind": "web",
+      "locator": "Opening mechanism, fit and Transparency paragraphs",
+      "retrievedAt": "2026-09-14T17:47:00+08:00",
+      "sourceVersion": "Published 2026-06-17",
+      "summary": "Read complete returned text. Outward and inward microphones and anti-noise; good fit matters; Transparency lets outside sound in. Product-specific examples not a universal implementation.",
+      "title": "Apple Support — Active Noise Cancellation and listening modes",
+      "url": "https://support.apple.com/en-us/108918"
+    },
+    {
+      "id": "e-sony",
+      "kind": "web",
+      "locator": "id_content article and complete Note list in raw HTML",
+      "retrievedAt": "2026-09-14T17:49:00+08:00",
+      "sourceVersion": "Manual 5-035-396-11(6); copyright 2022; update date unspecified",
+      "summary": "Raw HTML read because simplified body omitted Notes. Describes antiphase, primary low-frequency vehicle/air-conditioning application, incomplete reduction, wearing/microphone effects. Navigation tail not needed.",
+      "title": "Sony WH-1000XM5 / WH-1000XM5SA — What is noise canceling?",
+      "url": "https://helpguide.sony.net/mdr/wh1000xm5/v1/en/contents/TP1000534716.html"
+    },
+    {
+      "id": "e-topology",
+      "kind": "web",
+      "locator": "Mechanism, feedforward, feedback, hybrid and FAQ sections",
+      "retrievedAt": "2026-09-14T17:48:36+08:00",
+      "sourceVersion": "Updated 2025-10-16",
+      "summary": "Read full returned text. Supports phase alignment at ear, mic location, fit and limited feedback processing time. Feedforward section discusses speech-related applications; FAQ says no active voice reduction. Preserve and reject FAQ categorical overreach. Do not use numerical/health claims.",
+      "title": "SoundGuys — Noise canceling (ANC) explained",
+      "url": "https://www.soundguys.com/noise-canceling-anc-explained-28344/"
+    },
+    {
+      "id": "e-general",
+      "kind": "web",
+      "locator": "What is sound; cancellation; microphone mechanism sections",
+      "retrievedAt": "2026-09-14T17:47:30+08:00",
+      "sourceVersion": "Updated 2025-08-12",
+      "summary": "Read returned article. Aircraft engine hum favorable versus sudden speech; simple predictability account needs qualification using physics and speech sources. Same editorial lineage as e-topology and e-isolation.",
+      "title": "SoundGuys — How noise-cancelling headphones work",
+      "url": "https://www.soundguys.com/how-noise-cancelling-headphones-work-12380/"
+    },
+    {
+      "id": "e-voice",
+      "kind": "web",
+      "locator": "First 18000 extracted characters; Introduction, Source, Filter, Vowels, Consonants",
+      "retrievedAt": "2026-09-14T17:50:00+08:00",
+      "sourceVersion": "Live educational page; update date not displayed",
+      "summary": "Actually read overview of voiced harmonics, whisper broadband turbulence, fricatives, plosives, sustained vowels and changing consonants. Whole long page not read. Minor typographic encoding artifacts; no source audio executed.",
+      "title": "UNSW Music Acoustics — Voice Acoustics: an introduction",
+      "url": "https://newt.phys.unsw.edu.au/jw/voice.html"
+    },
+    {
+      "id": "e-wave",
+      "kind": "web",
+      "locator": "Wave equation and speed; sinusoidal solution; small-pressure linear approximation; impedance text",
+      "retrievedAt": "2026-09-14T17:50:00+08:00",
+      "sourceVersion": "Live educational page; update date not displayed",
+      "summary": "Read returned text; explicit traveling sinusoid and linearity support model interpretation. Image-only equations not opened and not represented as reads.",
+      "title": "UNSW — The wave equation and the speed of sound",
+      "url": "https://www.animations.physics.unsw.edu.au/jw/sound-wave-equation.htm"
+    },
+    {
+      "id": "e-isolation",
+      "kind": "web",
+      "locator": "First 12000 extracted characters; block/cancel distinction; attenuation; fit and headphone types",
+      "retrievedAt": "2026-09-14T17:49:00+08:00",
+      "sourceVersion": "Updated 2025-09-04",
+      "summary": "Read physical isolation, frequency dependence and seal discussion. Same SoundGuys lineage; numerical dB and safety recommendations not relied on.",
+      "title": "SoundGuys — What is isolation?",
+      "url": "https://www.soundguys.com/what-is-isolation-12506/"
+    }
+  ],
+  "gaps": [
+    {
+      "description": "No specified headphone, fit, measured ANC-on/off frequency curves or speech intelligibility study. Cannot promise dB reduction, silence, or word-recognition outcome; next step would require controlled product-specific acoustic and listener tests.",
+      "id": "g-measurement",
+      "subquestionIds": [
+        "q-prediction"
+      ]
+    }
+  ],
+  "id": "research-2a05e62d-86ac-492b-804e-7f6d0affa145",
+  "kind": "public",
+  "language": "en",
+  "question": "Why can noise-cancelling headphones suppress aircraft rumble but not necessarily voices?",
+  "report": "# A quieter ear, not a silent cabin\n\n## Direct answer\nNoise-cancelling headphones add a carefully shaped pressure signal near the ear. They do not erase sound throughout an aircraft. Aircraft rumble often contains a substantial low-frequency component, where active noise cancellation (ANC) is generally useful. Speech combines low-frequency voiced components with harmonics, broadband consonants and changes over time. Some of it can be reduced; suppressing every cue enough to make words disappear is a different, harder outcome.\n\n## Scope, purpose and method\nAudience: curious nonexpert; purpose: explain the mechanism and support realistic expectations rather than recommend a product. Intended downstream reading time: 5–8 minutes including exploration. Scope: consumer headphone ANC, passive isolation, waveform matching, frequency and local control, nearby external voices. Excludes call-microphone noise suppression, clinical hearing guidance, product rankings, certification, measured attenuation and psychoacoustic experiments. Time horizon: established principles with public documentation read on 14 September 2026. Budget: one bounded public-source investigation and a static bilingual explanation; no installations or authored-code execution. Direct URL reads were used first. Two real search requests returned no useful discovery detail; no search results were represented as source reads.\n\nQuestion tree: q-mechanism establishes what has to match and where; q-frequency asks why timing and spatial error matter; q-voices tests the tempting but categorical 'unpredictable speech cannot be cancelled' account; q-fit distinguishes the active system from its passive acoustic boundary; q-prediction identifies what cannot be concluded about a real headset. Frequency, waveform and fit are dependencies of the speech comparison, not mutually exclusive explanations.\n\n## 1. What is being cancelled, and where?\nSound is a pressure disturbance. In the linear approximation, pressures add at the same location and time. Equal, opposite pressure waveforms produce a smaller sum. The Physics Classroom's interference explanation supports this mechanism and explicitly warns that a sine drawing describes pressure versus time, not air moving up and down [1]. Apple describes outward microphones detecting environmental sound and inward microphones monitoring unwanted sound inside the ear [2]. Sony describes antiphase sound and explicitly says noise is reduced rather than completely cancelled [3]. A conceptual hybrid diagram is appropriate; it is not a wiring diagram for every product.\n\nThe target is residual pressure at the ear. A microphone samples its own location; headphone acoustics and processing must relate that sample to the desired location. The Physics Classroom's two-speaker example describes alternating spatial regions of reinforcement and cancellation and reflections filling ideal nodes [1]. The SoundGuys engineering overview places cancellation at the ear and distinguishes feedforward, feedback and hybrid arrangements [4]. Thus 'the cabin becomes silent' is a wrong inference even if one ear receives less pressure.\n\n## 2. Why low-frequency rumble is a favorable case\nSony states that its noise cancellation primarily acts in the low-frequency band, including vehicle and air-conditioning noise [3]. SoundGuys identifies aircraft engine hum as a comparatively favorable example [5]. This is not a claim that every aircraft sound is a steady pure tone, nor that modern ANC has one universal cutoff.\n\nThe control system must match amplitude and phase after both signal processing and acoustic propagation. A fixed residual timing mismatch occupies a larger fraction of a shorter cycle. This is a mathematical implication of a sinusoid's phase, not a measured headset latency. The UNSW sound-wave page supplies a sinusoidal traveling-wave description and the small-pressure linear approximation [7]; the engineering overview identifies phase alignment at the ear and reduced processing time in feedback ANC as constraints [4]. Shorter wavelengths also make a fixed position error more significant. Predictability helps adaptation, but is not a sufficient or necessary label for all cancelable sound. A steady high-pitched tone still presents tight timing/spatial requirements; a changing sound can contain low-frequency components within an ANC system's usable range.\n\nIllustrative model: incoming pressure sin(theta), anti-noise -sin(theta - delta), with equal amplitudes and one point in space. Their sum has normalized peak amplitude 2|sin(delta/2)|. For delta = 0 degrees the residual is zero; 60 degrees gives 1; 180 degrees gives 2. These are dimensionless ideal pressure ratios, not dB, perceived loudness, measured performance or promised reduction. The example holds amplitude matching perfect so readers can isolate timing error. Real ANC also has amplitude errors, finite bandwidth, noise, changing acoustic paths, and stability constraints. A hypothetical 0.10 ms residual mismatch is 3.6 degrees at 100 Hz and 36 degrees at 1000 Hz. Those chosen values illustrate scaling only, not a product specification.\n\n## 3. Voices are a mixture, not an exemption\nUNSW Voice Acoustics explains voiced harmonics, unvoiced broadband sounds, fricatives and brief plosives; it also describes sustained vowels and time-varying consonants [6]. A voice therefore is neither all high frequency nor wholly unpredictable. Combining this with frequency-dependent ANC supports the qualified inference that low components may be reduced while other cues remain audible. It does not establish a universal speech-reduction amount or intelligibility score.\n\nCounterevidence matters: SoundGuys' short general explainer favors 'constant' noises [5]. Its longer overview describes feedforward ANC extending into mid-frequency speech-related applications, yet the FAQ on that same page says only passive attenuation acts on voices because speech is over before calculation [4]. That categorical FAQ conflicts with the article's own finer account and oversimplifies the physics. We retain the bounded engineering discussion, reject the absolute FAQ inference, and independently use Sony for low-band behavior and UNSW for speech structure. These SoundGuys pages are one editorial lineage, not independent replications. No claim is based on their numerical attenuation or hearing-health passages.\n\n## 4. The other half: the seal\nPassive isolation is the physical barrier formed by pads, cups or tips; it does not generate anti-noise. Active cancellation and passive isolation work together. Sony warns that wearing conditions alter ANC [3], Apple says ANC works best with well-fitting AirPods Pro [2], and SoundGuys' isolation article explains fit and frequency-dependent attenuation [8]. In typical closed headphones the physical barrier is an important part of higher-frequency reduction, but construction, fit and leaks matter. We do not infer one universal crossover or an equal benefit for all users.\n\nA practical implication, not a product guarantee: if rumble recedes but speech remains, that alone does not establish broken ANC. Check that the intended mode is enabled (Transparency deliberately lets outside sound in [2]) and that the fit is correct. Do not infer hearing protection certification or assured audibility of announcements from this explanation.\n\n## Sources and actual visibility\n[1] The Physics Classroom, 'Interference and Beats': https://www.physicsclassroom.com/tutorial/sound-waves/properties-of-sound-waves/interference-and-beats . Read extracted first 18,000 characters, including pressure interference, two-source spatial example, headphone application and sine-wave caveat. Later exercise tail not read. Publication date not displayed.\n[2] Apple Support, Active Noise Cancellation and listening modes: https://support.apple.com/en-us/108918 . Read returned article, published 17 June 2026; source support restricted to introductory mic mechanism, fit, Transparency. Product lists are not needed by the explanation.\n[3] Sony WH-1000XM5 / WH-1000XM5SA Help Guide, 'What is noise canceling?': https://helpguide.sony.net/mdr/wh1000xm5/v1/en/contents/TP1000534716.html . Read full substantive article and all Notes in raw HTML because simplified extraction omitted the Notes. Manual 5-035-396-11(6); copyright 2022 is not a claimed update date.\n[4] SoundGuys, 'Noise canceling (ANC) explained': https://www.soundguys.com/noise-canceling-anc-explained-28344/ . Read full returned text including all topology sections and FAQ. Updated 16 October 2025. Secondary engineering explanation with the contradiction described above; not treated as manufacturer test data.\n[5] SoundGuys, 'How noise-cancelling headphones work': https://www.soundguys.com/how-noise-cancelling-headphones-work-12380/ . Read returned article; updated 12 August 2025. Used only for aircraft example and general mechanism, not its health speculation.\n[6] UNSW Music Acoustics, 'Voice Acoustics: an introduction': https://newt.phys.unsw.edu.au/jw/voice.html . Read first 18,000 extracted characters, especially overview, source, filter, vowels and consonants. Some typographic encoding replacement characters present, technical prose legible; no audio or graphs executed. Whole long page not read. Update date not displayed.\n[7] UNSW, 'The wave equation and the speed of sound': https://www.animations.physics.unsw.edu.au/jw/sound-wave-equation.htm . Read returned wave-equation and impedance text. Several equations are linked images and were not opened; rely only on the explicit textual sinusoidal solution and linearity discussion. Update date not displayed.\n[8] SoundGuys, 'What is isolation?': https://www.soundguys.com/what-is-isolation-12506/ . Read first 12,000 extracted characters through headphone fit/type discussion. Updated 4 September 2025. Do not use numerical dB/health passages; they contain imprecise wording outside scope.\n\nDiscovery-only context: Sony index was read in simplified and raw form to locate [3]. Wikipedia Active noise control was read as background triangulation, not relied on for any final claim. Search requests to Google (active noise cancellation low frequency delay site:edu) and Bing (sony noise cancelling low frequency voices helpguide) returned no useful technical discovery. Several candidate URLs returned 403, 404, timeouts or landing-page redirects; failures are preserved in the executed log. No inaccessible candidate is evidence.\n\n## Reverse-check, uncertainty and stop\nEight ledger claims were checked against the specific contexts above. c-superposition, c-local, c-rumble, c-speech, c-isolation and c-fit are supported within stated scope. c-error and c-voices are bounded model/combined-source inferences. The artifact should keep source cues near the mechanisms and the categorical-voice correction. No full headphone control transfer function, measured product curve or listener intelligibility data was obtained; q-prediction remains open. Closing that gap would require a specified model/fit and independent ANC-on/off measurements across frequency plus a speech-in-noise protocol for comprehension claims. Core explanatory questions and the strongest alternative explanation are resolved sufficiently for an educational artifact. Further general web pages would mostly repeat these principles, so the investigation stops at mechanism coverage, not claimed exhaustive review. Structural checks and source semantics remain separate; no browser run, human learning observation or listening test occurred.",
+  "researchLog": [
+    {
+      "action": "search",
+      "evidenceIds": [],
+      "id": "log-search-google",
+      "occurredAt": "2026-09-14T17:46:00+08:00",
+      "outcome": "success",
+      "query": "active noise cancellation low frequency delay site:edu",
+      "subquestionIds": [
+        "q-frequency"
+      ],
+      "summary": "web_fetch returned Google Search text only; no useful candidates or evidence."
+    },
+    {
+      "action": "search",
+      "evidenceIds": [],
+      "id": "log-search-bing",
+      "occurredAt": "2026-09-14T17:46:00+08:00",
+      "outcome": "success",
+      "query": "sony noise cancelling low frequency voices helpguide",
+      "subquestionIds": [
+        "q-voices"
+      ],
+      "summary": "web_fetch returned irrelevant Sony group snippet; no technical evidence."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-physics"
+      ],
+      "id": "log-physics",
+      "locator": "https://www.physicsclassroom.com/class/sound/Lesson-3/Interference-and-Beats",
+      "occurredAt": "2026-09-14T17:46:00+08:00",
+      "outcome": "success",
+      "readRange": "First 18000 extracted characters; later exercise tail excluded",
+      "subquestionIds": [
+        "q-mechanism",
+        "q-frequency"
+      ],
+      "summary": "web_fetch followed old classroom URL redirect; read educational pressure and interference sections."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-apple"
+      ],
+      "id": "log-apple",
+      "locator": "https://support.apple.com/en-us/108918",
+      "occurredAt": "2026-09-14T17:47:00+08:00",
+      "outcome": "success",
+      "readRange": "Returned article body",
+      "subquestionIds": [
+        "q-mechanism",
+        "q-fit"
+      ],
+      "summary": "web_fetch read full returned article; use introductory mechanism and mode/fit paragraphs."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-sony"
+      ],
+      "id": "log-sony",
+      "locator": "https://helpguide.sony.net/mdr/wh1000xm5/v1/en/contents/TP1000534716.html",
+      "occurredAt": "2026-09-14T17:49:00+08:00",
+      "outcome": "success",
+      "readRange": "Raw first 16000 characters: entire id_content article and Note list; remaining navigation not read",
+      "subquestionIds": [
+        "q-mechanism",
+        "q-frequency",
+        "q-fit"
+      ],
+      "summary": "Read simplified page, then raw HTML to recover substantive Notes after Sony index navigation discovery."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-general"
+      ],
+      "id": "log-general",
+      "locator": "https://www.soundguys.com/how-noise-cancelling-headphones-work-12380/",
+      "occurredAt": "2026-09-14T17:47:30+08:00",
+      "outcome": "success",
+      "readRange": "Returned article body",
+      "subquestionIds": [
+        "q-frequency",
+        "q-voices"
+      ],
+      "summary": "Read returned SoundGuys article; retain aircraft comparison with qualifications."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-topology"
+      ],
+      "id": "log-topology",
+      "locator": "https://www.soundguys.com/noise-canceling-anc-explained-28344/",
+      "occurredAt": "2026-09-14T17:48:36+08:00",
+      "outcome": "success",
+      "readRange": "Complete returned article text including FAQ",
+      "subquestionIds": [
+        "q-mechanism",
+        "q-frequency",
+        "q-voices"
+      ],
+      "summary": "Read all returned topology and FAQ text; found internal contradiction on speech and preserved it in report."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-isolation"
+      ],
+      "id": "log-isolation",
+      "locator": "https://www.soundguys.com/what-is-isolation-12506/",
+      "occurredAt": "2026-09-14T17:49:00+08:00",
+      "outcome": "success",
+      "readRange": "First 12000 extracted characters",
+      "subquestionIds": [
+        "q-fit"
+      ],
+      "summary": "Read fit/physical attenuation sections; no numerical or health conclusions adopted."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-voice"
+      ],
+      "id": "log-voice",
+      "locator": "https://newt.phys.unsw.edu.au/jw/voice.html",
+      "occurredAt": "2026-09-14T17:50:00+08:00",
+      "outcome": "success",
+      "readRange": "First 18000 extracted characters",
+      "subquestionIds": [
+        "q-voices"
+      ],
+      "summary": "Read university overview, phonation, turbulence, filter and speech time changes."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-wave"
+      ],
+      "id": "log-wave",
+      "locator": "https://www.animations.physics.unsw.edu.au/jw/sound-wave-equation.htm",
+      "occurredAt": "2026-09-14T17:50:00+08:00",
+      "outcome": "success",
+      "readRange": "Returned wave equation/speed and impedance text",
+      "subquestionIds": [
+        "q-frequency"
+      ],
+      "summary": "Read textual sinusoidal solution and linearity; image-only equations not opened."
+    },
+    {
+      "action": "failure",
+      "evidenceIds": [],
+      "id": "failure-sony",
+      "locator": "https://www.sony.com/electronics/support/articles/00203389",
+      "occurredAt": "2026-09-14T17:45:09+08:00",
+      "outcome": "failure",
+      "subquestionIds": [
+        "q-frequency"
+      ],
+      "summary": "US and UK Sony support article 00203389 returned 403. No evidence; moved to public Help Guide."
+    },
+    {
+      "action": "failure",
+      "evidenceIds": [],
+      "id": "failure-bose",
+      "locator": "https://www.bose.com/stories/how-noise-cancelling-headphones-work",
+      "occurredAt": "2026-09-14T17:45:09+08:00",
+      "outcome": "failure",
+      "subquestionIds": [
+        "q-fit"
+      ],
+      "summary": "Bose stories/how-noise-cancelling-headphones-work and stories/noise-cancelling-vs-noise-isolating returned 404; Australian better_with_bose path later redirected to unrelated shop home."
+    },
+    {
+      "action": "failure",
+      "evidenceIds": [],
+      "id": "failure-analog",
+      "locator": "https://www.analog.com/en/resources/analog-dialogue/articles/active-noise-cancellation.html",
+      "occurredAt": "2026-09-14T17:49:00+08:00",
+      "outcome": "failure",
+      "subquestionIds": [
+        "q-frequency"
+      ],
+      "summary": "Analog Dialogue candidate active-noise-cancellation.html and noise-cancelling-headphones.html timed out; technical-articles/how-to-design-a-headphone-with-active-noise-cancellation.html also timed out. No content read."
+    },
+    {
+      "action": "failure",
+      "evidenceIds": [],
+      "id": "failure-mathworks",
+      "locator": "https://www.mathworks.com/help/dsp/ug/active-noise-control-using-a-filtered-x-lms-fir-adaptive-filter.html",
+      "occurredAt": "2026-09-14T17:48:36+08:00",
+      "outcome": "failure",
+      "subquestionIds": [
+        "q-frequency"
+      ],
+      "summary": "Audio and DSP versions of filtered-X LMS active noise control documentation both returned 403."
+    },
+    {
+      "action": "failure",
+      "evidenceIds": [],
+      "id": "failure-other",
+      "locator": "https://ccrma.stanford.edu/~jos/pasp/Active_Noise_Cancellation.html",
+      "occurredAt": "2026-09-14T17:50:00+08:00",
+      "outcome": "failure",
+      "subquestionIds": [
+        "q-frequency",
+        "q-mechanism"
+      ],
+      "summary": "Other candidates: NTU why-can-t-noise-cancelling-headphones-block-out-all-sounds, OpenStax university-physics-volume-1 17-7-sound-interference-and-resonance, DSPRelated showarticle/817.php, Sony guessed TP1000536745, Sennheiser how-does-noise-cancellation-work, Stanford Active_Noise_Cancellation.html: 404. Two EETimes ANC candidates: timeout. COMSOL engineering-silence-active-noise-cancellation: transport failure. B&K active-noise-cancellation: redirected resource index without article. No source support attributed."
+    }
+  ],
+  "schemaVersion": "1.0.0",
+  "status": "complete",
+  "stopReason": "Core mechanisms, frequency tradeoff, passive contribution and voice exception are covered by public technical/educational and manufacturer sources; categorical counterevidence was resolved explicitly. Product-specific acoustic and human-learning measurements remain outside the static-authoring scope.",
+  "subquestions": [
+    {
+      "claimIds": [
+        "c-superposition",
+        "c-local"
+      ],
+      "gapIds": [],
+      "id": "q-mechanism",
+      "question": "What adds to what, and where?",
+      "status": "answered"
+    },
+    {
+      "claimIds": [
+        "c-rumble",
+        "c-error"
+      ],
+      "gapIds": [],
+      "id": "q-frequency",
+      "question": "Why are low frequencies favorable beyond mere predictability?",
+      "status": "answered"
+    },
+    {
+      "claimIds": [
+        "c-speech",
+        "c-voices"
+      ],
+      "gapIds": [],
+      "id": "q-voices",
+      "question": "Are voices categorically uncancellable?",
+      "status": "answered"
+    },
+    {
+      "claimIds": [
+        "c-isolation",
+        "c-fit"
+      ],
+      "gapIds": [],
+      "id": "q-fit",
+      "question": "How do passive isolation and fit interact with ANC?",
+      "status": "answered"
+    },
+    {
+      "claimIds": [
+        "c-voices",
+        "c-fit"
+      ],
+      "gapIds": [
+        "g-measurement"
+      ],
+      "id": "q-prediction",
+      "question": "Can a specific voice's reduction or intelligibility be predicted for an unspecified headset?",
+      "status": "partial"
+    }
+  ],
+  "title": "Why can noise-cancelling headphones suppress aircraft rumble but not necessarily voices?"
+}

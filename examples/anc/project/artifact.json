@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0.0",
+  "format": "html",
+  "language": "bilingual",
+  "researchHash": "bc53101b3b731f1e25ebfd1a8e2e88f16d4940acb17fc2e1d94f3d8269496c2b",
+  "title": "Why voices can remain when the rumble fades / 为什么轰鸣变轻了，人声却还在？",
+  "status": "authored",
+  "entry": "html/index.html",
+  "coverage": [
+    { "id": "en-answer", "claimIds": ["c-superposition", "c-local", "c-rumble", "c-error", "c-speech", "c-voices"] },
+    { "id": "zh-answer", "claimIds": ["c-superposition", "c-local", "c-rumble", "c-error", "c-speech", "c-voices"] },
+    { "id": "en-ear", "claimIds": ["c-superposition", "c-local"] },
+    { "id": "zh-ear", "claimIds": ["c-superposition", "c-local"] },
+    { "id": "en-model", "claimIds": ["c-superposition", "c-error"] },
+    { "id": "zh-model", "claimIds": ["c-superposition", "c-error"] },
+    { "id": "en-frequency", "claimIds": ["c-rumble", "c-error", "c-speech", "c-voices"] },
+    { "id": "zh-frequency", "claimIds": ["c-rumble", "c-error", "c-speech", "c-voices"] },
+    { "id": "en-fit", "claimIds": ["c-isolation", "c-fit", "c-voices"] },
+    { "id": "zh-fit", "claimIds": ["c-isolation", "c-fit", "c-voices"] },
+    { "id": "en-reading", "claimIds": ["c-superposition", "c-local", "c-speech", "c-voices"] },
+    { "id": "zh-reading", "claimIds": ["c-superposition", "c-local", "c-speech", "c-voices"] }
+  ],
+  "omissions": [],
+  "width": 1280,
+  "height": 720
+}

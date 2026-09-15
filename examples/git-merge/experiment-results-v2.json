@@ -1,0 +1,64 @@
+{
+  "observedAt": "2026-09-14T17:47:58.0972695+08:00",
+  "gitVersion": "git version 2.53.0.windows.4",
+  "upstreamVersionIsDifferent": true,
+  "isolation": "Dedicated fixtures-v2 repositories; GIT_CONFIG_NOSYSTEM=1; GIT_CONFIG_GLOBAL=NUL; local-only identity; empty core.hooksPath; core.autocrlf=false; commit.gpgsign=false; inert text only",
+  "correction": "First fixture attempt did not stage same-size copied edits reliably. V2 explicitly hashes bytes with git hash-object -w and git update-index --add --cacheinfo before committing. Earlier results preserved but not relied on.",
+  "results": [
+    {
+      "scenario": "one-side",
+      "base": "40a899349796458d27ff7fa584cd32ccc6950dbe",
+      "ours": "150c15cd25ec6f77243491f083ae364579a6cc7d",
+      "theirs": "3069e113edd0bcaf23955ec6866a159c6f263b0e",
+      "mergeBase": "40a899349796458d27ff7fa584cd32ccc6950dbe",
+      "baseText": "# request policy\ntimeout = 30\n\n# stable context\nprotocol = https\nregion = west\nlogging = enabled\ncompression = off\ncache = enabled\ntrace = off\n\nretries = 2",
+      "oursText": "# request policy\ntimeout = 30\n\n# stable context\nprotocol = https\nregion = west\nlogging = enabled\ncompression = off\ncache = enabled\ntrace = off\n\nretries = 2",
+      "theirsText": "# request policy\ntimeout = 60\n\n# stable context\nprotocol = https\nregion = west\nlogging = enabled\ncompression = off\ncache = enabled\ntrace = off\n\nretries = 2",
+      "command": "git -c merge.conflictStyle=diff3 merge --no-edit -s ort theirs",
+      "exitCode": 0,
+      "output": "Merge made by the 'ort' strategy.\r\n policy.txt | 2 +-\r\n 1 file changed, 1 insertion(+), 1 deletion(-)",
+      "headAfter": "b026178198b50922044bc8d4fec440a594d41538",
+      "resultText": "# request policy\r\ntimeout = 60\r\n\r\n# stable context\r\nprotocol = https\r\nregion = west\r\nlogging = enabled\r\ncompression = off\r\ncache = enabled\r\ntrace = off\r\n\r\nretries = 2\r\n",
+      "unmergedStages": [],
+      "parents": "150c15cd25ec6f77243491f083ae364579a6cc7d 3069e113edd0bcaf23955ec6866a159c6f263b0e"
+    },
+    {
+      "scenario": "independent",
+      "base": "0ebe5245e17b42bad628d9faa8b77f674136c375",
+      "ours": "c913adf71d1d0327857abfd1d48620478d386171",
+      "theirs": "4dc4bf9c4f123639d7f05d7da38c30ddfef8affc",
+      "mergeBase": "0ebe5245e17b42bad628d9faa8b77f674136c375",
+      "baseText": "# request policy\ntimeout = 30\n\n# stable context\nprotocol = https\nregion = west\nlogging = enabled\ncompression = off\ncache = enabled\ntrace = off\n\nretries = 2",
+      "oursText": "# request policy\ntimeout = 60\n\n# stable context\nprotocol = https\nregion = west\nlogging = enabled\ncompression = off\ncache = enabled\ntrace = off\n\nretries = 2",
+      "theirsText": "# request policy\ntimeout = 30\n\n# stable context\nprotocol = https\nregion = west\nlogging = enabled\ncompression = off\ncache = enabled\ntrace = off\n\nretries = 4",
+      "command": "git -c merge.conflictStyle=diff3 merge --no-edit -s ort theirs",
+      "exitCode": 0,
+      "output": "Auto-merging policy.txt\r\nMerge made by the 'ort' strategy.\r\n policy.txt | 2 +-\r\n 1 file changed, 1 insertion(+), 1 deletion(-)",
+      "headAfter": "0b8ae8e9f5b3f3de0df85276353bee611dd3839e",
+      "resultText": "# request policy\r\ntimeout = 60\r\n\r\n# stable context\r\nprotocol = https\r\nregion = west\r\nlogging = enabled\r\ncompression = off\r\ncache = enabled\r\ntrace = off\r\n\r\nretries = 4\r\n",
+      "unmergedStages": [],
+      "parents": "c913adf71d1d0327857abfd1d48620478d386171 4dc4bf9c4f123639d7f05d7da38c30ddfef8affc"
+    },
+    {
+      "scenario": "conflict",
+      "base": "62ece524dae7424d9ce29f0655e24b4cece2d9d4",
+      "ours": "f8d48345a7b07e11470924d70194cf51a2da0acb",
+      "theirs": "bb5b04e4ea28d0a4e69973b970eb073d81a143e3",
+      "mergeBase": "62ece524dae7424d9ce29f0655e24b4cece2d9d4",
+      "baseText": "# request policy\ntimeout = 30\n\n# stable context\nprotocol = https\nregion = west\nlogging = enabled\ncompression = off\ncache = enabled\ntrace = off\n\nretries = 2",
+      "oursText": "# request policy\ntimeout = 60\n\n# stable context\nprotocol = https\nregion = west\nlogging = enabled\ncompression = off\ncache = enabled\ntrace = off\n\nretries = 2",
+      "theirsText": "# request policy\ntimeout = 90\n\n# stable context\nprotocol = https\nregion = west\nlogging = enabled\ncompression = off\ncache = enabled\ntrace = off\n\nretries = 2",
+      "command": "git -c merge.conflictStyle=diff3 merge --no-edit -s ort theirs",
+      "exitCode": 1,
+      "output": "Auto-merging policy.txt\r\nCONFLICT (content): Merge conflict in policy.txt\r\nAutomatic merge failed; fix conflicts and then commit the result.",
+      "headAfter": "f8d48345a7b07e11470924d70194cf51a2da0acb",
+      "resultText": "# request policy\r\n<<<<<<< HEAD\r\ntimeout = 60\r\n||||||| 62ece52\r\ntimeout = 30\r\n=======\r\ntimeout = 90\r\n>>>>>>> theirs\r\n\r\n# stable context\r\nprotocol = https\r\nregion = west\r\nlogging = enabled\r\ncompression = off\r\ncache = enabled\r\ntrace = off\r\n\r\nretries = 2\r\n",
+      "unmergedStages": [
+        "100644 2a24c7d046fd1c19fdb93e51a78ac06414320a32 1\tpolicy.txt",
+        "100644 d8ee5d69105a951bec5f39abb0727c9d8101d107 2\tpolicy.txt",
+        "100644 e88aa33aa9f874a3c03df54636339335774e76b9 3\tpolicy.txt"
+      ],
+      "parents": "62ece524dae7424d9ce29f0655e24b4cece2d9d4"
+    }
+  ]
+}

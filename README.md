@@ -13,6 +13,8 @@ runtime **0.3.0**，研究与作品协议 **1.0.0**。不再发布 `aha-lab`／`
 
 产品需求见 [PRD](docs/PRD.md)，架构取舍见 [重构方案](docs/SKILLS-REDESIGN.md)，研究工作法见 [研究协议](docs/RESEARCH.md)，上游方法与许可边界见 [参考记录](docs/REFERENCE-ADOPTION.md)。
 
+实际案例见 [examples](examples/README.md)：基于最新写作指导重新创作的降噪耳机与 Git merge 双语交互 HTML，附必要的调研、可编辑源和当前检查记录。旧的多格式产物与历史评估已清理。
+
 ## 自由创作，不是填写统一卡片
 
 研究档案保存结论、证据、报告与身份。每个媒介有独立作品源和内容覆盖：HTML 可以是长文、表格、SVG、Mermaid 和任意本地交互；图片按目标尺寸重新构图；PPTX 使用原生对象；视频由作者编写按帧变化的 HTML／SVG／canvas 场景。

@@ -45,6 +45,8 @@ Source identity covers included project files, including `artifact.json`; `resea
 
 Identify the question the work answers, required claims and mechanisms, concrete examples/data, essential conditions, and intentional omissions with reasons. Match depth to the audience's known background, not a job-title stereotype. Add definitions where needed. Use bounded analogies only when they help; do not substitute them for evidence.
 
+Before layout, use [explanation editing](explanation-writing.md) to review the direct answer and a representative mechanism passage. Preserve the reasoning between claims, not just their coverage IDs. Compress secondary detail rather than leaving disconnected outline fragments; review the complete authored copy again at final QA.
+
 Map stable output blocks, diagram parts, pages, or scenes to existing research claims. Include numerical units and data provenance, preserve uncertainty, and keep reader-facing citations natural. Internal IDs and review notes are not the explanation itself. Coverage and omissions must agree with the source and do not certify the truth of either.
 
 New substantive assertions go back through research and source review. A layout-only revision need not reopen approval for unchanged research, but executable changes still require review and any necessary execution consent.

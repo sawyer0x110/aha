@@ -46,6 +46,14 @@ For new video plans, `prepare-video` chooses `en-US-JennyNeural` for `en` or abs
 
 Translating narration changes the plan hash and requires validation and fresh approval under [execution](execution.md). Captions and SRT derive from authored segment text; neither is automatically translated. Keep source/audio identity checks intact.
 
+## Write naturally in each language
+
+Work from the same supported meaning, not a sentence-by-sentence English template. Each language may use different sentence order, headings, punctuation and paragraph breaks while preserving the same substantive explanation and conditions. Introduce specialist terms at the reader's level; keep code identifiers intact. A literal translation is not always an intelligible explanation.
+
+Review each branch independently first, without consulting the other: are the referents clear, the phrasing natural, and the transitions understandable? Then compare both against the research for fidelity, especially quantities, negation, conditions and uncertainty. Do not use fluency as permission to add facts or strengthen claims. If the source-language copy is vague, revise both versions rather than polishing only the translation.
+
+For example, in beginner Git prose, "branch tip" can be introduced as "分支的最新提交", not the unexplained literal "尖端". "Expiry matters" needs its consequence explained in either language; "过期很重要" is not a repair. These are examples of contextual choices, not a mandatory glossary. Apply [explanation editing](explanation-writing.md) to headings, labels, dynamic feedback and narration as well as paragraphs.
+
 ## Verify both meaning and rendering
 
 At review, load the full language acceptance checklist in [artifact QA](artifact-qa.md). It covers switching both branches, keyboard/focus behavior, fonts/layouts, and semantic fidelity against the same research. Translation review is separate from schema and render success; report unreviewed content honestly.

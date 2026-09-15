@@ -1,0 +1,12 @@
+# request policy
+timeout = 60
+
+# stable context
+protocol = https
+region = west
+logging = enabled
+compression = off
+cache = enabled
+trace = off
+
+retries = 2

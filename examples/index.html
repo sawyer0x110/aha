@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aha — 两个问题，讲清原理</title>
+<script>
+(() => {
+  const param = new URLSearchParams(window.location.search).get("scoutTheme");
+  const theme = param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  document.documentElement.setAttribute("data-theme", theme);
+})();
+</script>
+<style>
+:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--cp-bg); color: var(--cp-text); font: 18px/1.8 "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif; }
+main { max-width: 1040px; margin: auto; padding: 64px 28px; }
+.eyebrow { color: var(--cp-accent); font-weight: 650; letter-spacing: .1em; }
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.25; margin: 20px 0; }
+.intro { max-width: 42em; color: var(--cp-text-muted); }
+article { display: grid; grid-template-columns: 64px minmax(0,1fr); gap: 24px; border-top: 1px solid var(--cp-border-strong); margin-top: 36px; padding-top: 28px; }
+.number { font: 36px/1.5 Consolas, "Courier New", Courier, monospace; color: var(--cp-accent); }
+h2 { margin: 0 0 12px; font-size: 1.6rem; line-height: 1.45; }
+p { margin: 12px 0 20px; }
+a { color: var(--cp-link); text-underline-offset: 5px; }
+.open { display: inline-block; padding: 8px 16px; border: 1px solid var(--cp-accent); color: var(--cp-accent); border-radius: .625rem; text-decoration: none; }
+.open:hover { background: var(--cp-accent-soft); }
+a:focus-visible { outline: 3px solid var(--cp-accent); outline-offset: 4px; }
+footer { margin-top: 48px; font-size: .9rem; color: var(--cp-text-soft); }
+@media (max-width:560px) { main { padding: 32px 20px; } article { grid-template-columns: 1fr; gap: 4px; } .number { font-size: 24px; } }
+</style>
+</head>
+<body><main>
+<div class="eyebrow">AHA · 从现象到原理</div>
+<h1>两个问题，<br>不止记住一个答案。</h1>
+<p class="intro">从生活中的听感，到协作开发中的意外结果：把关键对象、变化过程和结果连起来。两篇均可离线阅读，并提供 English / 中文切换。</p>
+<article><div class="number">01</div><div>
+<h2>飞机轰鸣变轻了，为什么人声还在？</h2>
+<p>看两路声压如何在耳边相加，亲手改变理想模型中的相位偏差，再理解频率、人声构成和佩戴贴合为什么会影响降噪。</p>
+<a class="open" href="anc/index.html">打开降噪耳机讲解 →</a>
+</div></article>
+<article><div class="number">02</div><div>
+<h2>为什么 Git 合并会带回已撤销的修改？</h2>
+<p>对照共同基线和两个分支的文件，切换三组真实实验结果：只有一边留下变化、两处独立修改，以及同一位置的冲突。</p>
+<a class="open" href="git-merge/index.html">打开 Git merge 讲解 →</a>
+</div></article>
+<footer>只保留这轮 HTML 及必要的调研、源码与检查记录。<a href="README.md">目录说明</a></footer>
+</main></body>
+</html>

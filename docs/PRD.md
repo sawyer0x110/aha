@@ -137,6 +137,8 @@ Aha 的核心是两个可独立使用、也可连续完成的能力：
 
 事实必须来自研究或明确标记的新推理。新增实质主张先回到研究补证，不借“美化”发明数值或行为。
 
+解释质量独立于事实覆盖与视觉质量：正文须说明必要的对象、关系、条件和结果，不能以“匹配很重要”等提纲式短句代替推理。排版前审读代表性文字，交付前覆盖全部读者文案与交互反馈；压缩格式时删减次要分支，而不是省略关键因果连接。标题也不能夸大正文的限定。执行方法见 [解释性编辑](../skills/aha-explain/references/explanation-writing.md)。
+
 ### FR-C1a 作品语言与翻译边界
 
 - CLI 为 `explain-init <research-directory> <html|image|pptx|video> <new-project-directory> [--language en|zh|bilingual]`。新 HTML 默认 `bilingual`，初始英语并内置 English/中文切换；新 image／pptx／video 默认 `en`，即使研究或提问为中文也不改变默认值。
@@ -144,6 +146,7 @@ Aha 的核心是两个可独立使用、也可连续完成的能力：
 - `artifact.language` 枚举为 `en`、`zh`、`bilingual`；新初始化项目总写入，但对旧元数据保持可选。缺失时保留旧单源行为，不要求双语根或自动翻译，视频声线有效回退为英语。
 - 语言是作品层的选择，不翻译或修改封存 Dossier。Agent 编写准确译文，Aha 只打包作者内容，不提供在线自动翻译。译文保留证据与 Claim ID、数量单位、否定、条件和不确定性。
 - scaffold 仍为 `draft`；双语内容必须实际编写，结构检查不认证译文质量。完整作者契约见 [语言参考](../skills/aha-explain/references/language.md)。
+- 中英文基于相同事实分别组织自然表达，不强制逐句对齐。先独立审读每种语言的通顺与解释完整性，再核对跨语言事实、单位、否定和限定；英文原文含糊时须同时修订，而非仅润色中文。语言切换成功不代表文字验收通过。
 
 ### FR-C2 富文本 HTML
 
