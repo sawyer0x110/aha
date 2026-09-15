@@ -37,10 +37,11 @@ PPT 仍采用深色首尾、浅色正文。第 5 页展示上一版网页与海�
 
 研究固定在提交 `a013ea795312eab9ae2e4224998a1314eea8f718`，对应 runtime `0.3.0`、协议 `1.0.0`，不是对远端状态的持续追踪。
 
-- [核心研究](research/report.md)含 9 条主张、12 份固定提交证据，绑定 PNG、PPTX 及保留的 GIF 源。
-- [补充实例后的研究](research-v2/report.md)含 10 条主张、13 份证据，绑定新版 HTML/video；新增证据说明 ANC/Git 既有作品及其边界。
+[统一研究](research/report.md)含 10 条主张、13 份证据，同时覆盖项目实现及 ANC/Git 既有作品的使用边界。所有四种作品及 PPT 的 GIF 插图都绑定这一份快照，不再分别维护 `research` 和 `research-v2`。
 
-各项目保留自己的研究副本，并在 `artifact.json` 记录覆盖与省略。视频有意省略身份、权限、运行机制、语言默认值和安装分发细节；这些不是入门短讲的重点，制作过程仍须遵守。不同作品可以绑定不同的明确研究版本，不修改哈希来伪造一致性。
+各项目按运行时契约保留同一研究的完整副本，并在 `artifact.json` 记录覆盖与省略；`verify.mjs` 检查五个项目副本与唯一的 `research/` 完全一致。视频有意省略身份、权限、运行机制、语言默认值和安装分发细节；PNG、PPT 和 GIF 不展开 ANC/Git 个案，因此显式省略该主张。研究报告中保留了撰写时的过程说明，当前作品绑定以元数据和收据为准。
+
+统一时复用了原先较完整的快照，未改动其中事实和证据。HTML/video 的研究及源码身份不变；PNG、PPT 和 GIF 已在新绑定下实际重新生成，未手改收据。PNG 和 GIF 字节不变，PPT 仅更新讲者备注中的研究引用及文件生成时间，所有幻灯片与素材内容不变，见 [统一记录](qa/consolidation.json)。
 
 [运行记录](qa/runtime.json)、[分层审阅](qa/review.json)、[播放记录](qa/playback.json)分别记录浏览器、内容、编辑及媒体检查。HTML 覆盖中英双语、1280/390px、浅深主题和键盘/鼠标。视频检查六幕 A→B→A 状态与实际字幕覆盖层；重放要求 DOM 一致，允许浏览器缩放截图最多一个 8 位色阶的栅格化差异，并保留具体差异数。像素变化本身不证明解释有帮助。
 
@@ -59,7 +60,6 @@ PPT 的原生编辑检查在独立副本进行，没有修改交付件。**完�
 ```powershell
 npm run build
 node .\dist\cli\aha.mjs research-validate .\examples\project-overview\research
-node .\dist\cli\aha.mjs research-validate .\examples\project-overview\research-v2
 node .\dist\cli\aha.mjs render-html .\examples\project-overview\projects\html .\artifacts\overview-rebuild\index.html
 node .\dist\cli\aha.mjs render-image .\examples\project-overview\projects\image .\artifacts\overview-rebuild\overview.png --allow-code
 node .\dist\cli\aha.mjs render-pptx .\examples\project-overview\projects\pptx .\artifacts\overview-rebuild\overview.pptx --allow-code
@@ -85,4 +85,4 @@ node .\examples\project-overview\check-playback.mjs .\artifacts\overview-rebuild
 
 ## 保留内容
 
-本目录只保留最终四种作品、PPT 仍在使用的 GIF 插图、必要源码与素材、对应研究快照、音频来源和最终检查记录。旧候选、失败计划、调试副本、临时帧和制作环境已清理。两个研究版本及原始音频不是废弃结果：它们仍被最终作品、录音来源或时间对齐记录引用，不能删去而保持复现链完整。`.gitattributes` 禁止本目录的自动换行转换，以保留收据记录的精确字节。
+本目录只保留最终四种作品、PPT 仍在使用的 GIF 插图、必要源码与素材、一份统一研究及运行时要求的相同副本、音频来源和最终检查记录。旧候选、失败计划、调试副本、临时帧和制作环境已清理。原始音频仍是录音来源和时间对齐记录的依据。`.gitattributes` 禁止本目录的自动换行转换，以保留收据记录的精确字节。

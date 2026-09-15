@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "format": "image",
   "language": "en",
-  "researchHash": "b547322594e90fb21a9aad36c40b7658cfe6c73d591e69481d95fdc20408a3bf",
+  "researchHash": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d",
   "title": "Aha: research once, author for each medium",
   "status": "authored",
   "entry": "html/index.html",
@@ -14,6 +14,7 @@
     { "id": "qa", "claimIds": ["c-qa"] }
   ],
   "omissions": [
+    { "claimId": "c-examples", "reason": "This fixed-size project pipeline overview leaves the ANC and Git case studies to the companion HTML and narrated video." },
     { "claimId": "c-language", "reason": "This fixed-size pipeline overview defers language defaults to the companion HTML and report." },
     { "claimId": "c-distribution", "reason": "Package and installation details are secondary to the pipeline and remain in the companion HTML and report." }
   ],
