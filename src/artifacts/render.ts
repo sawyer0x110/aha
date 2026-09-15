@@ -130,7 +130,7 @@ async function browserRender(html: string, artifact: Artifact, capture: boolean)
         // An opaque-origin sandbox also prevents navigation/popups that a meta CSP
         // alone cannot reliably prohibit. Only the trusted outer page is captured.
         await page.setContent(`<!doctype html><html><head>
-          <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; frame-src about:; img-src data: blob:; font-src data:; connect-src 'none'; worker-src 'none'; base-uri 'none'; form-action 'none'">
+          <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' data:; style-src 'unsafe-inline'; frame-src about:; img-src data: blob:; font-src data:; connect-src 'none'; worker-src 'none'; base-uri 'none'; form-action 'none'">
           <style>html,body{margin:0;width:100%;height:100%;overflow:hidden}iframe{border:0;width:100%;height:100%;display:block}</style>
           </head><body><iframe sandbox="allow-scripts" title="Authored artifact"></iframe></body></html>`, { waitUntil: 'load', timeout: 20_000 });
         await page.locator('iframe').evaluate((node, source) => { (node as HTMLIFrameElement).srcdoc = source; }, html);

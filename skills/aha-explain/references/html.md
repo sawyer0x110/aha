@@ -26,6 +26,8 @@ Interactive features must serve understanding: zoom/pan/reset, expandable detail
 
 The runtime packages local CSS, classic `.js`/`.cjs` scripts, supported images, and fonts into the output; source resource paths must stay within the allowed project tree. Plain local references have no query strings or encoded paths. Use a locally prebundled classic script rather than module scripts, import maps, or dynamic imports.
 
+External classic scripts with `defer` or `async` are embedded as self-contained `data:` script sources, preserving native scheduling and separate global script executions. Deferred scripts still run after parsing, in document order, before `DOMContentLoaded`; `async` retains its native nondeterministic ordering. Ordinary scripts remain inline. This requires no network access and does not enable remote script sources; author local paths rather than supplying data URLs yourself.
+
 Author inline SVG for complex graphics; external SVG assets must be inert and self-contained. Embedded frames/objects/media, authored `http-equiv` metadata, `srcset`, CSS imports/escapes, and SVG animation elements are unsupported. Use deterministic JavaScript for scene animation. Natural HTTP(S)/mailto citation links are allowed, but asset fetching and active network access are not. Aha inserts its offline CSP; do not weaken it or describe resource checks as a universal code sandbox.
 
 ## Build and inspect

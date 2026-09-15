@@ -150,6 +150,23 @@ test('draft checks reject contradictory explicit reverse links and unresolved an
   assert.throws(() => checkResearchDraft(unresolved), errorCode('UNRESOLVED_INVALID'));
 });
 
+test('optional claim reverse links must exactly match primary coverage when supplied', async () => {
+  const draft = authored();
+  draft.subquestions.push({ id: 'q2', question: 'Another supported question?', status: 'answered', claimIds: ['c1'], gapIds: [] });
+  delete draft.claims[0]!.subquestionIds;
+  assert.deepEqual(checkResearchDraft(draft).pending, []);
+  await buildDossier(draft);
+  draft.claims[0]!.subquestionIds = ['q2', 'q1'];
+  assert.deepEqual(checkResearchDraft(draft).pending, []);
+  await buildDossier(draft);
+  for (const reverse of [[], ['q1'], ['q2']]) {
+    const incomplete = structuredClone(draft);
+    incomplete.claims[0]!.subquestionIds = reverse;
+    assert.throws(() => checkResearchDraft(incomplete), errorCode('COVERAGE_INVALID'));
+    await assert.rejects(buildDossier(incomplete), errorCode('COVERAGE_INVALID'));
+  }
+});
+
 test('unfinished drafts still reject unknown references, duplicate IDs and malformed schema', () => {
   const mutations: [string, (draft: ResearchDraft) => void][] = [
     ['REFERENCE_INVALID', draft => { draft.claims[0]!.evidenceIds = ['missing']; }],

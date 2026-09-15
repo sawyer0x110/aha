@@ -203,6 +203,27 @@ test('offline parser rejects remote, hidden, missing and unsupported resource co
   }
 }));
 
+test('scheduled classic scripts stay external and data-block scripts stay inert when packaged', async () => fixture(async (_root, project) => {
+  await author(project, `<!doctype html><head>
+    <script defer src="logic.js"></script>
+    <script async src="logic.js"></script>
+    <script async defer type="application/javascript" src="logic.js"></script>
+    <script type="application/json" defer src="data.js"></script>
+    <script defer>window.inlineStillRunsImmediately = true;</script>
+    </head><body><p>Argument</p></body>`);
+  const logic = 'window.payload = "</script>";';
+  await fs.writeFile(path.join(project, 'html', 'logic.js'), logic);
+  await fs.writeFile(path.join(project, 'html', 'data.js'), '{"inert":true}');
+  const html = await prepareHtml(project);
+  const encoded = `data:text/javascript;charset=utf-8;base64,${Buffer.from(logic).toString('base64')}`;
+  assert.equal(html.split(encoded).length - 1, 3);
+  assert.match(html, /script-src 'unsafe-inline' data:/);
+  assert.match(html, /<script type="application\/json" defer="">\{"inert":true\}<\/script>/);
+  assert.match(html, /<script defer="">window.inlineStillRunsImmediately = true;<\/script>/);
+  await author(project, '<script defer type="module" src="logic.js"></script>');
+  await assert.rejects(prepareHtml(project), code('HTML_SCRIPT'));
+}));
+
 test('output paths stay outside sources, use correct extensions and never overwrite', async () => fixture(async (root, project) => {
   await author(project);
   await assert.rejects(renderHtml(project, path.join(project, 'dist', 'output.html')), code('OUTPUT_INSIDE_ARTIFACT'));

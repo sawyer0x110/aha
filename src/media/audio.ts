@@ -7,14 +7,16 @@ import { check } from '../core/check.js';
 import { fail } from '../core/errors.js';
 import { hashValue } from '../core/identity.js';
 import { assertSafePath, limitedJsonText, readJson, writeNewFile } from '../cli/files.js';
-import { AudioManifestSchema, checkAudioTiming, checkPlan, MAX_SECONDS, type AudioManifest, type VideoPlan } from './plan.js';
+import { AudioManifestSchema, checkAudioTiming, checkPlan, type AudioManifest, type VideoPlan } from './plan.js';
 import { ffmpeg, ffprobe, python, runTool } from './process.js';
+import { audioTiming } from './duration.js';
 
 const Probe = Type.Object({
   format: Type.Object({ duration: Type.String() }),
   streams: Type.Array(Type.Object({
     codec_type: Type.String(), codec_name: Type.String(),
     sample_rate: Type.Optional(Type.String()), channels: Type.Optional(Type.Number()),
+    duration_ts: Type.Optional(Type.Union([Type.Number(), Type.String()])), time_base: Type.Optional(Type.String()),
   })),
 });
 
@@ -26,23 +28,29 @@ export async function fileHash(file: string): Promise<string> {
   return createHash('sha256').update(await fs.readFile(file)).digest('hex');
 }
 
-export async function audioSeconds(file: string, normalized = false): Promise<number> {
+async function probeAudio(file: string, normalized = false): Promise<{ seconds: number; frames: number }> {
   await fileHash(file);
   const result = await runTool(ffprobe(), [
     '-v', 'error', '-protocol_whitelist', 'file,pipe',
-    '-show_entries', 'format=duration:stream=codec_type,codec_name,sample_rate,channels',
+    '-show_entries', 'format=duration:stream=codec_type,codec_name,sample_rate,channels,duration_ts,time_base',
     '-of', 'json', path.resolve(file),
   ]);
   const probe = check(Probe, JSON.parse(result));
-  const seconds = Number(probe.format.duration);
-  if (!Number.isFinite(seconds) || seconds <= 0 || seconds > MAX_SECONDS || !probe.streams.some(stream => stream.codec_type === 'audio')) {
+  const audio = probe.streams.filter(stream => stream.codec_type === 'audio');
+  if (!audio.length) {
     fail('AUDIO_DURATION', 'Every narration segment must contain positive audio of at most 600 seconds.', file);
   }
   if (normalized && (probe.streams.length !== 1 || probe.streams[0]!.codec_name !== 'pcm_s16le'
     || probe.streams[0]!.sample_rate !== '48000' || probe.streams[0]!.channels !== 1)) {
     fail('AUDIO_FORMAT', 'Normalized audio must be mono 48 kHz PCM s16le.');
   }
-  return seconds;
+  // Multiple audio streams retain the container-duration budget; stream selection is unchanged.
+  const stream = audio.length === 1 ? audio[0] : undefined;
+  return audioTiming(probe.format.duration, stream?.duration_ts, stream?.time_base, file);
+}
+
+export async function audioSeconds(file: string, normalized = false): Promise<number> {
+  return (await probeAudio(file, normalized)).seconds;
 }
 
 export async function normalizeAudio(input: string, output: string): Promise<number> {
@@ -50,8 +58,7 @@ export async function normalizeAudio(input: string, output: string): Promise<num
   if (!['.wav', '.mp3', '.m4a'].includes(path.extname(input).toLowerCase())) {
     fail('AUDIO_FORMAT', 'Provide a local WAV, MP3 or M4A narration segment.', input);
   }
-  const seconds = await audioSeconds(input);
-  const frames = Math.ceil(seconds * 30);
+  const { frames } = await probeAudio(input);
   await runTool(ffmpeg(), [
     '-v', 'error', '-nostdin', '-n', '-protocol_whitelist', 'file,pipe',
     '-i', path.resolve(input), '-vn', '-ac', '1', '-ar', '48000',
@@ -125,7 +132,7 @@ export async function importAudio(plan: VideoPlan, input: unknown, listDirectory
   }
   const sources = provided.segments.map(item => path.resolve(listDirectory, item.file));
   let totalFrames = 0;
-  for (const source of sources) totalFrames += Math.ceil(await audioSeconds(source) * 30);
+  for (const source of sources) totalFrames += (await probeAudio(source)).frames;
   if (totalFrames / 30 < plan.duration.minSeconds || totalFrames / 30 > plan.duration.maxSeconds) {
     fail('VIDEO_DURATION_RANGE', 'Provided audio is outside the approved duration range.');
   }

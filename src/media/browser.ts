@@ -43,7 +43,7 @@ export async function createFrameRenderer(html: string, browser: Browser) {
   page.on('console', message => { if (message.type() === 'error') unsafe = true; });
   context.on('page', popup => { if (popup !== page) { unsafe = true; void popup.close(); } });
   page.on('dialog', dialog => { unsafe = true; void dialog.dismiss(); });
-  const policy = "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; font-src data:; connect-src 'none'; media-src 'none'; worker-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src about:";
+  const policy = "default-src 'none'; script-src 'unsafe-inline' data:; style-src 'unsafe-inline'; img-src data:; font-src data:; connect-src 'none'; media-src 'none'; worker-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src about:";
   try {
     await bounded(page.setContent(`<!doctype html><html><head><meta http-equiv="Content-Security-Policy" content="${policy}">
       <style>html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#000}

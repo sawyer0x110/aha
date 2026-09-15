@@ -17,7 +17,7 @@ interface Node {
   value?: string;
 }
 
-export const OFFLINE_CSP = "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; media-src data: blob:; connect-src 'none'; worker-src 'none'; child-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'";
+export const OFFLINE_CSP = "default-src 'none'; script-src 'unsafe-inline' data:; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; media-src data: blob:; connect-src 'none'; worker-src 'none'; child-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'";
 const MIME: Record<string, string> = {
   '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.gif': 'image/gif',
   '.webp': 'image/webp', '.avif': 'image/avif', '.svg': 'image/svg+xml',
@@ -127,8 +127,9 @@ export async function prepareHtml(directory: string): Promise<string> {
       if (artifact.language === 'bilingual' && attr(node, 'data-aha-lang') !== undefined) languageRoots.push(node);
       if (UNSUPPORTED.has(tag)) fail('HTML_CONTEXT', `Unsupported offline HTML element: ${tag}.`);
       if (tag === 'meta' && attr(node, 'http-equiv')) fail('HTML_CONTEXT', 'Authored http-equiv metadata is unsupported; Aha supplies offline CSP.');
+      let packagedScript: string | undefined;
       if (tag === 'script') {
-        const type = (attr(node, 'type') ?? '').toLowerCase();
+        const type = (attr(node, 'type') ?? '').trim().toLowerCase();
         if (type && !['text/javascript', 'application/javascript', 'application/json', 'application/ld+json'].includes(type)) {
           fail('HTML_SCRIPT', 'Module/import-map scripts are unsupported. Use a locally bundled classic script.');
         }
@@ -140,8 +141,12 @@ export async function prepareHtml(directory: string): Promise<string> {
           removeAttr(node, 'src');
           removeAttr(node, 'integrity');
           removeAttr(node, 'crossorigin');
-          removeAttr(node, 'defer');
-          removeAttr(node, 'async');
+          if ((!type || type === 'text/javascript' || type === 'application/javascript')
+            && (attr(node, 'defer') !== undefined || attr(node, 'async') !== undefined)) {
+            // A real external classic script preserves parser scheduling and the shared global
+            // lexical environment; inline defer or callback wrappers cannot preserve either.
+            packagedScript = `data:text/javascript;charset=utf-8;base64,${loaded.bytes.toString('base64')}`;
+          }
         }
         if (/\bimport\s*(?:\(|["'{*])/.test(text(node))) fail('HTML_SCRIPT', 'JavaScript imports require a prebundled local classic script.');
       }
@@ -176,6 +181,10 @@ export async function prepareHtml(directory: string): Promise<string> {
       }
       if (['animate', 'animatetransform', 'animatemotion', 'set'].includes(tag)) {
         fail('HTML_CONTEXT', 'SVG animation elements are unsupported; author deterministic JavaScript animation instead.');
+      }
+      if (packagedScript) {
+        setText(node, '');
+        setAttr(node, 'src', packagedScript);
       }
     }
     for (const child of [...(node.childNodes ?? [])]) await visit(child, from);

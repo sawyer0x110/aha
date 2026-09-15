@@ -5,6 +5,7 @@ import { hashValue } from '../src/core/identity.js';
 import { approvePlan, checkPlan, subtitles, type VideoPlan, type AudioManifest } from '../src/media/plan.js';
 import { importAudio, synthesize } from '../src/media/audio.js';
 import { runTool } from '../src/media/process.js';
+import { audioTiming } from '../src/media/duration.js';
 
 const code = (expected: string) => (error: unknown): boolean => error instanceof AhaError && error.code === expected;
 function fixture(): VideoPlan {
@@ -48,6 +49,29 @@ test('audio methods reject provider mismatch, draft and absent network opt-in be
   await assert.rejects(synthesize({ ...plan, provider: 'provided-audio' }, 'must-not-create-anything', true), code('AUDIO_PROVIDER'));
   await assert.rejects(synthesize({ ...plan, status: 'draft' }, 'must-not-create-anything', true), code('NARRATION_DRAFT'));
   await assert.rejects(importAudio(plan, {}, '.', 'must-not-create-anything'), code('AUDIO_PROVIDER'));
+});
+
+test('audio frame budgets use exact rational ticks without rounding away a final sample', () => {
+  for (const [samples, frames] of [[1, 1], [1599, 1], [1600, 1], [1601, 2], [3200, 2], [3201, 3], [48000, 30]]) {
+    assert.equal(audioTiming('0.066667', samples, '1/48000').frames, frames);
+  }
+  assert.equal(audioTiming('0.066667', 3200, '1/48000').seconds, 2 / 30);
+  assert.equal(audioTiming('0.033334', '1470', '1/44100').frames, 1);
+  assert.equal(audioTiming('0.033356', '1471', '1/44100').frames, 2);
+  assert.equal(audioTiming('0.066667', '941760', '1/14112000').frames, 3);
+  assert.equal(audioTiming('600.000000', 28_800_000, '1/48000').frames, 18000);
+  assert.equal(audioTiming('0.066667').frames, 3, 'Unknown precision must not be guessed with an epsilon.');
+  assert.equal(audioTiming('1.000000', 'N/A', '1/48000').frames, 30);
+  for (const [ticks, base] of [
+    [0, '1/48000'], [-1, '1/48000'], [1.5, '1/48000'], [28_800_001, '1/48000'],
+    [Number.MAX_SAFE_INTEGER + 1, '1/48000'], ['9'.repeat(31), '1/48000'],
+    [3200, '0/48000'], [3200, '1/0'], [3200, 'invalid'],
+  ] as const) {
+    assert.throws(() => audioTiming('1.000000', ticks, base), code('AUDIO_DURATION'));
+  }
+  for (const value of ['0', '-1', 'NaN', 'Infinity', '600.000001', '9'.repeat(31)]) {
+    assert.throws(() => audioTiming(value), code('AUDIO_DURATION'));
+  }
 });
 
 test('subtitles preserve cumulative measured timing and escape markup without executing it', async () => {
