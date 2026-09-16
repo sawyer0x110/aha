@@ -3,197 +3,29 @@ import assert from 'node:assert/strict';
 import * as fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { Type } from '@sinclair/typebox';
+import { check } from '../src/core/check.js';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const skillNames = ['aha-research', 'aha-explain'] as const;
 type SkillName = typeof skillNames[number];
-type Fixture = {
-  id: string;
-  skill: SkillName;
-  priority: 'codebase' | 'public' | 'html' | 'image' | 'pptx' | 'video';
-  prompt: string;
-  materials: string[];
-  references: string[];
-  manualChecks: string[];
-};
+const FixtureSchema = Type.Object({
+  id: Type.String({ pattern: '^[a-z][a-z0-9-]+$' }),
+  skill: Type.Union(skillNames.map(name => Type.Literal(name))),
+  priority: Type.Union([
+    Type.Literal('codebase'), Type.Literal('public'), Type.Literal('html'),
+    Type.Literal('image'), Type.Literal('pptx'), Type.Literal('video'),
+  ]),
+  prompt: Type.String({ minLength: 61, pattern: '\\S' }),
+  materials: Type.Array(Type.String({ minLength: 1, pattern: '\\S' }), { minItems: 1 }),
+  references: Type.Array(Type.String({ minLength: 1, pattern: '\\S' }), { minItems: 2 }),
+  manualChecks: Type.Array(Type.String({ minLength: 41, pattern: '\\S' }), { minItems: 4 }),
+}, { additionalProperties: false });
+const ScenariosSchema = Type.Array(FixtureSchema, { minItems: 1 });
 
 // These are host-run evaluation cases, not claims of automated semantic or visual acceptance.
-export const benchmarkPromptFixtures: Fixture[] = [
-  {
-    id: 'deep-public-conflicting-results', skill: 'aha-research', priority: 'public',
-    prompt: 'Investigate whether this public intervention improved outcomes. Follow original methods, compare contrary findings, and explain what remains uncertain. Spend at most eight substantive source reads; deliver research only.',
-    materials: ['Primary report and methods appendix', 'Two derivative articles sharing that report', 'Independent null-result study', 'A later correction'],
-    references: ['research-workflow.md', 'research-public.md', 'research-contract.md'],
-    manualChecks: [
-      'Question tree evolves after the correction; actual queries, source reads, failures, and stopping reason are logged separately from plans.',
-      'Reads methods and contrary evidence, follows primary citations, and does not count derivative articles as independent support.',
-      'Reconciles units, denominators, population, time window, causal strength, and uncertainty in the direct answer.',
-      'Reverse-checks consequential claims against source context; preserves gaps rather than manufacturing consensus.',
-      'Delivers an independently useful report and valid Dossier without requiring slides, a model, or teaching tests.',
-    ],
-  },
-  {
-    id: 'dirty-codebase-cancellation', skill: 'aha-research', priority: 'codebase',
-    prompt: 'Investigate request cancellation and retry behavior from the supplied base commit to this dirty workspace. Follow state and failure paths; tools are read-only and LSP is unavailable. Do not execute or install anything.',
-    materials: ['Authorized repository with staged, unstaged, and relevant untracked changes', 'Base commit', 'Tests and configuration', 'Read-only file/search tools'],
-    references: ['research-codebase.md', 'research-workflow.md', 'execution.md'],
-    manualChecks: [
-      'Fixes both diff endpoints and actual dirty content identities with accurate file/symbol locators.',
-      'Uses bounded text navigation and traces definitions, callers, cancellation, retry state, cleanup, and a plausible counterexample.',
-      'Cross-checks tests and configuration while distinguishing source implications from observed execution.',
-      'Does not run repository scripts, install navigation tools, or claim unread branches and unexecuted tests passed.',
-      'Updates questions and contradictions, delivers remaining gaps and a defensible stopping reason.',
-    ],
-  },
-  {
-    id: 'unread-public-source', skill: 'aha-explain', priority: 'public',
-    prompt: 'Make an infographic about this public article, but only its abstract is available and the full text requires access we do not have. Establish what can be supported before creating the image.',
-    materials: ['Authorized abstract', 'Title and inaccessible full-text URL', 'No login or extraction capability'],
-    references: ['research-public.md', 'research-workflow.md', 'image.md'],
-    manualChecks: [
-      'Uses the shared research method directly without assuming host dispatch to another skill.',
-      'Records abstract-only read extent and failed access; never invents full-text conclusions or page locators.',
-      'Narrows the explanation to supported claims or reports a research blocker before authoring.',
-      'Does not turn unavailable evidence into a confident visual claim or bypass access controls.',
-    ],
-  },
-  {
-    id: 'topic-to-rich-offline-html', skill: 'aha-explain', priority: 'html',
-    prompt: 'Starting from this public technical topic, research the important tradeoffs and make a rich offline explanation with long prose, a wide comparison table, a sequence diagram, and useful keyboard-accessible interaction. No simulator is needed.',
-    materials: ['Topic and target audience knowledge', 'Primary standards and competing implementation notes', 'Installed local browser and optional Mermaid tool'],
-    references: ['research-workflow.md', 'artifact-authoring.md', 'html.md', 'artifact-qa.md'],
-    manualChecks: [
-      'Performs iterative research and source review, then authors actual topic-specific source and coverage instead of declaring the scaffold authored.',
-      'Uses free document structure, optional theme recipes with consistent runtime color roles, readable prose measure, and independent wide-content expansion.',
-      'Diagram relationships and interaction help answer the question; no invented causal slider or mandatory quiz.',
-      'Opens the delivered HTML offline at desktop and narrow sizes, operates controls with keyboard, and tests reduced motion and font loading.',
-      'Uses local resources without CDN fallback and distinguishes browser receipts from actual visual review.',
-    ],
-  },
-  {
-    id: 'mixed-version-explanation', skill: 'aha-explain', priority: 'codebase',
-    prompt: 'Explain this local implementation against the latest public specification in HTML. The supplied research predates the dirty change; supplement only the affected questions, preserve the old snapshot, and show the remaining mismatch.',
-    materials: ['Existing Dossier', 'Authorized dirty source change', 'New public specification revision'],
-    references: ['research-codebase.md', 'research-public.md', 'research-contract.md', 'artifact-authoring.md'],
-    manualChecks: [
-      'Checks freshness and coverage, records exact local and public versions, and investigates the affected path.',
-      'Does not use the public specification as proof of implemented behavior or silently mutate the prior snapshot.',
-      'Rebuilds research at a new destination and binds authored coverage to the new research identity.',
-      'The explanation distinguishes actual source evidence, specification requirements, and unresolved observations.',
-    ],
-  },
-  {
-    id: 'full-size-image-infographic', skill: 'aha-explain', priority: 'image',
-    prompt: 'Turn this reviewed research into a tall shareable infographic with a connected visual argument, several necessary subclaims, readable Chinese labels, units, and source notes. Preserve editable source and do not screenshot the whole article.',
-    materials: ['Reviewed Dossier', 'Local licensed font/assets', 'Explicit size and resource budget'],
-    references: ['artifact-authoring.md', 'image.md', 'artifact-qa.md'],
-    manualChecks: [
-      'Designs a medium-specific layout and complete image root rather than a fixed card or scaled article.',
-      'Reviews authored page code before approved local rendering; no remote font or dependency download occurs.',
-      'Checks the full PNG and realistic reading-size crops for all edges, connectors, glyphs, source notes, and legibility.',
-      'Reports capture-size limits without silent cropping and fact-checks labels, relationships, and numerical comparisons.',
-    ],
-  },
-  {
-    id: 'landscape-image-comparison', skill: 'aha-explain', priority: 'image',
-    prompt: 'Make one PNG comparing the two reviewed deployment approaches for a desktop presentation. The audience should see their relationships and tradeoffs together on one screen. Choose a suitable size and explain the choice.',
-    materials: ['Reviewed Dossier comparing two deployment approaches', 'Known presentation container and local assets'],
-    references: ['image.md', 'artifact-qa.md'],
-    manualChecks: [
-      'Chooses a landscape composition suitable for simultaneous comparison, such as 1920 x 1080, rather than inheriting a tall scaffold.',
-      'Explains dimensions using the presentation container and preserves important relationships and limitations.',
-      'Inspects the whole PNG fitted into the intended container, not just enlarged crops; does not shrink text to force excess content into one screen.',
-      'Produces one independently composed image with readable source cues, not a screenshot of the companion article.',
-    ],
-  },
-  {
-    id: 'mobile-scroll-image', skill: 'aha-explain', priority: 'image',
-    prompt: 'Create one PNG explaining this reviewed onboarding process for people reading on a phone and scrolling downward. Keep the necessary steps and caveats readable without zoom. Choose the dimensions; do not make a series of images.',
-    materials: ['Reviewed Dossier with sequential onboarding steps and caveats', 'Local fonts and assets'],
-    references: ['image.md', 'artifact-qa.md'],
-    manualChecks: [
-      'Chooses portrait with content-led height and briefly states the scrolling context; does not force a full-screen 9:16 ratio or fill unused space.',
-      'Inspects every section scaled to the intended phone width, using about 390 CSS pixels when no exact width is known.',
-      'Improves hierarchy before adding height; does not substitute higher pixel density for larger displayed text, silently crop, or create extra images.',
-      'Verifies that the delivered pixel dimensions match the brief and that every necessary step and caveat survives the layout.',
-    ],
-  },
-  {
-    id: 'explicit-image-dimensions', skill: 'aha-explain', priority: 'image',
-    prompt: 'Create a single 1200 x 1500 pixel PNG summarizing this reviewed research for an existing publication slot. Keep those exact dimensions, explain the important caveat, and preserve editable source.',
-    materials: ['Reviewed Dossier with a summary and material caveat', 'Publication slot: exactly 1200 x 1500 pixels'],
-    references: ['artifact-authoring.md', 'image.md', 'artifact-qa.md'],
-    manualChecks: [
-      'Uses exactly 1200 x 1500 in metadata, authored composition and delivered PNG, not a nearby recommended preset.',
-      'Adapts content hierarchy to the fixed slot without stretching, clipping, tiny text, or dropping the material caveat.',
-      'Checks dimensions and scaled reading separately from source identity and runtime success; reports any unperformed visual inspection.',
-      'Edits the authoritative source and renders a new output only after source review and appropriate local execution approval.',
-    ],
-  },
-  {
-    id: 'native-detailed-pptx', skill: 'aha-explain', priority: 'pptx',
-    prompt: 'Create a detailed native editable PPTX from this research for a technically knowledgeable team. Cover mechanisms, comparisons, evidence, failure boundaries, and an appendix; use as many pages as the agreed budget requires, not a twelve-slide cap.',
-    materials: ['Reviewed Dossier', 'Coverage needs requiring more than twelve slides', 'Local assets and presentation application'],
-    references: ['artifact-authoring.md', 'pptx.md', 'execution.md', 'artifact-qa.md'],
-    manualChecks: [
-      'Plans complete coverage and varied layouts within the agreed budget instead of truncating content or shrinking text.',
-      'Authors native text, shapes, tables, and charts via the supplied PptxGenJS instance; discloses noneditable inserted graphics.',
-      'Reviews and explicitly approves the Node source before execution with timeout; does not call the runtime sandboxed.',
-      'Checks OOXML/text coverage and notes separately from actual slide rendering and representative native editing.',
-      'Inspects every actual slide and continuity in a presentation application; unavailable application means visual QA blocked, not passed.',
-    ],
-  },
-  {
-    id: 'approved-dynamic-video', skill: 'aha-explain', priority: 'video',
-    prompt: 'Produce a dynamic narrated video from this private test research, beginning with a 20–30 second mechanism pilot. Before any Edge TTS upload show the complete narration, provider, voice, rate, and disclosure scope. No external speech call is authorized yet.',
-    materials: ['Private synthetic Dossier without real sensitive data', 'Local browser and FFmpeg', 'Optional user-provided audio'],
-    references: ['artifact-authoring.md', 'video.md', 'video-contract.md', 'execution.md', 'artifact-qa.md'],
-    manualChecks: [
-      'Writes topic-specific scene source and complete segment narration; pilot includes within-scene state/relationship changes, not just page fades.',
-      'Shows the entire current plan narration and voice configuration before asking approval bound to the current planHash.',
-      'Separates narration consent, external network permission, and reviewed local code execution; does not transmit the whole Dossier.',
-      'A changed narration/voice plan requires fresh approval; imported audio is explicitly labelled provided-audio, never a fake Edge success.',
-      'Uses measured audio timing and deterministic browser-captured frames with FFmpeg, not a nonexistent Remotion command.',
-      'Actually watches/listens to pilot and final output, checks subtitle safe area and timing, and reports any blocked playback or missing dependency.',
-    ],
-  },
-  {
-    id: 'unspecified-visual-format', skill: 'aha-explain', priority: 'html',
-    prompt: 'Use this reviewed research to explain the mechanism visually for a general reader. I have not chosen a file format; avoid unnecessary questions and do not create extra deliverables.',
-    materials: ['Reviewed Dossier', 'No requested format or decisive delivery context'],
-    references: ['format-selection.md', 'visual-design.md', 'design-themes.md', 'html.md'],
-    manualChecks: [
-      'Defaults to HTML and briefly explains the choice without asking a routine format question.',
-      'Does not make PNG, PPTX, video, or speech merely because the skill supports them.',
-      'Selects an appropriate visual direction and content-specific reading path rather than uniform cards.',
-      'Still reviews authored code and obtains execution permission independently of format selection.',
-    ],
-  },
-  {
-    id: 'explicit-multiple-formats-with-brand', skill: 'aha-explain', priority: 'pptx',
-    prompt: 'Create HTML and an editable PPT from the same research, no video or image. Follow our supplied editorial brand guide rather than the scaffold theme; vary the layouts for mechanisms and comparisons.',
-    materials: ['Reviewed Dossier', 'Authorized brand guide with local fonts', 'Two requested deliverables'],
-    references: ['format-selection.md', 'visual-design.md', 'design-themes.md', 'artifact-qa.md'],
-    manualChecks: [
-      'Creates exactly two separate projects bound to the same reviewed Dossier, without using an all-format CLI flag.',
-      'Follows the supplied brand instead of forcing Clawpilot or an optional recipe onto the work.',
-      'Adapts HTML and native slides independently, preserving material limitations and source facts.',
-      'Records actual medium-specific inspection and any missing application rather than declaring both visually approved.',
-    ],
-  },
-  {
-    id: 'source-only-presentation-revision', skill: 'aha-explain', priority: 'html',
-    prompt: 'Revise this approved explanation’s layout and diagram to improve narrow-screen reading, keeping its research facts unchanged. Preserve the old output; do not ask for new research approval or execute revised code without reviewing it.',
-    materials: ['Authored project and original output', 'Unchanged Dossier', 'User presentation-only revision request'],
-    references: ['artifact-authoring.md', 'execution.md', 'artifact-qa.md'],
-    manualChecks: [
-      'Edits the authoritative source and updates coverage if block locations change; does not patch only the final output.',
-      'Preserves the original output and research identity without fabricating new facts or mandatory reapproval of unchanged research.',
-      'Reviews changed executable behavior and obtains any needed local execution permission; presentation authorization is not TTS consent.',
-      'Rebuilds a new file and actually checks narrow-screen interaction; does not invent human feedback.',
-    ],
-  },
-];
+const scenarioData: unknown = JSON.parse(await fs.readFile(new URL('../evals/skills/scenarios.json', import.meta.url), 'utf8'));
+const benchmarkPromptFixtures = check(ScenariosSchema, scenarioData);
 
 async function markdownFiles(directory: string): Promise<string[]> {
   const files: string[] = [];
@@ -471,6 +303,25 @@ test('worked research example is a complete valid dossier, not only a documentat
   assert.match(dossier.research.report, /synthetic example/i);
   assert.match(dossier.research.report, /Tuesday/);
   assert.ok(dossier.research.subquestions.some(question => question.status === 'unresolved' && question.gapIds.length));
+});
+
+test('scenario schema rejects malformed and unknown fields before fixtures are consumed', () => {
+  const fixture = benchmarkPromptFixtures[0];
+  assert.ok(fixture);
+  for (const value of [null, {}, [], [null]]) {
+    assert.throws(() => check(ScenariosSchema, value));
+  }
+  for (const field of ['id', 'skill', 'priority', 'prompt', 'materials', 'references', 'manualChecks']) {
+    assert.throws(() => check(ScenariosSchema, [{ ...fixture, [field]: undefined }]), field);
+  }
+  for (const invalid of [
+    { id: 'invalid id' }, { skill: 'unknown-skill' }, { priority: 'unknown-priority' },
+    { prompt: 42 }, { prompt: ' '.repeat(70) }, { materials: [] }, { materials: [42] },
+    { materials: [' '] }, { references: ['only-one.md'] }, { references: [null, null] },
+    { manualChecks: ['too short'] }, { manualChecks: Array(4).fill(42) }, { unexpected: true },
+  ]) {
+    assert.throws(() => check(ScenariosSchema, [{ ...fixture, ...invalid }]));
+  }
 });
 
 test('manual benchmark fixtures cover both entry points and all media without pretending to run host QA', async () => {

@@ -2,7 +2,7 @@
 
 本评估把**固定材料、作者生成、隐藏评分、真实读者迁移**分开。它不是模型自动排名，也不会把 HTML 通过检查解释为“读者理解了”。
 
-目录按用途分开：`evals/skills/` 保存本文的技能对照用例与判据；[`evals/examples/`](../evals/examples/) 保存 ANC、Git 成品的运行与审阅记录，由 `examples/check-html.mjs` 更新。后者不是技能对照结果，作品本身仍位于 `examples/`。
+目录按用途分开：`evals/skills/` 保存本文的技能对照用例与判据；[`evals/examples/anc-git/`](../evals/examples/anc-git/) 保存 ANC、Git 成品的运行与审阅记录，由 `evals\examples\check-html.mjs` 更新。后者不是技能对照结果，作品本身仍位于 `examples/`。
 
 **当前评分协议：`rubricVersion: 2`。** 内容断言与过程证据分开，读者理解独立测量。每轮冻结题目、材料、技能和判据；修订用于新运行，不覆盖已冻结的包，也不事后改规则提高分数。
 
@@ -21,7 +21,9 @@
 
 `tests\fixtures\explanation-writing-evals.json` 用于改写回归，与这里的独立作者评估分开，不能据此推断技能主动补足推理的能力。
 
-图片尺寸选择的宿主评估用例在 `tests\skills.test.ts` 的 `benchmarkPromptFixtures` 中：`landscape-image-comparison`（电脑一屏横版对比）、`mobile-scroll-image`（手机滚动竖图）和 `explicit-image-dimensions`（严格遵循指定尺寸）。这些用例复用现有技能场景评估结构，不改动上述四个已锁定案例。运行时由主持人提供匹配的已审阅 Dossier、素材与目标容器信息，为基线和候选保持输入一致；分别评价尺寸选择、实际 PNG 尺寸和缩放后的可读性。用例定义及静态测试通过不代表已完成作者生成或视觉评估。动态生成和预览仍需独立执行授权；未运行项保持未验证。
+`evals\skills\scenarios.json` 单独保存宿主运行的广泛技能场景，包含原始提示、材料要求、参考文档和人工检查项；`tests\skills.test.ts` 校验其结构、覆盖与参考链接。它不是 `evals.json` 中四个固定案例的扩展，不属于 `fixture-lock.json`，也不由 `prepare.mjs` 暂存。固定案例的题目、材料与锁保持独立。
+
+图片尺寸选择的宿主评估用例也在 `evals\skills\scenarios.json` 中：`landscape-image-comparison`（电脑一屏横版对比）、`mobile-scroll-image`（手机滚动竖图）和 `explicit-image-dimensions`（严格遵循指定尺寸）。运行时由主持人提供匹配的已审阅 Dossier、素材与目标容器信息，为基线和候选保持输入一致；分别评价尺寸选择、实际 PNG 尺寸和缩放后的可读性。用例定义及静态测试通过不代表已完成作者生成或视觉评估。动态生成和预览仍需独立执行授权；未运行项保持未验证。
 
 ## 2. 准备两个独立版本
 
@@ -33,15 +35,15 @@
 $baseline = 'C:\AhaBundles\baseline'
 $current = 'C:\AhaBundles\current'
 New-Item -ItemType Directory -Force .\artifacts\skill-evals | Out-Null
-node scripts\prepare-skill-eval.mjs .\artifacts\skill-evals\baseline-r1 --skill-root $baseline --label baseline-r1
-node scripts\prepare-skill-eval.mjs .\artifacts\skill-evals\current-r1 --skill-root $current --label current-r1
+node evals\skills\prepare.mjs .\artifacts\skill-evals\baseline-r1 --skill-root $baseline --label baseline-r1
+node evals\skills\prepare.mjs .\artifacts\skill-evals\current-r1 --skill-root $current --label current-r1
 node --import tsx --test tests\skill-evaluation.test.ts
 ```
 
 单案例/子集可以重复 `--case`，名称和 ID 均可；未指定则准备全部案例：
 
 ```powershell
-node scripts\prepare-skill-eval.mjs .\artifacts\skill-evals\subset-r1 --skill-root $current --case 1 --case tank --label subset-r1
+node evals\skills\prepare.mjs .\artifacts\skill-evals\subset-r1 --skill-root $current --case 1 --case tank --label subset-r1
 ```
 
 生成资料统一放在仓库已忽略的 `artifacts\skill-evals` 下，不放在可提交的示例目录或仓库根目录。输出目录必须**不存在**，父目录必须存在。已存在目录即使为空也不覆盖；拒绝目录穿越、符号链接/junction 技能路径、未知案例、缺失 bundle 和损坏材料。失败后的部分目录没有 `evaluator\run.json` 完成标记，不应用于实验，重新指定新目录。可用 `--git 'C:\Program Files\Git\cmd\git.exe'` 指定受信任的绝对 Git 路径；默认解析 PATH 中仓库以外的现有 Git 可执行文件。

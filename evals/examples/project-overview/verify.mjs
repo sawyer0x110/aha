@@ -4,14 +4,16 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import JSZip from 'jszip';
-import { readDossier } from '../../src/research/dossier.ts';
-import { checkArtifact, sourceHash } from '../../src/artifacts/project.ts';
-import { checkPlan, validateVideoPlan, checkAudioTiming, subtitles } from '../../src/media/plan.ts';
-import { hashValue } from '../../src/core/identity.ts';
+import { readDossier } from '../../../src/research/dossier.ts';
+import { checkArtifact, sourceHash } from '../../../src/artifacts/project.ts';
+import { checkPlan, validateVideoPlan, checkAudioTiming, subtitles } from '../../../src/media/plan.ts';
+import { hashValue } from '../../../src/core/identity.ts';
 
-const base = process.argv[3] ? path.resolve(process.argv[3]) : path.dirname(fileURLToPath(import.meta.url));
+const base = process.argv[3] ? path.resolve(process.argv[3]) : fileURLToPath(new URL('../../../examples/project-overview/', import.meta.url));
+const evaluation = process.argv[4] ? path.resolve(process.argv[4]) : path.dirname(fileURLToPath(import.meta.url));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const json = async name => JSON.parse(await readFile(path.join(base, name), 'utf8'));
+const qa = async name => JSON.parse(await readFile(path.join(evaluation, name), 'utf8'));
 const research = await readDossier(path.join(base, 'research'));
 const result = { createdAt: new Date().toISOString(), researchHash: research.manifest.contentHash, formats: {} };
 for (const format of ['html', 'image', 'pptx', 'video', 'motion-preview']) {
@@ -59,7 +61,7 @@ assert.equal(originalPlan.provider, 'edge-tts');
 assert.equal(originalAudio.planHash, await hashValue(originalPlan));
 assert.deepEqual(plan.segments, originalPlan.segments, 'Offline import must preserve the complete original narration.');
 for (const segment of originalAudio.segments) assert.equal(sha(await readFile(path.join(base, 'audio-origin', segment.filename))), segment.sha256);
-const reuse = await json('qa\\audio-reuse.json');
+const reuse = await qa('audio-reuse.json');
 assert.equal(reuse.originalPlanHash, originalAudio.planHash);
 assert.equal(reuse.importedPlanHash, audio.planHash);
 assert.equal(reuse.checks.length, audio.segments.length);
@@ -84,15 +86,15 @@ const motionProject = path.join(base, 'projects', 'motion-preview');
 await checkArtifact(motionProject);
 assert.equal(motion.sourceHash, await sourceHash(motionProject));
 assert.equal(motion.outputHash, sha(await readFile(path.join(base, 'motion-preview.gif'))));
-const runtime = await json('qa\\runtime.json');
-const review = await json('qa\\review.json');
+const runtime = await qa('runtime.json');
+const review = await qa('review.json');
 assert.equal(review.researchHash, research.manifest.contentHash);
-const consolidation = await json('qa\\consolidation.json');
+const consolidation = await json('provenance\\consolidation.json');
 assert.equal(consolidation.researchHash, research.manifest.contentHash);
 assert.equal(consolidation['overview.png'].outputHash, result.formats.image.outputHash);
 assert.equal(consolidation['motion-preview.gif'].outputHash, motion.outputHash);
 assert.equal(consolidation.pptx.slideAndMediaPartsUnchanged, true);
-const correction = await json('qa\\pptx-correction.json');
+const correction = await json('provenance\\pptx-correction.json');
 assert.equal(correction.previousOutputHash, consolidation.pptx.outputHash);
 assert.equal(correction.outputHash, result.formats.pptx.outputHash);
 assert.equal(correction.sourceHash, result.formats.pptx.sourceHash);
@@ -105,12 +107,12 @@ for (const format of ['html', 'image', 'pptx', 'video']) {
   assert.equal(review[format].sourceHash, result.formats[format].sourceHash);
   assert.equal(review[format].outputHash, result.formats[format].outputHash);
 }
-const captions = await json('qa\\caption-layout.json');
+const captions = await qa('caption-layout.json');
 assert.equal(captions.sourceHash, video.sourceHash);
 assert.equal(captions.planHash, video.planHash);
 assert.deepEqual(captions.checks.map(check => check.id), plan.segments.map(segment => segment.id));
 assert(captions.checks.every(check => check.passed === true));
-const playback = await json('qa\\playback.json');
+const playback = await qa('playback.json');
 assert.equal(playback.artifactHash, video.artifactHash);
 assert.equal(playback.ended, true);
 assert.equal(playback.error, null);
@@ -119,9 +121,9 @@ const timingSource = await readFile(path.join(videoProject, 'html', 'narration-t
 const prefix = 'window.ahaNarrationTiming = ';
 assert(timingSource.startsWith(prefix) && timingSource.trimEnd().endsWith(';'));
 const timing = JSON.parse(timingSource.trimEnd().slice(prefix.length, -1));
-const wordEvidence = await json('qa\\word-timings.json');
-const alignment = await json('qa\\alignment.json');
-const cueSheet = await json('qa\\cue-sheet.json');
+const wordEvidence = await json('provenance\\word-timings.json');
+const alignment = await qa('alignment.json');
+const cueSheet = await json('provenance\\cue-sheet.json');
 assert.deepEqual(cueSheet.segments, timing.segments.map(({ envelope, ...segment }) => segment));
 assert.equal(alignment.sourceHash, video.sourceHash);
 assert.equal(timing.fps, 30);
@@ -147,7 +149,7 @@ for (const [index, segment] of timing.segments.entries()) {
   }
 }
 assert.equal(alignment.checks.length, cueCount);
-const examplesEvidence = await json('qa\\example-assets.json');
+const examplesEvidence = await json('provenance\\example-assets.json');
 assert.equal(examplesEvidence.assets.length, 7);
 for (const asset of examplesEvidence.assets) {
   const bytes = await readFile(path.join(base, asset.path));

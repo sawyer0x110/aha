@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
-export const fixtureRoot = fileURLToPath(new URL('../evals/skills/', import.meta.url));
+export const fixtureRoot = fileURLToPath(new URL('./', import.meta.url));
 const json = value => `${JSON.stringify(value, null, 2)}\n`;
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 const dimensions = ['correctness_source_support', 'structure_operation', 'clarity_visual', 'human_comprehension'];
@@ -140,7 +140,9 @@ export async function loadFixtures() {
     files[relative] = bytes;
   }
   const actual = await inventory(fixtureRoot);
-  if (Object.keys(actual).some(relative => relative !== 'fixture-lock.json' && !files[relative])) {
+  // The preparer and host-run scenarios are not part of the four locked cases.
+  const unlockedFiles = new Set(['fixture-lock.json', 'prepare.mjs', 'scenarios.json']);
+  if (Object.keys(actual).some(relative => !unlockedFiles.has(relative) && !files[relative])) {
     throw new Error('Unbound fixture file');
   }
   const manifest = JSON.parse(files['evals.json']);
@@ -323,7 +325,7 @@ export async function prepareSkillEval({ output, skillRoot, cases = [], label = 
     skills[name] = { path: directory, content_sha256: sha256(json(files)), files };
   }
   const needsGit = selected.some(item => item.preparation === 'dirty-git-v1');
-  const executable = needsGit ? await resolveGit(gitExecutable, [fileURLToPath(new URL('../', import.meta.url)), destination]) : null;
+  const executable = needsGit ? await resolveGit(gitExecutable, [fileURLToPath(new URL('../../', import.meta.url)), destination]) : null;
   // Exclusive reservation: no overwrite, no rollback of a possibly shared directory.
   // A failure leaves an incomplete packet for inspection, without a run.json completion marker.
   await fs.mkdir(destination);
@@ -392,7 +394,7 @@ export async function prepareSkillEval({ output, skillRoot, cases = [], label = 
 
 function parseArguments(args) {
   const options = { output: args[0], cases: [] };
-  if (!options.output || options.output.startsWith('--')) throw new Error('Usage: node scripts\\prepare-skill-eval.mjs <new-output-directory> --skill-root <absolute-bundles-directory> [--case <id-or-name>] [--label <label>] [--git <absolute-executable>]');
+  if (!options.output || options.output.startsWith('--')) throw new Error('Usage: node evals\\skills\\prepare.mjs <new-output-directory> --skill-root <absolute-bundles-directory> [--case <id-or-name>] [--label <label>] [--git <absolute-executable>]');
   const seen = new Set();
   for (let index = 1; index < args.length; index += 2) {
     const flag = args[index];
