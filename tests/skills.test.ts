@@ -95,6 +95,42 @@ export const benchmarkPromptFixtures: Fixture[] = [
     ],
   },
   {
+    id: 'landscape-image-comparison', skill: 'aha-explain', priority: 'image',
+    prompt: 'Make one PNG comparing the two reviewed deployment approaches for a desktop presentation. The audience should see their relationships and tradeoffs together on one screen. Choose a suitable size and explain the choice.',
+    materials: ['Reviewed Dossier comparing two deployment approaches', 'Known presentation container and local assets'],
+    references: ['image.md', 'artifact-qa.md'],
+    manualChecks: [
+      'Chooses a landscape composition suitable for simultaneous comparison, such as 1920 x 1080, rather than inheriting a tall scaffold.',
+      'Explains dimensions using the presentation container and preserves important relationships and limitations.',
+      'Inspects the whole PNG fitted into the intended container, not just enlarged crops; does not shrink text to force excess content into one screen.',
+      'Produces one independently composed image with readable source cues, not a screenshot of the companion article.',
+    ],
+  },
+  {
+    id: 'mobile-scroll-image', skill: 'aha-explain', priority: 'image',
+    prompt: 'Create one PNG explaining this reviewed onboarding process for people reading on a phone and scrolling downward. Keep the necessary steps and caveats readable without zoom. Choose the dimensions; do not make a series of images.',
+    materials: ['Reviewed Dossier with sequential onboarding steps and caveats', 'Local fonts and assets'],
+    references: ['image.md', 'artifact-qa.md'],
+    manualChecks: [
+      'Chooses portrait with content-led height and briefly states the scrolling context; does not force a full-screen 9:16 ratio or fill unused space.',
+      'Inspects every section scaled to the intended phone width, using about 390 CSS pixels when no exact width is known.',
+      'Improves hierarchy before adding height; does not substitute higher pixel density for larger displayed text, silently crop, or create extra images.',
+      'Verifies that the delivered pixel dimensions match the brief and that every necessary step and caveat survives the layout.',
+    ],
+  },
+  {
+    id: 'explicit-image-dimensions', skill: 'aha-explain', priority: 'image',
+    prompt: 'Create a single 1200 x 1500 pixel PNG summarizing this reviewed research for an existing publication slot. Keep those exact dimensions, explain the important caveat, and preserve editable source.',
+    materials: ['Reviewed Dossier with a summary and material caveat', 'Publication slot: exactly 1200 x 1500 pixels'],
+    references: ['artifact-authoring.md', 'image.md', 'artifact-qa.md'],
+    manualChecks: [
+      'Uses exactly 1200 x 1500 in metadata, authored composition and delivered PNG, not a nearby recommended preset.',
+      'Adapts content hierarchy to the fixed slot without stretching, clipping, tiny text, or dropping the material caveat.',
+      'Checks dimensions and scaled reading separately from source identity and runtime success; reports any unperformed visual inspection.',
+      'Edits the authoritative source and renders a new output only after source review and appropriate local execution approval.',
+    ],
+  },
+  {
     id: 'native-detailed-pptx', skill: 'aha-explain', priority: 'pptx',
     prompt: 'Create a detailed native editable PPTX from this research for a technically knowledgeable team. Cover mechanisms, comparisons, evidence, failure boundaries, and an appendix; use as many pages as the agreed budget requires, not a twelve-slide cap.',
     materials: ['Reviewed Dossier', 'Coverage needs requiring more than twelve slides', 'Local assets and presentation application'],

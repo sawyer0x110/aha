@@ -21,7 +21,7 @@ When the user requests evidence of understanding, agree a small learner evaluati
 | Medium | Required observation |
 | --- | --- |
 | HTML | Open delivered HTML offline; inspect desktop/narrow screens and actually operate controls with pointer and keyboard; check reduced motion, console, fonts, tables, and diagrams. |
-| Image | View the complete image and realistic reading-size crops; check all edges, glyphs, units, relationships, source text, and legibility. |
+| Image | Verify pixel dimensions against the brief, then view the complete image and the composition scaled to its intended display width/container (about 390 CSS pixels wide for mobile if no exact target is known). Scroll through long images; fit one-screen images in full. Use native-resolution crops only for diagnosis. Check all edges, glyphs, units, relationships, source text, and legibility without relying on zoom in a no-zoom context. |
 | PPTX | Inspect native object types and notes, render every actual slide in a presentation application, review continuity, and try editing representative native objects. |
 | Video | Watch and listen to a representative mechanism pilot and the final video; inspect scene changes, audio, subtitle timing/safe area, readability, continuity, and real mechanism animation. |
 

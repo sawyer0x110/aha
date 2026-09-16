@@ -44,7 +44,9 @@ Palette suggestions are not prevalidated contrast pairs. Check normal text at le
 
 ## Run a short visual pilot before expanding
 
-Select the hardest representative content, not only a title: one mechanism and caveat with a long label, one comparison or data view, and a source cue. Include CJK text when relevant. Build only the requested medium's pilot: a representative HTML section, an infographic region at final scale, two contrasting native slides, or the 20–30 second mechanism pilot in [video](video.md). Obtain the existing execution/audio approvals; this loop grants none.
+Select the hardest representative content, not only a title: one mechanism and caveat with a long label, one comparison or data view, and a source cue. Include CJK text when relevant. Build a deliberately scoped, fully authored pilot in the requested medium: a representative HTML section, an infographic region at final scale, two contrasting native slides, or the 20–30 second mechanism pilot in [video](video.md).
+
+Include only its finished source, map the claims it actually explains, and explicitly omit remaining claims with pilot-scope reasons. Replace scaffold content with actual work rather than merely clearing its markers. `authored` describes this pilot's implemented scope, not completion of the requested deliverable. As you expand, update coverage and omissions; perform full final QA separately. Review the source and obtain applicable execution/audio approvals under [execution](execution.md); this loop grants none.
 
 Inspect the actual output at its intended reading size. Record concrete observations and fix/rebuild before expanding:
 
