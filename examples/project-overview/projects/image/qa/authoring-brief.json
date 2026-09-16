@@ -1,0 +1,11 @@
+{
+  "reader": "Desktop/document viewer of a scrollable introduction",
+  "dimensions": [
+    1080,
+    1800
+  ],
+  "intendedDisplayWidth": 540,
+  "rationale": "Canvas remains 1080 by 1800. Following parent-observed stage-01 overflow, section 1 now uses two short aligned rows instead of wrapping columns. Essential body, skill names, diagram labels and medium captions are at least 40px: approximately 14.4px at 390px display width and 20px at 540px. Secondary source/date text is 34px. The waveform now has explicit 40px Incoming, Speaker and Residual labels with matching thin solid, dashed and thick accent swatches. Copy was shortened and regional heights rebalanced, not the whole graphic scaled. Region heights are 180 + 240 + 360 + 320 + 320 + 380 = 1800px. The revised source has not been rendered or visually reviewed by this agent; parent and the existing independent reviewer own the next visual check.",
+  "revisionScope": "Image-only copy/CSS revision. Removed audience-visible production QA status; retained natural commit/date source cue. Theme scripts, palette, resources, metadata, research, other media and narration plans are unchanged. The editable project entry is authoritative; do not rerun the original multi-project author_projects.py generator over this revision.",
+  "composition": "Independent poster: two-skill route, pressure model, selected timeout record, media choices and review boundary. Not a screenshot of the HTML."
+}

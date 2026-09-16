@@ -1,0 +1,352 @@
+{
+  "html": [
+    {
+      "width": 1280,
+      "language": "en",
+      "title": "Why can a Git merge bring back a reverted change?",
+      "scrollWidth": 1280,
+      "buttons": [
+        {
+          "text": "English",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "中文",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "Reverted net change",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "Base already has it",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "Both sides changed",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "净变化已撤销",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "基点已有修改",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "两侧都改了",
+          "label": null,
+          "language": null
+        }
+      ],
+      "inputs": []
+    },
+    {
+      "width": 1280,
+      "language": "zh-CN",
+      "title": "为什么 Git 合并会带回已撤销的修改？",
+      "scrollWidth": 1280,
+      "visibleInputs": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "title": "Why can a Git merge bring back a reverted change?",
+      "scrollWidth": 390,
+      "buttons": [
+        {
+          "text": "English",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "中文",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "Reverted net change",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "Base already has it",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "Both sides changed",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "净变化已撤销",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "基点已有修改",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "两侧都改了",
+          "label": null,
+          "language": null
+        }
+      ],
+      "inputs": []
+    },
+    {
+      "width": 390,
+      "language": "zh-CN",
+      "title": "为什么 Git 合并会带回已撤销的修改？",
+      "scrollWidth": 390,
+      "visibleInputs": []
+    }
+  ],
+  "interactions": [
+    {
+      "width": 1280,
+      "language": "en",
+      "button": "Reverted net change",
+      "action": "pointer click",
+      "visibleTextChanged": false,
+      "changedLines": []
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "button": "Base already has it",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "Result: mode=off",
+        "The two current values are unchanged from the first case, but the base already contains on. Now ours carries the only net change. The symmetric selection keeps off; returning the change is not inevitable."
+      ]
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "button": "Both sides changed",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "mode=manual",
+        "Result: content merge needed",
+        "Neither side equals the base. Incompatible edits to the same region may conflict and need a decision. Different edits do not always conflict, and a clean text merge does not prove program correctness."
+      ]
+    },
+    {
+      "width": 1280,
+      "language": "zh",
+      "button": "净变化已撤销",
+      "action": "pointer click",
+      "visibleTextChanged": false,
+      "changedLines": []
+    },
+    {
+      "width": 1280,
+      "language": "zh",
+      "button": "基点已有修改",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "结果：mode=off",
+        "两侧当前值与第一例相同，但基点已经包含 on。现在只有本侧留下净变化，对称的选择规则会保留 off；已撤销的修改并不一定回来。"
+      ]
+    },
+    {
+      "width": 1280,
+      "language": "zh",
+      "button": "两侧都改了",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "mode=manual",
+        "结果：需要内容合并",
+        "两侧都不等于基点。同一区域的不兼容修改可能产生冲突，需要人工决定。不同修改不一定冲突，没有文本冲突也不证明程序逻辑正确。"
+      ]
+    },
+    {
+      "width": 1280,
+      "action": "keyboard English selection",
+      "language": "en"
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "button": "Reverted net change",
+      "action": "pointer click",
+      "visibleTextChanged": false,
+      "changedLines": []
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "button": "Base already has it",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "Result: mode=off",
+        "The two current values are unchanged from the first case, but the base already contains on. Now ours carries the only net change. The symmetric selection keeps off; returning the change is not inevitable."
+      ]
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "button": "Both sides changed",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "mode=manual",
+        "Result: content merge needed",
+        "Neither side equals the base. Incompatible edits to the same region may conflict and need a decision. Different edits do not always conflict, and a clean text merge does not prove program correctness."
+      ]
+    },
+    {
+      "width": 390,
+      "language": "zh",
+      "button": "净变化已撤销",
+      "action": "pointer click",
+      "visibleTextChanged": false,
+      "changedLines": []
+    },
+    {
+      "width": 390,
+      "language": "zh",
+      "button": "基点已有修改",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "结果：mode=off",
+        "两侧当前值与第一例相同，但基点已经包含 on。现在只有本侧留下净变化，对称的选择规则会保留 off；已撤销的修改并不一定回来。"
+      ]
+    },
+    {
+      "width": 390,
+      "language": "zh",
+      "button": "两侧都改了",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "mode=manual",
+        "结果：需要内容合并",
+        "两侧都不等于基点。同一区域的不兼容修改可能产生冲突，需要人工决定。不同修改不一定冲突，没有文本冲突也不证明程序逻辑正确。"
+      ]
+    },
+    {
+      "width": 390,
+      "action": "keyboard English selection",
+      "language": "en"
+    }
+  ],
+  "video": [
+    {
+      "label": "a",
+      "sha256": "da4d7106f16d4f0a3df0457123d9f4ba6abda9e19d6468c0ba59ffce1ee9b37f"
+    },
+    {
+      "label": "b",
+      "sha256": "d5724560dcb33ddc1debdbe59c371cc77dae2132e82db1728b29ab1d623eeddb"
+    },
+    {
+      "label": "a-replay",
+      "sha256": "da4d7106f16d4f0a3df0457123d9f4ba6abda9e19d6468c0ba59ffce1ee9b37f"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "question",
+      "text": "Why can a Git merge bring back a reverted change?\n\nA revert is not a permanent veto.\n\nBASE\nOURS\nTHEIRS\nThe missing third state changes the answer.\nB · off\nA · on\nR · off\nT · on\nours\ntheirs\nParent → child, left to right · illustrative history, not a Git run\nBASE\nOURS NOW\nTHEIRS NOW\nRESULT\noff\noff\non\n?\nOurs = base → take theirs\nThe revert was real. It left no net difference in this file.\nPATH\nSUPPLIED BY\nRESULT\nfeature.txt\ntheirs\non\nlocal.txt\nours\nlocal update\nremote.txt\ntheirs\nremote update\nSeparate paths can retain independent work from both branches.\n-s ours\n-Xours\nKeep our entire tree\nIgnore their content\nFavor conflicting hunks\nTheir clean changes enter\nStrategy ≠ conflict preference. Neither is a universal repair.\nOrdinary files · current ort\nSame file modes; no renames or custom drivers\nMultiple best bases can require a merged base tree\nManual + source reasoning, not new experimental output\nGit 2.55 · merge-strategies.adoc; merge-ort.c\n1 Identify the tips and strategy\n2 Find the base; compare all three\n3 Review the intended result and test\n\nGit 2.55 · merge-strategies manual / merge-ort.c · pinned e9019fc · illustrative states",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "shared-base",
+      "text": "First find the shared starting point\n\nThe merge base is a best common ancestor of the two current tips.\n\nBASE\nOURS\nTHEIRS\nThe missing third state changes the answer.\nB · off\nA · on\nR · off\nT · on\nours\ntheirs\nParent → child, left to right · illustrative history, not a Git run\nBASE\nOURS NOW\nTHEIRS NOW\nRESULT\noff\noff\non\n?\nOurs = base → take theirs\nThe revert was real. It left no net difference in this file.\nPATH\nSUPPLIED BY\nRESULT\nfeature.txt\ntheirs\non\nlocal.txt\nours\nlocal update\nremote.txt\ntheirs\nremote update\nSeparate paths can retain independent work from both branches.\n-s ours\n-Xours\nKeep our entire tree\nIgnore their content\nFavor conflicting hunks\nTheir clean changes enter\nStrategy ≠ conflict preference. Neither is a universal repair.\nOrdinary files · current ort\nSame file modes; no renames or custom drivers\nMultiple best bases can require a merged base tree\nManual + source reasoning, not new experimental output\nGit 2.55 · merge-strategies.adoc; merge-ort.c\n1 Identify the tips and strategy\n2 Find the base; compare all three\n3 Review the intended result and test\n\nGit 2.55 · merge-strategies manual / merge-ort.c · pinned e9019fc · illustrative states",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "ordinary-revert",
+      "text": "A revert changes the current file—not the ancestry\n\nOur file changes off → on → off. Their file remains on.\n\nBASE\nOURS\nTHEIRS\nThe missing third state changes the answer.\nB · off\nA · on\nbefore R · on\nT · on\nours\ntheirs\nParent → child, left to right · illustrative history, not a Git run\nBASE\nOURS NOW\nTHEIRS NOW\nRESULT\noff\noff\non\n?\nOurs = base → take theirs\nThe revert was real. It left no net difference in this file.\nPATH\nSUPPLIED BY\nRESULT\nfeature.txt\ntheirs\non\nlocal.txt\nours\nlocal update\nremote.txt\ntheirs\nremote update\nSeparate paths can retain independent work from both branches.\n-s ours\n-Xours\nKeep our entire tree\nIgnore their content\nFavor conflicting hunks\nTheir clean changes enter\nStrategy ≠ conflict preference. Neither is a universal repair.\nOrdinary files · current ort\nSame file modes; no renames or custom drivers\nMultiple best bases can require a merged base tree\nManual + source reasoning, not new experimental output\nGit 2.55 · merge-strategies.adoc; merge-ort.c\n1 Identify the tips and strategy\n2 Find the base; compare all three\n3 Review the intended result and test\n\nGit 2.55 · merge-strategies manual / merge-ort.c · pinned e9019fc · illustrative states",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "selection",
+      "text": "No net change here; a live change there\n\nThe ordinary-file selection takes the side that differs from the base.\n\nBASE\nOURS\nTHEIRS\nThe missing third state changes the answer.\nB · off\nA · on\nR · off\nT · on\nours\ntheirs\nParent → child, left to right · illustrative history, not a Git run\nBASE\nOURS NOW\nTHEIRS NOW\nRESULT\noff\noff\non\n?\nOurs = base → take theirs\nThe revert was real. It left no net difference in this file.\nPATH\nSUPPLIED BY\nRESULT\nfeature.txt\ntheirs\non\nlocal.txt\nours\nlocal update\nremote.txt\ntheirs\nremote update\nSeparate paths can retain independent work from both branches.\n-s ours\n-Xours\nKeep our entire tree\nIgnore their content\nFavor conflicting hunks\nTheir clean changes enter\nStrategy ≠ conflict preference. Neither is a universal repair.\nOrdinary files · current ort\nSame file modes; no renames or custom drivers\nMultiple best bases can require a merged base tree\nManual + source reasoning, not new experimental output\nGit 2.55 · merge-strategies.adoc; merge-ort.c\n1 Identify the tips and strategy\n2 Find the base; compare all three\n3 Review the intended result and test\n\nGit 2.55 · merge-strategies manual / merge-ort.c · pinned e9019fc · illustrative states",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "independent-paths",
+      "text": "Independent work can arrive from both sides\n\nReturning feature.txt does not erase our local.txt update.\n\nBASE\nOURS\nTHEIRS\nThe missing third state changes the answer.\nB · off\nA · on\nR · off\nT · on\nours\ntheirs\nParent → child, left to right · illustrative history, not a Git run\nBASE\nOURS NOW\nTHEIRS NOW\nRESULT\noff\noff\non\n?\nOurs = base → take theirs\nThe revert was real. It left no net difference in this file.\nPATH\nSUPPLIED BY\nRESULT\nfeature.txt\ntheirs\non\nlocal.txt\nours\nlocal update\nremote.txt\ntheirs\nremote update\nSeparate paths can retain independent work from both branches.\n-s ours\n-Xours\nKeep our entire tree\nIgnore their content\nFavor conflicting hunks\nTheir clean changes enter\nStrategy ≠ conflict preference. Neither is a universal repair.\nOrdinary files · current ort\nSame file modes; no renames or custom drivers\nMultiple best bases can require a merged base tree\nManual + source reasoning, not new experimental output\nGit 2.55 · merge-strategies.adoc; merge-ort.c\n1 Identify the tips and strategy\n2 Find the base; compare all three\n3 Review the intended result and test\n\nGit 2.55 · merge-strategies manual / merge-ort.c · pinned e9019fc · illustrative states",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "changed-base",
+      "text": "Change the base. The answer reverses.\n\nThe same current tips can produce a different result.\n\nBASE\nOURS\nTHEIRS\nThe missing third state changes the answer.\nB · off\nA · on\nR · off\nT · on\nours\ntheirs\nParent → child, left to right · illustrative history, not a Git run\nBASE\nOURS NOW\nTHEIRS NOW\nRESULT\noff\noff\non\n?\nOurs = base → take theirs\nThe revert was real. It left no net difference in this file.\nPATH\nSUPPLIED BY\nRESULT\nfeature.txt\ntheirs\non\nlocal.txt\nours\nlocal update\nremote.txt\ntheirs\nremote update\nSeparate paths can retain independent work from both branches.\n-s ours\n-Xours\nKeep our entire tree\nIgnore their content\nFavor conflicting hunks\nTheir clean changes enter\nStrategy ≠ conflict preference. Neither is a universal repair.\nOrdinary files · current ort\nSame file modes; no renames or custom drivers\nMultiple best bases can require a merged base tree\nManual + source reasoning, not new experimental output\nGit 2.55 · merge-strategies.adoc; merge-ort.c\n1 Identify the tips and strategy\n2 Find the base; compare all three\n3 Review the intended result and test\n\nGit 2.55 · merge-strategies manual / merge-ort.c · pinned e9019fc · illustrative states",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "conflict",
+      "text": "If neither side matches, content merging takes over\n\nIncompatible edits may conflict; different edits do not always conflict.\n\nBASE\nOURS\nTHEIRS\nThe missing third state changes the answer.\nB · off\nA · on\nR · off\nT · on\nours\ntheirs\nParent → child, left to right · illustrative history, not a Git run\nBASE\nOURS NOW\nTHEIRS NOW\nRESULT\noff\nmanual\non\nreview\nBoth differ → content merge\nA clean text merge is not proof of correct program behavior.\nPATH\nSUPPLIED BY\nRESULT\nfeature.txt\ntheirs\non\nlocal.txt\nours\nlocal update\nremote.txt\ntheirs\nremote update\nSeparate paths can retain independent work from both branches.\n-s ours\n-Xours\nKeep our entire tree\nIgnore their content\nFavor conflicting hunks\nTheir clean changes enter\nStrategy ≠ conflict preference. Neither is a universal repair.\nOrdinary files · current ort\nSame file modes; no renames or custom drivers\nMultiple best bases can require a merged base tree\nManual + source reasoning, not new experimental output\nGit 2.55 · merge-strategies.adoc; merge-ort.c\n1 Identify the tips and strategy\n2 Find the base; compare all three\n3 Review the intended result and test\n\nGit 2.55 · merge-strategies manual / merge-ort.c · pinned e9019fc · illustrative states",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "strategy",
+      "text": "A strategy is not a conflict preference\n\nThe default for one branch is ort—not every strategy behaves like it.\n\nBASE\nOURS\nTHEIRS\nThe missing third state changes the answer.\nB · off\nA · on\nR · off\nT · on\nours\ntheirs\nParent → child, left to right · illustrative history, not a Git run\nBASE\nOURS NOW\nTHEIRS NOW\nRESULT\noff\noff\non\n?\nOurs = base → take theirs\nThe revert was real. It left no net difference in this file.\nPATH\nSUPPLIED BY\nRESULT\nfeature.txt\ntheirs\non\nlocal.txt\nours\nlocal update\nremote.txt\ntheirs\nremote update\nSeparate paths can retain independent work from both branches.\n-s ours\n-Xours\nKeep our entire tree\nIgnore their content\nFavor conflicting hunks\nTheir clean changes enter\nStrategy ≠ conflict preference. Neither is a universal repair.\nOrdinary files · current ort\nSame file modes; no renames or custom drivers\nMultiple best bases can require a merged base tree\nManual + source reasoning, not new experimental output\nGit 2.55 · merge-strategies.adoc; merge-ort.c\n1 Identify the tips and strategy\n2 Find the base; compare all three\n3 Review the intended result and test\n\nGit 2.55 · merge-strategies manual / merge-ort.c · pinned e9019fc · illustrative states",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "limits",
+      "text": "Keep the simple model inside its limits\n\nThis example is ordinary reversion, not merge reversion or reset.\n\nBASE\nOURS\nTHEIRS\nThe missing third state changes the answer.\nB · off\nA · on\nR · off\nT · on\nours\ntheirs\nParent → child, left to right · illustrative history, not a Git run\nBASE\nOURS NOW\nTHEIRS NOW\nRESULT\noff\noff\non\n?\nOurs = base → take theirs\nThe revert was real. It left no net difference in this file.\nPATH\nSUPPLIED BY\nRESULT\nfeature.txt\ntheirs\non\nlocal.txt\nours\nlocal update\nremote.txt\ntheirs\nremote update\nSeparate paths can retain independent work from both branches.\n-s ours\n-Xours\nKeep our entire tree\nIgnore their content\nFavor conflicting hunks\nTheir clean changes enter\nStrategy ≠ conflict preference. Neither is a universal repair.\nOrdinary files · current ort\nSame file modes; no renames or custom drivers\nMultiple best bases can require a merged base tree\nManual + source reasoning, not new experimental output\nGit 2.55 · merge-strategies.adoc; merge-ort.c\n1 Identify the tips and strategy\n2 Find the base; compare all three\n3 Review the intended result and test\n\nGit 2.55 · merge-strategies manual / merge-ort.c · pinned e9019fc · illustrative states",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": false
+    },
+    {
+      "id": "closing",
+      "text": "Find the base. Compare three states.\n\nA commit message alone cannot explain a merge.\n\nBASE\nOURS\nTHEIRS\nThe missing third state changes the answer.\nB · off\nA · on\nR · off\nT · on\nours\ntheirs\nParent → child, left to right · illustrative history, not a Git run\nBASE\nOURS NOW\nTHEIRS NOW\nRESULT\noff\noff\non\n?\nOurs = base → take theirs\nThe revert was real. It left no net difference in this file.\nPATH\nSUPPLIED BY\nRESULT\nfeature.txt\ntheirs\non\nlocal.txt\nours\nlocal update\nremote.txt\ntheirs\nremote update\nSeparate paths can retain independent work from both branches.\n-s ours\n-Xours\nKeep our entire tree\nIgnore their content\nFavor conflicting hunks\nTheir clean changes enter\nStrategy ≠ conflict preference. Neither is a universal repair.\nOrdinary files · current ort\nSame file modes; no renames or custom drivers\nMultiple best bases can require a merged base tree\nManual + source reasoning, not new experimental output\nGit 2.55 · merge-strategies.adoc; merge-ort.c\n1 Identify the tips and strategy\n2 Find the base; compare all three\n3 Review the intended result and test\n\nGit 2.55 · merge-strategies manual / merge-ort.c · pinned e9019fc · illustrative states",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    }
+  ],
+  "errors": [],
+  "blockedRequests": [],
+  "replayMatches": true,
+  "distinctStates": true
+}

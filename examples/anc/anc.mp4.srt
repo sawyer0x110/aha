@@ -1,0 +1,55 @@
+1
+00:00:00,000 --> 00:00:09,500
+Aircraft rumble fades, but someone is still talking. Active noise cancellation works on pressure at your ear, not sound categories.
+
+2
+00:00:09,500 --> 00:00:19,233
+Outside noise reaches the ear through one path. The headphone speaker adds another pressure contribution. What remains is their sum.
+
+3
+00:00:19,233 --> 00:00:27,100
+In this ideal single-tone model, matching amplitude and opposite phase at the target makes the residual shrink to zero.
+
+4
+00:00:27,100 --> 00:00:35,467
+Now keep the amplitude and shift the control wave. The residual returns because the peaks and troughs no longer match.
+
+5
+00:00:35,467 --> 00:00:43,900
+Assume a timing error of one tenth of a millisecond: three point six degrees at one hundred hertz, but thirty-six at one thousand.
+
+6
+00:00:43,900 --> 00:00:54,800
+This tightens timing tolerance, not a universal frequency wall. Reference preview, acoustic paths, bandwidth, and feedback stability also matter.
+
+7
+00:00:54,800 --> 00:01:05,300
+Passive isolation changes transmission through the seal and ear cup. Active control adds pressure. Switching it off leaves the barrier in place.
+
+8
+00:01:05,300 --> 00:01:14,367
+Speech is not one high-frequency tone. Some components can be reduced while enough residual survives for the voice to remain audible.
+
+9
+00:01:14,367 --> 00:01:22,700
+Here is a counterexample: active control can reduce low-frequency amplification of your own voice caused by a closed ear canal.
+
+10
+00:01:22,700 --> 00:01:31,267
+That does not promise to erase another person's whole voice. More noticeable speech does not prove its pressure was amplified.
+
+11
+00:01:31,267 --> 00:01:40,933
+Also check the mode. Transparency deliberately lets outside sound in, while adaptive modes can change the balance on supported devices.
+
+12
+00:01:40,933 --> 00:01:49,533
+Fit changes acoustic paths too. Compare cancellation on and off without moving the headphones or changing the source.
+
+13
+00:01:49,533 --> 00:01:59,000
+Published prototype measurements varied with wearer and fit. We ran no acoustic test, and this model cannot predict your personal reduction.
+
+14
+00:01:59,000 --> 00:02:07,100
+Ask what remains at the ear: path, timing, fit, and mode. Audible speech can still be attenuated.

@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "authored",
+  "researchHash": "f100d4b64f1c41b3e48eaeed8fe88f71609f88c274b2fc3f298de3b672b484b3",
+  "sourceHash": "5a56a0d7b620fe9f272b3da8251e64e065494b223b24e5320f40579682b58bc8",
+  "provider": "edge-tts",
+  "voice": "en-US-AriaNeural",
+  "rate": "+0%",
+  "duration": {
+    "minSeconds": 90,
+    "maxSeconds": 120
+  },
+  "segments": [
+    {
+      "id": "opening",
+      "text": "Aha separates finding supported answers from designing understandable explanations. Two portable skills connect these tasks.",
+      "claimIds": [
+        "c-purpose"
+      ]
+    },
+    {
+      "id": "journey",
+      "text": "Start with the reader's question. Research produces a report; explanation authors the requested medium. Skill dispatch is not automatic.",
+      "claimIds": [
+        "c-journey"
+      ]
+    },
+    {
+      "id": "snapshot",
+      "text": "The Research Dossier preserves claims, evidence and gaps. Its hash identifies a snapshot; it does not prove truth.",
+      "claimIds": [
+        "c-snapshot"
+      ]
+    },
+    {
+      "id": "revision",
+      "text": "New evidence creates a new snapshot. Existing works remain bound to the research they used.",
+      "claimIds": [
+        "c-snapshot"
+      ]
+    },
+    {
+      "id": "formats",
+      "text": "HTML offers exploration, PNG one reading path, PowerPoint an editable sequence, and video a changing mechanism. Each needs its own composition.",
+      "claimIds": [
+        "c-media"
+      ]
+    },
+    {
+      "id": "anc-ideal",
+      "text": "The ANC interface computes incoming pressure, speaker pressure and their sum. In this ideal equal-amplitude tone model, opposite pressures cancel.",
+      "claimIds": [
+        "c-anc"
+      ]
+    },
+    {
+      "id": "anc-change",
+      "text": "Change the phase. A residual appears, although input amplitudes stay equal. This model is not measured headphone performance.",
+      "claimIds": [
+        "c-anc"
+      ]
+    },
+    {
+      "id": "git-revert",
+      "text": "The Git example selects embedded records. After a revert, ours matches the base; their retained change appears in the result.",
+      "claimIds": [
+        "c-git"
+      ]
+    },
+    {
+      "id": "git-conflict",
+      "text": "Select the conflict record. Different replacements leave an unresolved file; HEAD stays at ours. The page does not run Git.",
+      "claimIds": [
+        "c-git"
+      ]
+    },
+    {
+      "id": "boundary",
+      "text": "Aha checks identities, resources and declared coverage. People still judge evidence, language and real output. A receipt cannot replace them.",
+      "claimIds": [
+        "c-limits",
+        "c-host"
+      ]
+    },
+    {
+      "id": "engine",
+      "text": "Video uses browser frames and FFmpeg at thirty frames per second, with segment-level captions. Pixel changes alone do not prove meaningful animation.",
+      "claimIds": [
+        "c-video"
+      ]
+    },
+    {
+      "id": "permission",
+      "text": "Local execution and online speech need separate permission. Visual source edits invalidate the current plan and audio binding.",
+      "claimIds": [
+        "c-execution"
+      ]
+    },
+    {
+      "id": "sizing",
+      "text": "Choose image dimensions for the request, destination and reading width—not the scaffold's canvas.",
+      "claimIds": [
+        "c-image"
+      ]
+    },
+    {
+      "id": "layout",
+      "text": "Examples hold works. Evaluation folders separate artifact review from skill comparisons. Defined cases are not measured effectiveness.",
+      "claimIds": [
+        "c-layout"
+      ]
+    },
+    {
+      "id": "closing",
+      "text": "Preserve evidence. Design relationships. Inspect the result. Aha makes this process traceable; it does not replace its judgments.",
+      "claimIds": [
+        "c-limits",
+        "c-host"
+      ]
+    }
+  ]
+}

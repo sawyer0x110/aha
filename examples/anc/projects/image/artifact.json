@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "format": "image",
+  "language": "en",
+  "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
+  "title": "Why voices remain after aircraft rumble fades",
+  "status": "authored",
+  "entry": "html/index.html",
+  "coverage": [{"id":"pressure-strip","claimIds":["c-pressure"]},{"id":"time-comparison","claimIds":["c-delay"]},{"id":"barrier-and-control","claimIds":["c-passive"]},{"id":"voice-answer","claimIds":["c-speech"]},{"id":"mode-check","claimIds":["c-modes"]}],
+  "omissions": [{"claimId":"c-measure","reason":"A single reading-size infographic includes a model-not-measurement warning but omits prototype study detail; no measured curve or product ranking is shown."}],
+  "width": 1800,
+  "height": 1200
+}

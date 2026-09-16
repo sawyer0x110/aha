@@ -1,6 +1,6 @@
 import { chromium } from 'playwright-core';
 import { readFile, writeFile } from 'node:fs/promises';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -8,7 +8,8 @@ import assert from 'node:assert/strict';
 if (!process.argv.includes('--allow-code')) throw new Error('Obtain local browser playback approval before using --allow-code.');
 const args = process.argv.slice(2).filter(arg => arg !== '--allow-code');
 if (args.length !== 2) throw new Error('Usage: node check-playback.mjs <video.mp4> <new-report.json> --allow-code');
-const file = path.resolve(args[0]);
+const root = fileURLToPath(new URL('../../../', import.meta.url));
+const file = path.resolve(root, args[0]);
 const receipt = JSON.parse(await readFile(`${file}.json`, 'utf8'));
 const artifactHash = createHash('sha256').update(await readFile(file)).digest('hex');
 assert.equal(artifactHash, receipt.artifactHash);
@@ -41,11 +42,11 @@ try {
     droppedFrames: video.getVideoPlaybackQuality().droppedVideoFrames,
   }));
   assert(result.ended && !result.error);
-  assert.equal(result.width, 1280);
-  assert.equal(result.height, 720);
+  assert.equal(result.width, receipt.width);
+  assert.equal(result.height, receipt.height);
   assert(Math.abs(result.seconds - receipt.durationSeconds) < .1);
   assert.deepEqual(errors, []);
-  await writeFile(path.resolve(args[1]), JSON.stringify({
+  await writeFile(path.resolve(root, args[1]), JSON.stringify({
     artifactHash, ...result, observedAt: new Date().toISOString(),
     scope: 'Actual complete muted playback in headless Edge; not audio listening or human visual acceptance.',
   }, null, 2), { flag: 'wx' });

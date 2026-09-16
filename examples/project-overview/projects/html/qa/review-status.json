@@ -1,0 +1,17 @@
+{
+  "status": "source-authored-not-rendered",
+  "sourceEditorialReview": "Agent read-through of final source copy and coverage; not human comprehension evidence",
+  "languageReview": "English source reviewed; HTML Chinese independently reviewed and compared for conditions, uncertainty and negation",
+  "resources": "Original inline SVG/CSS/native objects; no screenshots, old audio, remote resources or bundled fonts.",
+  "visualReview": "not-performed",
+  "browserExecution": "not-performed",
+  "nativeEditingReview": "not-performed",
+  "audioSynthesis": "not-requested",
+  "listeningReview": "not-performed",
+  "publication": "not-performed",
+  "gates": [
+    "Reviewed source local execution approval",
+    "For speech: complete current narration approval and separate network disclosure approval",
+    "Actual medium-specific QA"
+  ]
+}

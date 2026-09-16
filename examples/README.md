@@ -1,57 +1,64 @@
 # Aha examples
 
-从[本地入口](index.html)开始。三篇 HTML 均可独立、离线阅读，默认英文，支持 English / 中文切换。项目导览另有 PNG、原生 PPTX 和配音 MP4。GitHub 源码预览不会执行页面。
+从[本地作品入口](index.html)开始。三个主题于 2026-09-16 分别重新调研，并各自创作四种格式，不是同一份页面的自动转码。HTML 默认英文，可切换中文；PNG、原生 PPTX 和配音视频为英文，研究报告为中文。GitHub 源码预览不会执行交互页面。
 
-| 主题 | 当前作品 | 可编辑源 |
-| --- | --- | --- |
-| 飞机轰鸣变轻了，为什么人声还在？ | [降噪耳机](anc/index.html) | [HTML 源码](anc/projects/html/html/index.html) |
-| 为什么 Git 合并会带回已撤销的修改？ | [Git merge](git-merge/index.html) | [HTML 源码](git-merge/projects/html/html/index.html) |
-| Aha 如何把研究转化为不同媒介的讲解？ | [项目导览及多格式交付](project-overview/README.md) | [四种作品项目](project-overview/projects/) |
+| 主题 | HTML | PNG | 原生 PPTX | 配音视频 |
+| --- | --- | --- | --- | --- |
+| [降噪耳机](anc/README.md) | [交互讲解](anc/index.html) | [1800×1200](anc/anc.png) | [9 页](anc/anc.pptx) | [127.1 秒](anc/anc.mp4) |
+| [Git merge](git-merge/README.md) | [交互讲解](git-merge/index.html) | [1800×1200](git-merge/git-merge.png) | [10 页](git-merge/git-merge.pptx) | [126.27 秒](git-merge/git-merge.mp4) |
+| [Aha 项目导览](project-overview/README.md) | [交互导览](project-overview/index.html) | [1080×1800](project-overview/overview.png) | [10 页](project-overview/overview.pptx) | [148.43 秒](project-overview/overview.mp4) |
 
-降噪页解释两路声压在耳边怎样相加，并用相位偏差滑块展示理想模型；Git 页用共同基线、当前版本和三组真实记录，解释净变化、独立修改与冲突。
+ANC 和 Git 的横向信息图面向至少 1200px 宽的桌面／文档阅读，不承诺手机免缩放。Aha 纵向信息图适合滚动导览，已按 390px 和 540px 实际显示宽度复查必要文字。增加像素不是可读性的替代。
 
-项目导览回答“Aha 是什么、能帮读者做什么”：新版 HTML 和六幕英文视频展示降噪耳机与 Git merge 的实际网页细节，再介绍调研、创作和四种阅读用途，首尾明确总结。实现细节放入网页折叠补充。另保留一图流、9 页原生 PPTX 和用于幻灯片的独立 GIF 示例。视频旁白经单独批准外发配音，附字幕及原始收据。检查与复现入口见 [project-overview](project-overview/README.md)，不属于下面旧两例的 `check-html.mjs` 范围。
+## 当前目录契约
 
-## 目录内容
+- 每个主题根目录保留四种作品、配套收据、视频 SRT 和 `video-plan.json`。
+- `projects/{html,image,pptx,video}/` 保留独立作者源、元数据、资源和运行时要求的研究副本；发布迁移不修改这些字节。
+- `research/` 是该主题封存的研究报告、证据与清单。项目导览记录的是研究时的源码及实例快照，不是实时页面截图。
+- `audio/` 保留当前导入音频清单和 WAV；`audio-origin/` 保留原配音计划、原清单或失败记录，以及原始录音到当前文件的字节身份映射。所有导入 WAV 与原始合成 WAV 完全相同，故只存一份语音字节。
+- Git 的 `public/` 保留阅读的固定版本上游文件、许可和访问记录。附加动画 PPT 使用独立后处理审计，不套用基版收据。
+- [交付清单](delivery-manifest.json)索引十二份当前作品及研究、源码、输出哈希；[新版验收记录](../evals/examples/refresh-20260916/)位于 `evals`，不混入作品正文。
 
-- 各主题的 `index.html` 和收据：当前作品及其源码、研究、输出身份。
-- `projects/<format>/`：各格式作品的元数据、可编辑源，以及运行时要求的研究副本；单格式示例也使用相同结构。
-- `research/`：封存的研究报告、证据台账与清单。作品复用这些档案，不代表额外完成了联网调研。
-- `git-merge/inputs/`、`sources/`、`experiment-recipe.json`、`experiment-results-v2.json`：原始材料、来源许可与有效实验记录。页面复用已记录的结果，不实时执行 Git。
-- [`../evals/examples/anc-git/`](../evals/examples/anc-git/)：这两个页面的运行结果、分别记录的文字与图形审阅、代表性截图；项目导览的验收记录单独放在 `../evals/examples/project-overview/`。
-- [`../evals/examples/check-html.mjs`](../evals/examples/check-html.mjs)：这两个页面的离线检查脚本；其他示例验收工具就近放在对应的评估目录。
-- `<topic>/tools/` 与 `<topic>/provenance/`：示例专用制作工具和制作依据（如词句时间点、素材来源与修订记录），按实际需要保留，不与最终验收报告混放。
+`examples` 只保留当前正式作品；旧版由 Git 历史保留（此次替换前为 `c98b1927`）。候选、原始制作过程及替换前的本地备份仍在被忽略的 `artifacts`，未当作缓存删除。旧验收记录仅说明旧版，不是新版通过的证据。历史收据里的绝对路径保持原意，当前路径以交付清单为准。
 
-`examples` 是当前作品集，不是每次试跑的历史目录。之后的候选产物和技能对照实验放在独立工作目录；经检查并获相应替换／清理授权后，才更新这里的成品、匹配收据、链接与 QA。技能评估材料和读者迁移理解流程见[评估协议](../docs/EVALUATION.md)，其试跑结果不替代这里的成品验收。
+## 内容与验收边界
 
-本目录的 `.gitattributes` 对所有示例关闭 Git 自动换行转换，保留研究、源码和成品的精确字节；Windows 的 `core.autocrlf=true` 不应改变已封存内容或使收据失效。
+ANC 展示同一位置的理想声压叠加，不是耳机实测、分贝或感知响度；语音仍有可辨线索，不意味着任何耳机都不能削弱语音。
 
-## 内容和验收边界
+Git 固定阅读 v2.55.0 的手册与 `merge-ort.c`，没有新运行 Git 实验。界面的简化状态不是命令执行结果；区分普通 revert、merge revert、reset、`-s ours` 和 `-Xours`。文本合并成功不证明程序行为正确。
 
-降噪滑块表示单一频率、相等振幅、同一位置的理想声压模型；不是耳机实测性能、分贝或主观响度。语音部分讨论剩余线索，不保证具体耳机能让谈话消失。
+Aha 研究固定本地提交 `31ff1331`，其树与当时主分支 `c98b1927` 一致。导览中的已有 ANC/Git 页面是那个快照的实例，不声称是本次新版网页。宿主文档技能、Clawpilot 样式及外部媒体工具也参与制作，不能视为 Aha 单独效果的对照实验。
 
-Git 阅读的源码和手册固定为 v2.49.0，实验记录使用 2.53.0.windows.4；页面明确区分两者。控件展示预录结果，不是 Git 模拟器。文本合并成功不证明程序行为正确。
-
-`experiment-recipe.json` 保留执行路径及失败说明，是实验方法记录，不是当前目录的可执行脚本；结论以 `experiment-results-v2.json` 为依据。`projects/html/qa/author-review.json` 记录源码交接时的审阅范围，最终浏览器状态以 `../evals/examples/anc-git/` 为准。历史记录中的路径保留当时含义，不因目录整理重写封存证据。
-
-当前检查和审阅见 [运行记录](../evals/examples/anc-git/runtime.json)与[审阅记录](../evals/examples/anc-git/review.json)。文字已分别按中文、英文审读，再核对事实；页面检查覆盖两种语言、浅深主题、1280/390px 宽度和键盘交互。真人理解效果、独立人工翻译验收、手机真机及读屏器检查仍未完成。
-
-制作时同时遵循宿主 `web-artifacts-builder` 的 Clawpilot 配色和系统字体要求，不能将视觉结果当作 Aha 单独作用的对照实验。图形为原创；没有下载字体或素材。Git 来源保留其上游许可。
+当前记录覆盖双语页面的桌面／手机宽度与交互、原生幻灯片渲染及内存文字编辑、针对实际排版问题的修正复查、完整视频解码、字幕文字和编码后场景画面。**三个机制试片已由用户听看确认；完整视频听看、Git 附加原生动画版的实际放映仍未确认。** 真人理解迁移、独立人工翻译、手机真机和读屏器验收未完成。技术通过不替代这些判断。
 
 ## 本地复现
 
-先使用仓库已有依赖构建。HTML 打包本身不执行作者脚本：
+身份检查不执行作者代码：
 
 ```powershell
 npm run build
-node .\dist\skills\aha-explain\scripts\aha.mjs render-html .\examples\anc\projects\html .\artifacts\anc-rebuild\index.html
-node .\dist\skills\aha-explain\scripts\aha.mjs render-html .\examples\git-merge\projects\html .\artifacts\git-merge-rebuild\index.html
+npm run examples:verify
 ```
 
-检查前审阅脚本、页面并取得本地执行授权。检查需要已安装的 Edge，不会联网、安装依赖或运行 Git：
+统一检查器验证十二份作品、研究副本、收据、当前音频及原配音来源；回归用例也检查身份失配会被拒绝。新版离线浏览器检查覆盖三篇网页的中英、浅深主题与 1280px／390px，当前[发布前复查](../evals/examples/refresh-20260916/browser-recheck/runtime.json)记录 24 组场景、96 项检查。
+
+审阅页面并获得本地执行许可后，可将新浏览器结果另存到一个尚不存在的目录，不覆盖封存记录：
 
 ```powershell
-node .\evals\examples\check-html.mjs --allow-code --screenshots
+node .\evals\examples\check-html.mjs --allow-code --output artifacts\examples-browser-new --screenshots
 ```
 
-该命令检查两个当前 `index.html`，将运行结果写入仓库根目录下的 `evals/examples/anc-git/runtime.json`；`--screenshots` 可选，会更新该目录的代表性截图。复现的新文件先另存，确认后再替换当前作品及配套收据。
+以 ANC 为例，重新输出到新目录，不覆盖当前作品或收据。PNG／PPT／视频执行前须审阅作者源码并另获本地执行许可：
+
+```powershell
+node .\dist\cli\aha.mjs render-html .\examples\anc\projects\html .\artifacts\anc-rebuild\index.html
+node .\dist\cli\aha.mjs render-image .\examples\anc\projects\image .\artifacts\anc-rebuild\anc.png --allow-code
+node .\dist\cli\aha.mjs render-pptx .\examples\anc\projects\pptx .\artifacts\anc-rebuild\anc.pptx --allow-code
+node .\dist\cli\aha.mjs video-plan-check .\examples\anc\projects\video .\examples\anc\video-plan.json
+```
+
+源码、旁白和研究绑定不变时，按检查结果的当前 `planHash` 与当前 `audio/` 可离线重渲染视频。代码或文字变动需新计划与相应批准；命令行 `--approve` 不是授权本身。在线配音必须单独展示完整旁白、提供方、声线、语速及外发范围并取得批准。
+
+Windows 上可将固定媒体环境放在 `%LOCALAPPDATA%\Aha\media-venv`，安装仓库锁定的 `requirements-media.txt`，将用户级 `AHA_PYTHON` 指向其 `Scripts\python.exe`。已有环境直接复用，不因更换 worktree 或清理制作中间结果而删除；新进程才自动继承更新后的用户环境变量。不把机器环境提交到仓库。
+
+`examples/.gitattributes` 和 `evals/examples/.gitattributes` 禁止自动换行转换，避免 Windows checkout 改变研究、源码、作品和验收记录的精确字节。

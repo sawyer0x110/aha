@@ -1,0 +1,39 @@
+1
+00:00:00,000 --> 00:00:10,367
+Why can a Git merge bring back a reverted change? A revert changes your branch's content, but it is not a permanent veto on content from another branch.
+
+2
+00:00:10,367 --> 00:00:22,200
+Start with the merge base: a best common ancestor of the two current tips. Git uses history to find that base, then compares the three trees, not just two current files.
+
+3
+00:00:22,200 --> 00:00:34,700
+In our example, the file starts off. Our branch turns it on, then commits a revert back to off. That inverse commit keeps the history; the other branch still has on.
+
+4
+00:00:34,700 --> 00:00:48,967
+Compare each current file with the base. Our file is unchanged overall. Theirs carries the change, so the merge selects their on version. The reverted change returns through the other side's content.
+
+5
+00:00:48,967 --> 00:01:01,767
+This does not choose one entire branch. Our independent update to local dot text can survive alongside their update to remote dot text. Each path has its own comparison.
+
+6
+00:01:01,767 --> 00:01:14,300
+Now keep both current values, but change the base to on. Theirs now matches the base. Ours carries the only net change, so the same selection rule keeps off instead.
+
+7
+00:01:14,300 --> 00:01:27,000
+If both sides differ from the base, content merging may need conflict resolution. Different edits do not always conflict, and a clean text merge does not prove the program behaves correctly.
+
+8
+00:01:27,000 --> 00:01:41,367
+The default ort strategy differs from the strategy named ours, which keeps our entire tree. The ours option only favors conflicting hunks; their clean changes still enter. Recursive now aliases ort.
+
+9
+00:01:41,367 --> 00:01:53,700
+These are illustrative ordinary files, not a new Git experiment. Renames and custom drivers are outside this model; multiple best bases may first be merged into a reference tree.
+
+10
+00:01:53,700 --> 00:02:06,267
+Before fixing history, identify the actual tips, strategy and kind of undo. Find the base, compare all three states, then review the intended result and test the project.

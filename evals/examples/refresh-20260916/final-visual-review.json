@@ -1,0 +1,105 @@
+{
+  "review": "Final bounded stage-02 fix-and-verify visual pass",
+  "scope_root": "artifacts\\examples-refresh-20260916",
+  "verdict": "The targeted prior defects are resolved in the five inspected renders. No concrete residual defect or visible regression was observed within this bounded scope.",
+  "images_viewed": 5,
+  "images_not_viewed": [],
+  "residual_defects": [],
+  "method": {
+    "inspection": "Individually viewed exactly the five requested rendered PNGs, including the actual 390px and 540px reading-size derivatives.",
+    "scope": "Verification of previously reported defects and nearby layout regressions only; not a new whole-deck or whole-project review.",
+    "source_access": "None.",
+    "execution": "None. No export, resize, install, delegation, or authoring tool was run.",
+    "writes": "Only this requested review JSON.",
+    "limits": [
+      "Readability was assessed visually in the supplied raster derivatives, not through human usability testing or a physical-device study.",
+      "PowerPoint export and native text-edit probe results were supplied by the parent and were not independently repeated.",
+      "No slideshow, video, or animation playback was inspected. No motion behavior, timing, or playback correctness is claimed."
+    ]
+  },
+  "checks": [
+    {
+      "prior_finding": "AHA-IMG-01",
+      "check": "Section 1 heading and divider overflow",
+      "status": "resolved",
+      "paths": [
+        "project-overview\\renders\\stage-02\\aha-overview.png",
+        "project-overview\\qa\\stage-02\\aha-overview-390.png",
+        "project-overview\\qa\\stage-02\\aha-overview-540.png"
+      ],
+      "observation": "The first section heading is now contained in its reserved area and remains clear of the divider and following content. The revised spacing does not visibly create a collision at the next section boundary."
+    },
+    {
+      "prior_finding": "AHA-IMG-02",
+      "check": "Essential text at 390px and 540px",
+      "status": "resolved for the inspected derivatives",
+      "paths": [
+        "project-overview\\qa\\stage-02\\aha-overview-390.png",
+        "project-overview\\qa\\stage-02\\aha-overview-540.png"
+      ],
+      "observation": "Essential headings, explanatory text, example values, and mechanism identifiers are legible in both supplied derivatives. The 390px version is naturally denser and its secondary provenance text is finer than the body, but it no longer exhibits the earlier essential-label readability failure. The 540px version provides comfortable additional text and diagram clarity."
+    },
+    {
+      "prior_finding": "AHA-IMG-03",
+      "check": "Waveform identifiers",
+      "status": "resolved",
+      "paths": [
+        "project-overview\\renders\\stage-02\\aha-overview.png",
+        "project-overview\\qa\\stage-02\\aha-overview-390.png",
+        "project-overview\\qa\\stage-02\\aha-overview-540.png"
+      ],
+      "observation": "Incoming, speaker, and residual identifiers are visible and distinguish the plotted roles. They remain readable in the reading-size derivatives without colliding with the waveform panel."
+    },
+    {
+      "prior_finding": "AHA-RELEASE-01",
+      "check": "Pending-QA footer leakage",
+      "status": "resolved",
+      "paths": [
+        "project-overview\\renders\\stage-02\\aha-overview.png",
+        "project-overview\\qa\\stage-02\\aha-overview-390.png",
+        "project-overview\\qa\\stage-02\\aha-overview-540.png",
+        "project-overview\\qa\\stage-02\\slides\\slide-10.png"
+      ],
+      "observation": "The previously reported pending-QA language is absent from the revised infographic and closing-slide footer. No replacement production-review status leakage was observed."
+    },
+    {
+      "prior_finding": "GIT-S07-01",
+      "check": "Warning strip versus assumptions caption",
+      "status": "resolved",
+      "paths": [
+        "git-merge\\qa\\stage-02\\slides\\slide-07.png"
+      ],
+      "observation": "The assumptions caption is now fully visible below the pink warning strip, with a clear gap. Its upper glyphs are no longer occluded, and the source footer below also remains separate and readable."
+    }
+  ],
+  "per_image": [
+    {
+      "path": "project-overview\\renders\\stage-02\\aha-overview.png",
+      "status": "pass within scope",
+      "observations": "Heading/divider fit, waveform identification, and footer cleanup are visibly corrected. No new section overlap, edge clipping, or label collision observed."
+    },
+    {
+      "path": "project-overview\\qa\\stage-02\\aha-overview-390.png",
+      "status": "pass within scope",
+      "observations": "Essential content remains readable in this actual narrow derivative. No new wrapping collision or cropped text observed."
+    },
+    {
+      "path": "project-overview\\qa\\stage-02\\aha-overview-540.png",
+      "status": "pass within scope",
+      "observations": "Body text, examples, and wave identifiers are readable with more visual room than at 390px. No clipping or overlap observed."
+    },
+    {
+      "path": "project-overview\\qa\\stage-02\\slides\\slide-10.png",
+      "slide": 10,
+      "status": "pass within scope",
+      "observations": "Pending-QA footer text is removed. Dark-bookend contrast, title fit, content spacing, and bottom footer clearance remain intact."
+    },
+    {
+      "path": "git-merge\\qa\\stage-02\\slides\\slide-07.png",
+      "slide": 7,
+      "status": "pass within scope",
+      "observations": "Warning and assumptions text are separated. Title, four comparison boxes, explanatory paragraph, and source footer retain readable fit; no nearby regression observed."
+    }
+  ],
+  "completion": "Bounded rendered-image verification complete. This verdict does not extend to uninspected slides, other artifacts, or motion playback."
+}

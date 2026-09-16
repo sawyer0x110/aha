@@ -11,13 +11,13 @@
 | `scripts/` | 仓库级构建、发布、安装工具，不汇集领域专用脚本 |
 | `tests/` | 自动化测试、测试辅助代码和专用 fixtures；不嵌入宿主作者评估场景数据 |
 | `evals/skills/` | 技能评估准备工具、固定案例、宿主场景和评分判据；四个锁定案例与宿主场景分别管理 |
-| `evals/examples/` | 示例验收工具和保留的结果；`anc-git/` 是两例联合记录，`project-overview/` 是项目导览的工具与记录 |
-| `examples/` | 当前正式作品和收据、`projects/<format>/` 可编辑项目、研究与必要素材；专用制作工具放 `tools/`，项目导览的制作依据放 `provenance/` |
+| `evals/examples/` | 示例验收工具和保留的结果；`refresh-20260916/` 是三例新版的记录，旧版结果保留为历史，不混作当前验收 |
+| `examples/` | 三例各四种格式的当前作品、收据、`projects/<format>/` 可编辑项目、研究与音频来源；`delivery-manifest.json` 索引当前字节身份 |
 | `docs/` | 产品、架构、研究及评估说明；精确创作与权限契约链接到技能参考，不另建冲突副本 |
 | `dist/` | 构建生成的 CLI 与独立技能分发包，Git 忽略；从源码和锁定依赖重建，不手动维护 |
 | `artifacts/` | 本地研究、候选作品和评估运行结果，Git 忽略；可能有不可重建材料，清理需明确范围 |
 
-按职责就近放工具：技能评估用 `evals/skills/prepare.mjs`，示例验收用 `evals/examples/` 下的检查器，制作 GIF 或识别旁白时间点则用 `examples/project-overview/tools/`。根目录的 `npm run eval:prepare -- <参数>` 与 `npm run examples:verify` 提供快捷入口。
+按职责就近放工具：技能评估用 `evals/skills/prepare.mjs`，示例验收用 `evals/examples/` 下的检查器。独立制作工具（若有）放 `examples/<topic>/tools/`；参与作品源码身份的作者模块及辅助脚本保留在 `projects/<format>/`。根目录的 `npm run eval:prepare -- <参数>` 与 `npm run examples:verify` 提供快捷入口。
 
 正式作品不是全部任务工作目录的镜像。只有选定的交付及必要材料进入 `examples/`，最终验收记录进入 `evals/examples/`，试跑历史仍留在 `artifacts/`。作品项目内的研究副本、原始音频和当前导入音频各有身份用途，不按文件相似度去重。封存材料及历史记录中的旧路径保留其审计含义，当前路径由示例文档说明。
 

@@ -2,352 +2,487 @@
   "claims": [
     {
       "evidenceIds": [
-        "e-base-doc",
-        "e-entry"
+        "e-tags",
+        "e-tag"
+      ],
+      "id": "c-version",
+      "kind": "fact",
+      "limitations": [
+        "仅检查标签列表前五项，不宣称完整维护版本调查；日期为标签日期。"
+      ],
+      "text": "本次公开标签查询显示 v2.55.0 指向 e9019fcafe0040228b8631c30f97ae1adb61bcdc，标记者日期 2026-06-29；同时可见 v2.56.0-rc0。"
+    },
+    {
+      "evidenceIds": [
+        "e-base",
+        "e-strategy",
+        "e-code-base"
       ],
       "id": "c-base",
       "kind": "fact",
       "limitations": [
-        "There can be multiple best bases; the diagram uses one and does not implement virtual-base construction."
+        "不把多基点情况简化为单个分叉提交。"
       ],
-      "subquestionIds": [
-        "q-base"
-      ],
-      "text": "The merge base is selected by common ancestry; a simple three-way merge uses base, ours and theirs snapshots."
+      "text": "合并基点是最佳共同祖先，可能不止一个；ort 根据历史确定基点，再以基点和两侧当前树作为内容合并输入。"
     },
     {
       "evidenceIds": [
-        "e-diffs",
-        "e-strategies",
-        "e-experiment"
+        "e-strategy",
+        "e-code-select"
       ],
-      "id": "c-snapshots",
-      "kind": "fact",
-      "limitations": [
-        "Commit ancestry still matters for selecting merge bases; fixture Git differs from pinned source."
-      ],
-      "subquestionIds": [
-        "q-history"
-      ],
-      "text": "For three-way content merging, Git compares tip snapshots with the base rather than replaying all individual commits; a reverted change on one side can reappear from the other."
-    },
-    {
-      "evidenceIds": [
-        "e-identity",
-        "e-experiment"
-      ],
-      "id": "c-one-side",
-      "kind": "fact",
-      "limitations": [
-        "Regular text file without separate path/type conflicts; not the similarly named ours strategy."
-      ],
-      "subquestionIds": [
-        "q-rules"
-      ],
-      "text": "When one side's ordinary file content equals the base, the other side's changed content can be selected."
-    },
-    {
-      "evidenceIds": [
-        "e-merge-doc",
-        "e-overlap",
-        "e-experiment"
-      ],
-      "id": "c-independent",
-      "kind": "fact",
-      "limitations": [
-        "Not a guarantee for arbitrary different line numbers: alignment, nearby changes and refinement matter."
-      ],
-      "subquestionIds": [
-        "q-rules"
-      ],
-      "text": "Well-separated base-relative edits in one text file can merge automatically, combining both sides."
-    },
-    {
-      "evidenceIds": [
-        "e-driver",
-        "e-overlap",
-        "e-merge-doc",
-        "e-experiment"
-      ],
-      "id": "c-conflict",
-      "kind": "fact",
-      "limitations": [
-        "Identical overlapping edits need not conflict; stages may differ for non-text or add/delete cases."
-      ],
-      "subquestionIds": [
-        "q-rules"
-      ],
-      "text": "In the demonstrated incompatible same-region text edit, Git leaves conflict markers and base/ours/theirs index stages while HEAD remains unchanged; no merge commit has yet been created."
-    },
-    {
-      "evidenceIds": [
-        "e-merge-doc"
-      ],
-      "id": "c-ff",
-      "kind": "fact",
-      "limitations": [
-        "Options such as --no-ff alter this behavior; documented and source-read, not separately fixture-tested."
-      ],
-      "subquestionIds": [
-        "q-history"
-      ],
-      "text": "When our head is an ancestor of the other tip, a fast-forward can update the branch pointer without creating a merge commit."
-    },
-    {
-      "evidenceIds": [
-        "e-overlap",
-        "e-strategies"
-      ],
-      "id": "c-safety",
+      "id": "c-return",
       "kind": "inference",
       "limitations": [
-        "Comment and cross-file rename examples are reasoned illustrations, not executed application tests."
+        "说明性模型而非本次实验；三侧普通文件、相同模式、无重命名或自定义驱动。"
       ],
-      "subquestionIds": [
-        "q-safety"
+      "text": "在限定的普通文件三方合并中，基点为 off，本侧修改后撤销回 off，对侧保持 on，本侧净变化为零，合并可采用对侧 on。"
+    },
+    {
+      "evidenceIds": [
+        "e-code-select"
       ],
-      "text": "Textual conflict does not prove semantic incompatibility, and a clean textual merge does not prove correct application behavior."
+      "id": "c-independent",
+      "kind": "inference",
+      "limitations": [
+        "按独立路径示例推导；同文件不同区域不保证永不冲突。"
+      ],
+      "text": "相关文件净撤销不意味着整棵树无变化；其它路径上两侧的独立修改可同时保留。"
+    },
+    {
+      "evidenceIds": [
+        "e-code-select"
+      ],
+      "id": "c-counter",
+      "kind": "inference",
+      "limitations": [
+        "同样限定普通文件；不是新运行结果。"
+      ],
+      "text": "若基点已经为 on，本侧 off 而对侧 on，三方合并会在简单普通文件情形保留本侧 off；两个当前值不足以判断结果。"
+    },
+    {
+      "evidenceIds": [
+        "e-code-content",
+        "e-merge-intro"
+      ],
+      "id": "c-conflict",
+      "kind": "inference",
+      "limitations": [
+        "未审计底层 xdiff 或运行实验；不同修改不必然冲突，业务正确性需要项目验证。"
+      ],
+      "text": "两侧都相对基点改变时可能进入内容合并并报告冲突；无冲突也不构成业务正确性的证明。"
+    },
+    {
+      "evidenceIds": [
+        "e-revert",
+        "e-strategy"
+      ],
+      "id": "c-revert",
+      "kind": "fact",
+      "limitations": [
+        "示例使用已经提交的普通 revert，不混同合并提交撤销。"
+      ],
+      "text": "普通 revert 通常用新提交反转先前修改而保留历史；--no-commit 不立即建立提交，不是永久禁止某项内容。"
+    },
+    {
+      "evidenceIds": [
+        "e-revert"
+      ],
+      "id": "c-revert-merge",
+      "kind": "fact",
+      "limitations": [
+        "不能机械建议重新合并或撤销撤销；必须看后续历史。"
+      ],
+      "text": "撤销合并提交用 -m 选择主线父提交，撤销树变化但不删除合并祖先关系，影响后续合并能带入的变化范围。"
+    },
+    {
+      "evidenceIds": [
+        "e-reset",
+        "e-base"
+      ],
+      "id": "c-reset",
+      "kind": "inference",
+      "limitations": [
+        "未执行 reset；--hard 有覆盖数据风险，不是自动修复建议。"
+      ],
+      "text": "reset 的提交形式移动 HEAD，模式控制索引和工作区；路径形式只改索引。它不是普通 revert，指针移动可能改变未来基点。"
+    },
+    {
+      "evidenceIds": [
+        "e-strategy"
+      ],
+      "id": "c-strategy",
+      "kind": "fact",
+      "limitations": [
+        "未穷尽其它策略或自定义驱动，不把任一选项作为通用修复。"
+      ],
+      "text": "ort 三方合并不是所有策略的通则；-s ours 保留本侧整树，-Xours 只偏向冲突区域且保留对侧非冲突修改；当前 recursive 是 ort 同义名。"
     }
   ],
   "evidence": [
     {
-      "id": "e-base-doc",
+      "id": "e-tags",
       "kind": "web",
-      "locator": "Documentation/git-merge-base.adoc:21-26",
-      "retrievedAt": "2026-09-14T17:45:59.952+08:00",
-      "sourceVersion": "git/git 683c54c999c301c2cd6f715c411407c413b1d84e (v2.49.0)",
-      "summary": "Read the definition of best common ancestor and explicit multiple-base exception. Supports ancestry, not newest timestamp.",
-      "title": "Official git-merge-base manual at v2.49.0",
-      "url": "https://github.com/git/git/blob/683c54c999c301c2cd6f715c411407c413b1d84e/Documentation/git-merge-base.adoc#L21-L26"
+      "locator": "JSON list first five entries",
+      "retrievedAt": "2026-09-16T04:45:00Z",
+      "sourceVersion": "Live API response accessed 2026-09-16",
+      "summary": "Observed v2.56.0-rc0, v2.55.0 and three v2.55 release candidates. Discovery of a newer stable tag corrected initial use of v2.53.0. Not exhaustive.",
+      "title": "GitHub git/git tags, first five",
+      "url": "https://api.github.com/repos/git/git/tags?per_page=5"
     },
     {
-      "id": "e-merge-doc",
+      "id": "e-tag",
       "kind": "web",
-      "locator": "Documentation/git-merge.adoc:145-206,235-244",
-      "retrievedAt": "2026-09-14T17:45:59.952+08:00",
-      "sourceVersion": "git/git 683c54c999c301c2cd6f715c411407c413b1d84e (v2.49.0)",
-      "summary": "Read preconditions, fast-forward, true merge, index stages and conflict presentation. Distinguishes non-overlapping edits from unresolved same-region edits.",
-      "title": "Official git-merge manual at v2.49.0",
-      "url": "https://github.com/git/git/blob/683c54c999c301c2cd6f715c411407c413b1d84e/Documentation/git-merge.adoc#L160-L206"
+      "locator": "Tag object: first 2000 response characters including tagger and target object",
+      "retrievedAt": "2026-09-16T04:46:50Z",
+      "sourceVersion": "5ce91c059e41090e7d2cffad39c04af8acf98dc1",
+      "summary": "Read target commit e9019fcafe0040228b8631c30f97ae1adb61bcdc and tagger.date 2026-06-29T14:59:19Z; signature tail truncated, no local signature verification.",
+      "title": "v2.55.0 annotated tag",
+      "url": "https://api.github.com/repos/git/git/git/tags/5ce91c059e41090e7d2cffad39c04af8acf98dc1"
     },
     {
-      "id": "e-strategies",
+      "id": "e-strategy",
       "kind": "web",
-      "locator": "Documentation/merge-strategies.adoc:9-23,116-122,157-163",
-      "retrievedAt": "2026-09-14T17:45:59.952+08:00",
-      "sourceVersion": "git/git 683c54c999c301c2cd6f715c411407c413b1d84e (v2.49.0)",
-      "summary": "Read ort's two-head/reference-tree description, warning about mismerges from unimportant matching lines, and explicit explanation that heads/base—not individual commits—drive the reverted-change result. This contradicts a commit-replay model.",
-      "title": "Official merge-strategies manual at v2.49.0",
-      "url": "https://github.com/git/git/blob/683c54c999c301c2cd6f715c411407c413b1d84e/Documentation/merge-strategies.adoc#L157-L163"
+      "locator": "Documentation/merge-strategies.adoc, entire file",
+      "retrievedAt": "2026-09-16T04:46:13.198Z",
+      "sourceVersion": "e9019fcafe0040228b8631c30f97ae1adb61bcdc",
+      "summary": "Full fixed-version manual directly describes reverted changes returning in three-way merge. Also states ort default, recursive alias since 2.50, multiple bases, ours strategy versus ours option. Counterevidence to universal-strategy claim.",
+      "title": "Git v2.55.0 merge strategies",
+      "url": "https://raw.githubusercontent.com/git/git/e9019fcafe0040228b8631c30f97ae1adb61bcdc/Documentation/merge-strategies.adoc"
     },
     {
-      "content": "\telse if (!remoteheads->next) {\n\t\tif (repo_get_merge_bases(the_repository, head_commit,\n\t\t\t\t\t remoteheads->item, &common) < 0) {\n\t\t\tret = 2;\n\t\t\tgoto done;\n\t\t}\n",
-      "contentHash": "0c11bc18aec37daa038323c7823a690e4a6b971c8846cf7a252dddd9ed47247e",
-      "id": "e-entry",
-      "kind": "code",
-      "locator": "git/git builtin/merge.c:1549-1554; surrounding dispatch read at 745-755,1585-1618",
-      "sourceVersion": "683c54c999c301c2cd6f715c411407c413b1d84e",
-      "summary": "The two-head branch calls repo_get_merge_bases; surrounding source dispatches to ort and recognizes fast-forward. Preserved excerpt is only the base lookup.",
-      "title": "Merge command requests common bases"
+      "id": "e-base",
+      "kind": "web",
+      "locator": "Documentation/git-merge-base.adoc lines 1–32",
+      "retrievedAt": "2026-09-16T04:46:11.379Z",
+      "sourceVersion": "e9019fcafe0040228b8631c30f97ae1adb61bcdc",
+      "summary": "Best common ancestors defined by ancestry; more than one can exist. Entire file downloaded, only stated opening range read at current version.",
+      "title": "Git v2.55.0 merge-base definition",
+      "url": "https://raw.githubusercontent.com/git/git/e9019fcafe0040228b8631c30f97ae1adb61bcdc/Documentation/git-merge-base.adoc"
     },
     {
-      "content": "\tif (oideq(&a->oid, &b->oid) || oideq(&a->oid, &o->oid))\n\t\toidcpy(&result->oid, &b->oid);\n\telse if (oideq(&b->oid, &o->oid))\n\t\toidcpy(&result->oid, &a->oid);\n",
-      "contentHash": "62092969d0c0d50dbaebe7e33305fca1be209e905f5eaad43ebd3ed411d78b56",
-      "id": "e-identity",
-      "kind": "code",
-      "locator": "git/git merge-ort.c:2184-2187; surrounding content handling 2176-2228, blob dispatch 2099-2105",
-      "sourceVersion": "683c54c999c301c2cd6f715c411407c413b1d84e",
-      "summary": "Object-ID equality against the base selects the opposite side. Surrounding ordinary-file path calls merge_3way and flags positive status unclean.",
-      "title": "Trivial content identity selection"
+      "id": "e-revert",
+      "kind": "web",
+      "locator": "Documentation/git-revert.adoc lines 1–94",
+      "retrievedAt": "2026-09-16T04:46:10.741Z",
+      "sourceVersion": "e9019fcafe0040228b8631c30f97ae1adb61bcdc",
+      "summary": "Read description and -m first, then -n: ordinary reverse commits, mainline-relative merge reversion and later-merge caveat; no-commit exception.",
+      "title": "Git v2.55.0 revert definition and mainline",
+      "url": "https://raw.githubusercontent.com/git/git/e9019fcafe0040228b8631c30f97ae1adb61bcdc/Documentation/git-revert.adoc"
     },
     {
-      "content": "\tstatus = xdl_merge(orig, src1, src2, &xmp, result);\n\tret = (status > 0) ? LL_MERGE_CONFLICT : status;\n\treturn ret;\n",
-      "contentHash": "431170140b16d5e308bc8aaa24daed07fe3d5460dc04131701766f5d83ef72a8",
-      "id": "e-driver",
-      "kind": "code",
-      "locator": "git/git merge-ll.c:144-146; actual read 103-146",
-      "sourceVersion": "683c54c999c301c2cd6f715c411407c413b1d84e",
-      "summary": "After binary/size guard, ll_xdl_merge passes orig and both sides to xdl_merge, converting positive status to LL_MERGE_CONFLICT. No upstream execution.",
-      "title": "Text driver converts xdiff status to conflict"
+      "id": "e-reset",
+      "kind": "web",
+      "locator": "Documentation/git-reset.adoc lines 1–107",
+      "retrievedAt": "2026-09-16T04:46:12.542Z",
+      "sourceVersion": "e9019fcafe0040228b8631c30f97ae1adb61bcdc",
+      "summary": "Distinguishes commit reset from path reset, soft/mixed/hard/merge/keep. Directly contradicts treating all reset as reverse commits or all forms as moving HEAD.",
+      "title": "Git v2.55.0 reset modes",
+      "url": "https://raw.githubusercontent.com/git/git/e9019fcafe0040228b8631c30f97ae1adb61bcdc/Documentation/git-reset.adoc"
     },
     {
-      "content": "\tif (xdl_do_diff(orig, mf1, xpp, &xe1) < 0)\n\t\treturn -1;\n\n\tif (xdl_do_diff(orig, mf2, xpp, &xe2) < 0)\n\t\tgoto free_xe1; /* avoid double free of xe2 */\n",
-      "contentHash": "2696c0ca325fc81c6e408052f67af7be41be88d1e4dc56d91bfc9007a44058f1",
-      "id": "e-diffs",
-      "kind": "code",
-      "locator": "git/git xdiff/xmerge.c:695-699; actual surrounding read 684-737",
-      "sourceVersion": "683c54c999c301c2cd6f715c411407c413b1d84e",
-      "summary": "The text merge separately diffs orig against mf1 and orig against mf2. Subsequent no-change-script branches copy the other side, otherwise xdl_do_merge reconciles scripts.",
-      "title": "Two base-relative comparisons"
+      "id": "e-code-select",
+      "kind": "web",
+      "locator": "merge-ort.c lines 1260–1455",
+      "retrievedAt": "2026-09-16T04:46:10.047Z",
+      "sourceVersion": "e9019fcafe0040228b8631c30f97ae1adb61bcdc",
+      "summary": "Fresh inert source read: mode and oid equality; all-files side1=base selects side2, symmetric case selects side1; remaining paths provisional conflict. Not executed. Whole download hash in public/downloads.jsonl; no claim of full-file read.",
+      "title": "Git v2.55.0 source: three-side path selection",
+      "url": "https://raw.githubusercontent.com/git/git/e9019fcafe0040228b8631c30f97ae1adb61bcdc/merge-ort.c"
     },
     {
-      "content": "\t\tif (level == XDL_MERGE_MINIMAL || xscr1->i1 != xscr2->i1 ||\n\t\t\t\txscr1->chg1 != xscr2->chg1 ||\n\t\t\t\txscr1->chg2 != xscr2->chg2 ||\n\t\t\t\txdl_merge_cmp_lines(xe1, xscr1->i2,\n\t\t\t\t\txe2, xscr2->i2,\n\t\t\t\t\txscr1->chg2, xpp->flags)) {\n\t\t\t/* conflict */\n",
-      "contentHash": "08e20d93f3a9b5bac8d42207955f691f24c38630bef8ee235811eaf4558aa0b0",
-      "id": "e-overlap",
-      "kind": "code",
-      "locator": "git/git xdiff/xmerge.c:578-584; actual read 543-620,630-683",
-      "sourceVersion": "683c54c999c301c2cd6f715c411407c413b1d84e",
-      "summary": "Earlier branches append separated changes; overlap uses coordinates, lengths and line equality. Later refinement changes conflict boundaries. This is text machinery, not a semantic program analyzer.",
-      "title": "Line-range overlap and content tests"
+      "id": "e-code-base",
+      "kind": "web",
+      "locator": "merge-ort.c lines 5303–5450",
+      "retrievedAt": "2026-09-16T04:46:10.047Z",
+      "sourceVersion": "e9019fcafe0040228b8631c30f97ae1adb61bcdc",
+      "summary": "merge_ort_internal computes or accepts bases, recursively consolidates them and supplies base/h1/h2 trees. Source reading only; same Git project lineage as docs.",
+      "title": "Git v2.55.0 source: merge base to tree inputs",
+      "url": "https://raw.githubusercontent.com/git/git/e9019fcafe0040228b8631c30f97ae1adb61bcdc/merge-ort.c"
     },
     {
-      "content": "Command in each dedicated fixture: git -c merge.conflictStyle=diff3 merge --no-edit -s ort theirs\none-side: exit 0; timeout=60; retries=2; no unmerged stages; HEAD=b026178198b50922044bc8d4fec440a594d41538\nindependent: exit 0; timeout=60; retries=4; no unmerged stages; HEAD=0b8ae8e9f5b3f3de0df85276353bee611dd3839e\nconflict: exit 1; CONFLICT (content); HEAD=f8d48345a7b07e11470924d70194cf51a2da0acb unchanged; stage1=2a24c7d046fd1c19fdb93e51a78ac06414320a32; stage2=d8ee5d69105a951bec5f39abb0727c9d8101d107; stage3=e88aa33aa9f874a3c03df54636339335774e76b9\n",
-      "id": "e-experiment",
-      "kind": "provided",
-      "locator": "experiment-results-v2.json; fixtures-v2/{one-side,independent,conflict}/policy.txt and local object databases",
-      "sourceVersion": "git version 2.53.0.windows.4; observed 2026-09-14T17:47:58.0972695+08:00; distinct from inspected v2.49.0",
-      "summary": "Actual trusted installed Git commands on inert text. One-side with real revert: exit 0, 60/2, two parents. Independent: exit 0, 60/4, two parents. Conflict: exit 1, markers 60/30/90, HEAD unchanged and stages 1/2/3. Failed first attempt was rejected and corrected with explicit byte staging.",
-      "title": "Observed local Git fixture results v2"
+      "id": "e-code-content",
+      "kind": "web",
+      "locator": "merge-ort.c lines 2097–2295 and 4325–4377",
+      "retrievedAt": "2026-09-16T04:46:10.047Z",
+      "sourceVersion": "e9019fcafe0040228b8631c30f97ae1adb61bcdc",
+      "summary": "Trivial oid merge, merge_3way reading three blobs, ll_merge invocation, positive status makes merge unclean and CONFLICT reporting. Does not establish exact xdiff outcomes or business semantics.",
+      "title": "Git v2.55.0 source: content merge and conflict report",
+      "url": "https://raw.githubusercontent.com/git/git/e9019fcafe0040228b8631c30f97ae1adb61bcdc/merge-ort.c"
+    },
+    {
+      "id": "e-merge-intro",
+      "kind": "web",
+      "locator": "Documentation/git-merge.adoc first 5500 characters",
+      "retrievedAt": "2026-09-16T04:47:30Z",
+      "sourceVersion": "e9019fcafe0040228b8631c30f97ae1adb61bcdc",
+      "summary": "Introduction states merge stops on unresolved conflict; also describes changes being replayed, which must not be overread as sequential cherry-picking given the more precise strategy manual and code.",
+      "title": "Git v2.55.0 merge introduction",
+      "url": "https://raw.githubusercontent.com/git/git/e9019fcafe0040228b8631c30f97ae1adb61bcdc/Documentation/git-merge.adoc"
     }
   ],
-  "gaps": [],
-  "id": "git-merge-c7",
-  "kind": "mixed",
-  "language": "en",
-  "question": "What does Git merge actually merge, and why do conflicts happen?",
-  "report": "# What Git merge actually merges\n\n## Direct answer\nFor the ordinary divergent two-head text merge studied here, Git reconciles changes between three snapshots: a merge base, our tip, and their tip. History helps select the base; the file-content merge compares each tip with that base. It does not simply replay every intervening commit. A textual conflict means the selected merge machinery could not automatically reconcile a region, not that Git understood an application's intentions. A clean merge is not a behavioral test.\n\n## Scope and research design\nAudience: developers who know commit and branch vocabulary, seeking a useful 5–8 minute explanation. Purpose: predict one-sided, independent, and conflicting changes; inspect the right inputs rather than guessing from commit count. Scope: two ordinary branches, regular text files, default-style ort merging and diff3 conflict display. Excluded: exhaustive strategies, rename/delete cases, binary files, custom merge drivers, submodules, unrelated histories, octopus and rebase-specific ours/theirs meanings. Time horizon: a pinned historical implementation (Git v2.49.0), not a claim about the newest release. Budget: a bounded direct source trace, official documentation, and three small local text experiments; no upstream builds, browser execution, network-dependent artifact assets, installation, or production measurements.\n\nQuestion tree: q-base establishes inputs; q-rules depends on those inputs and distinguishes three outcomes; q-history tests the replay hypothesis and fast-forward counterexample; q-safety separates textual success from program correctness. The decisive alternative hypothesis was 'a revert on ours cancels their change because commits are replayed.' Documentation and a real revert fixture contradict it.\n\n## Version and source route\nGitHub API `gh api repos/git/git/commits/v2.49.0 --jq '.sha'` resolved git/git to **683c54c999c301c2cd6f715c411407c413b1d84e**. All upstream source and official manuals were retrieved as inert raw text at that exact commit. Files are preserved under sources/. The first documentation request used the obsolete .txt suffix and returned HTTP 404; a contents API lookup located .adoc. No upstream code was executed. This is one primary-source lineage, not independent corroboration from multiple publishers.\n\n## Mechanism and narrow implementation trace\n1. `builtin/merge.c:1549–1554` calls `repo_get_merge_bases`. The official merge-base manual defines a best common ancestor by ancestry, not by wall-clock timestamp. Multiple best bases are possible; ort can merge them into a reference tree. The illustration deliberately uses one base. [e-base-doc, e-entry]\n2. `builtin/merge.c:745–755` supplies both heads and common bases to `merge_ort_recursive`. For file content, `merge-ort.c:2099–2105` reads base/side blobs and calls `ll_merge`. `merge-ll.c:103–146` selects the textual xdiff route after checking binary/size conditions; `xdiff/xmerge.c:695–699` actually diffs orig against each side. This is base-relative snapshot reconciliation. [e-diffs, e-driver]\n3. A trivial object-ID match can select the changed side: `merge-ort.c:2184–2187` takes b when a equals base (or a equals b), and a when b equals base. This is not 'the newer commit wins.' The analogous no-change-script paths are visible in `xdiff/xmerge.c:711–724`. [e-identity]\n4. `xdiff/xmerge.c:548–577` accepts separated change ranges from either side; `578–609` handles overlap with coordinate/length/content tests. Identical edits need not conflict. Later refinement (`654–681`) can adjust conflict regions. Thus 'different line numbers always merge' is too strong: nearby insertions, repeated context, and algorithms affect hunk alignment. [e-overlap, e-merge-doc]\n5. `merge-ll.c:144–146` maps positive xdiff status to a conflict; `merge-ort.c:2225–2228` makes a positive merge status unclean. The official merge manual states that HEAD stays put and conflicting index entries retain base/ours/theirs at stages 1/2/3. [e-driver, e-merge-doc]\n\n## Actual observations, distinct from inspected upstream\nThe executable was **git version 2.53.0.windows.4**, NOT the inspected v2.49.0 commit. Three new dedicated fixture repositories used inert policy.txt files, local-only author identity, disabled global/system config, an empty hooks directory, no signing, and core.autocrlf=false. The merge command was `git -c merge.conflictStyle=diff3 merge --no-edit -s ort theirs`. Base/ours/theirs bytes were verified using `git show`; index stages and final parent IDs were captured. `experiment-results-v2.json` is the authoritative observation record.\n\nThe first fixture attempt did not reliably stage same-size copied edits; inspection caught 'nothing to commit', a modify/delete result, and unchanged commit IDs. Those results were rejected as evidence for the intended scenarios. Fresh v2 repositories explicitly staged file bytes using `git hash-object -w -- policy.txt` followed by `git update-index --add --cacheinfo 100644,<blob>,policy.txt`. The failed run remains separately recorded, not silently represented as success.\n\n- One-side / actual revert: base timeout=30; ours changed to 60 then was reverted to 30; theirs=60. Exit 0, result timeout=60/retries=2, no unmerged entries, two-parent merge commit. Ours has additional history but no net content change at the tip. A revert on one branch is not a veto over the other branch. [e-experiment, e-strategies]\n- Well-separated edits: base timeout=30/retries=2; ours timeout=60; theirs retries=4, with stable lines between. Exit 0, result timeout=60/retries=4, no unmerged entries, two-parent merge commit. Same file does not imply conflict. [e-experiment]\n- Same-region edits: ours timeout=60, theirs timeout=90, base=30. Exit 1 with `CONFLICT (content)`; diff3 markers contain 60 / 30 / 90. HEAD remains f8d48345a7b07e11470924d70194cf51a2da0acb; index has three entries, stages 1/2/3. No merge commit exists yet. [e-experiment]\n\n## Counterexamples and consequences\nFast-forward is a topology exception, not a fourth kind of conflict resolution: when our head is already an ancestor of the other tip, Git can move the current branch to that existing commit without a new merge commit (unless options such as --no-ff request otherwise). Supported by the manual and read source at builtin/merge.c:1585–1618; not separately executed here. [e-merge-doc]\n\nText and meaning are different layers. The source compares line regions, not program behavior. Two differently worded comments can conflict despite no executable effect; conversely, a function renamed in one file and a new call to its old name in another can combine textually while leaving a broken call. These are explanatory inferences, not executed application tests. The official strategy document also warns that unimportant matching lines can cause mismerges. Do not infer semantic correctness from exit 0. [e-overlap, e-strategies]\n\nPractical transfer: inspect `git show :1:policy.txt`, `:2:policy.txt`, `:3:policy.txt` during this ordinary merge, decide the intended behavior, edit and remove markers, run relevant checks, then stage and commit. Do not pick 'ours' solely because its timestamp or commit count is larger. This advice does not apply unchanged to rebase terminology.\n\n## Reverse-check and limits\nc-base: supported by ancestry definition and actual merge-base call; revised away from 'latest timestamp'. c-snapshots: supported by two base-relative diff calls and official revert discussion; actual fixture agrees but is a different Git version. c-one-side and c-independent: supported under ordinary text/path conditions and observed exact fixtures. c-conflict: supported by marker/index documentation and actual exit/stage output; no claim that every overlap necessarily conflicts. c-ff: documented/source-read only, explicitly not observed. c-safety: inference from textual machinery, supported by mismerge warning; no program execution claimed. Coverage/hash checks are separate from this manual semantic review. Renames, binary drivers, multiple-base construction and strategy exhaustiveness remain scoped out. HTML translation, runtime layout and interaction QA are not research observations.\n\n## Stopping reason\nThe core predictive questions are supported by a pinned narrow source trace, official definitions, a disconfirming revert example, and three corrected fixture observations. Additional strategies are outside the teaching scope; no unresolved central evidence blocker remains. Runtime HTML QA is intentionally deferred pending reviewed execution approval.",
+  "gaps": [
+    {
+      "description": "No new Git experiment, underlying xdiff/driver audit, complex topology trial or target-environment observation is authorized. Obtain separate approval for a narrowly specified read/execute validation if those cases are needed.",
+      "id": "g-runtime",
+      "subquestionIds": [
+        "q-limits"
+      ]
+    }
+  ],
+  "id": "research-a0f6d780-96ec-4dcd-a121-80b57ff26f8d",
+  "kind": "public",
+  "language": "zh",
+  "question": "为什么 Git 合并会带回已撤销的修改？",
+  "report": "# 为什么 Git 合并会带回已撤销的修改？\n\n## 直接回答\n在通常的双分支 `ort` 三方合并中，Git 根据合并基点与两个分支的最新提交所保存的内容进行合并；它不是逐个重放提交，也不会把普通 revert 当成“以后永远禁止这项修改”的指令。若相关内容在共同祖先中是 `mode=off`，本分支先改成 `on`、再撤销回 `off`，而另一分支仍为 `on`，那么本分支相对基点的净变化为零，另一分支却保留了 `off → on` 的变化。对于下面限定的普通文件案例，合并因此采用另一侧的 `on`。这不是 Git 神秘地复活一个提交，而是它选入了另一侧当前仍存在的内容。\n\n## 范围、读者和研究安排\n面向知道提交和分支、但不熟悉三方合并的读者。目的：解释机制、避免把普通提交撤销、合并提交撤销和 reset 混为一谈，并给后续媒体提供独立可读依据。时间截点为 2026-09-16；预算是一次有边界的公开一手资料与源码静态研究，以及四种媒体的源码制作，不包含本地 Git 实验、执行作者代码、渲染或语音合成。问题树先确定当前资料身份（q-version），再确定比较对象（q-base），推导复现条件与反例（q-mechanism），最后分开操作和策略边界（q-operations、q-strategy）。排除子模块、复杂重命名、自定义合并驱动及所有历史策略的完整实现审计；其影响在 q-limits 保留为缺口。\n\n## 本次重新核对的版本\nGitHub 标签列表的前五项包含 `v2.56.0-rc0` 和 `v2.55.0`；这只证明这次列表所见，不能据此宣称查遍所有维护版本。`v2.55.0` 的标签对象 `5ce91c059e41090e7d2cffad39c04af8acf98dc1` 指向提交 `e9019fcafe0040228b8631c30f97ae1adb61bcdc`，标记者日期为 **2026-06-29T14:59:19Z**（不是本次源码逐行的作者日期）。本研究以这个已发布标签的固定提交为准，不把候选版当稳定版。最初读取的 v2.53.0 文档和标签日期 2026-02-02 只是探索线索，随后已用 v2.55.0 对应段落重新核对；旧版本不是“当前版本”的证据。[Git 标签列表](https://api.github.com/repos/git/git/tags?per_page=5)、[v2.55.0 标签身份](https://api.github.com/repos/git/git/git/tags/5ce91c059e41090e7d2cffad39c04af8acf98dc1)。\n\n## 1. 基点不是当前任意一侧的文件\n“分支最新提交”指分支目前所指的提交；“合并基点”是双方沿父提交关系都能到达的最佳共同祖先。不是按墙上时钟挑最近日期，也不是默认把本分支当前文件当基准。可能有多个最佳共同祖先；`ort` 会先合成共同祖先树，不能把所有拓扑简化成单一分叉点。[git-merge-base 的定义](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/Documentation/git-merge-base.adoc)、[策略手册 ort 段](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/Documentation/merge-strategies.adoc)。\n\n源码给出了这条解释的连接环节：`merge_ort_internal` 获取或接收基点，必要时合并多个基点，最后把基点树、h1 树、h2 树交给非递归合并。这里的“只比较三个状态”说的是内容合并的输入；并不意味着 Git 完全不遍历提交历史——它恰好需要历史来寻找基点。[merge-ort.c，5303–5450 行](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/merge-ort.c#L5303-L5450)。\n\n## 2. 一个没有运行的推导例子\n以下是说明性状态模型，不是新实验结果。假定两侧在 B 之后分叉，普通文件无重命名、模式变化或自定义驱动；两侧分别作了相同修改，本分支又撤销自己的普通提交。\n\n```text\nB: mode=off ── A: mode=on ── R: mode=off   (ours)\n       └───── T: mode=on                   (theirs)\n```\n\n| 路径 | B 基点 | ours 当前 | theirs 当前 | 模型推导的合并结果 |\n|---|---|---|---|---|\n| feature.txt | mode=off | mode=off | mode=on | mode=on |\n| local.txt | 旧内容 | 本侧独立更新 | 旧内容 | 本侧独立更新 |\n| remote.txt | 旧内容 | 旧内容 | 对侧独立更新 | 对侧独立更新 |\n\n`feature.txt` 的关键不是 R 的提交消息，而是 **B 与 ours 的相关文件内容相同**。在 `collect_merge_info_callback` 中，源码比较文件模式与对象 ID；三侧均有普通文件且 side1 与基点一致时，直接选择 side2。它不会因此丢弃本侧其它路径的独立修改；每个路径的三个状态可以得出不同选择。[merge-ort.c，1260–1455 行](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/merge-ort.c#L1260-L1455)。策略手册末段还明确描述了“两侧均修改，一侧后来撤销，合并仍含该修改”的现象；源码与手册属于同一项目证据链，不能算成两个独立团队的实证验证。\n\n这也不要求整个 ours 树都与 B 相同。我们的逐路径示例刻意留下 `local.txt` 的独立修改。若两侧修改同一个文件的不同区域，必须进入内容合并，能否干净合并取决于内容、匹配及驱动；不能把逐文件快速路径直接等同于每一行的实现。\n\n## 3. 改变基点，结论就可能反过来\n保持两个当前值为 `ours=off, theirs=on`，但令共同祖先已经包含 `mode=on`：这时 ours 相对基点有 `on → off` 的变化，theirs 相对基点没有变化。普通文件快速路径于是保留 ours 的 `off`。因此“我撤销过，所以合并一定带回来”和“两个当前值不同就一定冲突”都错；需要第三个状态才能判断。[同一源码的对称分支，1384 行附近](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/merge-ort.c#L1384)。\n\n若基点为 `off`、ours 为 `manual`、theirs 为 `on`，就不能套用任一侧等于基点的快速选择。普通文本内容合并可能报告冲突，需要人工决策；这里不宣称任意两个不同修改都冲突。源码 `handle_content_merge` 先处理对象相等情形，否则调用 `merge_3way`，再把正的合并状态转换为非干净结果；后续路径会发出内容冲突信息。[2097–2295 行](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/merge-ort.c#L2097-L2295)、[4325–4377 行](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/merge-ort.c#L4325-L4377)。这次没有继续审计底层 xdiff、驱动选择或运行该例，因此把冲突写成有条件可能，而非已观察的输出。即使文本合并干净，也不等于业务逻辑正确；后者仍需项目测试与代码审查。\n\n## 4. 三种容易混淆的“撤销”\n**普通 revert**：通常新建反向修改的提交，保留原提交及父子关系。`--no-commit` 则只修改工作区和索引，不立即提交；不能把“revert 总会立刻提交”当绝对规则。上面的 R 是已提交的普通 revert。\n\n**revert 一个合并提交**：需要 `-m` 指定作为主线的父提交，反转相对该父提交的树变化；合并的祖先关系却仍在。官方手册指出，后续合并只会带入不是先前被撤销合并之祖先的提交所引入的树变化。这是另一个问题，不能从普通 R 的例子推导“撤销合并后重做合并就能拿回旧内容”。也不能机械建议总是“revert the revert”；需先审查后续拓扑和期望内容。[git-revert Description / -m / -n](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/Documentation/git-revert.adoc)。\n\n**reset**：提交形式移动 HEAD／当前分支指针，模式决定是否也改索引和工作区；带路径的形式只改索引，不移动 HEAD。reset 不是记录反向修改的提交。提交指针的移动可能改变可达祖先及以后的合并基点，不应把表面上相同的文件内容误认成相同历史。`--hard` 会覆盖工作区内容，不能当本报告给出的安全修复命令。[git-reset Description](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/Documentation/git-reset.adoc)。本次没有执行这些命令。\n\n## 5. 策略、选项与排查顺序\n上述解释限定到通常的三方合并；当前手册将 `ort` 作为合并单个分支的默认策略。v2.50.0 起 `recursive` 是 `ort` 的同义名，而非当前另一套独立实现；`resolve`、`octopus`、`subtree` 的能力和输入条件不同，不能泛称所有 Git 合并都完全一样。\n\n特别是 `-s ours` 取本分支整棵树，忽略其它分支的内容，构成“所有合并都带回修改”的直接反例。`-Xours` 则只在冲突区域偏向本侧；对侧不冲突的修改仍会进入，所以它不是保护已撤销内容的通用开关。[策略手册](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/Documentation/merge-strategies.adoc)。这些不是可随意替换的修复建议，`-s ours` 也可能丢掉本来想要的对侧内容。\n\n排查建议（未执行）：先记录 Git 版本、策略、选项和实际两侧提交；再查最佳共同祖先及相关路径在三侧的内容；随后辨认撤销的是普通提交、合并提交还是指针移动，检查独立修改及可能冲突，最后由项目负责人审查预期结果和测试。不要只看最近一次提交消息或只比较两个分支文件。\n\n## 来源可见范围、反向核对与限制\n本次直接读取公开一手资料及固定版本源码；完整下载并不代表通读：策略文件全文；merge-base 1–32 行；revert 1–65 行（Description、-m）及先前 v2.53.0 全文中的 -n；reset 1–107 行；merge-ort.c 的 1260–1455、2097–2295、4325–4377、5303–5450 行。后续已补读当前 revert 的 -n 段后才封存。Git 网站简化器首次只返回策略选项、revert 选项、reset 表格和 merge-base fork-point 讨论，不是整页；因此转到固定提交原文。旧 examples 与 evals 仅列出目录，未拿其报告、源码或已记录实验充当本次执行证据。\n\n语义反向核对：c-base 的历史搜索／内容比较区别受定义与调用路径支持；c-return 是明确限定的手册现象加源码选择分支；c-independent 的不同路径是模型推导，不是假实测；c-counter 改基点反例受对称分支支持；c-conflict 只宣称可能而非普遍冲突；c-revert-merge 与普通撤销分开；c-reset 区分提交与路径形式；c-strategy 明确 -s 与 -X 的差异。自然语言审阅修正了“Git 不看历史”的过度简化，改为“历史找基点，三侧树决定内容”。没有观众理解测试、浏览器交互观察、PowerPoint 打开、视频观看或听音。\n\n## 停止原因\n核心机制、关键反例和操作边界已有公开来源支持。按用户边界停在静态研究与作者源码；不运行 Git 变更实验或作者代码，不合成语音。不确定项是其它策略／驱动／复杂拓扑的实际输出，以及目标环境的运行和视觉表现；需要另行批准有边界的验证。内容哈希和 CLI 结构检查不证明结论为真。\n",
   "researchLog": [
     {
-      "action": "search",
-      "evidenceIds": [],
-      "id": "log-pin",
-      "occurredAt": "2026-09-14T17:45:45.670+08:00",
+      "action": "read",
+      "evidenceIds": [
+        "e-revert"
+      ],
+      "id": "l-revert-n",
+      "locator": "public/revert.adoc",
+      "occurredAt": "2026-09-16T04:49:48.732Z",
       "outcome": "success",
-      "query": "gh api repos/git/git/commits/v2.49.0 --jq '.sha'",
+      "readRange": "Lines 66–94",
+      "subquestionIds": [
+        "q-operations"
+      ],
+      "summary": "Completed current-version no-commit qualification before sealing."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-tags"
+      ],
+      "id": "l-tags",
+      "locator": "https://api.github.com/repos/git/git/tags?per_page=5",
+      "occurredAt": "2026-09-16T04:45:00Z",
+      "outcome": "success",
+      "readRange": "Entire response, five entries",
+      "subquestionIds": [
+        "q-version"
+      ],
+      "summary": "Fresh API version discovery; selected v2.55.0 rather than initially considered v2.53.0."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-tag"
+      ],
+      "id": "l-tag",
+      "locator": "https://api.github.com/repos/git/git/git/tags/5ce91c059e41090e7d2cffad39c04af8acf98dc1",
+      "occurredAt": "2026-09-16T04:46:50Z",
+      "outcome": "success",
+      "readRange": "First 2000 response characters",
+      "subquestionIds": [
+        "q-version"
+      ],
+      "summary": "Read tag identity, tagger date and target commit; signature remainder not read or independently verified."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-strategy"
+      ],
+      "id": "l-strategy",
+      "locator": "public/strategies.adoc",
+      "occurredAt": "2026-09-16T04:46:40Z",
+      "outcome": "success",
+      "readRange": "Entire file",
       "subquestionIds": [
         "q-base",
-        "q-rules",
-        "q-history"
+        "q-mechanism",
+        "q-strategy",
+        "q-operations"
       ],
-      "summary": "GitHub commit API resolved v2.49.0 to 683c54c999c301c2cd6f715c411407c413b1d84e; then exact raw files were fetched inertly."
+      "summary": "Read downloaded pinned manual; includes central revert paragraph and strategy counterexamples."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-base"
+      ],
+      "id": "l-base",
+      "locator": "public/merge-base.adoc",
+      "occurredAt": "2026-09-16T04:46:40Z",
+      "outcome": "success",
+      "readRange": "Lines 1–32",
+      "subquestionIds": [
+        "q-base",
+        "q-operations"
+      ],
+      "summary": "Read best common ancestor definition, not whole downloaded file."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-revert"
+      ],
+      "id": "l-revert",
+      "locator": "public/revert.adoc",
+      "occurredAt": "2026-09-16T04:46:40Z",
+      "outcome": "success",
+      "readRange": "Lines 1–65",
+      "subquestionIds": [
+        "q-operations"
+      ],
+      "summary": "Description and merge-mainline semantics read."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-reset"
+      ],
+      "id": "l-reset",
+      "locator": "public/reset.adoc",
+      "occurredAt": "2026-09-16T04:46:40Z",
+      "outcome": "success",
+      "readRange": "Lines 1–107",
+      "subquestionIds": [
+        "q-operations"
+      ],
+      "summary": "Read mode and path forms, not examples beyond this range."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-code-select"
+      ],
+      "id": "l-code-select",
+      "locator": "public/merge-ort.c",
+      "occurredAt": "2026-09-16T04:46:50Z",
+      "outcome": "success",
+      "readRange": "Lines 1260–1455",
+      "subquestionIds": [
+        "q-mechanism"
+      ],
+      "summary": "Inspected conditions and symmetric resolutions, no execution."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-code-base"
+      ],
+      "id": "l-code-base",
+      "locator": "public/merge-ort.c",
+      "occurredAt": "2026-09-16T04:46:50Z",
+      "outcome": "success",
+      "readRange": "Lines 5303–5450",
+      "subquestionIds": [
+        "q-base"
+      ],
+      "summary": "Read recursive base consolidation to three-tree call, no execution."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-code-content"
+      ],
+      "id": "l-code-content",
+      "locator": "public/merge-ort.c",
+      "occurredAt": "2026-09-16T04:47:30Z",
+      "outcome": "success",
+      "readRange": "Lines 2097–2295; 4325–4377",
+      "subquestionIds": [
+        "q-mechanism",
+        "q-limits"
+      ],
+      "summary": "Read content merge and conflict-report path; did not trace ll_merge internals."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-merge-intro"
+      ],
+      "id": "l-merge",
+      "locator": "https://raw.githubusercontent.com/git/git/e9019fcafe0040228b8631c30f97ae1adb61bcdc/Documentation/git-merge.adoc",
+      "occurredAt": "2026-09-16T04:47:30Z",
+      "outcome": "success",
+      "readRange": "First 5500 characters",
+      "subquestionIds": [
+        "q-mechanism"
+      ],
+      "summary": "Read intro and beginning of pre-merge checks; remainder truncated."
     },
     {
       "action": "failure",
       "evidenceIds": [],
-      "id": "log-404",
-      "locator": "https://raw.githubusercontent.com/git/git/683c54c999c301c2cd6f715c411407c413b1d84e/Documentation/git-merge.txt",
-      "occurredAt": "2026-09-14T17:45:45.670+08:00",
+      "id": "l-extractor-limit",
+      "locator": "https://git-scm.com/docs/merge-strategies",
+      "occurredAt": "2026-09-16T04:44:40Z",
       "outcome": "failure",
       "subquestionIds": [
-        "q-history"
-      ],
-      "summary": "Obsolete .txt documentation path returned HTTP 404. Contents API discovery found .adoc; later reads succeeded."
-    },
-    {
-      "action": "read",
-      "evidenceIds": [
-        "e-base-doc",
-        "e-merge-doc",
-        "e-strategies"
-      ],
-      "id": "log-docs",
-      "locator": "sources/Documentation__git-merge.adoc; sources/Documentation__git-merge-base.adoc; sources/Documentation__merge-strategies.adoc",
-      "occurredAt": "2026-09-14T17:50:12.932+08:00",
-      "outcome": "success",
-      "readRange": "merge 145-206,226-247; merge-base 20-27; strategies 1-24,75-90,105-128,154-165",
-      "subquestionIds": [
         "q-base",
-        "q-rules",
-        "q-history",
-        "q-safety"
+        "q-mechanism",
+        "q-strategy"
       ],
-      "summary": "Read exact fetched official manuals with line numbering; timestamp records completed read round including later strategy warning follow-up."
-    },
-    {
-      "action": "read",
-      "evidenceIds": [
-        "e-entry",
-        "e-identity",
-        "e-driver",
-        "e-diffs",
-        "e-overlap"
-      ],
-      "id": "log-code",
-      "locator": "sources/builtin__merge.c; merge-ort.c; merge-ll.c; xdiff__xmerge.c",
-      "occurredAt": "2026-09-14T17:50:12.932+08:00",
-      "outcome": "success",
-      "readRange": "builtin 740-765,1546-1618; ort 2049-2059,2090-2111,2170-2230; ll 103-149; xmerge 543-620,630-737",
-      "subquestionIds": [
-        "q-base",
-        "q-rules",
-        "q-history",
-        "q-safety"
-      ],
-      "summary": "Completed direct narrow trace read; timestamp records completed round. Minimal exact excerpts retained with real SHA256. No upstream execution."
-    },
-    {
-      "action": "failure",
-      "evidenceIds": [],
-      "id": "log-fixture-failure",
-      "locator": "experiment-results.json",
-      "occurredAt": "2026-09-14T17:47:10.697+08:00",
-      "outcome": "failure",
-      "subquestionIds": [
-        "q-rules",
-        "q-history"
-      ],
-      "summary": "Initial fixture commits did not include same-size copied edits reliably; outputs showed nothing-to-commit and unintended modify/delete. Rejected as evidence for intended scenarios and repeated in fresh fixtures-v2 with exact blob staging."
-    },
-    {
-      "action": "read",
-      "evidenceIds": [
-        "e-experiment"
-      ],
-      "id": "log-fixture-read",
-      "locator": "experiment-results-v2.json",
-      "occurredAt": "2026-09-14T17:47:58.097+08:00",
-      "outcome": "success",
-      "readRange": "Entire result record, all three scenarios",
-      "subquestionIds": [
-        "q-rules",
-        "q-history"
-      ],
-      "summary": "Ran trusted local Git fixture commands and read recorded source tips, result bytes, merge stdout/exit codes, stages and parent IDs. V2 inputs match intended scenarios."
+      "summary": "Simplified extractor returned only strategy option subsection, not desired opening or final revert paragraph. Similar partial views for merge-base (fork-point only), reset (tables) and revert (options). Switched to fixed raw sources; no claim of full-page read."
     }
   ],
   "schemaVersion": "1.0.0",
   "status": "complete",
-  "stopReason": "Pinned source, official docs, and three corrected local observations answer the bounded core questions; strategy breadth is intentionally excluded. Static HTML authoring is authorized, runtime QA deferred pending approval.",
+  "stopReason": "核心机制和反例完成静态一手核对；按预算及权限边界停在研究和作者源码，不将旧实验或未执行代码当新结果。",
   "subquestions": [
+    {
+      "claimIds": [
+        "c-version"
+      ],
+      "gapIds": [],
+      "id": "q-version",
+      "question": "本次核对的是哪一版本？",
+      "status": "answered"
+    },
     {
       "claimIds": [
         "c-base"
       ],
       "gapIds": [],
       "id": "q-base",
-      "question": "Which inputs does a three-way merge use?",
+      "question": "三方合并比较什么，基点如何决定？",
       "status": "answered"
     },
     {
       "claimIds": [
-        "c-one-side",
+        "c-return",
         "c-independent",
+        "c-counter",
         "c-conflict"
       ],
       "gapIds": [],
-      "id": "q-rules",
-      "question": "How do one-sided, separated and incompatible same-region edits differ?",
+      "id": "q-mechanism",
+      "question": "净撤销何以返回，什么反例会改变结果？",
       "status": "answered"
     },
     {
       "claimIds": [
-        "c-snapshots",
-        "c-ff"
+        "c-revert",
+        "c-revert-merge",
+        "c-reset"
       ],
       "gapIds": [],
-      "id": "q-history",
-      "question": "Does Git replay commits, and must every merge create a new commit?",
+      "id": "q-operations",
+      "question": "普通 revert、merge revert、reset 有何区别？",
       "status": "answered"
     },
     {
       "claimIds": [
-        "c-safety"
+        "c-strategy"
       ],
       "gapIds": [],
-      "id": "q-safety",
-      "question": "Does a textual merge outcome establish behavioral correctness?",
+      "id": "q-strategy",
+      "question": "哪些策略边界不可推广？",
       "status": "answered"
+    },
+    {
+      "claimIds": [],
+      "gapIds": [
+        "g-runtime"
+      ],
+      "id": "q-limits",
+      "question": "复杂拓扑、驱动与实际环境的结果是否已经验证？",
+      "status": "out-of-scope"
     }
   ],
-  "title": "Git merge: three snapshots, two comparisons, one decision"
+  "title": "为什么 Git 合并会带回已撤销的修改？"
 }

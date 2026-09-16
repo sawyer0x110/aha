@@ -2,24 +2,105 @@
   "schemaVersion": "1.0.0",
   "format": "video",
   "language": "en",
-  "researchHash": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d",
-  "title": "Aha: turn a difficult question into a visual explanation",
+  "researchHash": "f100d4b64f1c41b3e48eaeed8fe88f71609f88c274b2fc3f298de3b672b484b3",
+  "title": "Aha: how evidence becomes explanation",
   "status": "authored",
   "entry": "html/index.html",
   "coverage": [
-    { "id": "opening", "claimIds": ["c-purpose"] },
-    { "id": "anc/git", "claimIds": ["c-examples"] },
-    { "id": "workflow", "claimIds": ["c-purpose", "c-dossier"] },
-    { "id": "formats", "claimIds": ["c-formats"] },
-    { "id": "closing", "claimIds": ["c-qa"] }
+    {
+      "id": "opening",
+      "claimIds": [
+        "c-purpose"
+      ]
+    },
+    {
+      "id": "journey",
+      "claimIds": [
+        "c-journey"
+      ]
+    },
+    {
+      "id": "snapshot",
+      "claimIds": [
+        "c-snapshot"
+      ]
+    },
+    {
+      "id": "revision",
+      "claimIds": [
+        "c-snapshot"
+      ]
+    },
+    {
+      "id": "formats",
+      "claimIds": [
+        "c-media"
+      ]
+    },
+    {
+      "id": "anc-ideal",
+      "claimIds": [
+        "c-anc"
+      ]
+    },
+    {
+      "id": "anc-change",
+      "claimIds": [
+        "c-anc"
+      ]
+    },
+    {
+      "id": "git-revert",
+      "claimIds": [
+        "c-git"
+      ]
+    },
+    {
+      "id": "git-conflict",
+      "claimIds": [
+        "c-git"
+      ]
+    },
+    {
+      "id": "boundary",
+      "claimIds": [
+        "c-limits",
+        "c-host"
+      ]
+    },
+    {
+      "id": "engine",
+      "claimIds": [
+        "c-video"
+      ]
+    },
+    {
+      "id": "permission",
+      "claimIds": [
+        "c-execution"
+      ]
+    },
+    {
+      "id": "sizing",
+      "claimIds": [
+        "c-image"
+      ]
+    },
+    {
+      "id": "layout",
+      "claimIds": [
+        "c-layout"
+      ]
+    },
+    {
+      "id": "closing",
+      "claimIds": [
+        "c-limits",
+        "c-host"
+      ]
+    }
   ],
-  "omissions": [
-    { "claimId": "c-identity", "reason": "Version hash mechanics are not central to a first-time product introduction; detailed HTML notes and research retain them." },
-    { "claimId": "c-permission", "reason": "Local execution policy is enforced during production and retained in HTML details, not narrated as the product's main benefit." },
-    { "claimId": "c-video", "reason": "Speech-plan identity mechanics are enforced in production but omitted from the user-facing introduction." },
-    { "claimId": "c-language", "reason": "Default language rules are secondary and retained in the companion HTML." },
-    { "claimId": "c-distribution", "reason": "Installation details are retained in the companion HTML and report rather than this short introduction." }
-  ],
+  "omissions": [],
   "width": 1280,
   "height": 720
 }

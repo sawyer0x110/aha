@@ -1,99 +1,121 @@
 {
   "schemaVersion": "1.0.0",
   "status": "authored",
-  "researchHash": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d",
-  "sourceHash": "3945fa289781baf14d094d1e1c962af2c3f7cd53cfe38a9822b7069e9a1471a9",
+  "researchHash": "f100d4b64f1c41b3e48eaeed8fe88f71609f88c274b2fc3f298de3b672b484b3",
+  "sourceHash": "5a56a0d7b620fe9f272b3da8251e64e065494b223b24e5320f40579682b58bc8",
   "provider": "provided-audio",
-  "voice": "edge-jenny-authorized-recordings",
+  "voice": "aria-approved-recordings",
   "rate": "+0%",
   "duration": {
-    "minSeconds": 75,
-    "maxSeconds": 150
+    "minSeconds": 140,
+    "maxSeconds": 155
   },
   "segments": [
     {
-      "id": "meet-aha-a",
-      "text": "Meet Aha: two skills that help your AI agent investigate a difficult question and create a visual explanation.",
+      "id": "opening",
+      "text": "Aha separates finding supported answers from designing understandable explanations. Two portable skills connect these tasks.",
       "claimIds": [
         "c-purpose"
       ]
     },
     {
-      "id": "meet-aha-b",
-      "text": "The goal is not just a longer answer. It is something another person can explore, present, or watch.",
+      "id": "journey",
+      "text": "Start with the reader's question. Research produces a report; explanation authors the requested medium. Skill dispatch is not automatic.",
       "claimIds": [
-        "c-purpose"
+        "c-journey"
       ]
     },
     {
-      "id": "headphones-a",
-      "text": "Take noise-cancelling headphones. Why does the rumble fade while voices remain? This existing web example combines a diagram with a phase-mismatch slider.",
+      "id": "snapshot",
+      "text": "The Research Dossier preserves claims, evidence and gaps. Its hash identifies a snapshot; it does not prove truth.",
       "claimIds": [
-        "c-examples"
+        "c-snapshot"
       ]
     },
     {
-      "id": "headphones-b",
-      "text": "Readers can explore an ideal model. We are showing a screenshot, not measuring a real pair of headphones.",
+      "id": "revision",
+      "text": "New evidence creates a new snapshot. Existing works remain bound to the research they used.",
       "claimIds": [
-        "c-examples"
+        "c-snapshot"
       ]
     },
     {
-      "id": "git-a",
-      "text": "Or take Git merge. How can a merge bring back a reverted change? Another existing web explanation puts history, files, and results together.",
+      "id": "formats",
+      "text": "HTML offers exploration, PNG one reading path, PowerPoint an editable sequence, and video a changing mechanism. Each needs its own composition.",
       "claimIds": [
-        "c-examples"
+        "c-media"
       ]
     },
     {
-      "id": "git-b",
-      "text": "Readers switch between three recorded cases to compare what happened. This is an explanation of saved results, not a live Git run.",
+      "id": "anc-ideal",
+      "text": "The ANC interface computes incoming pressure, speaker pressure and their sum. In this ideal equal-amplitude tone model, opposite pressures cancel.",
       "claimIds": [
-        "c-examples"
+        "c-anc"
       ]
     },
     {
-      "id": "workflow-a",
-      "text": "Start with your question and your audience. Aha guides the agent to investigate sources, keep evidence and open questions, then design the explanation for the chosen medium.",
+      "id": "anc-change",
+      "text": "Change the phase. A residual appears, although input amplitudes stay equal. This model is not measured headphone performance.",
       "claimIds": [
-        "c-purpose",
-        "c-dossier"
+        "c-anc"
       ]
     },
     {
-      "id": "workflow-b",
-      "text": "Use the research skill for a report, or the explanation skill for a visual artifact, with research when needed.",
+      "id": "git-revert",
+      "text": "The Git example selects embedded records. After a revert, ours matches the base; their retained change appears in the result.",
       "claimIds": [
-        "c-purpose"
+        "c-git"
       ]
     },
     {
-      "id": "formats-a",
-      "text": "Choose the experience your reader needs. An interactive web page to explore. A single image to scan. Editable slides to present. Or a narrated video to watch.",
+      "id": "git-conflict",
+      "text": "Select the conflict record. Different replacements leave an unresolved file; HEAD stays at ours. The page does not run Git.",
       "claimIds": [
-        "c-formats"
+        "c-git"
       ]
     },
     {
-      "id": "formats-b",
-      "text": "Each requested format is authored for its purpose, rather than automatically converting one finished piece into all the others.",
+      "id": "boundary",
+      "text": "Aha checks identities, resources and declared coverage. People still judge evidence, language and real output. A receipt cannot replace them.",
       "claimIds": [
-        "c-formats"
+        "c-limits",
+        "c-host"
       ]
     },
     {
-      "id": "takeaway-a",
-      "text": "That is Aha: research the question, design the explanation, and give people something they can use. Think of learning a difficult idea, explaining a codebase, or sharing what you found.",
+      "id": "engine",
+      "text": "Video uses browser frames and FFmpeg at thirty frames per second, with segment-level captions. Pixel changes alone do not prove meaningful animation.",
       "claimIds": [
-        "c-purpose"
+        "c-video"
       ]
     },
     {
-      "id": "takeaway-b",
-      "text": "Review the sources and the finished work, then judge whether your audience can actually understand it.",
+      "id": "permission",
+      "text": "Local execution and online speech need separate permission. Visual source edits invalidate the current plan and audio binding.",
       "claimIds": [
-        "c-qa"
+        "c-execution"
+      ]
+    },
+    {
+      "id": "sizing",
+      "text": "Choose image dimensions for the request, destination and reading width—not the scaffold's canvas.",
+      "claimIds": [
+        "c-image"
+      ]
+    },
+    {
+      "id": "layout",
+      "text": "Examples hold works. Evaluation folders separate artifact review from skill comparisons. Defined cases are not measured effectiveness.",
+      "claimIds": [
+        "c-layout"
+      ]
+    },
+    {
+      "id": "closing",
+      "text": "Preserve evidence. Design relationships. Inspect the result. Aha makes this process traceable; it does not replace its judgments.",
+      "claimIds": [
+        "c-limits",
+        "c-host"
       ]
     }
   ]

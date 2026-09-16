@@ -1,0 +1,79 @@
+{
+  "provider": "edge-tts",
+  "version": "7.2.8",
+  "voice": "en-US-AriaNeural",
+  "rate": "+0%",
+  "method": "Original synthesized WAV bytes equal the published imported WAV bytes; stored once without duplication.",
+  "recordings": [
+    {
+      "id": "opening",
+      "file": "../audio/segment-001.wav",
+      "sha256": "79caf38567accee507ec4294437ed6ffedab508c7baab90e87bc9849b691e53e"
+    },
+    {
+      "id": "ear-sum",
+      "file": "../audio/segment-002.wav",
+      "sha256": "49956c9978fd7a8fc7dd2b1384afa923521d8abaaa7dee86cbd27e84a2c5e6c6"
+    },
+    {
+      "id": "matched-pressure",
+      "file": "../audio/segment-003.wav",
+      "sha256": "7ec93a8f069adb06f328e2eaaeaa7230f67961f3f2847670ba0f21cb1c8936ed"
+    },
+    {
+      "id": "phase-slip",
+      "file": "../audio/segment-004.wav",
+      "sha256": "992236de936dc2d052c5bd6722a1d5273b575b3619855e82106334e88a79a9a2"
+    },
+    {
+      "id": "same-delay",
+      "file": "../audio/segment-005.wav",
+      "sha256": "6b949256208685c27ba71e3402e06dbbb5cc7fdaba1ee62e4c8b05427fe04405"
+    },
+    {
+      "id": "no-wall",
+      "file": "../audio/segment-006.wav",
+      "sha256": "a06a31573f5f70fbaddcababdac61376b0e2f4eb0a5d3514daa9c26ee90d3139"
+    },
+    {
+      "id": "two-layers",
+      "file": "../audio/segment-007.wav",
+      "sha256": "88c52b8be46c80801b7e932b52e7dc36fd92c569a9894d78364349268c9a307f"
+    },
+    {
+      "id": "residual-voice",
+      "file": "../audio/segment-008.wav",
+      "sha256": "35db01016f75198d36bfefd640307fe986234183ad1291f18755280dd3bf55ee"
+    },
+    {
+      "id": "voice-counterexample",
+      "file": "../audio/segment-009.wav",
+      "sha256": "5f695e46ab56eb2839cb004b7b41815ba1669860d37b929db16bc65eb55bb904"
+    },
+    {
+      "id": "counterexample-bound",
+      "file": "../audio/segment-010.wav",
+      "sha256": "a2377ff0a6bba2b889df54d867881b5f171d49e4bd65a825f5578cde8d21ba2a"
+    },
+    {
+      "id": "check-mode",
+      "file": "../audio/segment-011.wav",
+      "sha256": "1f45e6e19c77f8cdfc3c9865716776f992a91b4d0a88374452a608bfabee332f"
+    },
+    {
+      "id": "check-fit",
+      "file": "../audio/segment-012.wav",
+      "sha256": "2c12df05a6f0a9d0e69cc4eb8dc04c1975d8a3d76041c3343c411398c8d9d8f3"
+    },
+    {
+      "id": "measurement-limit",
+      "file": "../audio/segment-013.wav",
+      "sha256": "03b66dc27ce9d00f6997decc95d1594649224daecb12e7b5fcad49ce0c18c075"
+    },
+    {
+      "id": "closing",
+      "file": "../audio/segment-014.wav",
+      "sha256": "762e0df6ce46dd4acc33a3111adca99d41d99c8c58a26c62992aeed70f00e495"
+    }
+  ]
+}

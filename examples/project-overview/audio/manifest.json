@@ -1,80 +1,98 @@
 {
   "schemaVersion": "1.0.0",
-  "planHash": "8e7494725ad0e9bd18a2b60ad3cff5cdfeaffef008404dc7c6e9abcc9242fcb1",
+  "planHash": "7239c0f95a233c30073c2696968f46777cd3f7a31631e1bc4b1f9f9b80eb3309",
   "provider": "provided-audio",
-  "voice": "edge-jenny-authorized-recordings",
+  "voice": "aria-approved-recordings",
   "segments": [
     {
-      "id": "meet-aha-a",
+      "id": "opening",
       "filename": "segment-001.wav",
-      "frames": 213,
-      "sha256": "7f4285dac7e0deae9ff9ea8aa34536a588c7a3f53edf642520fcb14f46e68929"
+      "frames": 275,
+      "sha256": "ae56f3ecc12f7b7b2ef408ae5e99911974274203393a204063ce9a5cc927618c"
     },
     {
-      "id": "meet-aha-b",
+      "id": "journey",
       "filename": "segment-002.wav",
-      "frames": 225,
-      "sha256": "4b667cf24367d2d7b9b3ac110f83ff9414a74819148f82e4561aa76ce50d9e2c"
+      "frames": 326,
+      "sha256": "0b34458e2ce50465ac155a0096ebbaed840af6de54dacf5e2d39e759ec604160"
     },
     {
-      "id": "headphones-a",
+      "id": "snapshot",
       "filename": "segment-003.wav",
-      "frames": 327,
-      "sha256": "ffc73e9e3435dff9120d2ea1791822a892bde4a9fd1d7ad88910eddbc2561af8"
+      "frames": 273,
+      "sha256": "05ff837a7f43d30953601e948dbff8b76f1b18b446868eeecdcaae39a499432f"
     },
     {
-      "id": "headphones-b",
+      "id": "revision",
       "filename": "segment-004.wav",
-      "frames": 222,
-      "sha256": "6e41827d256174b0383f4a5fefbd1eabf3e10cb9a3e047c9a1ed419d82b61978"
+      "frames": 217,
+      "sha256": "f2d4e93bc940095495a421b92674454b6bc906583b4f6f767e3562fbc9254c10"
     },
     {
-      "id": "git-a",
+      "id": "formats",
       "filename": "segment-005.wav",
-      "frames": 324,
-      "sha256": "dce24bdd2e19ba183a72e8de53aa41997d2932013522cca6f259c0e819d35a4f"
+      "frames": 355,
+      "sha256": "8dc70b1a63dc5b49677ad07f7a0c4f7310450fb6e18ac368d9eef6ea6858be07"
     },
     {
-      "id": "git-b",
+      "id": "anc-ideal",
       "filename": "segment-006.wav",
-      "frames": 267,
-      "sha256": "28fbfd05f815ea59ba555a34fb62fa3cfeb9b8c30c535ce985d96886006d3937"
+      "frames": 319,
+      "sha256": "f8dea4f0953bfb404f249415654f76e6a72a172360ae5d6d4a40dca1c1eb4edc"
     },
     {
-      "id": "workflow-a",
+      "id": "anc-change",
       "filename": "segment-007.wav",
-      "frames": 345,
-      "sha256": "27845111a9c5313ab9989e10fc198be1efcf44cb1c9db89df2624d5d2ca0beab"
+      "frames": 304,
+      "sha256": "ffccdbebf10018205f2556c7d3ce2c109f8f6dcbed6a788c1009a0b6d313a5a4"
     },
     {
-      "id": "workflow-b",
+      "id": "git-revert",
       "filename": "segment-008.wav",
-      "frames": 214,
-      "sha256": "46602b2fc9b00ec76776e025e2839e3d849f5539b7e3f9d197f89ab98712d04c"
+      "frames": 265,
+      "sha256": "566e7fd610d5840fbdf444eec3c9b8a16860e37ad8837964216cf730bda2b5ba"
     },
     {
-      "id": "formats-a",
+      "id": "git-conflict",
       "filename": "segment-009.wav",
-      "frames": 405,
-      "sha256": "bcf9336215cbcf0836751047c7d1c12fded4be40bd4f857f65ae7899ebde01fa"
+      "frames": 299,
+      "sha256": "04b31d63693589f1f9aa71204f9cf91f1a736c2d464dbec1a93ae703036fc22f"
     },
     {
-      "id": "formats-b",
+      "id": "boundary",
       "filename": "segment-010.wav",
-      "frames": 235,
-      "sha256": "4663ca6d73044c2d28ae4a8446a8aa636773e01b7bcc4aa426d78378e51abc34"
+      "frames": 339,
+      "sha256": "6773cf293b837ab3a7bc102fa3d6c21a797105f5c10c5a8acb75700ef3852380"
     },
     {
-      "id": "takeaway-a",
+      "id": "engine",
       "filename": "segment-011.wav",
-      "frames": 366,
-      "sha256": "bd31aec65cebb6b8246f68e127e4c27310d361917730564be39576094f699fd7"
+      "frames": 338,
+      "sha256": "5013fb66908a4fd62addef6a9c5c355ff4562617b194c65fd4779fae067b36e2"
     },
     {
-      "id": "takeaway-b",
+      "id": "permission",
       "filename": "segment-012.wav",
-      "frames": 187,
-      "sha256": "c68cc8dd69496c75857250c9bfd68963ff63f0a8317493d9de05de66916572a7"
+      "frames": 271,
+      "sha256": "f1bec70cb70bbab40c2e65722465390824be5544679295ab30e8a7704416a4ce"
+    },
+    {
+      "id": "sizing",
+      "filename": "segment-013.wav",
+      "frames": 203,
+      "sha256": "d1fcb6fc0f346d5fcfbc6a48bc6089559cbbd53c373a54afcb104194c6e796ef"
+    },
+    {
+      "id": "layout",
+      "filename": "segment-014.wav",
+      "frames": 330,
+      "sha256": "d8628d95567dc73b39f511aa6146ffc703ffce4249a8f2f899d0efe2f874b5bf"
+    },
+    {
+      "id": "closing",
+      "filename": "segment-015.wav",
+      "frames": 339,
+      "sha256": "2e89de2e66dce87fba70962fa2de93e3b5b437fa02b346ff157559aaee85a813"
     }
   ]
 }

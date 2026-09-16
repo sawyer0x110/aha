@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why voices remain after aircraft rumble fades</title><script>(() => {
+  const param = new URLSearchParams(window.location.search).get("scoutTheme");
+  const theme =
+    param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  document.documentElement.setAttribute("data-theme", theme);
+})();</script><style>
+:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--cp-bg); color: var(--cp-text); font: 16px/1.6 "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif; }
+code, pre { font-family: Consolas, "Courier New", Courier, monospace; }
+a { color: var(--cp-link); }
+button { font: inherit; min-height: 44px; padding: 8px 12px; border: 1px solid var(--cp-border); border-radius: 0.625rem; color: var(--cp-text); background: var(--cp-surface); cursor: pointer; }
+button:hover { background: var(--cp-accent-soft); }
+:focus-visible { outline: 3px solid var(--cp-accent); outline-offset: 3px; }
+
+:root { --cp-bookend:#292929; --cp-bookend-text:#dedede; --cp-paper:#fcfbf8; --cp-ink:#242424; --cp-rose:#b11f4b; }
+html,body { width:1800px; height:1200px; overflow:hidden; }
+main { height:1200px; background:var(--cp-paper); color:var(--cp-ink); font-size:33px; line-height:1.35; }
+header { height:240px; padding:28px 64px; background:var(--cp-bookend); color:var(--cp-bookend-text); }
+h1 { margin:0 0 16px; font-size:57px; line-height:1.06; max-width:1620px; }
+header p { font-size:30px; margin:0; max-width:1600px; }
+.middle { height:792px; padding:24px 64px; }
+h2 { font-size:38px; margin:0 0 18px; line-height:1.15; }
+p { margin:12px 0; } .diagram { width:100%; height:235px; }
+svg text { font-family:inherit; fill:var(--cp-ink); font-size:28px; }
+.lower { display:grid; grid-template-columns:1fr 1fr; gap:56px; margin-top:16px; font-size:29px; line-height:1.25; }
+.lower h2 {font-size:35px;margin-bottom:12px}
+.source { font-size:24px; line-height:1.3; margin-top:12px; }
+.number { font-size:48px; font-weight:700; color:var(--cp-rose); }
+footer { height:168px; padding:20px 64px; background:var(--cp-bookend); color:var(--cp-bookend-text); }
+footer p { font-size:29px; margin:0 0 8px; } footer .source{font-size:23px}
+a {color:inherit;}
+
+</style></head><body>
+<main>
+<header><h1>Why voices remain after aircraft rumble fades</h1><p>Active noise cancellation reduces pressure at the ear—not a category called “noise.”<br>Parts of speech can be quieter and still be audible.</p></header>
+<div class="middle">
+<h2 id="pressure-strip">One meeting point. Two pressure contributions.</h2>
+<svg class="diagram" viewBox="0 0 1672 258" role="img" aria-label="Incoming noise passes a physical barrier; a loudspeaker adds control pressure; both reach the ear and sum there.">
+<text x="0" y="36">Incoming noise</text><path d="M5 94 C45 44 85 144 125 94 S205 44 245 94 S325 144 365 94" stroke="var(--cp-ink)" stroke-width="5" fill="none"/>
+<rect x="440" y="50" width="24" height="136" fill="var(--cp-border)"/><text x="410" y="225">Seal / ear cup</text>
+<path d="M490 94 H800" stroke="var(--cp-ink)" stroke-width="4"/><path d="M778 80 L802 94 L778 108" fill="var(--cp-ink)"/>
+<text x="590" y="180">Speaker</text><path d="M720 178 Q785 178 836 120" stroke="var(--cp-rose)" stroke-width="5" stroke-dasharray="10 8" fill="none"/>
+<circle cx="890" cy="96" r="64" fill="var(--cp-paper)" stroke="var(--cp-ink)" stroke-width="4"/><text x="863" y="105">EAR</text>
+<text x="1018" y="63">Residual = incoming + control</text><text x="1018" y="112">Match amplitude AND opposite phase</text><text x="1018" y="158">after both paths reach this point.</text>
+<text x="0" y="220">Solid: incoming pressure</text><text x="640" y="225">Dashed: added control pressure</text>
+</svg>
+<p id="barrier-and-control">Passive barriers change transmission, often helping higher frequencies. ANC adds pressure, often helping lower ones. ANC off leaves the barrier in place.</p>
+<div class="lower">
+<div id="time-comparison"><h2>Timing becomes tighter</h2><p>Assumed error: <strong>0.10 ms</strong><br><strong>3.6° at 100 Hz → 36° at 1000 Hz</strong></p><p>More phase per delay does not create<br>a universal frequency cutoff.</p><p class="source">Illustrative, not measured: phase error = 2πfτ.</p></div>
+<div id="voice-answer"><h2>Speech is not immune</h2><p>Some voice components shrink;<br>others remain audible.</p><p>Active control of low-frequency own-voice<br>occlusion disproves immunity—not all limits.</p><p id="mode-check" class="source">Check fit and mode. Transparency lets outside sound in.</p></div>
+</div></div>
+<footer><p><strong>Think “what remains at my ear?”</strong> Fit, paths, timing and mode matter—not just “engine” versus “voice.”</p><p class="source">Sources: <a href="https://www.iks.rwth-aachen.de/forschung/audio/active-noise-control/">RWTH IKS: Active Noise Control</a> · <a href="https://arxiv.org/html/2509.15864v1">Hilgemann et al., §2</a> · <a href="https://helpguide.sony.net/mdr/wh1000xm5/v1/en/contents/TP1000534745.html">Sony WH-1000XM5 guide</a> · <a href="https://support.apple.com/en-us/108918">Apple listening modes</a></p><p class="source">Original schematic; no new acoustic test. Sources accessed 16 September 2026.</p></footer>
+</main>
+</body></html>

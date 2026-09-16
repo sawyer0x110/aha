@@ -1,0 +1,618 @@
+{
+  "html": [
+    {
+      "width": 1280,
+      "language": "en",
+      "title": "How does Aha turn research into an explanation?",
+      "scrollWidth": 1280,
+      "buttons": [
+        {
+          "text": "English",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "中文",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "Reset",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "Revert + one net change",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "Separated edits",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "Conflicting replacements",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "重置",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "撤销后，只有一边留下变化",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "两处分离修改",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "同一位置的冲突替换",
+          "label": null,
+          "language": null
+        }
+      ],
+      "inputs": [
+        {
+          "type": "range",
+          "id": "en-phase",
+          "min": "0",
+          "max": "180",
+          "value": "0"
+        },
+        {
+          "type": "range",
+          "id": "zh-phase",
+          "min": "0",
+          "max": "180",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "language": "zh-CN",
+      "title": "Aha 怎样把研究变成可解释的视觉作品？",
+      "scrollWidth": 1280,
+      "visibleInputs": [
+        {
+          "type": "range",
+          "id": "zh-phase",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "title": "How does Aha turn research into an explanation?",
+      "scrollWidth": 390,
+      "buttons": [
+        {
+          "text": "English",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "中文",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "Reset",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "Revert + one net change",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "Separated edits",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "Conflicting replacements",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "重置",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "撤销后，只有一边留下变化",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "两处分离修改",
+          "label": null,
+          "language": null
+        },
+        {
+          "text": "同一位置的冲突替换",
+          "label": null,
+          "language": null
+        }
+      ],
+      "inputs": [
+        {
+          "type": "range",
+          "id": "en-phase",
+          "min": "0",
+          "max": "180",
+          "value": "0"
+        },
+        {
+          "type": "range",
+          "id": "zh-phase",
+          "min": "0",
+          "max": "180",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "language": "zh-CN",
+      "title": "Aha 怎样把研究变成可解释的视觉作品？",
+      "scrollWidth": 390,
+      "visibleInputs": [
+        {
+          "type": "range",
+          "id": "zh-phase",
+          "value": "0"
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "width": 1280,
+      "language": "en",
+      "slider": 0,
+      "action": "keyboard End",
+      "value": "180",
+      "visibleTextChanged": true,
+      "changedLines": [
+        " Phase mismatch from ideal opposition 180° ",
+        "2.00",
+        "180° mismatch: residual peak ratio 2.00. Equal-amplitude tone model, not perceived loudness or a headset measurement."
+      ]
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "button": "Reset",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        " Phase mismatch from ideal opposition 0° ",
+        "0.00",
+        "0° mismatch: residual peak ratio 0.00. Equal-amplitude tone model, not perceived loudness or a headset measurement."
+      ]
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "button": "Revert + one net change",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "Embedded record · exit 0. Ours equals the base after reverting; the result retains their net change."
+      ]
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "button": "Separated edits",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "…",
+        "retries = 2",
+        "…",
+        "retries = 2",
+        "…",
+        "retries = 4",
+        "…",
+        "retries = 4",
+        "Embedded record · exit 0. Separated text ranges allow both edits to remain; ellipses omit unchanged context."
+      ]
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "button": "Conflicting replacements",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "timeout = 90",
+        "<<<<<<< ours",
+        "60",
+        "||||||| base",
+        "30",
+        "=======",
+        "90",
+        ">>>>>>> theirs",
+        "HEAD stays at ours",
+        "Embedded record · exit 1. Conflicting replacements leave an unresolved working file and index stages; no merge commit. Markers are abbreviated here."
+      ]
+    },
+    {
+      "width": 1280,
+      "language": "zh",
+      "slider": 0,
+      "action": "keyboard End",
+      "value": "180",
+      "visibleTextChanged": true,
+      "changedLines": [
+        " 相对理想反向关系的相位偏差 180° ",
+        "2.00",
+        "偏差 180°：残余峰值比为 2.00。等幅单音模型，不是感知响度或耳机实测。"
+      ]
+    },
+    {
+      "width": 1280,
+      "language": "zh",
+      "button": "重置",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        " 相对理想反向关系的相位偏差 0° ",
+        "0.00",
+        "偏差 0°：残余峰值比为 0.00。等幅单音模型，不是感知响度或耳机实测。"
+      ]
+    },
+    {
+      "width": 1280,
+      "language": "zh",
+      "button": "撤销后，只有一边留下变化",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "内嵌记录 · 退出码 0。我们撤销后等于基线；结果保留对方留下的净变化。"
+      ]
+    },
+    {
+      "width": 1280,
+      "language": "zh",
+      "button": "两处分离修改",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "…",
+        "retries = 2",
+        "…",
+        "retries = 2",
+        "…",
+        "retries = 4",
+        "…",
+        "retries = 4",
+        "内嵌记录 · 退出码 0。分离的修改区域让两项变化都保留；省略号代表未展示的稳定上下文。"
+      ]
+    },
+    {
+      "width": 1280,
+      "language": "zh",
+      "button": "同一位置的冲突替换",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "timeout = 90",
+        "<<<<<<< ours",
+        "60",
+        "||||||| base",
+        "30",
+        "=======",
+        "90",
+        ">>>>>>> theirs",
+        "HEAD 留在我们这边",
+        "内嵌记录 · 退出码 1。冲突替换留下未解决的工作文件与索引 stage，未生成合并提交。此处标记经过简写。"
+      ]
+    },
+    {
+      "width": 1280,
+      "action": "keyboard English selection",
+      "language": "en"
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "slider": 0,
+      "action": "keyboard End",
+      "value": "180",
+      "visibleTextChanged": true,
+      "changedLines": [
+        " Phase mismatch from ideal opposition 180° ",
+        "2.00",
+        "180° mismatch: residual peak ratio 2.00. Equal-amplitude tone model, not perceived loudness or a headset measurement."
+      ]
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "button": "Reset",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        " Phase mismatch from ideal opposition 0° ",
+        "0.00",
+        "0° mismatch: residual peak ratio 0.00. Equal-amplitude tone model, not perceived loudness or a headset measurement."
+      ]
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "button": "Revert + one net change",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "Embedded record · exit 0. Ours equals the base after reverting; the result retains their net change."
+      ]
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "button": "Separated edits",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "…",
+        "retries = 2",
+        "…",
+        "retries = 2",
+        "…",
+        "retries = 4",
+        "…",
+        "retries = 4",
+        "Embedded record · exit 0. Separated text ranges allow both edits to remain; ellipses omit unchanged context."
+      ]
+    },
+    {
+      "width": 390,
+      "language": "en",
+      "button": "Conflicting replacements",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "timeout = 90",
+        "<<<<<<< ours",
+        "60",
+        "||||||| base",
+        "30",
+        "=======",
+        "90",
+        ">>>>>>> theirs",
+        "HEAD stays at ours",
+        "Embedded record · exit 1. Conflicting replacements leave an unresolved working file and index stages; no merge commit. Markers are abbreviated here."
+      ]
+    },
+    {
+      "width": 390,
+      "language": "zh",
+      "slider": 0,
+      "action": "keyboard End",
+      "value": "180",
+      "visibleTextChanged": true,
+      "changedLines": [
+        " 相对理想反向关系的相位偏差 180° ",
+        "2.00",
+        "偏差 180°：残余峰值比为 2.00。等幅单音模型，不是感知响度或耳机实测。"
+      ]
+    },
+    {
+      "width": 390,
+      "language": "zh",
+      "button": "重置",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        " 相对理想反向关系的相位偏差 0° ",
+        "0.00",
+        "偏差 0°：残余峰值比为 0.00。等幅单音模型，不是感知响度或耳机实测。"
+      ]
+    },
+    {
+      "width": 390,
+      "language": "zh",
+      "button": "撤销后，只有一边留下变化",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "内嵌记录 · 退出码 0。我们撤销后等于基线；结果保留对方留下的净变化。"
+      ]
+    },
+    {
+      "width": 390,
+      "language": "zh",
+      "button": "两处分离修改",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "…",
+        "retries = 2",
+        "…",
+        "retries = 2",
+        "…",
+        "retries = 4",
+        "…",
+        "retries = 4",
+        "内嵌记录 · 退出码 0。分离的修改区域让两项变化都保留；省略号代表未展示的稳定上下文。"
+      ]
+    },
+    {
+      "width": 390,
+      "language": "zh",
+      "button": "同一位置的冲突替换",
+      "action": "pointer click",
+      "visibleTextChanged": true,
+      "changedLines": [
+        "timeout = 90",
+        "<<<<<<< ours",
+        "60",
+        "||||||| base",
+        "30",
+        "=======",
+        "90",
+        ">>>>>>> theirs",
+        "HEAD 留在我们这边",
+        "内嵌记录 · 退出码 1。冲突替换留下未解决的工作文件与索引 stage，未生成合并提交。此处标记经过简写。"
+      ]
+    },
+    {
+      "width": 390,
+      "action": "keyboard English selection",
+      "language": "en"
+    }
+  ],
+  "video": [
+    {
+      "label": "a",
+      "sha256": "b8ef33a41f3dc2b5b135a75d6285fd70acee5fd95c69c15eb6a345e9c5dc305e"
+    },
+    {
+      "label": "b",
+      "sha256": "a1404f95b237eab4f6514a6ec2e116a0fa5877e37b9c35e881f9f2d9cdbceb4e"
+    },
+    {
+      "label": "a-replay",
+      "sha256": "b8ef33a41f3dc2b5b135a75d6285fd70acee5fd95c69c15eb6a345e9c5dc305e"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "opening",
+      "text": "AHA / RESEARCH → EXPLANATION\nHow does an answer become understandable?\n\nTwo portable skills. One traceable research snapshot.\nDifferent media, deliberately authored.\n\nSource: Aha 31ff1331 · fresh read-only investigation",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "journey",
+      "text": "THE USER JOURNEY\nAnswer first. Author second.\nQuestion\nPurpose + scope\naha-research\nReport + evidence + gaps\naha-explain\nMedium-specific source\n\nHost-led workflow—not automatic skill dispatch.\n\nSource: the two SKILL.md workflows",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "snapshot",
+      "text": "RESEARCH IDENTITY\nA snapshot keeps a particular answer traceable.\nEvidence\nRead context\nInert source excerpt\nDossier A\nReport · claims · gaps\ncontentHash A\nDossier B\nNew evidence\nNew contentHash\n\nOld works stay bound to A. New evidence does not silently rewrite them.\n\nSource: src/research/dossier.ts · identity is not truth",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "revision",
+      "text": "RESEARCH IDENTITY\nA snapshot keeps a particular answer traceable.\nEvidence\nRead context\nInert source excerpt\nDossier A\nReport · claims · gaps\ncontentHash A\nDossier B\nNew evidence\nNew contentHash\n\nOld works stay bound to A. New evidence does not silently rewrite them.\n\nSource: src/research/dossier.ts · identity is not truth",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "formats",
+      "text": "MEDIUM-SPECIFIC AUTHORSHIP\nReuse evidence, not the same screenshot.\nHTML\nExplore\nPNG\nRead one path\nPPTX\nEdit + present\nVideo\nSee change\n\nEach format gets its own authored source and coverage.\n\nSource: src/artifacts/project.ts · medium authoring guides",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "anc-ideal",
+      "text": "ANC / A COMPUTED CONDITION CHANGE\nOpposite pressures can sum to zero.\nIncoming\nSpeaker · dashed\nSum · heavy\nTime across one cycle → · normalized pressure\n0°\n\nphase mismatch\n\n0.00\n\nresidual peak ratio\n\nSource: ANC interface code · ideal equal-amplitude tone · not device measurements",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": false
+    },
+    {
+      "id": "anc-change",
+      "text": "ANC / A COMPUTED CONDITION CHANGE\nOpposite pressures can sum to zero.\nIncoming\nSpeaker · dashed\nSum · heavy\nTime across one cycle → · normalized pressure\n0°\n\nphase mismatch\n\n0.00\n\nresidual peak ratio\n\nSource: ANC interface code · ideal equal-amplitude tone · not device measurements",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "git-revert",
+      "text": "GIT / A SELECTED RECORD\nA revert can leave ours equal to the base.\nBase\n30\nOurs\n30\nTheirs\n60\nResult\nCompare…\n\nSelected timeout line\n\nCompare each side with the shared base.\n\nSource: Git interface’s embedded records · selection, not live Git execution",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "git-conflict",
+      "text": "GIT / A SELECTED RECORD\nTwo different replacements leave a conflict.\nBase\n30\nOurs\n60\nTheirs\n90\nWorking file\nCompare…\n\nSelected timeout line\n\nCompare each side with the shared base.\n\nSource: Git interface’s embedded records · selection, not live Git execution",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "boundary",
+      "text": "A RECEIPT IS NOT A VERDICT\nIdentity checks and human judgments differ.\nRuntime\nBindings · resources\nDeclared coverage · receipts\nHost + reviewer\nSource support · explanation\nReal visual / listening QA\n\nMatching hashes do not establish truth, clarity or understanding.\n\nSource: checkArtifact and rendering receipts",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "engine",
+      "text": "ACTUAL VIDEO IMPLEMENTATION\nApproved audio determines frame timing.\nPlan + speech\nMeasured segments\nrenderFrame\nDeterministic scene state\nFFmpeg\nH.264 + AAC\n\n1280 × 720 · 30 fps · segment-level captions\n\nSource: src/media/video.ts · sampled changes do not prove useful motion",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "permission",
+      "text": "SEPARATE PERMISSION GATES\nLocal execution is not online speech consent.\nLocal code\nReviewed browser / Node\nNot an OS sandbox\nOnline narration\nExact text + voice + rate\nSeparate disclosure approval\n\nA visual source edit invalidates the current plan/audio binding.\n\nSource: execution guide · src/media/plan.ts",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "sizing",
+      "text": "UPDATED IMAGE SIZING\nStart from the viewing situation.\n1 · Explicit size\nHonor the request\n2 · Destination\nCheck the container\n3 · Reading\nDesign at display width\n\nThe initialization canvas is not a design recommendation.\n\nSource: image.md · inspect scaled readability, not just pixel dimensions",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "layout",
+      "text": "EXAMPLES ≠ EVALUATION RESULTS\nKeep works, reviews and comparisons separate.\nexamples\nWorks + projects\nevals/examples\nArtifact review records\nevals/skills\nMaterials + rubrics\n\nDefined cases are not measured skill effectiveness.\n\nSource: docs/EVALUATION.md · new refresh is not completed media",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": true
+    },
+    {
+      "id": "closing",
+      "text": "THE AHA WORKFLOW\nPreserve evidence.\nDesign relationships.\nInspect the real result.\n\nSource: Aha 31ff1331 · source inspection is not measured learning evidence",
+      "horizontalOverflow": false,
+      "verticalOverflow": false,
+      "replayMatches": true,
+      "changesWithinSegment": false
+    }
+  ],
+  "errors": [],
+  "blockedRequests": [],
+  "replayMatches": true,
+  "distinctStates": true
+}

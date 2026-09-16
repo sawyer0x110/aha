@@ -1,0 +1,703 @@
+{
+  "observedAt": "2026-09-16T06:44:57.606Z",
+  "cases": [
+    {
+      "id": "anc-1280-light-en",
+      "topic": "anc",
+      "width": 1280,
+      "theme": "light",
+      "language": "en",
+      "outputHash": "0116f3f80756bb04df4d4c45a42cbe09e30dafcfdfb85765b929dd3a6036dfe4",
+      "sourceHash": "7cdad7fa9aff35dd70efee5ac9c663bc6bf4ae822ecaefcdf9e6289cbd621f7f",
+      "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "anc-1280-light-zh",
+      "topic": "anc",
+      "width": 1280,
+      "theme": "light",
+      "language": "zh",
+      "outputHash": "0116f3f80756bb04df4d4c45a42cbe09e30dafcfdfb85765b929dd3a6036dfe4",
+      "sourceHash": "7cdad7fa9aff35dd70efee5ac9c663bc6bf4ae822ecaefcdf9e6289cbd621f7f",
+      "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "anc-1280-dark-en",
+      "topic": "anc",
+      "width": 1280,
+      "theme": "dark",
+      "language": "en",
+      "outputHash": "0116f3f80756bb04df4d4c45a42cbe09e30dafcfdfb85765b929dd3a6036dfe4",
+      "sourceHash": "7cdad7fa9aff35dd70efee5ac9c663bc6bf4ae822ecaefcdf9e6289cbd621f7f",
+      "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "anc-1280-dark-zh",
+      "topic": "anc",
+      "width": 1280,
+      "theme": "dark",
+      "language": "zh",
+      "outputHash": "0116f3f80756bb04df4d4c45a42cbe09e30dafcfdfb85765b929dd3a6036dfe4",
+      "sourceHash": "7cdad7fa9aff35dd70efee5ac9c663bc6bf4ae822ecaefcdf9e6289cbd621f7f",
+      "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "anc-390-light-en",
+      "topic": "anc",
+      "width": 390,
+      "theme": "light",
+      "language": "en",
+      "outputHash": "0116f3f80756bb04df4d4c45a42cbe09e30dafcfdfb85765b929dd3a6036dfe4",
+      "sourceHash": "7cdad7fa9aff35dd70efee5ac9c663bc6bf4ae822ecaefcdf9e6289cbd621f7f",
+      "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "anc-390-light-zh",
+      "topic": "anc",
+      "width": 390,
+      "theme": "light",
+      "language": "zh",
+      "outputHash": "0116f3f80756bb04df4d4c45a42cbe09e30dafcfdfb85765b929dd3a6036dfe4",
+      "sourceHash": "7cdad7fa9aff35dd70efee5ac9c663bc6bf4ae822ecaefcdf9e6289cbd621f7f",
+      "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "anc-390-dark-en",
+      "topic": "anc",
+      "width": 390,
+      "theme": "dark",
+      "language": "en",
+      "outputHash": "0116f3f80756bb04df4d4c45a42cbe09e30dafcfdfb85765b929dd3a6036dfe4",
+      "sourceHash": "7cdad7fa9aff35dd70efee5ac9c663bc6bf4ae822ecaefcdf9e6289cbd621f7f",
+      "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "anc-390-dark-zh",
+      "topic": "anc",
+      "width": 390,
+      "theme": "dark",
+      "language": "zh",
+      "outputHash": "0116f3f80756bb04df4d4c45a42cbe09e30dafcfdfb85765b929dd3a6036dfe4",
+      "sourceHash": "7cdad7fa9aff35dd70efee5ac9c663bc6bf4ae822ecaefcdf9e6289cbd621f7f",
+      "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "git-merge-1280-light-en",
+      "topic": "git-merge",
+      "width": 1280,
+      "theme": "light",
+      "language": "en",
+      "outputHash": "9ad3c623dac151fb59e9dda30f71fe13f07deb0d5ed245a9151f5c622fec9cbb",
+      "sourceHash": "cf5f33958c14cae20a34bd4b19dec06c32b4807bd61fd1a841f892e8938aa1c7",
+      "researchHash": "c38647d6d79318b96aa30e9c5f86f2babe042dec286ad390a56d22f908ee2019",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "git-merge-1280-light-zh",
+      "topic": "git-merge",
+      "width": 1280,
+      "theme": "light",
+      "language": "zh",
+      "outputHash": "9ad3c623dac151fb59e9dda30f71fe13f07deb0d5ed245a9151f5c622fec9cbb",
+      "sourceHash": "cf5f33958c14cae20a34bd4b19dec06c32b4807bd61fd1a841f892e8938aa1c7",
+      "researchHash": "c38647d6d79318b96aa30e9c5f86f2babe042dec286ad390a56d22f908ee2019",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "git-merge-1280-dark-en",
+      "topic": "git-merge",
+      "width": 1280,
+      "theme": "dark",
+      "language": "en",
+      "outputHash": "9ad3c623dac151fb59e9dda30f71fe13f07deb0d5ed245a9151f5c622fec9cbb",
+      "sourceHash": "cf5f33958c14cae20a34bd4b19dec06c32b4807bd61fd1a841f892e8938aa1c7",
+      "researchHash": "c38647d6d79318b96aa30e9c5f86f2babe042dec286ad390a56d22f908ee2019",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "git-merge-1280-dark-zh",
+      "topic": "git-merge",
+      "width": 1280,
+      "theme": "dark",
+      "language": "zh",
+      "outputHash": "9ad3c623dac151fb59e9dda30f71fe13f07deb0d5ed245a9151f5c622fec9cbb",
+      "sourceHash": "cf5f33958c14cae20a34bd4b19dec06c32b4807bd61fd1a841f892e8938aa1c7",
+      "researchHash": "c38647d6d79318b96aa30e9c5f86f2babe042dec286ad390a56d22f908ee2019",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "git-merge-390-light-en",
+      "topic": "git-merge",
+      "width": 390,
+      "theme": "light",
+      "language": "en",
+      "outputHash": "9ad3c623dac151fb59e9dda30f71fe13f07deb0d5ed245a9151f5c622fec9cbb",
+      "sourceHash": "cf5f33958c14cae20a34bd4b19dec06c32b4807bd61fd1a841f892e8938aa1c7",
+      "researchHash": "c38647d6d79318b96aa30e9c5f86f2babe042dec286ad390a56d22f908ee2019",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "git-merge-390-light-zh",
+      "topic": "git-merge",
+      "width": 390,
+      "theme": "light",
+      "language": "zh",
+      "outputHash": "9ad3c623dac151fb59e9dda30f71fe13f07deb0d5ed245a9151f5c622fec9cbb",
+      "sourceHash": "cf5f33958c14cae20a34bd4b19dec06c32b4807bd61fd1a841f892e8938aa1c7",
+      "researchHash": "c38647d6d79318b96aa30e9c5f86f2babe042dec286ad390a56d22f908ee2019",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "git-merge-390-dark-en",
+      "topic": "git-merge",
+      "width": 390,
+      "theme": "dark",
+      "language": "en",
+      "outputHash": "9ad3c623dac151fb59e9dda30f71fe13f07deb0d5ed245a9151f5c622fec9cbb",
+      "sourceHash": "cf5f33958c14cae20a34bd4b19dec06c32b4807bd61fd1a841f892e8938aa1c7",
+      "researchHash": "c38647d6d79318b96aa30e9c5f86f2babe042dec286ad390a56d22f908ee2019",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "git-merge-390-dark-zh",
+      "topic": "git-merge",
+      "width": 390,
+      "theme": "dark",
+      "language": "zh",
+      "outputHash": "9ad3c623dac151fb59e9dda30f71fe13f07deb0d5ed245a9151f5c622fec9cbb",
+      "sourceHash": "cf5f33958c14cae20a34bd4b19dec06c32b4807bd61fd1a841f892e8938aa1c7",
+      "researchHash": "c38647d6d79318b96aa30e9c5f86f2babe042dec286ad390a56d22f908ee2019",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "project-overview-1280-light-en",
+      "topic": "project-overview",
+      "width": 1280,
+      "theme": "light",
+      "language": "en",
+      "outputHash": "44f9b18d8d23be4679055f0e942bda3ed91f6dc8a3cefe28750ad761ce5ba4df",
+      "sourceHash": "d114dd2462c679e9d6c4e5da7f7bb189284f99a83394d59e194345356a979cef",
+      "researchHash": "f100d4b64f1c41b3e48eaeed8fe88f71609f88c274b2fc3f298de3b672b484b3",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "project-overview-1280-light-zh",
+      "topic": "project-overview",
+      "width": 1280,
+      "theme": "light",
+      "language": "zh",
+      "outputHash": "44f9b18d8d23be4679055f0e942bda3ed91f6dc8a3cefe28750ad761ce5ba4df",
+      "sourceHash": "d114dd2462c679e9d6c4e5da7f7bb189284f99a83394d59e194345356a979cef",
+      "researchHash": "f100d4b64f1c41b3e48eaeed8fe88f71609f88c274b2fc3f298de3b672b484b3",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "project-overview-1280-dark-en",
+      "topic": "project-overview",
+      "width": 1280,
+      "theme": "dark",
+      "language": "en",
+      "outputHash": "44f9b18d8d23be4679055f0e942bda3ed91f6dc8a3cefe28750ad761ce5ba4df",
+      "sourceHash": "d114dd2462c679e9d6c4e5da7f7bb189284f99a83394d59e194345356a979cef",
+      "researchHash": "f100d4b64f1c41b3e48eaeed8fe88f71609f88c274b2fc3f298de3b672b484b3",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "project-overview-1280-dark-zh",
+      "topic": "project-overview",
+      "width": 1280,
+      "theme": "dark",
+      "language": "zh",
+      "outputHash": "44f9b18d8d23be4679055f0e942bda3ed91f6dc8a3cefe28750ad761ce5ba4df",
+      "sourceHash": "d114dd2462c679e9d6c4e5da7f7bb189284f99a83394d59e194345356a979cef",
+      "researchHash": "f100d4b64f1c41b3e48eaeed8fe88f71609f88c274b2fc3f298de3b672b484b3",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "project-overview-390-light-en",
+      "topic": "project-overview",
+      "width": 390,
+      "theme": "light",
+      "language": "en",
+      "outputHash": "44f9b18d8d23be4679055f0e942bda3ed91f6dc8a3cefe28750ad761ce5ba4df",
+      "sourceHash": "d114dd2462c679e9d6c4e5da7f7bb189284f99a83394d59e194345356a979cef",
+      "researchHash": "f100d4b64f1c41b3e48eaeed8fe88f71609f88c274b2fc3f298de3b672b484b3",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "project-overview-390-light-zh",
+      "topic": "project-overview",
+      "width": 390,
+      "theme": "light",
+      "language": "zh",
+      "outputHash": "44f9b18d8d23be4679055f0e942bda3ed91f6dc8a3cefe28750ad761ce5ba4df",
+      "sourceHash": "d114dd2462c679e9d6c4e5da7f7bb189284f99a83394d59e194345356a979cef",
+      "researchHash": "f100d4b64f1c41b3e48eaeed8fe88f71609f88c274b2fc3f298de3b672b484b3",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "project-overview-390-dark-en",
+      "topic": "project-overview",
+      "width": 390,
+      "theme": "dark",
+      "language": "en",
+      "outputHash": "44f9b18d8d23be4679055f0e942bda3ed91f6dc8a3cefe28750ad761ce5ba4df",
+      "sourceHash": "d114dd2462c679e9d6c4e5da7f7bb189284f99a83394d59e194345356a979cef",
+      "researchHash": "f100d4b64f1c41b3e48eaeed8fe88f71609f88c274b2fc3f298de3b672b484b3",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    },
+    {
+      "id": "project-overview-390-dark-zh",
+      "topic": "project-overview",
+      "width": 390,
+      "theme": "dark",
+      "language": "zh",
+      "outputHash": "44f9b18d8d23be4679055f0e942bda3ed91f6dc8a3cefe28750ad761ce5ba4df",
+      "sourceHash": "d114dd2462c679e9d6c4e5da7f7bb189284f99a83394d59e194345356a979cef",
+      "researchHash": "f100d4b64f1c41b3e48eaeed8fe88f71609f88c274b2fc3f298de3b672b484b3",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, theme and local anchors",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        }
+      ],
+      "screenshots": []
+    }
+  ],
+  "failures": [],
+  "scope": "Fresh offline packaged-HTML behavior at 1280/390px, both languages and themes. Controls exercise authored illustrative models, not new Git experiments or headset measurements. Not visual, screen-reader or comprehension acceptance."
+}

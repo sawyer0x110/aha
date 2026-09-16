@@ -1,41 +1,60 @@
-# What Git merge actually merges
+# 为什么 Git 合并会带回已撤销的修改？
 
-## Direct answer
-For the ordinary divergent two-head text merge studied here, Git reconciles changes between three snapshots: a merge base, our tip, and their tip. History helps select the base; the file-content merge compares each tip with that base. It does not simply replay every intervening commit. A textual conflict means the selected merge machinery could not automatically reconcile a region, not that Git understood an application's intentions. A clean merge is not a behavioral test.
+## 直接回答
+在通常的双分支 `ort` 三方合并中，Git 根据合并基点与两个分支的最新提交所保存的内容进行合并；它不是逐个重放提交，也不会把普通 revert 当成“以后永远禁止这项修改”的指令。若相关内容在共同祖先中是 `mode=off`，本分支先改成 `on`、再撤销回 `off`，而另一分支仍为 `on`，那么本分支相对基点的净变化为零，另一分支却保留了 `off → on` 的变化。对于下面限定的普通文件案例，合并因此采用另一侧的 `on`。这不是 Git 神秘地复活一个提交，而是它选入了另一侧当前仍存在的内容。
 
-## Scope and research design
-Audience: developers who know commit and branch vocabulary, seeking a useful 5–8 minute explanation. Purpose: predict one-sided, independent, and conflicting changes; inspect the right inputs rather than guessing from commit count. Scope: two ordinary branches, regular text files, default-style ort merging and diff3 conflict display. Excluded: exhaustive strategies, rename/delete cases, binary files, custom merge drivers, submodules, unrelated histories, octopus and rebase-specific ours/theirs meanings. Time horizon: a pinned historical implementation (Git v2.49.0), not a claim about the newest release. Budget: a bounded direct source trace, official documentation, and three small local text experiments; no upstream builds, browser execution, network-dependent artifact assets, installation, or production measurements.
+## 范围、读者和研究安排
+面向知道提交和分支、但不熟悉三方合并的读者。目的：解释机制、避免把普通提交撤销、合并提交撤销和 reset 混为一谈，并给后续媒体提供独立可读依据。时间截点为 2026-09-16；预算是一次有边界的公开一手资料与源码静态研究，以及四种媒体的源码制作，不包含本地 Git 实验、执行作者代码、渲染或语音合成。问题树先确定当前资料身份（q-version），再确定比较对象（q-base），推导复现条件与反例（q-mechanism），最后分开操作和策略边界（q-operations、q-strategy）。排除子模块、复杂重命名、自定义合并驱动及所有历史策略的完整实现审计；其影响在 q-limits 保留为缺口。
 
-Question tree: q-base establishes inputs; q-rules depends on those inputs and distinguishes three outcomes; q-history tests the replay hypothesis and fast-forward counterexample; q-safety separates textual success from program correctness. The decisive alternative hypothesis was 'a revert on ours cancels their change because commits are replayed.' Documentation and a real revert fixture contradict it.
+## 本次重新核对的版本
+GitHub 标签列表的前五项包含 `v2.56.0-rc0` 和 `v2.55.0`；这只证明这次列表所见，不能据此宣称查遍所有维护版本。`v2.55.0` 的标签对象 `5ce91c059e41090e7d2cffad39c04af8acf98dc1` 指向提交 `e9019fcafe0040228b8631c30f97ae1adb61bcdc`，标记者日期为 **2026-06-29T14:59:19Z**（不是本次源码逐行的作者日期）。本研究以这个已发布标签的固定提交为准，不把候选版当稳定版。最初读取的 v2.53.0 文档和标签日期 2026-02-02 只是探索线索，随后已用 v2.55.0 对应段落重新核对；旧版本不是“当前版本”的证据。[Git 标签列表](https://api.github.com/repos/git/git/tags?per_page=5)、[v2.55.0 标签身份](https://api.github.com/repos/git/git/git/tags/5ce91c059e41090e7d2cffad39c04af8acf98dc1)。
 
-## Version and source route
-GitHub API `gh api repos/git/git/commits/v2.49.0 --jq '.sha'` resolved git/git to **683c54c999c301c2cd6f715c411407c413b1d84e**. All upstream source and official manuals were retrieved as inert raw text at that exact commit. Files are preserved under sources/. The first documentation request used the obsolete .txt suffix and returned HTTP 404; a contents API lookup located .adoc. No upstream code was executed. This is one primary-source lineage, not independent corroboration from multiple publishers.
+## 1. 基点不是当前任意一侧的文件
+“分支最新提交”指分支目前所指的提交；“合并基点”是双方沿父提交关系都能到达的最佳共同祖先。不是按墙上时钟挑最近日期，也不是默认把本分支当前文件当基准。可能有多个最佳共同祖先；`ort` 会先合成共同祖先树，不能把所有拓扑简化成单一分叉点。[git-merge-base 的定义](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/Documentation/git-merge-base.adoc)、[策略手册 ort 段](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/Documentation/merge-strategies.adoc)。
 
-## Mechanism and narrow implementation trace
-1. `builtin/merge.c:1549–1554` calls `repo_get_merge_bases`. The official merge-base manual defines a best common ancestor by ancestry, not by wall-clock timestamp. Multiple best bases are possible; ort can merge them into a reference tree. The illustration deliberately uses one base. [e-base-doc, e-entry]
-2. `builtin/merge.c:745–755` supplies both heads and common bases to `merge_ort_recursive`. For file content, `merge-ort.c:2099–2105` reads base/side blobs and calls `ll_merge`. `merge-ll.c:103–146` selects the textual xdiff route after checking binary/size conditions; `xdiff/xmerge.c:695–699` actually diffs orig against each side. This is base-relative snapshot reconciliation. [e-diffs, e-driver]
-3. A trivial object-ID match can select the changed side: `merge-ort.c:2184–2187` takes b when a equals base (or a equals b), and a when b equals base. This is not 'the newer commit wins.' The analogous no-change-script paths are visible in `xdiff/xmerge.c:711–724`. [e-identity]
-4. `xdiff/xmerge.c:548–577` accepts separated change ranges from either side; `578–609` handles overlap with coordinate/length/content tests. Identical edits need not conflict. Later refinement (`654–681`) can adjust conflict regions. Thus 'different line numbers always merge' is too strong: nearby insertions, repeated context, and algorithms affect hunk alignment. [e-overlap, e-merge-doc]
-5. `merge-ll.c:144–146` maps positive xdiff status to a conflict; `merge-ort.c:2225–2228` makes a positive merge status unclean. The official merge manual states that HEAD stays put and conflicting index entries retain base/ours/theirs at stages 1/2/3. [e-driver, e-merge-doc]
+源码给出了这条解释的连接环节：`merge_ort_internal` 获取或接收基点，必要时合并多个基点，最后把基点树、h1 树、h2 树交给非递归合并。这里的“只比较三个状态”说的是内容合并的输入；并不意味着 Git 完全不遍历提交历史——它恰好需要历史来寻找基点。[merge-ort.c，5303–5450 行](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/merge-ort.c#L5303-L5450)。
 
-## Actual observations, distinct from inspected upstream
-The executable was **git version 2.53.0.windows.4**, NOT the inspected v2.49.0 commit. Three new dedicated fixture repositories used inert policy.txt files, local-only author identity, disabled global/system config, an empty hooks directory, no signing, and core.autocrlf=false. The merge command was `git -c merge.conflictStyle=diff3 merge --no-edit -s ort theirs`. Base/ours/theirs bytes were verified using `git show`; index stages and final parent IDs were captured. `experiment-results-v2.json` is the authoritative observation record.
+## 2. 一个没有运行的推导例子
+以下是说明性状态模型，不是新实验结果。假定两侧在 B 之后分叉，普通文件无重命名、模式变化或自定义驱动；两侧分别作了相同修改，本分支又撤销自己的普通提交。
 
-The first fixture attempt did not reliably stage same-size copied edits; inspection caught 'nothing to commit', a modify/delete result, and unchanged commit IDs. Those results were rejected as evidence for the intended scenarios. Fresh v2 repositories explicitly staged file bytes using `git hash-object -w -- policy.txt` followed by `git update-index --add --cacheinfo 100644,<blob>,policy.txt`. The failed run remains separately recorded, not silently represented as success.
+```text
+B: mode=off ── A: mode=on ── R: mode=off   (ours)
+       └───── T: mode=on                   (theirs)
+```
 
-- One-side / actual revert: base timeout=30; ours changed to 60 then was reverted to 30; theirs=60. Exit 0, result timeout=60/retries=2, no unmerged entries, two-parent merge commit. Ours has additional history but no net content change at the tip. A revert on one branch is not a veto over the other branch. [e-experiment, e-strategies]
-- Well-separated edits: base timeout=30/retries=2; ours timeout=60; theirs retries=4, with stable lines between. Exit 0, result timeout=60/retries=4, no unmerged entries, two-parent merge commit. Same file does not imply conflict. [e-experiment]
-- Same-region edits: ours timeout=60, theirs timeout=90, base=30. Exit 1 with `CONFLICT (content)`; diff3 markers contain 60 / 30 / 90. HEAD remains f8d48345a7b07e11470924d70194cf51a2da0acb; index has three entries, stages 1/2/3. No merge commit exists yet. [e-experiment]
+| 路径 | B 基点 | ours 当前 | theirs 当前 | 模型推导的合并结果 |
+|---|---|---|---|---|
+| feature.txt | mode=off | mode=off | mode=on | mode=on |
+| local.txt | 旧内容 | 本侧独立更新 | 旧内容 | 本侧独立更新 |
+| remote.txt | 旧内容 | 旧内容 | 对侧独立更新 | 对侧独立更新 |
 
-## Counterexamples and consequences
-Fast-forward is a topology exception, not a fourth kind of conflict resolution: when our head is already an ancestor of the other tip, Git can move the current branch to that existing commit without a new merge commit (unless options such as --no-ff request otherwise). Supported by the manual and read source at builtin/merge.c:1585–1618; not separately executed here. [e-merge-doc]
+`feature.txt` 的关键不是 R 的提交消息，而是 **B 与 ours 的相关文件内容相同**。在 `collect_merge_info_callback` 中，源码比较文件模式与对象 ID；三侧均有普通文件且 side1 与基点一致时，直接选择 side2。它不会因此丢弃本侧其它路径的独立修改；每个路径的三个状态可以得出不同选择。[merge-ort.c，1260–1455 行](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/merge-ort.c#L1260-L1455)。策略手册末段还明确描述了“两侧均修改，一侧后来撤销，合并仍含该修改”的现象；源码与手册属于同一项目证据链，不能算成两个独立团队的实证验证。
 
-Text and meaning are different layers. The source compares line regions, not program behavior. Two differently worded comments can conflict despite no executable effect; conversely, a function renamed in one file and a new call to its old name in another can combine textually while leaving a broken call. These are explanatory inferences, not executed application tests. The official strategy document also warns that unimportant matching lines can cause mismerges. Do not infer semantic correctness from exit 0. [e-overlap, e-strategies]
+这也不要求整个 ours 树都与 B 相同。我们的逐路径示例刻意留下 `local.txt` 的独立修改。若两侧修改同一个文件的不同区域，必须进入内容合并，能否干净合并取决于内容、匹配及驱动；不能把逐文件快速路径直接等同于每一行的实现。
 
-Practical transfer: inspect `git show :1:policy.txt`, `:2:policy.txt`, `:3:policy.txt` during this ordinary merge, decide the intended behavior, edit and remove markers, run relevant checks, then stage and commit. Do not pick 'ours' solely because its timestamp or commit count is larger. This advice does not apply unchanged to rebase terminology.
+## 3. 改变基点，结论就可能反过来
+保持两个当前值为 `ours=off, theirs=on`，但令共同祖先已经包含 `mode=on`：这时 ours 相对基点有 `on → off` 的变化，theirs 相对基点没有变化。普通文件快速路径于是保留 ours 的 `off`。因此“我撤销过，所以合并一定带回来”和“两个当前值不同就一定冲突”都错；需要第三个状态才能判断。[同一源码的对称分支，1384 行附近](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/merge-ort.c#L1384)。
 
-## Reverse-check and limits
-c-base: supported by ancestry definition and actual merge-base call; revised away from 'latest timestamp'. c-snapshots: supported by two base-relative diff calls and official revert discussion; actual fixture agrees but is a different Git version. c-one-side and c-independent: supported under ordinary text/path conditions and observed exact fixtures. c-conflict: supported by marker/index documentation and actual exit/stage output; no claim that every overlap necessarily conflicts. c-ff: documented/source-read only, explicitly not observed. c-safety: inference from textual machinery, supported by mismerge warning; no program execution claimed. Coverage/hash checks are separate from this manual semantic review. Renames, binary drivers, multiple-base construction and strategy exhaustiveness remain scoped out. HTML translation, runtime layout and interaction QA are not research observations.
+若基点为 `off`、ours 为 `manual`、theirs 为 `on`，就不能套用任一侧等于基点的快速选择。普通文本内容合并可能报告冲突，需要人工决策；这里不宣称任意两个不同修改都冲突。源码 `handle_content_merge` 先处理对象相等情形，否则调用 `merge_3way`，再把正的合并状态转换为非干净结果；后续路径会发出内容冲突信息。[2097–2295 行](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/merge-ort.c#L2097-L2295)、[4325–4377 行](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/merge-ort.c#L4325-L4377)。这次没有继续审计底层 xdiff、驱动选择或运行该例，因此把冲突写成有条件可能，而非已观察的输出。即使文本合并干净，也不等于业务逻辑正确；后者仍需项目测试与代码审查。
 
-## Stopping reason
-The core predictive questions are supported by a pinned narrow source trace, official definitions, a disconfirming revert example, and three corrected fixture observations. Additional strategies are outside the teaching scope; no unresolved central evidence blocker remains. Runtime HTML QA is intentionally deferred pending reviewed execution approval.
+## 4. 三种容易混淆的“撤销”
+**普通 revert**：通常新建反向修改的提交，保留原提交及父子关系。`--no-commit` 则只修改工作区和索引，不立即提交；不能把“revert 总会立刻提交”当绝对规则。上面的 R 是已提交的普通 revert。
+
+**revert 一个合并提交**：需要 `-m` 指定作为主线的父提交，反转相对该父提交的树变化；合并的祖先关系却仍在。官方手册指出，后续合并只会带入不是先前被撤销合并之祖先的提交所引入的树变化。这是另一个问题，不能从普通 R 的例子推导“撤销合并后重做合并就能拿回旧内容”。也不能机械建议总是“revert the revert”；需先审查后续拓扑和期望内容。[git-revert Description / -m / -n](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/Documentation/git-revert.adoc)。
+
+**reset**：提交形式移动 HEAD／当前分支指针，模式决定是否也改索引和工作区；带路径的形式只改索引，不移动 HEAD。reset 不是记录反向修改的提交。提交指针的移动可能改变可达祖先及以后的合并基点，不应把表面上相同的文件内容误认成相同历史。`--hard` 会覆盖工作区内容，不能当本报告给出的安全修复命令。[git-reset Description](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/Documentation/git-reset.adoc)。本次没有执行这些命令。
+
+## 5. 策略、选项与排查顺序
+上述解释限定到通常的三方合并；当前手册将 `ort` 作为合并单个分支的默认策略。v2.50.0 起 `recursive` 是 `ort` 的同义名，而非当前另一套独立实现；`resolve`、`octopus`、`subtree` 的能力和输入条件不同，不能泛称所有 Git 合并都完全一样。
+
+特别是 `-s ours` 取本分支整棵树，忽略其它分支的内容，构成“所有合并都带回修改”的直接反例。`-Xours` 则只在冲突区域偏向本侧；对侧不冲突的修改仍会进入，所以它不是保护已撤销内容的通用开关。[策略手册](https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/Documentation/merge-strategies.adoc)。这些不是可随意替换的修复建议，`-s ours` 也可能丢掉本来想要的对侧内容。
+
+排查建议（未执行）：先记录 Git 版本、策略、选项和实际两侧提交；再查最佳共同祖先及相关路径在三侧的内容；随后辨认撤销的是普通提交、合并提交还是指针移动，检查独立修改及可能冲突，最后由项目负责人审查预期结果和测试。不要只看最近一次提交消息或只比较两个分支文件。
+
+## 来源可见范围、反向核对与限制
+本次直接读取公开一手资料及固定版本源码；完整下载并不代表通读：策略文件全文；merge-base 1–32 行；revert 1–65 行（Description、-m）及先前 v2.53.0 全文中的 -n；reset 1–107 行；merge-ort.c 的 1260–1455、2097–2295、4325–4377、5303–5450 行。后续已补读当前 revert 的 -n 段后才封存。Git 网站简化器首次只返回策略选项、revert 选项、reset 表格和 merge-base fork-point 讨论，不是整页；因此转到固定提交原文。旧 examples 与 evals 仅列出目录，未拿其报告、源码或已记录实验充当本次执行证据。
+
+语义反向核对：c-base 的历史搜索／内容比较区别受定义与调用路径支持；c-return 是明确限定的手册现象加源码选择分支；c-independent 的不同路径是模型推导，不是假实测；c-counter 改基点反例受对称分支支持；c-conflict 只宣称可能而非普遍冲突；c-revert-merge 与普通撤销分开；c-reset 区分提交与路径形式；c-strategy 明确 -s 与 -X 的差异。自然语言审阅修正了“Git 不看历史”的过度简化，改为“历史找基点，三侧树决定内容”。没有观众理解测试、浏览器交互观察、PowerPoint 打开、视频观看或听音。
+
+## 停止原因
+核心机制、关键反例和操作边界已有公开来源支持。按用户边界停在静态研究与作者源码；不运行 Git 变更实验或作者代码，不合成语音。不确定项是其它策略／驱动／复杂拓扑的实际输出，以及目标环境的运行和视觉表现；需要另行批准有边界的验证。内容哈希和 CLI 结构检查不证明结论为真。

@@ -2,23 +2,63 @@
   "schemaVersion": "1.0.0",
   "format": "pptx",
   "language": "en",
-  "researchHash": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d",
-  "title": "Aha: traceable research, freely authored explanations",
+  "researchHash": "f100d4b64f1c41b3e48eaeed8fe88f71609f88c274b2fc3f298de3b672b484b3",
+  "title": "Aha: from evidence to editable explanation",
   "status": "authored",
   "entry": "pptx/main.mjs",
   "coverage": [
-    { "id": "slide-01-purpose", "claimIds": ["c-purpose", "c-formats"] },
-    { "id": "slide-02-responsibilities", "claimIds": ["c-purpose", "c-dossier", "c-qa"] },
-    { "id": "slide-03-identity", "claimIds": ["c-dossier", "c-identity"] },
-    { "id": "slide-04-media", "claimIds": ["c-formats", "c-video"] },
-    { "id": "slide-demo-static", "claimIds": ["c-formats", "c-language"] },
-    { "id": "slide-demo-motion", "claimIds": ["c-formats", "c-identity", "c-video", "c-permission"] },
-    { "id": "slide-05-permissions", "claimIds": ["c-permission", "c-video"] },
-    { "id": "slide-06-language-distribution", "claimIds": ["c-language", "c-distribution"] },
-    { "id": "slide-07-quality", "claimIds": ["c-qa", "c-identity", "c-purpose"] }
+    {
+      "id": "slide-01",
+      "claimIds": [
+        "c-purpose"
+      ]
+    },
+    {
+      "id": "slide-02",
+      "claimIds": [
+        "c-journey",
+        "c-snapshot"
+      ]
+    },
+    {
+      "id": "slide-03",
+      "claimIds": [
+        "c-media",
+        "c-image"
+      ]
+    },
+    {
+      "id": "slides-04-05",
+      "claimIds": [
+        "c-anc"
+      ]
+    },
+    {
+      "id": "slides-06-07",
+      "claimIds": [
+        "c-git"
+      ]
+    },
+    {
+      "id": "slide-08",
+      "claimIds": [
+        "c-limits",
+        "c-execution",
+        "c-host"
+      ]
+    },
+    {
+      "id": "slide-09",
+      "claimIds": [
+        "c-video"
+      ]
+    }
   ],
   "omissions": [
-    { "claimId": "c-examples", "reason": "The deck illustrates media with this project's companion artifacts; the ANC and Git case studies are covered in the companion HTML and narrated video." }
+    {
+      "claimId": "c-layout",
+      "reason": "This medium concentrates on the user journey and mechanism; detailed repository/evaluation or runtime contract is retained in the independent report and bilingual HTML."
+    }
   ],
   "width": 1280,
   "height": 720

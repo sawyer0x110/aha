@@ -1,0 +1,84 @@
+{
+  "provider": "edge-tts",
+  "version": "7.2.8",
+  "voice": "en-US-AriaNeural",
+  "rate": "+0%",
+  "method": "Original synthesized WAV bytes equal the published imported WAV bytes; stored once without duplication.",
+  "recordings": [
+    {
+      "id": "opening",
+      "file": "../audio/segment-001.wav",
+      "sha256": "ae56f3ecc12f7b7b2ef408ae5e99911974274203393a204063ce9a5cc927618c"
+    },
+    {
+      "id": "journey",
+      "file": "../audio/segment-002.wav",
+      "sha256": "0b34458e2ce50465ac155a0096ebbaed840af6de54dacf5e2d39e759ec604160"
+    },
+    {
+      "id": "snapshot",
+      "file": "../audio/segment-003.wav",
+      "sha256": "05ff837a7f43d30953601e948dbff8b76f1b18b446868eeecdcaae39a499432f"
+    },
+    {
+      "id": "revision",
+      "file": "../audio/segment-004.wav",
+      "sha256": "f2d4e93bc940095495a421b92674454b6bc906583b4f6f767e3562fbc9254c10"
+    },
+    {
+      "id": "formats",
+      "file": "../audio/segment-005.wav",
+      "sha256": "8dc70b1a63dc5b49677ad07f7a0c4f7310450fb6e18ac368d9eef6ea6858be07"
+    },
+    {
+      "id": "anc-ideal",
+      "file": "../audio/segment-006.wav",
+      "sha256": "f8dea4f0953bfb404f249415654f76e6a72a172360ae5d6d4a40dca1c1eb4edc"
+    },
+    {
+      "id": "anc-change",
+      "file": "../audio/segment-007.wav",
+      "sha256": "ffccdbebf10018205f2556c7d3ce2c109f8f6dcbed6a788c1009a0b6d313a5a4"
+    },
+    {
+      "id": "git-revert",
+      "file": "../audio/segment-008.wav",
+      "sha256": "566e7fd610d5840fbdf444eec3c9b8a16860e37ad8837964216cf730bda2b5ba"
+    },
+    {
+      "id": "git-conflict",
+      "file": "../audio/segment-009.wav",
+      "sha256": "04b31d63693589f1f9aa71204f9cf91f1a736c2d464dbec1a93ae703036fc22f"
+    },
+    {
+      "id": "boundary",
+      "file": "../audio/segment-010.wav",
+      "sha256": "6773cf293b837ab3a7bc102fa3d6c21a797105f5c10c5a8acb75700ef3852380"
+    },
+    {
+      "id": "engine",
+      "file": "../audio/segment-011.wav",
+      "sha256": "5013fb66908a4fd62addef6a9c5c355ff4562617b194c65fd4779fae067b36e2"
+    },
+    {
+      "id": "permission",
+      "file": "../audio/segment-012.wav",
+      "sha256": "f1bec70cb70bbab40c2e65722465390824be5544679295ab30e8a7704416a4ce"
+    },
+    {
+      "id": "sizing",
+      "file": "../audio/segment-013.wav",
+      "sha256": "d1fcb6fc0f346d5fcfbc6a48bc6089559cbbd53c373a54afcb104194c6e796ef"
+    },
+    {
+      "id": "layout",
+      "file": "../audio/segment-014.wav",
+      "sha256": "d8628d95567dc73b39f511aa6146ffc703ffce4249a8f2f899d0efe2f874b5bf"
+    },
+    {
+      "id": "closing",
+      "file": "../audio/segment-015.wav",
+      "sha256": "2e89de2e66dce87fba70962fa2de93e3b5b437fa02b346ff157559aaee85a813"
+    }
+  ]
+}
