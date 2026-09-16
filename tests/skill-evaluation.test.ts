@@ -6,7 +6,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { spawnSync } from 'node:child_process';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const runner = await import(pathToFileURL(path.join(root, 'scripts', 'prepare-skill-eval.mjs')).href);
+const runner = await import(pathToFileURL(path.join(root, 'evals', 'skills', 'prepare.mjs')).href);
 let workspace: string;
 let bundles: string;
 let baseline: Awaited<ReturnType<typeof runner.prepareSkillEval>>;
@@ -103,7 +103,7 @@ test('author packets select only id/prompt/skill/files, never evaluator answers 
     for (const file of files) {
       const relative = path.relative(entry.author_directory, file);
       assert.ok(!relative.includes('evaluator') && !relative.includes('node_modules'), relative);
-      assert.ok(!['evals.json', 'fixture-lock.json', 'human-responses.json', 'eval-metadata.json', 'eval_metadata.json', 'process-observations.json'].includes(path.basename(file)));
+      assert.ok(!['evals.json', 'fixture-lock.json', 'prepare.mjs', 'scenarios.json', 'human-responses.json', 'eval-metadata.json', 'eval_metadata.json', 'process-observations.json'].includes(path.basename(file)));
     }
     assert.ok(!contents.includes(item.expected_output));
     for (const evalCase of corpus.manifest.evals) {
@@ -391,7 +391,7 @@ test('selection, no-overwrite, unsafe paths and missing/invalid arguments fail w
   const link = path.join(workspace, 'bundle-link');
   await fs.symlink(bundles, link, process.platform === 'win32' ? 'junction' : 'dir');
   await assert.rejects(runner.prepareSkillEval({ output: path.join(workspace, 'bad4'), skillRoot: link }), /Symlink/);
-  const script = path.join(root, 'scripts', 'prepare-skill-eval.mjs');
+  const script = path.join(root, 'evals', 'skills', 'prepare.mjs');
   for (const args of [[], ['x', '--unknown', 'bad'], ['x', '--skill-root'], ['x', '--skill-root', bundles, '--skill-root', bundles]]) {
     const result = spawnSync(process.execPath, [script, ...args], { encoding: 'utf8', timeout: 30000 });
     assert.equal(result.status, 1, result.stderr);
@@ -406,11 +406,16 @@ test('selection, no-overwrite, unsafe paths and missing/invalid arguments fail w
 
 test('CLI rejects changed, missing and unbound fixture materials before reserving an author packet', async () => {
   const isolated = path.join(workspace, 'isolated-preparer');
-  const script = path.join(isolated, 'scripts', 'prepare-skill-eval.mjs');
+  const script = path.join(isolated, 'evals', 'skills', 'prepare.mjs');
   const fixture = path.join(isolated, 'evals', 'skills');
-  await fs.mkdir(path.dirname(script), { recursive: true });
-  await fs.copyFile(path.join(root, 'scripts', 'prepare-skill-eval.mjs'), script);
   await fs.cp(runner.fixtureRoot, fixture, { recursive: true });
+  // Host-run scenarios are not parsed, staged, or hash-bound by the fixed-case preparer.
+  await fs.writeFile(path.join(fixture, 'scenarios.json'), 'Independent host-run scenarios, not fixed-case JSON.');
+  const isolatedRunner = await import(pathToFileURL(script).href);
+  const isolatedCorpus = await isolatedRunner.loadFixtures();
+  assert.equal(isolatedCorpus.lockSha256, corpus.lockSha256);
+  assert.deepEqual(Object.keys(isolatedCorpus.files), Object.keys(corpus.files));
+  for (const name of ['prepare.mjs', 'scenarios.json']) assert.ok(!(name in isolatedCorpus.files));
   const target = path.join(fixture, 'inputs', 'tank', 'observations.md');
   const original = await fs.readFile(target);
   const output = path.join(workspace, 'must-not-exist');

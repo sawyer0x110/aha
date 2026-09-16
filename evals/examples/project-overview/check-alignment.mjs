@@ -2,8 +2,8 @@ import assert from 'node:assert/strict';
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { chromium } from 'playwright-core';
-import { prepareHtml } from '../../src/artifacts/html.ts';
-import { sourceHash } from '../../src/artifacts/project.ts';
+import { prepareHtml } from '../../../src/artifacts/html.ts';
+import { sourceHash } from '../../../src/artifacts/project.ts';
 
 if (!process.argv.includes('--allow-code')) throw new Error('Review the sources and obtain local browser execution approval.');
 const [project, wordFile, output] = process.argv.slice(2).filter(value => value !== '--allow-code');

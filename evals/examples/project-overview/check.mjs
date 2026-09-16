@@ -5,13 +5,13 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { chromium } from 'playwright-core';
-import { prepareHtml } from '../../src/artifacts/html.ts';
-import { sourceHash } from '../../src/artifacts/project.ts';
+import { prepareHtml } from '../../../src/artifacts/html.ts';
+import { sourceHash } from '../../../src/artifacts/project.ts';
 
 if (!process.argv.includes('--allow-code')) throw new Error('Review this checker and the three browser sources; obtain local execution approval before --allow-code.');
 const args = process.argv.slice(2).filter(arg => arg !== '--allow-code');
-if (args.length < 2 || args.length > 3) throw new Error('Usage: node --import tsx examples\\project-overview\\check.mjs <delivery-directory> <new-qa-directory> [projects-directory] --allow-code');
-const base = path.dirname(fileURLToPath(import.meta.url));
+if (args.length < 2 || args.length > 3) throw new Error('Usage: node --import tsx evals\\examples\\project-overview\\check.mjs <delivery-directory> <new-qa-directory> [projects-directory] --allow-code');
+const base = fileURLToPath(new URL('../../../examples/project-overview/', import.meta.url));
 const delivery = path.resolve(args[0]);
 const output = path.resolve(args[1]);
 const projects = path.resolve(args[2] || path.join(base, 'projects'));

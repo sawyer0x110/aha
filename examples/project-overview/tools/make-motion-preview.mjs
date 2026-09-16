@@ -5,13 +5,13 @@ import { promisify } from 'node:util';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright-core';
-import { prepareHtml } from '../../src/artifacts/html.ts';
-import { sourceHash } from '../../src/artifacts/project.ts';
+import { prepareHtml } from '../../../src/artifacts/html.ts';
+import { sourceHash } from '../../../src/artifacts/project.ts';
 
 if (!process.argv.includes('--allow-code')) throw new Error('Review the source and obtain local browser/FFmpeg execution approval before --allow-code.');
 const args = process.argv.slice(2).filter(arg => arg !== '--allow-code');
 if (args.length !== 1) throw new Error('Provide a new output directory for a silent illustrative GIF, not a narrated-video receipt.');
-const base = path.dirname(fileURLToPath(import.meta.url));
+const base = fileURLToPath(new URL('../', import.meta.url));
 const output = path.resolve(args[0]);
 const project = path.join(base, 'projects', 'motion-preview');
 await mkdir(output);

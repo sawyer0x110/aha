@@ -39,6 +39,10 @@ HTML 的 `--cp-*` 是运行时图表与控件的颜色角色，可在作者 CSS 
 
 ## 开发与发布
 
+目录按用途组织：`src` 是运行时源码，`skills` 是技能源码；根目录 `scripts` 只放构建、发布和安装工具。`evals` 就近保存评估工具、用例和验收记录，`examples` 保存正式作品、可编辑项目与专用制作工具。`dist` 是可重建的分发输出，`artifacts` 是不提交的任务工作结果，不可当作缓存随意清空。完整职责见[仓库目录导航](docs/ARCHITECTURE.md#仓库目录导航)。
+
+技能评估准备入口为 `npm run eval:prepare -- <参数>`；当前示例的身份检查入口为 `npm run examples:verify`。前者不运行模型，后者不执行作品代码，也不代替浏览器、媒体或人工验收。
+
 需要 Node.js **22+**：
 
 ```powershell

@@ -19,9 +19,9 @@
 
 例如，在“四种格式”那段录音内部，约 3.00 秒开始说网页、6.19 秒说单张图片、8.42 秒说可编辑幻灯片、11.15 秒说配音视频；卡片在这些时点依次强调。下一段讨论分别创作时，不再继续轮播。波形使用同一录音逐帧测得的能量，不再按固定正弦节奏跳动。结尾的三句总结和三个用途也跟随对应词句。
 
-[词句时间点](qa/word-timings.json)、[提示表](qa/cue-sheet.json)和[对齐检查](qa/alignment.json)保留方法及边界。所有提示均检查切换前一帧、切换帧、后一帧和回放状态；这些检查证明画面遵循估计时间点，**不把自动识别的估计误差当成零，也不等于人工听审通过**。
+[词句时间点](provenance/word-timings.json)、[提示表](provenance/cue-sheet.json)和[对齐检查](../../evals/examples/project-overview/alignment.json)保留方法及边界。所有提示均检查切换前一帧、切换帧、后一帧和回放状态；这些检查证明画面遵循估计时间点，**不把自动识别的估计误差当成零，也不等于人工听审通过**。
 
-时间表是本例的作者侧实现，位于视频项目的 `html/narration-timing.js`；没有修改 Aha runtime，也没有新增逐词字幕接口。烧录字幕仍沿用原来的短段字幕。需要重新识别时，可在装有英文桌面识别器的 Windows 上使用 `align-narration.ps1`，只读取指定 WAV 文件，不使用麦克风或联网服务；新时间点仍需重新检查并有意识地更新作品源。
+时间表是本例的作者侧实现，位于视频项目的 `html/narration-timing.js`；没有修改 Aha runtime，也没有新增逐词字幕接口。烧录字幕仍沿用原来的短段字幕。需要重新识别时，可在装有英文桌面识别器的 Windows 上使用 `tools/align-narration.ps1`，只读取指定 WAV 文件，不使用麦克风或联网服务；新时间点仍需重新检查并有意识地更新作品源。
 
 实例来自仓库已经存在的 [降噪耳机 HTML](../anc/index.html) 和 [Git merge HTML](../git-merge/index.html)：前者有理想模型的相位偏差滑块；后者可比较三组预录结果。英文导览与英文视频使用从原页面英文分支离线截取的图片，图例、控件和标题均为英文；中文网页分支保留中文实例。视频展示 ANC 在 60° 偏差下的原始曲线及控件、Git 保存的冲突历史与文件节选。截图不可操作，不是新耳机实测或实时 Git 执行，也不宣称这两个题材已经有独立 PNG、PPTX 或视频成品。
 
@@ -39,19 +39,19 @@ PPT 仍采用深色首尾、浅色正文。第 5 页展示上一版网页与海�
 
 [统一研究](research/report.md)含 10 条主张、13 份证据，同时覆盖项目实现及 ANC/Git 既有作品的使用边界。所有四种作品及 PPT 的 GIF 插图都绑定这一份快照，不再分别维护 `research` 和 `research-v2`。
 
-各项目按运行时契约保留同一研究的完整副本，并在 `artifact.json` 记录覆盖与省略；`verify.mjs` 检查五个项目副本与唯一的 `research/` 完全一致。视频有意省略身份、权限、运行机制、语言默认值和安装分发细节；PNG、PPT 和 GIF 不展开 ANC/Git 个案，因此显式省略该主张。研究报告中保留了撰写时的过程说明，当前作品绑定以元数据和收据为准。
+各项目按运行时契约保留同一研究的完整副本，并在 `artifact.json` 记录覆盖与省略；[身份检查器](../../evals/examples/project-overview/verify.mjs)检查五个项目副本与唯一的 `research/` 完全一致。视频有意省略身份、权限、运行机制、语言默认值和安装分发细节；PNG、PPT 和 GIF 不展开 ANC/Git 个案，因此显式省略该主张。研究报告中保留了撰写时的过程说明，当前作品绑定以元数据和收据为准。
 
-统一时复用了原先较完整的快照，未改动其中事实和证据。HTML/video 的研究及源码身份不变；PNG、PPT 和 GIF 已在新绑定下实际重新生成，未手改收据，见 [统一记录](qa/consolidation.json)。之后另行修正了 PPT 第 6 页的旧视频关系说明：明确 GIF 是独立插图，不是最终 ANC/Git 配音视频中的场景，见 [PPT 修正记录](qa/pptx-correction.json)。
+统一时复用了原先较完整的快照，未改动其中事实和证据。HTML/video 的研究及源码身份不变；PNG、PPT 和 GIF 已在新绑定下实际重新生成，未手改收据，见 [统一记录](provenance/consolidation.json)。之后另行修正了 PPT 第 6 页的旧视频关系说明：明确 GIF 是独立插图，不是最终 ANC/Git 配音视频中的场景，见 [PPT 修正记录](provenance/pptx-correction.json)。
 
-[运行记录](qa/runtime.json)、[分层审阅](qa/review.json)、[播放记录](qa/playback.json)分别记录浏览器、内容、编辑及媒体检查。HTML 覆盖中英双语、1280/390px、浅深主题和键盘/鼠标。视频检查六幕 A→B→A 状态与实际字幕覆盖层；重放要求 DOM 一致，允许浏览器缩放截图最多一个 8 位色阶的栅格化差异，并保留具体差异数。像素变化本身不证明解释有帮助。
+[运行记录](../../evals/examples/project-overview/runtime.json)、[分层审阅](../../evals/examples/project-overview/review.json)、[播放记录](../../evals/examples/project-overview/playback.json)分别记录浏览器、内容、编辑及媒体检查。HTML 覆盖中英双语、1280/390px、浅深主题和键盘/鼠标。视频检查六幕 A→B→A 状态与实际字幕覆盖层；重放要求 DOM 一致，允许浏览器缩放截图最多一个 8 位色阶的栅格化差异，并保留具体差异数。像素变化本身不证明解释有帮助。
 
 PPT 的原生编辑检查在独立副本进行，没有修改交付件。**完整人工听审、桌面 PPT 动效播放、独立真人理解和跨机器字体检查未完成**；完整静音播放或解码不能替代这些检查。
 
 ## 配音与资源
 
-十二段英文旁白最初经单独批准，通过 `edge-tts==7.2.8`、`en-US-JennyNeural`、`+0%` 实际合成。最终视频经用户批准当前计划后，用 `provided-audio` **离线导入原录音**。原始计划、清单及 WAV 保存在 [音频来源](audio-origin/)，当前 [音频清单](audio/manifest.json)与[视频收据](overview.mp4.json)记录导入绑定。最终成片为 3330 帧、111 秒，1280 × 720、30 fps、H.264/AAC，含烧录字幕和 SRT。导入对齐为其中四段各补了一帧静音；[音频复用记录](qa/audio-reuse.json)确认原有语音采样完全未变。
+十二段英文旁白最初经单独批准，通过 `edge-tts==7.2.8`、`en-US-JennyNeural`、`+0%` 实际合成。最终视频经用户批准当前计划后，用 `provided-audio` **离线导入原录音**。原始计划、清单及 WAV 保存在 [音频来源](audio-origin/)，当前 [音频清单](audio/manifest.json)与[视频收据](overview.mp4.json)记录导入绑定。最终成片为 3330 帧、111 秒，1280 × 720、30 fps、H.264/AAC，含烧录字幕和 SRT。导入对齐为其中四段各补了一帧静音；[音频复用记录](../../evals/examples/project-overview/audio-reuse.json)确认原有语音采样完全未变。
 
-截图来自仓库既有案例和本例，不使用下载图库或第三方模板。[英文截图记录](qa/example-assets.json)保存来源、状态、裁切和图像哈希。字体使用本地系统字体。制作同时使用宿主文档技能、Clawpilot 样式、原生画布等工具，不是 Aha 单独效果的对照试验。在线语音只发送明确获准的旁白及声线参数，不发送研究、源码或截图。其他再分发用途的服务条款仍需使用者自行确认。
+截图来自仓库既有案例和本例，不使用下载图库或第三方模板。[英文截图记录](provenance/example-assets.json)保存来源、状态、裁切和图像哈希。字体使用本地系统字体。制作同时使用宿主文档技能、Clawpilot 样式、原生画布等工具，不是 Aha 单独效果的对照试验。在线语音只发送明确获准的旁白及声线参数，不发送研究、源码或截图。其他再分发用途的服务条款仍需使用者自行确认。
 
 ## 本地复现
 
@@ -63,26 +63,28 @@ node .\dist\cli\aha.mjs research-validate .\examples\project-overview\research
 node .\dist\cli\aha.mjs render-html .\examples\project-overview\projects\html .\artifacts\overview-rebuild\index.html
 node .\dist\cli\aha.mjs render-image .\examples\project-overview\projects\image .\artifacts\overview-rebuild\overview.png --allow-code
 node .\dist\cli\aha.mjs render-pptx .\examples\project-overview\projects\pptx .\artifacts\overview-rebuild\overview.pptx --allow-code
-node --import tsx .\examples\project-overview\check.mjs .\artifacts\overview-rebuild .\artifacts\overview-qa-new --allow-code
-node --import tsx .\examples\project-overview\check-alignment.mjs .\examples\project-overview\projects\video .\examples\project-overview\qa\word-timings.json .\artifacts\overview-alignment-new --allow-code
-node --import tsx .\examples\project-overview\verify.mjs
+node --import tsx .\evals\examples\project-overview\check.mjs .\artifacts\overview-rebuild .\artifacts\overview-qa-new --allow-code
+node --import tsx .\evals\examples\project-overview\check-alignment.mjs .\examples\project-overview\projects\video .\examples\project-overview\provenance\word-timings.json .\artifacts\overview-alignment-new --allow-code
+npm run examples:verify
 ```
 
 检查器使用已有 Edge，可用 `AHA_BROWSER_CHANNEL` / `AHA_BROWSER_EXECUTABLE` 指定已有浏览器，不下载浏览器。重新生成 PPT 使用的独立无声插图：
 
 ```powershell
-node --import tsx .\examples\project-overview\make-motion-preview.mjs .\artifacts\overview-motion-new --allow-code
+node --import tsx .\examples\project-overview\tools\make-motion-preview.mjs .\artifacts\overview-motion-new --allow-code
 ```
 
 修改 GIF 后，有意识地更新 PPT 资源并重新渲染。当前新版视频源码、计划及音频均不变时，另获本地执行许可后可离线重渲染：
 
 ```powershell
 node .\dist\cli\aha.mjs render-video .\examples\project-overview\projects\video .\examples\project-overview\video-plan.json .\examples\project-overview\audio .\artifacts\overview-rebuild\overview.mp4 --approve 8e7494725ad0e9bd18a2b60ad3cff5cdfeaffef008404dc7c6e9abcc9242fcb1 --allow-code
-node .\examples\project-overview\check-playback.mjs .\artifacts\overview-rebuild\overview.mp4 .\artifacts\overview-playback-new.json --allow-code
+node .\evals\examples\project-overview\check-playback.mjs .\artifacts\overview-rebuild\overview.mp4 .\artifacts\overview-playback-new.json --allow-code
 ```
 
 源码或旁白改变时，用 `prepare-video` 创建新绑定并重新检查。在线合成前必须展示完整当前旁白、提供方、声线、语速、外发范围和计划标识并获得批准；`authored` 或命令行参数本身不代表许可。
 
 ## 保留内容
 
-本目录只保留最终四种作品、PPT 仍在使用的 GIF 插图、必要源码与素材、一份统一研究及运行时要求的相同副本、音频来源和最终检查记录。旧候选、失败计划、调试副本、临时帧和制作环境已清理。原始音频仍是录音来源和时间对齐记录的依据。上一级的 `.gitattributes` 对所有示例禁止自动换行转换，以保留收据记录的精确字节。
+本目录保留最终四种作品、PPT 仍在使用的 GIF 插图、必要源码与素材、一份统一研究及运行时要求的相同副本、音频来源、`tools/` 制作工具和 `provenance/` 制作依据。验收工具及最终报告统一位于 [`../../evals/examples/project-overview/`](../../evals/examples/project-overview/)；制作依据中的素材路径仍相对于本示例根目录。`verify.mjs [新报告路径] [示例根目录] [验收目录]` 可显式选择待验证副本，默认验证仓库当前交付。
+
+旧候选、失败计划、调试副本、临时帧和制作环境已清理。原始音频仍是录音来源和时间对齐记录的依据。迁移没有改写研究、成品、收据或历史检查记录；记录中的旧路径是当时的审计位置，当前导航以本页为准。`examples/` 与 `evals/examples/` 各自的 `.gitattributes` 禁止自动换行转换，以保留精确字节。

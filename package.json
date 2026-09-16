@@ -15,7 +15,9 @@
     "pretest:browser": "npm run build",
     "test:browser": "playwright test",
     "test:media": "node --import tsx --test tests/media.integration.ts",
-    "aha": "node dist/cli/aha.mjs"
+    "aha": "node dist/cli/aha.mjs",
+    "eval:prepare": "node evals/skills/prepare.mjs",
+    "examples:verify": "node --import tsx --test tests/example-identity.test.ts"
   },
   "dependencies": {
     "@sinclair/typebox": "0.34.41",
