@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "format": "pptx",
+  "language": "en",
+  "researchHash": "c38647d6d79318b96aa30e9c5f86f2babe042dec286ad390a56d22f908ee2019",
+  "title": "Why can a Git merge bring back a reverted change?",
+  "status": "authored",
+  "entry": "pptx/main.mjs",
+  "coverage": [
+    {"id":"slide-02-history","claimIds":["c-base"]},
+    {"id":"slides-03-04-selection-build","claimIds":["c-return","c-revert"]},
+    {"id":"slide-05-counter-build","claimIds":["c-counter"]},
+    {"id":"slide-06-independent","claimIds":["c-independent"]},
+    {"id":"slide-07-conflict","claimIds":["c-conflict"]},
+    {"id":"slide-08-undo","claimIds":["c-revert","c-revert-merge","c-reset"]},
+    {"id":"slide-09-strategies-and-sources","claimIds":["c-version","c-strategy"]}
+  ],
+  "omissions": [],
+  "width": 1280,
+  "height": 720
+}

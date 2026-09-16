@@ -1,0 +1,133 @@
+{
+  "review": "Git merge stage-01 independent rendered-output visual QA",
+  "scope_root": "artifacts\\examples-refresh-20260916\\git-merge",
+  "method": {
+    "inspection": "Viewed the final infographic and all ten supplied PowerPoint-exported slide PNGs individually. Re-viewed slide 07 to confirm the caption occlusion.",
+    "source_access": "None.",
+    "execution": "None. No author scripts, exports, installs, browser activity, nested agents, or source changes.",
+    "reading_size_assessment": "Inspected the native infographic image and reasoned about its intended 1200x800 desktop/document presentation using the two-thirds scale factor. No separately resized image or actual-device usability test was produced.",
+    "motion_limit": "These are static exports of a deck reported to contain native animation. Slideshow motion playback was not inspected, and no animation timing, trajectory, object visibility during playback, or transition behavior is certified.",
+    "editing_limit": "Native textbox editing was reported as passed by the parent, not tested here."
+  },
+  "summary": {
+    "required_images_viewed": 11,
+    "slide_images_viewed": 10,
+    "required_images_not_viewed": [],
+    "verdict": "One focused slide-layout correction required. No concrete infographic defect or additional slide-rendering defect observed.",
+    "finding_count": 1,
+    "highest_severity": "medium",
+    "positive_observations": [
+      "Dark opening and closing slides frame readable light body slides.",
+      "The concrete BASE / OURS NOW / THEIRS NOW / RESULT example remains legible and progresses coherently across the slide sequence.",
+      "Long slide titles fit without visible truncation or unintended second-line collisions.",
+      "Visible merge-history connections and decision-flow arrows do not show a reversed direction or mismatched target in these stills.",
+      "No production 'QA pending' language or equivalent unfinished-review status was observed.",
+      "Source/version footers function as provenance and are not themselves QA leakage."
+    ]
+  },
+  "findings": [
+    {
+      "id": "GIT-S07-01",
+      "severity": "medium",
+      "kind": "caption occluded by callout",
+      "path": "qa\\stage-01\\slides\\slide-07.png",
+      "slide": 7,
+      "location": "Lower-left body area, where the pink warning strip meets the gray assumptions caption",
+      "approximate_native_coordinates": {
+        "callout_region": "x95-1489, y713-775",
+        "affected_caption": "Starts near x95, y770"
+      },
+      "observation": "The pink strip containing 'A clean text merge does not certify the program's behavior.' covers the upper portion of the gray caption 'Illustrative ordinary files: matching modes; no renames or custom drivers.' The caption begins directly under the opaque strip, with the tops of its letters visibly obscured.",
+      "impact": "The model assumptions are harder to read and appear clipped. This is an actual rendering collision, not a preference about spacing.",
+      "recommendation": "Separate the warning strip and assumptions caption vertically. For example, move the caption down about 15-20 native pixels while preserving a clear gap above the source footer, or move the warning strip upward with adequate separation from the paragraph above. Do not merely change stacking order, which would leave overlapping content.",
+      "verification": "Re-export slide 07 and confirm the complete caption glyphs are visible, with a clear gap below the pink strip and above the source footer.",
+      "confidence": "high"
+    }
+  ],
+  "infographic_review": {
+    "path": "renders\\stage-01\\git-merge.png",
+    "native_size": "1800x1200",
+    "intended_reading_size": "1200x800 desktop/document",
+    "status": "no concrete defect observed",
+    "observations": [
+      "Title fits, and the major explanatory sections remain visually distinct.",
+      "The current-file comparison and result labels are readable, with no visible value text escaping its region.",
+      "Connectors and arrow targets remain identifiable; no line visibly cuts through a critical label.",
+      "At two-thirds scale, the main explanation and example values remain comfortably differentiated. The smallest source/caption text is comparatively fine but still plausible for the stated desktop/document use.",
+      "No footer collision, edge clipping, or unfinished QA-status text was observed.",
+      "No mobile readability requirement was imposed on this desktop-oriented image."
+    ],
+    "limitations": "Intended-size judgment is based on proportional scaling of the inspected artwork, not a separate 1200x800 raster inspection or measured human reading performance."
+  },
+  "slide_reviews": [
+    {
+      "path": "qa\\stage-01\\slides\\slide-01.png",
+      "slide": 1,
+      "status": "no concrete defect observed",
+      "observations": "Dark opening slide. Title and supporting copy fit within their regions with readable contrast and no visible clipping."
+    },
+    {
+      "path": "qa\\stage-01\\slides\\slide-02.png",
+      "slide": 2,
+      "status": "no concrete defect observed",
+      "observations": "The history diagram is readable and its branch/base relationships are visually coherent. Plain connecting edges are supported by the parent/child explanation; the absence of arrowheads on those edges is not treated as a correctness defect."
+    },
+    {
+      "path": "qa\\stage-01\\slides\\slide-03.png",
+      "slide": 3,
+      "status": "no concrete defect observed",
+      "observations": "The worked current-file comparison has clear column separation and readable values. No text overlaps the cell boundaries or neighboring labels."
+    },
+    {
+      "path": "qa\\stage-01\\slides\\slide-04.png",
+      "slide": 4,
+      "status": "no concrete defect observed",
+      "observations": "The next explanatory state remains legible. Main mechanism content, assumptions note, and provenance footer are separated without the collision seen later on slide 07."
+    },
+    {
+      "path": "qa\\stage-01\\slides\\slide-05.png",
+      "slide": 5,
+      "status": "no concrete defect observed",
+      "observations": "The selection arrow leads from the relevant current-file value toward the result region. Its target and direction are visually consistent with the illustrated mechanism, with no observed text intersection."
+    },
+    {
+      "path": "qa\\stage-01\\slides\\slide-06.png",
+      "slide": 6,
+      "status": "no concrete defect observed",
+      "observations": "The long heading still fits on one line. Comparison/result text remains within the right edge, and the lower explanatory areas do not visibly collide."
+    },
+    {
+      "path": "qa\\stage-01\\slides\\slide-07.png",
+      "slide": 7,
+      "status": "correction required",
+      "findings": [
+        "GIT-S07-01"
+      ],
+      "observations": "Title 'A conflict is a different branch of the mechanism' fits. BASE off / OURS NOW manual / THEIRS NOW on / RESULT review are clearly separated and readable. The pink warning strip occludes the top of the assumptions caption beneath it; the source footer itself is not clipped."
+    },
+    {
+      "path": "qa\\stage-01\\slides\\slide-08.png",
+      "slide": 8,
+      "status": "no concrete defect observed",
+      "observations": "Mechanism guidance remains readable with distinct text regions and no visible connector/label overlap or footer collision."
+    },
+    {
+      "path": "qa\\stage-01\\slides\\slide-09.png",
+      "slide": 9,
+      "status": "no concrete defect observed",
+      "observations": "Long title fits within the slide. Supporting material is legible and does not visibly cross its boundaries or crowd the footer."
+    },
+    {
+      "path": "qa\\stage-01\\slides\\slide-10.png",
+      "slide": 10,
+      "status": "no concrete defect observed",
+      "observations": "Dark closing bookend has readable hierarchy and no observed production QA-status leakage, clipped title, or bottom text collision."
+    }
+  ],
+  "completion_limits": [
+    "All eleven requested PNGs were visually inspected; no requested files remain unviewed.",
+    "The only write made for this task is this review JSON.",
+    "No rendering fix has been applied or reverified by this read-only review.",
+    "Static-slide review does not substitute for the still-pending actual slideshow motion playback check."
+  ]
+}

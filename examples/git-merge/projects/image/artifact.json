@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0.0",
+  "format": "image",
+  "language": "en",
+  "researchHash": "c38647d6d79318b96aa30e9c5f86f2babe042dec286ad390a56d22f908ee2019",
+  "title": "Git merge: the same tips can produce a different result",
+  "status": "authored",
+  "entry": "html/index.html",
+  "coverage": [
+    {"id":"return","claimIds":["c-return"]},
+    {"id":"counter","claimIds":["c-counter"]},
+    {"id":"independent","claimIds":["c-independent"]},
+    {"id":"conflict","claimIds":["c-conflict"]},
+    {"id":"scope-and-close","claimIds":["c-base"]}
+  ],
+  "omissions": [
+    {"claimId":"c-version","reason":"The compact source cue pins Git 2.55 but omits the release-discovery audit."},
+    {"claimId":"c-revert","reason":"Focus is the net-change consequence, not revert command options."},
+    {"claimId":"c-revert-merge","reason":"Merge-commit reversion requires a separate ancestry explanation; not compressed into this comparison plate."},
+    {"claimId":"c-reset","reason":"Reset modes are outside this single ordinary-file comparison."},
+    {"claimId":"c-strategy","reason":"Plate explicitly limits itself to ort three-way merging, without presenting strategy options as fixes."}
+  ],
+  "width": 1800,
+  "height": 1200
+}

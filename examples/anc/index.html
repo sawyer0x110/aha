@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; media-src data: blob:; connect-src 'none'; worker-src 'none'; child-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"><script>(() => {
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' data:; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; media-src data: blob:; connect-src 'none'; worker-src 'none'; child-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"><script>(() => {
   const param = new URLSearchParams(window.location.search).get("scoutTheme");
   const authored = document.documentElement.getAttribute("data-theme");
   const theme =
@@ -67,13 +67,10 @@ button { font: inherit; min-height: 44px; padding: 8px 12px; border: 1px solid v
 button:hover { background: var(--cp-accent-soft); }
 :focus-visible { outline: 3px solid var(--cp-accent); outline-offset: 3px; }
 </style><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Why voices can remain when the rumble fades</title><script>(() => {
+<title>Why ANC quiets aircraft rumble but leaves voices</title><script>(() => {
   const param = new URLSearchParams(window.location.search).get("scoutTheme");
-  const authored = document.documentElement.getAttribute("data-theme");
   const theme =
-    param === "light" || param === "dark" ? param :
-    authored === "light" || authored === "dark" ? authored :
-    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   document.documentElement.setAttribute("data-theme", theme);
 })();</script><style>
 :root {
@@ -136,101 +133,26 @@ button { font: inherit; min-height: 44px; padding: 8px 12px; border: 1px solid v
 button:hover { background: var(--cp-accent-soft); }
 :focus-visible { outline: 3px solid var(--cp-accent); outline-offset: 3px; }
 
-body { font-size: 18px; }
-[hidden] { display: none !important; }
-main { max-width: 1184px; margin: 0 auto; padding: 48px 40px 80px; }
-h1, h2, h3, p, figure { margin: 0; }
-h1 { max-width: 900px; font-size: clamp(2.5rem, 6vw, 4.8rem); line-height: 1.06; letter-spacing: -.045em; font-weight: 650; }
-h2 { font-size: clamp(1.65rem, 3vw, 2.35rem); line-height: 1.2; letter-spacing: -.025em; font-weight: 650; }
-h3 { font-size: 1.16rem; line-height: 1.4; }
-p + p { margin-top: 16px; }
-a { text-underline-offset: 3px; }
-strong { font-weight: 650; }
-svg { display: block; width: 100%; height: auto; font-family: inherit; }
-svg text { fill: var(--cp-text); font-size: 16px; }
-.eyebrow { color: var(--cp-accent); font-size: .8rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; margin-bottom: 24px; }
-.hero { padding: 24px 0 48px; border-bottom: 2px solid var(--cp-text); }
-.hero h1 span { color: var(--cp-accent); }
-.standfirst { max-width: 790px; font-size: clamp(1.12rem, 2vw, 1.4rem); line-height: 1.6; margin-top: 28px; }
-.reader-route { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 24px; font-size: .94rem; }
-.reader-route a { color: var(--cp-text); }
-.chapter { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 32px; padding: 48px 0; border-bottom: 1px solid var(--cp-border-strong); }
-.chapter > div { min-width: 0; }
-.rail { color: var(--cp-text-soft); font-size: .85rem; }
-.rail b { display: block; color: var(--cp-accent); font-size: 2.4rem; font-weight: 400; line-height: 1; margin-bottom: 12px; }
-.prose { max-width: 740px; }
-.prose h2 { margin-bottom: 24px; }
-.source { font-size: .87rem; color: var(--cp-text-soft); margin-top: 16px; }
-.source a { color: var(--cp-text-soft); }
-.figure { margin: 28px 0 0; padding: 24px; background: var(--cp-surface); border: 1px solid var(--cp-border); border-radius: 16px; }
-.figure h3 { margin-bottom: 12px; }
-.figure figcaption { font-size: .94rem; margin-top: 16px; max-width: 760px; }
-.scroll-figure { overflow-x: auto; overscroll-behavior-x: contain; border-radius: .625rem; }
-.ear-map { min-width: 680px; }
-.scroll-hint { margin-bottom: 8px; font-size: .83rem; color: var(--cp-text-soft); }
-.node { fill: var(--cp-bg-elevated); stroke: var(--cp-text-soft); stroke-width: 1.5; }
-.boundary { fill: var(--cp-surface-soft); stroke: var(--cp-border-strong); stroke-width: 1.5; stroke-dasharray: 5 5; }
-.acoustic { fill: none; stroke: var(--cp-text); stroke-width: 2.5; }
-.signal { fill: none; stroke: var(--cp-text-soft); stroke-width: 2; stroke-dasharray: 5 5; }
-.anti { fill: none; stroke: var(--cp-accent); stroke-width: 2.5; stroke-dasharray: 8 5; }
-.sum { fill: none; stroke: var(--cp-accent); stroke-width: 4; }
-.incoming { fill: none; stroke: var(--cp-text); stroke-width: 2.5; }
-.axis { fill: none; stroke: var(--cp-text-soft); stroke-width: 1; }
-.guide { fill: none; stroke: var(--cp-border); stroke-width: 1; }
-.target { fill: var(--cp-accent-soft); stroke: var(--cp-accent); stroke-width: 3; }
-.legend { display: flex; flex-wrap: wrap; gap: 8px 24px; list-style: none; padding: 0; margin: 16px 0; font-size: .9rem; }
-.legend li { display: flex; align-items: center; gap: 8px; }
-.swatch { display: inline-block; width: 32px; border-top: 3px solid var(--cp-text); }
-.swatch.anti-key { border-color: var(--cp-accent); border-top-style: dashed; }
-.swatch.sum-key { border-color: var(--cp-accent); border-top-width: 5px; }
-.swatch.signal-key { border-color: var(--cp-text-soft); border-top-style: dashed; }
-.aside-note { margin: 24px 0; padding: 4px 0 4px 20px; border-left: 3px solid var(--cp-accent); }
-.model-intro { max-width: 730px; }
-.model-grid { display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 28px; align-items: start; margin-top: 24px; }
-.model-grid > div { min-width: 0; }
-.control-panel { border-top: 2px solid var(--cp-accent); padding-top: 16px; }
-label { display: block; font-weight: 650; }
-input[type="range"] { display: block; width: 100%; min-height: 44px; margin: 8px 0 0; accent-color: var(--cp-accent); cursor: pointer; }
-.range-ends { display: flex; justify-content: space-between; font-size: .86rem; color: var(--cp-text-soft); }
-.readout { font-size: 3.1rem; line-height: 1.15; font-weight: 600; color: var(--cp-accent); font-variant-numeric: tabular-nums; margin-top: 20px; }
-.readout-label { font-size: .88rem; margin: 8px 0 16px; }
-.feedback { min-height: 5.2em; margin-top: 16px; font-size: .96rem; }
-.model-note { font-size: .94rem; background: var(--cp-bg-elevated); border-left: 3px solid var(--cp-border-strong); padding: 16px; margin-top: 24px; }
-.formula { font-family: Consolas, "Courier New", Courier, monospace; font-size: .93rem; overflow-wrap: anywhere; }
-.plot-caption { font-size: .87rem; color: var(--cp-text-soft); }
-.wave-plot { min-width: 400px; }
-.comparison { margin-top: 28px; }
-.comparison-row { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 24px; padding: 24px 0; border-top: 1px solid var(--cp-border-strong); }
-.comparison-row h3 { color: var(--cp-accent); }
-.comparison-row p { max-width: 650px; }
-.compare-intro { margin-top: 8px; font-size: .85rem; color: var(--cp-text-soft); }
-.fit-list { padding-left: 24px; max-width: 740px; margin: 24px 0; }
-.fit-list li { padding-left: 8px; margin: 16px 0; }
-.closing { margin-top: 32px; font-size: 1.28rem; line-height: 1.5; max-width: 730px; font-weight: 600; }
-.reading { padding-top: 32px; font-size: .94rem; max-width: 850px; margin-left: 152px; }
-.reading h2 { font-size: 1.3rem; margin-bottom: 12px; }
-.reading ul { padding-left: 24px; }
-.reading li { margin: 12px 0; }
-section[lang="zh-CN"] h1 { letter-spacing: -.025em; line-height: 1.2; }
-section[lang="zh-CN"] { line-height: 1.8; }
-@media (max-width: 880px) {
-  .chapter { grid-template-columns: 72px minmax(0, 1fr); gap: 24px; }
-  .model-grid { grid-template-columns: minmax(0, 1fr); }
-  .control-panel { max-width: 480px; }
-  .feedback { min-height: 0; }
-  .reading { margin-left: 96px; }
-}
-@media (max-width: 560px) {
-  main { padding: 28px 20px 56px; }
-  .hero { padding: 16px 0 32px; }
-  .chapter { display: block; padding: 32px 0; }
-  .rail { margin-bottom: 16px; display: flex; align-items: baseline; gap: 12px; }
-  .rail b { font-size: 1.5rem; margin: 0; }
-  .figure { padding: 16px; margin-left: -4px; margin-right: -4px; }
-  .comparison-row { grid-template-columns: minmax(0, 1fr); gap: 8px; padding: 20px 0; }
-  .reading { margin-left: 0; }
-  .eyebrow { letter-spacing: .07em; }
-}
+:root { --cp-bookend: #292929; --cp-bookend-text: #dedede; --cp-paper: #fcfbf8; --cp-ink: #242424; }
+main { max-width: 1120px; margin: auto; padding: 24px; }
+h1 { font-size: clamp(36px,6vw,64px); line-height: 1.08; max-width: 850px; margin: 12px 0 24px; }
+h2 { font-size: 30px; line-height: 1.2; margin: 8px 0 20px; } h3 { font-size: 22px; }
+p { max-width: 74ch; } .lead { font-size: 22px; line-height: 1.5; }
+.bookend { background: var(--cp-bookend); color: var(--cp-bookend-text); padding: 48px; border-radius: 16px; }
+.bookend a { color: var(--cp-bookend-text); }
+.paper { background:var(--cp-paper); color:var(--cp-ink); padding:40px; margin:24px 0; border-radius:16px; --cp-text:#242424; --cp-text-muted:#5c5c5c; --cp-surface:#ffffff; --cp-border:#dedede; --cp-accent:#b11f4b; --cp-link:#0078d4; }
+.eyebrow { font-size:14px; letter-spacing:.12em; font-weight:700; text-transform:uppercase; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+figure { margin:28px 0; } figcaption,.source { font-size:15px; line-height:1.6; }
+svg { width:100%; display:block; } svg text { font-family:inherit; fill:var(--cp-text); font-size:18px; }
+.source { margin-top:24px; } .equation { font-family:Consolas,"Courier New",monospace; font-size:21px; }
+label { display:block; margin:20px 0; font-weight:600; } input { width:100%; accent-color:var(--cp-accent); }
+output { display:block; padding:16px; border:2px solid var(--cp-accent); border-radius:.625rem; }
+.controls { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.note { border-left:4px solid var(--cp-accent); padding:8px 20px; }
+details { margin:24px 0; } summary { cursor:pointer; font-weight:700; }
+li { margin:12px 0; } [hidden] { display:none !important; }
+@media(max-width:700px) { main{padding:12px}.bookend,.paper{padding:24px}.two,.controls{grid-template-columns:1fr} h2{font-size:26px} }
 
 </style><style>
 [data-aha-lang][hidden] { display: none !important; }
@@ -238,401 +160,60 @@ section[lang="zh-CN"] { line-height: 1.8; }
 .aha-language-controls button[aria-pressed="true"] { border-color: var(--cp-accent); font-weight: bold; }
 </style></head><body>
 <main>
-<section data-aha-lang="en" lang="en" data-aha-title="Why voices can remain when the rumble fades">
-  <header class="hero" id="en-answer">
-    <p class="eyebrow">Inside noise cancellation · A visual explanation</p>
-    <h1>The rumble fades.<br><span>Why can you still hear voices?</span></h1>
-    <p class="standfirst">Noise-cancelling headphones add sound through their speakers. When that sound produces pressure changes close in size but opposite to the noise at your ear, the combined pressure fluctuations shrink. Low-frequency rumble changes more slowly, leaving more room for timing error. Speech spans many frequencies: reducing some components can still leave enough cues to hear the words.</p>
-    <nav class="reader-route" aria-label="In this explanation">
-      <a href="#en-ear" rel="noopener noreferrer">01 · At the ear</a><a href="#en-model" rel="noopener noreferrer">02 · Add the pressures</a><a href="#en-frequency" rel="noopener noreferrer">03 · Rumble and speech</a><a href="#en-fit" rel="noopener noreferrer">04 · Fit and expectations</a>
-    </nav>
-    <p class="source">The starting points: <a href="https://helpguide.sony.net/mdr/wh1000xm5/v1/en/contents/TP1000534716.html" rel="noopener noreferrer">Sony on low-frequency reduction</a> and <a href="https://newt.phys.unsw.edu.au/jw/voice.html" rel="noopener noreferrer">UNSW on how speech is made</a>.</p>
-  </header>
-  <section class="chapter" id="en-ear" aria-labelledby="en-ear-heading">
-    <div class="rail"><b>01</b>Location first</div>
-    <div>
-      <div class="prose">
-        <h2 id="en-ear-heading">The two sounds meet at your ear.</h2>
-        <p>Sound is a small fluctuation in air pressure. At a given location and instant, the pressure from the outside noise and the pressure from the headphone speaker add. If the noise raises pressure above its resting value, an equal pressure decrease from the speaker offsets it. When the noise pressure falls, the speaker must supply the opposite increase.</p>
-        <p>This is <strong>active noise cancellation (ANC)</strong>: the headphone generates “anti-noise.” For ideal cancellation, those pressure changes must have equal size and opposite signs throughout the waveform <strong>at the ear</strong>—not merely at a microphone or at the speaker.</p>
-        <p class="source">Pressure addition: <a href="https://www.physicsclassroom.com/tutorial/sound-waves/properties-of-sound-waves/interference-and-beats" rel="noopener noreferrer">The Physics Classroom, interference</a>. Microphone roles: <a href="https://support.apple.com/en-us/108918" rel="noopener noreferrer">Apple Support</a>.</p>
-      </div>
-      <figure class="figure" aria-labelledby="en-map-heading">
-        <h3 id="en-map-heading">A local target, not a quiet cabin</h3>
-        <p class="scroll-hint">On a narrow screen, scroll this diagram sideways. Its labels stay full size.</p>
-        <div class="scroll-figure" tabindex="0" role="region" aria-label="Headphone mechanism diagram, horizontally scrollable">
-          <svg class="ear-map" viewBox="0 0 680 430" role="img" aria-labelledby="en-map-title en-map-desc">
-            <title id="en-map-title">Conceptual hybrid ANC: two pressures add at the ear</title>
-            <desc id="en-map-desc">An outside microphone sends a sample to a controller. The controller drives a speaker inside the earcup. Outside noise and the speaker's anti-noise both reach the marked ear location, where their pressures add. An inside microphone samples residual sound for the controller. Solid arrows carry sound; dashed arrows carry signals. This is a conceptual arrangement, not every headphone design.</desc>
-            <defs>
-              <marker id="en-arrow-sound" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--cp-text)"></path></marker>
-              <marker id="en-arrow-signal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--cp-text-soft)"></path></marker>
-              <marker id="en-arrow-anti" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--cp-accent)"></path></marker>
-            </defs>
-            <rect class="boundary" x="365" y="116" width="300" height="298" rx="12"></rect>
-            <text x="385" y="145">Inside the earcup</text>
-            <rect class="node" x="24" y="24" width="192" height="64" rx="10"></rect>
-            <text x="40" y="49">Outside microphone</text><text x="40" y="73">samples cabin sound</text>
-            <rect class="node" x="332" y="24" width="208" height="64" rx="10"></rect>
-            <text x="350" y="49">Controller</text><text x="350" y="73">shapes speaker signal</text>
-            <path class="signal" d="M216 56 H330" marker-end="url(#en-arrow-signal)"></path>
-            <path class="signal" d="M436 88 V165" marker-end="url(#en-arrow-signal)"></path>
-            <rect class="node" x="389" y="168" width="137" height="48" rx="10"></rect>
-            <text x="406" y="198">Speaker</text>
-            <path class="acoustic" d="M30 283 H532" marker-end="url(#en-arrow-sound)"></path>
-            <text x="30" y="239">Outside noise reaching the ear</text>
-            <text x="30" y="263">Pressure can rise or fall</text>
-            <path d="M476 218 L544 270" fill="none" stroke="var(--cp-accent)" stroke-width="3" marker-end="url(#en-arrow-anti)"></path>
-            <text x="544" y="214">Anti-noise</text>
-            <circle class="target" cx="550" cy="283" r="15"></circle>
-            <text x="440" y="323">Ear: pressures add here</text>
-            <rect class="node" x="401" y="350" width="230" height="45" rx="10"></rect>
-            <text x="415" y="379">Inside mic: residual sound</text>
-            <path class="signal" d="M631 372 H648 V56 H543" marker-end="url(#en-arrow-signal)"></path>
-          </svg>
-        </div>
-        <ul class="legend" aria-label="Diagram arrow legend"><li><span class="swatch"></span>Solid arrow: sound path</li><li><span class="swatch signal-key"></span>Dashed arrow: microphone or drive signal</li></ul>
-        <figcaption>A conceptual <strong>hybrid</strong> arrangement uses outside and inside microphones. Each microphone measures sound at its own location; processing and the acoustic path to the ear determine the speaker pressure that arrives at the target. Other headphone layouts differ. <a href="https://www.soundguys.com/noise-canceling-anc-explained-28344/" rel="noopener noreferrer">SoundGuys explains these arrangements.</a></figcaption>
-      </figure>
-      <p class="aside-note">Move away from the target and the peaks and troughs of the two waves need not arrive in the same relationship. Less pressure at one ear does not mean the cabin sound has been erased. <a href="https://www.physicsclassroom.com/tutorial/sound-waves/properties-of-sound-waves/interference-and-beats" rel="noopener noreferrer">Interference depends on location.</a></p>
-    </div>
-  </section>
-  <section class="chapter" id="en-model" aria-labelledby="en-model-heading">
-    <div class="rail"><b>02</b>Pressure addition</div>
-    <div>
-      <div class="prose">
-        <h2 id="en-model-heading">Opposite is a precise relationship.</h2>
-        <p>A tone repeats in cycles. <strong>Phase</strong> tells us where it is within a cycle. In the model below, zero phase mismatch means the speaker pressure is exactly opposite the incoming pressure. The slider moves the speaker waveform away from that ideal relationship; it does not change either input's amplitude.</p>
-      </div>
-      <figure class="figure" data-model="" aria-labelledby="en-model-label">
-        <h3 id="en-model-label">Try a phase mismatch, keeping both amplitudes equal</h3>
-        <p class="model-intro" id="en-model-scope">Ideal single-tone model, at one location. Each input has peak pressure amplitude 1. The residual is their sum; the readout is its peak amplitude divided by the incoming peak amplitude.</p>
-        <div class="model-grid">
-          <div>
-            <ul class="legend" aria-label="Waveform legend">
-              <li><span class="swatch"></span>Incoming pressure</li>
-              <li><span class="swatch anti-key"></span>Speaker pressure</li>
-              <li><span class="swatch sum-key"></span>Sum / residual</li>
-            </ul>
-            <p class="scroll-hint">Scroll the plot sideways if needed; all three curves share one scale.</p>
-            <div class="scroll-figure" tabindex="0" role="region" aria-label="Pressure curves, scrollable if needed">
-              <svg class="wave-plot" viewBox="0 0 400 294" role="img" aria-labelledby="en-wave-title en-wave-desc">
-                <title id="en-wave-title">Two pressure inputs and their sum across one cycle</title>
-                <desc id="en-wave-desc" data-plot-description="">At zero phase mismatch, incoming and speaker pressures are equal and opposite. Their sum is zero. Horizontal position is time across one cycle, not distance. Vertical values are normalized pressure.</desc>
-                <text x="44" y="22">Normalized pressure</text>
-                <path class="guide" d="M44 58 H384 M44 100 H384 M44 184 H384 M44 226 H384 M129 58 V226 M214 58 V226 M299 58 V226 M384 58 V226"></path>
-                <path class="axis" d="M44 58 V226 M44 142 H384"></path>
-                <text x="10" y="64">+2</text><text x="10" y="106">+1</text><text x="20" y="148">0</text><text x="10" y="190">−1</text><text x="10" y="232">−2</text>
-                <path class="incoming" data-pressure="incoming" d="M44 142 C72.33 120 100.67 100 129 100 C157.33 100 185.67 120 214 142 C242.33 164 270.67 184 299 184 C327.33 184 355.67 164 384 142"></path>
-                <path class="anti" data-pressure="speaker" d="M44 142 C72.33 164 100.67 184 129 184 C157.33 184 185.67 164 214 142 C242.33 120 270.67 100 299 100 C327.33 100 355.67 120 384 142"></path>
-                <path class="sum" data-pressure="sum" d="M44 142 H384"></path>
-                <text x="44" y="253">0</text><text x="197" y="253">½</text><text x="375" y="253">1</text>
-                <text x="114" y="281">Time (one tone cycle)</text>
-              </svg>
-            </div>
-            <p class="plot-caption">These are pressure-versus-time curves, not air moving up and down.</p>
-          </div>
-          <div class="control-panel">
-            <label for="en-phase">Phase mismatch: <span data-phase-value="">0°</span></label>
-            <input id="en-phase" data-phase="" type="range" min="0" max="180" step="1" value="0" aria-describedby="en-model-scope en-phase-help">
-            <div class="range-ends" aria-hidden="true"><span>0° · opposed</span><span>180° · aligned</span></div>
-            <p class="readout"><output id="en-residual" data-residual="" for="en-phase" aria-label="Normalized residual peak pressure ratio">0.00</output></p>
-            <p class="readout-label">Residual / incoming peak pressure</p>
-            <button type="button" data-reset="">Reset to 0°</button>
-            <p class="plot-caption" id="en-phase-help">Use arrow keys for 1° steps; Home and End select the limits.</p>
-          </div>
-        </div>
-        <p class="feedback" data-feedback="" aria-live="polite" aria-atomic="true">At 0°, the speaker pressure opposes the incoming pressure at every instant. The ideal sum is zero.</p>
-        <div class="model-note">
-          <p><strong>Read the ratio, not a loudness prediction.</strong> At 60° the residual ratio is 1.00—the same peak amplitude as the incoming tone alone. At 180° it is 2.00: the two pressure waves reinforce each other. Neither value is a measured ANC result, a decibel value, or perceived loudness.</p>
-          <p class="formula">incoming = sin(θ); speaker = −sin(θ − δ)<br>residual peak ratio = 2 |sin(δ / 2)|</p>
-          <p>Here θ is position within the tone cycle and δ is phase mismatch from perfect opposition. Real headphones also have unequal amplitudes, limited operating bandwidth, noise, changing acoustic paths and control-stability constraints. The slider isolates one mismatch; it is not a headset delay setting.</p>
-        </div>
-        <figcaption>Model derived from pressure addition and sinusoidal waves: <a href="https://www.physicsclassroom.com/tutorial/sound-waves/properties-of-sound-waves/interference-and-beats" rel="noopener noreferrer">The Physics Classroom</a> and <a href="https://www.animations.physics.unsw.edu.au/jw/sound-wave-equation.htm" rel="noopener noreferrer">UNSW wave equation</a>. Engineering constraints: <a href="https://www.soundguys.com/noise-canceling-anc-explained-28344/" rel="noopener noreferrer">SoundGuys ANC overview</a>.</figcaption>
-      </figure>
-    </div>
-  </section>
-  <section class="chapter" id="en-frequency" aria-labelledby="en-frequency-heading">
-    <div class="rail"><b>03</b>Frequency &amp; speech</div>
-    <div>
-      <div class="prose">
-        <h2 id="en-frequency-heading">A shorter cycle leaves less room for error.</h2>
-        <p>Frequency counts pressure cycles per second. At a higher frequency, each cycle takes less time. The same residual timing error then shifts the speaker pressure by a larger fraction of a cycle relative to the noise pressure at the ear. Within the small-error range, the peaks and troughs oppose one another less closely as frequency rises. Similarly, a fixed position error spans a larger fraction of a shorter wavelength, making it harder to preserve the intended pressure relationship at the ear.</p>
-        <p>This helps explain why low-frequency vehicle noise and aircraft hum are often favorable for ANC. It does <em>not</em> mean all low sounds vanish or that ANC stops at one frequency shared by every headphone. The useful range depends on the control system and its acoustic paths.</p>
-        <p class="source"><a href="https://www.animations.physics.unsw.edu.au/jw/sound-wave-equation.htm" rel="noopener noreferrer">UNSW's wave description</a>; <a href="https://www.soundguys.com/noise-canceling-anc-explained-28344/" rel="noopener noreferrer">phase alignment at the ear</a>; <a href="https://helpguide.sony.net/mdr/wh1000xm5/v1/en/contents/TP1000534716.html" rel="noopener noreferrer">Sony's low-frequency guidance</a>; <a href="https://www.soundguys.com/how-noise-cancelling-headphones-work-12380/" rel="noopener noreferrer">the aircraft-hum example</a>.</p>
-      </div>
-      <div class="comparison" aria-labelledby="en-compare-title">
-        <h3 id="en-compare-title">Compare what the headphone has to reduce</h3>
-        <p class="compare-intro">A qualitative comparison—not frequency boundaries or measured attenuation.</p>
-        <div class="comparison-row"><h3>Aircraft rumble</h3><p>Its low-frequency part has relatively long pressure cycles. ANC is generally useful here, so this part of cabin noise may recede noticeably. Aircraft sound is still more than a single steady tone.</p></div>
-        <div class="comparison-row"><h3>Voiced speech</h3><p>Vocal-fold vibration produces a base repetition frequency (the fundamental) and harmonics—components at multiples of that frequency. Sustained vowels can contain regular cycles as well as higher-frequency components. Some lower components may be reduced; a voice is not entirely high-pitched or unpredictable.</p></div>
-        <div class="comparison-row"><h3>Other speech cues</h3><p>Fricatives such as “s” spread energy across many frequencies; plosives such as “p” include brief bursts. Articulation also changes sounds over time. Reducing the low-frequency part alone need not remove these other cues, so speech may remain audible or understandable.</p></div>
-      </div>
-      <p class="source">Speech structure: <a href="https://newt.phys.unsw.edu.au/jw/voice.html" rel="noopener noreferrer">UNSW Voice Acoustics</a>. The remaining-cues explanation combines this with frequency-dependent ANC; it is not a measured word-recognition result.</p>
-      <div class="aside-note prose"><h3>Steadiness alone does not decide the outcome.</h3><p>A steady high tone still demands tight phase and spatial alignment. A changing sound can still contain lower-frequency components within the headphone's useful range. So “ANC cannot cancel voices” is too categorical: <strong>some voice components may be reduced without making the words disappear.</strong></p></div>
-    </div>
-  </section>
-  <section class="chapter" id="en-fit" aria-labelledby="en-fit-heading">
-    <div class="rail"><b>04</b>Back in the cabin</div>
-    <div class="prose">
-      <h2 id="en-fit-heading">Fit changes the sound path, too.</h2>
-      <p>Pads, cups and ear tips form a physical barrier that attenuates sound before it reaches the ear. This is <strong>passive isolation</strong>; it generates no anti-noise. In typical closed headphones it contributes importantly to higher-frequency reduction, while ANC adds a pressure signal inside that boundary. Their contributions are not an equal split, nor separated by a universal cutoff.</p>
-      <p>A gap in that barrier lets more outside sound through and changes the acoustic conditions in which ANC operates. Construction and fit therefore affect the result; switching ANC on cannot substitute for a well-fitting physical barrier.</p>
-      <p class="source">Physical attenuation and fit: <a href="https://www.soundguys.com/what-is-isolation-12506/" rel="noopener noreferrer">SoundGuys on isolation</a>. Wearing conditions: <a href="https://helpguide.sony.net/mdr/wh1000xm5/v1/en/contents/TP1000534716.html" rel="noopener noreferrer">Sony Help Guide</a>.</p>
-      <ol class="fit-list">
-        <li><strong>Check the intended listening mode.</strong> Transparency deliberately admits outside sound; it is not the same goal as noise cancellation. <a href="https://support.apple.com/en-us/108918" rel="noopener noreferrer">Apple explains the distinction.</a></li>
-        <li><strong>Check how the pads or tips sit.</strong> Follow the headphone's fitting guidance so the physical barrier can do its job. Fit also matters to active reduction.</li>
-        <li><strong>Interpret remaining speech cautiously.</strong> Rumble fading while a voice remains does not, by itself, show that ANC is broken. The amount reduced—and whether you can understand the words—cannot be predicted for an unspecified headset and fit.</li>
-      </ol>
-      <p class="closing">The useful question is not “Which sounds are immune?” It is “Which parts of this sound can this headphone reduce, at my ear, with this fit?”</p>
-    </div>
-  </section>
-  <footer class="reading" id="en-reading">
-    <h2>Follow the explanation further</h2>
-    <p>The links beside each mechanism lead to its sources. For a deeper read:</p>
-    <ul>
-      <li><a href="https://www.physicsclassroom.com/tutorial/sound-waves/properties-of-sound-waves/interference-and-beats" rel="noopener noreferrer">The Physics Classroom: interference</a> — why opposite pressures can add to less, and why location matters.</li>
-      <li><a href="https://newt.phys.unsw.edu.au/jw/voice.html" rel="noopener noreferrer">UNSW: voice acoustics</a> — voiced harmonics, vowels, fricatives and bursts.</li>
-      <li><a href="https://www.soundguys.com/noise-canceling-anc-explained-28344/" rel="noopener noreferrer">SoundGuys: ANC arrangements</a> — useful engineering context. Its FAQ's blanket statement that ANC cannot reduce voices overgeneralizes; the article's own speech-related discussion is more qualified.</li>
-    </ul>
-  </footer>
+<section data-aha-lang="en" lang="en" data-aha-title="Why ANC quiets aircraft rumble but leaves voices">
+<header class="bookend"><div class="eyebrow">Sound at the ear / active noise cancellation</div><h1>Why aircraft rumble fades, but voices remain</h1><p class="lead">Noise cancellation does not mute a category of sound. It tries to make the pressure left at your ear smaller. Some parts of speech can shrink while other parts remain audible.</p></header>
+<article class="paper" id="ear-pressure-en"><h2>The meeting point is your ear</h2><p>A microphone senses sound; a controller drives the headphone speaker. But the speaker's sound and the outside noise travel along different paths. Their <strong>pressures must add correctly after arriving at the ear</strong>—not just look inverted in an electrical signal.</p>
+<figure><svg viewBox="0 0 900 290" role="img" aria-label="Outside noise passes through the physical barrier to an ear target. A controller drives a speaker whose pressure also arrives at that target.">
+<rect x="300" y="28" width="20" height="235" fill="var(--cp-border)"></rect><text x="220" y="20">Physical barrier</text>
+<text x="25" y="83">Outside noise</text><path d="M25 112 H660" stroke="var(--cp-text)" stroke-width="4"></path><path d="M645 102 L665 112 L645 122" fill="var(--cp-text)"></path>
+<text x="340" y="206">Speaker</text><path d="M430 180 Q560 180 665 127" fill="none" stroke="var(--cp-accent)" stroke-width="4" stroke-dasharray="8 6"></path><path d="M648 127 L670 124 L656 142" fill="var(--cp-accent)"></path>
+<circle cx="720" cy="116" r="44" fill="var(--cp-surface)" stroke="var(--cp-text)" stroke-width="3"></circle><text x="692" y="123">EAR</text><text x="608" y="245">Residual = noise + control</text>
+<text x="28" y="202">Reference → controller</text><text x="28" y="244">Solid: incoming pressure</text><text x="28" y="270">Dashed: control pressure</text>
+</svg><figcaption>Schematic, not anatomy or a measured sound field. The physical barrier changes transmission; the speaker adds another pressure contribution.</figcaption></figure>
+<p class="equation">residual pressure = incoming pressure + control pressure</p><p>In an ideal linear model, equal and opposite pressure at every instant gives zero residual at that point. In real headphones, the internal error microphone only approximates what reaches the eardrum under suitable conditions.</p><p class="source">Mechanism: <a href="https://www.iks.rwth-aachen.de/forschung/audio/active-noise-control/" rel="noopener noreferrer">RWTH IKS, Principle</a>; ear/microphone distinction: <a href="https://arxiv.org/html/2509.15864v1" rel="noopener noreferrer">Hilgemann et al., §2.1–2.2</a>.</p></article>
+<article class="paper lab" id="timing-lab-en"><h2>Equal amplitude is not enough</h2><p>Phase tells you where a vibration is in its cycle. If the control pressure arrives late, its peaks no longer line up with the noise's troughs. Change the two matching conditions below and inspect the residual.</p>
+<div class="controls"><label>Control amplitude / noise amplitude <input class="gain" type="range" min="0" max="1.2" step=".05" value="1" aria-label="Control amplitude ratio"></label><label>Error away from ideal opposite phase <input class="phase" type="range" min="0" max="180" step="5" value="0" aria-label="Phase error in degrees"></label></div>
+<output class="result" aria-live="polite">Amplitude ratio 1.00; phase error 0°; residual amplitude 0.00 × incoming.</output>
+<svg viewBox="0 0 900 220" role="img" aria-label="Single-tone incoming, control and residual pressure traces; normalized amplitude and one cycle of time"><path d="M20 110 H880" stroke="var(--cp-border)" stroke-width="2"></path><path class="wave-in" fill="none" stroke="var(--cp-text)" stroke-width="3"></path><path class="wave-control" fill="none" stroke="var(--cp-accent)" stroke-width="3" stroke-dasharray="9 7"></path><path class="wave-result" fill="none" stroke="var(--cp-text)" stroke-width="6" stroke-dasharray="2 7"></path></svg>
+<p>Solid: incoming. Dashed rose: control. Dotted: residual. Horizontal: one cycle of time; vertical: normalized pressure. These are <strong>analytical illustrations, not headphone measurements</strong>.</p>
+<div class="two"><div><h3>The same delay, a different phase error</h3><p>Assume an uncorrected timing error of <strong>0.10 ms</strong>. It corresponds to <strong>3.6° at 100 Hz</strong>, but <strong>36° at 1000 Hz</strong>. The faster cycle leaves less timing tolerance.</p></div><div><h3>No universal frequency wall</h3><p>That does not make all high-frequency sound uncancellable. Reference-microphone preview, acoustic paths, controller bandwidth and feedback stability also matter. Predictable signals can permit prediction.</p></div></div>
+<details><summary>What the model assumes</summary><p>One steady sinusoid, linear pressure addition, a single target position. For gain g and phase error δ away from ideal opposition, the residual amplitude ratio is √(1 + g² − 2g cos δ). Phase error from timing is 2πfτ, with f in hertz and τ in seconds. It is not a full controller simulation, a broadband prediction or a loudness score. Phase mismatch can even increase residual pressure.</p></details>
+<p class="source">Derived here from sinusoidal superposition; path/latency context: <a href="https://www.iks.rwth-aachen.de/forschung/audio/active-noise-control/" rel="noopener noreferrer">RWTH IKS</a>. “Faster phase change” does not mean sound travels faster at higher pitch.</p></article>
+<article class="paper" id="two-layers-en"><h2>Two layers work on the same sound</h2><div class="two"><div><h3>Passive isolation changes the path</h3><p>Ear tips, ear cups and their seal impede transmission. They still work with ANC off. They often help more at higher frequencies, but leaks and structure matter.</p></div><div><h3>Active control adds pressure</h3><p>The speaker adds anti-noise to the pressure that gets through. It often helps at lower-to-middle frequencies where a light physical barrier has limitations.</p></div></div><p class="note">Compare ANC on and off without changing fit or the sound source. Removing the headphones is a different baseline.</p><p class="source"><a href="https://arxiv.org/html/2509.15864v1" rel="noopener noreferrer">Hilgemann et al., §2.1 and §2.3</a>: total attenuation combines passive and active contributions; the frequency split is a tendency, not a law.</p></article>
+<article class="paper" id="remaining-voices-en"><h2>Still audible does not mean untouched</h2><p>A voice is not one high-frequency tone. Its components encounter different amounts of attenuation. If enough residual sound survives, you can still hear someone speaking even though parts of their voice have been reduced.</p><p><a href="https://helpguide.sony.net/mdr/wh1000xm5/v1/en/contents/TP1000534745.html" rel="noopener noreferrer">Sony's WH-1000XM5 guide</a> describes stronger cancellation of low-frequency transport noise than voices. It is a useful product-level observation—not a physical ban on cancelling speech.</p><h3>A counterexample worth keeping</h3><p><a href="https://www.iks.rwth-aachen.de/forschung/audio/active-noise-control/" rel="noopener noreferrer">RWTH's own-voice work</a> describes active reduction of low-frequency voice amplification caused by a closed ear canal. Speech pressure can be controlled. That does not prove complete cancellation of another person's voice.</p><p>When rumble falls more than speech does, speech may stand out in the remaining scene. This is not proof that its absolute pressure increased, and no intelligibility test was run here.</p></article>
+<article class="paper" id="reality-check-en"><h2>Before blaming “uncancellable voices”</h2><ol><li><strong>Check the mode.</strong> Transparency intentionally lets outside sound in; adaptive modes can change the balance. <a href="https://support.apple.com/en-us/108918" rel="noopener noreferrer">Apple's mode guide</a> and Sony's guide describe these distinctions for their devices.</li><li><strong>Check the seal and position.</strong> They change the sound paths the controller must handle.</li><li><strong>Separate a model from a measurement.</strong> <a href="https://arxiv.org/html/2509.15864v1" rel="noopener noreferrer">Published prototype results, §6.3</a>, vary with wearer and fit. They are not a fresh test or a guarantee for your headphones.</li></ol><p>Your model, fit, settings and sound field are unknown. No decibel reduction or speech-understanding score can be inferred for your flight from the diagram.</p></article>
+<footer class="bookend"><h2>Think “residual at the ear,” not “which sound gets muted.”</h2><p>Rumble and speech meet the same physical rule. How closely the headphone matches pressure in space and time—and what its passive structure and mode allow through—determines what remains.</p></footer>
 </section>
-<section data-aha-lang="zh" lang="zh-CN" data-aha-title="为什么轰鸣变轻了，人声却还在？" hidden="">
-  <header class="hero" id="zh-answer">
-    <p class="eyebrow">听懂主动降噪 · 从耳边的声压说起</p>
-    <h1>轰鸣变轻了，<br><span>为什么人声还在？</span></h1>
-    <p class="standfirst">降噪耳机会通过扬声器发出抵消噪声的声音。两路声音到达耳边时，如果造成的气压变化大小接近、起伏相反，叠加后的气压起伏就会变小。低频轰鸣变化较慢，对时间误差的容忍度通常更大。人声则包含多种频率：即使其中一部分被减弱，剩下的声音仍可能让你听懂话语。</p>
-    <nav class="reader-route" aria-label="阅读导航">
-      <a href="#zh-ear" rel="noopener noreferrer">01 · 声音在耳边相遇</a><a href="#zh-model" rel="noopener noreferrer">02 · 看声压如何相加</a><a href="#zh-frequency" rel="noopener noreferrer">03 · 比较轰鸣与人声</a><a href="#zh-fit" rel="noopener noreferrer">04 · 佩戴与实际效果</a>
-    </nav>
-    <p class="source">先了解两个基础：<a href="https://helpguide.sony.net/mdr/wh1000xm5/v1/en/contents/TP1000534716.html" rel="noopener noreferrer">索尼对低频降噪的说明</a>与<a href="https://newt.phys.unsw.edu.au/jw/voice.html" rel="noopener noreferrer">新南威尔士大学对语音构成的介绍</a>。</p>
-  </header>
-  <section class="chapter" id="zh-ear" aria-labelledby="zh-ear-heading">
-    <div class="rail"><b>01</b>先明确位置</div>
-    <div>
-      <div class="prose">
-        <h2 id="zh-ear-heading">抵消发生在耳边，不是整个机舱。</h2>
-        <p>声音会让空气压力在静态值附近轻微起伏。在同一位置、同一时刻，外界噪声与耳机扬声器造成的声压变化会相加。噪声让压力升高时，扬声器若带来同样大小的压力下降，就能将它抵消；噪声让压力下降时，扬声器则需要带来相反的上升。</p>
-        <p>这就是<strong>主动降噪（ANC）</strong>的基本思路：耳机主动生成“反噪声”。要在理想情况下完全抵消，两个声压波形必须始终<strong>大小相等、方向相反，而且要在耳边满足这一条件</strong>。仅在麦克风或扬声器的位置满足条件，还不够。</p>
-        <p class="source">声压叠加的物理基础见 <a href="https://www.physicsclassroom.com/tutorial/sound-waves/properties-of-sound-waves/interference-and-beats" rel="noopener noreferrer">The Physics Classroom 的干涉讲解</a>；内外麦克风的作用见<a href="https://support.apple.com/en-us/108918" rel="noopener noreferrer">苹果支持文档</a>。</p>
-      </div>
-      <figure class="figure" aria-labelledby="zh-map-heading">
-        <h3 id="zh-map-heading">两条声路，一个耳边目标</h3>
-        <p class="scroll-hint">窄屏可在图内左右滚动，文字不会随整张图缩得过小。</p>
-        <div class="scroll-figure" tabindex="0" role="region" aria-label="耳机降噪原理图，可左右滚动">
-          <svg class="ear-map" viewBox="0 0 680 430" role="img" aria-labelledby="zh-map-title zh-map-desc">
-            <title id="zh-map-title">混合式主动降噪示意：两道声压在耳边叠加</title>
-            <desc id="zh-map-desc">外侧麦克风采集机舱声音，将信号传给控制器。控制器驱动耳罩内的扬声器。传入的噪声与扬声器发出的反噪声都到达标记的耳边位置，声压在这里相加。内侧麦克风采集残余声音并反馈给控制器。实线箭头表示声音传播，虚线箭头表示信号传递。这是概念示意，并非所有耳机的具体结构。</desc>
-            <defs>
-              <marker id="zh-arrow-sound" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--cp-text)"></path></marker>
-              <marker id="zh-arrow-signal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--cp-text-soft)"></path></marker>
-              <marker id="zh-arrow-anti" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--cp-accent)"></path></marker>
-            </defs>
-            <rect class="boundary" x="365" y="116" width="300" height="298" rx="12"></rect>
-            <text x="385" y="145">耳罩内部</text>
-            <rect class="node" x="24" y="24" width="192" height="64" rx="10"></rect>
-            <text x="40" y="49">外侧麦克风</text><text x="40" y="73">采集机舱声音</text>
-            <rect class="node" x="332" y="24" width="208" height="64" rx="10"></rect>
-            <text x="350" y="49">控制器</text><text x="350" y="73">调整扬声器驱动信号</text>
-            <path class="signal" d="M216 56 H330" marker-end="url(#zh-arrow-signal)"></path>
-            <path class="signal" d="M436 88 V165" marker-end="url(#zh-arrow-signal)"></path>
-            <rect class="node" x="389" y="168" width="137" height="48" rx="10"></rect>
-            <text x="406" y="198">扬声器</text>
-            <path class="acoustic" d="M30 283 H532" marker-end="url(#zh-arrow-sound)"></path>
-            <text x="30" y="239">传到耳边的外界噪声</text>
-            <text x="30" y="263">声压随时间升高或降低</text>
-            <path d="M476 218 L544 270" fill="none" stroke="var(--cp-accent)" stroke-width="3" marker-end="url(#zh-arrow-anti)"></path>
-            <text x="544" y="214">反噪声</text>
-            <circle class="target" cx="550" cy="283" r="15"></circle>
-            <text x="440" y="323">耳边：声压在此相加</text>
-            <rect class="node" x="401" y="350" width="230" height="45" rx="10"></rect>
-            <text x="415" y="379">内侧麦克风：采集残余声音</text>
-            <path class="signal" d="M631 372 H648 V56 H543" marker-end="url(#zh-arrow-signal)"></path>
-          </svg>
-        </div>
-        <ul class="legend" aria-label="原理图箭头图例"><li><span class="swatch"></span>实线箭头：声音传播</li><li><span class="swatch signal-key"></span>虚线箭头：采样或驱动信号</li></ul>
-        <figcaption>图中以同时使用内外麦克风的<strong>混合式</strong>结构为例。每个麦克风测到的只是自身位置的声音；经过信号处理和从扬声器到耳边的声学传播后，目标位置才得到相应的声压。不同耳机的结构可以不同。<a href="https://www.soundguys.com/noise-canceling-anc-explained-28344/" rel="noopener noreferrer">SoundGuys 介绍了这些结构的区别。</a></figcaption>
-      </figure>
-      <p class="aside-note">换一个位置，两道声波的波峰与波谷到达时，未必还能保持原来的对应关系。因此，耳边声压减小，不等于机舱里的声音被消除了。<a href="https://www.physicsclassroom.com/tutorial/sound-waves/properties-of-sound-waves/interference-and-beats" rel="noopener noreferrer">干涉效果与位置有关。</a></p>
-    </div>
-  </section>
-  <section class="chapter" id="zh-model" aria-labelledby="zh-model-heading">
-    <div class="rail"><b>02</b>把声压加起来</div>
-    <div>
-      <div class="prose">
-        <h2 id="zh-model-heading">“反向”不是大致相反就行。</h2>
-        <p>单音的声压会一遍遍重复。<strong>相位</strong>表示波形进行到了一个周期中的哪个位置。下面以完美反向为基准：相位偏差为零时，扬声器声压与传入声压处处相反。拖动滑块，会让扬声器波形偏离这种关系，但两个输入波形的振幅都保持不变。</p>
-      </div>
-      <figure class="figure" data-model="" aria-labelledby="zh-model-label">
-        <h3 id="zh-model-label">振幅相等时，相位偏差会留下多少声压？</h3>
-        <p class="model-intro" id="zh-model-scope">这是同一位置、单一频率的理想模型。两个输入的声压峰值都设为 1。残余声压等于两者之和；读数表示残余峰值与传入声压峰值的比值。</p>
-        <div class="model-grid">
-          <div>
-            <ul class="legend" aria-label="声压曲线图例">
-              <li><span class="swatch"></span>传入声压</li>
-              <li><span class="swatch anti-key"></span>扬声器声压</li>
-              <li><span class="swatch sum-key"></span>叠加结果／残余声压</li>
-            </ul>
-            <p class="scroll-hint">空间不足时可在图内左右滚动；三条曲线使用同一尺度。</p>
-            <div class="scroll-figure" tabindex="0" role="region" aria-label="声压曲线，空间不足时可左右滚动">
-              <svg class="wave-plot" viewBox="0 0 400 294" role="img" aria-labelledby="zh-wave-title zh-wave-desc">
-                <title id="zh-wave-title">一个周期内，两道输入声压及其叠加结果</title>
-                <desc id="zh-wave-desc" data-plot-description="">相位偏差为零时，传入声压与扬声器声压大小相等、方向相反，两者之和为零。横轴表示一个周期内的时间，不是空间距离；纵轴表示归一化声压。</desc>
-                <text x="44" y="22">归一化声压</text>
-                <path class="guide" d="M44 58 H384 M44 100 H384 M44 184 H384 M44 226 H384 M129 58 V226 M214 58 V226 M299 58 V226 M384 58 V226"></path>
-                <path class="axis" d="M44 58 V226 M44 142 H384"></path>
-                <text x="10" y="64">+2</text><text x="10" y="106">+1</text><text x="20" y="148">0</text><text x="10" y="190">−1</text><text x="10" y="232">−2</text>
-                <path class="incoming" data-pressure="incoming" d="M44 142 C72.33 120 100.67 100 129 100 C157.33 100 185.67 120 214 142 C242.33 164 270.67 184 299 184 C327.33 184 355.67 164 384 142"></path>
-                <path class="anti" data-pressure="speaker" d="M44 142 C72.33 164 100.67 184 129 184 C157.33 184 185.67 164 214 142 C242.33 120 270.67 100 299 100 C327.33 100 355.67 120 384 142"></path>
-                <path class="sum" data-pressure="sum" d="M44 142 H384"></path>
-                <text x="44" y="253">0</text><text x="197" y="253">½</text><text x="375" y="253">1</text>
-                <text x="121" y="281">时间（一个单音周期）</text>
-              </svg>
-            </div>
-            <p class="plot-caption">曲线表示声压随时间变化，不是空气上下运动的轨迹。</p>
-          </div>
-          <div class="control-panel">
-            <label for="zh-phase">相位偏差：<span data-phase-value="">0°</span></label>
-            <input id="zh-phase" data-phase="" type="range" min="0" max="180" step="1" value="0" aria-describedby="zh-model-scope zh-phase-help">
-            <div class="range-ends" aria-hidden="true"><span>0° · 反向</span><span>180° · 同向</span></div>
-            <p class="readout"><output id="zh-residual" data-residual="" for="zh-phase" aria-label="归一化残余声压峰值比">0.00</output></p>
-            <p class="readout-label">残余声压峰值 ÷ 传入声压峰值</p>
-            <button type="button" data-reset="">恢复到 0°</button>
-            <p class="plot-caption" id="zh-phase-help">方向键每次调整 1°；Home 和 End 键可跳到两端。</p>
-          </div>
-        </div>
-        <p class="feedback" data-feedback="" aria-live="polite" aria-atomic="true">偏差为 0° 时，每一时刻的扬声器声压都与传入声压相反，理想叠加结果为零。</p>
-        <div class="model-note">
-          <p><strong>这个比值不是响度预测。</strong>偏差为 60° 时，残余峰值比为 1.00，即残余声压的峰值与单独传入的声压相同。到 180° 时，两道声压同向增强，比值为 2.00。这些读数既不是耳机实测效果，也不是分贝数或主观响度。</p>
-          <p class="formula">传入声压 = sin(θ)；扬声器声压 = −sin(θ − δ)<br>残余峰值比 = 2 |sin(δ / 2)|</p>
-          <p>θ 表示波形在单音周期中的位置，δ 表示相对完美反向的相位偏差。真实耳机还会面对振幅不相等、工作频带有限、噪声、声学路径变化以及控制稳定性等约束。滑块只展示一种偏差，不是耳机延迟设置。</p>
-        </div>
-        <figcaption>模型由声压叠加与正弦波关系推得，依据见 <a href="https://www.physicsclassroom.com/tutorial/sound-waves/properties-of-sound-waves/interference-and-beats" rel="noopener noreferrer">The Physics Classroom 的干涉讲解</a>和<a href="https://www.animations.physics.unsw.edu.au/jw/sound-wave-equation.htm" rel="noopener noreferrer">新南威尔士大学的声波方程介绍</a>。实际控制的约束见 <a href="https://www.soundguys.com/noise-canceling-anc-explained-28344/" rel="noopener noreferrer">SoundGuys 的 ANC 综述</a>。</figcaption>
-      </figure>
-    </div>
-  </section>
-  <section class="chapter" id="zh-frequency" aria-labelledby="zh-frequency-heading">
-    <div class="rail"><b>03</b>频率与人声</div>
-    <div>
-      <div class="prose">
-        <h2 id="zh-frequency-heading">周期越短，同样的误差越难容纳。</h2>
-        <p>频率表示声压每秒重复多少个周期。频率越高，一个周期的时间就越短。于是，同样大小的残余时间误差，会让到达耳边的扬声器声压相对噪声声压偏开更大的一段周期。在误差较小的范围内，随着频率升高，原本应当相互抵消的波峰与波谷就更难对齐。同理，波长越短，同样的位置偏差占一个波长的比例就越大，耳边也就更难保持所需的声压对应关系。</p>
-        <p>这有助于理解：为什么低频车辆噪声和飞机轰鸣通常是 ANC 比较擅长处理的对象。但这<strong>不意味着低音都会消失</strong>，也不意味着所有耳机都在同一个频率以上失效。可用的降噪范围取决于控制系统及其声学路径。</p>
-        <p class="source">依据：<a href="https://www.animations.physics.unsw.edu.au/jw/sound-wave-equation.htm" rel="noopener noreferrer">新南威尔士大学的波动关系</a>、<a href="https://www.soundguys.com/noise-canceling-anc-explained-28344/" rel="noopener noreferrer">耳边相位对齐的工程约束</a>、<a href="https://helpguide.sony.net/mdr/wh1000xm5/v1/en/contents/TP1000534716.html" rel="noopener noreferrer">索尼的低频降噪说明</a>及<a href="https://www.soundguys.com/how-noise-cancelling-headphones-work-12380/" rel="noopener noreferrer">飞机轰鸣示例</a>。</p>
-      </div>
-      <div class="comparison" aria-labelledby="zh-compare-title">
-        <h3 id="zh-compare-title">耳机面对的，并不是三种整齐分开的声音</h3>
-        <p class="compare-intro">下面比较声音的构成，不划定频率分界，也不表示实测衰减量。</p>
-        <div class="comparison-row"><h3>飞机的低频轰鸣</h3><p>其中的低频部分，声压变化的周期较长，通常适合主动降噪。因此，这部分机舱噪声可能明显变轻。但飞机的声音并不等于一条稳定的单音。</p></div>
-        <div class="comparison-row"><h3>人声中的有声成分</h3><p>声带振动的重复频率叫作基频；声音中还包含频率为基频整数倍的谐波。持续的元音既可以包含规律的周期，也包含更高频的成分。其中一些较低频的成分可能被削弱，所以不能把人声统称为“高频”或“不可预测”。</p></div>
-        <div class="comparison-row"><h3>其余语音线索</h3><p>例如“s”这样的摩擦音，能量分布在多个频率上；“p”这样的爆破音带有短促的爆发。发音动作还会让声音不断变化。仅削弱低频部分，不一定能去掉这些线索，因此人声可能仍听得到，甚至听得懂。</p></div>
-      </div>
-      <p class="source">语音构成见<a href="https://newt.phys.unsw.edu.au/jw/voice.html" rel="noopener noreferrer">新南威尔士大学的语音声学介绍</a>。“部分削弱后仍有线索”是结合语音构成与 ANC 频率特性的解释，不是词语识别率的实测结论。</p>
-      <div class="aside-note prose"><h3>稳定与否，不是一条降噪分界线。</h3><p>稳定的高音仍要求严格的相位和位置关系；不断变化的声音也可能含有耳机可处理的低频成分。因此，“主动降噪对人声无效”说得太绝对。<strong>削弱部分人声，与让整句话消失，是两回事。</strong></p></div>
-    </div>
-  </section>
-  <section class="chapter" id="zh-fit" aria-labelledby="zh-fit-heading">
-    <div class="rail"><b>04</b>回到实际佩戴</div>
-    <div class="prose">
-      <h2 id="zh-fit-heading">佩戴贴不贴合，也会改变声路。</h2>
-      <p>耳垫、耳罩或耳塞套形成物理屏障，让传到耳边的外界声音减弱。这叫<strong>被动隔音</strong>，它不生成反噪声。在常见的封闭式耳机中，这道屏障对较高频声音的衰减有重要作用；主动降噪则在屏障内部加入声压信号。两者并不是各占一半，也没有适用于所有耳机的频率分工线。</p>
-      <p>屏障留有缝隙时，更多外界声音可以传入，主动降噪所面对的声学条件也会改变。因此，结构和贴合程度都会影响结果；打开 ANC，并不能替代良好的佩戴贴合。</p>
-      <p class="source">物理衰减与贴合程度见 <a href="https://www.soundguys.com/what-is-isolation-12506/" rel="noopener noreferrer">SoundGuys 的隔音介绍</a>；佩戴条件的影响见<a href="https://helpguide.sony.net/mdr/wh1000xm5/v1/en/contents/TP1000534716.html" rel="noopener noreferrer">索尼帮助指南</a>。</p>
-      <ol class="fit-list">
-        <li><strong>先确认耳机开启的是哪种模式。</strong>通透模式会有意让外界声音进入，与主动降噪的目标不同。<a href="https://support.apple.com/en-us/108918" rel="noopener noreferrer">苹果文档解释了两者的区别。</a></li>
-        <li><strong>再检查耳垫或耳塞套是否贴合。</strong>按耳机的佩戴说明调整，让物理屏障发挥作用。贴合程度也会影响主动降噪。</li>
-        <li><strong>不要只凭“还能听见说话”判断故障。</strong>轰鸣变轻、人声仍在，本身不足以说明 ANC 坏了。没有指定耳机和佩戴条件，就无法预测能削弱多少人声，也无法预测话语是否仍能听懂。</li>
-      </ol>
-      <p class="closing">与其问“哪种声音不怕降噪”，不如问：这副耳机在当前佩戴条件下，能在我的耳边削弱哪些声音成分？</p>
-    </div>
-  </section>
-  <footer class="reading" id="zh-reading">
-    <h2>继续读下去</h2>
-    <p>各段旁的链接对应所解释的机制。想进一步了解，可以从这些资料开始：</p>
-    <ul>
-      <li><a href="https://www.physicsclassroom.com/tutorial/sound-waves/properties-of-sound-waves/interference-and-beats" rel="noopener noreferrer">The Physics Classroom：声音干涉</a>——相反的声压为何能减小叠加结果，以及位置为何重要。</li>
-      <li><a href="https://newt.phys.unsw.edu.au/jw/voice.html" rel="noopener noreferrer">新南威尔士大学：语音声学</a>——有声谐波、元音、摩擦音和短促爆发。</li>
-      <li><a href="https://www.soundguys.com/noise-canceling-anc-explained-28344/" rel="noopener noreferrer">SoundGuys：ANC 的不同结构</a>——可供参考的工程背景。其中问答部分笼统地说 ANC 无法削弱人声，属于过度概括；文章自身对语音相关应用的讨论更有条件限制。</li>
-    </ul>
-  </footer>
-</section>
-</main>
+<section data-aha-lang="zh" lang="zh-CN" data-aha-title="飞机轰鸣变轻了，为什么人声还在？" hidden="">
+<header class="bookend"><div class="eyebrow">耳边的声音 / 主动降噪</div><h1>飞机轰鸣变轻了，为什么人声还在？</h1><p class="lead">降噪不是按“飞机”或“人声”分类静音，而是设法减小耳边剩下的声压波动。一段话的某些成分可能变弱，其他成分却仍然可听。</p></header>
+<article class="paper" id="ear-pressure-zh"><h2>两组声压，在耳边相遇</h2><p>麦克风采集声音，控制器驱动耳机扬声器。但外界噪声与扬声器的声音走过不同路径。两组声压必须<strong>到达耳边之后</strong>才能恰当相加，并不是把电信号翻个符号就够了。</p>
+<figure><svg viewBox="0 0 900 290" role="img" aria-label="外界噪声经过物理屏障到达耳边，控制器驱动扬声器，另一组控制声压也到达同一个位置。">
+<rect x="300" y="28" width="20" height="235" fill="var(--cp-border)"></rect><text x="240" y="20">物理屏障</text><text x="25" y="83">外界噪声</text><path d="M25 112 H660" stroke="var(--cp-text)" stroke-width="4"></path><path d="M645 102 L665 112 L645 122" fill="var(--cp-text)"></path><text x="340" y="206">扬声器</text><path d="M430 180 Q560 180 665 127" fill="none" stroke="var(--cp-accent)" stroke-width="4" stroke-dasharray="8 6"></path><path d="M648 127 L670 124 L656 142" fill="var(--cp-accent)"></path><circle cx="720" cy="116" r="44" fill="var(--cp-surface)" stroke="var(--cp-text)" stroke-width="3"></circle><text x="699" y="123">耳边</text><text x="590" y="245">残余 = 传入声压 + 控制声压</text><text x="28" y="202">参考信号 → 控制器</text><text x="28" y="244">实线：传入声压</text><text x="28" y="270">虚线：控制声压</text>
+</svg><figcaption>这是机制示意，不是解剖图或实测声场。物理屏障改变传声路径；扬声器再加入另一组声压。</figcaption></figure>
+<p class="equation">残余声压 = 传入声压 + 控制声压</p><p>理想线性模型中，同一位置每一时刻的压力都等大反向，残余才为零。真实耳机的内部误差麦克风，只在合适条件下近似代表鼓膜处的声音。</p><p class="source">机制依据：<a href="https://www.iks.rwth-aachen.de/forschung/audio/active-noise-control/" rel="noopener noreferrer">RWTH IKS，原理部分</a>；耳内麦克风与鼓膜的区别：<a href="https://arxiv.org/html/2509.15864v1" rel="noopener noreferrer">Hilgemann 等，§2.1–2.2</a>。</p></article>
+<article class="paper lab" id="timing-lab-zh"><h2>幅度相等，还不够</h2><p>相位表示振动走到一个周期的哪里。控制声压若来晚了，它的波峰就不再对准噪声的波谷。改变下面两项匹配条件，看看剩下的波动怎样变化。</p><div class="controls"><label>控制幅度 / 噪声幅度 <input class="gain" type="range" min="0" max="1.2" step=".05" value="1" aria-label="控制声压幅度比例"></label><label>偏离理想反相的误差 <input class="phase" type="range" min="0" max="180" step="5" value="0" aria-label="相位误差，单位度"></label></div><output class="result" aria-live="polite">幅度比 1.00；相位误差 0°；残余幅度为传入声的 0.00 倍。</output>
+<svg viewBox="0 0 900 220" role="img" aria-label="单频传入、控制和残余声压曲线；纵向为归一化幅度，横向为一个周期"><path d="M20 110 H880" stroke="var(--cp-border)" stroke-width="2"></path><path class="wave-in" fill="none" stroke="var(--cp-text)" stroke-width="3"></path><path class="wave-control" fill="none" stroke="var(--cp-accent)" stroke-width="3" stroke-dasharray="9 7"></path><path class="wave-result" fill="none" stroke="var(--cp-text)" stroke-width="6" stroke-dasharray="2 7"></path></svg>
+<p>实线是传入声压，玫红虚线是控制声压，点线是残余。横向为一个周期的时间，纵向为归一化声压。它们是<strong>解析示意，不是耳机测量</strong>。</p><div class="two"><div><h3>同样的时间误差，占不同大小的一圈</h3><p>假设未补偿时间误差为 <strong>0.10 ms</strong>，在 <strong>100 Hz</strong> 时对应 <strong>3.6°</strong>，在 <strong>1000 Hz</strong> 时对应 <strong>36°</strong>。振动越快，留给时间对齐的余地越小。</p></div><div><h3>没有适用于所有耳机的频率墙</h3><p>这不等于所有高频都无法消除。外部麦克风能提前多少时间采到参考、声音传播路径、控制带宽和反馈稳定性也会影响结果。规律性信号还可能被预测。</p></div></div><details><summary>模型的假设是什么？</summary><p>单一稳态正弦、线性声压相加、同一个目标位置。控制幅度比为 g，偏离理想反相的误差为 δ，残余幅度比为 √(1 + g² − 2g cos δ)。时间误差造成的相位误差为 2πfτ，f 用赫兹、τ 用秒。它不是完整控制器仿真、宽带预测或响度评分。相位偏差还可能使残余比原声更大。</p></details><p class="source">公式由正弦叠加推导；路径与延迟背景见 <a href="https://www.iks.rwth-aachen.de/forschung/audio/active-noise-control/" rel="noopener noreferrer">RWTH IKS</a>。“相位变化更快”不意味着音调越高声速越快。</p></article>
+<article class="paper" id="two-layers-zh"><h2>两层作用，面对同一个声音</h2><div class="two"><div><h3>被动隔音：改变传入路径</h3><p>耳塞、耳罩及其密封阻碍声音传入。关掉 ANC，它们仍在起作用。通常对较高频率更有帮助，但泄漏与结构会改变结果。</p></div><div><h3>主动降噪：加入控制声压</h3><p>扬声器对已经传入的声音加入反向补偿。它常用于低到中频，补充轻便物理屏障的不足。</p></div></div><p class="note">比较 ANC 开关时，保持佩戴和声源不变。摘下耳机，是另一种比较基准。</p><p class="source"><a href="https://arxiv.org/html/2509.15864v1" rel="noopener noreferrer">Hilgemann 等，§2.1、§2.3</a>：总衰减包含主动与被动贡献；频率分工只是常见倾向。</p></article>
+<article class="paper" id="remaining-voices-zh"><h2>仍然听见，不代表完全没变弱</h2><p>人声不是一个高频纯音。不同成分受到的衰减不同；只要仍有足够残余可听，就算部分成分已经变弱，你仍能听出有人在说话。</p><p><a href="https://helpguide.sony.net/mdr/wh1000xm5/v1/en/contents/TP1000534745.html" rel="noopener noreferrer">Sony WH-1000XM5 指南</a>说明低频交通噪声比人声更容易被该产品削弱。这是有用的产品体验概括，不是“语音禁止抵消”的物理定律。</p><h3>一个不能丢掉的反例</h3><p><a href="https://www.iks.rwth-aachen.de/forschung/audio/active-noise-control/" rel="noopener noreferrer">RWTH 自身语音研究</a>介绍了如何用主动控制减轻封闭耳道造成的低频语音增强。这说明语音声压可以被控制，但不能用来证明旁人的话能被完全消除。</p><p>如果轰鸣降得更多，人声在剩余场景里可能更突出；这不证明人声绝对声压变大。本次没有语音可懂度测试。</p></article>
+<article class="paper" id="reality-check-zh"><h2>别急着归因于“人声消不掉”</h2><ol><li><strong>先看模式。</strong>通透模式本来就让外界声进入，自适应模式会调整效果。<a href="https://support.apple.com/en-us/108918" rel="noopener noreferrer">Apple 模式说明</a>与 Sony 指南对各自产品有明确区分。</li><li><strong>再看密封和位置。</strong>它们改变控制器面对的声学路径。</li><li><strong>分清模型与测量。</strong><a href="https://arxiv.org/html/2509.15864v1" rel="noopener noreferrer">已发表原型测量的 §6.3</a>显示效果随佩戴者和松紧变化。这不是本次新测试，也不是你的耳机的性能保证。</li></ol><p>目前不知道你的型号、佩戴、设置和声场，不能从图中推算这次航班降低了多少分贝，或还能听懂多少词。</p></article>
+<footer class="bookend"><h2>关注“耳边还剩多少”，而不是“哪一类声音被静音”。</h2><p>轰鸣和人声服从同样的物理规律。耳机能否在空间和时间上准确匹配声压，以及屏障与模式让什么声音通过，共同决定你最后听到什么。</p></footer>
+</section></main>
 <script>
-(() => {
-  document.querySelectorAll('[data-model]').forEach((model) => {
-    const language = model.closest('[data-aha-lang]').getAttribute('data-aha-lang');
-    const input = model.querySelector('[data-phase]');
-    const output = model.querySelector('[data-residual]');
-    const phaseValue = model.querySelector('[data-phase-value]');
-    const feedback = model.querySelector('[data-feedback]');
-    const description = model.querySelector('[data-plot-description]');
-    const incomingPath = model.querySelector('[data-pressure="incoming"]');
-    const speakerPath = model.querySelector('[data-pressure="speaker"]');
-    const sumPath = model.querySelector('[data-pressure="sum"]');
-    const pointCount = 240;
-
-    function update() {
-      const degrees = Number(input.value);
-      const delta = degrees * Math.PI / 180;
-      const ratio = (2 * Math.abs(Math.sin(delta / 2))).toFixed(2);
-      const incoming = [];
-      const speaker = [];
-      const sum = [];
-      for (let i = 0; i <= pointCount; i += 1) {
-        const theta = 2 * Math.PI * i / pointCount;
-        const first = Math.sin(theta);
-        const second = -Math.sin(theta - delta);
-        const x = (44 + 340 * i / pointCount).toFixed(2);
-        const command = i === 0 ? 'M' : 'L';
-        incoming.push(command + x + ' ' + (142 - 42 * first).toFixed(2));
-        speaker.push(command + x + ' ' + (142 - 42 * second).toFixed(2));
-        sum.push(command + x + ' ' + (142 - 42 * (first + second)).toFixed(2));
-      }
-      incomingPath.setAttribute('d', incoming.join(' '));
-      speakerPath.setAttribute('d', speaker.join(' '));
-      sumPath.setAttribute('d', sum.join(' '));
-      output.value = ratio;
-      phaseValue.textContent = degrees + '°';
-      let message;
-      if (language === 'zh') {
-        input.setAttribute('aria-valuetext', '相位偏差 ' + degrees + ' 度');
-        if (degrees === 0) {
-          message = '偏差为 0° 时，每一时刻的扬声器声压都与传入声压相反，理想叠加结果为零。';
-        } else if (degrees < 60) {
-          message = '偏差为 ' + degrees + '° 时，两道声压不再处处相反。残余峰值比为 ' + ratio + '，仍低于单独传入的声压峰值。';
-        } else if (degrees === 60) {
-          message = '偏差为 60° 时，残余峰值比为 1.00：峰值与单独传入的声压相同，但波形的相位不同。';
-        } else if (degrees < 180) {
-          message = '偏差为 ' + degrees + '° 时，残余峰值比为 ' + ratio + '，已高于单独传入的声压峰值。相加并不总能使声压减小。';
-        } else {
-          message = '偏差为 180° 时，两道声压同向变化，相互增强。残余峰值比为 2.00，不代表听起来是两倍响。';
-        }
-        description.textContent = '横轴为一个单音周期内的时间，纵轴为归一化声压。细实线为传入声压，虚线为扬声器声压，粗实线为两者之和。' + message;
-      } else {
-        input.setAttribute('aria-valuetext', degrees + ' degrees of phase mismatch');
-        if (degrees === 0) {
-          message = 'At 0°, the speaker pressure opposes the incoming pressure at every instant. The ideal sum is zero.';
-        } else if (degrees < 60) {
-          message = 'At ' + degrees + '°, the two pressures are no longer exactly opposite. The residual peak ratio is ' + ratio + ', still below the incoming peak pressure alone.';
-        } else if (degrees === 60) {
-          message = 'At 60°, the residual peak ratio is 1.00: the same peak pressure as the incoming tone alone, though the waveform has a different phase.';
-        } else if (degrees < 180) {
-          message = 'At ' + degrees + '°, the residual peak ratio is ' + ratio + ', above the incoming peak pressure alone. Adding a second pressure does not always reduce the sum.';
-        } else {
-          message = 'At 180°, the two pressure waves rise and fall together, reinforcing each other. The residual peak ratio is 2.00, not a claim of twice the perceived loudness.';
-        }
-        description.textContent = 'Horizontal position is time across one tone cycle; vertical values are normalized pressure. Thin solid line: incoming pressure. Dashed line: speaker pressure. Thick solid line: their sum. ' + message;
-      }
-      feedback.textContent = message;
-    }
-    input.addEventListener('input', update);
-    model.querySelector('[data-reset]').addEventListener('click', () => {
-      input.value = '0';
-      update();
-    });
-    update();
-  });
-})();
+document.querySelectorAll('.lab').forEach(lab => {
+  const update = () => {
+    const gain=Number(lab.querySelector('.gain').value), degrees=Number(lab.querySelector('.phase').value);
+    const delta=degrees*Math.PI/180, residual=Math.sqrt(Math.max(0,1+gain*gain-2*gain*Math.cos(delta)));
+    const zh=lab.closest('section').dataset.ahaLang==='zh';
+    lab.querySelector('.result').textContent=zh?`幅度比 ${gain.toFixed(2)}；相位误差 ${degrees}°；残余幅度为传入声的 ${residual.toFixed(2)} 倍。`:`Amplitude ratio ${gain.toFixed(2)}; phase error ${degrees}°; residual amplitude ${residual.toFixed(2)} × incoming.`;
+    const trace=fn=>Array.from({length:181},(_,i)=>`${i?'L':'M'}${20+i*860/180},${110-fn(i*2*Math.PI/180)*42}`).join(' ');
+    lab.querySelector('.wave-in').setAttribute('d',trace(t=>Math.sin(t)));
+    lab.querySelector('.wave-control').setAttribute('d',trace(t=>-gain*Math.sin(t-delta)));
+    lab.querySelector('.wave-result').setAttribute('d',trace(t=>Math.sin(t)-gain*Math.sin(t-delta)));
+  };
+  lab.querySelectorAll('input').forEach(input=>input.addEventListener('input',update));
+  update();
+});
 </script>
 
 <script>(() => {

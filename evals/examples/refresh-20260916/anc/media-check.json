@@ -1,0 +1,111 @@
+{
+  "video": "C:\\Users\\yusu\\scoop\\buckets\\copilot-worktrees\\aha\\sawyer0x110-probable-giggle\\artifacts\\examples-refresh-20260916\\anc\\renders\\stage-02\\anc.mp4",
+  "outputHash": "bfce8912e3dc373f9a73e2b3cc9c7f252f40900c7e256dc36a13ef7cc17c4d45",
+  "planHash": "63f09414cea430ad261de52f46822dc79ad2e8a78d10466fdf1e13e2ebea4179",
+  "decodedCompletely": true,
+  "subtitlesMatchApprovedText": true,
+  "totalFrames": 3813,
+  "durationSeconds": 127.1,
+  "samples": [
+    {
+      "id": "opening",
+      "frame": 142,
+      "seconds": 4.733333333333333,
+      "file": "segment-01.png",
+      "narration": "Aircraft rumble fades, but someone is still talking. Active noise cancellation works on pressure at your ear, not sound categories."
+    },
+    {
+      "id": "ear-sum",
+      "frame": 431,
+      "seconds": 14.366666666666667,
+      "file": "segment-02.png",
+      "narration": "Outside noise reaches the ear through one path. The headphone speaker adds another pressure contribution. What remains is their sum."
+    },
+    {
+      "id": "matched-pressure",
+      "frame": 695,
+      "seconds": 23.166666666666668,
+      "file": "segment-03.png",
+      "narration": "In this ideal single-tone model, matching amplitude and opposite phase at the target makes the residual shrink to zero."
+    },
+    {
+      "id": "phase-slip",
+      "frame": 938,
+      "seconds": 31.266666666666666,
+      "file": "segment-04.png",
+      "narration": "Now keep the amplitude and shift the control wave. The residual returns because the peaks and troughs no longer match."
+    },
+    {
+      "id": "same-delay",
+      "frame": 1190,
+      "seconds": 39.666666666666664,
+      "file": "segment-05.png",
+      "narration": "Assume a timing error of one tenth of a millisecond: three point six degrees at one hundred hertz, but thirty-six at one thousand."
+    },
+    {
+      "id": "no-wall",
+      "frame": 1480,
+      "seconds": 49.333333333333336,
+      "file": "segment-06.png",
+      "narration": "This tightens timing tolerance, not a universal frequency wall. Reference preview, acoustic paths, bandwidth, and feedback stability also matter."
+    },
+    {
+      "id": "two-layers",
+      "frame": 1801,
+      "seconds": 60.03333333333333,
+      "file": "segment-07.png",
+      "narration": "Passive isolation changes transmission through the seal and ear cup. Active control adds pressure. Switching it off leaves the barrier in place."
+    },
+    {
+      "id": "residual-voice",
+      "frame": 2095,
+      "seconds": 69.83333333333333,
+      "file": "segment-08.png",
+      "narration": "Speech is not one high-frequency tone. Some components can be reduced while enough residual survives for the voice to remain audible."
+    },
+    {
+      "id": "voice-counterexample",
+      "frame": 2356,
+      "seconds": 78.53333333333333,
+      "file": "segment-09.png",
+      "narration": "Here is a counterexample: active control can reduce low-frequency amplification of your own voice caused by a closed ear canal."
+    },
+    {
+      "id": "counterexample-bound",
+      "frame": 2609,
+      "seconds": 86.96666666666667,
+      "file": "segment-10.png",
+      "narration": "That does not promise to erase another person's whole voice. More noticeable speech does not prove its pressure was amplified."
+    },
+    {
+      "id": "check-mode",
+      "frame": 2883,
+      "seconds": 96.1,
+      "file": "segment-11.png",
+      "narration": "Also check the mode. Transparency deliberately lets outside sound in, while adaptive modes can change the balance on supported devices."
+    },
+    {
+      "id": "check-fit",
+      "frame": 3157,
+      "seconds": 105.23333333333333,
+      "file": "segment-12.png",
+      "narration": "Fit changes acoustic paths too. Compare cancellation on and off without moving the headphones or changing the source."
+    },
+    {
+      "id": "measurement-limit",
+      "frame": 3428,
+      "seconds": 114.26666666666667,
+      "file": "segment-13.png",
+      "narration": "Published prototype measurements varied with wearer and fit. We ran no acoustic test, and this model cannot predict your personal reduction."
+    },
+    {
+      "id": "closing",
+      "frame": 3691,
+      "seconds": 123.03333333333333,
+      "file": "segment-14.png",
+      "narration": "Ask what remains at the ear: path, timing, fit, and mode. Audible speech can still be attenuated."
+    }
+  ],
+  "listeningReview": "Not performed by this tool.",
+  "visualReview": "Extracted actual encoded frames with burned captions; extraction alone is not inspection."
+}

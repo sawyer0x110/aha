@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "delivered",
+  "format": "pptx",
+  "title": "Why can a Git merge bring back a reverted change?",
+  "researchHash": "c38647d6d79318b96aa30e9c5f86f2babe042dec286ad390a56d22f908ee2019",
+  "sourceHash": "14783baa988d5203da84487d6003e3294acb857ba8790ece429953f18cd0661e",
+  "outputHash": "e7a5a4533f45f02765f343644fe97dbcc31ec3e376136a947ce6a766f486f015",
+  "output": "git-merge.pptx",
+  "createdAt": "2026-09-16T06:16:15.659Z",
+  "codeExecuted": true,
+  "sandboxed": false,
+  "native": true,
+  "slides": 10,
+  "verification": "Source/output hashes and declared claim coverage, not semantic truth or visual quality. Receipts describe a specific source revision; recheck the source hash after edits."
+}

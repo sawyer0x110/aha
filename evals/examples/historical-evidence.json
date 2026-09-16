@@ -1,0 +1,21 @@
+{
+  "currentValidator": "verify.mjs",
+  "currentBrowserChecker": "check-html.mjs",
+  "currentPublicationEvidence": "refresh-20260916",
+  "historicalEvidence": ["anc-git", "project-overview"],
+  "retiredChecks": [
+    "project-overview/check.mjs",
+    "project-overview/check-alignment.mjs",
+    "project-overview/check-audio-reuse.mjs"
+  ],
+  "reason": "Prior DOM, six-scene video, word-timing envelopes, GIF and audio-origin checks do not describe the refreshed twelve outputs. Their reports remain unchanged historical evidence; never apply their verdicts to current media.",
+  "compatibilityEntryPoint": "project-overview/verify.mjs now validates all twelve current outputs.",
+  "genericPlaybackHelper": "project-overview/check-playback.mjs requires explicit --allow-code and a new output report; paths resolve from the repository root.",
+  "commands": [
+    "npm run examples:verify",
+    "node --import tsx evals/examples/verify.mjs",
+    "node evals/examples/check-html.mjs --allow-code --output evals/examples/new-browser-run",
+    "node evals/examples/project-overview/check-playback.mjs examples/anc/anc.mp4 evals/examples/new-playback.json --allow-code"
+  ],
+  "limits": "Validation does not execute authored source or install dependencies. Browser checks require source review and explicit local execution approval, use installed browsers only, and write exclusively to a fresh directory. Native structure is not slideshow acceptance; imported PowerPoint and browser records are bounded observations, not a new inspection."
+}

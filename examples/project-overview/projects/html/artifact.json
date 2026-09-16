@@ -2,16 +2,58 @@
   "schemaVersion": "1.0.0",
   "format": "html",
   "language": "bilingual",
-  "researchHash": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d",
-  "title": "Aha: research a difficult question, explain it visually",
+  "researchHash": "f100d4b64f1c41b3e48eaeed8fe88f71609f88c274b2fc3f298de3b672b484b3",
+  "title": "How does Aha turn research into an explanation?",
   "status": "authored",
   "entry": "html/index.html",
   "coverage": [
-    { "id": "en-purpose/zh-purpose", "claimIds": ["c-purpose"] },
-    { "id": "en-examples/zh-examples", "claimIds": ["c-examples"] },
-    { "id": "en-workflow/zh-workflow", "claimIds": ["c-purpose", "c-dossier"] },
-    { "id": "en-formats/zh-formats", "claimIds": ["c-formats"] },
-    { "id": "en-details/zh-details", "claimIds": ["c-dossier", "c-identity", "c-permission", "c-video", "c-language", "c-distribution", "c-qa"] }
+    {
+      "id": "purpose",
+      "claimIds": [
+        "c-purpose"
+      ]
+    },
+    {
+      "id": "journey",
+      "claimIds": [
+        "c-journey",
+        "c-snapshot"
+      ]
+    },
+    {
+      "id": "anc",
+      "claimIds": [
+        "c-anc"
+      ]
+    },
+    {
+      "id": "git",
+      "claimIds": [
+        "c-git"
+      ]
+    },
+    {
+      "id": "formats",
+      "claimIds": [
+        "c-media",
+        "c-image"
+      ]
+    },
+    {
+      "id": "boundaries",
+      "claimIds": [
+        "c-limits",
+        "c-execution",
+        "c-video",
+        "c-host"
+      ]
+    },
+    {
+      "id": "layout",
+      "claimIds": [
+        "c-layout"
+      ]
+    }
   ],
   "omissions": [],
   "width": 1280,

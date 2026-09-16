@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Git merge: the same tips can produce a different result</title><script>(() => {
+  const param = new URLSearchParams(window.location.search).get("scoutTheme");
+  const authored = document.documentElement.getAttribute("data-theme");
+  const theme =
+    param === "light" || param === "dark" ? param :
+    authored === "light" || authored === "dark" ? authored :
+    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  document.documentElement.setAttribute("data-theme", theme);
+})();</script><style>
+:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--cp-bg); color: var(--cp-text); font: 16px/1.6 "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif; }
+code, pre { font-family: Consolas, "Courier New", Courier, monospace; }
+a { color: var(--cp-link); }
+button { font: inherit; min-height: 44px; padding: 8px 12px; border: 1px solid var(--cp-border); border-radius: 0.625rem; color: var(--cp-text); background: var(--cp-surface); cursor: pointer; }
+button:hover { background: var(--cp-accent-soft); }
+:focus-visible { outline: 3px solid var(--cp-accent); outline-offset: 3px; }
+
+html,body { width:1800px; height:1200px; overflow:hidden; }
+main { height:1200px; }
+header,footer { background:var(--cp-text); color:var(--cp-surface); padding:32px 72px; }
+header { height:206px; } h1 { font-size:58px; line-height:1.1; margin:8px 0 12px; }
+header p { font-size:29px; line-height:1.2; margin:0; } .eyebrow { font-size:20px; line-height:1.2; letter-spacing:.13em; text-transform:uppercase; }
+.body { height:808px; padding:26px 72px; } .labels,.case { display:grid; grid-template-columns:360px 240px 260px 260px 340px; gap:18px; }
+.labels { font-size:24px; font-weight:700; margin:12px 0 18px; } .case { align-items:center; border-top:2px solid var(--cp-border); min-height:175px; }
+.case h2 { font-size:31px; margin:0 0 10px; line-height:1.15; } .case p { font-size:25px; line-height:1.35; margin:4px 0; }
+.value { font:bold 44px Consolas,monospace; padding:28px 18px; border:2px solid var(--cp-border-strong); border-radius:16px; background:var(--cp-surface); }
+.changed { border:4px solid var(--cp-accent); }
+.result { background:var(--cp-accent-soft); padding:20px; border-left:6px solid var(--cp-accent); }
+.result strong { font-size:36px; } .reason { display:grid; grid-template-columns:1fr 1fr; gap:50px; border-top:2px solid var(--cp-border); padding-top:20px; margin-top:12px; }
+.reason h3 { margin:0 0 8px; font-size:30px; } .reason p { margin:0; font-size:24px; line-height:1.35; }
+.source { font-size:20px; margin:16px 0 0; color:var(--cp-text-muted); line-height:1.25; }
+footer { height:186px; } footer strong { display:block; font-size:40px; line-height:1.2; } footer p { font-size:26px; line-height:1.2; margin:8px 0 0; }
+html[data-theme="dark"] header,html[data-theme="dark"] footer { background:var(--cp-surface); color:var(--cp-text); }
+
+</style></head><body>
+<main><header id="opening"><span class="eyebrow">Git / A three-state comparison</span><h1>Why can a merge bring back a reverted change?</h1><p>The same two current versions can produce a different result—because the base is different.</p></header>
+<div class="body"><div class="labels"><span>Ordinary-file model</span><span>Merge base</span><span>Ours now</span><span>Theirs now</span><span>Result and reason</span></div>
+<section class="case" id="return"><div><h2>01 / Reverted<br>back to the base</h2><p>Our history:<br>off → on → off</p></div><div class="value">off</div><div class="value">off</div><div class="value changed">on</div><div class="result"><strong>→ on</strong><p>Ours = base.<br>Theirs carries the only net change.</p></div></section>
+<section class="case" id="counter"><div><h2>02 / The base<br>already has on</h2><p>Same current tips.<br>Different ancestry.</p></div><div class="value changed">on</div><div class="value">off</div><div class="value changed">on</div><div class="result"><strong>→ off</strong><p>Theirs = base.<br>Ours carries the only net change.</p></div></section>
+<div class="reason"><section id="independent"><h3>One path is not the whole branch</h3><p>Our independent edit to <code>local.txt</code> can survive alongside their edit to <code>remote.txt</code>. A regular merge need not choose one entire tree.</p></section><section id="conflict"><h3>If neither side matches the base…</h3><p>Content merging may need conflict resolution. Different edits do not always conflict; a clean text merge does not prove program correctness.</p></section></div>
+<p class="source" id="scope">Illustrative states, not a new experiment. “Base” means best common ancestor; ort may first merge multiple bases.<br>Scope: ordinary files, matching modes, no renames/custom drivers. Values stand for the file’s <code>mode</code> setting.<br>Sources: Git 2.55 merge-strategies manual; merge-ort.c, file-selection rules (1260–1455) and content merge (2097–2295).<br><a href="https://github.com/git/git/blob/e9019fcafe0040228b8631c30f97ae1adb61bcdc/merge-ort.c">github.com/git/git · e9019fc · merge-ort.c</a></p></div>
+<footer id="close"><strong>A revert is not a permanent veto.</strong><p>History finds the base. Comparing the base with both current trees explains what can return.<br>This is a three-way ort model—not a rule for every Git merge strategy.</p></footer></main>
+</body></html>

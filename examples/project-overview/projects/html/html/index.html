@@ -1,14 +1,13 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aha: research a difficult question, explain it visually</title><script>(() => {
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How does Aha turn research into an explanation?</title><script>(() => {
   const param = new URLSearchParams(window.location.search).get("scoutTheme");
-  const authored = document.documentElement.getAttribute("data-theme");
   const theme =
-    param === "light" || param === "dark" ? param :
-    authored === "light" || authored === "dark" ? authored :
-    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   document.documentElement.setAttribute("data-theme", theme);
-})();</script><style>
+})();</script>
+<style>
 :root {
   color-scheme: light;
   --cp-bg: #f7f4ef;
@@ -69,299 +68,371 @@ button { font: inherit; min-height: 44px; padding: 8px 12px; border: 1px solid v
 button:hover { background: var(--cp-accent-soft); }
 :focus-visible { outline: 3px solid var(--cp-accent); outline-offset: 3px; }
 
-[hidden] { display: none !important; }
-main { max-width: 1160px; margin: auto; padding: 88px 32px 36px; }
-h1, h2, h3, p, figure { margin: 0; }
-h1 { font-size: clamp(36px, 4.7vw, 60px); line-height: 1.09; letter-spacing: -.035em; max-width: 19ch; margin: 16px 0 20px; }
-h2 { font-size: clamp(27px, 3vw, 36px); line-height: 1.2; letter-spacing: -.02em; margin: 8px 0 16px; }
-h3 { font-size: 21px; line-height: 1.35; margin-bottom: 8px; }
-p + p { margin-top: 12px; }
-a { text-underline-offset: 3px; }
-code, .label, .step-number { font-family: Consolas, "Courier New", Courier, monospace; }
-code { font-size: .9em; overflow-wrap: anywhere; }
-.label { color: var(--cp-accent); font-size: 13px; font-weight: 700; letter-spacing: .08em; }
-.lead { font-size: 21px; max-width: 48ch; }
-.muted, figcaption, .source, .meta { color: var(--cp-text-muted); }
-.source, figcaption, .meta { font-size: 14px; }
-.source { margin-top: 16px; }
-.hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 36px; align-items: start; }
-.brief { border-left: 3px solid var(--cp-accent); padding: 12px 0 12px 20px; margin-top: 24px; }
-.brief strong { display: block; margin-bottom: 4px; }
-.chapter { margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--cp-border-strong); }
-.example-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
-.example { min-width: 0; }
-.example img { display: block; width: 100%; height: auto; border: 1px solid var(--cp-border); border-radius: 10px; background: var(--cp-surface); }
-.example figcaption { margin-top: 10px; }
-.example h3 { margin-top: 16px; }
-.hero-question { padding: 24px; border: 1px solid var(--cp-border); border-radius: 16px; background: var(--cp-surface); }
-.hero-question h2 { font-size: clamp(24px, 2.6vw, 32px); }
-.hero-question .sample-note { margin-top: 12px; font-size: 15px; color: var(--cp-text-muted); }
-.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 0; margin: 24px 0 0; list-style: none; }
-.steps li { min-width: 0; }
-.step-number { display: block; color: var(--cp-accent); margin-bottom: 12px; }
-.skills { padding: 16px 20px; border-radius: 10px; background: var(--cp-accent-soft); margin-top: 24px; }
-.format-layout { display: grid; grid-template-columns: 1.05fr .95fr; gap: 32px; margin-top: 24px; align-items: start; }
-.controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
-.controls button { padding: 8px 16px; border-color: var(--cp-border-strong); }
-button[aria-pressed="true"] { background: var(--cp-accent); color: var(--cp-accent-fg); border-color: var(--cp-accent); }
-.format-result { padding: 20px; border: 1px solid var(--cp-border); border-radius: 16px; background: var(--cp-surface); min-height: 228px; }
-.format-result .label { display: block; margin-bottom: 8px; }
-.format-result .muted { margin-top: 12px; font-size: 15px; }
-.format-preview { margin: 16px 0 0; }
-.format-preview img { width: 100%; height: 360px; object-fit: contain; }
-.closing { padding: 24px; border-radius: 16px; background: var(--cp-accent-soft); margin-top: 40px; }
-.closing h2 { margin-top: 0; }
-footer { margin-top: 24px; }
-details { border-top: 1px solid var(--cp-border); padding: 16px 0; }
-summary { cursor: pointer; font-weight: 600; min-height: 44px; padding: 8px 0; }
-.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 28px; margin: 16px 0; }
-.detail-grid h3 { font-size: 18px; }
-.detail-grid p { font-size: 15px; }
-.meta { margin-top: 16px; }
-@media (max-width: 700px) {
-  main { padding: 80px 20px 24px; }
-  .hero, .example-grid, .steps, .format-layout, .detail-grid { grid-template-columns: 1fr; gap: 24px; }
-  h1 { max-width: 22ch; }
-  .lead { font-size: 19px; }
-  .hero-question, .closing { padding: 20px; }
-  .chapter { margin-top: 32px; padding-top: 24px; }
-  .steps { gap: 20px; }
-  .step-number { margin-bottom: 4px; }
-  .format-result { min-height: 0; }
+html[data-theme="light"] {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+.bookend {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
 }
 
-</style></head><body>
-<main>
-<section data-aha-lang="en" lang="en" data-aha-title="Aha: research a difficult question, explain it visually">
-  <header id="en-purpose" class="hero">
-    <div>
-      <p class="label">AHA / RESEARCH + VISUAL EXPLANATION</p>
-      <h1>Aha: research a difficult question.<br>Explain it visually.</h1>
-      <p class="lead">Aha is a pair of agent skills for turning questions and source material into a researched explanation people can read, explore or present.</p>
-      <div class="brief"><strong>You bring four things</strong><p>A question, any starting material, your audience, and the output you need.</p></div>
-      <p class="source">For example: “Explain headphone noise cancellation to curious non-specialists as an interactive HTML page.”</p>
-    </div>
-    <aside class="hero-question">
-      <p class="label">START WITH A QUESTION PEOPLE HAVE</p>
-      <h2>Why does headphone rumble fade while voices remain?</h2>
-      <p>A visual explanation can put the incoming sound, the headphone’s response and their combined pressure side by side. The existing ANC example lets readers change a phase mismatch in an idealized model.</p>
-      <p class="sample-note">See the actual work below—not a mockup of a future result.</p>
-    </aside>
-  </header>
+body{font-family:"Segoe UI",Aptos,Calibri,-apple-system,BlinkMacSystemFont,sans-serif}
+h1,h2,h3,p,figure{margin:0}h1,h2,h3{line-height:1.16}p{margin-top:16px}
+svg text{font-family:"Segoe UI",Aptos,Calibri,sans-serif;fill:var(--cp-text)}
+.bookend{background:var(--cp-bg);color:var(--cp-text)}
+.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:14px;font-weight:700;color:var(--cp-accent)}
+.muted,.source{color:var(--cp-text-muted)}.source{font-size:14px;line-height:1.6}
+.source a{color:var(--cp-link)}.accent{color:var(--cp-accent)}
+svg .wire{stroke:var(--cp-border-strong);fill:none;stroke-width:3}
+svg .node{fill:var(--cp-surface);stroke:var(--cp-border-strong);stroke-width:2}
+svg .ink{stroke:var(--cp-text);fill:none;stroke-width:3}
+svg .rose{stroke:var(--cp-accent);fill:none;stroke-width:5}
+svg .dash{stroke:var(--cp-text-muted);fill:none;stroke-width:3;stroke-dasharray:9 6}
+[hidden]{display:none!important}
 
-  <div id="en-examples" class="chapter">
-    <p class="label">01 / EXISTING WORK</p>
-    <h2>From an everyday puzzle to a codebase question</h2>
-    <p>These are two existing bilingual, offline HTML explanations in the repository. Each uses a different comparison to make its topic inspectable.</p>
-    <div class="example-grid">
-      <article class="example">
-        <figure><img src="../assets/anc-en.png" alt="English-language ANC HTML: incoming pressure, speaker pressure and their sum, with the phase-mismatch control at 60 degrees."><figcaption>English example · Actual screenshot at 60° phase mismatch; static here. The original page has a phase slider and reset button.</figcaption></figure>
-        <h3>Noise cancellation: compare the sounds at the ear</h3>
-        <p>The original control changes the model’s pressure curves and residual readout. It gives the reader a concrete relationship to inspect, rather than only the phrase “opposite sound.”</p>
-        <p class="source">Source: <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/examples/anc/project/html/index.html">existing ANC HTML and its model controls</a>.</p>
-      </article>
-      <article class="example">
-        <figure><img src="../assets/git-en.png" alt="English-language Git merge HTML in its saved conflict case, comparing commit history, base, ours, theirs and the result."><figcaption>English example · Screenshot of the saved conflict case; static here. The original page has three selectable cases.</figcaption></figure>
-        <h3>Why can Git merge bring back a reverted change?</h3>
-        <p>The original page compares the common base, both branch snapshots and the result. Its controls switch between a reverted change, separated edits and conflicting replacements.</p>
-        <p class="source">Source: <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/examples/git-merge/project/html/index.html">existing Git merge HTML and its case controls</a>.</p>
-      </article>
-    </div>
-  </div>
 
-  <div id="en-workflow" class="chapter">
-    <p class="label">02 / FROM QUESTION TO SOMETHING USEFUL</p>
-    <h2>Investigate first. Design for the reader.</h2>
-    <ol class="steps">
-      <li><span class="step-number">01 / INVESTIGATE</span><h3>Find what supports the answer</h3><p>Read sources, compare contradictory evidence and record gaps. Keep the claims and their evidence in a research snapshot so the explanation has something to build on.</p></li>
-      <li><span class="step-number">02 / DESIGN</span><h3>Choose what the audience needs to see</h3><p>Turn the supported reasoning into a comparison, diagram or sequence. A reader exploring alternatives needs a different composition from a team watching a short briefing.</p></li>
-      <li><span class="step-number">03 / DELIVER</span><h3>Keep both the work and the result</h3><p>Deliver editable source plus the usable output for the requested medium. Review the actual result so the explanation, controls and layout can be checked together.</p></li>
-    </ol>
-    <p class="skills"><strong>Two skills, two entry points.</strong> Use <code>aha-research</code> when you want a research report. Use <code>aha-explain</code> when you want a visual artifact; it can use the shared research workflow itself.</p>
-    <p class="source">Sources: <a href="https://github.com/sawyer0x110/aha/tree/a013ea795312eab9ae2e4224998a1314eea8f718/skills">Skill entry points</a> and <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/docs/ARCHITECTURE.md">research and artifact architecture</a>.</p>
-  </div>
-
-  <div id="en-formats" class="chapter">
-    <p class="label">03 / CHOOSE THE READER’S EXPERIENCE</p>
-    <h2>An artifact is something people can read or use</h2>
-    <p>An HTML page, a PNG image, editable PowerPoint slides or a narrated video. Choose the format for the situation—not four exports of the same layout.</p>
-    <div class="format-layout">
-      <div>
-        <div class="controls" role="group" aria-label="Compare output formats">
-          <button type="button" data-format="html" aria-pressed="true">HTML</button>
-          <button type="button" data-format="image" aria-pressed="false">PNG</button>
-          <button type="button" data-format="pptx" aria-pressed="false">PPTX</button>
-          <button type="button" data-format="video" aria-pressed="false">Video</button>
-        </div>
-        <div class="format-result" aria-live="polite" aria-atomic="true">
-          <span class="label" data-medium-label>EXPLORE / HTML</span>
-          <h3 data-medium-title>Let the reader compare alternatives</h3>
-          <p data-medium-copy>A page combines explanation, diagrams and purposeful controls. Example: explore the three Git merge cases shown above in the original offline HTML.</p>
-          <p class="muted" data-medium-note>Existing examples: ANC and Git merge HTML. Their screenshots on this page are not live controls.</p>
-        </div>
-        <p class="source">Each button changes the explanation and the matching preview. These are static previews, not file generators. Each requested medium is authored separately. <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/docs/ARCHITECTURE.md">How the media pipelines work</a>.</p>
-      </div>
-      <div class="format-preview" aria-live="polite" aria-label="Selected format preview" data-current-format="html">
-        <figure class="example" data-preview="html"><img src="../assets/anc-en.png" alt="HTML preview: English ANC webpage with pressure curves and a phase slider."><figcaption><strong>HTML · Explore a webpage.</strong> Actual English ANC example; controls are static in this screenshot.</figcaption></figure>
-        <figure class="example" data-preview="image" hidden><img src="../assets/project-poster.png" alt="PNG preview: the actual Aha project-overview poster."><figcaption><strong>PNG · One complete visual.</strong> The existing 1080 × 1800 Aha poster, shown in full.</figcaption></figure>
-        <figure class="example" data-preview="pptx" hidden><img src="../assets/slides-preview.png" alt="PPTX preview: slide 5 of the editable Aha overview presentation."><figcaption><strong>PPTX · Present and edit.</strong> Actual slide 5 from the nine-slide Aha presentation. The deck is editable; this screenshot is not.</figcaption></figure>
-        <figure class="example" data-preview="video" hidden><img src="../assets/video-preview.png" alt="Video preview: the opening frame of the narrated Aha overview, introducing a difficult question and a visual explanation."><figcaption><strong>Video · Watch and listen.</strong> Opening frame rendered from the current Aha video source, with its narration caption. Static cover, not a player.</figcaption></figure>
-      </div>
-    </div>
-  </div>
-
-  <div id="en-closing" class="closing">
-    <h2>Use Aha when the answer needs a bridge</h2>
-    <p>You have a difficult concept, scattered evidence or code behavior to explain—and an audience that needs more than a conclusion. Bring the question and the reader; choose a report or a visual artifact they can actually use.</p>
-  </div>
-  <footer id="en-details">
-    <details>
-      <summary>Implementation, provenance and review limits</summary>
-      <div class="detail-grid">
-        <div><h3>Research and revision identity</h3><p>The research snapshot’s <code>manifest.json</code>, <code>research.json</code> and <code>report.md</code> preserve research independently of any medium. Each project declares claim coverage or omissions. HTML, PNG and PPTX receipts link research, source and output hashes. Changed source needs a new output and receipt; matching hashes identify revisions, not factual quality.</p></div>
-        <div><h3>Execution and narration approval</h3><p>HTML packaging does not execute author scripts. Browser checks, image capture, video frames and native PPTX code need explicit local-execution approval. <code>--allow-code</code> is not a sandbox. Edge TTS separately requires approval of the current complete narration plan, provider, voice, rate and disclosure scope.</p></div>
-        <div><h3>Video has its own timing work</h3><p>The narration plan binds to the research and source. Authored frame states and measured audio durations drive the sequence and captions. A changed plan invalidates stale approval. Successful encoding does not replace watching and listening to the result.</p></div>
-        <div><h3>Language is authored, not inferred</h3><p>New HTML defaults to English and Chinese, initially English. PNG, PPTX and video default to English, with explicit Chinese available. The agent writes the translation; changing artifact language does not change the bound research.</p></div>
-        <div><h3>Installation and dependencies</h3><p>Install a built Skill package with its CLI, schemas, references and local libraries—not the source <code>skills</code> directory. Browsers and media tools are separate dependencies; prepare those needed for the chosen step.</p></div>
-        <div><h3>What this introduction does not establish</h3><p>Source checks, factual review, language review and actual output inspection are distinct. These examples do not establish learner comprehension, host discovery or online voice availability. This page uses the host’s Clawpilot theme; it is not an Aha-only quality evaluation.</p></div>
-      </div>
-      <p class="source">Technical references: <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/src/artifacts/render.ts">render receipts</a> · <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/skills/shared/references/execution.md">execution permissions</a> · <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/skills/aha-explain/references/language.md">language</a> · <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/INSTALL.md">installation</a> · <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/skills/aha-explain/references/artifact-qa.md">artifact QA</a>.</p>
-      <p class="meta">Repository source snapshot: a013ea795312 · 15 September 2026 · runtime 0.3.0 · protocol 1.0.0. Images are repository assets; no remote resources are loaded by this page.</p>
-    </details>
-  </footer>
+main{max-width:1240px;margin:auto;padding:0 40px 64px}
+.hero{padding:100px 48px 72px;margin:0 -40px 48px;border-radius:0 0 16px 16px}
+.hero h1{font-size:clamp(38px,5.5vw,70px);max-width:940px;margin-top:20px}
+.hero p{font-size:22px;max-width:800px;line-height:1.6}
+.chapter{padding:44px 0;border-top:1px solid var(--cp-border)}
+.chapter h2{font-size:36px;margin:12px 0 24px}.prose{max-width:76ch;font-size:18px;line-height:1.75}
+.route{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:28px 0}
+.route article{padding:28px;border:1px solid var(--cp-border);border-radius:16px;background:var(--cp-surface)}
+.route h3{font-size:25px}.route code{font-size:22px;color:var(--cp-accent)}
+.journey{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:32px 0;counter-reset:step}
+.journey li{list-style:none;padding:20px 16px;background:var(--cp-surface);border-top:4px solid var(--cp-accent);font-size:17px}
+.journey strong{display:block;margin-bottom:12px;font-size:20px}
+.case{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:start}
+.case-visual{padding:24px;background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:16px}
+.case-visual svg{width:100%;height:auto}.case p{font-size:18px;line-height:1.7}
+.model-controls{display:flex;align-items:center;flex-wrap:wrap;gap:16px;margin-top:20px}
+input[type=range]{width:100%;min-height:44px;accent-color:var(--cp-accent)}
+output{font-size:30px;font-weight:700;color:var(--cp-accent)}
+.legend{display:flex;flex-wrap:wrap;gap:20px;font-size:15px}.legend span:last-child{font-weight:700;color:var(--cp-accent)}
+.case-buttons{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}
+button[aria-pressed=true]{background:var(--cp-accent);color:var(--cp-accent-fg);border-color:var(--cp-accent)}
+.snapshots{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:20px 0}
+.snapshot{border:1px solid var(--cp-border);padding:20px;border-radius:10px;background:var(--cp-surface)}
+.snapshot strong{font-size:15px}.snapshot pre{font-size:18px;white-space:pre-wrap;margin-bottom:0}
+.snapshot:last-child{border:2px solid var(--cp-accent)}
+.state{padding:20px;background:var(--cp-accent-soft);border-left:4px solid var(--cp-accent);font-size:19px}
+.format-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.format-grid article{border-bottom:1px solid var(--cp-border);padding:20px 0}
+.format-grid h3{font-size:26px}.format-grid p{font-size:18px;max-width:48ch}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:32px}.split h3{font-size:24px}
+details{border:1px solid var(--cp-border);border-radius:10px;padding:20px;margin-top:20px;background:var(--cp-surface)}
+summary{cursor:pointer;font-size:19px;font-weight:700}
+.tree{font:16px/1.8 Consolas,"Courier New",monospace;white-space:pre-wrap;padding:24px;background:var(--cp-surface-soft)}
+.closing{padding:40px;margin-top:36px;border-radius:16px}.closing h2{font-size:34px}.closing p{max-width:72ch;font-size:19px}
+@media(max-width:760px){main{padding:0 20px 40px}.hero{padding:84px 24px 48px;margin:0 -20px 24px}.hero p{font-size:19px}.chapter h2{font-size:29px}.route,.case,.split,.format-grid{grid-template-columns:1fr}.journey{grid-template-columns:1fr;padding:0}.journey li{padding:14px 20px}.snapshots{grid-template-columns:1fr 1fr}.snapshot{padding:14px}.snapshot pre{font-size:16px}.case-visual{padding:16px}.chapter{padding:32px 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none;transition:none}}
+</style>
+</head><body><main>
+<section data-aha-lang="en" lang="en" data-aha-title="How does Aha turn research into an explanation?">
+<header class="hero bookend" id="en-purpose">
+<div class="eyebrow">Aha · research → explanation</div>
+<h1>How does Aha turn research into an explanation?</h1>
+<p>Aha separates finding a supported answer from designing how someone will understand it. Two portable skills share a research snapshot; each requested medium gets its own authored source.</p>
+</header>
+<div class="chapter" id="en-journey">
+<span class="eyebrow">01 / Start with the reader’s question</span>
+<h2>A report is an answer. A visual is another act of authorship.</h2>
+<p class="prose">Tell the host agent what you want to understand, what materials it may use, and what you intend to do with the answer. A report-only request stops after research. A visual request follows the explanation workflow, doing research first when needed; it does not depend on automatic dispatch between skills.</p>
+<div class="route">
+<article><code>aha-research</code><h3>Investigate and preserve</h3><p>Read sources, test competing explanations against evidence, keep uncertainty visible. Deliver an independent report plus a Research Dossier.</p></article>
+<article><code>aha-explain</code><h3>Author for the chosen medium</h3><p>Reuse sufficiently fresh research, choose the visual relationships, author real source, then check and review the requested output.</p></article>
+</div>
+<ol class="journey">
+<li><strong>1 · Question</strong>Purpose + scope</li>
+<li><strong>2 · Research</strong>Claims + evidence + gaps</li>
+<li><strong>3 · Snapshot</strong>One bound Dossier</li>
+<li><strong>4 · Author</strong>Medium-specific source</li>
+<li><strong>5 · Review</strong>Permission → render → actual QA</li>
+</ol>
+<p class="source"><a href="https://github.com/sawyer0x110/aha/blob/31ff1331b402bc80c3a731ca470000a77dcd594f/skills/aha-explain/SKILL.md">Source: the two-skill workflow</a></p>
+</div>
+<div class="chapter" id="en-anc">
+<span class="eyebrow">02 / A case where interaction computes</span>
+<h2>ANC: change the phase, then see the sum.</h2>
+<div class="case">
+<div class="case-visual" data-anc>
+<svg viewBox="0 0 540 120" role="img" aria-label="Conceptual pressure paths meet at the ear">
+<path class="wire" d="M150 34 L330 60 M150 92 L330 60 L445 60"/>
+<rect class="node" x="4" y="8" width="148" height="44" rx="10"/><text x="78" y="37" text-anchor="middle" font-size="18">Incoming noise</text>
+<rect class="node" x="4" y="72" width="148" height="44" rx="10"/><text x="78" y="100" text-anchor="middle" font-size="18">Speaker</text>
+<circle class="node" cx="335" cy="60" r="30"/><text x="335" y="69" text-anchor="middle" font-size="28">+</text>
+<text x="462" y="52" text-anchor="middle" font-size="18">At ear</text><text x="462" y="80" text-anchor="middle" font-size="18">pressure sum</text>
+</svg>
+<div class="legend"><span>Solid: incoming</span><span>Dashed: speaker</span><span>Heavy: sum</span></div>
+<svg viewBox="0 0 540 240" role="img" aria-label="Ideal equal-amplitude tone model">
+<path class="wire" d="M24 112 H520"/><path data-wave="noise" class="ink" d="M24.0,112.0 L30.2,108.9 L36.4,105.7 L42.6,102.7 L48.8,99.6 L55.0,96.7 L61.2,93.8 L67.4,91.1 L73.6,88.5 L79.8,86.0 L86.0,83.7 L92.2,81.6 L98.4,79.6 L104.6,77.9 L110.8,76.4 L117.0,75.0 L123.2,74.0 L129.4,73.1 L135.6,72.5 L141.8,72.1 L148.0,72.0 L154.2,72.1 L160.4,72.5 L166.6,73.1 L172.8,74.0 L179.0,75.0 L185.2,76.4 L191.4,77.9 L197.6,79.6 L203.8,81.6 L210.0,83.7 L216.2,86.0 L222.4,88.5 L228.6,91.1 L234.8,93.8 L241.0,96.7 L247.2,99.6 L253.4,102.7 L259.6,105.7 L265.8,108.9 L272.0,112.0 L278.2,115.1 L284.4,118.3 L290.6,121.3 L296.8,124.4 L303.0,127.3 L309.2,130.2 L315.4,132.9 L321.6,135.5 L327.8,138.0 L334.0,140.3 L340.2,142.4 L346.4,144.4 L352.6,146.1 L358.8,147.6 L365.0,149.0 L371.2,150.0 L377.4,150.9 L383.6,151.5 L389.8,151.9 L396.0,152.0 L402.2,151.9 L408.4,151.5 L414.6,150.9 L420.8,150.0 L427.0,149.0 L433.2,147.6 L439.4,146.1 L445.6,144.4 L451.8,142.4 L458.0,140.3 L464.2,138.0 L470.4,135.5 L476.6,132.9 L482.8,130.2 L489.0,127.3 L495.2,124.4 L501.4,121.3 L507.6,118.3 L513.8,115.1 L520.0,112.0"/>
+<path data-wave="speaker" class="dash" d="M24.0,112.0 L30.2,115.1 L36.4,118.3 L42.6,121.3 L48.8,124.4 L55.0,127.3 L61.2,130.2 L67.4,132.9 L73.6,135.5 L79.8,138.0 L86.0,140.3 L92.2,142.4 L98.4,144.4 L104.6,146.1 L110.8,147.6 L117.0,149.0 L123.2,150.0 L129.4,150.9 L135.6,151.5 L141.8,151.9 L148.0,152.0 L154.2,151.9 L160.4,151.5 L166.6,150.9 L172.8,150.0 L179.0,149.0 L185.2,147.6 L191.4,146.1 L197.6,144.4 L203.8,142.4 L210.0,140.3 L216.2,138.0 L222.4,135.5 L228.6,132.9 L234.8,130.2 L241.0,127.3 L247.2,124.4 L253.4,121.3 L259.6,118.3 L265.8,115.1 L272.0,112.0 L278.2,108.9 L284.4,105.7 L290.6,102.7 L296.8,99.6 L303.0,96.7 L309.2,93.8 L315.4,91.1 L321.6,88.5 L327.8,86.0 L334.0,83.7 L340.2,81.6 L346.4,79.6 L352.6,77.9 L358.8,76.4 L365.0,75.0 L371.2,74.0 L377.4,73.1 L383.6,72.5 L389.8,72.1 L396.0,72.0 L402.2,72.1 L408.4,72.5 L414.6,73.1 L420.8,74.0 L427.0,75.0 L433.2,76.4 L439.4,77.9 L445.6,79.6 L451.8,81.6 L458.0,83.7 L464.2,86.0 L470.4,88.5 L476.6,91.1 L482.8,93.8 L489.0,96.7 L495.2,99.6 L501.4,102.7 L507.6,105.7 L513.8,108.9 L520.0,112.0"/>
+<path data-wave="sum" class="rose" d="M24.0,112.0 L30.2,112.0 L36.4,112.0 L42.6,112.0 L48.8,112.0 L55.0,112.0 L61.2,112.0 L67.4,112.0 L73.6,112.0 L79.8,112.0 L86.0,112.0 L92.2,112.0 L98.4,112.0 L104.6,112.0 L110.8,112.0 L117.0,112.0 L123.2,112.0 L129.4,112.0 L135.6,112.0 L141.8,112.0 L148.0,112.0 L154.2,112.0 L160.4,112.0 L166.6,112.0 L172.8,112.0 L179.0,112.0 L185.2,112.0 L191.4,112.0 L197.6,112.0 L203.8,112.0 L210.0,112.0 L216.2,112.0 L222.4,112.0 L228.6,112.0 L234.8,112.0 L241.0,112.0 L247.2,112.0 L253.4,112.0 L259.6,112.0 L265.8,112.0 L272.0,112.0 L278.2,112.0 L284.4,112.0 L290.6,112.0 L296.8,112.0 L303.0,112.0 L309.2,112.0 L315.4,112.0 L321.6,112.0 L327.8,112.0 L334.0,112.0 L340.2,112.0 L346.4,112.0 L352.6,112.0 L358.8,112.0 L365.0,112.0 L371.2,112.0 L377.4,112.0 L383.6,112.0 L389.8,112.0 L396.0,112.0 L402.2,112.0 L408.4,112.0 L414.6,112.0 L420.8,112.0 L427.0,112.0 L433.2,112.0 L439.4,112.0 L445.6,112.0 L451.8,112.0 L458.0,112.0 L464.2,112.0 L470.4,112.0 L476.6,112.0 L482.8,112.0 L489.0,112.0 L495.2,112.0 L501.4,112.0 L507.6,112.0 L513.8,112.0 L520.0,112.0"/>
+<text x="24" y="234" font-size="15">Time across one cycle → · normalized pressure</text></svg>
+<label for="en-phase">Phase mismatch from ideal opposition <strong data-degrees>0°</strong></label>
+<input id="en-phase" data-phase type="range" min="0" max="180" value="0" step="1">
+<div class="model-controls"><output data-ratio>0.00</output><span>Residual peak / incoming peak</span><button type="button" data-reset>Reset</button></div>
+<p class="state" data-feedback aria-live="polite">At ideal opposition, the equal pressures cancel.</p>
+</div>
+<div><h3>The control changes a condition, not a caption.</h3>
+<p>The existing ANC example computes three SVG curves when its phase slider moves: incoming pressure, speaker pressure, and their sum. This original redraw exposes that same ideal-model relationship. The two input amplitudes stay equal; only their phase relationship changes.</p>
+<p>At 60° mismatch, the residual peak equals the incoming peak. At 180°, it is twice the incoming peak—not twice the perceived loudness. This is neither headset telemetry nor a prediction of a real headphone’s attenuation.</p>
+<p class="source"><a href="https://github.com/sawyer0x110/aha/blob/31ff1331b402bc80c3a731ca470000a77dcd594f/examples/anc/projects/html/html/index.html#L488-L564">Source: ANC model input handler and SVG updates</a></p>
+</div></div></div>
+<div class="chapter" id="en-git" data-git>
+<span class="eyebrow">03 / A case where interaction selects evidence</span>
+<h2>Git: inspect the snapshots, not a vote of commits.</h2>
+<p class="prose">A change followed by a revert can leave our file equal to the shared base. If their file still differs, the embedded record shows their change in the result. The real example buttons select stored records; they do not run Git in the browser. These compact panels show selected lines, not full experimental files.</p>
+<div class="case-buttons" role="group" aria-label="Choose an embedded record">
+<button type="button" data-case="revert" aria-pressed="true">Revert + one net change</button>
+<button type="button" data-case="apart" aria-pressed="false">Separated edits</button>
+<button type="button" data-case="conflict" aria-pressed="false">Conflicting replacements</button>
+</div>
+<div class="snapshots">
+<div class="snapshot"><strong>Base</strong><pre data-file="base">timeout = 30</pre></div><div class="snapshot"><strong>Ours</strong><pre data-file="ours">timeout = 30</pre></div><div class="snapshot"><strong>Theirs</strong><pre data-file="theirs">timeout = 60</pre></div><div class="snapshot"><strong>Result</strong><pre data-file="result">timeout = 60</pre></div>
+</div>
+<svg viewBox="0 0 1060 170" role="img" aria-label="Recorded history state, not a new Git execution">
+<path class="wire" d="M115 82 L370 42 M115 82 L370 126"/>
+<path class="rose" data-merge-edge d="M505 42 L760 82 M505 126 L760 82"/>
+<rect class="node" x="20" y="58" width="140" height="50" rx="10"/><text x="90" y="90" text-anchor="middle" font-size="20">Base</text>
+<rect class="node" x="365" y="15" width="160" height="50" rx="10"/><text x="445" y="48" text-anchor="middle" font-size="20">Ours</text>
+<rect class="node" x="365" y="104" width="160" height="50" rx="10"/><text x="445" y="137" text-anchor="middle" font-size="20">Theirs</text>
+<g data-merge-node><rect class="node" x="750" y="58" width="255" height="50" rx="10"/><text x="877" y="90" text-anchor="middle" font-size="20">Merge · HEAD</text></g>
+<text data-conflict-node hidden x="675" y="97" font-size="23">HEAD stays at ours</text></svg>
+<p class="state" data-git-state aria-live="polite">Stored result: timeout 60. A change-and-revert history is not a veto.</p>
+<p class="source"><a href="https://github.com/sawyer0x110/aha/blob/31ff1331b402bc80c3a731ca470000a77dcd594f/examples/git-merge/projects/html/html/index.html#L474-L624">Source: three embedded records and selectCase; not rerun in this investigation</a></p>
+</div>
+<div class="chapter" id="en-formats">
+<span class="eyebrow">04 / Share evidence, not geometry</span>
+<h2>Four media answer four reading situations.</h2>
+<div class="format-grid">
+<article><h3>HTML</h3><p>Let readers choose a condition, inspect a record, and expand a source note. English and Chinese are authored branches, not automatic translation.</p></article>
+<article><h3>PNG</h3><p>Compose one self-contained reading path. Select dimensions from the user’s explicit size, destination and display width—not from the scaffold. More pixels do not enlarge text at the same displayed width.</p></article>
+<article><h3>PPTX</h3><p>Use editable text, shapes and charts to reveal relationships in sequence. A whole-slide screenshot would remove the very edits a presenter needs.</p></article>
+<article><h3>Narrated video</h3><p>Show the condition change and its consequence over time, with deterministic frames and caption space. A sequence of fading pages is not a mechanism explanation.</p></article>
+</div>
+<p class="source"><a href="https://github.com/sawyer0x110/aha/blob/31ff1331b402bc80c3a731ca470000a77dcd594f/skills/aha-explain/references/image.md">Source: medium-specific authoring and updated image sizing</a></p>
+</div>
+<div class="chapter" id="en-boundaries">
+<span class="eyebrow">05 / Know what the machine checks</span>
+<h2>A matching hash is a chain of custody, not a verdict.</h2>
+<div class="split"><div><h3>Runtime implements</h3><p class="prose">Dossier validation; research/source binding; declared coverage; offline HTML packaging; approved capture or native generation; output receipts. Video uses browser frames and FFmpeg: 1280 × 720, 30 fps, H.264/AAC, with segment-level captions.</p></div>
+<div><h3>Host and reviewers provide</h3><p class="prose">Research judgment, source retrieval, translation, clear causal writing, resource permission, execution consent and actual visual or listening review. Native objects do not prove convenient editing; sampled frame changes do not prove meaningful motion.</p></div></div>
+<details><summary>Why a changed source can invalidate old audio</summary>
+<p class="prose">A video plan binds narration, provider, voice, rate, research and visual source. The current audio manifest binds the complete plan. Editing the source therefore changes the plan identity. Revalidate and obtain current-plan approval; do not patch hashes to reuse old audio. Edge TTS sends approved narration to an online service, so that permission is separate from local rendering.</p></details>
+<details><summary>What is fresh here—and what was not observed</summary>
+<p class="prose">This explanation uses fresh read-only investigation of Aha commit 31ff1331, whose tree matches the locally available origin/main merge c98b1927. HEAD is a work branch, not main. The old overview dossier is not new evidence. No live web retrieval, repository test run, browser interaction, speech synthesis or media rendering was performed for this source handoff.</p></details>
+<p class="source"><a href="https://github.com/sawyer0x110/aha/blob/31ff1331b402bc80c3a731ca470000a77dcd594f/src/artifacts/project.ts">Source: checkArtifact explicitly excludes semantic and visual verification</a></p>
+<p class="source"><a href="https://github.com/sawyer0x110/aha/blob/31ff1331b402bc80c3a731ca470000a77dcd594f/src/media/plan.ts">Source: full plan and audio identity contracts</a></p>
+</div>
+<div class="chapter" id="en-layout"><h2>Examples and evaluations have different jobs.</h2>
+<div class="tree">examples/&lt;topic&gt;/projects/&lt;medium&gt;  → editable sources
+evals/examples/                     → artifact runtime / review records
+evals/skills/                       → comparison materials and rubrics</div>
+<p class="prose">The revised layout separates published examples from review machinery and skill-comparison fixtures. Image-sizing scenarios cover desktop, scrolling mobile and explicit dimensions. Their presence does not mean the new examples are finished or that skill effectiveness has been measured.</p>
+<p class="source"><a href="https://github.com/sawyer0x110/aha/blob/31ff1331b402bc80c3a731ca470000a77dcd594f/docs/EVALUATION.md">Source: evaluation layout and declared evidence limits</a></p></div>
+<footer class="closing bookend"><h2>Preserve the evidence. Design the explanation. Inspect the result.</h2>
+<p>Aha makes these steps traceable. It does not make any of them optional. This new source edition awaits actual medium-specific QA; it is not a measured learning outcome.</p></footer>
 </section>
 
-<section data-aha-lang="zh" lang="zh-CN" data-aha-title="Aha：研究难题，用视觉讲清楚" hidden>
-  <header id="zh-purpose" class="hero">
-    <div>
-      <p class="label">AHA / 研究 + 视觉讲解</p>
-      <h1>Aha：研究一个难题，<br>用视觉讲清楚。</h1>
-      <p class="lead">Aha 是一组包含两个 Skill 的 Agent 技能：把问题和原始材料，变成有研究依据、可供阅读、探索或演示的讲解。</p>
-      <div class="brief"><strong>你带来四样东西</strong><p>想弄清的问题、已有材料、讲给谁听，以及需要什么形式的成品。</p></div>
-      <p class="source">例如：“给好奇的非专业读者解释耳机主动降噪，做成可交互的 HTML 页面。”</p>
-    </div>
-    <aside class="hero-question">
-      <p class="label">从读者真的会问的问题开始</p>
-      <h2>戴上降噪耳机，为什么轰鸣变轻了，人声还在？</h2>
-      <p>视觉讲解可以把传入声、耳机发出的声音，以及两者叠加后的声压放在一起比较。现有 ANC 示例让读者在理想模型中改变相位偏差，观察变化。</p>
-      <p class="sample-note">下面展示的是已经做出的作品，不是设想中的效果图。</p>
-    </aside>
-  </header>
-
-  <div id="zh-examples" class="chapter">
-    <p class="label">01 / 已有作品</p>
-    <h2>从生活中的疑问，到代码库里的问题</h2>
-    <p>下面两件作品都已存在于仓库中，都是可离线阅读的中英双语 HTML。它们用不同的比较方式，让读者看见解释所说的关系。</p>
-    <div class="example-grid">
-      <article class="example">
-        <figure><img src="../assets/anc-example.png" alt="现有主动降噪 HTML 的中文示例：并列展示传入声压、耳机声压与叠加结果，以及相位偏差控件。"><figcaption>中文示例 · 已有作品的截图；此处为静态图片。原页面提供相位滑块和重置按钮。</figcaption></figure>
-        <h3>主动降噪：比较耳边的两种声音</h3>
-        <p>原页面的控件会改变模型中的声压曲线和残余声压读数。读者能观察具体关系，而不只是记住“反向声音”这个说法。</p>
-        <p class="source">来源：<a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/examples/anc/project/html/index.html">已有 ANC HTML 及其模型控件</a>。</p>
-      </article>
-      <article class="example">
-        <figure><img src="../assets/git-example.png" alt="现有 Git 合并 HTML 的中文冲突案例：比较提交历史、共同基线、双方文件快照及合并结果。"><figcaption>中文示例 · 已有作品的截图；此处为静态图片。原页面提供三个可切换的合并案例。</figcaption></figure>
-        <h3>为什么 Git 合并会带回已撤销的修改？</h3>
-        <p>原页面把共同基线、双方分支的文件快照和结果放在一起。读者可以切换“撤销后的修改”“相隔较远的修改”和“同一位置的冲突替换”三种情形。</p>
-        <p class="source">来源：<a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/examples/git-merge/project/html/index.html">已有 Git 合并 HTML 及其案例控件</a>。</p>
-      </article>
-    </div>
-  </div>
-
-  <div id="zh-workflow" class="chapter">
-    <p class="label">02 / 从问题到可用的作品</p>
-    <h2>先调查，再为读者设计讲法。</h2>
-    <ol class="steps">
-      <li><span class="step-number">01 / 调查</span><h3>找出答案依据什么</h3><p>阅读来源，对照相互矛盾的证据，记录尚未解决的缺口。把主张及其证据保存为研究快照，给后续讲解提供依据。</p></li>
-      <li><span class="step-number">02 / 设计</span><h3>决定读者需要看见什么</h3><p>把有依据的推理组织成比较、图解或过程。想自己探索不同情况的读者，与听简短汇报的团队，需要不同的构图和顺序。</p></li>
-      <li><span class="step-number">03 / 交付</span><h3>留下源码，也交付成品</h3><p>交付所选媒介的可编辑源码与可用成品。检查实际输出，让内容、控件和版式一起接受审阅。</p></li>
-    </ol>
-    <p class="skills"><strong>两个技能，两个入口。</strong>想要研究报告，用 <code>aha-research</code>；想要视觉作品，用 <code>aha-explain</code>，它可以直接使用共享研究流程。</p>
-    <p class="source">来源：<a href="https://github.com/sawyer0x110/aha/tree/a013ea795312eab9ae2e4224998a1314eea8f718/skills">Skill 入口</a>与<a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/docs/ARCHITECTURE.md">研究和作品架构</a>。</p>
-  </div>
-
-  <div id="zh-formats" class="chapter">
-    <p class="label">03 / 选择读者的使用方式</p>
-    <h2>“作品”就是别人能阅读或使用的东西</h2>
-    <p>可以是 HTML 页面、PNG 图片、可编辑的 PowerPoint 幻灯片，或带旁白的视频。按使用场景选形式，而不是把同一套版式导出四遍。</p>
-    <div class="format-layout">
-      <div>
-        <div class="controls" role="group" aria-label="比较作品格式">
-          <button type="button" data-format="html" aria-pressed="true">HTML</button>
-          <button type="button" data-format="image" aria-pressed="false">PNG</button>
-          <button type="button" data-format="pptx" aria-pressed="false">PPTX</button>
-          <button type="button" data-format="video" aria-pressed="false">视频</button>
-        </div>
-        <div class="format-result" aria-live="polite" aria-atomic="true">
-          <span class="label" data-medium-label>自主探索 / HTML</span>
-          <h3 data-medium-title>让读者自己比较不同情况</h3>
-          <p data-medium-copy>把正文、图解和有用的控件放在同一页。例如，在上方 Git 合并作品的原始离线 HTML 中探索三种合并情形。</p>
-          <p class="muted" data-medium-note>已有示例：ANC 与 Git 合并 HTML。本页中的截图不能当作原页面控件操作。</p>
-        </div>
-        <p class="source">按钮会同时切换用途说明和对应预览；预览为静态图片，不会生成文件。每种所需媒介都单独创作。<a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/docs/ARCHITECTURE.md">了解媒介管线</a>。</p>
-      </div>
-      <div class="format-preview" aria-live="polite" aria-label="当前格式预览" data-current-format="html">
-        <figure class="example" data-preview="html"><img src="../assets/anc-example.png" alt="HTML 预览：中文主动降噪网页的声压曲线与相位滑块。"><figcaption><strong>HTML · 自主探索。</strong> 已有 ANC 中文网页的实际截图；图中控件不可操作。</figcaption></figure>
-        <figure class="example" data-preview="image" hidden><img src="../assets/project-poster.png" alt="PNG 预览：实际 Aha 项目介绍英文海报。"><figcaption><strong>PNG · 一张完整的图。</strong> 已有的 1080 × 1800 英文项目海报，完整展示，不裁切。</figcaption></figure>
-        <figure class="example" data-preview="pptx" hidden><img src="../assets/slides-preview.png" alt="PPTX 预览：Aha 英文演示文稿的第 5 页。"><figcaption><strong>PPTX · 演示与编辑。</strong> 9 页英文演示的实际第 5 页。原文稿可编辑；这里是静态截图。</figcaption></figure>
-        <figure class="example" data-preview="video" hidden><img src="../assets/video-preview.png" alt="视频预览：Aha 英文配音视频的开场，介绍从难题到视觉讲解。"><figcaption><strong>Video · 观看与聆听。</strong> 从当前英文视频源码渲染的开场画面，含旁白字幕。这里是静态封面，不是播放器。</figcaption></figure>
-      </div>
-    </div>
-  </div>
-
-  <div id="zh-closing" class="closing">
-    <h2>不只要给结论，还要把道理讲通时，用 Aha。</h2>
-    <p>你需要解释一个难懂的概念、一组零散证据，或一段代码的行为，而读者需要知道“为什么”。带上问题，说明讲给谁听，再选择他们用得上的研究报告或视觉作品。</p>
-  </div>
-  <footer id="zh-details">
-    <details>
-      <summary>展开实现细节、来源与审阅边界</summary>
-      <div class="detail-grid">
-        <div><h3>研究和版本身份</h3><p>研究快照的 <code>manifest.json</code>、<code>research.json</code> 与 <code>report.md</code> 独立于媒介保存研究。每个作品项目声明主张的覆盖或省略。HTML、PNG 与 PPTX 的收据关联研究、源码和输出哈希。源码改变后，需要新输出和收据；哈希匹配只能识别版本，不能证明内容正确。</p></div>
-        <div><h3>执行与旁白批准</h3><p>HTML 打包不执行作者脚本。浏览器检查、图片捕获、视频画面和原生 PPTX 代码都需要明确的本地执行批准。<code>--allow-code</code> 不是沙箱。Edge TTS 另需批准当前完整旁白计划、提供方、声线、语速与外发范围。</p></div>
-        <div><h3>视频还要单独安排时间</h3><p>旁白计划绑定研究与源码。编写的逐帧状态与实测音频时长共同决定画面顺序和字幕。计划改变后，旧批准失效。编码成功不能代替实际观看和听审。</p></div>
-        <div><h3>语言由作者选择，不靠猜测</h3><p>新 HTML 默认中英双语，先显示英语。PNG、PPTX 和视频默认英语，也可明确选择中文。译文由 Agent 编写；改变作品语言不会改变绑定的研究。</p></div>
-        <div><h3>安装与依赖</h3><p>安装带有 CLI、Schema、参考资料和本地库的构建后 Skill 包，而不是源码中的 <code>skills</code> 目录。浏览器和媒体工具是额外依赖，按当前步骤准备。</p></div>
-        <div><h3>本介绍不能证明什么</h3><p>源码检查、事实审阅、语言审阅和实际成品检查各不相同。这些示例不证明真人理解、宿主发现技能或在线语音可用性。本页使用宿主的 Clawpilot 主题，不是 Aha 单独作用的质量评估。</p></div>
-      </div>
-      <p class="source">技术参考：<a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/src/artifacts/render.ts">渲染收据</a> · <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/skills/shared/references/execution.md">执行权限</a> · <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/skills/aha-explain/references/language.md">语言</a> · <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/INSTALL.md">安装</a> · <a href="https://github.com/sawyer0x110/aha/blob/a013ea795312eab9ae2e4224998a1314eea8f718/skills/aha-explain/references/artifact-qa.md">作品验收</a>。</p>
-      <p class="meta">仓库源码快照：a013ea795312 · 2026 年 9 月 15 日 · runtime 0.3.0 · 协议 1.0.0。图片来自仓库；本页不加载远程资源。</p>
-    </details>
-  </footer>
+<section data-aha-lang="zh" lang="zh-CN" data-aha-title="Aha 怎样把研究变成可解释的视觉作品？">
+<header class="hero bookend" id="zh-purpose">
+<div class="eyebrow">Aha · 研究 → 解释</div>
+<h1>Aha 怎样把研究变成可解释的视觉作品？</h1>
+<p>Aha 把“找到有依据的答案”和“设计让人理解答案的方式”分开。两个可移植技能共用研究快照，但每一种目标媒介都需要独立创作。</p>
+</header>
+<div class="chapter" id="zh-journey">
+<span class="eyebrow">01 / 从读者的问题开始</span>
+<h2>报告先给出答案；视觉解释还需要再创作。</h2>
+<p class="prose">先告诉宿主智能体：你想弄懂什么、允许使用哪些材料、准备怎样使用答案。只要报告，就停在研究阶段；需要视觉作品，则按解释工作流先补足研究。这里不假定宿主会自动在两个技能之间转发任务。</p>
+<div class="route">
+<article><code>aha-research</code><h3>调查，并保留依据</h3><p>读取来源，用证据比较不同解释，保留不确定性。交付独立报告和 Research Dossier（研究档案）。</p></article>
+<article><code>aha-explain</code><h3>针对所选媒介创作</h3><p>复用足够新鲜的研究，选择要呈现的关系，创作真实源码，再检查和审阅用户要求的产物。</p></article>
+</div>
+<ol class="journey">
+<li><strong>1 · 问题</strong>用途与范围</li>
+<li><strong>2 · 研究</strong>论点、证据与缺口</li>
+<li><strong>3 · 快照</strong>固定的研究身份</li>
+<li><strong>4 · 创作</strong>媒介特定源码</li>
+<li><strong>5 · 审阅</strong>许可 → 渲染 → 实际 QA</li>
+</ol>
+<p class="source"><a href="https://github.com/sawyer0x110/aha/blob/31ff1331b402bc80c3a731ca470000a77dcd594f/skills/aha-explain/SKILL.md">来源：两个技能的工作流</a></p>
+</div>
+<div class="chapter" id="zh-anc">
+<span class="eyebrow">02 / 一个真正进行计算的交互案例</span>
+<h2>ANC：改变相位，再看声压之和。</h2>
+<div class="case">
+<div class="case-visual" data-anc>
+<svg viewBox="0 0 540 120" role="img" aria-label="概念图：两路声压在耳边相遇">
+<path class="wire" d="M150 34 L330 60 M150 92 L330 60 L445 60"/>
+<rect class="node" x="4" y="8" width="148" height="44" rx="10"/><text x="78" y="37" text-anchor="middle" font-size="18">传入噪声</text>
+<rect class="node" x="4" y="72" width="148" height="44" rx="10"/><text x="78" y="100" text-anchor="middle" font-size="18">扬声器</text>
+<circle class="node" cx="335" cy="60" r="30"/><text x="335" y="69" text-anchor="middle" font-size="28">+</text>
+<text x="462" y="52" text-anchor="middle" font-size="18">耳边</text><text x="462" y="80" text-anchor="middle" font-size="18">声压相加</text>
+</svg>
+<div class="legend"><span>细实线：传入</span><span>虚线：扬声器</span><span>粗线：相加结果</span></div>
+<svg viewBox="0 0 540 240" role="img" aria-label="理想等幅单音模型">
+<path class="wire" d="M24 112 H520"/><path data-wave="noise" class="ink" d="M24.0,112.0 L30.2,108.9 L36.4,105.7 L42.6,102.7 L48.8,99.6 L55.0,96.7 L61.2,93.8 L67.4,91.1 L73.6,88.5 L79.8,86.0 L86.0,83.7 L92.2,81.6 L98.4,79.6 L104.6,77.9 L110.8,76.4 L117.0,75.0 L123.2,74.0 L129.4,73.1 L135.6,72.5 L141.8,72.1 L148.0,72.0 L154.2,72.1 L160.4,72.5 L166.6,73.1 L172.8,74.0 L179.0,75.0 L185.2,76.4 L191.4,77.9 L197.6,79.6 L203.8,81.6 L210.0,83.7 L216.2,86.0 L222.4,88.5 L228.6,91.1 L234.8,93.8 L241.0,96.7 L247.2,99.6 L253.4,102.7 L259.6,105.7 L265.8,108.9 L272.0,112.0 L278.2,115.1 L284.4,118.3 L290.6,121.3 L296.8,124.4 L303.0,127.3 L309.2,130.2 L315.4,132.9 L321.6,135.5 L327.8,138.0 L334.0,140.3 L340.2,142.4 L346.4,144.4 L352.6,146.1 L358.8,147.6 L365.0,149.0 L371.2,150.0 L377.4,150.9 L383.6,151.5 L389.8,151.9 L396.0,152.0 L402.2,151.9 L408.4,151.5 L414.6,150.9 L420.8,150.0 L427.0,149.0 L433.2,147.6 L439.4,146.1 L445.6,144.4 L451.8,142.4 L458.0,140.3 L464.2,138.0 L470.4,135.5 L476.6,132.9 L482.8,130.2 L489.0,127.3 L495.2,124.4 L501.4,121.3 L507.6,118.3 L513.8,115.1 L520.0,112.0"/>
+<path data-wave="speaker" class="dash" d="M24.0,112.0 L30.2,115.1 L36.4,118.3 L42.6,121.3 L48.8,124.4 L55.0,127.3 L61.2,130.2 L67.4,132.9 L73.6,135.5 L79.8,138.0 L86.0,140.3 L92.2,142.4 L98.4,144.4 L104.6,146.1 L110.8,147.6 L117.0,149.0 L123.2,150.0 L129.4,150.9 L135.6,151.5 L141.8,151.9 L148.0,152.0 L154.2,151.9 L160.4,151.5 L166.6,150.9 L172.8,150.0 L179.0,149.0 L185.2,147.6 L191.4,146.1 L197.6,144.4 L203.8,142.4 L210.0,140.3 L216.2,138.0 L222.4,135.5 L228.6,132.9 L234.8,130.2 L241.0,127.3 L247.2,124.4 L253.4,121.3 L259.6,118.3 L265.8,115.1 L272.0,112.0 L278.2,108.9 L284.4,105.7 L290.6,102.7 L296.8,99.6 L303.0,96.7 L309.2,93.8 L315.4,91.1 L321.6,88.5 L327.8,86.0 L334.0,83.7 L340.2,81.6 L346.4,79.6 L352.6,77.9 L358.8,76.4 L365.0,75.0 L371.2,74.0 L377.4,73.1 L383.6,72.5 L389.8,72.1 L396.0,72.0 L402.2,72.1 L408.4,72.5 L414.6,73.1 L420.8,74.0 L427.0,75.0 L433.2,76.4 L439.4,77.9 L445.6,79.6 L451.8,81.6 L458.0,83.7 L464.2,86.0 L470.4,88.5 L476.6,91.1 L482.8,93.8 L489.0,96.7 L495.2,99.6 L501.4,102.7 L507.6,105.7 L513.8,108.9 L520.0,112.0"/>
+<path data-wave="sum" class="rose" d="M24.0,112.0 L30.2,112.0 L36.4,112.0 L42.6,112.0 L48.8,112.0 L55.0,112.0 L61.2,112.0 L67.4,112.0 L73.6,112.0 L79.8,112.0 L86.0,112.0 L92.2,112.0 L98.4,112.0 L104.6,112.0 L110.8,112.0 L117.0,112.0 L123.2,112.0 L129.4,112.0 L135.6,112.0 L141.8,112.0 L148.0,112.0 L154.2,112.0 L160.4,112.0 L166.6,112.0 L172.8,112.0 L179.0,112.0 L185.2,112.0 L191.4,112.0 L197.6,112.0 L203.8,112.0 L210.0,112.0 L216.2,112.0 L222.4,112.0 L228.6,112.0 L234.8,112.0 L241.0,112.0 L247.2,112.0 L253.4,112.0 L259.6,112.0 L265.8,112.0 L272.0,112.0 L278.2,112.0 L284.4,112.0 L290.6,112.0 L296.8,112.0 L303.0,112.0 L309.2,112.0 L315.4,112.0 L321.6,112.0 L327.8,112.0 L334.0,112.0 L340.2,112.0 L346.4,112.0 L352.6,112.0 L358.8,112.0 L365.0,112.0 L371.2,112.0 L377.4,112.0 L383.6,112.0 L389.8,112.0 L396.0,112.0 L402.2,112.0 L408.4,112.0 L414.6,112.0 L420.8,112.0 L427.0,112.0 L433.2,112.0 L439.4,112.0 L445.6,112.0 L451.8,112.0 L458.0,112.0 L464.2,112.0 L470.4,112.0 L476.6,112.0 L482.8,112.0 L489.0,112.0 L495.2,112.0 L501.4,112.0 L507.6,112.0 L513.8,112.0 L520.0,112.0"/>
+<text x="24" y="234" font-size="15">一个周期内的时间 → · 归一化声压</text></svg>
+<label for="zh-phase">相对理想反向关系的相位偏差 <strong data-degrees>0°</strong></label>
+<input id="zh-phase" data-phase type="range" min="0" max="180" value="0" step="1">
+<div class="model-controls"><output data-ratio>0.00</output><span>残余峰值 / 传入峰值</span><button type="button" data-reset>重置</button></div>
+<p class="state" data-feedback aria-live="polite">理想反向时，等幅声压相消。</p>
+</div>
+<div><h3>控件改变的是条件，不只是说明文字。</h3>
+<p>现有 ANC 示例在拖动相位滑块时，计算传入声压、扬声器声压及两者之和三条 SVG 曲线。这里重新绘制这个理想模型：两路幅值保持相等，只改变它们的相位关系。</p>
+<p>偏差为 60° 时，残余峰值等于传入峰值；180° 时为两倍，但不能说“听起来两倍响”。这不是耳机遥测，也不预测真实耳机的降噪量。</p>
+<p class="source"><a href="https://github.com/sawyer0x110/aha/blob/31ff1331b402bc80c3a731ca470000a77dcd594f/examples/anc/projects/html/html/index.html#L488-L564">来源：ANC 模型输入处理与 SVG 更新</a></p>
+</div></div></div>
+<div class="chapter" id="zh-git" data-git>
+<span class="eyebrow">03 / 一个通过切换记录来解释的案例</span>
+<h2>Git：比较文件快照，不是给提交投票。</h2>
+<p class="prose">一次修改再撤销，可能让我们的文件重新等于共同基线。如果对方仍保留变化，内嵌记录中的结果就保留了对方的修改。原案例的按钮只是选择已存记录，不是在浏览器运行 Git。这里的精简面板只展示选定行，不冒充完整实验文件。</p>
+<div class="case-buttons" role="group" aria-label="选择内嵌记录">
+<button type="button" data-case="revert" aria-pressed="true">撤销后，只有一边留下变化</button>
+<button type="button" data-case="apart" aria-pressed="false">两处分离修改</button>
+<button type="button" data-case="conflict" aria-pressed="false">同一位置的冲突替换</button>
+</div>
+<div class="snapshots">
+<div class="snapshot"><strong>基线</strong><pre data-file="base">timeout = 30</pre></div><div class="snapshot"><strong>我们</strong><pre data-file="ours">timeout = 30</pre></div><div class="snapshot"><strong>对方</strong><pre data-file="theirs">timeout = 60</pre></div><div class="snapshot"><strong>结果</strong><pre data-file="result">timeout = 60</pre></div>
+</div>
+<svg viewBox="0 0 1060 170" role="img" aria-label="记录中的历史状态，不是重新运行 Git">
+<path class="wire" d="M115 82 L370 42 M115 82 L370 126"/>
+<path class="rose" data-merge-edge d="M505 42 L760 82 M505 126 L760 82"/>
+<rect class="node" x="20" y="58" width="140" height="50" rx="10"/><text x="90" y="90" text-anchor="middle" font-size="20">基线</text>
+<rect class="node" x="365" y="15" width="160" height="50" rx="10"/><text x="445" y="48" text-anchor="middle" font-size="20">我们</text>
+<rect class="node" x="365" y="104" width="160" height="50" rx="10"/><text x="445" y="137" text-anchor="middle" font-size="20">对方</text>
+<g data-merge-node><rect class="node" x="750" y="58" width="255" height="50" rx="10"/><text x="877" y="90" text-anchor="middle" font-size="20">合并提交 · HEAD</text></g>
+<text data-conflict-node hidden x="675" y="97" font-size="23">HEAD 留在我们这边</text></svg>
+<p class="state" data-git-state aria-live="polite">既有记录：timeout 为 60。修改再撤销的历史并不构成否决。</p>
+<p class="source"><a href="https://github.com/sawyer0x110/aha/blob/31ff1331b402bc80c3a731ca470000a77dcd594f/examples/git-merge/projects/html/html/index.html#L474-L624">来源：三条内嵌记录与 selectCase；本次未重跑实验</a></p>
+</div>
+<div class="chapter" id="zh-formats">
+<span class="eyebrow">04 / 共享证据，不照搬几何</span>
+<h2>四种媒介对应四种阅读方式。</h2>
+<div class="format-grid">
+<article><h3>HTML</h3><p>让读者选择条件、检查记录、展开来源说明。英文和中文分别创作，不依靠自动翻译。</p></article>
+<article><h3>PNG</h3><p>在单张图中组织完整阅读路径。先看用户指定尺寸、目标容器和显示宽度，不把脚手架当设计建议。同一显示宽度下，更多像素不会让字变大。</p></article>
+<article><h3>PPTX</h3><p>用可编辑文本、形状和图表逐步呈现关系。整页截图会剥夺演讲者真正需要的编辑能力。</p></article>
+<article><h3>旁白视频</h3><p>用确定性帧随时间显示条件变化及其后果，同时给字幕留空间。整页淡入淡出的序列不等于机制解释。</p></article>
+</div>
+<p class="source"><a href="https://github.com/sawyer0x110/aha/blob/31ff1331b402bc80c3a731ca470000a77dcd594f/skills/aha-explain/references/image.md">来源：媒介特定创作与新版图像尺寸指南</a></p>
+</div>
+<div class="chapter" id="zh-boundaries">
+<span class="eyebrow">05 / 分清机器检查了什么</span>
+<h2>哈希吻合说明身份一致，不代表内容正确。</h2>
+<div class="split"><div><h3>运行时实现</h3><p class="prose">Dossier 校验、研究与源码绑定、声明覆盖、离线 HTML 打包、经许可的捕获或原生生成、输出回执。视频用浏览器帧与 FFmpeg：1280 × 720、30fps、H.264/AAC，以及片段级字幕。</p></div>
+<div><h3>宿主与审阅者负责</h3><p class="prose">研究判断、来源获取、翻译、清楚的因果表达、资源授权、执行许可，以及实际看图和听音频。原生对象不证明好编辑，抽样帧发生变化也不证明动画有意义。</p></div></div>
+<details><summary>为什么改了画面源码，也会让旧音频绑定失效？</summary>
+<p class="prose">视频计划绑定旁白、提供方、声音、语速、研究和视觉源码；当前音频清单又绑定完整计划。因此改源码会改变计划身份。应重新校验并取得当前计划许可，不应修改哈希强行复用旧音频。Edge TTS 会把获批旁白发给在线服务，这与本地渲染许可分开。</p></details>
+<details><summary>本次更新了什么？又有哪些没有观察？</summary>
+<p class="prose">本解释基于对 Aha 提交 31ff1331 的新只读调查，其树与本地 origin/main 合并 c98b1927 相同。HEAD 是工作分支，不是 main。旧概览 Dossier 不充当新证据。本轮源文件交接没有进行实时网页检索、仓库测试、浏览器交互、语音合成或媒体渲染。</p></details>
+<p class="source"><a href="https://github.com/sawyer0x110/aha/blob/31ff1331b402bc80c3a731ca470000a77dcd594f/src/artifacts/project.ts">来源：checkArtifact 明确不做语义和视觉验证</a></p>
+<p class="source"><a href="https://github.com/sawyer0x110/aha/blob/31ff1331b402bc80c3a731ca470000a77dcd594f/src/media/plan.ts">来源：完整视频计划与音频身份契约</a></p>
+</div>
+<div class="chapter" id="zh-layout"><h2>示例与评估承担不同职责。</h2>
+<div class="tree">examples/&lt;topic&gt;/projects/&lt;medium&gt;  → 可编辑源文件
+evals/examples/                     → 作品运行与审阅记录
+evals/skills/                       → 技能对照材料与判据</div>
+<p class="prose">新版布局把示例作品、审阅工具和技能对照资料分开。图片尺寸场景覆盖桌面、手机滚动及指定尺寸。但存在这些场景，并不表示新示例已完成，也不代表技能效果已测得。</p>
+<p class="source"><a href="https://github.com/sawyer0x110/aha/blob/31ff1331b402bc80c3a731ca470000a77dcd594f/docs/EVALUATION.md">来源：评估布局与证据边界</a></p></div>
+<footer class="closing bookend"><h2>保留证据，设计解释，检查真实结果。</h2>
+<p>Aha 让这些步骤可追溯，但不会让任何一步变成可省略。本次新源码仍待各媒介的实际 QA，不是已测得的学习效果。</p></footer>
 </section>
-</main>
-<script>
-const media = {
-  en: {
-    html: ["EXPLORE / HTML", "Let the reader compare alternatives", "A page combines explanation, diagrams and purposeful controls. Example: explore the three Git merge cases shown above in the original offline HTML.", "Existing examples: ANC and Git merge HTML. Their screenshots on this page are not live controls."],
-    image: ["KEEP A REFERENCE / PNG", "Put the central explanation in one image", "A fixed composition gives the reader one view to keep or include in a document. Example: the existing Aha overview poster beside this comparison.", "The poster is an actual PNG. A new topic needs its own image composition, not a shrunken screenshot of a long article."],
-    pptx: ["PRESENT + EDIT / PPTX", "Give the presenter material they can revise", "Native text, shapes, tables and charts can be edited in PowerPoint. The matching preview shows a real slide from the nine-slide Aha project introduction.", "This is an Aha presentation, not an ANC or Git merge deck. Open the PPTX to edit; the preview itself is a static image."],
-    video: ["WATCH + LISTEN / VIDEO", "Guide the viewer through an explanation", "Pair a timed visual sequence with narration and captions. The matching cover is the opening of the actual Aha project video.", "The video introduces Aha with existing HTML examples. This cover is not a player, and screenshots within the video are not live controls."]
-  },
-  zh: {
-    html: ["自主探索 / HTML", "让读者自己比较不同情况", "把正文、图解和有用的控件放在同一页。例如，在上方 Git 合并作品的原始离线 HTML 中探索三种合并情形。", "已有示例：ANC 与 Git 合并 HTML。本页中的截图不能当作原页面控件操作。"],
-    image: ["留作参考 / PNG", "把核心解释放进一张图", "用固定构图提供一张可以保存或放进文档的参考图。例如，这组比较旁边已有的 Aha 项目介绍海报。", "这里的海报是实际 PNG。新主题需要单独设计构图，而不是把长文章截图缩小。"],
-    pptx: ["演示与修改 / PPTX", "让讲解者拿到可以修改的材料", "原生文字、形状、表格和图表可以在 PowerPoint 中编辑。右侧展示 9 页 Aha 项目介绍中的实际一页。", "这是 Aha 项目的演示，不是 ANC 或 Git 合并幻灯片。编辑需打开 PPTX；预览本身为静态图片。"],
-    video: ["观看与聆听 / 视频", "带观众逐步理解解释", "把有时间顺序的画面与旁白、字幕配合起来。右侧封面来自实际 Aha 项目视频的开场。", "该视频借助已有 HTML 案例介绍 Aha。封面不是播放器，视频内的网页截图也不是实时控件。"]
-  }
-};
-for (const root of document.querySelectorAll("[data-aha-lang]")) {
-  for (const button of root.querySelectorAll("[data-format]")) {
-    button.addEventListener("click", () => {
-      const copy = media[root.dataset.ahaLang][button.dataset.format];
-      for (const peer of root.querySelectorAll("[data-format]")) {
-        peer.setAttribute("aria-pressed", String(peer === button));
+</main><script>
+(() => {
+  for (const root of document.querySelectorAll('section[data-aha-lang]')) {
+    const zh = root.dataset.ahaLang === 'zh';
+    const m = root.querySelector('[data-anc]'), input=m.querySelector('[data-phase]');
+    const update = () => {
+      const degrees=Number(input.value), delta=degrees*Math.PI/180, ratio=2*Math.abs(Math.sin(delta/2));
+      for(const kind of ['noise','speaker','sum']){
+        const points=[];
+        for(let i=0;i<=80;i++){
+          const theta=2*Math.PI*i/80, noise=Math.sin(theta), speaker=-Math.sin(theta-delta);
+          const v=kind==='noise'?noise:kind==='speaker'?speaker:noise+speaker;
+          points.push((i?'L':'M')+(24+i*496/80).toFixed(1)+','+(112-v*40).toFixed(1));
+        }
+        m.querySelector('[data-wave="'+kind+'"]').setAttribute('d',points.join(' '));
       }
-      ["data-medium-label", "data-medium-title", "data-medium-copy", "data-medium-note"].forEach((attribute, index) => {
-        root.querySelector(`[${attribute}]`).textContent = copy[index];
-      });
-      const preview = root.querySelector('.format-preview');
-      preview.dataset.currentFormat = button.dataset.format;
-      for (const panel of preview.querySelectorAll('[data-preview]')) {
-        panel.hidden = panel.dataset.preview !== button.dataset.format;
-      }
+      m.querySelector('[data-degrees]').textContent=degrees+'°';
+      m.querySelector('[data-ratio]').value=ratio.toFixed(2);
+      input.setAttribute('aria-valuetext',zh?'相位偏差 '+degrees+' 度':degrees+' degrees of phase mismatch');
+      m.querySelector('[data-feedback]').textContent=zh?
+        '偏差 '+degrees+'°：残余峰值比为 '+ratio.toFixed(2)+'。等幅单音模型，不是感知响度或耳机实测。':
+        degrees+'° mismatch: residual peak ratio '+ratio.toFixed(2)+'. Equal-amplitude tone model, not perceived loudness or a headset measurement.';
+    };
+    input.addEventListener('input',update);
+    m.querySelector('[data-reset]').addEventListener('click',()=>{input.value='0';update();});
+    update();
+    const g=root.querySelector('[data-git]');
+    const records={
+      revert:{files:['timeout = 30','timeout = 30','timeout = 60','timeout = 60'],
+        en:'Embedded record · exit 0. Ours equals the base after reverting; the result retains their net change.',
+        zh:'内嵌记录 · 退出码 0。我们撤销后等于基线；结果保留对方留下的净变化。'},
+      apart:{files:['timeout = 30\n…\nretries = 2','timeout = 60\n…\nretries = 2','timeout = 30\n…\nretries = 4','timeout = 60\n…\nretries = 4'],
+        en:'Embedded record · exit 0. Separated text ranges allow both edits to remain; ellipses omit unchanged context.',
+        zh:'内嵌记录 · 退出码 0。分离的修改区域让两项变化都保留；省略号代表未展示的稳定上下文。'},
+      conflict:{files:['timeout = 30','timeout = 60','timeout = 90','<<<<<<< ours\n60\n||||||| base\n30\n=======\n90\n>>>>>>> theirs'],
+        en:'Embedded record · exit 1. Conflicting replacements leave an unresolved working file and index stages; no merge commit. Markers are abbreviated here.',
+        zh:'内嵌记录 · 退出码 1。冲突替换留下未解决的工作文件与索引 stage，未生成合并提交。此处标记经过简写。'}
+    };
+    for(const button of g.querySelectorAll('[data-case]'))button.addEventListener('click',()=>{
+      const key=button.dataset.case, r=records[key], conflict=key==='conflict';
+      ['base','ours','theirs','result'].forEach((k,i)=>g.querySelector('[data-file="'+k+'"]').textContent=r.files[i]);
+      g.querySelector('[data-git-state]').textContent=zh?r.zh:r.en;
+      g.querySelectorAll('[data-merge-node],[data-merge-edge]').forEach(n=>n.toggleAttribute('hidden',conflict));
+      g.querySelector('[data-conflict-node]').toggleAttribute('hidden',!conflict);
+      g.querySelectorAll('[data-case]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
     });
   }
-}
-</script>
-</body></html>
+})();
+</script></body></html>

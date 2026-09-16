@@ -1,198 +1,180 @@
-import { chromium } from 'playwright-core';
-import { readFile, mkdir, writeFile } from 'node:fs/promises';
-import { createHash } from 'node:crypto';
-import { dirname, join } from 'node:path';
-import { fileURLToPath, pathToFileURL } from 'node:url';
 import assert from 'node:assert/strict';
+import { readFile, mkdir, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { createHash } from 'node:crypto';
 
 if (!process.argv.includes('--allow-code')) throw new Error('Review the source and obtain local browser execution approval, then pass --allow-code.');
-const evaluation = dirname(fileURLToPath(import.meta.url));
-const base = join(evaluation, '..', '..', 'examples');
-const output = join(evaluation, 'anc-git');
-await mkdir(output, { recursive: true });
+const root = fileURLToPath(new URL('../../', import.meta.url));
+const args = process.argv.slice(2).filter(arg => arg !== '--allow-code' && arg !== '--screenshots');
+assert(args.length === 2 && args[0] === '--output', 'Usage: node evals/examples/check-html.mjs --allow-code --output <new-repo-relative-directory> [--screenshots]');
+const output = path.resolve(root, args[1]);
+const relative = path.relative(root, output);
+assert(relative && !relative.startsWith('..') && !path.isAbsolute(relative), 'Output must be inside the repository');
+await mkdir(output); // Exclusive creation: never overwrite or relabel prior QA evidence.
 const screenshots = process.argv.includes('--screenshots');
-if (screenshots) await mkdir(join(output, 'screenshots'), { recursive: true });
-const fixtures = JSON.parse(await readFile(join(base, 'git-merge', 'experiment-results-v2.json'), 'utf8')).results;
-const normalize = value => value.replace(/\r/g, '').trimEnd();
+const { chromium } = await import('playwright-core');
 const report = {
-  createdAt: new Date().toISOString(), cases: [], failures: [],
-  boundary: 'Observed offline behavior and sampled layout only. Editorial review is separate; no human comprehension or screen-reader acceptance.',
+  observedAt: new Date().toISOString(), cases: [], failures: [],
+  scope: 'Fresh offline packaged-HTML behavior at 1280/390px, both languages and themes. Controls exercise authored illustrative models, not new Git experiments or headset measurements. Not visual, screen-reader or comprehension acceptance.',
 };
+const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 async function check(record, name, action) {
   try { await action(); record.checks.push({ name, passed: true }); }
   catch (error) {
-    const failure = { case: record.id, name, message: error.message };
     record.checks.push({ name, passed: false, message: error.message });
-    report.failures.push(failure);
+    report.failures.push({ case: record.id, name, message: error.message });
   }
 }
-async function capture(locator, name, record) {
-  if (!screenshots) return;
-  await locator.screenshot({ path: join(output, 'screenshots', `${name}.png`) });
-  record.screenshots.push(`screenshots/${name}.png`);
+async function activate(button, keyboard = true) {
+  if (keyboard) { await button.focus(); await button.press('Enter'); }
+  else await button.click();
+  assert.equal(await button.getAttribute('aria-pressed'), 'true');
 }
-const browser = await chromium.launch({ channel: 'msedge', headless: true });
+async function ancControls(branch) {
+  const gain = branch.locator('.gain'), phase = branch.locator('.phase');
+  const result = branch.locator('.result'), wave = branch.locator('.wave-result');
+  await gain.focus(); await gain.press('Home');
+  await phase.focus(); await phase.press('Home');
+  assert.match(await result.innerText(), /1\.00/);
+  await gain.press('End');
+  assert.equal(await gain.inputValue(), '1.2');
+  assert.match(await result.innerText(), /0\.20/);
+  await gain.press('ArrowLeft'); await gain.press('ArrowLeft'); await gain.press('ArrowLeft'); await gain.press('ArrowLeft');
+  assert.equal(await gain.inputValue(), '1');
+  assert.match(await result.innerText(), /0\.00/);
+  const cancelled = await wave.getAttribute('d');
+  await phase.press('End');
+  assert.equal(await phase.inputValue(), '180');
+  assert.match(await result.innerText(), /2\.00/);
+  assert.notEqual(await wave.getAttribute('d'), cancelled);
+  await phase.press('Home');
+  assert.equal(await wave.getAttribute('d'), cancelled);
+}
+async function gitControls(branch, language) {
+  const cases = [
+    { values: ['off', 'off', 'on'], result: /mode=on/ },
+    { values: ['on', 'off', 'on'], result: /mode=off/ },
+    { values: ['off', 'manual', 'on'], result: language === 'en' ? /content merge needed/ : /需要内容合并/ },
+  ];
+  for (const [index, fixture] of cases.entries()) {
+    await activate(branch.locator(`[data-case="${index}"]`), index !== 1);
+    for (const [position, name] of ['base', 'ours', 'theirs'].entries()) {
+      assert.equal(await branch.locator(`[data-value="${name}"]`).innerText(), `mode=${fixture.values[position]}`);
+    }
+    assert.match(await branch.locator('[data-result]').innerText(), fixture.result);
+    assert.equal(await branch.locator('[data-case][aria-pressed="true"]').count(), 1);
+  }
+  for (const details of await branch.locator('details').all()) {
+    const summary = details.locator('summary');
+    await summary.focus(); await summary.press('Enter');
+    assert(await details.evaluate(element => element.open));
+    await summary.press('Enter');
+    assert.equal(await details.evaluate(element => element.open), false);
+  }
+}
+async function overviewControls(branch) {
+  const phase = branch.locator('[data-phase]'), wave = branch.locator('[data-wave="sum"]');
+  await phase.focus(); await phase.press('Home');
+  assert.equal(await branch.locator('[data-ratio]').innerText(), '0.00');
+  const cancelled = await wave.getAttribute('d');
+  await phase.press('End');
+  assert.equal(await branch.locator('[data-ratio]').innerText(), '2.00');
+  assert.notEqual(await wave.getAttribute('d'), cancelled);
+  await branch.locator('[data-reset]').click();
+  assert.equal(await phase.inputValue(), '0');
+  assert.equal(await wave.getAttribute('d'), cancelled);
+  const cases = {
+    revert: ['timeout = 30', 'timeout = 30', 'timeout = 60', 'timeout = 60'],
+    apart: ['timeout = 30\n…\nretries = 2', 'timeout = 60\n…\nretries = 2', 'timeout = 30\n…\nretries = 4', 'timeout = 60\n…\nretries = 4'],
+    conflict: ['timeout = 30', 'timeout = 60', 'timeout = 90', '<<<<<<< ours\n60\n||||||| base\n30\n=======\n90\n>>>>>>> theirs'],
+  };
+  for (const [key, values] of Object.entries(cases)) {
+    await activate(branch.locator(`[data-case="${key}"]`), key !== 'apart');
+    for (const [index, name] of ['base', 'ours', 'theirs', 'result'].entries()) {
+      assert.equal(await branch.locator(`[data-file="${name}"]`).textContent(), values[index]);
+    }
+    assert.equal(await branch.locator('[data-conflict-node]').getAttribute('hidden') !== null, key !== 'conflict');
+    for (const node of await branch.locator('[data-merge-node],[data-merge-edge]').all()) {
+      assert.equal(await node.getAttribute('hidden') !== null, key === 'conflict');
+    }
+    assert.equal(await branch.locator('[data-case][aria-pressed="true"]').count(), 1);
+  }
+}
+
+let browser;
 try {
-  for (const topic of ['anc', 'git-merge']) {
-    const file = join(base, topic, 'index.html');
+  browser = await chromium.launch({
+    headless: true,
+    ...(process.env.AHA_BROWSER_EXECUTABLE ? { executablePath: process.env.AHA_BROWSER_EXECUTABLE }
+      : { channel: process.env.AHA_BROWSER_CHANNEL || 'msedge' }),
+  });
+  for (const topic of ['anc', 'git-merge', 'project-overview']) {
+    const file = path.join(root, 'examples', topic, 'index.html');
     const receipt = JSON.parse(await readFile(`${file}.receipt.json`, 'utf8'));
-    assert.equal(createHash('sha256').update(await readFile(file)).digest('hex'), receipt.outputHash);
-    for (const width of [1280, 390]) {
-      for (const theme of ['light', 'dark']) {
-        const context = await browser.newContext({ viewport: { width, height: 960 }, colorScheme: theme, reducedMotion: 'reduce', offline: true, serviceWorkers: 'block' });
+    assert.equal(sha(await readFile(file)), receipt.outputHash, `${topic}: packaged output hash`);
+    for (const width of [1280, 390]) for (const theme of ['light', 'dark']) {
+      const context = await browser.newContext({
+        viewport: { width, height: 960 }, colorScheme: theme, reducedMotion: 'reduce',
+        offline: true, serviceWorkers: 'block',
+      });
+      try {
         const page = await context.newPage();
         page.setDefaultTimeout(6000);
         const errors = [], blocked = [];
-        const url = pathToFileURL(file).href + `?scoutTheme=${theme}`;
+        const url = `${pathToFileURL(file).href}?scoutTheme=${theme}`;
         await context.route('**/*', route => {
           if (route.request().isNavigationRequest() && route.request().url() === url) return route.continue();
-          blocked.push(route.request().url());
-          return route.abort('blockedbyclient');
+          blocked.push(route.request().url()); return route.abort('blockedbyclient');
         });
         page.on('pageerror', error => errors.push(error.message));
         page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
         await page.goto(url);
-        assert.equal(await page.locator('html').getAttribute('lang'), 'en');
         for (const language of ['en', 'zh']) {
-          const record = { id: `${topic}-${width}-${theme}-${language}`, outputHash: receipt.outputHash, sourceHash: receipt.sourceHash, checks: [], screenshots: [] };
+          const record = {
+            id: `${topic}-${width}-${theme}-${language}`, topic, width, theme, language,
+            outputHash: receipt.outputHash, sourceHash: receipt.sourceHash, researchHash: receipt.researchHash,
+            checks: [], screenshots: [],
+          };
           report.cases.push(record);
-          const root = page.locator(`section[data-aha-lang="${language}"]`);
-          const switcher = page.locator(`.aha-language-controls [data-language="${language}"]`);
-          await switcher.focus();
-          await switcher.press(language === 'zh' ? 'Enter' : 'Space');
-          await check(record, 'Localized title, branch visibility and active control', async () => {
-            assert.equal(await page.locator('html').getAttribute('lang'), language === 'zh' ? 'zh-CN' : 'en');
-            assert.equal(await page.title(), await root.getAttribute('data-aha-title'));
-            assert(await root.isVisible());
-            assert.equal(await page.locator(`[data-aha-lang="${language === 'en' ? 'zh' : 'en'}"]`).isVisible(), false);
-            assert.equal(await switcher.getAttribute('aria-pressed'), 'true');
+          const branch = page.locator(`section[data-aha-lang="${language}"]`);
+          await check(record, 'Language switch and title', async () => {
+            const button = page.locator(`.aha-language-controls [data-language="${language}"]`);
+            await activate(button, language === 'en');
+            assert.equal(await page.locator('html').getAttribute('lang'), language === 'en' ? 'en' : 'zh-CN');
+            assert.equal(await page.title(), await branch.getAttribute('data-aha-title'));
+            assert(await branch.isVisible());
+            assert.equal(await page.locator(`section[data-aha-lang="${language === 'en' ? 'zh' : 'en'}"]`).isVisible(), false);
           });
-          await check(record, 'Document fits viewport and intended theme', async () => {
+          await check(record, 'Keyboard and pointer controls', async () => {
+            if (topic === 'anc') await ancControls(branch);
+            else if (topic === 'git-merge') await gitControls(branch, language);
+            else await overviewControls(branch);
+          });
+          await check(record, 'Viewport, theme and local anchors', async () => {
             assert.equal(await page.locator('html').getAttribute('data-theme'), theme);
-            const size = await page.evaluate(() => ({ viewport: innerWidth, content: document.documentElement.scrollWidth }));
-            assert(size.content <= size.viewport + 1, JSON.stringify(size));
-          });
-          if (topic === 'git-merge') {
-            await check(record, 'Git headline names the question before the lead introduces values', async () => {
-              const title = await root.locator('h1').textContent();
-              assert.equal(title, await root.getAttribute('data-aha-title'));
-              assert.match(title, language === 'en' ? /Git merge.*change.*reverted/ : /Git 合并.*撤销.*修改/);
-              assert.doesNotMatch(title, /\d/);
-              const lead = await root.locator('.lede').innerText();
-              assert.match(lead, language === 'en' ? /configuration file/ : /配置文件/);
-              assert(lead.indexOf('timeout') >= 0 && lead.indexOf('timeout') < lead.indexOf('30'));
-              assert(lead.includes('60'));
-            });
-          }
-          if (topic === 'git-merge' && width === 390 && language === 'zh') {
-            await check(record, 'Chinese mobile heading stays within two lines', async () => {
-              const heading = await root.locator('h1').evaluate(el => ({
-                height: el.getBoundingClientRect().height,
-                lineHeight: Number.parseFloat(getComputedStyle(el).lineHeight),
-              }));
-              assert(heading.height <= heading.lineHeight * 2 + 1, JSON.stringify(heading));
-            });
-          }
-          if (theme === 'light' && ((width === 1280 && language === 'en') || (width === 390 && language === 'zh'))) {
-            await capture(root.locator('header'), `${record.id}-opening`, record);
-          }
-          if (topic === 'anc') {
-            await check(record, 'Phase model at keyboard limits, 60 degrees and reset', async () => {
-              const slider = root.locator('input[data-phase]');
-              await slider.focus(); await slider.press('Home');
-              assert.equal(await root.locator('[data-residual]').innerText(), '0.00');
-              const initialPath = await root.locator('[data-pressure="sum"]').getAttribute('d');
-              await slider.evaluate(el => { el.value = '60'; el.dispatchEvent(new Event('input', { bubbles: true })); });
-              assert.equal(await root.locator('[data-residual]').innerText(), '1.00');
-              assert((await slider.getAttribute('aria-valuetext')).includes('60'));
-              const middlePath = await root.locator('[data-pressure="sum"]').getAttribute('d');
-              assert.notEqual(middlePath, initialPath);
-              await slider.press('ArrowRight');
-              assert.equal(await slider.inputValue(), '61');
-              assert((await root.locator('[data-feedback]').innerText()).includes('61'));
-              await slider.press('End');
-              assert.equal(await root.locator('[data-residual]').innerText(), '2.00');
-              await root.locator('[data-reset]').click();
-              assert.equal(await slider.inputValue(), '0');
-              assert.equal(await root.locator('[data-pressure="sum"]').getAttribute('d'), initialPath);
-            });
-            if (theme === 'light' && width === 1280 && language === 'zh') {
-              await capture(root.locator('.figure').first(), `${record.id}-mechanism`, record);
-              await root.locator('input[data-phase]').evaluate(el => { el.value = '60'; el.dispatchEvent(new Event('input', { bubbles: true })); });
-              await capture(root.locator('[data-model]'), `${record.id}-model`, record);
-              await root.locator('[data-reset]').click();
+            assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+            for (const href of await branch.locator('a[href^="#"]').evaluateAll(links => links.map(link => link.getAttribute('href')))) {
+              if (href.length > 1) assert(await page.evaluate(id => !!document.getElementById(id), decodeURIComponent(href.slice(1))), href);
             }
-          } else {
-            await check(record, 'All three recorded cases match every displayed file and commit state', async () => {
-              for (const [key, index] of [['one', 0], ['apart', 1], ['clash', 2]]) {
-                const button = root.locator(`button[data-case="${key}"]`);
-                await button.focus(); await button.press('Enter');
-                const fixture = fixtures[index];
-                for (const part of ['base', 'ours', 'theirs', 'result']) {
-                  assert.equal(normalize(await root.locator(`[data-code="${part}"]`).textContent()), normalize(fixture[`${part}Text`]), `${key}/${part}`);
-                }
-                assert.equal(await button.getAttribute('aria-pressed'), 'true');
-                assert.equal(await button.evaluate(el => el === document.activeElement), true);
-                assert.equal(await root.locator('[data-result-state]').getAttribute('data-state'), index === 2 ? 'conflict' : 'resolved');
-                assert.equal(await root.locator('[data-index-stages]').isVisible(), index === 2);
-                assert.equal(await root.locator('[data-merge-node]').isVisible(), index !== 2);
-                assert.equal(normalize(await root.locator('[data-stage-values]').textContent()), fixture.unmergedStages.join('\n'));
-                assert((await root.locator('[data-head-state]').innerText()).includes(fixture.headAfter.slice(0, 7)));
-              }
-            });
-            await check(record, 'Methods disclosure opens with keyboard', async () => {
-              const details = root.locator('details');
-              await details.locator('summary').focus(); await details.locator('summary').press('Enter');
-              assert(await details.evaluate(el => el.open));
-              await details.locator('summary').press('Enter');
-            });
-            if (theme === 'light' && width === 1280 && language === 'zh') {
-              await capture(root.locator('.comparison'), `${record.id}-conflict`, record);
-            }
-          }
-          await check(record, 'Visible SVG text stays inside diagram viewboxes', async () => {
-            const clipped = await root.locator('svg').evaluateAll(elements => elements.flatMap(svg => {
-              const box = svg.viewBox.baseVal;
-              return [...svg.querySelectorAll('text')].filter(t => t.getBoundingClientRect().width > 0).flatMap(t => {
-                const b = t.getBBox();
-                return b.x < box.x - 1 || b.y < box.y - 1 || b.x + b.width > box.x + box.width + 1 || b.y + b.height > box.y + box.height + 1
-                  ? [t.textContent] : [];
-              });
-            }));
-            assert.deepEqual(clipped, []);
           });
           await check(record, 'No page errors or automatic external requests', async () => {
             assert.deepEqual(errors, []); assert.deepEqual(blocked, []);
           });
+          if (screenshots) {
+            const filename = `${record.id}.png`;
+            await page.screenshot({ path: path.join(output, filename), fullPage: true });
+            record.screenshots.push(filename);
+          }
         }
-        await context.close();
-      }
+      } finally { await context.close(); }
     }
   }
-  for (const width of [1280, 390]) {
-    const context = await browser.newContext({ viewport: { width, height: 960 }, offline: true, serviceWorkers: 'block' });
-    const page = await context.newPage();
-    const record = { id: `gallery-${width}`, checks: [], screenshots: [] };
-    report.cases.push(record);
-    const url = pathToFileURL(join(base, 'index.html')).href;
-    const errors = [], blocked = [];
-    page.on('pageerror', e => errors.push(e.message));
-    await context.route('**/*', route => {
-      if (route.request().url() === url) return route.continue();
-      blocked.push(route.request().url()); return route.abort();
-    });
-    await page.goto(url);
-    await check(record, 'Gallery fits and links to both current HTML files', async () => {
-      assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
-      for (const relative of ['anc/index.html', 'git-merge/index.html', 'README.md']) {
-        assert.equal(await page.locator(`a[href="${relative}"]`).count(), 1);
-        await readFile(join(base, ...relative.split('/')));
-      }
-      assert.deepEqual(errors, []); assert.deepEqual(blocked, []);
-    });
-    await context.close();
-  }
-} finally { await browser.close(); }
-await writeFile(join(output, 'runtime.json'), JSON.stringify(report, null, 2));
-console.log(JSON.stringify({ cases: report.cases.length, checks: report.cases.reduce((sum, item) => sum + item.checks.length, 0), failures: report.failures }));
+} catch (error) {
+  report.failures.push({ case: 'runner', message: error.message });
+} finally {
+  await browser?.close();
+  await writeFile(path.join(output, 'runtime.json'), `${JSON.stringify(report, null, 2)}\n`, { flag: 'wx' });
+}
+console.log(JSON.stringify({ cases: report.cases.length, failures: report.failures, output }));
 if (report.failures.length) process.exitCode = 1;

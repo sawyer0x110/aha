@@ -1,46 +1,51 @@
-# A quieter ear, not a silent cabin
+# 飞机轰鸣变轻了，为什么人声还在？
 
-## Direct answer
-Noise-cancelling headphones add a carefully shaped pressure signal near the ear. They do not erase sound throughout an aircraft. Aircraft rumble often contains a substantial low-frequency component, where active noise cancellation (ANC) is generally useful. Speech combines low-frequency voiced components with harmonics, broadband consonants and changes over time. Some of it can be reduced; suppressing every cue enough to make words disappear is a different, harder outcome.
+## 先回答
+主动降噪（ANC）不是给“飞机”静音、给“人声”放行的声音分类器。它让耳机扬声器产生另一组声压波动，力图在耳边与传入的噪声叠加后留下更小的波动。持续轰鸣中的一些成分往往落在耳机较擅长主动控制的频段；人声中较难控制的成分仍可能传入。**还能听见说话，不等于人声完全没有衰减，更不等于人声在物理上不能抵消。** 实际结果还受密封、佩戴位置以及是否开启通透或自适应模式影响。[Sony 使用指南](https://helpguide.sony.net/mdr/wh1000xm5/v1/en/contents/TP1000534745.html)给出了飞机与人声的产品体验对比；下面用控制条件解释它，而不把一款产品的概括升级为自然定律。
 
-## Scope, purpose and method
-Audience: curious nonexpert; purpose: explain the mechanism and support realistic expectations rather than recommend a product. Intended downstream reading time: 5–8 minutes including exploration. Scope: consumer headphone ANC, passive isolation, waveform matching, frequency and local control, nearby external voices. Excludes call-microphone noise suppression, clinical hearing guidance, product rankings, certification, measured attenuation and psychoacoustic experiments. Time horizon: established principles with public documentation read on 14 September 2026. Budget: one bounded public-source investigation and a static bilingual explanation; no installations or authored-code execution. Direct URL reads were used first. Two real search requests returned no useful discovery detail; no search results were represented as source reads.
+## 范围、方法和问题树
+目的：给没有声学专业背景的成年读者解释上述常见体验，支持随后独立制作的视觉作品。时间范围：截至本次 2026-09-16 公开访问的机制知识和明确版本材料；不是耳机市场排名。预算：有限的公开网页检索、关键原文阅读和反例追查，停止于足以回答机制和重要边界，不按来源数量凑数。纳入：声压叠加、时间/相位、主动与被动隔音、语音残留、佩戴和测量边界。排除：用户具体耳机诊断、听力保护认证、主观舒适度医学判断及产品衰减承诺。
 
-Question tree: q-mechanism establishes what has to match and where; q-frequency asks why timing and spatial error matter; q-voices tests the tempting but categorical 'unpredictable speech cannot be cancelled' account; q-fit distinguishes the active system from its passive acoustic boundary; q-prediction identifies what cannot be concluded about a real headset. Frequency, waveform and fit are dependencies of the speech comparison, not mutually exclusive explanations.
+问题树先问 q-pressure“到底在哪里相加”，再问 q-delay“为何来不及或对不准”；q-passive 区分两条减噪途径；三者支撑 q-speech 的解释。q-real 检查设置及真实测量是否推翻过度简化。旧 examples 和 evals 不是本次证据，没有重跑任何历史实验。本次没有声学测试、浏览器执行、音频试听或人类理解测试。
 
-## 1. What is being cancelled, and where?
-Sound is a pressure disturbance. In the linear approximation, pressures add at the same location and time. Equal, opposite pressure waveforms produce a smaller sum. The Physics Classroom's interference explanation supports this mechanism and explicitly warns that a sine drawing describes pressure versus time, not air moving up and down [1]. Apple describes outward microphones detecting environmental sound and inward microphones monitoring unwanted sound inside the ear [2]. Sony describes antiphase sound and explicitly says noise is reduced rather than completely cancelled [3]. A conceptual hybrid diagram is appropriate; it is not a wiring diagram for every product.
+## 1. 耳边相加的是声压，不是声音标签
+把同一个耳边位置、同一个时刻的传入噪声压力记为 d，扬声器经过耳罩/耳道传播后到达这里的控制压力记为 a，残余压力就是 e = d + a。在小信号线性近似下，如果每个时刻 a 都恰好等于 −d，残余才是零。对于单一正弦波，这意味着同频、等幅、在该位置反相。不能只在外部麦克风读到噪声后把电信号符号翻转：噪声到耳边和扬声器到耳边经过不同路径，都会改变幅度和相位。
 
-The target is residual pressure at the ear. A microphone samples its own location; headphone acoustics and processing must relate that sample to the desired location. The Physics Classroom's two-speaker example describes alternating spatial regions of reinforcement and cancellation and reflections filling ideal nodes [1]. The SoundGuys engineering overview places cancellation at the ear and distinguishes feedforward, feedback and hybrid arrangements [4]. Thus 'the cabin becomes silent' is a wrong inference even if one ear receives less pressure.
+[RWTH IKS 的 Principle 和 Adaptive Algorithms](https://www.iks.rwth-aachen.de/forschung/audio/active-noise-control/)明确区分外部参考、主路径、扬声器次级路径和内部误差信号。前馈使用外部参考，反馈使用内部误差；混合实现可结合两者。控制器需要考虑路径，并非理解“这句话是什么意思”。[Hilgemann 等的原作者稿 §2.1–2.2](https://arxiv.org/html/2509.15864v1)说明内部麦克风位置仅在低频时近似代表鼓膜处声音；因此“小麦克风处抵消得好”不能自动推出耳内每一点都静音，更不意味着整个机舱被消声。
 
-## 2. Why low-frequency rumble is a favorable case
-Sony states that its noise cancellation primarily acts in the low-frequency band, including vehicle and air-conditioning noise [3]. SoundGuys identifies aircraft engine hum as a comparatively favorable example [5]. This is not a claim that every aircraft sound is a steady pure tone, nor that modern ANC has one universal cutoff.
+## 2. 相同的时间误差，在更快的振动中占更大一圈
+相位是一个周期走到哪里。对频率 f 的正弦分量，未补偿的到达时间误差 τ 对应相位误差 δ = 2πfτ。这里说的是每秒相位变化更快，**不是声速随频率成比例增加**。RWTH 概述中使用了容易混淆的“phase velocity”措辞，本报告不沿用它；其有用的工程观点是延迟和路径误差影响补偿，数学解释用正弦定义自行展开。
 
-The control system must match amplitude and phase after both signal processing and acoustic propagation. A fixed residual timing mismatch occupies a larger fraction of a shorter cycle. This is a mathematical implication of a sinusoid's phase, not a measured headset latency. The UNSW sound-wave page supplies a sinusoidal traveling-wave description and the small-pressure linear approximation [7]; the engineering overview identifies phase alignment at the ear and reduced processing time in feedback ANC as constraints [4]. Shorter wavelengths also make a fixed position error more significant. Predictability helps adaptation, but is not a sufficient or necessary label for all cancelable sound. A steady high-pitched tone still presents tight timing/spatial requirements; a changing sound can contain low-frequency components within an ANC system's usable range.
+理想化地令噪声幅度为 1，控制幅度为 g，且控制波相对理想反相偏离 δ，则残余幅度比 r = √(1 + g² − 2g cos δ)。g=1 时，r = 2|sin(δ/2)|。这只是同一位置、稳态单频、线性相加的解析模型，不是实测曲线，也不是完整闭环算法。它直观显示：等幅还不够，相位必须对齐；差到一定程度，叠加甚至可比原噪声更大。
 
-Illustrative model: incoming pressure sin(theta), anti-noise -sin(theta - delta), with equal amplitudes and one point in space. Their sum has normalized peak amplitude 2|sin(delta/2)|. For delta = 0 degrees the residual is zero; 60 degrees gives 1; 180 degrees gives 2. These are dimensionless ideal pressure ratios, not dB, perceived loudness, measured performance or promised reduction. The example holds amplitude matching perfect so readers can isolate timing error. Real ANC also has amplitude errors, finite bandwidth, noise, changing acoustic paths, and stability constraints. A hypothetical 0.10 ms residual mismatch is 3.6 degrees at 100 Hz and 36 degrees at 1000 Hz. Those chosen values illustrate scaling only, not a product specification.
+例如取**假设的未补偿误差 0.10 ms**，100 Hz 对应 3.6°，1000 Hz 对应 36°。这些由定义算出的角度不是某款耳机延迟。频率提高会收紧时间容差，但不能据此设置一个所有 ANC 都无效的硬截止频率。前馈能否及时处理还取决于参考麦克风的提前量和传播路径；反馈还要维持稳定性。规律性信号可被预测，复杂信号也可在参考信息、带宽和路径条件合适时控制。“变化快所以绝对不能消”没有依据。
 
-## 3. Voices are a mixture, not an exemption
-UNSW Voice Acoustics explains voiced harmonics, unvoiced broadband sounds, fricatives and brief plosives; it also describes sustained vowels and time-varying consonants [6]. A voice therefore is neither all high frequency nor wholly unpredictable. Combining this with frequency-dependent ANC supports the qualified inference that low components may be reduced while other cues remain audible. It does not establish a universal speech-reduction amount or intelligibility score.
+## 3. 被动隔音与主动降噪不是同一个开关
+耳塞、耳罩和密封先改变声波传入耳边的路径，这属于被动隔音；ANC 再用扬声器加入控制声压。关掉 ANC 不等于摘下耳机：物理屏障还在。原作者稿 §2.1 说明总衰减包含主动和被动部分，§2.3 说明主动控制常以低到中频为目标，补充通常更擅长高频的被动衰减。这里的“通常”不能删除：结构、泄漏和佩戴都会改变结果。
 
-Counterevidence matters: SoundGuys' short general explainer favors 'constant' noises [5]. Its longer overview describes feedforward ANC extending into mid-frequency speech-related applications, yet the FAQ on that same page says only passive attenuation acts on voices because speech is over before calculation [4]. That categorical FAQ conflicts with the article's own finer account and oversimplifies the physics. We retain the bounded engineering discussion, reject the absolute FAQ inference, and independently use Sony for low-band behavior and UNSW for speech structure. These SoundGuys pages are one editorial lineage, not independent replications. No claim is based on their numerical attenuation or hearing-health passages.
+因此比较 ANC 开关时，应保持同一佩戴与声源；若同时挪动耳罩或改变环境音模式，就把多个原因混在一起。此建议是由路径和模式证据推导的比较方法，不是本次实际做过的测试。
 
-## 4. The other half: the seal
-Passive isolation is the physical barrier formed by pads, cups or tips; it does not generate anti-noise. Active cancellation and passive isolation work together. Sony warns that wearing conditions alter ANC [3], Apple says ANC works best with well-fitting AirPods Pro [2], and SoundGuys' isolation article explains fit and frequency-dependent attenuation [8]. In typical closed headphones the physical barrier is an important part of higher-frequency reduction, but construction, fit and leaks matter. We do not infer one universal crossover or an equal benefit for all users.
+## 4. 为什么语音仍在：成分、残余与模式共同决定
+Sony 对 WH-1000XM5 系列的说明支持“低频环境声更有效、人声等高频成分相对较弱”的产品性表述。但整个人声不是一个高频纯音：RWTH 的自身语音闭塞效应段落明确讨论 100–1000 Hz 语音成分，并说明能用主动控制降低它们的增强。这是对“语音天生不可抵消”的直接机制反例，不过自身语音闭塞控制不能当作陌生人说话被完全抹除的测量。
 
-A practical implication, not a product guarantee: if rumble recedes but speech remains, that alone does not establish broken ANC. Check that the intended mode is enabled (Transparency deliberately lets outside sound in [2]) and that the fit is correct. Do not infer hearing protection certification or assured audibility of announcements from this explanation.
+据此，合理推论是：一段话可同时有被削弱和残留的成分；只要残余仍足够可听，听者仍会觉得有人在说话。轰鸣减少得更多、语音减少得较少时，语音在主观场景中可能更突出；本次没有测试语音可懂度，不能把“更突出”写成“语音声压被放大”。残留多少取决于频谱、空间路径、控制带宽与噪声水平，不是由“飞机/人声”的类别单独决定。
 
-## Sources and actual visibility
-[1] The Physics Classroom, 'Interference and Beats': https://www.physicsclassroom.com/tutorial/sound-waves/properties-of-sound-waves/interference-and-beats . Read extracted first 18,000 characters, including pressure interference, two-source spatial example, headphone application and sine-wave caveat. Later exercise tail not read. Publication date not displayed.
-[2] Apple Support, Active Noise Cancellation and listening modes: https://support.apple.com/en-us/108918 . Read returned article, published 17 June 2026; source support restricted to introductory mic mechanism, fit, Transparency. Product lists are not needed by the explanation.
-[3] Sony WH-1000XM5 / WH-1000XM5SA Help Guide, 'What is noise canceling?': https://helpguide.sony.net/mdr/wh1000xm5/v1/en/contents/TP1000534716.html . Read full substantive article and all Notes in raw HTML because simplified extraction omitted the Notes. Manual 5-035-396-11(6); copyright 2022 is not a claimed update date.
-[4] SoundGuys, 'Noise canceling (ANC) explained': https://www.soundguys.com/noise-canceling-anc-explained-28344/ . Read full returned text including all topology sections and FAQ. Updated 16 October 2025. Secondary engineering explanation with the contradiction described above; not treated as manufacturer test data.
-[5] SoundGuys, 'How noise-cancelling headphones work': https://www.soundguys.com/how-noise-cancelling-headphones-work-12380/ . Read returned article; updated 12 August 2025. Used only for aircraft example and general mechanism, not its health speculation.
-[6] UNSW Music Acoustics, 'Voice Acoustics: an introduction': https://newt.phys.unsw.edu.au/jw/voice.html . Read first 18,000 extracted characters, especially overview, source, filter, vowels and consonants. Some typographic encoding replacement characters present, technical prose legible; no audio or graphs executed. Whole long page not read. Update date not displayed.
-[7] UNSW, 'The wave equation and the speed of sound': https://www.animations.physics.unsw.edu.au/jw/sound-wave-equation.htm . Read returned wave-equation and impedance text. Several equations are linked images and were not opened; rely only on the explicit textual sinusoidal solution and linearity discussion. Update date not displayed.
-[8] SoundGuys, 'What is isolation?': https://www.soundguys.com/what-is-isolation-12506/ . Read first 12,000 extracted characters through headphone fit/type discussion. Updated 4 September 2025. Do not use numerical dB/health passages; they contain imprecise wording outside scope.
+另一条解释是设置。[Apple 官方说明](https://support.apple.com/en-us/108918)明确区分 ANC、让外部声音进入的 Transparency，以及随环境调整的 Adaptive Audio；Sony 指南也指出自适应设置可能进入 Ambient Sound Mode。因而不能假定所有“戴着降噪耳机”的体验都发生在同一种 ANC 模式。
 
-Discovery-only context: Sony index was read in simplified and raw form to locate [3]. Wikipedia Active noise control was read as background triangulation, not relied on for any final claim. Search requests to Google (active noise cancellation low frequency delay site:edu) and Bing (sony noise cancelling low frequency voices helpguide) returned no useful technical discovery. Several candidate URLs returned 403, 404, timeouts or landing-page redirects; failures are preserved in the executed log. No inaccessible candidate is evidence.
+## 5. 真实测量给结论加什么边界
+[Hilgemann、Chatzimoustafa、Jax 原作者稿](https://arxiv.org/html/2509.15864v1)，arXiv v1 标记 2025-09-19，稿首给出 2024 年 JAES 发表信息。本次实际阅读：稿首版本说明、摘要、引言、§2.1–2.3 可见内容，以及提取器返回的 §6.3 和图8说明；没有阅读全文、审计优化过程或下载原始测量。§6.3 报告其反馈控制原型在人和假头不同佩戴下的频率响应变化；这是作者既有测量，不是本次测量，也不等于出厂 QC45 的完整性能评测。§2.2 提到耳/头形状和松紧、泄漏等会改变受控路径。内部传声器结果与鼓膜听感不能混用。
 
-## Reverse-check, uncertainty and stop
-Eight ledger claims were checked against the specific contexts above. c-superposition, c-local, c-rumble, c-speech, c-isolation and c-fit are supported within stated scope. c-error and c-voices are bounded model/combined-source inferences. The artifact should keep source cues near the mechanisms and the categorical-voice correction. No full headphone control transfer function, measured product curve or listener intelligibility data was obtained; q-prediction remains open. Closing that gap would require a specified model/fit and independent ANC-on/off measurements across frequency plus a speech-in-noise protocol for comprehension claims. Core explanatory questions and the strongest alternative explanation are resolved sufficiently for an educational artifact. Further general web pages would mostly repeat these principles, so the investigation stops at mechanism coverage, not claimed exhaustive review. Structural checks and source semantics remain separate; no browser run, human learning observation or listening test occurred.
+这些资料支持“实际表现依赖佩戴和系统”，但不提供用户这一次航班中轰鸣与语音各减少了多少分贝。未获用户耳机型号、密封状态、模式和声场；要关闭这个差距，需要在明确基准和安全声级下进行真实测量，并另行评估听感。网页图示也没有在此重画成看似新测量的数据图。
+
+## 反查与结论强度
+- c-pressure：支持。原作者稿的等幅反相、局部误差信号与 RWTH 路径说明支持机制；加上“线性近似”和“目标位置”，避免全空间静音。
+- c-delay：解析推论。相位公式来自正弦周期定义，残余公式由两个正弦相加得到；仅用于理想教学模型。修正了检索摘要和 RWTH 概述中可误解为声速随频率增加的说法。
+- c-passive：支持。主动与被动共同作用；保留频率倾向而非绝对分界。
+- c-speech：有限推论。Sony 体验概括加 RWTH 语音可控反例支撑“可部分削弱又仍可听”；不声称测出语音可懂度或语音放大。
+- c-modes：支持。Apple 与 Sony 是各自产品行为的一手说明；不推广成所有耳机都有同样模式。
+- c-measure：支持但有限。作者测量说明佩戴差异，不推定用户设备数值；方法阅读不完整，避免复述峰值、人口总体或跨品牌排名。
+
+原始访问有边界：Sony 美国支持链接 403、Bose 候选链接 404、NTU 仓储候选 405；没有绕过。Sony Help Guide 的普通提取只给标题，随后 raw 获取成功并阅读正文。RWTH 普通提取仅返回自适应部分，后续 raw 补读机制和自身语音。检索摘要仅用于找路，不作为已读证据；其中不准确的物理与推广语句已排除。
+
+## 停止理由与尚未解决的问题
+核心机制、主动/被动区别、语音可控反例及模式替代解释均已有可定位的公开原文；继续搜集相似营销说明不会解决缺少个人场景测量的问题，因此停止。没有设置任意来源配额。针对某个耳机/航班的衰减量与可懂度仍是 g-device，不用结构校验或 Dossier 哈希冒充语义支持和观测结果。

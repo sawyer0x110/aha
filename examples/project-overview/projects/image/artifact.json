@@ -2,21 +2,65 @@
   "schemaVersion": "1.0.0",
   "format": "image",
   "language": "en",
-  "researchHash": "583e36773df4fb0c7e98a4e76ec456ccddb928ac404024bef86495584fd0663d",
-  "title": "Aha: research once, author for each medium",
+  "researchHash": "f100d4b64f1c41b3e48eaeed8fe88f71609f88c274b2fc3f298de3b672b484b3",
+  "title": "Aha: evidence into explanation",
   "status": "authored",
   "entry": "html/index.html",
   "coverage": [
-    { "id": "purpose", "claimIds": ["c-purpose"] },
-    { "id": "identity", "claimIds": ["c-dossier", "c-identity"] },
-    { "id": "formats", "claimIds": ["c-formats"] },
-    { "id": "permissions", "claimIds": ["c-permission", "c-video"] },
-    { "id": "qa", "claimIds": ["c-qa"] }
+    {
+      "id": "answer",
+      "claimIds": [
+        "c-purpose",
+        "c-journey"
+      ]
+    },
+    {
+      "id": "anc",
+      "claimIds": [
+        "c-anc"
+      ]
+    },
+    {
+      "id": "git",
+      "claimIds": [
+        "c-git"
+      ]
+    },
+    {
+      "id": "media",
+      "claimIds": [
+        "c-media"
+      ]
+    },
+    {
+      "id": "limits",
+      "claimIds": [
+        "c-limits",
+        "c-image"
+      ]
+    }
   ],
   "omissions": [
-    { "claimId": "c-examples", "reason": "This fixed-size project pipeline overview leaves the ANC and Git case studies to the companion HTML and narrated video." },
-    { "claimId": "c-language", "reason": "This fixed-size pipeline overview defers language defaults to the companion HTML and report." },
-    { "claimId": "c-distribution", "reason": "Package and installation details are secondary to the pipeline and remain in the companion HTML and report." }
+    {
+      "claimId": "c-snapshot",
+      "reason": "This medium concentrates on the user journey and mechanism; detailed repository/evaluation or runtime contract is retained in the independent report and bilingual HTML."
+    },
+    {
+      "claimId": "c-execution",
+      "reason": "This medium concentrates on the user journey and mechanism; detailed repository/evaluation or runtime contract is retained in the independent report and bilingual HTML."
+    },
+    {
+      "claimId": "c-video",
+      "reason": "This medium concentrates on the user journey and mechanism; detailed repository/evaluation or runtime contract is retained in the independent report and bilingual HTML."
+    },
+    {
+      "claimId": "c-layout",
+      "reason": "This medium concentrates on the user journey and mechanism; detailed repository/evaluation or runtime contract is retained in the independent report and bilingual HTML."
+    },
+    {
+      "claimId": "c-host",
+      "reason": "This medium concentrates on the user journey and mechanism; detailed repository/evaluation or runtime contract is retained in the independent report and bilingual HTML."
+    }
   ],
   "width": 1080,
   "height": 1800
