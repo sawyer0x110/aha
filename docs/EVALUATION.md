@@ -21,6 +21,8 @@
 
 `tests\fixtures\explanation-writing-evals.json` 用于改写回归，与这里的独立作者评估分开，不能据此推断技能主动补足推理的能力。
 
+图片尺寸选择的宿主评估用例在 `tests\skills.test.ts` 的 `benchmarkPromptFixtures` 中：`landscape-image-comparison`（电脑一屏横版对比）、`mobile-scroll-image`（手机滚动竖图）和 `explicit-image-dimensions`（严格遵循指定尺寸）。这些用例复用现有技能场景评估结构，不改动上述四个已锁定案例。运行时由主持人提供匹配的已审阅 Dossier、素材与目标容器信息，为基线和候选保持输入一致；分别评价尺寸选择、实际 PNG 尺寸和缩放后的可读性。用例定义及静态测试通过不代表已完成作者生成或视觉评估。动态生成和预览仍需独立执行授权；未运行项保持未验证。
+
 ## 2. 准备两个独立版本
 
 要求 Node 22+；案例 2 另需本机已有 Git。暂存器无 npm/model 专用依赖，不安装软件、不运行模型。两个技能根目录都应含安装完成的 `aha-research`、`aha-explain` 子目录及各自的 `SKILL.md`、`scripts\aha.mjs`。不要指向整个代码仓库。

@@ -1,6 +1,6 @@
 # Public and open-world research
 
-Read [the shared workflow](research-workflow.md) first. This route covers public topics, articles, policy, history, technical standards, datasets, and legitimately provided materials; it is not restricted to software.
+Read [the shared workflow](research-workflow.md) first. This route covers public topics, articles, policy, history, technical standards, datasets, and public-source follow-up to provided materials; provided-only inquiries need no extra route guide. This route is not restricted to software.
 
 ## Read, follow, challenge
 

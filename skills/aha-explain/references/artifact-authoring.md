@@ -49,7 +49,9 @@ Before layout, use [explanation editing](explanation-writing.md) to review the d
 
 Map stable output blocks, diagram parts, pages, or scenes to existing research claims. Include numerical units and data provenance, preserve uncertainty, and keep reader-facing citations natural. Internal IDs and review notes are not the explanation itself. Coverage and omissions must agree with the source and do not certify the truth of either.
 
-New substantive assertions go back through research and source review. A layout-only revision need not reopen approval for unchanged research, but executable changes still require review and any necessary execution consent.
+New substantive assertions require research and source review. When the snapshot changes, initialize a new project against it. Port reusable authored source and licensed assets, retaining the new initializer's research binding; do not overwrite its metadata or research directory with the old project's copies. Reconcile coverage and omissions against the new claims. Review the revised source and obtain applicable local execution and changed-narration permissions under [execution](execution.md), including separate external speech-processing consent where needed; previous approval does not automatically cover revised code or narration. Then check, render, and review the revised output. Preserve the previous project and delivery; old receipts and QA do not certify the new version.
+
+A layout-only revision need not reopen approval for unchanged research, but executable changes still require review and any necessary execution consent.
 
 ## Design and source
 

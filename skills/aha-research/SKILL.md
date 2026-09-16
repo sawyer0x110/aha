@@ -9,7 +9,7 @@ Answer the question before choosing a presentation. Research is a standalone del
 
 1. Read [the shared research workflow](references/research-workflow.md). Reuse the user's purpose, language, knowledge, time horizon, budget, and authorized materials; resolve only consequential ambiguity.
 2. Load only the selected source route: [public/topic research](references/research-public.md), [codebase research](references/research-codebase.md), or both for mixed evidence. Provided materials use the shared workflow without an extra route guide. Iterate a question tree through evidence, counterevidence, gaps, and targeted follow-up.
-3. When writing the draft, load [the research contract](references/research-contract.md); use `research-check --draft` while unfinished, then strict check/build for delivery. On first authoring or troubleshooting, consult [the synthetic worked example](references/research-example.md).
+3. Before first recording structured claims, evidence, or research logs, load [the research contract](references/research-contract.md); reuse it during drafting. Use `research-check --draft` while unfinished, then strict check/build for delivery. On first authoring or troubleshooting, consult [the synthetic worked example](references/research-example.md).
 4. Reverse-check consequential claims and the reasoning connecting them against actual sources; a list of supported facts is not yet an explanation. Distinguish structural validity, semantic support, and observed execution. Report unresolved contradictions, access limits, and the real stopping reason.
 5. Deliver the readable report, Dossier location, scope, source identities, and remaining uncertainty. Stop here when only research was requested.
 
