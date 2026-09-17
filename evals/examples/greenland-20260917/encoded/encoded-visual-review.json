@@ -1,0 +1,131 @@
+{
+  "reviewType": "Visual inspection of sampled frames from the final encoded video, not author previews",
+  "artifact": "artifacts\\greenland-video-20260916\\full-render\\greenland.mp4",
+  "artifactHashFromTechnicalReview": "3cd9709076af808345f395ba7038088f2b6e394521b2218675e0cc93d0bad8a3",
+  "sampleManifest": "technical-review.json",
+  "encodedPropertiesFromManifest": {
+    "durationSeconds": 115.73333333333333,
+    "totalFrames": 3472
+  },
+  "reviewedImageCount": 14,
+  "inspectionMethod": "Viewed the actual listed PNG files with the image view tool. Batched calls encountered the image-count limitation; files were subsequently viewed individually. No source inspection, execution, rendering, narration generation, research, or delegation was performed.",
+  "result": "No concrete visual defect identified in the 14 inspected stills.",
+  "issues": [],
+  "frames": [
+    {
+      "file": "01-opening.png",
+      "frame": 139,
+      "timeSeconds": 4.633333333333334,
+      "status": "inspected",
+      "observation": "Comparison map shapes and labels are legible. Greenland's northern outline remains within the displayed panel rather than being cut off at the polar edge. Source text and subtitles occupy separate areas."
+    },
+    {
+      "file": "02-area-bars.png",
+      "frame": 434,
+      "timeSeconds": 14.466666666666667,
+      "status": "inspected",
+      "observation": "Area labels and bars communicate Africa as substantially larger than Greenland; the visible bar-length relationship is consistent with the stated roughly fourteenfold comparison. No caption or label cutoff observed. This is a visual proportionality check, not a numerical revalidation."
+    },
+    {
+      "file": "03-meridians-globe.png",
+      "frame": 713,
+      "timeSeconds": 23.766666666666666,
+      "status": "inspected",
+      "observation": "The globe and converging meridians are visible and meaningful. Explanatory labels, source text, and subtitles remain separated and readable."
+    },
+    {
+      "file": "04-meridians-map.png",
+      "frame": 968,
+      "timeSeconds": 32.266666666666666,
+      "status": "inspected",
+      "observation": "The rectangular map and straight meridian lines support the globe-to-map explanation. No observed subtitle collision, clipped label, or obscured source line."
+    },
+    {
+      "file": "05-latitude-stretch.png",
+      "frame": 1226,
+      "timeSeconds": 40.86666666666667,
+      "status": "inspected",
+      "observation": "Latitude-dependent stretching is presented with readable labels and visible explanatory geometry. Source and subtitle regions remain distinct."
+    },
+    {
+      "file": "06-local-patch.png",
+      "frame": 1456,
+      "timeSeconds": 48.53333333333333,
+      "status": "inspected",
+      "observation": "The 60-degree example is framed as a local patch, not the size or uniform scale factor of all Greenland. Diagram and caption remain readable."
+    },
+    {
+      "file": "07-local-area.png",
+      "frame": 1680,
+      "timeSeconds": 56,
+      "status": "inspected",
+      "observation": "Local linear stretching and the resulting area comparison are visually distinguished. The local example is not presented as an entire-Greenland area multiplier. No observed overlap or cutoff."
+    },
+    {
+      "file": "08-moving-greenland.png",
+      "frame": 1929,
+      "timeSeconds": 64.3,
+      "status": "inspected",
+      "observation": "The globe context and relocation explanation represent movement on a sphere, rather than merely scaling an arbitrary flat silhouette. Greenland remains recognizable. The still does not establish the intervening motion or independently prove rigidity; numerical invariance was outside this review."
+    },
+    {
+      "file": "09-unchanged-area.png",
+      "frame": 2183,
+      "timeSeconds": 72.76666666666667,
+      "status": "inspected",
+      "observation": "The compared Greenland outlines are visible, including the northern extent of the upper outline, without panel-edge clipping. The distinction between changed appearance and unchanged land area is readable."
+    },
+    {
+      "file": "10-local-angles.png",
+      "frame": 2421,
+      "timeSeconds": 80.7,
+      "status": "inspected",
+      "observation": "The local-angle illustration and labels are readable and do not imply globally undistorted shapes. Sources remain above the subtitle area."
+    },
+    {
+      "file": "11-constant-heading.png",
+      "frame": 2652,
+      "timeSeconds": 88.4,
+      "status": "inspected",
+      "observation": "The route and map geometry are visible with readable explanatory text. No observed caption overlap, cutoff, or misleading replacement of geography by an unlabelled abstract shape."
+    },
+    {
+      "file": "12-equal-earth.png",
+      "frame": 2914,
+      "timeSeconds": 97.13333333333334,
+      "status": "inspected",
+      "observation": "Both projection panels contain meaningful geographic outlines. Greenland's northern extent is visible in the comparison rather than being polar-clipped. Projection labels, sources, and subtitles remain readable."
+    },
+    {
+      "file": "13-projection-tradeoff.png",
+      "frame": 3161,
+      "timeSeconds": 105.36666666666666,
+      "status": "inspected",
+      "observation": "Projection tradeoffs are legibly differentiated. No visible label collision, subtitle cutoff, or source text intruding into the caption band."
+    },
+    {
+      "file": "14-closing-choice.png",
+      "frame": 3368,
+      "timeSeconds": 112.26666666666667,
+      "status": "inspected",
+      "observation": "The Equal Earth land-area and Mercator compass-heading choices are readable. The globe retains meaningful geography and a visible Greenland highlight. The natural-language sources sit above the caption band; both subtitle lines fit completely."
+    }
+  ],
+  "crossFrameChecks": {
+    "readableLabels": "No concrete readability or cutoff defect observed at the supplied 1280x720 image size.",
+    "subtitleOverlapOrCutoff": "None observed in the sampled frames.",
+    "sourceLines": "Visible source lines read as ordinary attribution text and remain outside the subtitle band.",
+    "meaningfulMapShapes": "No concrete misleading-shape defect observed.",
+    "wholeGreenlandComparisons": "No polar-edge clipping observed in the sampled comparison panels.",
+    "areaBars": "Visually consistent with the stated area comparison; exact numerical validation not repeated.",
+    "local60DegreeExample": "Presented as local, not as a uniform claim about the entire island.",
+    "sphericalRelocation": "Spherical movement is communicated in the sampled relocation scene; full motion and numerical rigidity are not verified by a still."
+  },
+  "limitations": [
+    "Only the exactly 14 encoded midframe PNGs listed in technical-review.json were visually reviewed.",
+    "Sampled stills cannot verify full continuity, transitions, transient clipping, or subtitle timing between samples.",
+    "No playback listening was performed; narration delivery, audio defects, and audiovisual synchronization are not assessed.",
+    "Technical metadata and the existing numerical invariance validation were not independently rerun.",
+    "This report is not a full-video viewing or listening acceptance."
+  ]
+}

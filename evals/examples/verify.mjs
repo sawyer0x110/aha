@@ -15,7 +15,10 @@ export const topics = {
   anc: { basename: 'anc', width: 1800, height: 1200, slides: 9, frames: 3813 },
   'git-merge': { basename: 'git-merge', width: 1800, height: 1200, slides: 10, frames: 3788 },
   'project-overview': { basename: 'overview', width: 1080, height: 1800, slides: 10, frames: 4453 },
+  greenland: { basename: 'greenland', formats: ['video'], frames: 3472, provider: 'edge-tts' },
 };
+export const formatsFor = topic => topics[topic].formats ?? ['html', 'image', 'pptx', 'video'];
+const multiFormatTopics = Object.keys(topics).filter(topic => formatsFor(topic).includes('html'));
 export const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const json = async file => JSON.parse(await readFile(file, 'utf8'));
 const optionalJson = async file => json(file).catch(error => {
@@ -53,6 +56,7 @@ export async function verifyOutput(base, entry) {
   const { topic, format } = entry;
   assert(Object.hasOwn(topics, topic), `Unknown topic: ${topic}`);
   assert(['html', 'image', 'pptx', 'video'].includes(format), `Unknown format: ${format}`);
+  assert(formatsFor(topic).includes(format), `Unrequested format: ${topic}/${format}`);
   const spec = topics[topic];
   const filename = format === 'html' ? 'index.html' : `${spec.basename}.${{ image: 'png', pptx: 'pptx', video: 'mp4' }[format]}`;
   equal(entry.file, `${topic}/${filename}`, 'Canonical output path');
@@ -123,8 +127,9 @@ export async function verifyOutput(base, entry) {
   if (format === 'video') {
     plan = await validateVideoPlan(project, await json(path.join(directory, 'video-plan.json')));
     const audio = checkAudioTiming(plan, await json(path.join(directory, 'audio', 'manifest.json')));
-    equal(plan.provider, 'provided-audio', 'Approved import-only plan');
-    equal(audio.provider, 'provided-audio', 'Imported recording');
+    const provider = spec.provider ?? 'provided-audio';
+    equal(plan.provider, provider, 'Expected approved speech provider');
+    equal(audio.provider, provider, 'Audio provider');
     for (const segment of audio.segments) {
       const wav = await readFile(path.join(directory, 'audio', segment.filename));
       equal(sha(wav), segment.sha256, `${segment.id}: audio hash`);
@@ -141,38 +146,40 @@ export async function verifyOutput(base, entry) {
     equal(entry.frames, frames, 'Manifest video frames');
     equal(receipt.durationSeconds, frames / 30, 'Video duration');
     equal(entry.durationSeconds, frames / 30, 'Manifest video duration');
-    equal(receipt.provider, 'provided-audio', 'Receipt provider');
+    equal(receipt.provider, provider, 'Receipt provider');
     equal(entry.provider, receipt.provider, 'Manifest provider');
     equal(receipt.fps, 30, 'Video frame rate');
     equal(receipt.width, 1280, 'Video width');
     equal(receipt.height, 720, 'Video height');
     equal(receipt.codec, 'h264', 'Video codec');
-    const origin = path.join(directory, 'audio-origin');
-    const originalPlan = checkPlan(await json(path.join(origin, 'original-plan.json')), true);
-    originalPlanHash = await hashValue(originalPlan);
-    equal(originalPlan.provider, 'edge-tts', 'Recorded original provider');
-    equal(originalPlan.researchHash, research, 'Original narration research');
-    assert.deepEqual(originalPlan.segments, plan.segments, 'Import preserves the complete approved narration');
-    // Provided-audio plans use a local recording label, not the original online voice ID.
-    equal(originalPlan.rate, plan.rate, 'Import preserves rate');
-    const recordings = await json(path.join(origin, 'recordings.json'));
-    equal(recordings.provider, originalPlan.provider, 'Original recording provider');
-    equal(recordings.voice, originalPlan.voice, 'Original recording voice');
-    equal(recordings.rate, originalPlan.rate, 'Original recording rate');
-    assert.deepEqual(recordings.recordings, audio.segments.map(segment => ({
-      id: segment.id, file: `../audio/${segment.filename}`, sha256: segment.sha256,
-    })), 'Original recording references bind the same already-verified WAV bytes');
-    const originalAudio = await optionalJson(path.join(origin, 'manifest.json'));
-    const failure = await optionalJson(path.join(origin, 'failure.json'));
-    assert(Boolean(originalAudio) !== Boolean(failure), 'Preserve either the original success manifest or failure record');
-    if (originalAudio) {
-      const checked = checkAudioTiming(originalPlan, originalAudio);
-      assert.deepEqual(checked.segments, audio.segments, 'Original and imported audio bytes and timing');
-    } else {
-      equal(failure.status, 'failed', 'Original failed synthesis remains a failure');
-      equal(failure.provider, originalPlan.provider, 'Failed synthesis provider');
-      equal(failure.planHash, originalPlanHash, 'Failed synthesis plan identity');
-      assert(frames / 30 > originalPlan.duration.maxSeconds, 'Original duration failure is not a successful render manifest');
+    if (provider === 'provided-audio') {
+      const origin = path.join(directory, 'audio-origin');
+      const originalPlan = checkPlan(await json(path.join(origin, 'original-plan.json')), true);
+      originalPlanHash = await hashValue(originalPlan);
+      equal(originalPlan.provider, 'edge-tts', 'Recorded original provider');
+      equal(originalPlan.researchHash, research, 'Original narration research');
+      assert.deepEqual(originalPlan.segments, plan.segments, 'Import preserves the complete approved narration');
+      // Provided-audio plans use a local recording label, not the original online voice ID.
+      equal(originalPlan.rate, plan.rate, 'Import preserves rate');
+      const recordings = await json(path.join(origin, 'recordings.json'));
+      equal(recordings.provider, originalPlan.provider, 'Original recording provider');
+      equal(recordings.voice, originalPlan.voice, 'Original recording voice');
+      equal(recordings.rate, originalPlan.rate, 'Original recording rate');
+      assert.deepEqual(recordings.recordings, audio.segments.map(segment => ({
+        id: segment.id, file: `../audio/${segment.filename}`, sha256: segment.sha256,
+      })), 'Original recording references bind the same already-verified WAV bytes');
+      const originalAudio = await optionalJson(path.join(origin, 'manifest.json'));
+      const failure = await optionalJson(path.join(origin, 'failure.json'));
+      assert(Boolean(originalAudio) !== Boolean(failure), 'Preserve either the original success manifest or failure record');
+      if (originalAudio) {
+        const checked = checkAudioTiming(originalPlan, originalAudio);
+        assert.deepEqual(checked.segments, audio.segments, 'Original and imported audio bytes and timing');
+      } else {
+        equal(failure.status, 'failed', 'Original failed synthesis remains a failure');
+        equal(failure.provider, originalPlan.provider, 'Failed synthesis provider');
+        equal(failure.planHash, originalPlanHash, 'Failed synthesis plan identity');
+        assert(frames / 30 > originalPlan.duration.maxSeconds, 'Original duration failure is not a successful render manifest');
+      }
     }
   }
   return { topic, format, outputHash: output, sourceHash: source, researchHash: research, receipt, plan, originalPlanHash };
@@ -187,7 +194,7 @@ async function verifyEvidence(base, evaluation, verified) {
   const production = await json(path.join(evaluation, 'production-status.json'));
   const review = await json(path.join(evaluation, 'final-visual-review.json'));
   assert.equal(review.residual_defects.length, 0, 'Final bounded review defects');
-  for (const topic of Object.keys(topics)) {
+  for (const topic of multiFormatTopics) {
     const formats = Object.fromEntries(verified.filter(item => item.topic === topic).map(item => [item.format, item]));
     const directory = path.join(evaluation, topic);
     const browser = await json(path.join(directory, 'browser-observations.json'));
@@ -233,7 +240,7 @@ async function verifyEvidence(base, evaluation, verified) {
   if (recheck) {
     assert.deepEqual(recheck.failures, []);
     equal(recheck.cases.length, 24, 'Fresh browser coverage');
-    const expected = Object.keys(topics).flatMap(topic => [1280, 390].flatMap(width =>
+    const expected = multiFormatTopics.flatMap(topic => [1280, 390].flatMap(width =>
       ['light', 'dark'].flatMap(theme => ['en', 'zh'].map(language => `${topic}-${width}-${theme}-${language}`))));
     assert.deepEqual(recheck.cases.map(item => item.id).sort(), expected.sort(), 'Fresh browser case identities');
     for (const record of recheck.cases) {
@@ -245,18 +252,49 @@ async function verifyEvidence(base, evaluation, verified) {
   }
 }
 
+async function verifyGreenlandEvidence(evaluation, verified) {
+  const directory = path.resolve(evaluation, '..', 'greenland-20260917');
+  const video = verified.find(item => item.topic === 'greenland' && item.format === 'video');
+  const publication = await json(path.join(directory, 'publication.json'));
+  equal(publication.planHash, video.receipt.planHash, 'Greenland approved plan');
+  equal(publication.sourceHash, video.sourceHash, 'Greenland published source');
+  equal(publication.artifactHash, video.outputHash, 'Greenland published output');
+  equal(publication.completeVideoListeningAndViewing, 'not-confirmed', 'Preserve full-video acceptance boundary');
+  const technical = await json(path.join(directory, 'encoded', 'technical-review.json'));
+  equal(technical.artifactHash, video.outputHash, 'Greenland encoded evidence');
+  equal(technical.completeDecode, 'passed', 'Greenland full decode');
+  equal(technical.subtitlesMatchApprovedNarration, true, 'Greenland subtitle evidence');
+  equal(technical.totalFrames, topics.greenland.frames, 'Greenland encoded frame count');
+  equal(technical.durationSeconds, video.receipt.durationSeconds, 'Greenland encoded duration');
+  assert.deepEqual(technical.frameSamples.map(item => item.segment), video.plan.segments.map(item => item.id));
+  const visual = await json(path.join(directory, 'encoded', 'encoded-visual-review.json'));
+  equal(visual.artifactHashFromTechnicalReview, video.outputHash, 'Greenland visual review identity');
+  equal(visual.reviewedImageCount, video.plan.segments.length, 'Greenland reviewed scenes');
+  assert.deepEqual(visual.issues, []);
+  assert.deepEqual(visual.frames.map(item => item.file), technical.frameSamples.map(item => item.file));
+  for (const item of visual.frames) {
+    equal(item.status, 'inspected', 'Greenland encoded frame reviewed');
+    await access(path.join(directory, 'encoded', item.file));
+  }
+  const source = await json(path.join(directory, 'author', 'source-plan-consistency.json'));
+  equal(source.sourceHash, video.sourceHash, 'Greenland author review source');
+  equal(source.planAndPreviewNarrationIdentical, true, 'Greenland approved preview narration');
+}
+
 export async function verifyExamples({
   base = path.join(root, 'examples'),
   evaluation = path.join(root, 'evals', 'examples', 'refresh-20260916'),
   manifest,
 } = {}) {
   manifest ??= await json(path.join(base, 'delivery-manifest.json'));
-  assert.equal(manifest.requestedOutputs.length, 12, 'Exactly twelve requested outputs');
+  const expectedOutputs = Object.keys(topics).flatMap(topic => formatsFor(topic).map(format => `${topic}/${format}`));
+  assert.equal(manifest.requestedOutputs.length, expectedOutputs.length, 'Exactly thirteen requested outputs');
   assert.deepEqual(manifest.requestedOutputs.map(item => `${item.topic}/${item.format}`).sort(),
-    Object.keys(topics).flatMap(topic => ['html', 'image', 'pptx', 'video'].map(format => `${topic}/${format}`)).sort());
+    expectedOutputs.sort());
   const verified = [];
   for (const entry of manifest.requestedOutputs) verified.push(await verifyOutput(base, entry));
   await verifyEvidence(base, evaluation, verified);
+  await verifyGreenlandEvidence(evaluation, verified);
   if (manifest.optionalNativeMotion) {
     const motion = manifest.optionalNativeMotion;
     equal(motion.file, 'git-merge/git-merge-animated.pptx', 'Optional motion path');

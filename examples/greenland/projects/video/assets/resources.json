@@ -1,0 +1,17 @@
+{
+  "data": {
+    "name": "Natural Earth 1:110 million Admin 0 Countries",
+    "version": "5.1.2",
+    "source": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_110m_admin_0_countries.geojson",
+    "rawSha256": "6866c877d39cba9c357620878839b336d569f8c662d3cfab4cb1dbe2d39c977f",
+    "license": "Public domain",
+    "terms": "https://www.naturalearthdata.com/about/terms-of-use/",
+    "modifications": "Only geometry, ADMIN and CONTINENT retained; ring orientation normalized at runtime.",
+    "limitations": "Generalized boundary data, not precision area measurement or political-boundary adjudication."
+  },
+  "libraries": [
+    "d3-geo 3.1.1 and installed d3-array/internmap dependencies; licenses included"
+  ],
+  "fonts": "Installed Segoe UI/Aptos/Calibri fallbacks; no font redistribution or downloads.",
+  "networkAtPlayback": false
+}

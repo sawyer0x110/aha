@@ -12,10 +12,12 @@ const evaluation = path.join(root, 'evals', 'examples');
 const { verifyExamples, verifyOutput } = await import(pathToFileURL(path.join(evaluation, 'verify.mjs')).href);
 const manifest = JSON.parse(await fs.readFile(path.join(base, 'delivery-manifest.json'), 'utf8'));
 
-test('all twelve current outputs bind canonical research, source, receipts, approved audio and final QA', async () => {
+test('all thirteen requested outputs bind canonical research, source, receipts, approved audio and final QA', async () => {
   const result = await verifyExamples();
   assert.equal(result.status, 'passed');
-  assert.equal(result.outputs.length, 12);
+  assert.equal(result.outputs.length, 13);
+  assert.deepEqual(result.outputs.filter((entry: { topic: string }) => entry.topic === 'greenland')
+    .map((entry: { format: string }) => entry.format), ['video']);
   for (const topic of ['anc', 'git-merge', 'project-overview']) {
     assert.deepEqual(result.outputs.filter((entry: { topic: string }) => entry.topic === topic)
       .map((entry: { format: string }) => entry.format).sort(), ['html', 'image', 'pptx', 'video']);
@@ -33,10 +35,30 @@ test('each current output rejects stale publication source, research and output 
 });
 
 test('publication manifest requires exactly one of every topic and format', async () => {
-  await assert.rejects(verifyExamples({ manifest: { ...manifest, requestedOutputs: manifest.requestedOutputs.slice(1) } }), /twelve/);
+  await assert.rejects(verifyExamples({ manifest: { ...manifest, requestedOutputs: manifest.requestedOutputs.slice(1) } }), /thirteen/);
   const entries = [...manifest.requestedOutputs];
   entries[1] = entries[0];
   await assert.rejects(verifyExamples({ manifest: { ...manifest, requestedOutputs: entries } }));
+});
+
+test('gallery links resolve and list only the requested Greenland video', async () => {
+  const gallery = await fs.readFile(path.join(base, 'index.html'), 'utf8');
+  const links = [...gallery.matchAll(/href="([^"]+)"/g)].map(match => match[1]!);
+  for (const link of links) await fs.access(path.join(base, link));
+  for (const entry of manifest.requestedOutputs) assert(links.includes(entry.file));
+  assert(links.includes('greenland/README.md'));
+  assert(!links.includes('greenland/index.html'));
+  assert(!links.includes('greenland/greenland.pptx'));
+  assert(!links.includes('greenland/greenland.png'));
+});
+
+test('Greenland keeps its direct speech provider rather than fabricating an imported-audio origin', async () => {
+  const entry = manifest.requestedOutputs.find((item: { topic: string }) => item.topic === 'greenland');
+  const result = await verifyOutput(base, entry);
+  assert.equal(result.plan.provider, 'edge-tts');
+  assert.equal(result.originalPlanHash, undefined);
+  await assert.rejects(verifyOutput(base, { ...entry, provider: 'provided-audio' }), /provider/i);
+  await assert.rejects(verifyOutput(base, { ...entry, format: 'html' }), /Unrequested format/);
 });
 
 test('actual stale receipt, source, dossier, audio, plan and subtitle bytes fail validation', async t => {
@@ -102,7 +124,7 @@ test('browser and generic media playback tools require approval independently of
   }
 });
 
-test('Git autocrlf preserves all twelve sealed outputs, source trees, audio and old/new QA', async () => {
+test('Git autocrlf preserves all thirteen sealed outputs, source trees, audio and old/new QA', async () => {
   const workspace = await fs.mkdtemp(path.join(evaluation, '.identity-git-'));
   const git = (...args: string[]) => execFileSync('git', args, {
     cwd: workspace, timeout: 60000, maxBuffer: 4 * 1024 * 1024,
@@ -121,7 +143,8 @@ test('Git autocrlf preserves all twelve sealed outputs, source trees, audio and 
     git('init', '--quiet');
     git('config', 'core.autocrlf', 'true');
     files.push(path.join('examples', '.gitattributes'), path.join('examples', 'delivery-manifest.json'));
-    for (const topic of ['anc', 'git-merge', 'project-overview']) await collect(path.join('examples', topic));
+    for (const topic of ['anc', 'git-merge', 'project-overview', 'greenland']) await collect(path.join('examples', topic));
+    await collect(path.join('evals', 'examples', 'greenland-20260917'));
     const qaFiles = [
       '.gitattributes', 'anc-git/runtime.json', 'anc-git/review.json',
       'anc-git/screenshots/anc-390-light-zh-opening.png', 'project-overview/runtime.json',
@@ -146,9 +169,9 @@ test('Git autocrlf preserves all twelve sealed outputs, source trees, audio and 
     for (const file of files) {
       assert.deepEqual(await fs.readFile(path.join(workspace, file)), await fs.readFile(path.join(root, file)), `${file}: checkout must retain sealed bytes`);
     }
-    for (const topic of ['anc', 'git-merge', 'project-overview']) for (const format of ['html', 'image', 'pptx', 'video']) {
+    for (const entry of manifest.requestedOutputs) {
+      const { topic, format } = entry;
       const project = path.join('examples', topic, 'projects', format);
-      const entry = manifest.requestedOutputs.find((item: { topic: string; format: string }) => item.topic === topic && item.format === format);
       assert.equal(await sourceHash(path.join(workspace, project)), entry.sourceHash);
     }
   } finally { await fs.rm(workspace, { recursive: true, force: true }); }

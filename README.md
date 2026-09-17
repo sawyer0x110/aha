@@ -13,7 +13,7 @@ runtime **0.3.0**，研究与作品协议 **1.0.0**。研究独立于媒体格�
 
 产品需求见 [PRD](docs/PRD.md)，实现与许可边界见 [架构说明](docs/ARCHITECTURE.md)，研究工作法见 [研究协议](docs/RESEARCH.md)，技能效果验证见 [评估协议](docs/EVALUATION.md)。
 
-实际案例见 [examples](examples/README.md)：降噪耳机、Git merge 和 [Aha 项目导览](examples/project-overview/README.md)均已重新调研，分别提供双语交互 HTML、PNG、原生 PPTX 和英文配音视频，共十二份作品。每例保留匹配的研究、可编辑源、收据与音频来源；完整视频听看与附加 PPT 动画放映的未确认边界单独记录。
+实际案例见 [examples](examples/README.md)：降噪耳机、Git merge 和 [Aha 项目导览](examples/project-overview/README.md)分别提供双语交互 HTML、PNG、原生 PPTX 和英文配音视频；[格陵兰与地图投影](examples/greenland/README.md)专注 1 分 56 秒的动态视频，共四个主题、十三份作品。每例只生成请求的格式，保留匹配的研究、可编辑源、收据与音频来源；完整视频听看与附加 PPT 动画放映的未确认边界单独记录。
 
 ## 安装到你的 Agent
 
