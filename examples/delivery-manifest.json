@@ -5,6 +5,21 @@
   "originalExamplesUnchanged": false,
   "requestedOutputs": [
     {
+      "topic": "greenland",
+      "format": "video",
+      "file": "greenland/greenland.mp4",
+      "bytes": 3279333,
+      "sha256": "3cd9709076af808345f395ba7038088f2b6e394521b2218675e0cc93d0bad8a3",
+      "sourceProject": "greenland/projects/video",
+      "sourceHash": "3c61c71807f2a7fa610300e7b311371816d8f730242308b3d23a6471e8dde2ea",
+      "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6",
+      "report": "greenland/research/report.md",
+      "receipt": "greenland/greenland.mp4.json",
+      "durationSeconds": 115.73333333333333,
+      "frames": 3472,
+      "provider": "edge-tts"
+    },
+    {
       "topic": "anc",
       "format": "html",
       "file": "anc/index.html",
@@ -179,7 +194,7 @@
   },
   "finalVisualReview": "../evals/examples/refresh-20260916/final-visual-review.json",
   "qa": {
-    "structuralSourceAndOutputIdentity": "Passed for all twelve main outputs; not semantic proof.",
+    "structuralSourceAndOutputIdentity": "Thirteen outputs indexed: twelve from the three-format-spanning examples plus the Greenland video; not semantic proof.",
     "html": "Both languages and controls exercised at1280px/390px in an offline browser; pointer/keyboard observations recorded.",
     "slides": "All initial29 native slides rendered in PowerPoint and independently visually reviewed. Corrected Aha and Git decks were re-exported by PowerPoint; native in-memory text edit probes passed without saving. Independent review confirmed the corrected Aha slide10 and Git slide7; no remaining defects found in that bounded recheck.",
     "images": "Independent final review confirmed Aha divider clearance, curve labels and essential text at390px/540px. ANC and Git landscape images are intended for desktop reading at least1200px wide, not phone-width fit.",
@@ -189,6 +204,7 @@
     "humanComprehensionStudy": "Not performed."
   },
   "previousPublishedVersion": "c98b192797d8f682ba3db3ca610c7c6802e023ac",
+  "greenlandEvaluation": "../evals/examples/greenland-20260917/publication.json",
   "previousExamplesPreserved": "Git history and local artifacts/examples-refresh-20260916/previous-published",
   "promotedAt": "2026-09-16T06:40:30.076Z"
 }
