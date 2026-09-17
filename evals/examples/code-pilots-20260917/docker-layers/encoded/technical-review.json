@@ -1,0 +1,68 @@
+{
+  "sourceHash": "31ece11dc0442006fac2e176b8f173a3385db16b45670ded8e8bfb3408ead31e",
+  "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
+  "planHash": "e4c928b388b1f3274478a2d03d36890a8fc5850bd9ebe0303522ba2f363e4319",
+  "artifactHash": "accbbfbae7640500d7702a3bf9248c7af31812fdcf0a9f231b7b3f28a1dfdba4",
+  "seconds": 21.266666666666666,
+  "frames": 638,
+  "fullDecode": true,
+  "exactApprovedSubtitleTextAndTiming": true,
+  "samples": [
+    {
+      "filename": "1-layer-added-start.png",
+      "frame": 0,
+      "seconds": 0,
+      "sha256": "1166cb52a30b94a7940c946ac3b753c9ac3c797fc351a90b947bc2b59aa34008"
+    },
+    {
+      "filename": "1-layer-added-middle.png",
+      "frame": 125,
+      "seconds": 4.166666666666667,
+      "sha256": "e28233109252326f40948a94e6fc5d45130b52ed0a9c1ec8677bf4971fbfe8df"
+    },
+    {
+      "filename": "1-layer-added-end.png",
+      "frame": 249,
+      "seconds": 8.3,
+      "sha256": "449fce89752074f4c70c2afe1ac1c9f8af8e18d1237e49c6b2c84f5f1aedcf32"
+    },
+    {
+      "filename": "2-later-delete-start.png",
+      "frame": 250,
+      "seconds": 8.333333333333334,
+      "sha256": "6c9be2976ee73a3ba8535178311af738056f724971189bdb34bd57b97af623f6"
+    },
+    {
+      "filename": "2-later-delete-middle.png",
+      "frame": 340,
+      "seconds": 11.333333333333334,
+      "sha256": "97d6ba012f32566b2109d21160b7722254ecf5c6dd0ac84835e988b7a5257800"
+    },
+    {
+      "filename": "2-later-delete-end.png",
+      "frame": 429,
+      "seconds": 14.3,
+      "sha256": "69f2736a7fca4e8c3bfc1a015351a0cd8139569d78d5da5a91c06011064a988e"
+    },
+    {
+      "filename": "3-same-run-start.png",
+      "frame": 430,
+      "seconds": 14.333333333333334,
+      "sha256": "689645ad35442a08c41bf1c84f71f1bbf08bcef221b470a29e075c6e480228aa"
+    },
+    {
+      "filename": "3-same-run-middle.png",
+      "frame": 534,
+      "seconds": 17.8,
+      "sha256": "89c4e2eb047997d27bac3741a3acba819411f4116fd856fbf37a0b578aeef89e"
+    },
+    {
+      "filename": "3-same-run-end.png",
+      "frame": 637,
+      "seconds": 21.233333333333334,
+      "sha256": "a03c2fdfd6cf0080660844a8bbd7208fe02951b6b089a6a1f4df78c7592d228c"
+    }
+  ],
+  "visualReview": "Not performed by this checker.",
+  "continuousListeningAndViewing": "Pending user playback; not inferred from media checks."
+}

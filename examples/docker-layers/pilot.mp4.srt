@@ -1,0 +1,11 @@
+1
+00:00:00,000 --> 00:00:08,333
+Suppose one RUN adds a hundred-megabyte file: its payload enters an immutable image layer, which later steps cannot rewrite.
+
+2
+00:00:08,333 --> 00:00:14,333
+A later RUN hides the file with a whiteout, but the earlier layer still holds its bytes.
+
+3
+00:00:14,333 --> 00:00:21,267
+Create and delete that new file within the same RUN, and its payload never enters the resulting image diff.

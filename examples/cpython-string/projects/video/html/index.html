@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why one grinning face widens a CPython string</title>
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script><style>
+:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 1280px; height: 720px; overflow: hidden; }
+body { background: var(--cp-bg); color: var(--cp-text); font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif; }
+svg { display: block; width: 1280px; height: 720px; }
+text { fill: var(--cp-text); font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif; font-size: 32px; }
+.title { font-size: 52px; font-weight: 700; letter-spacing: -1px; }
+.number { font-size: 44px; font-weight: 700; }
+.source { font-size: 20px; fill: var(--cp-text-soft); }
+.eyebrow { font-size: 22px; fill: var(--cp-text-soft); letter-spacing: 2px; }
+.accent { fill: var(--cp-accent); }
+.mono { font-family: Consolas, "Courier New", Courier, monospace; }
+.cell { fill: var(--cp-bg-elevated); stroke: var(--cp-text-soft); stroke-width: 2px; }
+.division { stroke: var(--cp-text-soft); stroke-width: 1px; }
+.face-outline { fill: var(--cp-accent); stroke: var(--cp-accent); stroke-width: 2px; }
+.face-detail { fill: var(--cp-accent-fg); }
+.face-smile { fill: var(--cp-accent-fg); stroke: var(--cp-accent-fg); stroke-width: 2px; }
+.bar { fill: var(--cp-accent); }
+.rule { stroke: var(--cp-border-strong); stroke-width: 2px; }
+[hidden] { display: none; }
+</style></head><body>
+<svg viewBox="0 0 1280 720" role="img" aria-labelledby="svg-title svg-description">
+  <title id="svg-title">Why one grinning face widens a CPython string</title>
+  <desc id="svg-description">A schematic of one-byte ASCII cells becoming four-byte cells in a new CPython string after adding U+1F600; a separate UTF-8 payload grows by only four bytes.</desc>
+  <defs>
+    <g id="drawn-face">
+      <circle class="face-outline" cx="0" cy="0" r="24"/>
+      <circle class="face-detail" cx="-8" cy="-7" r="3"/>
+      <circle class="face-detail" cx="8" cy="-7" r="3"/>
+      <path class="face-smile" d="M -13 4 Q 0 24 13 4 Z"/>
+    </g>
+  </defs>
+  <text x="48" y="42" class="eyebrow">CPYTHON 3.11.15 / ONE CODE POINT</text>
+  <g id="mechanism">
+    <text id="mechanism-title" x="48" y="108" class="title">One face. Nearly 4× the str object size?</text>
+    <text id="length-label" x="48" y="174">100,000 code points</text>
+    <text id="size-label" x="48" y="229" class="number">100,049 B</text>
+    <text id="size-kind" x="290" y="229">str object</text>
+    <text id="face-label" x="760" y="174" class="accent">Add U+1F600</text>
+    <text id="range-label" x="760" y="218">GRINNING FACE</text>
+    <g id="ascii-cells" data-scene-label="ascii-baseline whole-string-widens"></g>
+    <g id="incoming-face"><use href="#drawn-face"/></g>
+    <text id="width-label" x="48" y="425">1 B per code point</text>
+    <text id="mechanism-note" x="48" y="479">One width for the whole string.</text>
+    <text x="48" y="508" class="source">Schematic: six shown stand for 100,000 ASCII code points; not an allocation animation.</text>
+  </g>
+  <g id="comparison" data-scene-label="utf8-contrast" hidden>
+    <text x="48" y="108" class="title">Same text. Different representation.</text>
+    <text x="48" y="173">str object size</text>
+    <text x="48" y="224" class="number">100,049 → 400,080 B</text>
+    <rect class="bar" id="object-bar" x="48" y="247" width="224" height="24"/>
+    <text x="1000" y="269" class="number accent">≈ 4×</text>
+    <line class="rule" x1="48" y1="300" x2="1232" y2="300"/>
+    <text x="48" y="348">UTF-8 payload length</text>
+    <text x="48" y="399" class="number">100,000 → 100,004 B</text>
+    <rect class="bar" id="utf8-bar" x="48" y="422" width="224" height="24"/>
+    <text x="328" y="447" class="accent">+ 4 B only</text>
+    <text x="48" y="492">Object size is not process memory or file size.</text>
+    <text x="48" y="534" class="source">Measured on CPython 3.11.15 · sys.getsizeof(str) vs UTF-8 payload length · PEP 393</text>
+  </g>
+  <text id="source-cue" x="48" y="536" class="source">PEP 393 · Measured on CPython 3.11.15</text>
+  <!-- y=550–720 is intentionally reserved for the renderer's caption overlay. -->
+</svg>
+<script>
+(() => {
+  const ns = "http://www.w3.org/2000/svg";
+  const byId = id => document.getElementById(id);
+  const make = (name, attrs, text) => {
+    const node = document.createElementNS(ns, name);
+    for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, String(value));
+    if (text !== undefined) node.textContent = text;
+    return node;
+  };
+  const cells = Array.from({length: 7}, (_, i) => {
+    const group = make("g", {"data-code-point": i === 6 ? "U+1F600" : "U+0061"});
+    const box = make("rect", {y: 286, height: 80, rx: 4, class: "cell"});
+    const dividers = Array.from({length: 3}, () => make("line", {y1: 350, y2: 366, class: "division"}));
+    const label = make("text", {y: 337, "text-anchor": "middle", class: "mono"}, i < 6 ? "a" : "");
+    group.append(box, ...dividers, label);
+    byId("ascii-cells").append(group);
+    return {group, box, dividers, label};
+  });
+  const clamp = value => Math.min(1, Math.max(0, value));
+  const ease = t => t * t * (3 - 2 * t);
+  const labels = ["ascii-baseline", "whole-string-widens", "utf8-contrast"];
+  window.ahaVideo = {
+    renderFrame({frame, fps, segmentIndex, segmentFrame, segmentFrames, text}) {
+      const index = Math.min(2, Math.max(0, Math.trunc(segmentIndex)));
+      const progress = segmentFrames > 1 ? clamp(segmentFrame / (segmentFrames - 1)) : 1;
+      const widening = index === 0 ? 0 : index === 1 ? ease(clamp((progress - 0.12) / 0.58)) : 1;
+      const width = 40 + 120 * widening;
+      const complete = widening === 1;
+      const themeOverride = new URLSearchParams(window.location.search).get("scoutTheme");
+      const theme = themeOverride === "light" || themeOverride === "dark"
+        ? themeOverride : index === 1 ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", theme);
+      byId("mechanism").toggleAttribute("hidden", index === 2);
+      byId("comparison").toggleAttribute("hidden", index !== 2);
+      byId("mechanism-title").textContent = index === 0
+        ? "One face. Nearly 4× the str object size?" : "The new string widens every slot.";
+      byId("length-label").textContent = complete ? "100,001 code points" : "100,000 code points";
+      byId("size-label").textContent = complete ? "400,080 B" : "100,049 B";
+      byId("size-kind").textContent = complete ? "new str object" : "str object";
+      byId("face-label").textContent = index === 0 ? "Add U+1F600" : "U+1F600 > U+FFFF";
+      byId("range-label").textContent = index === 0 ? "GRINNING FACE" : "Beyond the two-byte range";
+      byId("width-label").textContent = complete ? "4 B per code point — even every a" :
+        widening > 0 ? "1 B → 4 B per code point" : "1 B per code point";
+      byId("mechanism-note").textContent = index === 0 ? "One width for the whole string." :
+        "Concat creates a new result; the original stays unchanged.";
+      const cellStates = cells.map((cell, i) => {
+        const x = 48 + i * (width + 8);
+        cell.box.setAttribute("x", String(x));
+        cell.box.setAttribute("width", String(width));
+        cell.label.setAttribute("x", String(x + width / 2));
+        cell.group.setAttribute("opacity", String(i === 6 ? widening : 1));
+        cell.dividers.forEach((divider, j) => {
+          divider.setAttribute("x1", String(x + width * (j + 1) / 4));
+          divider.setAttribute("x2", String(x + width * (j + 1) / 4));
+          divider.setAttribute("opacity", String(widening));
+        });
+        return {codePoint: i === 6 ? "U+1F600" : "U+0061", x, width, visible: i < 6 || widening > 0};
+      });
+      const faceX = 1136 + (48 + 6 * (width + 8) + width / 2 - 1136) * widening;
+      const faceY = index === 0 ? 276 + 50 * ease(progress) : 326;
+      byId("incoming-face").setAttribute("transform", `translate(${faceX} ${faceY})`);
+      const barProgress = index === 2 ? ease(progress) : 0;
+      const objectBarWidth = 224 * (1 + (400080 / 100049 - 1) * barProgress);
+      const utf8BarWidth = 224 * (1 + 0.00004 * barProgress);
+      byId("object-bar").setAttribute("width", String(objectBarWidth));
+      byId("utf8-bar").setAttribute("width", String(utf8BarWidth));
+      byId("source-cue").toggleAttribute("hidden", index === 2);
+      byId("source-cue").textContent = index === 1
+        ? "PEP 393 · CPython v3.11.15 / PyUnicode_Concat → PyUnicode_New"
+        : "PEP 393 · Measured on CPython 3.11.15";
+      window.ahaPilotState = {
+        scene: labels[index], frame, fps, segmentIndex: index, segmentFrame, segmentFrames,
+        progress, widening, theme, cells: cellStates, face: {x: faceX, y: faceY},
+        codePointWidthBytes: complete ? 4 : widening === 0 ? 1 : null,
+        transitionIsSchematic: true, originalStrIsUnchanged: true,
+        baseline: {length: 100000, objectBytes: 100049, utf8Bytes: 100000},
+        result: {length: 100001, objectBytes: 400080, utf8Bytes: 100004},
+        objectBarWidth, utf8BarWidth, captionSafeArea: {x: 0, y: 550, width: 1280, height: 170},
+        narrationText: String(text ?? "")
+      };
+    }
+  };
+  window.ahaVideo.renderFrame({frame: 0, fps: 30, segmentIndex: 0, segmentFrame: 0, segmentFrames: 210, text: ""});
+})();
+</script>
+</body></html>

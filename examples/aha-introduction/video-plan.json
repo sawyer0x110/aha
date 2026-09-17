@@ -1,0 +1,107 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "authored",
+  "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+  "sourceHash": "9f6cb9b7d6b99821b4b181822a5b5f2ca877c42e98aea6d7cd90371cc123554c",
+  "provider": "provided-audio",
+  "voice": "approved-aria-full",
+  "rate": "+0%",
+  "duration": {
+    "minSeconds": 90,
+    "maxSeconds": 120
+  },
+  "segments": [
+    {
+      "id": "research-skill",
+      "text": "Aha helps turn research into visual explanations. Two portable skills investigate a question and make its mechanism clear.",
+      "claimIds": [
+        "c-skills"
+      ]
+    },
+    {
+      "id": "explanation-skill",
+      "text": "Aha Research examines evidence and its limits. Aha Explain designs the chosen medium. Your AI host coordinates the work.",
+      "claimIds": [
+        "c-skills"
+      ]
+    },
+    {
+      "id": "three-examples",
+      "text": "Three examples show the range: everyday phenomena, code, and engineering.",
+      "claimIds": [
+        "c-synthesis"
+      ]
+    },
+    {
+      "id": "mercator-question",
+      "text": "Why does Greenland look enormous? On a spherical Mercator map, high latitudes are enlarged. The projection stretches both directions to preserve local angles.",
+      "claimIds": [
+        "c-map"
+      ]
+    },
+    {
+      "id": "spherical-rotation",
+      "text": "Move Greenland toward the equator by rotating its boundary on the sphere. Its spherical area stays constant; its footprint on this fixed map shrinks.",
+      "claimIds": [
+        "c-map"
+      ]
+    },
+    {
+      "id": "new-string",
+      "text": "Next, look inside code. In CPython, adding this grinning face creates a new string with four-byte slots, even for the ASCII prefix. The original remains unchanged.",
+      "claimIds": [
+        "c-python"
+      ]
+    },
+    {
+      "id": "utf8-contrast",
+      "text": "That face exceeds the two-byte range. But UTF-eight encodes the ASCII prefix one byte each: the added face contributes just four extra bytes.",
+      "claimIds": [
+        "c-utf8",
+        "c-python"
+      ]
+    },
+    {
+      "id": "layer-created",
+      "text": "Finally, an engineering puzzle. A Docker RUN adds a file: a hundred megabytes of illustrative payload enter an immutable layer.",
+      "claimIds": [
+        "c-layer"
+      ]
+    },
+    {
+      "id": "later-whiteout",
+      "text": "A later RUN hides the path with a whiteout, but the earlier layer retains its bytes.",
+      "claimIds": [
+        "c-delete"
+      ]
+    },
+    {
+      "id": "same-run",
+      "text": "Create and delete a new temporary file within one RUN instead: that payload never enters the resulting diff.",
+      "claimIds": [
+        "c-same"
+      ]
+    },
+    {
+      "id": "saved-html-image",
+      "text": "The existing Git example shows four formats: interactive HTML for exploration, and an infographic for an overview.",
+      "claimIds": [
+        "c-formats"
+      ]
+    },
+    {
+      "id": "saved-slides-video",
+      "text": "Editable slides help you present the reasoning; narrated video shows how the mechanism changes. Each format is composed for its purpose.",
+      "claimIds": [
+        "c-formats"
+      ]
+    },
+    {
+      "id": "evidence-visible",
+      "text": "Evidence supports the claim. Visuals reveal the mechanism. Aha creates explanations you can follow.",
+      "claimIds": [
+        "c-synthesis"
+      ]
+    }
+  ]
+}

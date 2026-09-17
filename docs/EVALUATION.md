@@ -2,7 +2,7 @@
 
 本评估把**固定材料、作者生成、隐藏评分、真实读者迁移**分开。它不是模型自动排名，也不会把 HTML 通过检查解释为“读者理解了”。
 
-目录按用途分开：`evals/skills/` 保存本文的技能对照用例与判据；[`evals/examples/refresh-20260916/`](../evals/examples/refresh-20260916/) 保存 ANC、Git 和 Aha 三例新版成品的运行与审阅记录；[`evals/examples/greenland-20260917/`](../evals/examples/greenland-20260917/) 保存格陵兰视频的源码检查、编码帧及审阅记录。旧版结果仅作历史证据；新的检查另存，不覆盖封存结果。成品验收不是技能对照结果，作品本身仍位于 `examples/`，当前身份检查入口为 `npm run examples:verify`，按各主题实际请求的格式检查十三份作品，兼容直接配音与经批准导入的录音来源。
+目录按用途分开：`evals/skills/` 保存本文的技能对照用例与判据；[`evals/examples/refresh-20260916/`](../evals/examples/refresh-20260916/) 保存 ANC、Git 和旧快照 Aha 四格式作品记录；[`evals/examples/greenland-20260917/`](../evals/examples/greenland-20260917/) 保存格陵兰视频记录；[`evals/examples/code-pilots-20260917/`](../evals/examples/code-pilots-20260917/) 保存 CPython/Docker 试片的批准、状态与重放、编码、有限视觉覆盖及首次失败记录；[`evals/examples/aha-introduction-20260917/`](../evals/examples/aha-introduction-20260917/) 保存新版项目介绍的修订试片确认、完整旁白批准、离线录音导入与连线修正证据。新版介绍的试片确认不代表完整版连续听看；两支独立代码试片的连续听看也未确认。旧版结果仅作历史证据，新的检查另存。成品验收不是技能对照结果，作品仍位于 `examples/`；当前身份检查入口 `npm run examples:verify` 检查十六份作品，兼容直接配音与批准导入的录音来源，并验证重新封存的错误编码记录仍被拒绝。
 
 **当前评分协议：`rubricVersion: 2`。** 内容断言与过程证据分开，读者理解独立测量。每轮冻结题目、材料、技能和判据；修订用于新运行，不覆盖已冻结的包，也不事后改规则提高分数。
 

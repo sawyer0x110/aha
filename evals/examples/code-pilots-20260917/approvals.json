@@ -1,0 +1,33 @@
+{
+  "localExecution": {
+    "userResponse": "批准两个试片的本地制作与检查",
+    "scope": "Reviewed self-contained HTML/SVG, independent offline unsigned-in Edge, FFmpeg, fixed Aha media environment; only new pilot and shared QA directories. No installation, Docker build or examples replacement."
+  },
+  "narrationAndNetwork": {
+    "userResponse": "批准两份完整旁白并联网配音",
+    "completeNarrationPresented": true,
+    "provider": "edge-tts",
+    "voice": "en-US-AriaNeural",
+    "rate": "+0%",
+    "durationBudgetSecondsEach": [20, 30],
+    "timingStrategy": "Measured audio durations, no speed changes to meet the budget.",
+    "disclosure": "Only all six approved narration segments and necessary voice/rate settings; no source, research, screenshot or repository upload.",
+    "plans": [
+      {
+        "topic": "cpython-string",
+        "file": "../cpython-string-pilot-20260917/video-plan.json",
+        "sourceHash": "4500ece23a3fd2e282375d5f660c67631d0dd2b4a93cec66ff259fe30f2148c1",
+        "planHash": "9a87e23140f1144e06a4258a34d35aa595dcdf84441181bf074b8c7255962289"
+      },
+      {
+        "topic": "docker-layers",
+        "file": "../docker-layers-pilot-20260917/video-plan.json",
+        "sourceHash": "31ece11dc0442006fac2e176b8f173a3385db16b45670ded8e8bfb3408ead31e",
+        "planHash": "8e00661dd82fa552f9ea33bcc656d2829678084d77a018a4159dd8ddfd48c7ab"
+      }
+    ]
+  },
+  "preflightDisclosure": "User informed that image-delivery failures blocked part of visual preflight; state/identity/bounds checks are not listening acceptance.",
+  "playbackAcceptance": "Not yet performed.",
+  "publication": "New local previews only; no examples replacement or commit."
+}

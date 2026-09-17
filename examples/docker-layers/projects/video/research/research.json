@@ -1,0 +1,423 @@
+{
+  "claims": [
+    {
+      "evidenceIds": [
+        "e-docker",
+        "e-run"
+      ],
+      "id": "c-layer",
+      "kind": "fact",
+      "limitations": [
+        "No Docker build was run. The classic Moby RUN entry point is not asserted to be the current BuildKit execution path."
+      ],
+      "subquestionIds": [
+        "q-layers"
+      ],
+      "text": "A successful RUN that leaves a newly added file records its payload in an immutable image layer in the ordinary unsquashed case."
+    },
+    {
+      "evidenceIds": [
+        "e-docker",
+        "e-oci",
+        "e-changes",
+        "e-unpack",
+        "e-overlay"
+      ],
+      "id": "c-delete",
+      "kind": "fact",
+      "limitations": [
+        "A displayed whiteout is a layer-format cutaway annotation; the marker itself is hidden in the merged view. Linux ordinary layer semantics, not physical disk reclamation."
+      ],
+      "subquestionIds": [
+        "q-delete"
+      ],
+      "text": "Deletion in a later image layer hides the lower file path using a whiteout while leaving the earlier immutable layer payload intact."
+    },
+    {
+      "evidenceIds": [
+        "e-run",
+        "e-fsdiff",
+        "e-changes",
+        "e-oci",
+        "e-practices"
+      ],
+      "id": "c-same",
+      "kind": "inference",
+      "limitations": [
+        "Only a new temporary file, not preexisting base content. Other output and directory metadata may persist. No squashing, special mounts or runtime measurement."
+      ],
+      "subquestionIds": [
+        "q-same"
+      ],
+      "text": "Creating and deleting a new temporary file within the same RUN leaves no payload for that file in the resulting image diff because the path is absent at both comparison endpoints."
+    },
+    {
+      "evidenceIds": [
+        "e-assumption"
+      ],
+      "id": "c-example",
+      "kind": "inference",
+      "limitations": [
+        "100 MB means 100,000,000 assumed payload bytes; no file or image was generated or measured."
+      ],
+      "subquestionIds": [
+        "q-bounds"
+      ],
+      "text": "The pilot assumes a 100 MB uncompressed new-file payload solely to illustrate the supported layer mechanism."
+    },
+    {
+      "evidenceIds": [
+        "e-docker",
+        "e-oci",
+        "e-changes"
+      ],
+      "id": "c-base",
+      "kind": "inference",
+      "limitations": [
+        "The same-RUN optimization applies only to avoiding persistence of newly created temporary payload; it is not an erasure or secure-deletion method."
+      ],
+      "subquestionIds": [
+        "q-bounds"
+      ],
+      "text": "Deleting a preexisting base-layer file in one RUN does not reclaim that immutable lower-layer payload."
+    },
+    {
+      "evidenceIds": [
+        "e-oci",
+        "e-docker",
+        "e-assumption"
+      ],
+      "id": "c-size",
+      "kind": "fact",
+      "limitations": [
+        "No numerical overhead, compression ratio, transfer size, cache size or storage saving is asserted."
+      ],
+      "subquestionIds": [
+        "q-bounds"
+      ],
+      "text": "Layer payload, compressed layer bytes, image totals, transfer bytes, build cache and shared storage are not interchangeable size measures."
+    },
+    {
+      "evidenceIds": [
+        "e-docker"
+      ],
+      "id": "c-writable",
+      "kind": "fact",
+      "limitations": [
+        "Container lifetime behavior is not the pilot's depicted layer sequence."
+      ],
+      "subquestionIds": [
+        "q-bounds"
+      ],
+      "text": "A running container's writable layer is separate from the image layers."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e-docker",
+      "kind": "web",
+      "locator": "Explanation; Image layers; Stacking the layers",
+      "retrievedAt": "2026-09-17T05:37:28.990Z",
+      "sourceVersion": "Live official page retrieved 2026-09-17",
+      "summary": "Read these explanatory sections plus the displayed manual examples (not executed). Supports immutable layers, changesets, reused storage and a distinct container-specific writable directory.",
+      "title": "Docker: Understanding the image layers",
+      "url": "https://docs.docker.com/get-started/docker-concepts/building-images/understanding-image-layers/"
+    },
+    {
+      "content": "# Image Layer Filesystem Changeset\n\nThis document describes how to serialize a filesystem and filesystem changes like removed files into a blob called a layer.\nOne or more layers are applied on top of each other to create a complete filesystem.\nThis document will use a concrete example to illustrate how to create and consume these filesystem layers.\n\nThis section defines the `application/vnd.oci.image.layer.v1.tar`, `application/vnd.oci.image.layer.v1.tar+gzip`, `application/vnd.oci.image.layer.v1.tar+zstd`, `application/vnd.oci.image.layer.nondistributable.v1.tar`, `application/vnd.oci.image.layer.nondistributable.v1.tar+gzip`, and `application/vnd.oci.image.layer.nondistributable.v1.tar+zstd` [media types](media-types.md).\n\n## `+gzip` Media Types\n\n- The media type `application/vnd.oci.image.layer.v1.tar+gzip` represents an `application/vnd.oci.image.layer.v1.tar` payload which has been compressed with [gzip][rfc1952_2].\n- The media type `application/vnd.oci.image.layer.nondistributable.v1.tar+gzip` represents an `application/vnd.oci.image.layer.nondistributable.v1.tar` payload ([deprecation notice](#non-distributable-layers)) which has been compressed with [gzip][rfc1952_2].\n\n## `+zstd` Media Types\n\n- The media type `application/vnd.oci.image.layer.v1.tar+zstd` represents an `application/vnd.oci.image.layer.v1.tar` payload which has been compressed with [zstd][rfc8478].\n- The media type `application/vnd.oci.image.layer.nondistributable.v1.tar+zstd` represents an `application/vnd.oci.image.layer.nondistributable.v1.tar` payload ([deprecation notice](#non-distributable-layers)) which has been compressed with [zstd][rfc8478].\n\n## Distributable Format\n\n- Layer Changesets for the [media type](media-types.md) `application/vnd.oci.image.layer.v1.tar` MUST be packaged in [tar archive][tar-archive].\n- Layer Changesets for the [media type](media-types.md) `application/vnd.oci.image.layer.v1.tar` MUST NOT include duplicate entries for file paths in the resulting [tar archive][tar-archive].\n\n## Change Types\n\nTypes of changes that can occur in a changeset are:\n\n- Additions\n- Modifications\n- Removals\n\nAdditions and Modifications are represented the same in the changeset tar archive.\n\nRemovals are represented using \"[whiteout](#whiteouts)\" file entries (See [Representing Changes](#representing-changes)).\n\n### File Types\n\nThroughout this document section, the use of word \"files\" or \"entries\" includes the following, where supported:\n\n- regular files\n- directories\n- sockets\n- symbolic links\n- block devices\n- character devices\n- FIFOs\n\n### File Attributes\n\nWhere supported, MUST include file attributes for Additions and Modifications include:\n\n- Modification Time (`mtime`)\n- User ID (`uid`)\n  - User Name (`uname`) should be ignored on platforms that support User ID (`uid`)\n- Group ID (`gid`)\n  - Group Name (`gname`) should be ignored on platforms that support Group ID (`gid`)\n- Mode (`mode`)\n- Extended Attributes (`xattrs`)\n- Symlink reference (`linkname` + symbolic link type)\n- [Hardlink](#hardlinks) reference (`linkname`)\n\n[Sparse files](https://en.wikipedia.org/wiki/Sparse_file) SHOULD NOT be used because they lack consistent support across tar implementations.\n\n#### Hardlinks\n\n- Hardlinks are a [POSIX concept](https://pubs.opengroup.org/onlinepubs/9699919799/functions/link.html) for having one or more directory entries for the same file on the same device.\n- Not all filesystems support hardlinks (e.g. [FAT](https://en.wikipedia.org/wiki/File_Allocation_Table)).\n- Hardlinks are possible with all [file types](#file-types) except `directories`.\n- Non-directory files are considered \"hardlinked\" when their link count is greater than 1.\n- Hardlinked files are on a same device (i.e. comparing Major:Minor pair) and have the same inode.\n- The corresponding files that share the link with the > 1 linkcount may be outside the directory that the changeset is being produced from, in which case the `linkname` is not recorded in the changeset.\n- Union filesystem implementations may have limited or no support for hardlinks, particularly when a change is made to a hardlinked file or a hardlink is created to a file in a lower filesystem. (See the [overlay specification](https://docs.kernel.org/filesystems/overlayfs.html#index) for more details.)\n- Extracting a layer with hardlink references to files outside of the layer may fail.\n- Hardlinks are stored in a tar archive with type of a `1` char, per the [GNU Basic Tar Format][gnu-tar-standard] and [libarchive tar(5)][libarchive-tar].\n- While approaches to deriving new or changed hardlinks may vary, a possible approach is:\n\n```text\nSET LinkMap to map[< Major:Minor String >]map[< inode integer >]< path string >\nSET LinkNames to map[< src path string >]< dest path string >\nFOR each path in root path\n  IF path type is directory\n    CONTINUE\n  ENDIF\n  SET filestat to stat(path)\n  IF filestat num of links == 1\n    CONTINUE\n  ENDIF\n  IF LinkMap[filestat device][filestat inode] is not empty\n    SET LinkNames[path] to LinkMap[filestat device][filestat inode]\n  ELSE\n    SET LinkMap[filestat device][filestat inode] to path\n  ENDIF\nEND FOR\n```\n\nWith this approach, the link map and links names of a directory could be compared against that of another directory to derive additions and changes to hardlinks.\n\n#### Platform-specific attributes\n\nImplementations on Windows MUST support these additional attributes, encoded in [PAX vendor extensions](https://github.com/libarchive/libarchive/wiki/ManPageTar5#pax-interchange-format) as follows:\n\n- [Windows file attributes](https://msdn.microsoft.com/en-us/library/windows/desktop/gg258117(v=vs.85).aspx) (`MSWINDOWS.fileattr`)\n- [Security descriptor](https://msdn.microsoft.com/en-us/library/cc230366.aspx) (`MSWINDOWS.rawsd`): base64-encoded self-relative binary security descriptor\n- Mount points (`MSWINDOWS.mountpoint`): if present on a directory symbolic link, then the link should be created as a [directory junction](https://en.wikipedia.org/wiki/NTFS_junction_point)\n- Creation time (`LIBARCHIVE.creationtime`)\n\n## Creating\n\n### Initial Root Filesystem\n\nThe initial root filesystem is the base or parent layer.\n\nFor this example, an image root filesystem has an initial state as an empty directory.\nThe name of the directory is not relevant to the layer itself, only for the purpose of producing comparisons.\n\nHere is an initial empty directory structure for a changeset, with a unique directory name `rootfs-c9d-v1`.\n\n```text\nrootfs-c9d-v1/\n```\n\n### Populate Initial Filesystem\n\nFiles and directories are then created:\n\n```text\nrootfs-c9d-v1/\n  etc/\n    my-app-config\n  bin/\n    my-app-binary\n    my-app-tools\n```\n\nThe `rootfs-c9d-v1` directory is then created as a plain [tar archive][tar-archive] with relative path to `rootfs-c9d-v1`.\nEntries for the following files:\n\n```text\n./\n./etc/\n./etc/my-app-config\n./bin/\n./bin/my-app-binary\n./bin/my-app-tools\n```\n\n### Populate a Comparison Filesystem\n\nCreate a new directory and initialize it with a copy or snapshot of the prior root filesystem.\nExample commands that can preserve [file attributes](#file-attributes) to make this copy are:\n\n- [cp(1)](https://linux.die.net/man/1/cp): `cp -a rootfs-c9d-v1/ rootfs-c9d-v1.s1/`\n- [rsync(1)](https://linux.die.net/man/1/rsync): `rsync -aHAX rootfs-c9d-v1/ rootfs-c9d-v1.s1/`\n- [tar(1)](https://linux.die.net/man/1/tar): `mkdir rootfs-c9d-v1.s1 && tar --acls --xattrs -C rootfs-c9d-v1/ -c . | tar -C rootfs-c9d-v1.s1/ --acls --xattrs -x` (including `--selinux` where supported)\n\nAny [changes](#change-types) to the snapshot MUST NOT change or affect the directory it was copied from.\n\nFor example `rootfs-c9d-v1.s1` is an identical snapshot of `rootfs-c9d-v1`.\nIn this way `rootfs-c9d-v1.s1` is prepared for updates and alterations.\n\n**Implementor's Note**: _a copy-on-write or union filesystem can efficiently make directory snapshots_\n\nInitial layout of the snapshot:\n\n```text\nrootfs-c9d-v1.s1/\n  etc/\n    my-app-config\n  bin/\n    my-app-binary\n    my-app-tools\n```\n\nSee [Change Types](#change-types) for more details on changes.\n\nFor example, add a directory at `/etc/my-app.d` containing a default config file, removing the existing config file.\nAlso a change (in attribute or file content) to `./bin/my-app-tools` binary to handle the config layout change.\n\nFollowing these changes, the representation of the `rootfs-c9d-v1.s1` directory:\n\n```text\nrootfs-c9d-v1.s1/\n  etc/\n    my-app.d/\n      default.cfg\n  bin/\n    my-app-binary\n    my-app-tools\n```\n\n### Determining Changes\n\nWhen two directories are compared, the relative root is the top-level directory.\nThe directories are compared, looking for files that have been [added, modified, or removed](#change-types).\n\nFor this example, `rootfs-c9d-v1/` and `rootfs-c9d-v1.s1/` are recursively compared, each as relative root path.\n\nThe following changeset is found:\n\n```text\nAdded:      /etc/my-app.d/\nAdded:      /etc/my-app.d/default.cfg\nModified:   /bin/my-app-tools\nDeleted:    /etc/my-app-config\n```\n\nThis reflects the removal of `/etc/my-app-config` and creation of a file and directory at `/etc/my-app.d/default.cfg`.\n`/bin/my-app-tools` has also been replaced with an updated version.\n\n### Representing Changes\n\nA [tar archive][tar-archive] is then created which contains _only_ this changeset:\n\n- Added and modified files and directories in their entirety\n- Deleted files or directories marked with a [whiteout file](#whiteouts)\n\nThe resulting tar archive for `rootfs-c9d-v1.s1` has the following entries:\n\n```text\n./etc/my-app.d/\n./etc/my-app.d/default.cfg\n./bin/my-app-tools\n./etc/.wh.my-app-config\n```\n\nTo signify that the resource `./etc/my-app-config` MUST be removed when the changeset is applied, the basename of the entry is prefixed with `.wh.`.\n\n## Applying Changesets\n\n- Layer Changesets of [media type](media-types.md) `application/vnd.oci.image.layer.v1.tar` are _applied_, rather than simply extracted as tar archives.\n- Applying a layer changeset requires special consideration for the [whiteout](#whiteouts) files.\n- In the absence of any [whiteout](#whiteouts) files in a layer changeset, the archive is extracted like a regular tar archive.\n\n### Changeset over existing files\n\nThis section specifies applying an entry from a layer changeset if the target path already exists.\n\nIf the entry and the existing path are both directories, then the existing path's attributes MUST be replaced by those of the entry in the changeset.\nIn all other cases, the implementation MUST do the semantic equivalent of the following:\n\n- removing the file path (e.g. [`unlink(2)`](https://linux.die.net/man/2/unlink) on Linux systems)\n- recreating the file path, based on the contents and attributes of the changeset entry\n\n## Whiteouts\n\n- A whiteout file is an empty file with a special filename that signifies a path should be deleted.\n- A whiteout filename consists of the prefix `.wh.` plus the basename of the path to be deleted.\n- A `.wh.` file, without a basename to delete, is invalid and implementations SHOULD return an error when encountering such an entry.\n- As files prefixed with `.wh.` are special whiteout markers, it is not possible to create a filesystem which has a file or directory with a name beginning with `.wh.`.\n- Once a whiteout is applied, the whiteout itself MUST also be hidden.\n- Whiteout files MUST only apply to resources in lower/parent layers.\n- Files that are present in the same layer as a whiteout file can only be hidden by whiteout files in subsequent layers.\n\nThe following is a base layer with several resources:\n\n```text\nfile1\na/file2\nb/\nc/file3\n",
+      "contentHash": "cc000eb8738c19b9a10dd269209f2d30fe6d86211c38872bd10bcedc72bdabbc",
+      "id": "e-oci",
+      "kind": "code",
+      "locator": "opencontainers/image-spec layer.md lines 1–260; especially Determining Changes, Representing Changes and Whiteouts",
+      "retrievedAt": "2026-09-17T05:37:26.419Z",
+      "sourceVersion": "af26a05fba5ee648512f4ea3c9fda1fcc1b6d6dc",
+      "summary": "Read lines 1–260 including media types, snapshot preservation, endpoint comparison and lower-layer-only whiteouts. Normative spec snapshot, not runtime observation.",
+      "title": "OCI Image Layer Filesystem Changeset",
+      "url": "https://github.com/opencontainers/image-spec/blob/af26a05fba5ee648512f4ea3c9fda1fcc1b6d6dc/layer.md#whiteouts"
+    },
+    {
+      "content": "\n// RUN some command yo\n//\n// run a command and commit the image. Args are automatically prepended with\n// the current SHELL which defaults to 'sh -c' under linux or 'cmd /S /C' under\n// Windows, in the event there is only one argument The difference in processing:\n//\n// RUN echo hi          # sh -c echo hi       (Linux and LCOW)\n// RUN echo hi          # cmd /S /C echo hi   (Windows)\n// RUN [ \"echo\", \"hi\" ] # echo hi\nfunc dispatchRun(ctx context.Context, d dispatchRequest, c *instructions.RunCommand) error {\n\tif err := image.CheckOS(d.state.operatingSystem); err != nil {\n\t\treturn err\n\t}\n\n\tif len(c.FlagsUsed) > 0 {\n\t\t// classic builder RUN currently does not support any flags, so fail on the first one\n\t\treturn errors.Errorf(\"the --%s option requires BuildKit. Refer to https://docs.docker.com/go/buildkit/ to learn how to build images with BuildKit enabled\", c.FlagsUsed[0])\n\t}\n\n\tstateRunConfig := d.state.runConfig\n\tcmdFromArgs, argsEscaped := resolveCmdLine(c.ShellDependantCmdLine, stateRunConfig, d.state.operatingSystem, c.Name(), c.String())\n\tbuildArgs := d.state.buildArgs.FilterAllowed(stateRunConfig.Env)\n\n\tsaveCmd := cmdFromArgs\n\tif len(buildArgs) > 0 {\n\t\tsaveCmd = prependEnvOnCmd(d.state.buildArgs, buildArgs, cmdFromArgs)\n\t}\n\n\tcacheArgsEscaped := argsEscaped\n\t// ArgsEscaped is not persisted in the committed image on Windows.\n\t// Use the original from previous build steps for cache probing.\n\tif d.state.operatingSystem == \"windows\" {\n\t\tcacheArgsEscaped = stateRunConfig.ArgsEscaped\n\t}\n\n\trunConfigForCacheProbe := copyRunConfig(stateRunConfig,\n\t\twithCmd(saveCmd),\n\t\twithArgsEscaped(cacheArgsEscaped),\n\t\twithEntrypointOverride(saveCmd, nil))\n\tif hit, err := d.builder.probeCache(d.state, runConfigForCacheProbe); err != nil || hit {\n\t\treturn err\n\t}\n\n\trunConfig := copyRunConfig(stateRunConfig,\n\t\twithCmd(cmdFromArgs),\n\t\twithArgsEscaped(argsEscaped),\n\t\twithEnv(append(stateRunConfig.Env, buildArgs...)),\n\t\twithEntrypointOverride(saveCmd, strslice.StrSlice{\"\"}),\n\t\twithoutHealthcheck())\n\n\tcID, err := d.builder.create(ctx, runConfig)\n\tif err != nil {\n\t\treturn err\n\t}\n\n\tif err := d.builder.containerManager.Run(ctx, cID, d.builder.Stdout, d.builder.Stderr); err != nil {\n\t\tif err, ok := err.(*statusCodeError); ok {\n\t\t\t// TODO: change error type, because jsonmessage.JSONError assumes HTTP\n\t\t\tmsg := fmt.Sprintf(\n\t\t\t\t\"The command '%s' returned a non-zero code: %d\",\n\t\t\t\tstrings.Join(runConfig.Cmd, \" \"), err.StatusCode())\n\t\t\tif err.Error() != \"\" {\n\t\t\t\tmsg = fmt.Sprintf(\"%s: %s\", msg, err.Error())\n\t\t\t}\n\t\t\treturn &jsonmessage.JSONError{\n\t\t\t\tMessage: msg,\n\t\t\t\tCode:    err.StatusCode(),\n\t\t\t}\n\t\t}\n\t\treturn err\n\t}\n\n\t// Don't persist the argsEscaped value in the committed image. Use the original\n\t// from previous build steps (only CMD and ENTRYPOINT persist this).\n\tif d.state.operatingSystem == \"windows\" {\n\t\trunConfigForCacheProbe.ArgsEscaped = stateRunConfig.ArgsEscaped\n\t}\n\n\treturn d.builder.commitContainer(ctx, d.state, cID, runConfigForCacheProbe)\n}\n",
+      "contentHash": "b8d2f667e8a1881b3f299e73f6d7b691a20cd96c996559483a6439f3206e3477",
+      "id": "e-run",
+      "kind": "code",
+      "locator": "moby/moby builder/dockerfile/dispatchers.go lines 322–402; dispatchRun",
+      "retrievedAt": "2026-09-17T05:38:25.573Z",
+      "sourceVersion": "4c9b3b011ae4c30145a7b344c870bdda01b454e2",
+      "summary": "Read RUN cache probe, container execution, failure returns and commitContainer after successful execution. This is classic builder code, not a traced BuildKit path.",
+      "title": "Moby classic builder RUN completion boundary",
+      "url": "https://github.com/moby/moby/blob/4c9b3b011ae4c30145a7b344c870bdda01b454e2/builder/dockerfile/dispatchers.go#L322-L402"
+    },
+    {
+      "content": "// capability of the Diffing methods on the local file system,\n// which it may or may not support on its own. See the comment\n// on the exported NewNaiveDiffDriver function below.\ntype NaiveDiffDriver struct {\n\tProtoDriver\n\tIDMap idtools.IdentityMapping\n\t// If true, allow ApplyDiff to succeed in spite of failures to set\n\t// extended attributes on the unpacked files due to the destination\n\t// filesystem not supporting them or a lack of permissions. The\n\t// resulting unpacked layer may be subtly broken.\n\tBestEffortXattrs bool\n}\n\n// NewNaiveDiffDriver returns a fully functional driver that wraps the\n// given ProtoDriver and adds the capability of the following methods which\n// it may or may not support on its own:\n//\n//\tDiff(id, parent string) (archive.Archive, error)\n//\tChanges(id, parent string) ([]archive.Change, error)\n//\tApplyDiff(id, parent string, diff archive.Reader) (size int64, err error)\n//\tDiffSize(id, parent string) (size int64, err error)\nfunc NewNaiveDiffDriver(driver ProtoDriver, idMap idtools.IdentityMapping) Driver {\n\treturn &NaiveDiffDriver{\n\t\tProtoDriver: driver,\n\t\tIDMap:       idMap,\n\t}\n}\n\n// Diff produces an archive of the changes between the specified\n// layer and its parent layer which may be \"\".\nfunc (gdw *NaiveDiffDriver) Diff(id, parent string) (arch io.ReadCloser, err error) {\n\tstartTime := time.Now()\n\tdriver := gdw.ProtoDriver\n\n\tlayerRootFs, err := driver.Get(id, \"\")\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\tlayerFs := layerRootFs\n\n\tdefer func() {\n\t\tif err != nil {\n\t\t\tdriver.Put(id)\n\t\t}\n\t}()\n\n\tif parent == \"\" {\n\t\tarchive, err := archive.Tar(layerFs, archive.Uncompressed)\n\t\tif err != nil {\n\t\t\treturn nil, err\n\t\t}\n\t\treturn ioutils.NewReadCloserWrapper(archive, func() error {\n\t\t\terr := archive.Close()\n\t\t\tdriver.Put(id)\n\t\t\treturn err\n\t\t}), nil\n\t}\n\n\tparentFs, err := driver.Get(parent, \"\")\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\tdefer driver.Put(parent)\n\n\tchanges, err := archive.ChangesDirs(layerFs, parentFs)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\tarchive, err := archive.ExportChanges(layerFs, changes, gdw.IDMap)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\treturn ioutils.NewReadCloserWrapper(archive, func() error {\n\t\terr := archive.Close()\n\t\tdriver.Put(id)\n\n\t\t// NaiveDiffDriver compares file metadata with parent layers. Parent layers\n\t\t// are extracted from tar's with full second precision on modified time.\n\t\t// We need this hack here to make sure calls within same second receive\n\t\t// correct result.\n\t\ttime.Sleep(time.Until(startTime.Truncate(time.Second).Add(time.Second)))\n\t\treturn err\n\t}), nil\n}\n",
+      "contentHash": "5f5e4b1f73ab871c7ef46b726677655f9f7fb5a624cbbf796ee8368fa8ea1f9c",
+      "id": "e-fsdiff",
+      "kind": "code",
+      "locator": "moby/moby daemon/graphdriver/fsdiff.go lines 20–105; NaiveDiffDriver.Diff",
+      "retrievedAt": "2026-09-17T05:38:25.008Z",
+      "sourceVersion": "4c9b3b011ae4c30145a7b344c870bdda01b454e2",
+      "summary": "Read fallback driver context and Diff. Parent and new layer trees feed ChangesDirs then ExportChanges; empty parent uses full tar and errors return. No optimized driver or live configuration established.",
+      "title": "Moby NaiveDiffDriver parent comparison and archive export",
+      "url": "https://github.com/moby/moby/blob/4c9b3b011ae4c30145a7b344c870bdda01b454e2/daemon/graphdriver/fsdiff.go#L20-L105"
+    },
+    {
+      "content": "\t}\n\n\tpathElements := strings.Split(path, string(os.PathSeparator))\n\tfor _, elem := range pathElements {\n\t\tif elem != \"\" {\n\t\t\tchild := parent.children[elem]\n\t\t\tif child == nil {\n\t\t\t\treturn nil\n\t\t\t}\n\t\t\tparent = child\n\t\t}\n\t}\n\treturn parent\n}\n\nfunc (info *FileInfo) path() string {\n\tif info.parent == nil {\n\t\t// As this runs on the daemon side, file paths are OS specific.\n\t\treturn string(os.PathSeparator)\n\t}\n\treturn filepath.Join(info.parent.path(), info.name)\n}\n\nfunc (info *FileInfo) addChanges(oldInfo *FileInfo, changes *[]Change) {\n\tsizeAtEntry := len(*changes)\n\n\tif oldInfo == nil {\n\t\t// add\n\t\tchange := Change{\n\t\t\tPath: info.path(),\n\t\t\tKind: ChangeAdd,\n\t\t}\n\t\t*changes = append(*changes, change)\n\t\tinfo.added = true\n\t}\n\n\t// We make a copy so we can modify it to detect additions\n\t// also, we only recurse on the old dir if the new info is a directory\n\t// otherwise any previous delete/change is considered recursive\n\toldChildren := make(map[string]*FileInfo)\n\tif oldInfo != nil && info.isDir() {\n\t\tfor k, v := range oldInfo.children {\n\t\t\toldChildren[k] = v\n\t\t}\n\t}\n\n\tfor name, newChild := range info.children {\n\t\toldChild := oldChildren[name]\n\t\tif oldChild != nil {\n\t\t\t// change?\n\t\t\toldStat := oldChild.stat\n\t\t\tnewStat := newChild.stat\n\t\t\t// Note: We can't compare inode or ctime or blocksize here, because these change\n\t\t\t// when copying a file into a container. However, that is not generally a problem\n\t\t\t// because any content change will change mtime, and any status change should\n\t\t\t// be visible when actually comparing the stat fields. The only time this\n\t\t\t// breaks down is if some code intentionally hides a change by setting\n\t\t\t// back mtime\n\t\t\tif statDifferent(oldStat, newStat) ||\n\t\t\t\t!bytes.Equal(oldChild.capability, newChild.capability) {\n\t\t\t\tchange := Change{\n\t\t\t\t\tPath: newChild.path(),\n\t\t\t\t\tKind: ChangeModify,\n\t\t\t\t}\n\t\t\t\t*changes = append(*changes, change)\n\t\t\t\tnewChild.added = true\n\t\t\t}\n\n\t\t\t// Remove from copy so we can detect deletions\n\t\t\tdelete(oldChildren, name)\n\t\t}\n\n\t\tnewChild.addChanges(oldChild, changes)\n\t}\n\tfor _, oldChild := range oldChildren {\n\t\t// delete\n\t\tchange := Change{\n\t\t\tPath: oldChild.path(),\n\t\t\tKind: ChangeDelete,\n\t\t}\n\t\t*changes = append(*changes, change)\n\t}\n\n\t// If there were changes inside this directory, we need to add it, even if the directory\n\t// itself wasn't changed. This is needed to properly save and restore filesystem permissions.\n\t// As this runs on the daemon side, file paths are OS specific.\n\tif len(*changes) > sizeAtEntry && info.isDir() && !info.added && info.path() != string(os.PathSeparator) {\n\t\tchange := Change{\n\t\t\tPath: info.path(),\n\t\t\tKind: ChangeModify,\n\t\t}\n\t\t// Let's insert the directory entry before the recently added entries located inside this dir\n\t\t*changes = append(*changes, change) // just to resize the slice, will be overwritten\n\t\tcopy((*changes)[sizeAtEntry+1:], (*changes)[sizeAtEntry:])\n\t\t(*changes)[sizeAtEntry] = change\n\t}\n}\n\n// Changes add changes to file information.\nfunc (info *FileInfo) Changes(oldInfo *FileInfo) []Change {\n\tvar changes []Change\n\n\tinfo.addChanges(oldInfo, &changes)\n\n\treturn changes\n}\n\nfunc newRootFileInfo() *FileInfo {\n\t// As this runs on the daemon side, file paths are OS specific.\n\troot := &FileInfo{\n\t\tname:     string(os.PathSeparator),\n\t\tchildren: make(map[string]*FileInfo),\n\t}\n\treturn root\n}\n\n// ChangesDirs compares two directories and generates an array of Change objects describing the changes.\n// If oldDir is \"\", then all files in newDir will be Add-Changes.\nfunc ChangesDirs(newDir, oldDir string) ([]Change, error) {\n\tvar oldRoot, newRoot *FileInfo\n\tif oldDir == \"\" {\n\t\temptyDir, err := os.MkdirTemp(\"\", \"empty\")\n\t\tif err != nil {\n\t\t\treturn nil, err\n\t\t}\n\t\tdefer os.Remove(emptyDir)\n\t\toldDir = emptyDir\n\t}\n\toldRoot, newRoot, err := collectFileInfoForChanges(oldDir, newDir)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\treturn newRoot.Changes(oldRoot), nil\n}\n\n// ChangesSize calculates the size in bytes of the provided changes, based on newDir.\nfunc ChangesSize(newDir string, changes []Change) int64 {\n\tvar (\n\t\tsize int64\n\t\tsf   = make(map[uint64]struct{})\n\t)\n\tfor _, change := range changes {\n\t\tif change.Kind == ChangeModify || change.Kind == ChangeAdd {\n\t\t\tfile := filepath.Join(newDir, change.Path)\n\t\t\tfileInfo, err := os.Lstat(file)\n\t\t\tif err != nil {\n\t\t\t\tlog.G(context.TODO()).Errorf(\"Can not stat %q: %s\", file, err)\n\t\t\t\tcontinue\n\t\t\t}\n\n\t\t\tif fileInfo != nil && !fileInfo.IsDir() {\n\t\t\t\tif hasHardlinks(fileInfo) {\n\t\t\t\t\tinode := getIno(fileInfo)\n\t\t\t\t\tif _, ok := sf[inode]; !ok {\n\t\t\t\t\t\tsize += fileInfo.Size()\n\t\t\t\t\t\tsf[inode] = struct{}{}\n\t\t\t\t\t}\n\t\t\t\t} else {\n\t\t\t\t\tsize += fileInfo.Size()\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\treturn size\n}\n\n// ExportChanges produces an Archive from the provided changes, relative to dir.\nfunc ExportChanges(dir string, changes []Change, idMap idtools.IdentityMapping) (io.ReadCloser, error) {\n\treader, writer := io.Pipe()\n\tgo func() {\n\t\tta := newTarAppender(idMap, writer, nil)\n\n\t\t// this buffer is needed for the duration of this piped stream\n\t\tdefer pools.BufioWriter32KPool.Put(ta.Buffer)\n\n\t\tsort.Sort(changesByPath(changes))\n\n\t\t// In general we log errors here but ignore them because\n\t\t// during e.g. a diff operation the container can continue\n\t\t// mutating the filesystem and we can see transient errors\n\t\t// from this\n\t\tfor _, change := range changes {\n\t\t\tif change.Kind == ChangeDelete {\n\t\t\t\twhiteOutDir := filepath.Dir(change.Path)\n\t\t\t\twhiteOutBase := filepath.Base(change.Path)\n\t\t\t\twhiteOut := filepath.Join(whiteOutDir, WhiteoutPrefix+whiteOutBase)\n\t\t\t\ttimestamp := time.Now()\n\t\t\t\thdr := &tar.Header{\n\t\t\t\t\tName:       whiteOut[1:],\n\t\t\t\t\tSize:       0,\n\t\t\t\t\tModTime:    timestamp,\n\t\t\t\t\tAccessTime: timestamp,\n\t\t\t\t\tChangeTime: timestamp,\n\t\t\t\t}\n\t\t\t\tif err := ta.TarWriter.WriteHeader(hdr); err != nil {\n\t\t\t\t\tlog.G(context.TODO()).Debugf(\"Can't write whiteout header: %s\", err)\n\t\t\t\t}\n\t\t\t} else {\n\t\t\t\tpath := filepath.Join(dir, change.Path)\n\t\t\t\tif err := ta.addTarFile(path, change.Path[1:]); err != nil {\n\t\t\t\t\tlog.G(context.TODO()).Debugf(\"Can't add file %s to tar: %s\", path, err)\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\t// Make sure to check the error on Close.\n\t\tif err := ta.TarWriter.Close(); err != nil {\n\t\t\tlog.G(context.TODO()).Debugf(\"Can't close layer: %s\", err)\n\t\t}\n\t\tif err := writer.Close(); err != nil {\n\t\t\tlog.G(context.TODO()).Debugf(\"failed close Changes writer: %s\", err)\n\t\t}\n\t}()\n\treturn reader, nil\n}\n",
+      "contentHash": "75a9c9e85f8c5c3cebe8194b33bfe9a9aa477a64ae765ebca177a94c71cac905",
+      "id": "e-changes",
+      "kind": "code",
+      "locator": "moby/moby pkg/archive/changes.go lines 225–445; FileInfo.addChanges, ChangesDirs, ExportChanges",
+      "retrievedAt": "2026-09-17T05:37:28.330Z",
+      "sourceVersion": "4c9b3b011ae4c30145a7b344c870bdda01b454e2",
+      "summary": "Read the surrounding tree path logic, addition/deletion comparison, size handling and archive export. ExportChanges writes a zero-size whiteout header for ChangeDelete and file data for other changes. Endpoint absence supports the bounded same-RUN inference; parent metadata can still change.",
+      "title": "Moby endpoint tree comparison and deletion archive entry",
+      "url": "https://github.com/moby/moby/blob/4c9b3b011ae4c30145a7b344c870bdda01b454e2/pkg/archive/changes.go#L225-L445"
+    },
+    {
+      "content": "// Unpack unpacks the decompressedArchive to dest with options.\nfunc Unpack(decompressedArchive io.Reader, dest string, options *TarOptions) error {\n\ttr := tar.NewReader(decompressedArchive)\n\ttrBuf := pools.BufioReader32KPool.Get(nil)\n\tdefer pools.BufioReader32KPool.Put(trBuf)\n\n\tvar dirs []*tar.Header\n\twhiteoutConverter := getWhiteoutConverter(options.WhiteoutFormat)\n\n\t// Iterate through the files in the archive.\nloop:\n\tfor {\n\t\thdr, err := tr.Next()\n\t\tif err == io.EOF {\n\t\t\t// end of tar archive\n\t\t\tbreak\n\t\t}\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\n\t\t// ignore XGlobalHeader early to avoid creating parent directories for them\n\t\tif hdr.Typeflag == tar.TypeXGlobalHeader {\n\t\t\tlog.G(context.TODO()).Debugf(\"PAX Global Extended Headers found for %s and ignored\", hdr.Name)\n\t\t\tcontinue\n\t\t}\n\n\t\t// Normalize name, for safety and for a simple is-root check\n\t\t// This keeps \"../\" as-is, but normalizes \"/../\" to \"/\". Or Windows:\n\t\t// This keeps \"..\\\" as-is, but normalizes \"\\..\\\" to \"\\\".\n\t\thdr.Name = filepath.Clean(hdr.Name)\n\n\t\tfor _, exclude := range options.ExcludePatterns {\n\t\t\tif strings.HasPrefix(hdr.Name, exclude) {\n\t\t\t\tcontinue loop\n\t\t\t}\n\t\t}\n\n\t\t// Ensure that the parent directory exists.\n\t\terr = createImpliedDirectories(dest, hdr, options)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\n\t\t// #nosec G305 -- The joined path is checked for path traversal.\n\t\tpath := filepath.Join(dest, hdr.Name)\n\t\trel, err := filepath.Rel(dest, path)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tif strings.HasPrefix(rel, \"..\"+string(os.PathSeparator)) {\n\t\t\treturn breakoutError(fmt.Errorf(\"%q is outside of %q\", hdr.Name, dest))\n\t\t}\n\n\t\t// If path exits we almost always just want to remove and replace it\n\t\t// The only exception is when it is a directory *and* the file from\n\t\t// the layer is also a directory. Then we want to merge them (i.e.\n\t\t// just apply the metadata from the layer).\n\t\tif fi, err := os.Lstat(path); err == nil {\n\t\t\tif options.NoOverwriteDirNonDir && fi.IsDir() && hdr.Typeflag != tar.TypeDir {\n\t\t\t\t// If NoOverwriteDirNonDir is true then we cannot replace\n\t\t\t\t// an existing directory with a non-directory from the archive.\n\t\t\t\treturn fmt.Errorf(\"cannot overwrite directory %q with non-directory %q\", path, dest)\n\t\t\t}\n\n\t\t\tif options.NoOverwriteDirNonDir && !fi.IsDir() && hdr.Typeflag == tar.TypeDir {\n\t\t\t\t// If NoOverwriteDirNonDir is true then we cannot replace\n\t\t\t\t// an existing non-directory with a directory from the archive.\n\t\t\t\treturn fmt.Errorf(\"cannot overwrite non-directory %q with directory %q\", path, dest)\n\t\t\t}\n\n\t\t\tif fi.IsDir() && hdr.Name == \".\" {\n\t\t\t\tcontinue\n\t\t\t}\n\n\t\t\tif !(fi.IsDir() && hdr.Typeflag == tar.TypeDir) {\n\t\t\t\tif err := os.RemoveAll(path); err != nil {\n\t\t\t\t\treturn err\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\ttrBuf.Reset(tr)\n\n\t\tif err := remapIDs(options.IDMap, hdr); err != nil {\n\t\t\treturn err\n\t\t}\n\n\t\tif whiteoutConverter != nil {\n\t\t\twriteFile, err := whiteoutConverter.ConvertRead(hdr, path)\n\t\t\tif err != nil {\n\t\t\t\treturn err\n\t\t\t}\n\t\t\tif !writeFile {\n\t\t\t\tcontinue\n\t\t\t}\n\t\t}\n\n\t\tif err := createTarFile(path, dest, hdr, trBuf, options); err != nil {\n\t\t\treturn err\n\t\t}\n\n\t\t// Directory mtimes must be handled at the end to avoid further\n\t\t// file creation in them to modify the directory mtime\n\t\tif hdr.Typeflag == tar.TypeDir {\n\t\t\tdirs = append(dirs, hdr)\n",
+      "contentHash": "960c7e18a9596e8c5b02c011226b9998bd685908de185cc3cd126648fd24c1fa",
+      "id": "e-unpack",
+      "kind": "code",
+      "locator": "moby/moby pkg/archive/archive.go lines 1078–1182; Unpack",
+      "retrievedAt": "2026-09-17T05:37:27.020Z",
+      "sourceVersion": "4c9b3b011ae4c30145a7b344c870bdda01b454e2",
+      "summary": "Read selection of converter, archive traversal, path checks, existing-path handling, ConvertRead call and skip when false before ordinary createTarFile.",
+      "title": "Moby Unpack whiteout converter call site",
+      "url": "https://github.com/moby/moby/blob/4c9b3b011ae4c30145a7b344c870bdda01b454e2/pkg/archive/archive.go#L1078-L1182"
+    },
+    {
+      "content": "package archive // import \"github.com/docker/docker/pkg/archive\"\n\nimport (\n\t\"archive/tar\"\n\t\"os\"\n\t\"path/filepath\"\n\t\"strings\"\n\n\t\"github.com/docker/docker/pkg/system\"\n\t\"github.com/moby/sys/userns\"\n\t\"github.com/pkg/errors\"\n\t\"golang.org/x/sys/unix\"\n)\n\nfunc getWhiteoutConverter(format WhiteoutFormat) tarWhiteoutConverter {\n\tif format == OverlayWhiteoutFormat {\n\t\treturn overlayWhiteoutConverter{}\n\t}\n\treturn nil\n}\n\ntype overlayWhiteoutConverter struct{}\n\nfunc (overlayWhiteoutConverter) ConvertWrite(hdr *tar.Header, path string, fi os.FileInfo) (wo *tar.Header, err error) {\n\t// convert whiteouts to AUFS format\n\tif fi.Mode()&os.ModeCharDevice != 0 && hdr.Devmajor == 0 && hdr.Devminor == 0 {\n\t\t// we just rename the file and make it normal\n\t\tdir, filename := filepath.Split(hdr.Name)\n\t\thdr.Name = filepath.Join(dir, WhiteoutPrefix+filename)\n\t\thdr.Mode = 0o600\n\t\thdr.Typeflag = tar.TypeReg\n\t\thdr.Size = 0\n\t}\n\n\tif fi.Mode()&os.ModeDir != 0 {\n\t\topaqueXattrName := \"trusted.overlay.opaque\"\n\t\tif userns.RunningInUserNS() {\n\t\t\topaqueXattrName = \"user.overlay.opaque\"\n\t\t}\n\n\t\t// convert opaque dirs to AUFS format by writing an empty file with the prefix\n\t\topaque, err := system.Lgetxattr(path, opaqueXattrName)\n\t\tif err != nil {\n\t\t\treturn nil, err\n\t\t}\n\t\tif len(opaque) == 1 && opaque[0] == 'y' {\n\t\t\tdelete(hdr.PAXRecords, paxSchilyXattr+opaqueXattrName)\n\n\t\t\t// create a header for the whiteout file\n\t\t\t// it should inherit some properties from the parent, but be a regular file\n\t\t\two = &tar.Header{\n\t\t\t\tTypeflag:   tar.TypeReg,\n\t\t\t\tMode:       hdr.Mode & int64(os.ModePerm),\n\t\t\t\tName:       filepath.Join(hdr.Name, WhiteoutOpaqueDir), // #nosec G305 -- An archive is being created, not extracted.\n\t\t\t\tSize:       0,\n\t\t\t\tUid:        hdr.Uid,\n\t\t\t\tUname:      hdr.Uname,\n\t\t\t\tGid:        hdr.Gid,\n\t\t\t\tGname:      hdr.Gname,\n\t\t\t\tAccessTime: hdr.AccessTime,\n\t\t\t\tChangeTime: hdr.ChangeTime,\n\t\t\t}\n\t\t}\n\t}\n\n\treturn\n}\n\nfunc (c overlayWhiteoutConverter) ConvertRead(hdr *tar.Header, path string) (bool, error) {\n\tbase := filepath.Base(path)\n\tdir := filepath.Dir(path)\n\n\t// if a directory is marked as opaque by the AUFS special file, we need to translate that to overlay\n\tif base == WhiteoutOpaqueDir {\n\t\topaqueXattrName := \"trusted.overlay.opaque\"\n\t\tif userns.RunningInUserNS() {\n\t\t\topaqueXattrName = \"user.overlay.opaque\"\n\t\t}\n\n\t\terr := unix.Setxattr(dir, opaqueXattrName, []byte{'y'}, 0)\n\t\tif err != nil {\n\t\t\treturn false, errors.Wrapf(err, \"setxattr(%q, %s=y)\", dir, opaqueXattrName)\n\t\t}\n\t\t// don't write the file itself\n\t\treturn false, err\n\t}\n\n\t// if a file was deleted and we are using overlay, we need to create a character device\n\tif strings.HasPrefix(base, WhiteoutPrefix) {\n\t\toriginalBase := base[len(WhiteoutPrefix):]\n\t\toriginalPath := filepath.Join(dir, originalBase)\n\n\t\tif err := unix.Mknod(originalPath, unix.S_IFCHR, 0); err != nil {\n\t\t\treturn false, errors.Wrapf(err, \"failed to mknod(%q, S_IFCHR, 0)\", originalPath)\n\t\t}\n\t\tif err := os.Chown(originalPath, hdr.Uid, hdr.Gid); err != nil {\n\t\t\treturn false, err\n\t\t}\n\n\t\t// don't write the file itself\n\t\treturn false, nil\n\t}\n\n\treturn true, nil\n}\n",
+      "contentHash": "d7f037a15c85a1f9ab24982325a33495aef050101b604e6d4a539f0bf74cbd7f",
+      "id": "e-overlay",
+      "kind": "code",
+      "locator": "moby/moby pkg/archive/archive_linux.go lines 1–106; getWhiteoutConverter, overlayWhiteoutConverter.ConvertWrite and ConvertRead",
+      "retrievedAt": "2026-09-17T05:37:27.666Z",
+      "sourceVersion": "4c9b3b011ae4c30145a7b344c870bdda01b454e2",
+      "summary": "Read whole file. Format selection leads to zero-size tar marker conversion; unpacking a prefix marker creates an original-name character device and does not write the marker as an ordinary file. Also read opaque-directory and error branches; no system calls executed.",
+      "title": "Moby Linux overlay whiteout conversion",
+      "url": "https://github.com/moby/moby/blob/4c9b3b011ae4c30145a7b344c870bdda01b454e2/pkg/archive/archive_linux.go#L1-L106"
+    },
+    {
+      "id": "e-practices",
+      "kind": "web",
+      "locator": "RUN > apt-get; example ending in rm -rf /var/lib/apt/lists/* and following explanatory paragraph",
+      "retrievedAt": "2026-09-17T05:39:25.861Z",
+      "sourceVersion": "Live official page retrieved 2026-09-17",
+      "summary": "Read extracted offsets 14600–21100, including the cleanup statement that apt cache is not stored in a layer. The separately fetched COPY/ADD section was outside claim scope. No examples executed; cache-busting is not treated as payload-reclamation evidence.",
+      "title": "Docker build best practices: same-RUN apt lists cleanup",
+      "url": "https://docs.docker.com/build/building/best-practices/#run"
+    },
+    {
+      "content": "Visual example assumes 100 MB uncompressed new-file payload. No Docker experiment; do not equate it with image, transfer, compressed, cache or shared-storage size.",
+      "id": "e-assumption",
+      "kind": "provided",
+      "locator": "Current task: visual story, numerical scope and execution boundary",
+      "sourceVersion": "Task supplied 2026-09-17",
+      "summary": "User requests an illustrative 100 MB new-file payload, explicitly uncompressed and not measured image size, with no Docker experiment. This supplies an assumption rather than an empirical measurement.",
+      "title": "User pilot constraints and illustrative payload"
+    }
+  ],
+  "gaps": [
+    {
+      "description": "No Docker build, browser preview, replay, audio synthesis, duration measurement or rendering is authorized or performed. Future explicitly approved isolated execution could test the corresponding observation; until then the diagram is illustrative and the timing is only proposed.",
+      "id": "g-no-execution",
+      "subquestionIds": [
+        "q-observation"
+      ]
+    },
+    {
+      "description": "Pinned classic builder and archive/fallback diff paths are read; the entire builder-to-driver dispatch chain, current BuildKit snapshotters and the user's local configuration are not traced. Do not claim these functions are the current local build path; investigate a selected implementation separately if needed.",
+      "id": "g-driver-scope",
+      "subquestionIds": [
+        "q-observation"
+      ]
+    }
+  ],
+  "id": "docker-layers-pilot-20260917",
+  "kind": "mixed",
+  "language": "en",
+  "question": "Why does deleting a newly added large file in a later RUN retain earlier image-layer payload, while create/delete in one RUN avoids that new payload?",
+  "report": "# Docker image layers: hidden is not erased\n\n## Direct answer\nFor an ordinary unsquashed image diff, the first RUN records a newly created file in an immutable image layer. A later RUN records deletion in a newer layer; a whiteout makes the lower path absent in the merged filesystem view, without rewriting the earlier layer blob. Creating and deleting a NEW file inside one RUN instead leaves that path absent at the before/after diff boundary, so its temporary payload is not added to that resulting diff. This does not imply that every other change or metadata entry disappears.\n\n## Scope, purpose and question tree\nPurpose: source-bind a 20–30 second English mechanism pilot for a reader who recognizes Dockerfile RUN but may not know image layers. Time horizon: official Docker documentation retrieved on 2026-09-17, OCI image-spec pinned at af26a05fba5ee648512f4ea3c9fda1fcc1b6d6dc, and Moby v27.5.1 resolved to 4c9b3b011ae4c30145a7b344c870bdda01b454e2. Budget: bounded primary-source reading and inert source preparation only; no Docker builds, browser execution, experiments, speech or rendering. q-layers establishes the immutable object, q-delete explains the newer deletion marker, and q-same compares final-state diffs. q-bounds tests the apparent counterexample of deleting a preexisting base file and distinguishes payload from measured sizes. q-observation remains unanswered because execution is not authorized. No repository cloning, installation, or delegation was performed.\n\n## Evidence and reasoning bridge\nDocker's [Understanding the image layers](https://docs.docker.com/get-started/docker-concepts/building-images/understanding-image-layers/) says layers are immutable filesystem changes and describes a unified view plus a separate writable directory for a running container. The diagram concerns image changesets, not that container writable layer.\n\nOCI [layer.md at the pinned commit](https://github.com/opencontainers/image-spec/blob/af26a05fba5ee648512f4ea3c9fda1fcc1b6d6dc/layer.md#whiteouts), lines 151–253 within the read range 1–260, specifies that changes to the comparison snapshot do not affect its source; the changeset contains added/modified content and whiteouts for removals. A whiteout is a special empty entry named .wh. plus the deleted basename. It applies only to lower layers and is itself hidden after application. Thus a visible whiteout in our CUTAWAY is an inspection of the layer representation, never an ordinary file shown in the merged view. 'Empty' in the diagram means the example path is absent, not that the image has no other filesystem entries.\n\n### Known-project code case, not only a spec quotation\nAll following locators use Moby commit 4c9b3b011ae4c30145a7b344c870bdda01b454e2 (v27.5.1). In builder/dockerfile/dispatchers.go lines 332–401, dispatchRun probes cache; on a miss it creates and runs a container, returns on run failure, and calls commitContainer only after the run succeeds. This is the classic-builder boundary, not a claim that current BuildKit executes this function.\n\nIn daemon/graphdriver/fsdiff.go lines 48–104, NaiveDiffDriver.Diff gets the layer and parent, calls archive.ChangesDirs(layerFs, parentFs), then archive.ExportChanges. An empty parent takes a full-tar branch. Errors stop the path. In pkg/archive/changes.go lines 248–359, FileInfo.addChanges walks the new children and remaining old children: newly present paths produce additions; leftover old paths produce deletions. A temporary new path absent from both endpoint trees has no payload to export. Directory metadata may still differ. Lines 392–445 show ExportChanges: a ChangeDelete writes a zero-size tar header using WhiteoutPrefix plus the basename; other changes call addTarFile. This code reads the parent and writes a new archive; it is not an erasure pass over old layer blobs.\n\nIn pkg/archive/archive.go lines 1078–1182, Unpack chooses getWhiteoutConverter(options.WhiteoutFormat), calls ConvertRead, propagates conversion errors, and skips ordinary file creation when conversion returns false. In pkg/archive/archive_linux.go lines 15–106, OverlayWhiteoutFormat selects overlayWhiteoutConverter. ConvertWrite translates a zero-device character whiteout into a regular zero-size whiteout tar entry; ConvertRead recognizes the prefix, creates the original-name character device via unix.Mknod, sets ownership and returns false so the marker is not written as an ordinary file. The opaque-directory branch sets an xattr instead. These are concrete serialization/application paths, not a claim about the user's uninspected local storage driver. We did not trace every link between the classic builder commit and this fallback graphdriver or every optimized snapshotter.\n\nDocker [build best practices](https://docs.docker.com/build/building/best-practices/#run), the RUN apt-get subsection, corroborates the final-diff consequence with cleanup in the same RUN: apt list cache is not stored in a layer. Its cache-busting discussion concerns a different problem and is not used as evidence that earlier payloads are reclaimed.\n\n## Example, counterexample and units\nThe user-specified 100 MB is an assumed uncompressed new regular-file payload (100,000,000 bytes), not a build observation. It excludes base layers, archive/config overhead and compression; compressed image bytes, transfer bytes, cache usage and shared physical storage must not be equated to this number. The image need not be exactly 100 MB larger on disk or over the network. No payload file was created.\n\nCounterexample: removing a file already present in a base layer, even within one RUN, cannot retroactively reclaim that lower blob's bytes. The final-diff comparison has an old path to delete, unlike the absent-before/absent-after new temporary file. Squashing, multistage selection, special mounts, sparse-file behavior, cache pruning, deduplication, image flattening and environment-specific optimizations are outside this pilot. The animation demonstrates the specified ordinary Linux image-layer behavior; it is not a measurement of this Windows host or its builder.\n\n## Semantic reverse review\nc-layer: supported by Docker immutability and the classic RUN completion boundary; not universal builder-internals equivalence. c-delete: supported by OCI lower-only whiteouts and actual Moby export/conversion branches; cutaway must retain the lower payload while the merged example path disappears. c-same: a bounded inference from endpoint comparison, corroborated by Docker's same-RUN cleanup example; wording explicitly says NEW file and resulting diff, not an empty image or zero-size layer. c-base: supported counterexample to overly broad cleanup advice. c-size and c-writable preserve quantity and object boundaries. The numeric example is explicitly an assumption, not evidence-derived measurement. No contradicting source was found within the actual read extents; uncovered implementations remain gaps rather than assumed agreement. Static validation will test structure and identity only. Visual readability, deterministic replay, narration duration and human comprehension have not been observed.\n\n## Stop\nThe core mechanism and important base-file counterexample are supported by primary documentation and pinned implementation branches. Stop at source-ready, unexecuted research-bound pilot because local execution and voice/network consent are explicitly absent. The remaining observation and implementation-coverage gaps do not justify extra execution.",
+  "researchLog": [
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-docker"
+      ],
+      "id": "read-docker-doc",
+      "locator": "Explanation; Image layers; Stacking the layers",
+      "occurredAt": "2026-09-17T05:39:26.090Z",
+      "outcome": "success",
+      "readRange": "Explanation, Image layers, Stacking the layers; displayed examples not executed",
+      "subquestionIds": [
+        "q-layers",
+        "q-delete",
+        "q-bounds"
+      ],
+      "summary": "Read these explanatory sections plus the displayed manual examples (not executed). Supports immutable layers, changesets, reused storage and a distinct container-specific writable directory."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-oci"
+      ],
+      "id": "read-oci-layer",
+      "locator": "opencontainers/image-spec layer.md lines 1–260; especially Determining Changes, Representing Changes and Whiteouts",
+      "occurredAt": "2026-09-17T05:39:26.090Z",
+      "outcome": "success",
+      "readRange": "Lines 1-260, preserved as LF UTF-8 excerpt",
+      "subquestionIds": [
+        "q-delete",
+        "q-same",
+        "q-bounds"
+      ],
+      "summary": "Read lines 1–260 including media types, snapshot preservation, endpoint comparison and lower-layer-only whiteouts. Normative spec snapshot, not runtime observation."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-run"
+      ],
+      "id": "read-moby-dispatchers",
+      "locator": "moby/moby builder/dockerfile/dispatchers.go lines 322–402; dispatchRun",
+      "occurredAt": "2026-09-17T05:39:26.090Z",
+      "outcome": "success",
+      "readRange": "Lines 322-402, preserved as LF UTF-8 excerpt",
+      "subquestionIds": [
+        "q-layers",
+        "q-same"
+      ],
+      "summary": "Read RUN cache probe, container execution, failure returns and commitContainer after successful execution. This is classic builder code, not a traced BuildKit path."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-fsdiff"
+      ],
+      "id": "read-moby-fsdiff",
+      "locator": "moby/moby daemon/graphdriver/fsdiff.go lines 20–105; NaiveDiffDriver.Diff",
+      "occurredAt": "2026-09-17T05:39:26.090Z",
+      "outcome": "success",
+      "readRange": "Lines 20-105, preserved as LF UTF-8 excerpt",
+      "subquestionIds": [
+        "q-same"
+      ],
+      "summary": "Read fallback driver context and Diff. Parent and new layer trees feed ChangesDirs then ExportChanges; empty parent uses full tar and errors return. No optimized driver or live configuration established."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-changes"
+      ],
+      "id": "read-moby-changes",
+      "locator": "moby/moby pkg/archive/changes.go lines 225–445; FileInfo.addChanges, ChangesDirs, ExportChanges",
+      "occurredAt": "2026-09-17T05:39:26.090Z",
+      "outcome": "success",
+      "readRange": "Lines 225-445, preserved as LF UTF-8 excerpt",
+      "subquestionIds": [
+        "q-delete",
+        "q-same",
+        "q-bounds"
+      ],
+      "summary": "Read the surrounding tree path logic, addition/deletion comparison, size handling and archive export. ExportChanges writes a zero-size whiteout header for ChangeDelete and file data for other changes. Endpoint absence supports the bounded same-RUN inference; parent metadata can still change."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-unpack"
+      ],
+      "id": "read-moby-archive",
+      "locator": "moby/moby pkg/archive/archive.go lines 1078–1182; Unpack",
+      "occurredAt": "2026-09-17T05:39:26.090Z",
+      "outcome": "success",
+      "readRange": "Lines 1078-1182, preserved as LF UTF-8 excerpt",
+      "subquestionIds": [
+        "q-delete"
+      ],
+      "summary": "Read selection of converter, archive traversal, path checks, existing-path handling, ConvertRead call and skip when false before ordinary createTarFile."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-overlay"
+      ],
+      "id": "read-moby-linux",
+      "locator": "moby/moby pkg/archive/archive_linux.go lines 1–106; getWhiteoutConverter, overlayWhiteoutConverter.ConvertWrite and ConvertRead",
+      "occurredAt": "2026-09-17T05:39:26.090Z",
+      "outcome": "success",
+      "readRange": "Lines 1-106, preserved as LF UTF-8 excerpt",
+      "subquestionIds": [
+        "q-delete"
+      ],
+      "summary": "Read whole file. Format selection leads to zero-size tar marker conversion; unpacking a prefix marker creates an original-name character device and does not write the marker as an ordinary file. Also read opaque-directory and error branches; no system calls executed."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-practices"
+      ],
+      "id": "read-docker-practices",
+      "locator": "RUN > apt-get; example ending in rm -rf /var/lib/apt/lists/* and following explanatory paragraph",
+      "occurredAt": "2026-09-17T05:39:26.090Z",
+      "outcome": "success",
+      "readRange": "RUN apt-get subsection; web_fetch extracted offsets 14600-21100",
+      "subquestionIds": [
+        "q-same"
+      ],
+      "summary": "Read extracted offsets 14600–21100, including the cleanup statement that apt cache is not stored in a layer. The separately fetched COPY/ADD section was outside claim scope. No examples executed; cache-busting is not treated as payload-reclamation evidence."
+    }
+  ],
+  "schemaVersion": "1.0.0",
+  "status": "complete",
+  "stopReason": "Primary documentation and pinned Moby branches support the bounded mechanism and its main counterexample. Stop at research-bound unexecuted source; runtime observations, full builder-path coverage and voice approval remain explicitly absent.",
+  "subquestions": [
+    {
+      "claimIds": [
+        "c-layer"
+      ],
+      "gapIds": [],
+      "id": "q-layers",
+      "question": "What persists when the first RUN leaves a new file?",
+      "status": "answered"
+    },
+    {
+      "claimIds": [
+        "c-delete"
+      ],
+      "gapIds": [],
+      "id": "q-delete",
+      "question": "What does later deletion change, and what remains?",
+      "status": "answered"
+    },
+    {
+      "claimIds": [
+        "c-same"
+      ],
+      "gapIds": [],
+      "id": "q-same",
+      "question": "Why does same-RUN create/delete avoid the new payload?",
+      "status": "answered"
+    },
+    {
+      "claimIds": [
+        "c-example",
+        "c-base",
+        "c-size",
+        "c-writable"
+      ],
+      "gapIds": [],
+      "id": "q-bounds",
+      "question": "What counterexample and size/object boundaries constrain the explanation?",
+      "status": "answered"
+    },
+    {
+      "claimIds": [],
+      "gapIds": [
+        "g-no-execution",
+        "g-driver-scope"
+      ],
+      "id": "q-observation",
+      "question": "Has this pilot behavior, local builder path, size or duration been measured?",
+      "status": "unresolved"
+    }
+  ],
+  "title": "Docker image layers: hidden files are not erased payloads"
+}

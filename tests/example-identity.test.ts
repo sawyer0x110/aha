@@ -9,15 +9,17 @@ import { sourceHash } from '../src/artifacts/project.js';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const base = path.join(root, 'examples');
 const evaluation = path.join(root, 'evals', 'examples');
-const { verifyExamples, verifyOutput } = await import(pathToFileURL(path.join(evaluation, 'verify.mjs')).href);
+const { verifyExamples, verifyOutput, verifyCodePilotEvidence, verifyIntroductionEvidence, sha } = await import(pathToFileURL(path.join(evaluation, 'verify.mjs')).href);
 const manifest = JSON.parse(await fs.readFile(path.join(base, 'delivery-manifest.json'), 'utf8'));
 
-test('all thirteen requested outputs bind canonical research, source, receipts, approved audio and final QA', async () => {
+test('all sixteen requested outputs bind canonical research, source, receipts, approved audio and final QA', async () => {
   const result = await verifyExamples();
   assert.equal(result.status, 'passed');
-  assert.equal(result.outputs.length, 13);
-  assert.deepEqual(result.outputs.filter((entry: { topic: string }) => entry.topic === 'greenland')
-    .map((entry: { format: string }) => entry.format), ['video']);
+  assert.equal(result.outputs.length, 16);
+  for (const topic of ['greenland', 'cpython-string', 'docker-layers', 'aha-introduction']) {
+    assert.deepEqual(result.outputs.filter((entry: { topic: string }) => entry.topic === topic)
+      .map((entry: { format: string }) => entry.format), ['video']);
+  }
   for (const topic of ['anc', 'git-merge', 'project-overview']) {
     assert.deepEqual(result.outputs.filter((entry: { topic: string }) => entry.topic === topic)
       .map((entry: { format: string }) => entry.format).sort(), ['html', 'image', 'pptx', 'video']);
@@ -35,13 +37,13 @@ test('each current output rejects stale publication source, research and output 
 });
 
 test('publication manifest requires exactly one of every topic and format', async () => {
-  await assert.rejects(verifyExamples({ manifest: { ...manifest, requestedOutputs: manifest.requestedOutputs.slice(1) } }), /thirteen/);
+  await assert.rejects(verifyExamples({ manifest: { ...manifest, requestedOutputs: manifest.requestedOutputs.slice(1) } }), /sixteen/);
   const entries = [...manifest.requestedOutputs];
   entries[1] = entries[0];
   await assert.rejects(verifyExamples({ manifest: { ...manifest, requestedOutputs: entries } }));
 });
 
-test('gallery links resolve and list only the requested Greenland video', async () => {
+test('gallery links resolve and list only requested formats, including video-only pilots', async () => {
   const gallery = await fs.readFile(path.join(base, 'index.html'), 'utf8');
   const links = [...gallery.matchAll(/href="([^"]+)"/g)].map(match => match[1]!);
   for (const link of links) await fs.access(path.join(base, link));
@@ -50,6 +52,10 @@ test('gallery links resolve and list only the requested Greenland video', async 
   assert(!links.includes('greenland/index.html'));
   assert(!links.includes('greenland/greenland.pptx'));
   assert(!links.includes('greenland/greenland.png'));
+  for (const topic of ['cpython-string', 'docker-layers', 'aha-introduction']) {
+    assert(links.includes(`${topic}/README.md`));
+    assert(!links.some(link => link.startsWith(`${topic}/`) && /\.(html|png|pptx)$/.test(link)));
+  }
 });
 
 test('Greenland keeps its direct speech provider rather than fabricating an imported-audio origin', async () => {
@@ -59,6 +65,57 @@ test('Greenland keeps its direct speech provider rather than fabricating an impo
   assert.equal(result.originalPlanHash, undefined);
   await assert.rejects(verifyOutput(base, { ...entry, provider: 'provided-audio' }), /provider/i);
   await assert.rejects(verifyOutput(base, { ...entry, format: 'html' }), /Unrequested format/);
+});
+
+test('both code pilots retain direct speech, video-only scope and current evidence', async () => {
+  const verified = [];
+  for (const topic of ['cpython-string', 'docker-layers']) {
+    const entry = manifest.requestedOutputs.find((item: { topic: string }) => item.topic === topic);
+    const result = await verifyOutput(base, entry);
+    verified.push(result);
+    assert.equal(result.plan.provider, 'edge-tts');
+    assert.equal(result.originalPlanHash, undefined);
+    await assert.rejects(verifyOutput(base, { ...entry, provider: 'provided-audio' }), /provider/i);
+    await assert.rejects(verifyOutput(base, { ...entry, format: 'html' }), /Unrequested format/);
+  }
+  const workspace = await fs.mkdtemp(path.join(evaluation, '.pilot-evidence-'));
+  try {
+    await fs.cp(path.join(evaluation, 'code-pilots-20260917'), workspace, { recursive: true });
+    await verifyCodePilotEvidence(workspace, verified);
+    const filename = path.join(workspace, 'docker-layers', 'encoded', 'technical-review.json');
+    const report = JSON.parse(await fs.readFile(filename, 'utf8'));
+    report.artifactHash = '0'.repeat(64);
+    await fs.writeFile(filename, JSON.stringify(report));
+    await assert.rejects(verifyCodePilotEvidence(workspace, verified), /evidence hash/i);
+  } finally { await fs.rm(workspace, { recursive: true, force: true }); }
+});
+
+test('new introduction preserves original speech source and rejects resealed wrong encoded evidence', async () => {
+  const entry = manifest.requestedOutputs.find((item: { topic: string }) => item.topic === 'aha-introduction');
+  const result = await verifyOutput(base, entry);
+  assert.equal(result.plan.provider, 'provided-audio');
+  await assert.rejects(verifyOutput(base, { ...entry, provider: 'edge-tts' }), /provider/i);
+  const workspace = await fs.mkdtemp(path.join(evaluation, '.introduction-identity-'));
+  try {
+    const original = JSON.parse(await fs.readFile(path.join(base, 'aha-introduction', 'audio-origin', 'original-plan.json'), 'utf8'));
+    const reconstructed = path.join(workspace, 'original-source');
+    await fs.cp(path.join(base, 'aha-introduction', 'projects', 'video'), reconstructed, { recursive: true });
+    await fs.copyFile(path.join(base, 'aha-introduction', 'audio-origin', 'original-scenes.js'), path.join(reconstructed, 'html', 'scenes.js'));
+    assert.equal(await sourceHash(reconstructed), original.sourceHash);
+    assert.notEqual(original.sourceHash, result.sourceHash);
+    const evidence = path.join(workspace, 'evidence');
+    await fs.cp(path.join(evaluation, 'aha-introduction-20260917'), evidence, { recursive: true });
+    await verifyIntroductionEvidence(evidence, [result]);
+    const reportFile = path.join(evidence, 'encoded', 'technical-review.json');
+    const report = JSON.parse(await fs.readFile(reportFile, 'utf8'));
+    report.artifactHash = '0'.repeat(64);
+    await fs.writeFile(reportFile, JSON.stringify(report));
+    const publicationFile = path.join(evidence, 'publication.json');
+    const publication = JSON.parse(await fs.readFile(publicationFile, 'utf8'));
+    publication.evidence.find((item: { file: string }) => item.file === 'encoded/technical-review.json').sha256 = sha(await fs.readFile(reportFile));
+    await fs.writeFile(publicationFile, JSON.stringify(publication));
+    await assert.rejects(verifyIntroductionEvidence(evidence, [result]), /encoded identity/i);
+  } finally { await fs.rm(workspace, { recursive: true, force: true }); }
 });
 
 test('actual stale receipt, source, dossier, audio, plan and subtitle bytes fail validation', async t => {
@@ -124,7 +181,7 @@ test('browser and generic media playback tools require approval independently of
   }
 });
 
-test('Git autocrlf preserves all thirteen sealed outputs, source trees, audio and old/new QA', async () => {
+test('Git autocrlf preserves all sixteen sealed outputs, source trees, audio and old/new QA', async () => {
   const workspace = await fs.mkdtemp(path.join(evaluation, '.identity-git-'));
   const git = (...args: string[]) => execFileSync('git', args, {
     cwd: workspace, timeout: 60000, maxBuffer: 4 * 1024 * 1024,
@@ -143,8 +200,10 @@ test('Git autocrlf preserves all thirteen sealed outputs, source trees, audio an
     git('init', '--quiet');
     git('config', 'core.autocrlf', 'true');
     files.push(path.join('examples', '.gitattributes'), path.join('examples', 'delivery-manifest.json'));
-    for (const topic of ['anc', 'git-merge', 'project-overview', 'greenland']) await collect(path.join('examples', topic));
+    for (const topic of ['anc', 'git-merge', 'project-overview', 'greenland', 'cpython-string', 'docker-layers', 'aha-introduction']) await collect(path.join('examples', topic));
     await collect(path.join('evals', 'examples', 'greenland-20260917'));
+    await collect(path.join('evals', 'examples', 'code-pilots-20260917'));
+    await collect(path.join('evals', 'examples', 'aha-introduction-20260917'));
     const qaFiles = [
       '.gitattributes', 'anc-git/runtime.json', 'anc-git/review.json',
       'anc-git/screenshots/anc-390-light-zh-opening.png', 'project-overview/runtime.json',

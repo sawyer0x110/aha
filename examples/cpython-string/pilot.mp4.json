@@ -1,0 +1,79 @@
+{
+  "status": "delivered",
+  "format": "mp4",
+  "rendererVersion": "0.3.0",
+  "researchHash": "04cdf5f8906f1385f8575b9c99d46ae60bfe4c2c37e79982658a19d9d617daf8",
+  "sourceHash": "4500ece23a3fd2e282375d5f660c67631d0dd2b4a93cec66ff259fe30f2148c1",
+  "planHash": "9a87e23140f1144e06a4258a34d35aa595dcdf84441181bf074b8c7255962289",
+  "audioManifestHash": "291c146c0061ed09c8b36a9d4a32ba4f04c537f198848b194abd5609117e0a90",
+  "durationSeconds": 21.466666666666665,
+  "totalFrames": 644,
+  "codec": "h264",
+  "width": 1280,
+  "height": 720,
+  "fps": 30,
+  "subtitles": "sentence-level-burned-and-srt",
+  "provider": "edge-tts",
+  "renderer": "browser-authored-per-frame-ffmpeg",
+  "sampledSourceFrames": [
+    {
+      "frame": 0,
+      "segmentIndex": 0,
+      "sha256": "2f2467219acf8dd5f6240f72164d9d5380e8af38ce8ff8e4c48e69721daf8dfb"
+    },
+    {
+      "frame": 104,
+      "segmentIndex": 0,
+      "sha256": "a5b3aac61647d0dcfa8db6c75307d876061e485b03ce19ab3995f803b42a74bc"
+    },
+    {
+      "frame": 208,
+      "segmentIndex": 0,
+      "sha256": "1b3d48e3e2770489e163caf0160f014bc08952717a738833dbba8a9601227f6f"
+    },
+    {
+      "frame": 209,
+      "segmentIndex": 1,
+      "sha256": "a281d309e5d7046f715bf396f3cb991f730bc45aaad309602fb1259aaee5b64e"
+    },
+    {
+      "frame": 308,
+      "segmentIndex": 1,
+      "sha256": "02bb0ba88efb3253b2a1cd8a6edb84a0e22aae5f08e8f6301c1aa7d015c3fa07"
+    },
+    {
+      "frame": 407,
+      "segmentIndex": 1,
+      "sha256": "1da79c6aaa42cf6638f61d99e90f62be45aa7c80451dcc0c579fb33d9575e1c8"
+    },
+    {
+      "frame": 408,
+      "segmentIndex": 2,
+      "sha256": "380739cc8128bb03a6e85293d9070bda4e668408f99630f3ae48866690511278"
+    },
+    {
+      "frame": 526,
+      "segmentIndex": 2,
+      "sha256": "94cc7b99ddb9977f5cf231a3f8f47332dd4bb8c43e2f8f55cce3c0d6839bd299"
+    },
+    {
+      "frame": 643,
+      "segmentIndex": 2,
+      "sha256": "1bbb2eb308cb18305bd00b4c99f047478a3ee3bc17c7493197673ef715aa2bf1"
+    }
+  ],
+  "sampledVisualChange": true,
+  "determinism": "not-verified-author-must-avoid-time-random-and-uncontrolled-state",
+  "audioReuse": "visual-source-edits-invalidate-plan-and-audio-reimport-or-resynthesis-requires-explicit-approval",
+  "visualQuality": "requires-human-review-frame-capability-is-not-art-quality-assurance",
+  "artifactHash": "c0a9da2471a627a52a309b7afcc8905a46a112fb93b91384afe41dcd5d93c386",
+  "subtitleHash": "3e1354bbcd4c13895fcaa2643b4dbe817c67621f9b7048a47692575d0936dc47",
+  "checks": [
+    "research-source-plan-identity",
+    "audio-hashes-and-measured-timing",
+    "isolated-offline-frames",
+    "ffprobe-codec-frames-and-audio"
+  ],
+  "narrationTruthReview": "requires-human-source-review",
+  "providerProvenance": "recorded-local-manifest-not-independent-service-attestation"
+}

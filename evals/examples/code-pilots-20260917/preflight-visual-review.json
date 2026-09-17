@@ -1,0 +1,83 @@
+{
+  "reviewType": "independent-actual-source-preview-visual-review",
+  "overallOutcome": "blocked-incomplete-visual-evidence",
+  "scope": {
+    "requestedUniqueImages": 14,
+    "actuallyDisplayedAndReviewed": 1,
+    "blocked": 13,
+    "fullMp4Reviewed": false,
+    "audioListenedTo": false,
+    "sourceEdited": false,
+    "rerendered": false
+  },
+  "method": "Actual displayed PNGs only. A tool message saying 'Viewed image file successfully' followed by 'maximum number of images ... (1)' without an image was not treated as visual evidence. Each blocked image received exactly one retry, using a one-image parallel wrapper plus an independent report text read. No further retries.",
+  "blockedReason": "Image delivery returned the max-images-1 message without displaying the PNG, on both initial attempt and the single retry.",
+  "pilots": [
+    {
+      "topic": "CPython string representation",
+      "sourceHash": "4500ece23a3fd2e282375d5f660c67631d0dd2b4a93cec66ff259fe30f2148c1",
+      "planHash": "9a87e23140f1144e06a4258a34d35aa595dcdf84441181bf074b8c7255962289",
+      "reportPath": "artifacts\\cpython-string-pilot-20260917\\qa\\preview-v1\\report.json",
+      "outcome": "blocked",
+      "reviewedPaths": [],
+      "blockedPaths": [
+        "artifacts\\cpython-string-pilot-20260917\\qa\\preview-v1\\1-ascii-baseline-start.png",
+        "artifacts\\cpython-string-pilot-20260917\\qa\\preview-v1\\1-ascii-baseline-end.png",
+        "artifacts\\cpython-string-pilot-20260917\\qa\\preview-v1\\2-whole-string-widens-start.png",
+        "artifacts\\cpython-string-pilot-20260917\\qa\\preview-v1\\2-whole-string-widens-end.png",
+        "artifacts\\cpython-string-pilot-20260917\\qa\\preview-v1\\2-whole-string-widens-b.png",
+        "artifacts\\cpython-string-pilot-20260917\\qa\\preview-v1\\3-utf8-contrast-start.png",
+        "artifacts\\cpython-string-pilot-20260917\\qa\\preview-v1\\3-utf8-contrast-end.png"
+      ],
+      "confirmedVisualDefects": [],
+      "unverified": [
+        "Text overflow, hidden content, caption overlap, contrast and coordinate-label agreement.",
+        "Six a cells representing 100000 characters; 40-to-160-pixel widening plus the new face cell.",
+        "Whether visible geometry misleadingly resizes the immutable original instead of conveying construction of a new result.",
+        "Result str 400080 B versus UTF-8 100004 B.",
+        "Whether the mechanism visibly moves rather than behaving as text slides."
+      ],
+      "suggestedNextStep": "Obtain an actual visual review of these exact blocked PNGs before visual approval; no source change is justified by unavailable images."
+    },
+    {
+      "topic": "Docker image layers",
+      "sourceHash": "31ece11dc0442006fac2e176b8f173a3385db16b45670ded8e8bfb3408ead31e",
+      "planHash": "8e00661dd82fa552f9ea33bcc656d2829678084d77a018a4159dd8ddfd48c7ab",
+      "reportPath": "artifacts\\docker-layers-pilot-20260917\\qa\\preview-v1\\report.json",
+      "outcome": "blocked-partial-review",
+      "reviewedPaths": [
+        "artifacts\\docker-layers-pilot-20260917\\qa\\preview-v1\\3-same-run-end.png"
+      ],
+      "blockedPaths": [
+        "artifacts\\docker-layers-pilot-20260917\\qa\\preview-v1\\1-layer-added-start.png",
+        "artifacts\\docker-layers-pilot-20260917\\qa\\preview-v1\\1-layer-added-end.png",
+        "artifacts\\docker-layers-pilot-20260917\\qa\\preview-v1\\2-later-delete-start.png",
+        "artifacts\\docker-layers-pilot-20260917\\qa\\preview-v1\\2-later-delete-end.png",
+        "artifacts\\docker-layers-pilot-20260917\\qa\\preview-v1\\2-later-delete-b.png",
+        "artifacts\\docker-layers-pilot-20260917\\qa\\preview-v1\\3-same-run-start.png"
+      ],
+      "observations": [
+        {
+          "path": "artifacts\\docker-layers-pilot-20260917\\qa\\preview-v1\\3-same-run-end.png",
+          "location": "1280x720 image: left comparison x63-582/y160-445; right comparison x664-1217/y160-465; caption y594-696",
+          "finding": "No confirmed visual defect in this displayed frame. Separate RUNs visibly retain the magenta Layer A 100 MB payload below Layer B whiteout. Same RUN shows file absent before RUN ends, with a downward arrow to Resulting image diff / No new file payload. Labels stay within their boxes. Main content and the two-line caption are legible, separated and unclipped. Source/assumption text at y479-541 is smaller but does not overlap the diagram or caption. The geometry supports the stated final-diff contrast independently of the long disclaimer.",
+          "suggestedFix": null
+        }
+      ],
+      "confirmedVisualDefects": [],
+      "unverified": [
+        "All blocked-frame text overflow, hidden content, caption overlap, contrast and coordinate-label agreement.",
+        "Scene 2 transition showing retained lower-layer payload while the merged file becomes absent.",
+        "Scene 3 start-to-end movement and intermediate mechanism, since only its endpoint was displayed.",
+        "Whether both scenes feel like moving mechanisms rather than static text slides."
+      ],
+      "evidenceQualification": "The displayed end frame explicitly labels 100 MB as assumed uncompressed illustrative file payload, not measured image size. This review does not represent actual Docker build measurements.",
+      "suggestedNextStep": "Review the six blocked PNGs with actual image delivery before approving the whole pilot. No correction is requested for the displayed scene-3 endpoint."
+    }
+  ],
+  "approval": {
+    "visualPreflightPassed": false,
+    "reason": "Coverage blocked, not a confirmed content failure. Report metadata was used for identity only, not as a substitute for displayed pixels.",
+    "narrationConsent": "Not requested or granted by this review; main may ask separately while clearly disclosing incomplete visual preflight."
+  }
+}

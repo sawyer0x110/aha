@@ -1,0 +1,313 @@
+{
+  "claims": [
+    {
+      "evidenceIds": [
+        "e-pep",
+        "e-new"
+      ],
+      "id": "c-width",
+      "kind": "fact",
+      "limitations": [
+        "CPython implementation detail, not all Python implementations.",
+        "The diagram represents the new string, not mutation of the original."
+      ],
+      "subquestionIds": [
+        "q-width"
+      ],
+      "text": "In the compact CPython strings shown, one width applies to every code-point slot: ASCII uses one byte, while adding U+1F600 requires four-byte slots throughout the result."
+    },
+    {
+      "evidenceIds": [
+        "e-concat",
+        "e-new"
+      ],
+      "id": "c-concat",
+      "kind": "fact",
+      "limitations": [
+        "Source reading, not runtime tracing of the supplied observation.",
+        "The maximum-character helper supplies a representation upper bound; concat does not scan every character."
+      ],
+      "subquestionIds": [
+        "q-concat"
+      ],
+      "text": "The pinned PyUnicode_Concat combines operand lengths and representation ranges, allocates the new result with PyUnicode_New, and copies both operands."
+    },
+    {
+      "evidenceIds": [
+        "e-parent",
+        "e-size-doc",
+        "e-size-code"
+      ],
+      "id": "c-measure",
+      "kind": "fact",
+      "limitations": [
+        "Actual parent observation, not independently rerun by this author.",
+        "Build details, object history and exact experiment timestamp were not supplied; exact overhead is environment-specific."
+      ],
+      "subquestionIds": [
+        "q-measure"
+      ],
+      "text": "The parent-supplied CPython 3.11.15 observation gives 100049 bytes for the 100000-code-point ASCII str and 400080 bytes after U+1F600; these are str object sizes, not process memory or encoded file sizes."
+    },
+    {
+      "evidenceIds": [
+        "e-parent",
+        "e-utf8"
+      ],
+      "id": "c-utf8",
+      "kind": "fact",
+      "limitations": [
+        "Payload length excludes bytes-object overhead.",
+        "No file or network transfer was measured."
+      ],
+      "subquestionIds": [
+        "q-utf8"
+      ],
+      "text": "In the supplied example, UTF-8 payload length changes from 100000 to 100004 bytes: the ASCII prefix stays one byte per code point and U+1F600 adds four bytes."
+    },
+    {
+      "evidenceIds": [
+        "e-parent",
+        "e-new",
+        "e-pep"
+      ],
+      "id": "c-boundaries",
+      "kind": "fact",
+      "limitations": [
+        "The short pilot omits the intermediate examples; no universal all-emoji claim is warranted.",
+        "Already-wide strings and small strings need not show a near-fourfold increase."
+      ],
+      "subquestionIds": [
+        "q-boundaries"
+      ],
+      "text": "Not every non-ASCII addition forces four-byte slots: the supplied U+00E9 result remains one-byte and U+4E2D uses two-byte storage; the code-point range, not an emoji category, controls this mechanism."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e-pep",
+      "kind": "web",
+      "locator": "Abstract; Rationale; Specification; String Creation; String Access",
+      "retrievedAt": "2026-09-17T13:36:44+08:00",
+      "sourceVersion": "Final PEP; created 2010-01-24; targets Python 3.3; live page accessed 2026-09-17",
+      "summary": "Read the returned first 17000 characters; substantively used Abstract through String Access. Describes width selection by largest ordinal, compact ASCII/non-ASCII headers and separate representations. Later historical performance tables are not used for current sizes; tail was truncated.",
+      "title": "PEP 393 — Flexible String Representation",
+      "url": "https://peps.python.org/pep-0393/"
+    },
+    {
+      "id": "e-size-doc",
+      "kind": "web",
+      "locator": "sys.getsizeof definition and complete description, raw HTML id=sys.getsizeof",
+      "retrievedAt": "2026-09-17T13:36:58+08:00",
+      "sourceVersion": "Python 3.11 live documentation accessed 2026-09-17",
+      "summary": "Targeted raw HTML read of approximately 2700 characters after the anchor. Establishes directly attributed object size and __sizeof__ behavior. Initial web_fetch returned sys.implementation rather than the requested section; that result is not evidence for getsizeof.",
+      "title": "Python 3.11 sys.getsizeof documentation",
+      "url": "https://docs.python.org/3.11/library/sys.html#sys.getsizeof"
+    },
+    {
+      "id": "e-utf8",
+      "kind": "web",
+      "locator": "Encodings; Python's Unicode Support / The String Type; Converting to Bytes; Comparing Strings introductory example",
+      "retrievedAt": "2026-09-17T13:37:12+08:00",
+      "sourceVersion": "Python 3.11 live documentation accessed 2026-09-17",
+      "summary": "Read the web extraction beginning at Python's Unicode Support (12500-character cap), then targeted raw HTML Encodings through subsequent introductory context (10000-character cap). Supports per-code-point variable-length UTF-8, ASCII one-byte encoding, separate str.encode output, and distinction between code points and visually combined characters. The four-byte size of this specific example also has supplied empirical support.",
+      "title": "Python 3.11 Unicode HOWTO",
+      "url": "https://docs.python.org/3.11/howto/unicode.html"
+    },
+    {
+      "content": "Parent actually measured existing local CPython 3.11.15 using sys.getsizeof: 'a'*100000 length 100000 object 100049 B encoded UTF-8 100000 B; plus U+00E9 length 100001 object 100074 B UTF-8 100002 B; plus U+4E2D length 100001 object 200076 B UTF-8 100003 B; plus U+1F600 length 100001 object 400080 B UTF-8 100004 B. Supplied actual parent observation; not rerun by this author.",
+      "id": "e-parent",
+      "kind": "provided",
+      "locator": "Task message: four sys.getsizeof and encoded UTF-8 length observations",
+      "sourceVersion": "Supplied parent observation; CPython 3.11.15; task dated 2026-09-17",
+      "summary": "Read all four supplied rows. This is the parent's actual observation, not this author's experiment. No execution timestamp, full command output or architecture was supplied.",
+      "title": "Parent-supplied actual local CPython 3.11.15 measurement"
+    },
+    {
+      "content": "PyUnicode_New(Py_ssize_t size, Py_UCS4 maxchar)\n{\n    /* Optimization for empty strings */\n    if (size == 0) {\n        return unicode_new_empty();\n    }\n\n    PyObject *obj;\n    PyCompactUnicodeObject *unicode;\n    void *data;\n    enum PyUnicode_Kind kind;\n    int is_sharing, is_ascii;\n    Py_ssize_t char_size;\n    Py_ssize_t struct_size;\n\n    is_ascii = 0;\n    is_sharing = 0;\n    struct_size = sizeof(PyCompactUnicodeObject);\n    if (maxchar < 128) {\n        kind = PyUnicode_1BYTE_KIND;\n        char_size = 1;\n        is_ascii = 1;\n        struct_size = sizeof(PyASCIIObject);\n    }\n    else if (maxchar < 256) {\n        kind = PyUnicode_1BYTE_KIND;\n        char_size = 1;\n    }\n    else if (maxchar < 65536) {\n        kind = PyUnicode_2BYTE_KIND;\n        char_size = 2;\n        if (sizeof(wchar_t) == 2)\n            is_sharing = 1;\n    }\n    else {\n        if (maxchar > MAX_UNICODE) {\n            PyErr_SetString(PyExc_SystemError,\n                            \"invalid maximum character passed to PyUnicode_New\");\n            return NULL;\n        }\n        kind = PyUnicode_4BYTE_KIND;\n        char_size = 4;\n        if (sizeof(wchar_t) == 4)\n            is_sharing = 1;\n    }\n\n    /* Ensure we won't overflow the size. */\n    if (size < 0) {\n        PyErr_SetString(PyExc_SystemError,\n                        \"Negative size passed to PyUnicode_New\");\n        return NULL;\n    }\n    if (size > ((PY_SSIZE_T_MAX - struct_size) / char_size - 1))\n        return PyErr_NoMemory();\n\n    /* Duplicated allocation code from _PyObject_New() instead of a call to\n     * PyObject_New() so we are able to allocate space for the object and\n     * it's data buffer.\n     */\n    obj = (PyObject *) PyObject_Malloc(struct_size + (size + 1) * char_size);\n    if (obj == NULL) {\n        return PyErr_NoMemory();\n    }\n    _PyObject_Init(obj, &PyUnicode_Type);\n\n    unicode = (PyCompactUnicodeObject *)obj;\n    if (is_ascii)\n        data = ((PyASCIIObject*)obj) + 1;\n    else\n        data = unicode + 1;\n    _PyUnicode_LENGTH(unicode) = size;\n    _PyUnicode_HASH(unicode) = -1;\n    _PyUnicode_STATE(unicode).interned = 0;\n    _PyUnicode_STATE(unicode).kind = kind;\n    _PyUnicode_STATE(unicode).compact = 1;\n    _PyUnicode_STATE(unicode).ready = 1;\n    _PyUnicode_STATE(unicode).ascii = is_ascii;\n    if (is_ascii) {\n        ((char*)data)[size] = 0;\n        _PyUnicode_WSTR(unicode) = NULL;\n    }\n    else if (kind == PyUnicode_1BYTE_KIND) {\n        ((char*)data)[size] = 0;\n        _PyUnicode_WSTR(unicode) = NULL;\n        _PyUnicode_WSTR_LENGTH(unicode) = 0;\n        unicode->utf8 = NULL;\n        unicode->utf8_length = 0;\n    }\n    else {\n        unicode->utf8 = NULL;\n        unicode->utf8_length = 0;\n        if (kind == PyUnicode_2BYTE_KIND)\n            ((Py_UCS2*)data)[size] = 0;\n        else /* kind == PyUnicode_4BYTE_KIND */\n            ((Py_UCS4*)data)[size] = 0;\n        if (is_sharing) {\n            _PyUnicode_WSTR_LENGTH(unicode) = size;\n            _PyUnicode_WSTR(unicode) = (wchar_t *)data;\n        }\n        else {\n            _PyUnicode_WSTR_LENGTH(unicode) = 0;\n            _PyUnicode_WSTR(unicode) = NULL;\n        }\n    }\n#ifdef Py_DEBUG\n    unicode_fill_invalid((PyObject*)unicode, 0);\n#endif\n    assert(_PyUnicode_CheckConsistency((PyObject*)unicode, 0));\n    return obj;\n}",
+      "contentHash": "503d46d34888a9c5bc6b3be2d13a221ce7af3039ba83280b4714a22642c3e22d",
+      "id": "e-new",
+      "kind": "code",
+      "locator": "python/cpython Objects/unicodeobject.c::PyUnicode_New, signature through closing brace",
+      "sourceVersion": "2340a037f7450e70fccfe411e6531afb4d57a312",
+      "summary": "Read complete function at pinned commit, including empty shortcut, width/header selection, invalid max and overflow checks, single allocation, state setup and terminator. This is source evidence, not execution.",
+      "title": "CPython v3.11.15 Unicode allocation",
+      "url": "https://github.com/python/cpython/blob/2340a037f7450e70fccfe411e6531afb4d57a312/Objects/unicodeobject.c"
+    },
+    {
+      "content": "PyUnicode_Concat(PyObject *left, PyObject *right)\n{\n    PyObject *result;\n    Py_UCS4 maxchar, maxchar2;\n    Py_ssize_t left_len, right_len, new_len;\n\n    if (ensure_unicode(left) < 0)\n        return NULL;\n\n    if (!PyUnicode_Check(right)) {\n        PyErr_Format(PyExc_TypeError,\n                     \"can only concatenate str (not \\\"%.200s\\\") to str\",\n                     Py_TYPE(right)->tp_name);\n        return NULL;\n    }\n    if (PyUnicode_READY(right) < 0)\n        return NULL;\n\n    /* Shortcuts */\n    PyObject *empty = unicode_get_empty();  // Borrowed reference\n    if (left == empty) {\n        return PyUnicode_FromObject(right);\n    }\n    if (right == empty) {\n        return PyUnicode_FromObject(left);\n    }\n\n    left_len = PyUnicode_GET_LENGTH(left);\n    right_len = PyUnicode_GET_LENGTH(right);\n    if (left_len > PY_SSIZE_T_MAX - right_len) {\n        PyErr_SetString(PyExc_OverflowError,\n                        \"strings are too large to concat\");\n        return NULL;\n    }\n    new_len = left_len + right_len;\n\n    maxchar = PyUnicode_MAX_CHAR_VALUE(left);\n    maxchar2 = PyUnicode_MAX_CHAR_VALUE(right);\n    maxchar = Py_MAX(maxchar, maxchar2);\n\n    /* Concat the two Unicode strings */\n    result = PyUnicode_New(new_len, maxchar);\n    if (result == NULL)\n        return NULL;\n    _PyUnicode_FastCopyCharacters(result, 0, left, 0, left_len);\n    _PyUnicode_FastCopyCharacters(result, left_len, right, 0, right_len);\n    assert(_PyUnicode_CheckConsistency(result, 1));\n    return result;\n}",
+      "contentHash": "f04c0d7315b10f55e89a1c0d4fc3e34698c253924c0758a32c11d85dce14f294",
+      "id": "e-concat",
+      "kind": "code",
+      "locator": "python/cpython Objects/unicodeobject.c::PyUnicode_Concat, signature through closing brace",
+      "sourceVersion": "2340a037f7450e70fccfe411e6531afb4d57a312",
+      "summary": "Read complete concat function, including special cases and failure conditions. Tag resolution used official GitHub ref API then annotated-tag API. Supplementary header inspection of Include/cpython/unicodeobject.h::PyUnicode_MAX_CHAR_VALUE and FastCopyCharacters declaration showed the maximum is an approximate representation bound; only the concat function is preserved here.",
+      "title": "CPython v3.11.15 Unicode concatenation",
+      "url": "https://github.com/python/cpython/blob/2340a037f7450e70fccfe411e6531afb4d57a312/Objects/unicodeobject.c"
+    },
+    {
+      "content": "unicode_sizeof_impl(PyObject *self)\n/*[clinic end generated code: output=6dbc2f5a408b6d4f input=6dd011c108e33fb0]*/\n{\n    Py_ssize_t size;\n\n    /* If it's a compact object, account for base structure +\n       character data. */\n    if (PyUnicode_IS_COMPACT_ASCII(self))\n        size = sizeof(PyASCIIObject) + PyUnicode_GET_LENGTH(self) + 1;\n    else if (PyUnicode_IS_COMPACT(self))\n        size = sizeof(PyCompactUnicodeObject) +\n            (PyUnicode_GET_LENGTH(self) + 1) * PyUnicode_KIND(self);\n    else {\n        /* If it is a two-block object, account for base object, and\n           for character block if present. */\n        size = sizeof(PyUnicodeObject);\n        if (_PyUnicode_DATA_ANY(self))\n            size += (PyUnicode_GET_LENGTH(self) + 1) *\n                PyUnicode_KIND(self);\n    }\n    /* If the wstr pointer is present, account for it unless it is shared\n       with the data pointer. Check if the data is not shared. */\n    if (_PyUnicode_HAS_WSTR_MEMORY(self))\n        size += (PyUnicode_WSTR_LENGTH(self) + 1) * sizeof(wchar_t);\n    if (_PyUnicode_HAS_UTF8_MEMORY(self))\n        size += PyUnicode_UTF8_LENGTH(self) + 1;\n\n    return PyLong_FromSsize_t(size);\n}",
+      "contentHash": "359aead70b7c787c27e6e7ba0d25d9ec01ea9f4f42c734f446902da9bd98557d",
+      "id": "e-size-code",
+      "kind": "code",
+      "locator": "python/cpython Objects/unicodeobject.c::unicode_sizeof_impl, signature through closing brace",
+      "sourceVersion": "2340a037f7450e70fccfe411e6531afb4d57a312",
+      "summary": "Read complete function. Compact header, terminator and character storage are counted; separate wstr/UTF-8 memory is counted when present. This prevents treating the example totals as a universal fixed formula without object-state caveats.",
+      "title": "CPython v3.11.15 str.__sizeof__ implementation",
+      "url": "https://github.com/python/cpython/blob/2340a037f7450e70fccfe411e6531afb4d57a312/Objects/unicodeobject.c"
+    }
+  ],
+  "gaps": [],
+  "id": "cpython-string-width-20260917",
+  "kind": "mixed",
+  "language": "en",
+  "question": "Why does adding one U+1F600 GRINNING FACE to a long ASCII string make CPython str storage nearly four times larger while UTF-8 bytes barely change?",
+  "report": "# Why one grinning face widens a CPython string\n\n## Direct answer\nFor the ordinary compact strings in this example, CPython chooses one character-storage width for the entire resulting str. ASCII fits in one byte per code point. U+1F600 exceeds U+FFFF, so the new concatenated string uses four bytes for every code point, including its unchanged ASCII prefix. UTF-8 is a separate variable-length encoding: the existing ASCII bytes stay one byte each, and this added code point contributes four bytes. These are different representations, not a fourfold increase in file size or total process memory.\n\n## Scope, audience, method and question tree\nPurpose: support a 20–30 second English mechanism pilot for a curious reader who knows strings but not their representation. The bounded research session on 17 September 2026 read official PEP 393, selected Python 3.11 documentation, and selected CPython v3.11.15 source functions, then compared them with the parent-supplied actual local observation. No source checkout, dependency install, Python experiment, browser execution, speech request or rendering was performed. The time horizon is the pinned 3.11.15 implementation, not a claim about all current Python implementations. The question tree asks q-width first (the representation rule), then q-concat (how the result obtains that representation), q-measure (what the observed numbers measure), q-utf8 (why encoding differs), and q-boundaries (which generalizations fail). These dependencies determine the causal explanation; they are not independent votes from unrelated sources.\n\n## Mechanism and pinned path\nPEP 393, Abstract, Rationale, Specification and String Creation, describes 1/2/4-byte representations selected by the largest code point and an ASCII-specific compact header. It is a design source dating to 2010, targeting Python 3.3, not evidence that every historical enum detail remains identical in 3.11.\n\nThe python/cpython tag v3.11.15 resolves through annotated tag 2323bfc729b041c43b1e5e4c5f18c548fc345323 to commit 2340a037f7450e70fccfe411e6531afb4d57a312 (tagger date 2026-03-03). At that commit, Objects/unicodeobject.c::PyUnicode_Concat handles type/readiness checks, empty operands and length overflow before taking the greater representation range of its operands, allocating PyUnicode_New(new_len, maxchar), and copying both operands into the result. Include/cpython/unicodeobject.h::PyUnicode_MAX_CHAR_VALUE was also inspected: it returns a kind-dependent upper bound, not an exact maximum scanned on every concat. Thus the accurate implementation description is that concat combines existing representation ranges; it does not rescan every character to discover the maximum. PyUnicode_New chooses one-byte storage below 256 (with an ASCII-specific header below 128), two-byte storage below 65536, and four-byte storage otherwise. It allocates the header plus (length + 1) times the chosen width and writes a terminator. This establishes why a new result containing U+1F600 widens all stored code-point slots. The visual expansion is a diagram of the new representation, not an in-place mutation of the original immutable str. The entire interpreter opcode/optimized append path and copy helper body were not traced, and this research does not claim that the parent's exact expression dynamically called PyUnicode_Concat.\n\n## Supplied actual observation, not a new experiment\nThe parent reports an existing local CPython 3.11.15 observation using sys.getsizeof and encoded UTF-8 length:\n\n| Input | Code-point length | str object size, bytes | UTF-8 payload length, bytes |\n| --- | ---: | ---: | ---: |\n| 'a' repeated 100,000 times | 100000 | 100049 | 100000 |\n| baseline plus U+00E9 | 100001 | 100074 | 100002 |\n| baseline plus U+4E2D | 100001 | 200076 | 100003 |\n| baseline plus U+1F600 | 100001 | 400080 | 100004 |\n\nThe measurement was supplied as an actual parent observation, not executed or independently reproduced by this author. Its execution timestamp, complete command transcript and build configuration were not supplied. Do not invent them. The exact totals belong to that local build and object state. Python's sys.getsizeof documentation says it counts memory directly attributed to an object. The pinned unicode_sizeof_impl counts the compact header, character buffer and terminator, and separately allocated compatibility caches when present. Header differences explain why totals are only nearly fourfold, not exactly fourfold. In this supplied case, 100049 bytes becomes 400080 bytes; the UTF-8 payload grows by only four bytes. The encoded payload length is not sys.getsizeof of the bytes object and is not a measurement of a written file.\n\n## Counterexamples and alternative explanations\nU+00E9 contradicts the tempting claim that any non-ASCII character forces four-byte slots: it remains in the one-byte class, albeit with a larger non-ASCII header. U+4E2D demonstrates the intermediate two-byte class. The rule is a code-point range rule, not an emoji-detection rule; no claim is made about every emoji, multi-code-point emoji sequences, or user-perceived character counts. A string already in the four-byte class would not have the same multiplicative jump. Exact header/cache overhead varies by build and object history, and small strings need not show an approximately fourfold ratio. PEP 393 and implementation source share an implementation lineage, so they are design/implementation corroboration, not two independent empirical experiments. The supplied measurement is the separate observational evidence.\n\n## UTF-8 comparison\nPython 3.11 Unicode HOWTO, Encodings, describes ASCII as one byte and other code points as sequences of two, three or four bytes. Converting to Bytes distinguishes str.encode from internal Unicode storage. The supplied U+1F600 observation establishes the specific four-byte increment here. Its prefix remains ASCII under UTF-8; no uniform four-byte width is imposed on that encoded prefix.\n\n## Semantic reverse-check and limitations\nSupported: c-width follows PEP 393 and the pinned allocation branches, c-concat follows the pinned concat result allocation, c-measure preserves the parent's values and attribution, and c-utf8 preserves the distinction between encoded payload and str object size. Supported with stated boundaries: c-boundaries rejects the all-non-ASCII/all-emoji generalization using the supplied intermediate observations and the allocation thresholds. Corrected before sealing: wording must not imply an in-place mutation or an exact maximum scan on each concat. No unverified line numbers are supplied; function/section locators identify the actual reads. PEP extraction was truncated after 17,000 characters; only Abstract through String Access was used substantively. Initial web extraction of sys.html returned the wrong section; a targeted raw HTML section read corrected it. Initial HOWTO extraction began at Python's Unicode Support; the Encodings section was then read separately. Code files were downloaded into memory for targeted extraction; only the listed function bodies and helper/header context were read, not the full files. The preserved minimal code snapshots are inert text with hashes, not executed programs. Structural validation remains distinct from this source-support review and from later browser/audio/visual QA.\n\n## Stop\nThe narrow mechanism, specific numeric comparison and major misleading generalizations are resolved within the authorized read-only budget. Further interpreter tracing or measurement reproduction is unnecessary for this pilot and would require separately authorized execution. Actual video duration, readability, deterministic replay and narration quality remain untested until approved preview/speech/render stages.",
+  "researchLog": [
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-pep"
+      ],
+      "id": "log-pep",
+      "locator": "https://peps.python.org/pep-0393/",
+      "occurredAt": "2026-09-17T13:36:44+08:00",
+      "outcome": "success",
+      "readRange": "Returned Abstract through truncated Porting Guidelines; relied on Abstract through String Access only.",
+      "subquestionIds": [
+        "q-width",
+        "q-boundaries"
+      ],
+      "summary": "web_fetch direct official PEP; selected relevant sections within first 17000 returned characters."
+    },
+    {
+      "action": "failure",
+      "evidenceIds": [],
+      "id": "log-sys-extractor",
+      "locator": "https://docs.python.org/3.11/library/sys.html#sys.getsizeof",
+      "occurredAt": "2026-09-17T13:36:44+08:00",
+      "outcome": "failure",
+      "subquestionIds": [
+        "q-measure"
+      ],
+      "summary": "web_fetch returned sys.implementation instead of getsizeof; did not establish requested evidence; followed with targeted raw HTML read."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-size-doc"
+      ],
+      "id": "log-sys",
+      "locator": "https://docs.python.org/3.11/library/sys.html#sys.getsizeof",
+      "occurredAt": "2026-09-17T13:36:58+08:00",
+      "outcome": "success",
+      "readRange": "2700 raw HTML characters beginning at id=sys.getsizeof; complete requested description plus beginning of next entry.",
+      "subquestionIds": [
+        "q-measure"
+      ],
+      "summary": "Invoke-WebRequest and in-memory section extraction recovered actual getsizeof definition and description."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-new",
+        "e-concat",
+        "e-size-code"
+      ],
+      "id": "log-code",
+      "locator": "https://raw.githubusercontent.com/python/cpython/2340a037f7450e70fccfe411e6531afb4d57a312/Objects/unicodeobject.c",
+      "occurredAt": "2026-09-17T13:37:12+08:00",
+      "outcome": "success",
+      "readRange": "PyUnicode_New, PyUnicode_Concat, unicode_sizeof_impl: each signature through closing brace, not entire file.",
+      "subquestionIds": [
+        "q-width",
+        "q-concat",
+        "q-measure",
+        "q-boundaries"
+      ],
+      "summary": "Resolved v3.11.15 via official GitHub ref and annotated tag API, downloaded pinned raw source into memory, printed complete target function bodies and computed SHA-256 of each exact excerpt; no source execution."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-utf8"
+      ],
+      "id": "log-utf8",
+      "locator": "https://docs.python.org/3.11/howto/unicode.html",
+      "occurredAt": "2026-09-17T13:37:12+08:00",
+      "outcome": "success",
+      "readRange": "Initial 12500-character extraction from Python's Unicode Support; then 10000 raw HTML characters from id=encodings.",
+      "subquestionIds": [
+        "q-utf8",
+        "q-boundaries"
+      ],
+      "summary": "Read initial web extraction, then targeted raw HTML Encodings section to verify variable-width versus fixed-width comparison."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-concat"
+      ],
+      "id": "log-header-context",
+      "locator": "https://raw.githubusercontent.com/python/cpython/2340a037f7450e70fccfe411e6531afb4d57a312/Include/cpython/unicodeobject.h",
+      "occurredAt": "2026-09-17T13:37:26+08:00",
+      "outcome": "success",
+      "readRange": "Two 1800-character windows around PyUnicode_MAX_CHAR_VALUE and _PyUnicode_FastCopyCharacters, with 350 preceding characters each.",
+      "subquestionIds": [
+        "q-concat"
+      ],
+      "summary": "Supplementary pinned header read corrected the tempting exact-max-scan description: helper returns a representation upper bound. Inspected FastCopyCharacters declaration only, not its body; preserved concat evidence carries this context."
+    }
+  ],
+  "schemaVersion": "1.0.0",
+  "status": "complete",
+  "stopReason": "Official design, pinned allocation/concat/sizeof source and supplied actual parent observations resolve the narrow mechanism and major counterexamples. Stopped at read-only authoring scope; no runtime reproduction or video execution is authorized or claimed.",
+  "subquestions": [
+    {
+      "claimIds": [
+        "c-width"
+      ],
+      "gapIds": [],
+      "id": "q-width",
+      "question": "Which property selects storage width for this str?",
+      "status": "answered"
+    },
+    {
+      "claimIds": [
+        "c-concat"
+      ],
+      "gapIds": [],
+      "id": "q-concat",
+      "question": "How does the pinned concat allocation path choose the result representation?",
+      "status": "answered"
+    },
+    {
+      "claimIds": [
+        "c-measure"
+      ],
+      "gapIds": [],
+      "id": "q-measure",
+      "question": "What do the supplied object-size totals establish?",
+      "status": "answered"
+    },
+    {
+      "claimIds": [
+        "c-utf8"
+      ],
+      "gapIds": [],
+      "id": "q-utf8",
+      "question": "Why does the encoded payload grow by only four bytes?",
+      "status": "answered"
+    },
+    {
+      "claimIds": [
+        "c-boundaries"
+      ],
+      "gapIds": [],
+      "id": "q-boundaries",
+      "question": "Does every non-ASCII or emoji addition have the same effect?",
+      "status": "answered"
+    }
+  ],
+  "title": "One grinning face widens a CPython string, not its UTF-8 prefix"
+}

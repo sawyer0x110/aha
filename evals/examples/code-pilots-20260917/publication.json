@@ -1,0 +1,292 @@
+{
+  "status": "published-pilots-with-explicit-review-limits",
+  "publishedAt": "2026-09-17T06:19:03.617Z",
+  "userAuthorization": "保存到examples吧",
+  "outputs": [
+    {
+      "topic": "cpython-string",
+      "format": "video",
+      "file": "cpython-string/pilot.mp4",
+      "bytes": 596720,
+      "sha256": "c0a9da2471a627a52a309b7afcc8905a46a112fb93b91384afe41dcd5d93c386",
+      "sourceProject": "cpython-string/projects/video",
+      "sourceHash": "4500ece23a3fd2e282375d5f660c67631d0dd2b4a93cec66ff259fe30f2148c1",
+      "researchHash": "04cdf5f8906f1385f8575b9c99d46ae60bfe4c2c37e79982658a19d9d617daf8",
+      "report": "cpython-string/research/report.md",
+      "receipt": "cpython-string/pilot.mp4.json",
+      "durationSeconds": 21.466666666666665,
+      "frames": 644,
+      "provider": "edge-tts"
+    },
+    {
+      "topic": "docker-layers",
+      "format": "video",
+      "file": "docker-layers/pilot.mp4",
+      "bytes": 642211,
+      "sha256": "accbbfbae7640500d7702a3bf9248c7af31812fdcf0a9f231b7b3f28a1dfdba4",
+      "sourceProject": "docker-layers/projects/video",
+      "sourceHash": "31ece11dc0442006fac2e176b8f173a3385db16b45670ded8e8bfb3408ead31e",
+      "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
+      "report": "docker-layers/research/report.md",
+      "receipt": "docker-layers/pilot.mp4.json",
+      "durationSeconds": 21.266666666666666,
+      "frames": 638,
+      "provider": "edge-tts"
+    }
+  ],
+  "evidence": [
+    {
+      "file": "approvals.json",
+      "sha256": "f37b48d301f2e38d089cb6a665c7123ad85f1e02253f4576fae7257b3365fbd2"
+    },
+    {
+      "file": "cpython-string/author-review.json",
+      "sha256": "f8d0191a9cab8e231e4194765024f7851e672a99fdcdd0012fdb8df7e052094d"
+    },
+    {
+      "file": "cpython-string/encoded/1-ascii-baseline-end.png",
+      "sha256": "765eed2296e98d88e4f05efd1063e2f4b66c7909f28d39b1439daeb9d282b96e"
+    },
+    {
+      "file": "cpython-string/encoded/1-ascii-baseline-middle.png",
+      "sha256": "29eb50bcd80b72ab3cb458e795adff40f5999e853ed6e13053a8030d29ef8f38"
+    },
+    {
+      "file": "cpython-string/encoded/1-ascii-baseline-start.png",
+      "sha256": "8577834a06994a2fc1ad97675314ebb9798073065663bb6a04c4c0fcba493002"
+    },
+    {
+      "file": "cpython-string/encoded/2-whole-string-widens-end.png",
+      "sha256": "972d449bc50de8895c53309411d82817d729e7e4d318e900bd07131205fc42e8"
+    },
+    {
+      "file": "cpython-string/encoded/2-whole-string-widens-middle.png",
+      "sha256": "15bfe21ba33b10fda69b97600df7e2e08de78dbedf719d4d9bcaf061117182cd"
+    },
+    {
+      "file": "cpython-string/encoded/2-whole-string-widens-start.png",
+      "sha256": "3b8f6503abd6ae62848e0a9a091872d115b3b3a0b17606056c92f0eec683dba6"
+    },
+    {
+      "file": "cpython-string/encoded/3-utf8-contrast-end.png",
+      "sha256": "33ec1f246bb8e1f99db5933640bb46bcd14ebf02a195d0e2d586217068faeb31"
+    },
+    {
+      "file": "cpython-string/encoded/3-utf8-contrast-middle.png",
+      "sha256": "76af9c46f97a5b5e740d03a4f2bb36fca7a2a816c0d408d68be4df59b2c6dcff"
+    },
+    {
+      "file": "cpython-string/encoded/3-utf8-contrast-start.png",
+      "sha256": "84f1719d98dd7d9cbd21e425075505c6f2858f4f430982068e0a0c53b4c87541"
+    },
+    {
+      "file": "cpython-string/encoded/technical-review.json",
+      "sha256": "ce2c5946ebb65b50c5578c7a05080ba7f6a64e1f05f0f705799e3bbd5877815c"
+    },
+    {
+      "file": "cpython-string/preview/1-ascii-baseline-a-replay.png",
+      "sha256": "0e30eb73c6dfd6b7569a1e49a637d152db8e50802ccf8fef422cab72e8ef350e"
+    },
+    {
+      "file": "cpython-string/preview/1-ascii-baseline-a.png",
+      "sha256": "0e30eb73c6dfd6b7569a1e49a637d152db8e50802ccf8fef422cab72e8ef350e"
+    },
+    {
+      "file": "cpython-string/preview/1-ascii-baseline-b.png",
+      "sha256": "6114a4f9d54b5d404a7276789e5aa8119377f782eb6cddb91fa3f0ce540df06c"
+    },
+    {
+      "file": "cpython-string/preview/1-ascii-baseline-end.png",
+      "sha256": "3f777ba88f65ac09efe1cda4b94944cab4f12161f9db260933ee4e1b972785e9"
+    },
+    {
+      "file": "cpython-string/preview/1-ascii-baseline-start.png",
+      "sha256": "1629825e1241a356bb84fea4557f5b6b792cd53f753c2381a81a238f144b927d"
+    },
+    {
+      "file": "cpython-string/preview/2-whole-string-widens-a-replay.png",
+      "sha256": "cf9cc3dafd584fda0d58223d97f56f50d4649dcf7d1371027fe8c682ea5be8df"
+    },
+    {
+      "file": "cpython-string/preview/2-whole-string-widens-a.png",
+      "sha256": "cf9cc3dafd584fda0d58223d97f56f50d4649dcf7d1371027fe8c682ea5be8df"
+    },
+    {
+      "file": "cpython-string/preview/2-whole-string-widens-b.png",
+      "sha256": "b71433fd82bed50a3a54debae11a21f77128a3c03ade7342d09bde4c40311a81"
+    },
+    {
+      "file": "cpython-string/preview/2-whole-string-widens-end.png",
+      "sha256": "b71433fd82bed50a3a54debae11a21f77128a3c03ade7342d09bde4c40311a81"
+    },
+    {
+      "file": "cpython-string/preview/2-whole-string-widens-start.png",
+      "sha256": "fb6a053f9bd65e354a47e42505c1d9b6e212bb25abec2f84b1f6ab5ea18ea5df"
+    },
+    {
+      "file": "cpython-string/preview/3-utf8-contrast-a-replay.png",
+      "sha256": "d053ef82a0b97d7d472cdb73c583776054d38a07263d4888d159d83a0f316862"
+    },
+    {
+      "file": "cpython-string/preview/3-utf8-contrast-a.png",
+      "sha256": "d053ef82a0b97d7d472cdb73c583776054d38a07263d4888d159d83a0f316862"
+    },
+    {
+      "file": "cpython-string/preview/3-utf8-contrast-b.png",
+      "sha256": "d179a29f1c05f75f72aa2614d796524b9ef7c9b58e78bd0686a493779f730167"
+    },
+    {
+      "file": "cpython-string/preview/3-utf8-contrast-end.png",
+      "sha256": "e526c0160704d60a6cd278c4b9735a17911f68f20205b143de79cbc65b4cde53"
+    },
+    {
+      "file": "cpython-string/preview/3-utf8-contrast-start.png",
+      "sha256": "b25894b201d82dfe1e0838c21905108592068015e8703a829314b0111e96990a"
+    },
+    {
+      "file": "cpython-string/preview/report.json",
+      "sha256": "289721f77a73f34ddcca8d08480c07236de7f7dd578b1011f455404021eb1288"
+    },
+    {
+      "file": "delivery.json",
+      "sha256": "923d44a1e338a12d22460ab3f2b2e297de43b78d73885556d634a890e8c3959f"
+    },
+    {
+      "file": "docker-layers/author-review.json",
+      "sha256": "8abd83c9014aa2cb76268ea563a3b75e2e507b3bc7d91f6c81ed45714ba50434"
+    },
+    {
+      "file": "docker-layers/encoded/1-layer-added-end.png",
+      "sha256": "449fce89752074f4c70c2afe1ac1c9f8af8e18d1237e49c6b2c84f5f1aedcf32"
+    },
+    {
+      "file": "docker-layers/encoded/1-layer-added-middle.png",
+      "sha256": "e28233109252326f40948a94e6fc5d45130b52ed0a9c1ec8677bf4971fbfe8df"
+    },
+    {
+      "file": "docker-layers/encoded/1-layer-added-start.png",
+      "sha256": "1166cb52a30b94a7940c946ac3b753c9ac3c797fc351a90b947bc2b59aa34008"
+    },
+    {
+      "file": "docker-layers/encoded/2-later-delete-end.png",
+      "sha256": "69f2736a7fca4e8c3bfc1a015351a0cd8139569d78d5da5a91c06011064a988e"
+    },
+    {
+      "file": "docker-layers/encoded/2-later-delete-middle.png",
+      "sha256": "97d6ba012f32566b2109d21160b7722254ecf5c6dd0ac84835e988b7a5257800"
+    },
+    {
+      "file": "docker-layers/encoded/2-later-delete-start.png",
+      "sha256": "6c9be2976ee73a3ba8535178311af738056f724971189bdb34bd57b97af623f6"
+    },
+    {
+      "file": "docker-layers/encoded/3-same-run-end.png",
+      "sha256": "a03c2fdfd6cf0080660844a8bbd7208fe02951b6b089a6a1f4df78c7592d228c"
+    },
+    {
+      "file": "docker-layers/encoded/3-same-run-middle.png",
+      "sha256": "89c4e2eb047997d27bac3741a3acba819411f4116fd856fbf37a0b578aeef89e"
+    },
+    {
+      "file": "docker-layers/encoded/3-same-run-start.png",
+      "sha256": "689645ad35442a08c41bf1c84f71f1bbf08bcef221b470a29e075c6e480228aa"
+    },
+    {
+      "file": "docker-layers/encoded/technical-review.json",
+      "sha256": "b1df0007959bc5fb497c5de175a8d0d977884b6b4e4a54a1f171ad8be376ec0c"
+    },
+    {
+      "file": "docker-layers/original-attempt/failure.json",
+      "sha256": "0d49fe7ae496a17d102b1f40d58ed63a4eef7829650c55bf9d670b40614cd4ab"
+    },
+    {
+      "file": "docker-layers/original-attempt/recordings.json",
+      "sha256": "7e05adbcfce78b8f369595a8050f2bbd827ed898088fb72ac89e2cd570babe65"
+    },
+    {
+      "file": "docker-layers/original-attempt/video-plan.json",
+      "sha256": "89934aaa7f0839f78fb9c067ec3ed3ed4b65ce490df543d5aea3556ca8e0250c"
+    },
+    {
+      "file": "docker-layers/preview/1-layer-added-a-replay.png",
+      "sha256": "512ff76f77ab7e1b54dc1ccc476d341fe41b7bbdaba50113c888bcff420969e3"
+    },
+    {
+      "file": "docker-layers/preview/1-layer-added-a.png",
+      "sha256": "512ff76f77ab7e1b54dc1ccc476d341fe41b7bbdaba50113c888bcff420969e3"
+    },
+    {
+      "file": "docker-layers/preview/1-layer-added-b.png",
+      "sha256": "75702f1f12484761a0df69f70838bc35e5721d05687dca5b20da7a380eab991b"
+    },
+    {
+      "file": "docker-layers/preview/1-layer-added-end.png",
+      "sha256": "75702f1f12484761a0df69f70838bc35e5721d05687dca5b20da7a380eab991b"
+    },
+    {
+      "file": "docker-layers/preview/1-layer-added-start.png",
+      "sha256": "b14333ae32d20a6c510bd2188d565e6fb304fec35a3267bbcabb53a5639a6367"
+    },
+    {
+      "file": "docker-layers/preview/2-later-delete-a-replay.png",
+      "sha256": "89b76018c339bc550bd9081ab54405c4bd28f5f3c459a90b6c33c4e238a167d7"
+    },
+    {
+      "file": "docker-layers/preview/2-later-delete-a.png",
+      "sha256": "89b76018c339bc550bd9081ab54405c4bd28f5f3c459a90b6c33c4e238a167d7"
+    },
+    {
+      "file": "docker-layers/preview/2-later-delete-b.png",
+      "sha256": "3fc31600553db52f7ce88ec0f0b7b739cabf004acca58b2b32f9e6c828941eed"
+    },
+    {
+      "file": "docker-layers/preview/2-later-delete-end.png",
+      "sha256": "3fc31600553db52f7ce88ec0f0b7b739cabf004acca58b2b32f9e6c828941eed"
+    },
+    {
+      "file": "docker-layers/preview/2-later-delete-start.png",
+      "sha256": "89b76018c339bc550bd9081ab54405c4bd28f5f3c459a90b6c33c4e238a167d7"
+    },
+    {
+      "file": "docker-layers/preview/3-same-run-a-replay.png",
+      "sha256": "7ee4c8ea89ab09663133e91d203669a76058a77aa54f7142d6316e95500a2a9c"
+    },
+    {
+      "file": "docker-layers/preview/3-same-run-a.png",
+      "sha256": "7ee4c8ea89ab09663133e91d203669a76058a77aa54f7142d6316e95500a2a9c"
+    },
+    {
+      "file": "docker-layers/preview/3-same-run-b.png",
+      "sha256": "d160e46ffbd452c59eafd69df40ad8269e9935a83ab846290c0b291db4fdf4e0"
+    },
+    {
+      "file": "docker-layers/preview/3-same-run-end.png",
+      "sha256": "d160e46ffbd452c59eafd69df40ad8269e9935a83ab846290c0b291db4fdf4e0"
+    },
+    {
+      "file": "docker-layers/preview/3-same-run-start.png",
+      "sha256": "2c3dc88bfbe8f9a7d6edcab65b130bfb87a65ac1afea9ccb4c7a8c85af442374"
+    },
+    {
+      "file": "docker-layers/preview/report.json",
+      "sha256": "3e2dd4f5a84968abfd03e5bedc299e862f08a56377cd79ccbb14e3d60c426b20"
+    },
+    {
+      "file": "docker-revision-approval.json",
+      "sha256": "455bff8971ea320a2f6634864093cc5525402df1d22fe2f41ed1c5f61ff21bf5"
+    },
+    {
+      "file": "preflight-visual-review.json",
+      "sha256": "df5fd55131b0901d193b437c714daf6a2bfad8111242ef00afeff6ba04c2d861"
+    },
+    {
+      "file": "semantic-state-review.json",
+      "sha256": "2d1a770516d282dc55f5b49bae676f615c008aa698135876da55fd596b5c7bc3"
+    }
+  ],
+  "completeVideoListeningAndViewing": "not-confirmed",
+  "visualCoverage": "Partial; blocked image delivery is preserved in the attached reviews, not relabelled as passed.",
+  "currentPaths": "examples/{topic}/; delivery.json and author reviews preserve original working paths as historical context.",
+  "oldExamplesUnchanged": true,
+  "commitOrMergeRequested": false
+}
