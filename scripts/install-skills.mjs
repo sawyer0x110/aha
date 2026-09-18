@@ -5,6 +5,7 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 export const skillNames = ['aha-research', 'aha-explain'];
+export const releaseRootFiles = ['INSTALL.md', 'INSTALL.zh-CN.md', 'LICENSE', 'LICENSE-SCOPE.md', 'install-skills.mjs'];
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 const json = value => `${JSON.stringify(value, null, 2)}\n`;
 
@@ -23,7 +24,7 @@ export function allowedSkillFile(relative) {
   if (relative.split('/').filter(part => part === 'node_modules').length > 1) return false;
   if (relative.split('/').some(part => /^(?:\.|__pycache__$|\.venv$|examples$|logs?$|tokens?$)/i.test(part))) return false;
   if (/(^|\/)(?:secrets?|tokens?|credentials?|cookies?)(?:[.-]|$)|\.(?:log|pyc|pem|key|pfx)$/i.test(relative)) return false;
-  return /^(SKILL\.md|THIRD-PARTY-NOTICES\.txt|runtime-manifest\.json|scripts\/aha\.mjs)$/.test(relative) ||
+  return /^(SKILL\.md|LICENSE|LICENSE-SCOPE\.md|THIRD-PARTY-NOTICES\.txt|runtime-manifest\.json|scripts\/aha\.mjs)$/.test(relative) ||
     /^references\/[a-z0-9-]+\.md$/.test(relative) ||
     /^schemas\/(research-draft|dossier|artifact|video-plan|audio-manifest|provided-audio)\.schema\.json$/.test(relative) ||
     /^assets\/runtime\/mermaid\.js$/.test(relative) ||
@@ -180,7 +181,7 @@ export async function install({ host, project, apply = false, source = path.dirn
   const actual = {};
   for (const [relative, bytes] of Object.entries(release)) {
     if (relative === 'release-manifest.json') continue;
-    if (relative !== 'install-skills.mjs' && relative !== 'INSTALL.md') {
+    if (!releaseRootFiles.includes(relative)) {
       const [top, name, ...parts] = relative.split('/');
       if (top !== 'skills' || !skillNames.includes(name) || !allowedSkillFile(parts.join('/'))) {
         throw new Error(`File not allowlisted: ${relative}`);

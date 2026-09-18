@@ -40,7 +40,7 @@ jobs:
       - run: npm run typecheck
       - run: npm run build
       - name: Check distribution and installed command contracts
-        run: node --import tsx --test .\tests\distribution.test.ts .\tests\cli.test.ts .\tests\skills.test.ts
+        run: node --import tsx --test .\tests\distribution.test.ts .\tests\cli.test.ts .\tests\skills.test.ts .\tests\docs.test.ts
       - name: Create release assets
         id: package
         run: |
@@ -76,6 +76,9 @@ jobs:
             .\release-assets\release-manifest.json `
             .\release-assets\SHA256SUMS.txt `
             .\release-assets\INSTALL.md `
+            .\release-assets\INSTALL.zh-CN.md `
+            .\release-assets\LICENSE `
+            .\release-assets\LICENSE-SCOPE.md `
             --repo $env:GITHUB_REPOSITORY --verify-tag `
             --title "Aha Skills $Version" --generate-notes
           if ($LASTEXITCODE -ne 0) { throw 'Release publishing failed; existing releases are not overwritten.' }

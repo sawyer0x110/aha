@@ -1,6 +1,6 @@
 # Aha 架构与实现边界
 
-当前源码 runtime 为 `0.3.1`，研究及作品协议为 `1.0.0`。产品行为见 [PRD](PRD.md)，命令、安装与发布状态见 [README](../README.md)。
+当前源码 runtime 为 `0.3.1`，研究及作品协议为 `1.0.0`。产品行为见 [PRD](PRD.md)，命令见[使用指南](USAGE.zh-CN.md)，安装见[安装指南](../INSTALL.zh-CN.md)，发布状态见 [README](../README.md)。
 
 ## 仓库目录导航
 
@@ -126,9 +126,11 @@ PNG 使用独立 HTML/SVG 构图，经批准后由浏览器捕获元数据指定
 
 依赖按步骤诊断，缺失只影响相关操作：研究和 HTML 打包不需要浏览器，PNG 需要浏览器，视频渲染需要浏览器及 FFmpeg／ffprobe，在线配音另需 Python／Edge TTS。诊断不安装软件或证明在线服务可用。
 
-构建输出为 `dist/skills/aha-research` 和 `dist/skills/aha-explain`，各自携带 CLI、Schema、合并参考、本地 Mermaid、Playwright 库和第三方声明；源码 `skills/` 不是独立安装包。发布器生成 ZIP、清单、SHA-256 和安装工具，不自动上传；安装默认 dry-run，拒绝冲突及覆盖。
+构建输出为 `dist/skills/aha-research` 和 `dist/skills/aha-explain`，各自携带 CLI、Schema、合并参考、本地 Mermaid、Playwright 库、Aha 的 `LICENSE`／`LICENSE-SCOPE.md` 和第三方声明；源码 `skills/` 不是独立安装包。发布器将根目录中英文安装指南原字节复制到 ZIP 和发布资产，不维护脚本内的另一套安装文案。ZIP 另含 Aha 许可与范围说明、清单和安装工具，外部 SHA-256 覆盖发布资产；安装白名单只接受明确列出的文件。旧格式包不因缺少后来新增的文档而被新安装器自动拒绝。打包不自动上传，安装默认 dry-run、拒绝冲突及覆盖。
 
 实际依赖包括 Mermaid、parse5、PptxGenJS、TypeBox 和 Playwright，按锁定版本分发并保留 `THIRD-PARTY-NOTICES.txt`。浏览器、FFmpeg、Python 和 Edge TTS 客户端不随包分发；客户端许可不替代在线服务条款及数据授权。字体、图片、音频等素材需单独核实来源与再分发权限，不能把公开可读或非商业许可当作任意商用许可。
+
+Aha 原创部分采用 [MIT](../LICENSE)，第三方材料的独立许可见[许可范围](../LICENSE-SCOPE.md)。旧版 Release 不被源码变更覆盖；发布含新增许可和文档的安装包时须使用新版本。`package.json` 的 `private: true` 防止误发 npm，与 GitHub 仓库是否公开无关。
 
 ## 6. 修订与交付身份
 

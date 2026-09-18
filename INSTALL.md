@@ -1,153 +1,231 @@
-# 安装 Aha Skills（供用户与 Agent）
+# Install Aha Skills
 
-本文件是源码仓库的稳定安装入口。请安装 **Release 中构建好的完整包**，不要把源码 `skills` 目录直接复制到宿主；源码缺少运行时、Schema 和合并后的共享参考。
+[English](INSTALL.md) | [简体中文](INSTALL.zh-CN.md) · [Project](https://github.com/sawyer0x110/aha/blob/main/README.md) · [Usage](https://github.com/sawyer0x110/aha/blob/main/docs/USAGE.md)
 
-统一推荐项目级 **`.agents\skills`**，每次安装 `aha-research`、`aha-explain` 两个 Skill，**不限定 Agent 品牌**。安装流程的宿主案例覆盖 Copilot／Codex；其他 Agent 自行判断技能发现与执行能力，不能据此宣称所有宿主兼容。全局安装和自动升级暂不支持。文件安装、宿主发现、自然语言触发和实际任务执行是四个独立结果，不能互相代替。
+Install the **complete built release package**, not the source `skills` directory. The recommended location for every host is project-local `.agents\skills`. The installer installs exactly `aha-research` and `aha-explain`; each carries its own runtime, schemas, references, bundled JS dependencies, and third-party notices. Recipients need **Node.js 22+**, but **not `npm install`**.
 
-## 给 Agent 的任务入口
+This guide is usable in a source checkout and, when included, an extracted release ZIP. **Package commands run in the extracted ZIP, not the source checkout.** Source-building commands are separately labeled below.
 
-可以将本文件链接交给 Agent：
+Windows has been exercised. macOS/Linux have not been verified; POSIX path examples do not guarantee support. Installer host cases cover Copilot/Codex, not live host acceptance or a brand allowlist. Other agents must check their own discovery and execution capabilities. File installation, host discovery, natural-language routing, and actual task completion are four separate results.
 
-> 按 https://github.com/sawyer0x110/aha/blob/main/INSTALL.md 将 Aha Skills 安装到当前项目。先确认宿主、项目绝对路径与安装授权，展示所选 Release 和 dry-run 结果，再安装。检查两个运行时、宿主发现和最小任务；遇到缺失依赖或权限时报告阻塞，不自动安装其他软件、不覆盖旧目录，不把未执行的检查标为通过。
+Current source/package runtime is **0.3.1**, with research/artifact schemas **1.0.0**. Published `v0.3.1` is a historical package. These documentation/packaging changes are pending a future release; they do not change that release's assets.
 
-## 1. 安装前确认
+## Ask your agent to install
 
-- 已获准下载、解压安装包并写入目标项目；安装脚本是可执行代码，应先审阅或信任其来源。
-- 确认当前 Agent 是否发现项目 `.agents\skills`，能否读取参考文件并通过 shell 调用 Node；这不依赖品牌白名单。目标是已存在的项目绝对路径，不能是用户主目录或文件系统根目录。
-- 已安装 Node.js **22+**；运行 `node --version` 确认。缺失时先报告，并另行取得安装授权。
-- 下载来源为 [本仓库 Releases](https://github.com/sawyer0x110/aha/releases)。优先使用用户指定版本，否则选择最新正式 Release 并记录实际 tag，不追随浮动版本重复下载。
-- 在目标项目外使用一个新的下载／解压目录。不要将安装包下载进源码或现有 Skill 目录。
-- 暂停目标项目中正在使用这些 Skill 的宿主。安装不是两个目录的原子替换，不应并发修改安装源或目标。
+> Follow https://github.com/sawyer0x110/aha/blob/main/INSTALL.md to install Aha into this project. Confirm the host, absolute project path, and installation permission. Show the selected release and dry-run before applying. Check both runtimes, host discovery, and minimal tasks. Report missing dependencies or permissions; do not install other software, overwrite existing directories, or mark unperformed checks as passed.
 
-**如果没有正式 Release，停止并说明“安装包尚未发布”。** 不要猜测下载 URL，也不要将 GitHub 自动生成的 Source code ZIP 当成可安装包。经用户同意后，可走本文末尾的源码构建路线。
+## 1. Before downloading
 
-## 2. 获取完整发布包并校验
+- Obtain permission to download, extract, and write to the target project. The installer is executable code: review it or trust its source before running it.
+- Confirm the host can discover project `.agents\skills`, read references, and invoke Node through a shell. Use an **existing absolute project path**, not a home directory or filesystem root.
+- Check `node --version` for **22+**. If missing, report the blocker and obtain separate installation permission.
+- Use [official Releases](https://github.com/sawyer0x110/aha/releases). Prefer the user's selected version; otherwise choose the latest stable release and record the actual tag. Do not repeatedly follow a floating version.
+- Use a **new, empty download directory outside the target project**, source checkout, and existing skill directories.
+- Pause hosts using the target skills. Installation is not an atomic two-directory replacement; do not concurrently modify source or target. A local filesystem supporting hard links is required. Unsafe paths, symlinks/junctions, and hash mismatches are refused.
 
-每个 Release 应包含：
+If no stable release exists, stop and say the package is unavailable. Do not guess asset URLs or use GitHub's automatically generated **Source code** ZIP as an installation package. An authorized source-build alternative appears below.
+
+## 2. Download and verify the release
+
+The published `v0.3.1` assets are:
 
 ```text
-aha-skills-<version>.zip
-SHA256SUMS.txt
+aha-skills-0.3.1.zip
 release-manifest.json
+SHA256SUMS.txt
 INSTALL.md
 ```
 
-可通过 Releases 页面下载，也可使用已有的 GitHub CLI。以下 PowerShell 示例在**新的空下载目录**中执行；任一命令失败都应停止：
+For the selected version, the baseline is its versioned ZIP, manifest, checksum file, and `INSTALL.md`. Future packages are intended to add `INSTALL.zh-CN.md`, `LICENSE`, and bilingual `LICENSE-SCOPE.md` inside the ZIP and as release assets. **Do not require these additional files for historical `v0.3.1`.** Do not add new documents to an old extracted ZIP: its manifest describes its original contents.
+
+### PowerShell download and SHA256 check
+
+Use an already-installed GitHub CLI, in the new empty download directory. Replace the tag lookup with `$Tag = 'v0.3.1'` when that is the version explicitly selected by the user. Stop on every failure:
 
 ```powershell
-# 如果用户指定了版本，直接设置该 tag，不查询 latest。
+$ErrorActionPreference = 'Stop'
+if (@(Get-ChildItem -Force).Count -ne 0) { throw 'Use a new empty download directory.' }
+
 $Tag = gh release view --repo sawyer0x110/aha --json tagName --jq .tagName
-if ($LASTEXITCODE -ne 0) { throw "无法获取正式 Release；停止安装。" }
-if ($Tag -notmatch '^v\d+\.\d+\.\d+$') { throw "请选择有效的正式版本 tag。" }
+if ($LASTEXITCODE -ne 0) { throw 'Cannot resolve a stable release.' }
+if ($Tag -notmatch '^v\d+\.\d+\.\d+$') { throw 'Select a stable version tag.' }
 $Version = $Tag.Substring(1)
 $Archive = "aha-skills-$Version.zip"
+$Required = @($Archive, 'release-manifest.json', 'INSTALL.md')
+$Allowed = $Required + @('INSTALL.zh-CN.md', 'LICENSE', 'LICENSE-SCOPE.md')
 
-gh release download $Tag --repo sawyer0x110/aha `
-  --pattern $Archive --pattern SHA256SUMS.txt `
-  --pattern release-manifest.json --pattern INSTALL.md
-if ($LASTEXITCODE -ne 0) { throw "Release 下载失败；不要使用不完整的文件。" }
+# Download all assets belonging to this tag, without overwriting existing files.
+gh release download $Tag --repo sawyer0x110/aha
+if ($LASTEXITCODE -ne 0) { throw 'Download failed; do not use partial files.' }
 
-foreach ($Name in @($Archive, 'release-manifest.json', 'INSTALL.md')) {
-  $Lines = @(Get-Content .\SHA256SUMS.txt | Where-Object {
-    $_ -match ('^[0-9a-f]{64}  ' + [regex]::Escape($Name) + '$')
-  })
-  if ($Lines.Count -ne 1) { throw "校验条目缺失或重复：$Name" }
-  $Expected = $Lines[0].Substring(0, 64)
-  $Actual = (Get-FileHash -Algorithm SHA256 -LiteralPath $Name).Hash
-  if ($Actual -ne $Expected) { throw "SHA256 不匹配：$Name" }
+foreach ($File in Get-ChildItem -Force) {
+  if ($File.PSIsContainer -or (($Allowed + @('SHA256SUMS.txt')) -cnotcontains $File.Name)) {
+    throw "Unexpected asset; review before proceeding: $($File.Name)"
+  }
+}
+foreach ($Name in ($Required + @('SHA256SUMS.txt'))) {
+  if (-not (Test-Path -LiteralPath $Name -PathType Leaf)) { throw "Missing asset: $Name" }
 }
 
-if (Test-Path .\extracted) { throw "请选择新的解压目录。" }
-Expand-Archive -LiteralPath $Archive -DestinationPath .\extracted -ErrorAction Stop
+$Checksums = @{}
+foreach ($Line in Get-Content -LiteralPath .\SHA256SUMS.txt) {
+  if ($Line -cnotmatch '\A([0-9a-f]{64})  ([^\r\n]+)\z') { throw 'Malformed checksum line.' }
+  $Hash = $Matches[1]
+  $Name = $Matches[2]
+  # An exact filename allowlist rejects path traversal, absolute paths, and aliases.
+  if ($Allowed -cnotcontains $Name) { throw "Unsafe or unexpected checksum name: $Name" }
+  if ($Checksums.ContainsKey($Name)) { throw "Duplicate checksum: $Name" }
+  $Checksums[$Name] = $Hash
+}
+foreach ($Name in $Checksums.Keys) {
+  if (-not (Test-Path -LiteralPath $Name -PathType Leaf)) { throw "Missing checksummed asset: $Name" }
+}
+foreach ($File in Get-ChildItem -File -Force) {
+  if ($File.Name -ceq 'SHA256SUMS.txt') { continue }
+  if (-not $Checksums.ContainsKey($File.Name)) { throw "Missing checksum: $($File.Name)" }
+  if ((Get-FileHash -Algorithm SHA256 -LiteralPath $File.FullName).Hash -ne $Checksums[$File.Name]) {
+    throw "SHA256 mismatch: $($File.Name)"
+  }
+}
+$Manifest = Get-Content -Raw -LiteralPath .\release-manifest.json | ConvertFrom-Json
+if ($Manifest.version -cne $Version) { throw 'Tag and manifest version differ.' }
+
+if (Test-Path -LiteralPath .\extracted) { throw 'Use a new extraction directory.' }
+Expand-Archive -LiteralPath $Archive -DestinationPath .\extracted
 ```
 
-没有 `gh` 时，用宿主已有的下载工具获取**同一 tag**的上述文件，不必为此自动安装 GitHub CLI。SHA256 检测损坏与内容不一致，不证明发布者身份；校验文件必须来自可信来源。安装器还会校验解压包内每个文件及两个 Skill 的运行时清单。
+This verifies the mandatory three hashed baseline assets and **every downloaded supplemental document**. It rejects malformed lines, duplicates, missing entries/files, and any filename outside the exact list. If a later release changes the asset layout, review its instructions rather than weakening these checks.
 
-## 3. 预检与安装
+### Manual download / POSIX alternative
 
-从解压目录执行，替换项目绝对路径，无需传入宿主名称：
+Without `gh`, use the Releases page and existing download tools to save **all attached assets for the same tag** into a new empty directory; do not automatically install a downloader. On POSIX, use an already-available SHA256 tool (for example `sha256sum` or `shasum -a 256`, if present). Apply the same checks above: require the three baseline hash entries, check every downloaded supplemental document, reject duplicate/malformed entries and non-allowlisted names **before** handing a checksum file to a tool, and compare each digest. Stop if verification cannot be completed. Extract the verified ZIP into a new directory using an existing archive tool.
+
+SHA256 detects corruption and inconsistent content, **not publisher authenticity**; get the checksum file from a trusted source. The installer additionally checks every extracted payload file, the content identity, and both runtime manifests. Keep the extracted payload unchanged and keep downloaded assets beside—not inside—the extraction directory.
+
+## 3. Dry-run, then install
+
+Starting in the download directory, enter the **extracted package directory** and replace the target with your authorized absolute project path. If already inside the verified extracted package, omit `Set-Location`:
 
 ```powershell
+$ErrorActionPreference = 'Stop'
 Set-Location .\extracted
 $Project = 'C:\your-project'
 node .\install-skills.mjs --project $Project
-if ($LASTEXITCODE -ne 0) { throw "预检失败；未执行安装。" }
-
-# 审阅 dry-run 的 project、destination、skills 和 contentHash，
-# 确认其符合用户授权后，才执行：
-node .\install-skills.mjs --project $Project --apply
-if ($LASTEXITCODE -ne 0) { throw "安装失败；检查错误和目标目录，不强制重试。" }
+if ($LASTEXITCODE -ne 0) { throw 'Preflight failed; stop.' }
 ```
 
-所有宿主使用相同的推荐安装位置：`.agents\skills\aha-research` 和 `.agents\skills\aha-explain`。为兼容已有调用，保留可选 `--host <任意非空标签>`，只记录在结果中，不决定安装路径或证明宿主兼容性。
+Review `project`, `destination`, `skills`, and `contentHash`. Only after confirming they match the user's authorization:
 
-安装包自带 JS 运行时依赖，**接收方不需要 `npm install`**。安装器仅使用 Node 内置模块，需要支持硬链接的本地文件系统；没有 `--force`、全局安装或单 Skill 选择参数。POSIX 环境使用对应正斜杠路径和绝对项目路径。
+```powershell
+node .\install-skills.mjs --project $Project --apply
+if ($LASTEXITCODE -ne 0) { throw 'Installation failed; inspect the error and target before retrying.' }
+```
 
-### 冲突与升级
+Equivalent **POSIX path examples** (not a claim of verified platform support); omit `cd` if already inside the extracted package:
 
-目标 Skill 已存在时安装器拒绝覆盖。在 `.github` 或 `.claude` 的 skills 目录发现同名 Skill，或在 `.github`、`.agents`、`.claude` 发现旧 `aha-lab`／`aha-story` 入口时，也会拒绝安装。不要通过跳过检查或删除目录来继续。
+```sh
+cd ./extracted || exit 1
+node ./install-skills.mjs --project "/absolute/path/to/project" || exit 1
+# Stop to review the dry-run and obtain authorization before the next command.
+node ./install-skills.mjs --project "/absolute/path/to/project" --apply || exit 1
+```
 
-先读取已有 `runtime-manifest.json`，报告当前版本与拟安装版本。取得明确授权后，将旧目录移到**宿主发现路径之外**的备份目录，再重新预检安装。Agent 还应检查该宿主特有的其他发现路径是否存在同名副本，避免重复；安装器不会自动清理它们。需要回退时，同样先取得授权，移开新安装后恢复备份。不要合并新旧文件或手改哈希。
+The default is dry-run. Both skills go into `.agents\skills\aha-research` and `.agents\skills\aha-explain`. Optional `--host <nonempty-label>` records metadata only; it does not choose a path or prove compatibility. There is no `--force`, overwrite, global installation, automatic upgrade, or single-skill selection option. Failure rolls back only this invocation's owned installation work; empty discovery parents may remain. Inspect failures rather than deleting broad directories.
 
-## 4. 确认运行时与宿主发现
+### Scope conflicts and upgrades
 
-所有宿主使用相同的安装目录：
+The installer refuses existing target skills, same-name skills under `.github\skills` or `.claude\skills`, and legacy `aha-lab` / `aha-story` entries under `.github\skills`, `.agents\skills`, or `.claude\skills`. Do not bypass these checks.
+
+Read the existing `runtime-manifest.json` and report installed/proposed versions. With **explicit authorization**, move the exact conflicting directories into a backup **outside every host discovery path**, then rerun dry-run and install. Check other host-specific discovery paths as well; the installer does not clean them. Do not merge old and new files or edit hashes. Rollback likewise requires authorization: move the new installation out of discovery, then restore the backup.
+
+## 4. Check both runtimes and host discovery
 
 ```powershell
 node "C:\your-project\.agents\skills\aha-research\scripts\aha.mjs" doctor
+if ($LASTEXITCODE -ne 0) { throw 'Research runtime check failed.' }
 node "C:\your-project\.agents\skills\aha-explain\scripts\aha.mjs" doctor
+if ($LASTEXITCODE -ne 0) { throw 'Explain runtime check failed.' }
 ```
 
-逐个检查退出码和 JSON 输出。基础 `doctor` 不检查可选媒体工具；需要时使用 `doctor --for image`、`--for video` 或 `--for speech`，同时检查 `mediaReadiness`，不能只看进程是否成功退出。
+For POSIX paths, use `node "/absolute/path/to/project/.agents/skills/aha-research/scripts/aha.mjs" doctor` and repeat for `aha-explain`. Inspect JSON as well as exit codes.
 
-启动／刷新目标项目的宿主，查看其技能列表。支持该命令的 Copilot CLI 可运行：
+Start/refresh the host in the target project and inspect its skill list. Copilot CLI versions supporting this command can use:
 
 ```powershell
 copilot -C "C:\your-project" skill list
 ```
 
-应看到 `aha-research` 和 `aha-explain`。Codex 及其他 Agent 使用各自版本提供的技能列表或选择界面；不假设存在与 Copilot 相同的 CLI 命令。其他 Agent 应自行查阅宿主文档并判断 `.agents\skills`、附带参考文件、Node／shell 执行和权限是否受支持。若需要额外路径配置或适配，先说明差异并取得相关授权，不静默复制到多个发现目录。无法确认或不支持时，报告发现／执行阻塞，不将安装成功当作兼容证明。
+Both names should appear. For Codex or other agents, use that version's documented skill list or selection UI; do not assume Copilot's command exists. Verify `.agents\skills`, reference-file reading, Node/shell execution, and permissions. If adaptation is needed, explain it and obtain authorization; do not silently duplicate installations. Unverified or unsupported discovery/execution is a blocker, not a compatibility pass.
 
-## 5. 最小使用验收
+## 5. Try minimal natural-language tasks
 
-在安装项目中分别发出以下自然语言请求，不在请求中显式指定 Skill 名称，以便单独观察路由。使用新的输出目录，仅使用用户授权的非敏感材料：
+Use only authorized, non-sensitive materials and new output paths. Ask without explicitly naming a skill to observe routing separately:
 
-| 目标 | 示例请求 | 应观察到的结果 |
-| --- | --- | --- |
-| `aha-research` | “根据我提供的两份有冲突的材料，调查差异与证据限制，交付研究报告和独立研究档案，不制作视觉作品，不联网。” | 宿主加载研究 Skill；Agent 使用安装目录中的 CLI 检查和构建研究档案，报告有实际来源与缺口 |
-| `aha-explain` | “将刚才的研究档案制作成一个离线 HTML 解释页面，保留来源与限制，只生成 HTML，不执行页面脚本。” | 宿主加载创作 Skill；Agent 调用安装目录中的 CLI，实际编写源文件并成功生成非占位 HTML |
+> Investigate the differences between these two conflicting documents. Deliver a source-grounded report and an independent research archive with limitations. Use only the provided materials; no network or visual outputs.
 
-报告实际使用的脚本绝对路径、命令结果和产物位置。无材料、权限或宿主访问能力时，相关项标为“未执行／阻塞”。显式选择 Skill 后成功，只证明显式使用，不证明自然语言触发；HTML 生成成功也不等于浏览器视觉验收。
+Expect `aha-research` to load, use the installed CLI, and build an archive with real sources and stated gaps.
 
-安装结束应分别记录：Release tag／内容哈希、目标目录、两个 doctor 结果、两个 Skill 的发现与触发结果、最小任务产物、尚未验收的能力。
+> Turn that research archive into one offline HTML explanation, retaining sources and limitations. Generate HTML only; do not execute page scripts.
 
-## 可选媒体依赖与权限
+Expect `aha-explain` to load, author real source, and package non-placeholder HTML. HTML defaults to English/Chinese with English initially visible; explicitly request a different supported language if needed.
 
-| 能力 | 额外条件 |
+Record the absolute script paths, command results, and output locations. Missing materials, permissions, or host capabilities mean **not run / blocked**, not passed. Explicit skill selection proves explicit use only, not natural-language routing; HTML packaging is not browser QA.
+
+Record the release tag/content hash, target, both doctor results, both discovery/routing results, minimal task outputs, and unverified capabilities.
+
+## Optional dependencies and permissions
+
+| Step | Additional requirements |
 | --- | --- |
-| 研究检查、HTML 打包、PPTX 构建 | Node；PPTX 作者脚本执行仍需审阅和 `--allow-code` 授权 |
-| 图片、浏览器检查 | 已安装 Edge／Chrome，作品代码执行授权 |
-| 视频编码 | 已安装浏览器、FFmpeg／ffprobe，作品代码执行授权 |
-| 在线旁白 | Python、`edge-tts==7.2.8`、音频工具，当前旁白计划审批及外发授权 |
+| Research checks, HTML packaging | None beyond Node; do not execute authored code |
+| Native PPTX build | Node; reviewed authored script and explicit `--allow-code` |
+| Browser checks / PNG | Installed Edge/Chrome; code-execution permission |
+| Dynamic video encoding | Installed browser, FFmpeg/ffprobe; code-execution permission |
+| Online narration | Python, exactly `edge-tts==7.2.8`, FFmpeg/ffprobe, current narration-plan approval and permission to send it externally |
 
-安装器不安装这些软件、不下载浏览器、不调用在线语音服务。缺少可选工具只阻塞相关步骤，不阻塞基础研究或 HTML 打包；详见 [README](README.md#本地依赖与执行边界)。
+| Diagnostic | Optional tools probed |
+| --- | --- |
+| `doctor`, `doctor --for research`, `--for html`, `--for pptx` | None; runtime integrity only |
+| `doctor --for browser`, `--for image` | Browser |
+| `doctor --for video` | Browser, FFmpeg, ffprobe; not speech dependencies |
+| `doctor --for speech` | FFmpeg, ffprobe, Python/Edge TTS; not browser |
+| `doctor --media` | All optional media tools; not a universal task gate |
 
-## 发布尚不可用时：授权后从源码构建
+Do not combine `--for` with `--media`. Inspect `mediaReadiness`; a successful exit alone is not media readiness. Missing optional tools block only the relevant step.
 
-在独立的可信源码 checkout 中，固定并记录 commit，审阅构建脚本后执行：
+Reuse installed tools through `AHA_BROWSER_EXECUTABLE` / `AHA_BROWSER_CHANNEL`, `AHA_FFMPEG`, `AHA_FFPROBE`, and `AHA_PYTHON`. Python selection is explicit configuration, activated environment, `.venv-media` in the command's current directory, then PATH. There is no ancestor/home search or silent fallback from broken explicit configuration; activate an existing environment or set its absolute interpreter path when working elsewhere.
 
-```powershell
-npm ci --ignore-scripts
-npm run build
-node .\scripts\release.mjs
+Neither installer nor doctor installs dependencies, downloads browsers, or sends narration. Obtain separate permission for any installation or network processing. Review code before `--allow-code`: it is **not an OS sandbox**, and Node author code has local process privileges. Online narration requires approval of the current text, provider, voice, rate, and outbound scope; do not synthesize as an installation test. See [usage and execution boundaries](https://github.com/sawyer0x110/aha/blob/main/docs/USAGE.md).
+
+## Uninstall safely
+
+Pause the host and confirm the exact project and installed paths. Back up any user additions if needed. **Only with explicit authorization**, remove these two exact directories:
+
+```text
+<project>\.agents\skills\aha-research
+<project>\.agents\skills\aha-explain
 ```
 
-每一步失败即停止。最后一个命令返回发布目录与 ZIP 路径，通常为 `dist\releases\<version>\<contentHash>`；这仍只是**本地产出的包**，不代表 GitHub Release 已发布。然后从本文第 2 步校验、解压并安装，不直接复制源码。
+Do not delete `.agents`, `.agents\skills`, another host's discovery directory, other skills, research archives, or artwork. Check for symlinks/junctions and unexpected contents before removal; stop on ambiguity. Refresh the host and verify those entries are gone. Older/duplicate installations require separate path-specific review and authorization.
 
-## 维护者发布入口
+## Source checkout only: authorized local build
 
-确认 `package.json` 和 `package-lock.json` 中的版本一致后，发布匹配的 `v<version>` tag，例如版本 `0.3.1` 对应 `v0.3.1`。仓库的 [Release 工作流](.github/workflows/release.yml) 会检查版本，构建并检查分发包，再将 ZIP、清单、校验文件和安装指南上传到该 tag 的 GitHub Release。
+If a release is unavailable or an unreleased change is required, obtain explicit permission to build from a trusted, separate checkout. Pin and record its commit; review build scripts. **These commands do not apply to an extracted package:**
 
-当前源码版本为 `0.3.1`。以 [GitHub Releases](https://github.com/sawyer0x110/aha/releases) 中实际存在的正式 Release 和完整资产为准；源码版本提升、本地打包或 tag 推送不代表发布已完成，不猜测下载地址。需要尚未发布的修复时，按上节取得授权后从固定源码提交构建。
+```powershell
+$ErrorActionPreference = 'Stop'
+npm ci --ignore-scripts
+if ($LASTEXITCODE -ne 0) { throw 'Dependency restore failed.' }
+npm run build
+if ($LASTEXITCODE -ne 0) { throw 'Build failed.' }
+node .\scripts\release.mjs
+if ($LASTEXITCODE -ne 0) { throw 'Local packaging failed.' }
+```
 
-发布 tag 会触发对外发布，应单独确认发布权限与时机。工作流不运行 Copilot／Codex，不替代真实宿主发现与触发验收；在完成第 5 步前，不宣称宿主端到端兼容性已通过。
+The last command reports the asset directory and ZIP, usually under `dist\releases\<version>\<contentHash>`. This is a **local package**, not a published release. Apply the same checksum, extraction, dry-run, and acceptance process to those assets; do not copy source skills directly.
+
+Maintainers: see [Contributing](https://github.com/sawyer0x110/aha/blob/main/CONTRIBUTING.md) and the [release workflow](https://github.com/sawyer0x110/aha/blob/main/.github/workflows/release.yml). Matching package versions, a local build, or pushing a tag do not establish publication. Publishing requires separate authorization and verification of actual release assets; the workflow does not perform live host acceptance.
+
+## License and security
+
+For packages including them, read [MIT license](LICENSE) and the bilingual [license scope](LICENSE-SCOPE.md). These files are planned additions, not prerequisites for installing historical `v0.3.1`; when absent, consult the [repository license scope](https://github.com/sawyer0x110/aha/blob/main/LICENSE-SCOPE.md). Preserve each skill's third-party notices. Report vulnerabilities using [Security](https://github.com/sawyer0x110/aha/blob/main/SECURITY.md), not a public disclosure containing secrets.
