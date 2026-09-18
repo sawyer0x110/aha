@@ -1,0 +1,101 @@
+{
+  "issue": "Actual encoded frame full-encoded-v4/10-same-run-middle.png shows the timeline passing through the temporary-file label.",
+  "fixes": [
+    "Route connectors only through the two gaps between endpoint/temporary-file boxes.",
+    "Remove stale PEP393 citation from the now project-only explanation-skill scene."
+  ],
+  "sourceHash": "9f6cb9b7d6b99821b4b181822a5b5f2ca877c42e98aea6d7cd90371cc123554c",
+  "planHash": "b24dea69586c4d895972e2ec5a04eb4e929501d3681b64f23fa73b92107fee98",
+  "project": "project-v5",
+  "plan": "video-plan-v5.json",
+  "audioList": "audio-list-full-v5.json",
+  "originalSpeech": {
+    "provider": "edge-tts",
+    "voice": "en-US-AriaNeural",
+    "planHash": "00343b8921632bce40a2d196d6ecd9bb39b09e151d3e1332b0c33188e547e015",
+    "recordings": [
+      {
+        "id": "research-skill",
+        "file": "audio-full-v4/segment-001.wav",
+        "originalFrames": 268,
+        "originalSha256": "0da3fd5119d1b10a3ad2d143610586f453da749a73a8d22702804addf1178762"
+      },
+      {
+        "id": "explanation-skill",
+        "file": "audio-full-v4/segment-002.wav",
+        "originalFrames": 303,
+        "originalSha256": "81be69782f398d636b5de87535a6445e0219867dfedb5177064f6ab1eba6ceac"
+      },
+      {
+        "id": "three-examples",
+        "file": "audio-full-v4/segment-003.wav",
+        "originalFrames": 167,
+        "originalSha256": "d464cb1d840b1123afca8ea23b81e7750a7d66ae80b87b64a083646670ffe851"
+      },
+      {
+        "id": "mercator-question",
+        "file": "audio-full-v4/segment-004.wav",
+        "originalFrames": 348,
+        "originalSha256": "0813eb6407740d5f2edbb749d04fc3f0c50adce7272de94f0266950f60f1ae5b"
+      },
+      {
+        "id": "spherical-rotation",
+        "file": "audio-full-v4/segment-005.wav",
+        "originalFrames": 307,
+        "originalSha256": "425e5f4fa0eee21eb893ff590eb14e9e90c77258e82e0576522066fbcadbd8d5"
+      },
+      {
+        "id": "new-string",
+        "file": "audio-full-v4/segment-006.wav",
+        "originalFrames": 389,
+        "originalSha256": "5f879f7af0e218df51e069781d9cddf2cedbbadd1fd5846cc4a79d5a4a429c95"
+      },
+      {
+        "id": "utf8-contrast",
+        "file": "audio-full-v4/segment-007.wav",
+        "originalFrames": 321,
+        "originalSha256": "2c4022341d46e74ab9b1c1d2aad84f809f546ae51b5a623ed333b7d26ad82005"
+      },
+      {
+        "id": "layer-created",
+        "file": "audio-full-v4/segment-008.wav",
+        "originalFrames": 282,
+        "originalSha256": "69095df316b8cb263d2a309dc41290cee40e8efe6a80833f575cc94b4e3bac44"
+      },
+      {
+        "id": "later-whiteout",
+        "file": "audio-full-v4/segment-009.wav",
+        "originalFrames": 175,
+        "originalSha256": "500f7926b516b3f1c8844f8de2a8069ed01e62951bb6e3968f9c7cc996ec8823"
+      },
+      {
+        "id": "same-run",
+        "file": "audio-full-v4/segment-010.wav",
+        "originalFrames": 217,
+        "originalSha256": "1700b84b207b31f63fca8528250045bebdb2dd5677bf36571acfe9dc39e15c25"
+      },
+      {
+        "id": "saved-html-image",
+        "file": "audio-full-v4/segment-011.wav",
+        "originalFrames": 256,
+        "originalSha256": "bc0a1309a2553f6835d3997ea1395db13c0f2c5f6aeddaccdfd1a6a9bd0d1569"
+      },
+      {
+        "id": "saved-slides-video",
+        "file": "audio-full-v4/segment-012.wav",
+        "originalFrames": 290,
+        "originalSha256": "b52d8051a89739dd1753a06d08704168555e9092c6a355685ee4bf9628e73b7f"
+      },
+      {
+        "id": "evidence-visible",
+        "file": "audio-full-v4/segment-013.wav",
+        "originalFrames": 259,
+        "originalSha256": "812901fbccfc27e152fdea3c375146f6d321cd02c669c3f672c85906c85a5816"
+      }
+    ]
+  },
+  "narrationUnchanged": true,
+  "previousOutputPreserved": true,
+  "sourceReview": "Two line-level source corrections read; no new capabilities or assets.",
+  "approval": "Offline import and local rerender consent not yet requested for this plan."
+}

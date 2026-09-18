@@ -1,0 +1,5 @@
+{
+  "response": "批准本地渲染与检查",
+  "sourceHash": "198ac4b39807b948a0678faf9f48407d8103838bd2968619888802b95c7d0ad7",
+  "scope": "Render the capability-focused 1080x1800 image using existing isolated unsigned-in offline Edge, and inspect layout and reading sizes. New candidate only; no installation, upload or overwrite."
+}

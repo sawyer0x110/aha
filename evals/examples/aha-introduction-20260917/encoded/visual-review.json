@@ -1,0 +1,14 @@
+{
+  "artifactHash": "7cfa0cacc6e6e6f03b684c4fccbf653dee9603a1a5f8dba5391aae6db9177deb",
+  "sourceHash": "9f6cb9b7d6b99821b4b181822a5b5f2ca877c42e98aea6d7cd90371cc123554c",
+  "planHash": "b24dea69586c4d895972e2ec5a04eb4e929501d3681b64f23fa73b92107fee98",
+  "dockerConnectorFix": "confirmed-in-actual-encoded-frame",
+  "observedFile": "10-same-run-middle.png",
+  "observation": "The image tool returned an inspectable actual encoded frame. Both connectors stop at box boundaries; neither passes through the temporary-file label or endpoint text. Main labels, local scope note and two-line caption remain separate and readable.",
+  "priorIssue": "../full-encoded-v4/10-same-run-middle.png showed the line crossing text; prior candidate is retained.",
+  "sourceChecks": "Current full-preview-v5/report.json records all 65 sampled states, text/caption bounds and A/B/A replay. These are separate from human visual judgment.",
+  "coverage": "One current native-resolution encoded frame inspected for the specific fix. Other current scene samples captured but not all individually visually inspected.",
+  "remainingKnownDefects": [],
+  "continuousListeningAndViewing": "not-confirmed",
+  "pilotAcceptance": "Only the corrected representative pilot has explicit user playback acceptance."
+}

@@ -1,0 +1,11 @@
+1
+00:00:00,000 --> 00:00:06,967
+In CPython, one grinning face can nearly quadruple a long ASCII string's object size.
+
+2
+00:00:06,967 --> 00:00:13,600
+The new string uses four bytes for every code point, because this face exceeds the two-byte range.
+
+3
+00:00:13,600 --> 00:00:21,467
+UTF-eight is different: the ASCII stays one byte each, so encoding the added face costs only four extra bytes.

@@ -5,6 +5,7 @@ import { Type } from '@sinclair/typebox';
 import { check } from '../core/check.js';
 import { fail } from '../core/errors.js';
 import { hashValue } from '../core/identity.js';
+import { VERSION } from '../core/version.js';
 import { assertOutsideSource, writeNewFile, limitedJsonText } from '../cli/files.js';
 import { prepareHtml } from '../artifacts/html.js';
 import { readArtifact } from '../artifacts/project.js';
@@ -122,7 +123,7 @@ export async function renderVideo(directory: string, input: VideoPlan, audioDire
     const videoBytes = await fs.readFile(path.join(work, 'movie.mp4'));
     const srt = subtitles(plan, audio);
     const receipt = {
-      status: 'delivered', format: 'mp4', rendererVersion: '0.3.0',
+      status: 'delivered', format: 'mp4', rendererVersion: VERSION,
       researchHash: plan.researchHash, sourceHash: plan.sourceHash, planHash: await hashValue(plan),
       audioManifestHash: await hashValue(audio), durationSeconds, totalFrames,
       codec: 'h264', width: 1280, height: 720, fps: FPS,

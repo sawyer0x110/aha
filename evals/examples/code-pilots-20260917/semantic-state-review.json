@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "evidence": [
+    {
+      "topic": "cpython-string-pilot-20260917",
+      "sourceHash": "4500ece23a3fd2e282375d5f660c67631d0dd2b4a93cec66ff259fe30f2148c1",
+      "planHash": "9a87e23140f1144e06a4258a34d35aa595dcdf84441181bf074b8c7255962289"
+    },
+    {
+      "topic": "docker-layers-pilot-20260917",
+      "sourceHash": "31ece11dc0442006fac2e176b8f173a3385db16b45670ded8e8bfb3408ead31e",
+      "planHash": "8e00661dd82fa552f9ea33bcc656d2829678084d77a018a4159dd8ddfd48c7ab"
+    }
+  ],
+  "checks": [
+    "CPython fixed-width ratio, immutable-original distinction and UTF-8 payload delta",
+    "Docker lower-layer retention, merged-view masking and absent new payload in same-RUN final diff",
+    "Visible glyph bounds and subtitle reserve at sampled states",
+    "A/B/A sampled pixel replay"
+  ],
+  "limitation": "Checks authored explanatory states, not CPython allocation events, Docker builds, learner understanding or audio."
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "authored",
+  "researchHash": "04cdf5f8906f1385f8575b9c99d46ae60bfe4c2c37e79982658a19d9d617daf8",
+  "sourceHash": "4500ece23a3fd2e282375d5f660c67631d0dd2b4a93cec66ff259fe30f2148c1",
+  "provider": "edge-tts",
+  "voice": "en-US-AriaNeural",
+  "rate": "+0%",
+  "duration": {
+    "minSeconds": 20,
+    "maxSeconds": 30
+  },
+  "segments": [
+    {
+      "id": "ascii-baseline",
+      "text": "In CPython, one grinning face can nearly quadruple a long ASCII string's object size.",
+      "claimIds": [
+        "c-measure"
+      ]
+    },
+    {
+      "id": "whole-string-widens",
+      "text": "The new string uses four bytes for every code point, because this face exceeds the two-byte range.",
+      "claimIds": [
+        "c-width",
+        "c-concat"
+      ]
+    },
+    {
+      "id": "utf8-contrast",
+      "text": "UTF-eight is different: the ASCII stays one byte each, so encoding the added face costs only four extra bytes.",
+      "claimIds": [
+        "c-utf8"
+      ]
+    }
+  ]
+}

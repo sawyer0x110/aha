@@ -85,7 +85,8 @@ footer { margin-top: 48px; font-size: .9rem; color: var(--cp-text-soft); }
 <body><main>
 <div class="eyebrow">AHA · 从现象到原理</div>
 <h1>从具体问题出发，<br>不止记住一个答案。</h1>
-<p class="intro">四个主题，从研究到适合问题的表达：三个主题各有 HTML、PNG、原生 PPTX 和英文配音视频，格陵兰例子专注动态视频。网页可离线阅读，默认英文并支持 English / 中文切换；格式入口只放在这里，不打断作品正文。</p>
+<p class="intro">七组示例、十六份作品，从研究到适合问题的表达：三个较早的四格式例子，以及格陵兰、CPython、Docker 和新版 Aha 介绍四组视频例子。网页可离线阅读，默认英文并支持 English / 中文切换；格式入口只放在这里，不打断作品正文。</p>
+<p><a class="open" href="aha-introduction/overview-v5.mp4">先看新版 Aha 项目介绍 · 1:59 →</a></p>
 <article><div class="number">01</div><div>
 <h2>飞机轰鸣变轻了，为什么人声还在？</h2>
 <p>看两路声压如何在耳边相加，亲手改变理想模型中的相位偏差，再理解频率、人声构成和佩戴贴合为什么会影响降噪。</p>
@@ -99,10 +100,10 @@ footer { margin-top: 48px; font-size: .9rem; color: var(--cp-text-soft); }
 <p><a href="git-merge/git-merge.png">1800×1200 信息图</a> · <a href="git-merge/git-merge.pptx">10 页原生 PPTX</a> · <a href="git-merge/git-merge.mp4">2:06 配音视频</a> · <a href="git-merge/README.md">研究与来源</a></p>
 </div></article>
 <article><div class="number">03</div><div>
-<h2>Aha 如何把研究转化为不同媒介的讲解？</h2>
-<p>从研究快照时的降噪耳机与 Git merge 实例出发，了解调研、独立媒介创作、权限与验收。深色首尾强调主线，浅色正文解释机制。</p>
+<h2>Aha 四格式项目导览：较早的研究快照</h2>
+<p>HTML、PPTX 和旧版视频保留较早快照中的案例与流程；新版 PNG 聚焦 Aha 是什么、两个 skills 的分工与四种表达能力，不展示案例。</p>
 <a class="open" href="project-overview/index.html">打开项目导览 →</a>
-<p><a href="project-overview/overview.png">1080×1800 一图流</a> · <a href="project-overview/overview.pptx">10 页原生 PPTX</a> · <a href="project-overview/overview.mp4">2:28 配音视频</a> · <a href="project-overview/README.md">研究与来源</a></p>
+<p><a href="project-overview/overview.png">新版项目能力图 · 1080×1800</a> · <a href="project-overview/overview.pptx">10 页原生 PPTX</a> · <a href="project-overview/overview.mp4">2:28 旧版配音视频</a> · <a href="project-overview/README.md">研究与来源</a></p>
 </div></article>
 <article><div class="number">04</div><div>
 <h2>为什么地图上的格陵兰看起来那么大？</h2>
@@ -110,6 +111,24 @@ footer { margin-top: 48px; font-size: .9rem; color: var(--cp-text-soft); }
 <a class="open" href="greenland/greenland.mp4">观看 1:56 讲解视频 →</a>
 <p>英文配音与字幕 · 本例仅视频 · <a href="greenland/README.md">研究与来源</a> · <a href="greenland/greenland.mp4.srt">SRT 字幕</a></p>
 </div></article>
-<footer>四支机制试片已由用户听看确认；完整视频听看与 Git 附加原生动画版的放映验收仍未确认。<a href="README.md">目录说明</a> · <a href="delivery-manifest.json">当前交付清单</a></footer>
+<article><div class="number">05</div><div>
+<h2>为什么一个 emoji 能让 CPython 字符串接近四倍大？</h2>
+<p>把十万个英文字符的存储拆开来看：加入 U+1F600 后，新字符串的每个字符槽都变宽，但 UTF-8 编码只增加四字节。对象内存与编码载荷不是一回事。</p>
+<a class="open" href="cpython-string/pilot.mp4">观看 21.47 秒机制试片 →</a>
+<p>英文配音与字幕 · 本例仅视频 · <a href="cpython-string/README.md">研究与来源</a> · <a href="cpython-string/pilot.mp4.srt">SRT 字幕</a></p>
+</div></article>
+<article><div class="number">06</div><div>
+<h2>文件已经删了，为什么 Docker 镜像还留着它的字节？</h2>
+<p>揭开不可变镜像层，看删除标记如何隐藏路径却保留底层数据，再对比同一个 RUN 内创建并删除新临时文件。100 MB 为假定载荷，不是实测镜像大小。</p>
+<a class="open" href="docker-layers/pilot.mp4">观看 21.27 秒机制试片 →</a>
+<p>英文配音与字幕 · 本例仅视频 · <a href="docker-layers/README.md">研究与来源</a> · <a href="docker-layers/pilot.mp4.srt">SRT 字幕</a></p>
+</div></article>
+<article><div class="number">07</div><div>
+<h2>Aha：从有依据的研究，到看得懂的解释</h2>
+<p>先介绍 Aha，再通过格陵兰投影、CPython 字符串表示和 Docker 镜像层，展示如何把机制讲清楚。章节引导连接三个例子，最后总结研究与不同媒介的用途。</p>
+<a class="open" href="aha-introduction/overview-v5.mp4">观看新版 1:59 项目介绍 →</a>
+<p>英文配音与字幕 · 本组收录视频 · <a href="aha-introduction/README.md">研究与来源</a> · <a href="aha-introduction/overview-v5.mp4.srt">SRT 字幕</a></p>
+</div></article>
+<footer>此前四支机制试片和新版 Aha 介绍的修订试片已由用户听看确认；CPython、Docker 独立试片及完整视频的连续听看、Git 附加动画版的放映验收仍未确认。部分静帧审阅受图像读取限制。<a href="README.md">目录说明</a> · <a href="delivery-manifest.json">当前交付清单</a></footer>
 </main></body>
 </html>

@@ -1,0 +1,74 @@
+{
+  "provider": "edge-tts",
+  "version": "7.2.8",
+  "voice": "en-US-AriaNeural",
+  "rate": "+0%",
+  "method": "Approved full narration imported offline after two visual-source corrections; all WAV bytes and frame counts are unchanged. Original scenes retained to reconstruct the original source identity with current assets.",
+  "recordings": [
+    {
+      "id": "research-skill",
+      "file": "../audio/segment-001.wav",
+      "sha256": "0da3fd5119d1b10a3ad2d143610586f453da749a73a8d22702804addf1178762"
+    },
+    {
+      "id": "explanation-skill",
+      "file": "../audio/segment-002.wav",
+      "sha256": "81be69782f398d636b5de87535a6445e0219867dfedb5177064f6ab1eba6ceac"
+    },
+    {
+      "id": "three-examples",
+      "file": "../audio/segment-003.wav",
+      "sha256": "d464cb1d840b1123afca8ea23b81e7750a7d66ae80b87b64a083646670ffe851"
+    },
+    {
+      "id": "mercator-question",
+      "file": "../audio/segment-004.wav",
+      "sha256": "0813eb6407740d5f2edbb749d04fc3f0c50adce7272de94f0266950f60f1ae5b"
+    },
+    {
+      "id": "spherical-rotation",
+      "file": "../audio/segment-005.wav",
+      "sha256": "425e5f4fa0eee21eb893ff590eb14e9e90c77258e82e0576522066fbcadbd8d5"
+    },
+    {
+      "id": "new-string",
+      "file": "../audio/segment-006.wav",
+      "sha256": "5f879f7af0e218df51e069781d9cddf2cedbbadd1fd5846cc4a79d5a4a429c95"
+    },
+    {
+      "id": "utf8-contrast",
+      "file": "../audio/segment-007.wav",
+      "sha256": "2c4022341d46e74ab9b1c1d2aad84f809f546ae51b5a623ed333b7d26ad82005"
+    },
+    {
+      "id": "layer-created",
+      "file": "../audio/segment-008.wav",
+      "sha256": "69095df316b8cb263d2a309dc41290cee40e8efe6a80833f575cc94b4e3bac44"
+    },
+    {
+      "id": "later-whiteout",
+      "file": "../audio/segment-009.wav",
+      "sha256": "500f7926b516b3f1c8844f8de2a8069ed01e62951bb6e3968f9c7cc996ec8823"
+    },
+    {
+      "id": "same-run",
+      "file": "../audio/segment-010.wav",
+      "sha256": "1700b84b207b31f63fca8528250045bebdb2dd5677bf36571acfe9dc39e15c25"
+    },
+    {
+      "id": "saved-html-image",
+      "file": "../audio/segment-011.wav",
+      "sha256": "bc0a1309a2553f6835d3997ea1395db13c0f2c5f6aeddaccdfd1a6a9bd0d1569"
+    },
+    {
+      "id": "saved-slides-video",
+      "file": "../audio/segment-012.wav",
+      "sha256": "b52d8051a89739dd1753a06d08704168555e9092c6a355685ee4bf9628e73b7f"
+    },
+    {
+      "id": "evidence-visible",
+      "file": "../audio/segment-013.wav",
+      "sha256": "812901fbccfc27e152fdea3c375146f6d321cd02c669c3f672c85906c85a5816"
+    }
+  ]
+}

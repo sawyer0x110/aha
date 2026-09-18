@@ -1,0 +1,68 @@
+{
+  "sourceHash": "4500ece23a3fd2e282375d5f660c67631d0dd2b4a93cec66ff259fe30f2148c1",
+  "researchHash": "04cdf5f8906f1385f8575b9c99d46ae60bfe4c2c37e79982658a19d9d617daf8",
+  "planHash": "9a87e23140f1144e06a4258a34d35aa595dcdf84441181bf074b8c7255962289",
+  "artifactHash": "c0a9da2471a627a52a309b7afcc8905a46a112fb93b91384afe41dcd5d93c386",
+  "seconds": 21.466666666666665,
+  "frames": 644,
+  "fullDecode": true,
+  "exactApprovedSubtitleTextAndTiming": true,
+  "samples": [
+    {
+      "filename": "1-ascii-baseline-start.png",
+      "frame": 0,
+      "seconds": 0,
+      "sha256": "8577834a06994a2fc1ad97675314ebb9798073065663bb6a04c4c0fcba493002"
+    },
+    {
+      "filename": "1-ascii-baseline-middle.png",
+      "frame": 104,
+      "seconds": 3.466666666666667,
+      "sha256": "29eb50bcd80b72ab3cb458e795adff40f5999e853ed6e13053a8030d29ef8f38"
+    },
+    {
+      "filename": "1-ascii-baseline-end.png",
+      "frame": 208,
+      "seconds": 6.933333333333334,
+      "sha256": "765eed2296e98d88e4f05efd1063e2f4b66c7909f28d39b1439daeb9d282b96e"
+    },
+    {
+      "filename": "2-whole-string-widens-start.png",
+      "frame": 209,
+      "seconds": 6.966666666666667,
+      "sha256": "3b8f6503abd6ae62848e0a9a091872d115b3b3a0b17606056c92f0eec683dba6"
+    },
+    {
+      "filename": "2-whole-string-widens-middle.png",
+      "frame": 308,
+      "seconds": 10.266666666666667,
+      "sha256": "15bfe21ba33b10fda69b97600df7e2e08de78dbedf719d4d9bcaf061117182cd"
+    },
+    {
+      "filename": "2-whole-string-widens-end.png",
+      "frame": 407,
+      "seconds": 13.566666666666666,
+      "sha256": "972d449bc50de8895c53309411d82817d729e7e4d318e900bd07131205fc42e8"
+    },
+    {
+      "filename": "3-utf8-contrast-start.png",
+      "frame": 408,
+      "seconds": 13.6,
+      "sha256": "84f1719d98dd7d9cbd21e425075505c6f2858f4f430982068e0a0c53b4c87541"
+    },
+    {
+      "filename": "3-utf8-contrast-middle.png",
+      "frame": 526,
+      "seconds": 17.533333333333335,
+      "sha256": "76af9c46f97a5b5e740d03a4f2bb36fca7a2a816c0d408d68be4df59b2c6dcff"
+    },
+    {
+      "filename": "3-utf8-contrast-end.png",
+      "frame": 643,
+      "seconds": 21.433333333333334,
+      "sha256": "33ec1f246bb8e1f99db5933640bb46bcd14ebf02a195d0e2d586217068faeb31"
+    }
+  ],
+  "visualReview": "Not performed by this checker.",
+  "continuousListeningAndViewing": "Pending user playback; not inferred from media checks."
+}

@@ -1,0 +1,885 @@
+{
+  "sourceHash": "31ece11dc0442006fac2e176b8f173a3385db16b45670ded8e8bfb3408ead31e",
+  "planHash": "e4c928b388b1f3274478a2d03d36890a8fc5850bd9ebe0303522ba2f363e4319",
+  "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
+  "helperHash": "0ae169676b2fe8e9dbb9500bb8747f3fce2a9cc3bf38e64998b9f8203d9ba721",
+  "stage": "offline-source-preview",
+  "captures": [
+    {
+      "id": "layer-added",
+      "label": "start",
+      "progress": 0,
+      "filename": "1-layer-added-start.png",
+      "sha256": "b14333ae32d20a6c510bd2188d565e6fb304fec35a3267bbcabb53a5639a6367",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "status": "frame-set",
+        "sceneId": "layer-added",
+        "frame": 0,
+        "fps": 30,
+        "segmentFrame": 0,
+        "segmentFrames": 1001,
+        "progress": 0,
+        "narration": "Suppose one RUN adds a hundred-megabyte file: its payload enters an immutable image layer, which later steps cannot rewrite.",
+        "theme": "dark",
+        "evidenceMode": "illustrative-not-measured",
+        "example": {
+          "path": "file.bin",
+          "assumedUncompressedPayloadBytes": 100000000,
+          "isNewFile": true
+        },
+        "layerA": {
+          "payloadVisible": false,
+          "payloadRetainedInSeparateRunCase": false,
+          "immutableAfterRecording": true
+        },
+        "layerB": {
+          "whiteoutVisibleInCutaway": false
+        },
+        "mergedExamplePath": {
+          "visible": null,
+          "absent": null,
+          "whiteoutShownAsOrdinaryFile": false
+        },
+        "sameRun": {
+          "active": false,
+          "temporaryFilePresent": false,
+          "deletionCompleted": false,
+          "resultingDiffRecorded": false,
+          "newFilePayloadInResultingDiff": null
+        },
+        "captionSafeArea": {
+          "x": 0,
+          "y": 550,
+          "width": 1280,
+          "height": 170
+        },
+        "dependencies": []
+      },
+      "contentOverflow": []
+    },
+    {
+      "id": "layer-added",
+      "label": "a",
+      "progress": 0.15,
+      "filename": "1-layer-added-a.png",
+      "sha256": "512ff76f77ab7e1b54dc1ccc476d341fe41b7bbdaba50113c888bcff420969e3",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "status": "frame-set",
+        "sceneId": "layer-added",
+        "frame": 150,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "narration": "Suppose one RUN adds a hundred-megabyte file: its payload enters an immutable image layer, which later steps cannot rewrite.",
+        "theme": "dark",
+        "evidenceMode": "illustrative-not-measured",
+        "example": {
+          "path": "file.bin",
+          "assumedUncompressedPayloadBytes": 100000000,
+          "isNewFile": true
+        },
+        "layerA": {
+          "payloadVisible": false,
+          "payloadRetainedInSeparateRunCase": false,
+          "immutableAfterRecording": true
+        },
+        "layerB": {
+          "whiteoutVisibleInCutaway": false
+        },
+        "mergedExamplePath": {
+          "visible": null,
+          "absent": null,
+          "whiteoutShownAsOrdinaryFile": false
+        },
+        "sameRun": {
+          "active": false,
+          "temporaryFilePresent": false,
+          "deletionCompleted": false,
+          "resultingDiffRecorded": false,
+          "newFilePayloadInResultingDiff": null
+        },
+        "captionSafeArea": {
+          "x": 0,
+          "y": 550,
+          "width": 1280,
+          "height": 170
+        },
+        "dependencies": []
+      },
+      "contentOverflow": []
+    },
+    {
+      "id": "layer-added",
+      "label": "b",
+      "progress": 0.85,
+      "filename": "1-layer-added-b.png",
+      "sha256": "75702f1f12484761a0df69f70838bc35e5721d05687dca5b20da7a380eab991b",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "status": "frame-set",
+        "sceneId": "layer-added",
+        "frame": 850,
+        "fps": 30,
+        "segmentFrame": 850,
+        "segmentFrames": 1001,
+        "progress": 0.85,
+        "narration": "Suppose one RUN adds a hundred-megabyte file: its payload enters an immutable image layer, which later steps cannot rewrite.",
+        "theme": "dark",
+        "evidenceMode": "illustrative-not-measured",
+        "example": {
+          "path": "file.bin",
+          "assumedUncompressedPayloadBytes": 100000000,
+          "isNewFile": true
+        },
+        "layerA": {
+          "payloadVisible": true,
+          "payloadRetainedInSeparateRunCase": true,
+          "immutableAfterRecording": true
+        },
+        "layerB": {
+          "whiteoutVisibleInCutaway": false
+        },
+        "mergedExamplePath": {
+          "visible": null,
+          "absent": null,
+          "whiteoutShownAsOrdinaryFile": false
+        },
+        "sameRun": {
+          "active": false,
+          "temporaryFilePresent": false,
+          "deletionCompleted": false,
+          "resultingDiffRecorded": false,
+          "newFilePayloadInResultingDiff": null
+        },
+        "captionSafeArea": {
+          "x": 0,
+          "y": 550,
+          "width": 1280,
+          "height": 170
+        },
+        "dependencies": []
+      },
+      "contentOverflow": []
+    },
+    {
+      "id": "layer-added",
+      "label": "a-replay",
+      "progress": 0.15,
+      "filename": "1-layer-added-a-replay.png",
+      "sha256": "512ff76f77ab7e1b54dc1ccc476d341fe41b7bbdaba50113c888bcff420969e3",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "status": "frame-set",
+        "sceneId": "layer-added",
+        "frame": 150,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "narration": "Suppose one RUN adds a hundred-megabyte file: its payload enters an immutable image layer, which later steps cannot rewrite.",
+        "theme": "dark",
+        "evidenceMode": "illustrative-not-measured",
+        "example": {
+          "path": "file.bin",
+          "assumedUncompressedPayloadBytes": 100000000,
+          "isNewFile": true
+        },
+        "layerA": {
+          "payloadVisible": false,
+          "payloadRetainedInSeparateRunCase": false,
+          "immutableAfterRecording": true
+        },
+        "layerB": {
+          "whiteoutVisibleInCutaway": false
+        },
+        "mergedExamplePath": {
+          "visible": null,
+          "absent": null,
+          "whiteoutShownAsOrdinaryFile": false
+        },
+        "sameRun": {
+          "active": false,
+          "temporaryFilePresent": false,
+          "deletionCompleted": false,
+          "resultingDiffRecorded": false,
+          "newFilePayloadInResultingDiff": null
+        },
+        "captionSafeArea": {
+          "x": 0,
+          "y": 550,
+          "width": 1280,
+          "height": 170
+        },
+        "dependencies": []
+      },
+      "contentOverflow": []
+    },
+    {
+      "id": "layer-added",
+      "label": "end",
+      "progress": 1,
+      "filename": "1-layer-added-end.png",
+      "sha256": "75702f1f12484761a0df69f70838bc35e5721d05687dca5b20da7a380eab991b",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "status": "frame-set",
+        "sceneId": "layer-added",
+        "frame": 1000,
+        "fps": 30,
+        "segmentFrame": 1000,
+        "segmentFrames": 1001,
+        "progress": 1,
+        "narration": "Suppose one RUN adds a hundred-megabyte file: its payload enters an immutable image layer, which later steps cannot rewrite.",
+        "theme": "dark",
+        "evidenceMode": "illustrative-not-measured",
+        "example": {
+          "path": "file.bin",
+          "assumedUncompressedPayloadBytes": 100000000,
+          "isNewFile": true
+        },
+        "layerA": {
+          "payloadVisible": true,
+          "payloadRetainedInSeparateRunCase": true,
+          "immutableAfterRecording": true
+        },
+        "layerB": {
+          "whiteoutVisibleInCutaway": false
+        },
+        "mergedExamplePath": {
+          "visible": null,
+          "absent": null,
+          "whiteoutShownAsOrdinaryFile": false
+        },
+        "sameRun": {
+          "active": false,
+          "temporaryFilePresent": false,
+          "deletionCompleted": false,
+          "resultingDiffRecorded": false,
+          "newFilePayloadInResultingDiff": null
+        },
+        "captionSafeArea": {
+          "x": 0,
+          "y": 550,
+          "width": 1280,
+          "height": 170
+        },
+        "dependencies": []
+      },
+      "contentOverflow": []
+    },
+    {
+      "id": "later-delete",
+      "label": "start",
+      "progress": 0,
+      "filename": "2-later-delete-start.png",
+      "sha256": "89b76018c339bc550bd9081ab54405c4bd28f5f3c459a90b6c33c4e238a167d7",
+      "caption": {
+        "top": 632.8125,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "status": "frame-set",
+        "sceneId": "later-delete",
+        "frame": 1001,
+        "fps": 30,
+        "segmentFrame": 0,
+        "segmentFrames": 1001,
+        "progress": 0,
+        "narration": "A later RUN hides the file with a whiteout, but the earlier layer still holds its bytes.",
+        "theme": "light",
+        "evidenceMode": "illustrative-not-measured",
+        "example": {
+          "path": "file.bin",
+          "assumedUncompressedPayloadBytes": 100000000,
+          "isNewFile": true
+        },
+        "layerA": {
+          "payloadVisible": true,
+          "payloadRetainedInSeparateRunCase": true,
+          "immutableAfterRecording": true
+        },
+        "layerB": {
+          "whiteoutVisibleInCutaway": false
+        },
+        "mergedExamplePath": {
+          "visible": true,
+          "absent": false,
+          "whiteoutShownAsOrdinaryFile": false
+        },
+        "sameRun": {
+          "active": false,
+          "temporaryFilePresent": false,
+          "deletionCompleted": false,
+          "resultingDiffRecorded": false,
+          "newFilePayloadInResultingDiff": null
+        },
+        "captionSafeArea": {
+          "x": 0,
+          "y": 550,
+          "width": 1280,
+          "height": 170
+        },
+        "dependencies": []
+      },
+      "contentOverflow": []
+    },
+    {
+      "id": "later-delete",
+      "label": "a",
+      "progress": 0.15,
+      "filename": "2-later-delete-a.png",
+      "sha256": "89b76018c339bc550bd9081ab54405c4bd28f5f3c459a90b6c33c4e238a167d7",
+      "caption": {
+        "top": 632.8125,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "status": "frame-set",
+        "sceneId": "later-delete",
+        "frame": 1151,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "narration": "A later RUN hides the file with a whiteout, but the earlier layer still holds its bytes.",
+        "theme": "light",
+        "evidenceMode": "illustrative-not-measured",
+        "example": {
+          "path": "file.bin",
+          "assumedUncompressedPayloadBytes": 100000000,
+          "isNewFile": true
+        },
+        "layerA": {
+          "payloadVisible": true,
+          "payloadRetainedInSeparateRunCase": true,
+          "immutableAfterRecording": true
+        },
+        "layerB": {
+          "whiteoutVisibleInCutaway": false
+        },
+        "mergedExamplePath": {
+          "visible": true,
+          "absent": false,
+          "whiteoutShownAsOrdinaryFile": false
+        },
+        "sameRun": {
+          "active": false,
+          "temporaryFilePresent": false,
+          "deletionCompleted": false,
+          "resultingDiffRecorded": false,
+          "newFilePayloadInResultingDiff": null
+        },
+        "captionSafeArea": {
+          "x": 0,
+          "y": 550,
+          "width": 1280,
+          "height": 170
+        },
+        "dependencies": []
+      },
+      "contentOverflow": []
+    },
+    {
+      "id": "later-delete",
+      "label": "b",
+      "progress": 0.85,
+      "filename": "2-later-delete-b.png",
+      "sha256": "3fc31600553db52f7ce88ec0f0b7b739cabf004acca58b2b32f9e6c828941eed",
+      "caption": {
+        "top": 632.8125,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "status": "frame-set",
+        "sceneId": "later-delete",
+        "frame": 1851,
+        "fps": 30,
+        "segmentFrame": 850,
+        "segmentFrames": 1001,
+        "progress": 0.85,
+        "narration": "A later RUN hides the file with a whiteout, but the earlier layer still holds its bytes.",
+        "theme": "light",
+        "evidenceMode": "illustrative-not-measured",
+        "example": {
+          "path": "file.bin",
+          "assumedUncompressedPayloadBytes": 100000000,
+          "isNewFile": true
+        },
+        "layerA": {
+          "payloadVisible": true,
+          "payloadRetainedInSeparateRunCase": true,
+          "immutableAfterRecording": true
+        },
+        "layerB": {
+          "whiteoutVisibleInCutaway": true
+        },
+        "mergedExamplePath": {
+          "visible": false,
+          "absent": true,
+          "whiteoutShownAsOrdinaryFile": false
+        },
+        "sameRun": {
+          "active": false,
+          "temporaryFilePresent": false,
+          "deletionCompleted": false,
+          "resultingDiffRecorded": false,
+          "newFilePayloadInResultingDiff": null
+        },
+        "captionSafeArea": {
+          "x": 0,
+          "y": 550,
+          "width": 1280,
+          "height": 170
+        },
+        "dependencies": []
+      },
+      "contentOverflow": []
+    },
+    {
+      "id": "later-delete",
+      "label": "a-replay",
+      "progress": 0.15,
+      "filename": "2-later-delete-a-replay.png",
+      "sha256": "89b76018c339bc550bd9081ab54405c4bd28f5f3c459a90b6c33c4e238a167d7",
+      "caption": {
+        "top": 632.8125,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "status": "frame-set",
+        "sceneId": "later-delete",
+        "frame": 1151,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "narration": "A later RUN hides the file with a whiteout, but the earlier layer still holds its bytes.",
+        "theme": "light",
+        "evidenceMode": "illustrative-not-measured",
+        "example": {
+          "path": "file.bin",
+          "assumedUncompressedPayloadBytes": 100000000,
+          "isNewFile": true
+        },
+        "layerA": {
+          "payloadVisible": true,
+          "payloadRetainedInSeparateRunCase": true,
+          "immutableAfterRecording": true
+        },
+        "layerB": {
+          "whiteoutVisibleInCutaway": false
+        },
+        "mergedExamplePath": {
+          "visible": true,
+          "absent": false,
+          "whiteoutShownAsOrdinaryFile": false
+        },
+        "sameRun": {
+          "active": false,
+          "temporaryFilePresent": false,
+          "deletionCompleted": false,
+          "resultingDiffRecorded": false,
+          "newFilePayloadInResultingDiff": null
+        },
+        "captionSafeArea": {
+          "x": 0,
+          "y": 550,
+          "width": 1280,
+          "height": 170
+        },
+        "dependencies": []
+      },
+      "contentOverflow": []
+    },
+    {
+      "id": "later-delete",
+      "label": "end",
+      "progress": 1,
+      "filename": "2-later-delete-end.png",
+      "sha256": "3fc31600553db52f7ce88ec0f0b7b739cabf004acca58b2b32f9e6c828941eed",
+      "caption": {
+        "top": 632.8125,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "status": "frame-set",
+        "sceneId": "later-delete",
+        "frame": 2001,
+        "fps": 30,
+        "segmentFrame": 1000,
+        "segmentFrames": 1001,
+        "progress": 1,
+        "narration": "A later RUN hides the file with a whiteout, but the earlier layer still holds its bytes.",
+        "theme": "light",
+        "evidenceMode": "illustrative-not-measured",
+        "example": {
+          "path": "file.bin",
+          "assumedUncompressedPayloadBytes": 100000000,
+          "isNewFile": true
+        },
+        "layerA": {
+          "payloadVisible": true,
+          "payloadRetainedInSeparateRunCase": true,
+          "immutableAfterRecording": true
+        },
+        "layerB": {
+          "whiteoutVisibleInCutaway": true
+        },
+        "mergedExamplePath": {
+          "visible": false,
+          "absent": true,
+          "whiteoutShownAsOrdinaryFile": false
+        },
+        "sameRun": {
+          "active": false,
+          "temporaryFilePresent": false,
+          "deletionCompleted": false,
+          "resultingDiffRecorded": false,
+          "newFilePayloadInResultingDiff": null
+        },
+        "captionSafeArea": {
+          "x": 0,
+          "y": 550,
+          "width": 1280,
+          "height": 170
+        },
+        "dependencies": []
+      },
+      "contentOverflow": []
+    },
+    {
+      "id": "same-run",
+      "label": "start",
+      "progress": 0,
+      "filename": "3-same-run-start.png",
+      "sha256": "2c3dc88bfbe8f9a7d6edcab65b130bfb87a65ac1afea9ccb4c7a8c85af442374",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "status": "frame-set",
+        "sceneId": "same-run",
+        "frame": 2002,
+        "fps": 30,
+        "segmentFrame": 0,
+        "segmentFrames": 1001,
+        "progress": 0,
+        "narration": "Create and delete that new file within the same RUN, and its payload never enters the resulting image diff.",
+        "theme": "light",
+        "evidenceMode": "illustrative-not-measured",
+        "example": {
+          "path": "file.bin",
+          "assumedUncompressedPayloadBytes": 100000000,
+          "isNewFile": true
+        },
+        "layerA": {
+          "payloadVisible": true,
+          "payloadRetainedInSeparateRunCase": true,
+          "immutableAfterRecording": true
+        },
+        "layerB": {
+          "whiteoutVisibleInCutaway": true
+        },
+        "mergedExamplePath": {
+          "visible": null,
+          "absent": null,
+          "whiteoutShownAsOrdinaryFile": false
+        },
+        "sameRun": {
+          "active": true,
+          "temporaryFilePresent": false,
+          "deletionCompleted": false,
+          "resultingDiffRecorded": false,
+          "newFilePayloadInResultingDiff": null
+        },
+        "captionSafeArea": {
+          "x": 0,
+          "y": 550,
+          "width": 1280,
+          "height": 170
+        },
+        "dependencies": []
+      },
+      "contentOverflow": []
+    },
+    {
+      "id": "same-run",
+      "label": "a",
+      "progress": 0.15,
+      "filename": "3-same-run-a.png",
+      "sha256": "7ee4c8ea89ab09663133e91d203669a76058a77aa54f7142d6316e95500a2a9c",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "status": "frame-set",
+        "sceneId": "same-run",
+        "frame": 2152,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "narration": "Create and delete that new file within the same RUN, and its payload never enters the resulting image diff.",
+        "theme": "light",
+        "evidenceMode": "illustrative-not-measured",
+        "example": {
+          "path": "file.bin",
+          "assumedUncompressedPayloadBytes": 100000000,
+          "isNewFile": true
+        },
+        "layerA": {
+          "payloadVisible": true,
+          "payloadRetainedInSeparateRunCase": true,
+          "immutableAfterRecording": true
+        },
+        "layerB": {
+          "whiteoutVisibleInCutaway": true
+        },
+        "mergedExamplePath": {
+          "visible": null,
+          "absent": null,
+          "whiteoutShownAsOrdinaryFile": false
+        },
+        "sameRun": {
+          "active": true,
+          "temporaryFilePresent": true,
+          "deletionCompleted": false,
+          "resultingDiffRecorded": false,
+          "newFilePayloadInResultingDiff": null
+        },
+        "captionSafeArea": {
+          "x": 0,
+          "y": 550,
+          "width": 1280,
+          "height": 170
+        },
+        "dependencies": []
+      },
+      "contentOverflow": []
+    },
+    {
+      "id": "same-run",
+      "label": "b",
+      "progress": 0.85,
+      "filename": "3-same-run-b.png",
+      "sha256": "d160e46ffbd452c59eafd69df40ad8269e9935a83ab846290c0b291db4fdf4e0",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "status": "frame-set",
+        "sceneId": "same-run",
+        "frame": 2852,
+        "fps": 30,
+        "segmentFrame": 850,
+        "segmentFrames": 1001,
+        "progress": 0.85,
+        "narration": "Create and delete that new file within the same RUN, and its payload never enters the resulting image diff.",
+        "theme": "light",
+        "evidenceMode": "illustrative-not-measured",
+        "example": {
+          "path": "file.bin",
+          "assumedUncompressedPayloadBytes": 100000000,
+          "isNewFile": true
+        },
+        "layerA": {
+          "payloadVisible": true,
+          "payloadRetainedInSeparateRunCase": true,
+          "immutableAfterRecording": true
+        },
+        "layerB": {
+          "whiteoutVisibleInCutaway": true
+        },
+        "mergedExamplePath": {
+          "visible": null,
+          "absent": null,
+          "whiteoutShownAsOrdinaryFile": false
+        },
+        "sameRun": {
+          "active": true,
+          "temporaryFilePresent": false,
+          "deletionCompleted": true,
+          "resultingDiffRecorded": true,
+          "newFilePayloadInResultingDiff": false
+        },
+        "captionSafeArea": {
+          "x": 0,
+          "y": 550,
+          "width": 1280,
+          "height": 170
+        },
+        "dependencies": []
+      },
+      "contentOverflow": []
+    },
+    {
+      "id": "same-run",
+      "label": "a-replay",
+      "progress": 0.15,
+      "filename": "3-same-run-a-replay.png",
+      "sha256": "7ee4c8ea89ab09663133e91d203669a76058a77aa54f7142d6316e95500a2a9c",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "status": "frame-set",
+        "sceneId": "same-run",
+        "frame": 2152,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "narration": "Create and delete that new file within the same RUN, and its payload never enters the resulting image diff.",
+        "theme": "light",
+        "evidenceMode": "illustrative-not-measured",
+        "example": {
+          "path": "file.bin",
+          "assumedUncompressedPayloadBytes": 100000000,
+          "isNewFile": true
+        },
+        "layerA": {
+          "payloadVisible": true,
+          "payloadRetainedInSeparateRunCase": true,
+          "immutableAfterRecording": true
+        },
+        "layerB": {
+          "whiteoutVisibleInCutaway": true
+        },
+        "mergedExamplePath": {
+          "visible": null,
+          "absent": null,
+          "whiteoutShownAsOrdinaryFile": false
+        },
+        "sameRun": {
+          "active": true,
+          "temporaryFilePresent": true,
+          "deletionCompleted": false,
+          "resultingDiffRecorded": false,
+          "newFilePayloadInResultingDiff": null
+        },
+        "captionSafeArea": {
+          "x": 0,
+          "y": 550,
+          "width": 1280,
+          "height": 170
+        },
+        "dependencies": []
+      },
+      "contentOverflow": []
+    },
+    {
+      "id": "same-run",
+      "label": "end",
+      "progress": 1,
+      "filename": "3-same-run-end.png",
+      "sha256": "d160e46ffbd452c59eafd69df40ad8269e9935a83ab846290c0b291db4fdf4e0",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "status": "frame-set",
+        "sceneId": "same-run",
+        "frame": 3002,
+        "fps": 30,
+        "segmentFrame": 1000,
+        "segmentFrames": 1001,
+        "progress": 1,
+        "narration": "Create and delete that new file within the same RUN, and its payload never enters the resulting image diff.",
+        "theme": "light",
+        "evidenceMode": "illustrative-not-measured",
+        "example": {
+          "path": "file.bin",
+          "assumedUncompressedPayloadBytes": 100000000,
+          "isNewFile": true
+        },
+        "layerA": {
+          "payloadVisible": true,
+          "payloadRetainedInSeparateRunCase": true,
+          "immutableAfterRecording": true
+        },
+        "layerB": {
+          "whiteoutVisibleInCutaway": true
+        },
+        "mergedExamplePath": {
+          "visible": null,
+          "absent": null,
+          "whiteoutShownAsOrdinaryFile": false
+        },
+        "sameRun": {
+          "active": true,
+          "temporaryFilePresent": false,
+          "deletionCompleted": true,
+          "resultingDiffRecorded": true,
+          "newFilePayloadInResultingDiff": false
+        },
+        "captionSafeArea": {
+          "x": 0,
+          "y": 550,
+          "width": 1280,
+          "height": 170
+        },
+        "dependencies": []
+      },
+      "contentOverflow": []
+    }
+  ],
+  "replay": [
+    {
+      "id": "layer-added",
+      "identical": true,
+      "changed": true
+    },
+    {
+      "id": "later-delete",
+      "identical": true,
+      "changed": true
+    },
+    {
+      "id": "same-run",
+      "identical": true,
+      "changed": true
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "visualAcceptance": "Not established by automation.",
+  "listening": "No audio generated or played."
+}

@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "1.0.0",
+  "format": "video",
+  "language": "en",
+  "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+  "title": "Aha: evidence made visible through three mechanisms",
+  "status": "authored",
+  "entry": "html/index.html",
+  "coverage": [
+    {
+      "id": "research-skill",
+      "claimIds": [
+        "c-skills"
+      ]
+    },
+    {
+      "id": "explanation-skill",
+      "claimIds": [
+        "c-skills"
+      ]
+    },
+    {
+      "id": "three-examples",
+      "claimIds": [
+        "c-synthesis"
+      ]
+    },
+    {
+      "id": "mercator-question",
+      "claimIds": [
+        "c-map"
+      ]
+    },
+    {
+      "id": "spherical-rotation",
+      "claimIds": [
+        "c-map"
+      ]
+    },
+    {
+      "id": "new-string",
+      "claimIds": [
+        "c-python"
+      ]
+    },
+    {
+      "id": "utf8-contrast",
+      "claimIds": [
+        "c-utf8",
+        "c-python"
+      ]
+    },
+    {
+      "id": "layer-created",
+      "claimIds": [
+        "c-layer"
+      ]
+    },
+    {
+      "id": "later-whiteout",
+      "claimIds": [
+        "c-delete"
+      ]
+    },
+    {
+      "id": "same-run",
+      "claimIds": [
+        "c-same"
+      ]
+    },
+    {
+      "id": "saved-html-image",
+      "claimIds": [
+        "c-formats"
+      ]
+    },
+    {
+      "id": "saved-slides-video",
+      "claimIds": [
+        "c-formats"
+      ]
+    },
+    {
+      "id": "evidence-visible",
+      "claimIds": [
+        "c-synthesis"
+      ]
+    }
+  ],
+  "omissions": [
+    {
+      "claimId": "c-intermediate",
+      "reason": "This introduction develops U+1F600 only. Latin-1/BMP counterexamples remain in the dossier; local labels explicitly reject all-emoji/all-implementation generalization."
+    },
+    {
+      "claimId": "c-container",
+      "reason": "This short image-layer cutaway does not explain the separate running-container writable layer."
+    }
+  ],
+  "width": 1280,
+  "height": 720
+}

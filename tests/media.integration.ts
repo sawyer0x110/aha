@@ -151,6 +151,8 @@ test('offline authored video uses measured synthetic audio and publishes verifie
     await assert.rejects(renderVideo(project, plan, audioDir, path.join(dir, 'no-code.mp4'), false), { code: 'AUTHOR_CODE_PERMISSION' });
     const output = path.join(dir, 'test.mp4');
     const receipt = await renderVideo(project, plan, audioDir, output, true) as Record<string, unknown>;
+    const { version } = JSON.parse(await fs.readFile(path.join(root, 'package.json'), 'utf8'));
+    assert.equal(receipt.rendererVersion, version);
     assert.equal(receipt.provider, 'provided-audio');
     assert.equal(receipt.totalFrames, 30);
     assert.equal(receipt.durationSeconds, 1);
@@ -159,6 +161,7 @@ test('offline authored video uses measured synthetic audio and publishes verifie
     assert.equal(receipt.artifactHash, await fileHash(output));
     assert.match(await fs.readFile(`${output}.srt`, 'utf8'), /00:00:01,000/);
     assert.equal(JSON.parse(await fs.readFile(`${output}.json`, 'utf8')).status, 'delivered');
+    assert.equal(JSON.parse(await fs.readFile(`${output}.json`, 'utf8')).rendererVersion, version);
     await assert.rejects(renderVideo(project, plan, audioDir, output, true), { code: 'OUTPUT_EXISTS' });
     await fs.appendFile(path.join(project, 'html', 'index.html'), '\n<!-- visual revision -->');
     await assert.rejects(renderVideo(project, plan, audioDir, path.join(dir, 'stale.mp4'), true), { code: 'VIDEO_SOURCE_MISMATCH' });

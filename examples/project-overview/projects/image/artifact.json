@@ -3,64 +3,23 @@
   "format": "image",
   "language": "en",
   "researchHash": "f100d4b64f1c41b3e48eaeed8fe88f71609f88c274b2fc3f298de3b672b484b3",
-  "title": "Aha: evidence into explanation",
+  "title": "Aha: research deeply, explain visually",
   "status": "authored",
   "entry": "html/index.html",
   "coverage": [
-    {
-      "id": "answer",
-      "claimIds": [
-        "c-purpose",
-        "c-journey"
-      ]
-    },
-    {
-      "id": "anc",
-      "claimIds": [
-        "c-anc"
-      ]
-    },
-    {
-      "id": "git",
-      "claimIds": [
-        "c-git"
-      ]
-    },
-    {
-      "id": "media",
-      "claimIds": [
-        "c-media"
-      ]
-    },
-    {
-      "id": "limits",
-      "claimIds": [
-        "c-limits",
-        "c-image"
-      ]
-    }
+    { "id": "identity", "claimIds": ["c-purpose"] },
+    { "id": "skills", "claimIds": ["c-purpose", "c-journey", "c-host"] },
+    { "id": "formats", "claimIds": ["c-media"] },
+    { "id": "principle", "claimIds": ["c-journey", "c-limits"] }
   ],
   "omissions": [
-    {
-      "claimId": "c-snapshot",
-      "reason": "This medium concentrates on the user journey and mechanism; detailed repository/evaluation or runtime contract is retained in the independent report and bilingual HTML."
-    },
-    {
-      "claimId": "c-execution",
-      "reason": "This medium concentrates on the user journey and mechanism; detailed repository/evaluation or runtime contract is retained in the independent report and bilingual HTML."
-    },
-    {
-      "claimId": "c-video",
-      "reason": "This medium concentrates on the user journey and mechanism; detailed repository/evaluation or runtime contract is retained in the independent report and bilingual HTML."
-    },
-    {
-      "claimId": "c-layout",
-      "reason": "This medium concentrates on the user journey and mechanism; detailed repository/evaluation or runtime contract is retained in the independent report and bilingual HTML."
-    },
-    {
-      "claimId": "c-host",
-      "reason": "This medium concentrates on the user journey and mechanism; detailed repository/evaluation or runtime contract is retained in the independent report and bilingual HTML."
-    }
+    { "claimId": "c-snapshot", "reason": "Research/source/output hashes and the detailed dossier schema are implementation documentation, not the requested product-capability overview." },
+    { "claimId": "c-anc", "reason": "The user explicitly requested no examples." },
+    { "claimId": "c-git", "reason": "The user explicitly requested no examples." },
+    { "claimId": "c-execution", "reason": "Permission and voice-disclosure contracts remain in the production approval and documentation, outside this introductory poster." },
+    { "claimId": "c-video", "reason": "The capability label describes narrated motion, not codec, frame rate or verified determinism." },
+    { "claimId": "c-image", "reason": "Canvas limits and image sizing guidance are production details, not introductory capabilities." },
+    { "claimId": "c-layout", "reason": "Repository directory and evaluation organization are outside the requested introduction." }
   ],
   "width": 1080,
   "height": 1800

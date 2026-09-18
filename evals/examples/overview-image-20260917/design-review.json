@@ -1,0 +1,20 @@
+{
+  "userDirection": "Optimize the attached original light-background overview; explain what Aha is and what it can do, with no examples.",
+  "canvas": { "width": 1080, "height": 1800, "readingWidths": [390, 540], "rationale": "Preserve the supplied portrait reference proportions; replace dense implementation prose with product identity, skill responsibilities and medium-specific capabilities." },
+  "design": "Warm light editorial poster, charcoal type, rose emphasis, two skill rows and four medium capability cells. Original inline outline icons represent media, not examples or output previews.",
+  "editorial": {
+    "identity": "Name Aha and two portable skills explicitly; AI host coordination is stated rather than implied to be autonomous runtime orchestration.",
+    "research": "Evidence gathering, claim checking and unresolved questions remain together; report-only output remains visible.",
+    "explain": "Research supports authoring the requested medium. No automatic pipeline or guaranteed correctness claim.",
+    "capabilities": "HTML diagrams and condition comparison, a separately composed PNG, native editable slide objects, and narrated motion.",
+    "removed": "All case studies, Dossier/Project/Delivery hash diagram, receipts, protocol versions, execution mechanics, and long caveats."
+  },
+  "researchReuse": {
+    "researchHash": "f100d4b64f1c41b3e48eaeed8fe88f71609f88c274b2fc3f298de3b672b484b3",
+    "scope": "Reuse only product, skills, authoring and media capability claims; no inherited case study claim appears.",
+    "freshness": "Re-read current README and installed explain skill and authoring/media/execution/QA references on 2026-09-17. The selected introductory capabilities remain consistent. No new version, availability, performance or user-outcome assertion."
+  },
+  "resources": "Only authored HTML/CSS, original inline SVG icons and installed system fonts; no external assets, downloads, network APIs, filesystem APIs, dynamic imports, storage or author dependencies.",
+  "executionReview": "The only author scripts set the document theme from the existing query/system preference with a stable light fallback for capture. Source reviewed before rendering. Existing browser environment only; revised source requires its own informed approval.",
+  "status": "authored-not-rendered"
+}

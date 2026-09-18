@@ -9,11 +9,13 @@
 | `aha-research` | 分解复杂问题、实际取证、多轮补查、反证与综合判断 | 独立研究档案、报告、来源与缺口 |
 | `aha-explain` | 内容策划、媒介设计、编写作品源、渲染与检查 | 富文本 HTML／Mermaid／交互图、一图流 PNG、原生 PPTX、Edge TTS 视频 |
 
-runtime **0.3.0**，研究与作品协议 **1.0.0**。研究独立于媒体格式，不要求先选模型、建立实验或编写 slides。不支持的协议或命令明确报错，不自动转换或删除用户数据。
+当前源码 runtime **0.3.1**，研究与作品协议 **1.0.0**。研究独立于媒体格式，不要求先选模型、建立实验或编写 slides。不支持的协议或命令明确报错，不自动转换或删除用户数据。
 
 产品需求见 [PRD](docs/PRD.md)，实现与许可边界见 [架构说明](docs/ARCHITECTURE.md)，研究工作法见 [研究协议](docs/RESEARCH.md)，技能效果验证见 [评估协议](docs/EVALUATION.md)。
 
-实际案例见 [examples](examples/README.md)：降噪耳机、Git merge 和 [Aha 项目导览](examples/project-overview/README.md)分别提供双语交互 HTML、PNG、原生 PPTX 和英文配音视频；[格陵兰与地图投影](examples/greenland/README.md)专注 1 分 56 秒的动态视频，共四个主题、十三份作品。每例只生成请求的格式，保留匹配的研究、可编辑源、收据与音频来源；完整视频听看与附加 PPT 动画放映的未确认边界单独记录。
+先看 [新版 Aha 视频介绍](examples/aha-introduction/README.md)：以“项目是什么 → 格陵兰、CPython、Docker 三个机制 → 总结”的结构展示研究如何成为可视化讲解，时长 1 分 59 秒。完整作品入口见 [examples](examples/README.md)，共七组示例、十六份作品：降噪耳机、Git merge 和[旧快照项目导览](examples/project-overview/README.md)各有四种格式；[格陵兰](examples/greenland/README.md)、[CPython 字符串](examples/cpython-string/README.md)、[Docker 镜像层](examples/docker-layers/README.md)及新版介绍按各自范围提供视频。研究、可编辑源、收据与音频来源一同保留；试片确认不替代完整版连续听看，未完成项单独记录。
+
+只想快速了解项目定位与能力，可以看[新版 Aha 一图介绍](examples/project-overview/overview.png)：两个 skills、四种表达能力，不含案例。
 
 ## 安装到你的 Agent
 
@@ -38,6 +40,14 @@ HTML 的 `--cp-*` 是运行时图表与控件的颜色角色，可在作者 CSS 
 两个入口按最终交付分工：报告／调查结论用 `aha-research`；视觉作品用 `aha-explain`，它按需完成前置研究。普通文字问答不升级为研究档案或媒体制作。参考按阶段读取：取证时选来源路线，创作时选媒介，构图时选主题章节，验收时读取 QA；不要求一开始加载所有参考。
 
 ## 开发与发布
+
+### 0.3.1 补丁更新
+
+相较已发布的 `v0.3.0`，本次补丁包含离线 HTML 的 `defer`／`async` 脚本调度修复、按精确音频时长计算帧数、无效 UTF-8 拒绝与研究主张双向覆盖检查，以及图片尺寸、研究与创作工作法的指导更新。CLI 和新视频收据的运行时版本统一从 `package.json` 获取；研究及作品协议保持 `1.0.0`，已有封存示例及收据不重写版本。
+
+正式安装包及发布状态以 [GitHub Releases](https://github.com/sawyer0x110/aha/releases) 为准，安装时确认所选 tag 和资产版本。本地构建、版本提升或 tag 推送本身不等于发布成功；需等待 Release 工作流完成并确认 ZIP、清单、SHA256 和安装指南齐全。发布包尚不可用时，可按[安装指南](INSTALL.md#发布尚不可用时授权后从源码构建)经授权从固定源码提交构建。
+
+### 目录与构建
 
 目录按用途组织：`src` 是运行时源码，`skills` 是技能源码；根目录 `scripts` 只放构建、发布和安装工具。`evals` 就近保存评估工具、用例和验收记录，`examples` 保存正式作品、可编辑项目与专用制作工具。`dist` 是可重建的分发输出，`artifacts` 是不提交的任务工作结果，不可当作缓存随意清空。完整职责见[仓库目录导航](docs/ARCHITECTURE.md#仓库目录导航)。
 

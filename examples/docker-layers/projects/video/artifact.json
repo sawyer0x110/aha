@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "format": "video",
+  "language": "en",
+  "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
+  "title": "Why Docker keeps a deleted file's bytes",
+  "status": "authored",
+  "entry": "html/index.html",
+  "coverage": [
+    {"id": "layer-added", "claimIds": ["c-layer", "c-example"]},
+    {"id": "later-delete", "claimIds": ["c-delete"]},
+    {"id": "same-run", "claimIds": ["c-same"]}
+  ],
+  "omissions": [
+    {"claimId": "c-base", "reason": "The 20–30 second pilot compares a NEW temporary file only; preexisting base-file deletion is documented in the bound research and author review, not developed as a fourth scene."},
+    {"claimId": "c-size", "reason": "A scope footer prevents equating assumed payload with measured image size, but compression, transfer, cache and shared-storage accounting are not explained in this short narration."},
+    {"claimId": "c-writable", "reason": "The diagram depicts image changesets only. The separate running-container writable-layer mechanism is intentionally not introduced in this pilot."}
+  ],
+  "width": 1280,
+  "height": 720
+}

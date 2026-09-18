@@ -1,0 +1,4368 @@
+{
+  "sourceHash": "9f6cb9b7d6b99821b4b181822a5b5f2ca877c42e98aea6d7cd90371cc123554c",
+  "planHash": "b24dea69586c4d895972e2ec5a04eb4e929501d3681b64f23fa73b92107fee98",
+  "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+  "helperHash": "2c409b3cc6f8c039de99cb26f80f056e7821919f5581f060a4d20f2c702f92d5",
+  "stage": "offline-source-preview",
+  "captures": [
+    {
+      "id": "research-skill",
+      "label": "start",
+      "progress": 0,
+      "filename": "1-research-skill-start.png",
+      "sha256": "9dba44d7f502b4a92d26db52a087db418e934386bdaee3c5d47a0dd87107d49f",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "research-skill",
+        "segmentIndex": 0,
+        "frame": 0,
+        "fps": 30,
+        "segmentFrame": 0,
+        "segmentFrames": 1001,
+        "progress": 0,
+        "theme": "dark",
+        "approvedNarration": "Aha helps turn research into visual explanations. Two portable skills investigate a question and make its mechanism clear.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "skills": {
+          "research": "sources-evidence-limitations",
+          "explain": "requested-medium",
+          "hostCoordinates": true,
+          "automaticDispatch": false,
+          "exampleShown": false,
+          "emphasisProgress": 0
+        },
+        "sourceSceneIndex": 0,
+        "projectIntroductionOnly": true,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · TWO PORTABLE SKILLS",
+        "Aha: researched visual explanations",
+        "Understand the question.",
+        "Make the mechanism clear.",
+        "aha-research",
+        "Sources · evidence · conditions",
+        "aha-explain",
+        "Visual explanations for your audience",
+        "Two portable skills, coordinated by your AI host.",
+        "Source: installed aha-research and aha-explain skill definitions."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "research-skill",
+      "label": "a",
+      "progress": 0.15,
+      "filename": "1-research-skill-a.png",
+      "sha256": "60d8a1bcb4be4fc9a9a7d141380071f0f77f020153180537854bd275613228f8",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "research-skill",
+        "segmentIndex": 0,
+        "frame": 150,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "dark",
+        "approvedNarration": "Aha helps turn research into visual explanations. Two portable skills investigate a question and make its mechanism clear.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "skills": {
+          "research": "sources-evidence-limitations",
+          "explain": "requested-medium",
+          "hostCoordinates": true,
+          "automaticDispatch": false,
+          "exampleShown": false,
+          "emphasisProgress": 0.06075
+        },
+        "sourceSceneIndex": 0,
+        "projectIntroductionOnly": true,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · TWO PORTABLE SKILLS",
+        "Aha: researched visual explanations",
+        "Understand the question.",
+        "Make the mechanism clear.",
+        "aha-research",
+        "Sources · evidence · conditions",
+        "aha-explain",
+        "Visual explanations for your audience",
+        "Two portable skills, coordinated by your AI host.",
+        "Source: installed aha-research and aha-explain skill definitions."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "research-skill",
+      "label": "b",
+      "progress": 0.85,
+      "filename": "1-research-skill-b.png",
+      "sha256": "f756c95cbb9383745fef7127fbb3de4b62ccff1242762e069b0dbf7b5fce13bc",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "research-skill",
+        "segmentIndex": 0,
+        "frame": 850,
+        "fps": 30,
+        "segmentFrame": 850,
+        "segmentFrames": 1001,
+        "progress": 0.85,
+        "theme": "dark",
+        "approvedNarration": "Aha helps turn research into visual explanations. Two portable skills investigate a question and make its mechanism clear.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "skills": {
+          "research": "sources-evidence-limitations",
+          "explain": "requested-medium",
+          "hostCoordinates": true,
+          "automaticDispatch": false,
+          "exampleShown": false,
+          "emphasisProgress": 0.9392499999999999
+        },
+        "sourceSceneIndex": 0,
+        "projectIntroductionOnly": true,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · TWO PORTABLE SKILLS",
+        "Aha: researched visual explanations",
+        "Understand the question.",
+        "Make the mechanism clear.",
+        "aha-research",
+        "Sources · evidence · conditions",
+        "aha-explain",
+        "Visual explanations for your audience",
+        "Two portable skills, coordinated by your AI host.",
+        "Source: installed aha-research and aha-explain skill definitions."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "research-skill",
+      "label": "a-replay",
+      "progress": 0.15,
+      "filename": "1-research-skill-a-replay.png",
+      "sha256": "60d8a1bcb4be4fc9a9a7d141380071f0f77f020153180537854bd275613228f8",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "research-skill",
+        "segmentIndex": 0,
+        "frame": 150,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "dark",
+        "approvedNarration": "Aha helps turn research into visual explanations. Two portable skills investigate a question and make its mechanism clear.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "skills": {
+          "research": "sources-evidence-limitations",
+          "explain": "requested-medium",
+          "hostCoordinates": true,
+          "automaticDispatch": false,
+          "exampleShown": false,
+          "emphasisProgress": 0.06075
+        },
+        "sourceSceneIndex": 0,
+        "projectIntroductionOnly": true,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · TWO PORTABLE SKILLS",
+        "Aha: researched visual explanations",
+        "Understand the question.",
+        "Make the mechanism clear.",
+        "aha-research",
+        "Sources · evidence · conditions",
+        "aha-explain",
+        "Visual explanations for your audience",
+        "Two portable skills, coordinated by your AI host.",
+        "Source: installed aha-research and aha-explain skill definitions."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "research-skill",
+      "label": "end",
+      "progress": 1,
+      "filename": "1-research-skill-end.png",
+      "sha256": "0ec18690b2bdf9c0f83cd357c464491dd291ad257a3ed94ac1059cb73f05bb0b",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "research-skill",
+        "segmentIndex": 0,
+        "frame": 1000,
+        "fps": 30,
+        "segmentFrame": 1000,
+        "segmentFrames": 1001,
+        "progress": 1,
+        "theme": "dark",
+        "approvedNarration": "Aha helps turn research into visual explanations. Two portable skills investigate a question and make its mechanism clear.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "skills": {
+          "research": "sources-evidence-limitations",
+          "explain": "requested-medium",
+          "hostCoordinates": true,
+          "automaticDispatch": false,
+          "exampleShown": false,
+          "emphasisProgress": 1
+        },
+        "sourceSceneIndex": 0,
+        "projectIntroductionOnly": true,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · TWO PORTABLE SKILLS",
+        "Aha: researched visual explanations",
+        "Understand the question.",
+        "Make the mechanism clear.",
+        "aha-research",
+        "Sources · evidence · conditions",
+        "aha-explain",
+        "Visual explanations for your audience",
+        "Two portable skills, coordinated by your AI host.",
+        "Source: installed aha-research and aha-explain skill definitions."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "explanation-skill",
+      "label": "start",
+      "progress": 0,
+      "filename": "2-explanation-skill-start.png",
+      "sha256": "ab2f9dcf38af025cdbd8d17f0962295a121841f23eeb90a6421bc4ade0f0781f",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "explanation-skill",
+        "segmentIndex": 1,
+        "frame": 1001,
+        "fps": 30,
+        "segmentFrame": 0,
+        "segmentFrames": 1001,
+        "progress": 0,
+        "theme": "dark",
+        "approvedNarration": "Aha Research examines evidence and its limits. Aha Explain designs the chosen medium. Your AI host coordinates the work.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "skills": {
+          "research": "sources-evidence-limitations",
+          "explain": "requested-medium",
+          "hostCoordinates": true,
+          "automaticDispatch": false,
+          "exampleShown": false,
+          "evidenceToExplanationProgress": 0
+        },
+        "sourceSceneIndex": 1,
+        "projectIntroductionOnly": true,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · TWO PORTABLE SKILLS",
+        "From supported finding to visible mechanism",
+        "Research the question",
+        "Design the explanation",
+        "A supported finding",
+        "The conditions behind it",
+        "What the evidence leaves open",
+        "HTML for exploration",
+        "Images and slides for reading",
+        "Video for changing mechanisms",
+        "One question. An explanation composed for its use.",
+        "Research the question, then design an explanation for the chosen medium.",
+        "Sources: Aha research and explanation authoring guides."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "explanation-skill",
+      "label": "a",
+      "progress": 0.15,
+      "filename": "2-explanation-skill-a.png",
+      "sha256": "b9d9c235929153c34acb900ea53b890249ef87518ca3617e90abcf8f063e61e3",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "explanation-skill",
+        "segmentIndex": 1,
+        "frame": 1151,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "dark",
+        "approvedNarration": "Aha Research examines evidence and its limits. Aha Explain designs the chosen medium. Your AI host coordinates the work.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "skills": {
+          "research": "sources-evidence-limitations",
+          "explain": "requested-medium",
+          "hostCoordinates": true,
+          "automaticDispatch": false,
+          "exampleShown": false,
+          "evidenceToExplanationProgress": 0.06075
+        },
+        "sourceSceneIndex": 1,
+        "projectIntroductionOnly": true,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · TWO PORTABLE SKILLS",
+        "From supported finding to visible mechanism",
+        "Research the question",
+        "Design the explanation",
+        "A supported finding",
+        "The conditions behind it",
+        "What the evidence leaves open",
+        "HTML for exploration",
+        "Images and slides for reading",
+        "Video for changing mechanisms",
+        "One question. An explanation composed for its use.",
+        "Research the question, then design an explanation for the chosen medium.",
+        "Sources: Aha research and explanation authoring guides."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "explanation-skill",
+      "label": "b",
+      "progress": 0.85,
+      "filename": "2-explanation-skill-b.png",
+      "sha256": "567367d17ef4cc5211036c988a0b3f9942656b9733b0a4651c6c9109e8feae87",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "explanation-skill",
+        "segmentIndex": 1,
+        "frame": 1851,
+        "fps": 30,
+        "segmentFrame": 850,
+        "segmentFrames": 1001,
+        "progress": 0.85,
+        "theme": "dark",
+        "approvedNarration": "Aha Research examines evidence and its limits. Aha Explain designs the chosen medium. Your AI host coordinates the work.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "skills": {
+          "research": "sources-evidence-limitations",
+          "explain": "requested-medium",
+          "hostCoordinates": true,
+          "automaticDispatch": false,
+          "exampleShown": false,
+          "evidenceToExplanationProgress": 0.9392499999999999
+        },
+        "sourceSceneIndex": 1,
+        "projectIntroductionOnly": true,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · TWO PORTABLE SKILLS",
+        "From supported finding to visible mechanism",
+        "Research the question",
+        "Design the explanation",
+        "A supported finding",
+        "The conditions behind it",
+        "What the evidence leaves open",
+        "HTML for exploration",
+        "Images and slides for reading",
+        "Video for changing mechanisms",
+        "One question. An explanation composed for its use.",
+        "Research the question, then design an explanation for the chosen medium.",
+        "Sources: Aha research and explanation authoring guides."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "explanation-skill",
+      "label": "a-replay",
+      "progress": 0.15,
+      "filename": "2-explanation-skill-a-replay.png",
+      "sha256": "b9d9c235929153c34acb900ea53b890249ef87518ca3617e90abcf8f063e61e3",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "explanation-skill",
+        "segmentIndex": 1,
+        "frame": 1151,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "dark",
+        "approvedNarration": "Aha Research examines evidence and its limits. Aha Explain designs the chosen medium. Your AI host coordinates the work.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "skills": {
+          "research": "sources-evidence-limitations",
+          "explain": "requested-medium",
+          "hostCoordinates": true,
+          "automaticDispatch": false,
+          "exampleShown": false,
+          "evidenceToExplanationProgress": 0.06075
+        },
+        "sourceSceneIndex": 1,
+        "projectIntroductionOnly": true,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · TWO PORTABLE SKILLS",
+        "From supported finding to visible mechanism",
+        "Research the question",
+        "Design the explanation",
+        "A supported finding",
+        "The conditions behind it",
+        "What the evidence leaves open",
+        "HTML for exploration",
+        "Images and slides for reading",
+        "Video for changing mechanisms",
+        "One question. An explanation composed for its use.",
+        "Research the question, then design an explanation for the chosen medium.",
+        "Sources: Aha research and explanation authoring guides."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "explanation-skill",
+      "label": "end",
+      "progress": 1,
+      "filename": "2-explanation-skill-end.png",
+      "sha256": "af55c5e7326744923beb5c67510750d722af7c9258a8739e0b620d295ab00f21",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "explanation-skill",
+        "segmentIndex": 1,
+        "frame": 2001,
+        "fps": 30,
+        "segmentFrame": 1000,
+        "segmentFrames": 1001,
+        "progress": 1,
+        "theme": "dark",
+        "approvedNarration": "Aha Research examines evidence and its limits. Aha Explain designs the chosen medium. Your AI host coordinates the work.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "skills": {
+          "research": "sources-evidence-limitations",
+          "explain": "requested-medium",
+          "hostCoordinates": true,
+          "automaticDispatch": false,
+          "exampleShown": false,
+          "evidenceToExplanationProgress": 1
+        },
+        "sourceSceneIndex": 1,
+        "projectIntroductionOnly": true,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · TWO PORTABLE SKILLS",
+        "From supported finding to visible mechanism",
+        "Research the question",
+        "Design the explanation",
+        "A supported finding",
+        "The conditions behind it",
+        "What the evidence leaves open",
+        "HTML for exploration",
+        "Images and slides for reading",
+        "Video for changing mechanisms",
+        "One question. An explanation composed for its use.",
+        "Research the question, then design an explanation for the chosen medium.",
+        "Sources: Aha research and explanation authoring guides."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "three-examples",
+      "label": "start",
+      "progress": 0,
+      "filename": "3-three-examples-start.png",
+      "sha256": "2ecad286bacff32c2e692f29f7f476296cf1b2dba598b7027691f416691c60fb",
+      "caption": {
+        "top": 632.8125,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "sceneId": "three-examples",
+        "segmentIndex": 2,
+        "sourceSceneIndex": null,
+        "frame": 2002,
+        "fps": 30,
+        "segmentFrame": 0,
+        "segmentFrames": 1001,
+        "progress": 0,
+        "theme": "dark",
+        "examples": [
+          "Greenland",
+          "CPython",
+          "Docker"
+        ],
+        "projectIntroductionOnly": false,
+        "bridgeBeforeExamples": true,
+        "approvedNarration": "Three examples show the range: everyday phenomena, code, and engineering."
+      },
+      "visibleText": [
+        "AHA · FROM INTRODUCTION TO EXAMPLES",
+        "See Aha in action",
+        "Three examples. Three kinds of questions.",
+        "01",
+        "Greenland",
+        "Everyday phenomena",
+        "02",
+        "CPython",
+        "Code mechanisms",
+        "03",
+        "Docker",
+        "Engineering behavior",
+        "See what changes, what stays fixed, and why.",
+        "Three different questions, explained through their underlying mechanisms.",
+        "Sources: Greenland, CPython and Docker research."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "three-examples",
+      "label": "a",
+      "progress": 0.15,
+      "filename": "3-three-examples-a.png",
+      "sha256": "3fd5ca10e291eacd4fddcf21f593746f87de1d3b92789e9cd0d1f2c6636158c1",
+      "caption": {
+        "top": 632.8125,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "sceneId": "three-examples",
+        "segmentIndex": 2,
+        "sourceSceneIndex": null,
+        "frame": 2152,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "dark",
+        "examples": [
+          "Greenland",
+          "CPython",
+          "Docker"
+        ],
+        "projectIntroductionOnly": false,
+        "bridgeBeforeExamples": true,
+        "approvedNarration": "Three examples show the range: everyday phenomena, code, and engineering."
+      },
+      "visibleText": [
+        "AHA · FROM INTRODUCTION TO EXAMPLES",
+        "See Aha in action",
+        "Three examples. Three kinds of questions.",
+        "01",
+        "Greenland",
+        "Everyday phenomena",
+        "02",
+        "CPython",
+        "Code mechanisms",
+        "03",
+        "Docker",
+        "Engineering behavior",
+        "See what changes, what stays fixed, and why.",
+        "Three different questions, explained through their underlying mechanisms.",
+        "Sources: Greenland, CPython and Docker research."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "three-examples",
+      "label": "b",
+      "progress": 0.85,
+      "filename": "3-three-examples-b.png",
+      "sha256": "bc7af7f7f08c6fd9e1fa22643f6b2ed71e67a03aab3e49ffe211c2f8395d82e3",
+      "caption": {
+        "top": 632.8125,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "sceneId": "three-examples",
+        "segmentIndex": 2,
+        "sourceSceneIndex": null,
+        "frame": 2852,
+        "fps": 30,
+        "segmentFrame": 850,
+        "segmentFrames": 1001,
+        "progress": 0.85,
+        "theme": "dark",
+        "examples": [
+          "Greenland",
+          "CPython",
+          "Docker"
+        ],
+        "projectIntroductionOnly": false,
+        "bridgeBeforeExamples": true,
+        "approvedNarration": "Three examples show the range: everyday phenomena, code, and engineering."
+      },
+      "visibleText": [
+        "AHA · FROM INTRODUCTION TO EXAMPLES",
+        "See Aha in action",
+        "Three examples. Three kinds of questions.",
+        "01",
+        "Greenland",
+        "Everyday phenomena",
+        "02",
+        "CPython",
+        "Code mechanisms",
+        "03",
+        "Docker",
+        "Engineering behavior",
+        "See what changes, what stays fixed, and why.",
+        "Three different questions, explained through their underlying mechanisms.",
+        "Sources: Greenland, CPython and Docker research."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "three-examples",
+      "label": "a-replay",
+      "progress": 0.15,
+      "filename": "3-three-examples-a-replay.png",
+      "sha256": "3fd5ca10e291eacd4fddcf21f593746f87de1d3b92789e9cd0d1f2c6636158c1",
+      "caption": {
+        "top": 632.8125,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "sceneId": "three-examples",
+        "segmentIndex": 2,
+        "sourceSceneIndex": null,
+        "frame": 2152,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "dark",
+        "examples": [
+          "Greenland",
+          "CPython",
+          "Docker"
+        ],
+        "projectIntroductionOnly": false,
+        "bridgeBeforeExamples": true,
+        "approvedNarration": "Three examples show the range: everyday phenomena, code, and engineering."
+      },
+      "visibleText": [
+        "AHA · FROM INTRODUCTION TO EXAMPLES",
+        "See Aha in action",
+        "Three examples. Three kinds of questions.",
+        "01",
+        "Greenland",
+        "Everyday phenomena",
+        "02",
+        "CPython",
+        "Code mechanisms",
+        "03",
+        "Docker",
+        "Engineering behavior",
+        "See what changes, what stays fixed, and why.",
+        "Three different questions, explained through their underlying mechanisms.",
+        "Sources: Greenland, CPython and Docker research."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "three-examples",
+      "label": "end",
+      "progress": 1,
+      "filename": "3-three-examples-end.png",
+      "sha256": "bc7af7f7f08c6fd9e1fa22643f6b2ed71e67a03aab3e49ffe211c2f8395d82e3",
+      "caption": {
+        "top": 632.8125,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "sceneId": "three-examples",
+        "segmentIndex": 2,
+        "sourceSceneIndex": null,
+        "frame": 3002,
+        "fps": 30,
+        "segmentFrame": 1000,
+        "segmentFrames": 1001,
+        "progress": 1,
+        "theme": "dark",
+        "examples": [
+          "Greenland",
+          "CPython",
+          "Docker"
+        ],
+        "projectIntroductionOnly": false,
+        "bridgeBeforeExamples": true,
+        "approvedNarration": "Three examples show the range: everyday phenomena, code, and engineering."
+      },
+      "visibleText": [
+        "AHA · FROM INTRODUCTION TO EXAMPLES",
+        "See Aha in action",
+        "Three examples. Three kinds of questions.",
+        "01",
+        "Greenland",
+        "Everyday phenomena",
+        "02",
+        "CPython",
+        "Code mechanisms",
+        "03",
+        "Docker",
+        "Engineering behavior",
+        "See what changes, what stays fixed, and why.",
+        "Three different questions, explained through their underlying mechanisms.",
+        "Sources: Greenland, CPython and Docker research."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "mercator-question",
+      "label": "start",
+      "progress": 0,
+      "filename": "4-mercator-question-start.png",
+      "sha256": "df1d26bd2b527f00faa40f5b27f3b494d744d68c1a77d5562836ba696679b01c",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "mercator-question",
+        "segmentIndex": 3,
+        "frame": 3003,
+        "fps": 30,
+        "segmentFrame": 0,
+        "segmentFrames": 1001,
+        "progress": 0,
+        "theme": "light",
+        "approvedNarration": "Why does Greenland look enormous? On a spherical Mercator map, high latitudes are enlarged. The projection stretches both directions to preserve local angles.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "greenland": {
+          "rotationProgress": 0,
+          "originalAreaSteradians": 0.05394838020804734,
+          "movedAreaSteradians": 0.05394838020804717,
+          "relativeAreaError": 3.219646771412954e-15,
+          "movedCentroid": [
+            -41.96503517476323,
+            73.1507843313765
+          ],
+          "projectedArea": 7227.65544537666,
+          "originalProjectedArea": 7227.655445376661,
+          "mercatorScale": 90,
+          "mercatorTranslate": [
+            450,
+            270
+          ],
+          "clipExtent": [
+            [
+              64,
+              4
+            ],
+            [
+              818,
+              358
+            ]
+          ],
+          "geometryOperation": "rigid-spherical-rotation",
+          "planarScaling": false
+        },
+        "sourceSceneIndex": 2,
+        "projectIntroductionOnly": false,
+        "chapterTransition": {
+          "section": "Greenland",
+          "progress": 0,
+          "mechanismProgress": 0
+        }
+      },
+      "visibleText": [
+        "01 · EVERYDAY PHENOMENA",
+        "Why does Greenland look so large?",
+        "01 · EVERYDAY PHENOMENA",
+        "Greenland",
+        "Why does a map make land look larger?",
+        "Spherical Mercator · polar crop · generalized boundary, not an exact survey.",
+        "Sources: PROJ Mercator · Natural Earth 5.1.2."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "mercator-question",
+      "label": "a",
+      "progress": 0.15,
+      "filename": "4-mercator-question-a.png",
+      "sha256": "037ac57e99742bbb35d349ca75ee62c63ed25d7c62c073ba8857b5f44399a28c",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "mercator-question",
+        "segmentIndex": 3,
+        "frame": 3153,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "light",
+        "approvedNarration": "Why does Greenland look enormous? On a spherical Mercator map, high latitudes are enlarged. The projection stretches both directions to preserve local angles.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "greenland": {
+          "rotationProgress": 0,
+          "originalAreaSteradians": 0.05394838020804734,
+          "movedAreaSteradians": 0.05394838020804717,
+          "relativeAreaError": 3.219646771412954e-15,
+          "movedCentroid": [
+            -41.96503517476323,
+            73.1507843313765
+          ],
+          "projectedArea": 7227.65544537666,
+          "originalProjectedArea": 7227.655445376661,
+          "mercatorScale": 90,
+          "mercatorTranslate": [
+            450,
+            270
+          ],
+          "clipExtent": [
+            [
+              64,
+              4
+            ],
+            [
+              818,
+              358
+            ]
+          ],
+          "geometryOperation": "rigid-spherical-rotation",
+          "planarScaling": false
+        },
+        "sourceSceneIndex": 2,
+        "projectIntroductionOnly": false,
+        "chapterTransition": {
+          "section": "Greenland",
+          "progress": 0.7839999999999998,
+          "mechanismProgress": 0
+        }
+      },
+      "visibleText": [
+        "01 · EVERYDAY PHENOMENA",
+        "Why does Greenland look so large?",
+        "Greenland",
+        "Africa",
+        "Equator",
+        "FIXED SPHERICAL MERCATOR",
+        "Polar regions cropped",
+        "ON THE SPHERE",
+        "Same spherical area",
+        "High latitude: enlarged",
+        "01 · EVERYDAY PHENOMENA",
+        "Greenland",
+        "Why does a map make land look larger?",
+        "Spherical Mercator · polar crop · generalized boundary, not an exact survey.",
+        "Sources: PROJ Mercator · Natural Earth 5.1.2."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "mercator-question",
+      "label": "b",
+      "progress": 0.85,
+      "filename": "4-mercator-question-b.png",
+      "sha256": "874a66bcac5314823c88caecf7f6ad606edd6d4605f43f959ae981b968b3df12",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "mercator-question",
+        "segmentIndex": 3,
+        "frame": 3853,
+        "fps": 30,
+        "segmentFrame": 850,
+        "segmentFrames": 1001,
+        "progress": 0.85,
+        "theme": "light",
+        "approvedNarration": "Why does Greenland look enormous? On a spherical Mercator map, high latitudes are enlarged. The projection stretches both directions to preserve local angles.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "greenland": {
+          "rotationProgress": 0,
+          "originalAreaSteradians": 0.05394838020804734,
+          "movedAreaSteradians": 0.05394838020804717,
+          "relativeAreaError": 3.219646771412954e-15,
+          "movedCentroid": [
+            -41.96503517476323,
+            73.1507843313765
+          ],
+          "projectedArea": 7227.65544537666,
+          "originalProjectedArea": 7227.655445376661,
+          "mercatorScale": 90,
+          "mercatorTranslate": [
+            450,
+            270
+          ],
+          "clipExtent": [
+            [
+              64,
+              4
+            ],
+            [
+              818,
+              358
+            ]
+          ],
+          "geometryOperation": "rigid-spherical-rotation",
+          "planarScaling": false
+        },
+        "sourceSceneIndex": 2,
+        "projectIntroductionOnly": false,
+        "chapterTransition": {
+          "section": "Greenland",
+          "progress": 1,
+          "mechanismProgress": 0.8214285714285714
+        }
+      },
+      "visibleText": [
+        "01 · EVERYDAY PHENOMENA",
+        "Why does Greenland look so large?",
+        "Greenland",
+        "Africa",
+        "Equator",
+        "FIXED SPHERICAL MERCATOR",
+        "Polar regions cropped",
+        "ON THE SPHERE",
+        "Same spherical area",
+        "High latitude: enlarged",
+        "Spherical Mercator · polar crop · generalized boundary, not an exact survey.",
+        "Sources: PROJ Mercator · Natural Earth 5.1.2."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "mercator-question",
+      "label": "a-replay",
+      "progress": 0.15,
+      "filename": "4-mercator-question-a-replay.png",
+      "sha256": "037ac57e99742bbb35d349ca75ee62c63ed25d7c62c073ba8857b5f44399a28c",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "mercator-question",
+        "segmentIndex": 3,
+        "frame": 3153,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "light",
+        "approvedNarration": "Why does Greenland look enormous? On a spherical Mercator map, high latitudes are enlarged. The projection stretches both directions to preserve local angles.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "greenland": {
+          "rotationProgress": 0,
+          "originalAreaSteradians": 0.05394838020804734,
+          "movedAreaSteradians": 0.05394838020804717,
+          "relativeAreaError": 3.219646771412954e-15,
+          "movedCentroid": [
+            -41.96503517476323,
+            73.1507843313765
+          ],
+          "projectedArea": 7227.65544537666,
+          "originalProjectedArea": 7227.655445376661,
+          "mercatorScale": 90,
+          "mercatorTranslate": [
+            450,
+            270
+          ],
+          "clipExtent": [
+            [
+              64,
+              4
+            ],
+            [
+              818,
+              358
+            ]
+          ],
+          "geometryOperation": "rigid-spherical-rotation",
+          "planarScaling": false
+        },
+        "sourceSceneIndex": 2,
+        "projectIntroductionOnly": false,
+        "chapterTransition": {
+          "section": "Greenland",
+          "progress": 0.7839999999999998,
+          "mechanismProgress": 0
+        }
+      },
+      "visibleText": [
+        "01 · EVERYDAY PHENOMENA",
+        "Why does Greenland look so large?",
+        "Greenland",
+        "Africa",
+        "Equator",
+        "FIXED SPHERICAL MERCATOR",
+        "Polar regions cropped",
+        "ON THE SPHERE",
+        "Same spherical area",
+        "High latitude: enlarged",
+        "01 · EVERYDAY PHENOMENA",
+        "Greenland",
+        "Why does a map make land look larger?",
+        "Spherical Mercator · polar crop · generalized boundary, not an exact survey.",
+        "Sources: PROJ Mercator · Natural Earth 5.1.2."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "mercator-question",
+      "label": "end",
+      "progress": 1,
+      "filename": "4-mercator-question-end.png",
+      "sha256": "874a66bcac5314823c88caecf7f6ad606edd6d4605f43f959ae981b968b3df12",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "mercator-question",
+        "segmentIndex": 3,
+        "frame": 4003,
+        "fps": 30,
+        "segmentFrame": 1000,
+        "segmentFrames": 1001,
+        "progress": 1,
+        "theme": "light",
+        "approvedNarration": "Why does Greenland look enormous? On a spherical Mercator map, high latitudes are enlarged. The projection stretches both directions to preserve local angles.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "greenland": {
+          "rotationProgress": 0,
+          "originalAreaSteradians": 0.05394838020804734,
+          "movedAreaSteradians": 0.05394838020804717,
+          "relativeAreaError": 3.219646771412954e-15,
+          "movedCentroid": [
+            -41.96503517476323,
+            73.1507843313765
+          ],
+          "projectedArea": 7227.65544537666,
+          "originalProjectedArea": 7227.655445376661,
+          "mercatorScale": 90,
+          "mercatorTranslate": [
+            450,
+            270
+          ],
+          "clipExtent": [
+            [
+              64,
+              4
+            ],
+            [
+              818,
+              358
+            ]
+          ],
+          "geometryOperation": "rigid-spherical-rotation",
+          "planarScaling": false
+        },
+        "sourceSceneIndex": 2,
+        "projectIntroductionOnly": false,
+        "chapterTransition": {
+          "section": "Greenland",
+          "progress": 1,
+          "mechanismProgress": 1
+        }
+      },
+      "visibleText": [
+        "01 · EVERYDAY PHENOMENA",
+        "Why does Greenland look so large?",
+        "Greenland",
+        "Africa",
+        "Equator",
+        "FIXED SPHERICAL MERCATOR",
+        "Polar regions cropped",
+        "ON THE SPHERE",
+        "Same spherical area",
+        "High latitude: enlarged",
+        "Spherical Mercator · polar crop · generalized boundary, not an exact survey.",
+        "Sources: PROJ Mercator · Natural Earth 5.1.2."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "spherical-rotation",
+      "label": "start",
+      "progress": 0,
+      "filename": "5-spherical-rotation-start.png",
+      "sha256": "98ddc310f9b1d1029c01a685eb8d7ed7d79c75f461e605bb2ba2ced9c9b95fe7",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "spherical-rotation",
+        "segmentIndex": 4,
+        "frame": 4004,
+        "fps": 30,
+        "segmentFrame": 0,
+        "segmentFrames": 1001,
+        "progress": 0,
+        "theme": "light",
+        "approvedNarration": "Move Greenland toward the equator by rotating its boundary on the sphere. Its spherical area stays constant; its footprint on this fixed map shrinks.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "greenland": {
+          "rotationProgress": 0,
+          "originalAreaSteradians": 0.05394838020804734,
+          "movedAreaSteradians": 0.05394838020804717,
+          "relativeAreaError": 3.219646771412954e-15,
+          "movedCentroid": [
+            -41.96503517476323,
+            73.1507843313765
+          ],
+          "projectedArea": 7227.65544537666,
+          "originalProjectedArea": 7227.655445376661,
+          "mercatorScale": 90,
+          "mercatorTranslate": [
+            450,
+            270
+          ],
+          "clipExtent": [
+            [
+              64,
+              4
+            ],
+            [
+              818,
+              358
+            ]
+          ],
+          "geometryOperation": "rigid-spherical-rotation",
+          "planarScaling": false
+        },
+        "sourceSceneIndex": 3,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "01 · A GEOGRAPHIC MECHANISM",
+        "Move the land. Keep its spherical area.",
+        "Greenland",
+        "Africa",
+        "Equator",
+        "FIXED SPHERICAL MERCATOR",
+        "Polar regions cropped",
+        "ON THE SPHERE",
+        "Same spherical area",
+        "High latitude: enlarged",
+        "Counterfactual relocation on a sphere, not actual continental motion or 2D scaling.",
+        "Sources: D3 spherical rotation · PROJ Mercator · Natural Earth 5.1.2."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "spherical-rotation",
+      "label": "a",
+      "progress": 0.15,
+      "filename": "5-spherical-rotation-a.png",
+      "sha256": "441364211f7c35fd5f2f09c778d4024566aae74998a83bb1907aef5915856d91",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "spherical-rotation",
+        "segmentIndex": 4,
+        "frame": 4154,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "light",
+        "approvedNarration": "Move Greenland toward the equator by rotating its boundary on the sphere. Its spherical area stays constant; its footprint on this fixed map shrinks.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "greenland": {
+          "rotationProgress": 0.019675925925925927,
+          "originalAreaSteradians": 0.05394838020804734,
+          "movedAreaSteradians": 0.05394838020804722,
+          "relativeAreaError": 2.220446049250313e-15,
+          "movedCentroid": [
+            -41.96503517476329,
+            71.7114749174489
+          ],
+          "projectedArea": 5821.179131220107,
+          "originalProjectedArea": 7227.655445376661,
+          "mercatorScale": 90,
+          "mercatorTranslate": [
+            450,
+            270
+          ],
+          "clipExtent": [
+            [
+              64,
+              4
+            ],
+            [
+              818,
+              358
+            ]
+          ],
+          "geometryOperation": "rigid-spherical-rotation",
+          "planarScaling": false
+        },
+        "sourceSceneIndex": 3,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "01 · A GEOGRAPHIC MECHANISM",
+        "Move the land. Keep its spherical area.",
+        "Greenland",
+        "Africa",
+        "Equator",
+        "FIXED SPHERICAL MERCATOR",
+        "Polar regions cropped",
+        "ON THE SPHERE",
+        "Same spherical area",
+        "High latitude: enlarged",
+        "Counterfactual relocation on a sphere, not actual continental motion or 2D scaling.",
+        "Sources: D3 spherical rotation · PROJ Mercator · Natural Earth 5.1.2."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "spherical-rotation",
+      "label": "b",
+      "progress": 0.85,
+      "filename": "5-spherical-rotation-b.png",
+      "sha256": "287cdd5b59cd93f5d044d1cc98679d40cfdf71adfbe1bd5b8410afbd80b41653",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "spherical-rotation",
+        "segmentIndex": 4,
+        "frame": 4854,
+        "fps": 30,
+        "segmentFrame": 850,
+        "segmentFrames": 1001,
+        "progress": 0.85,
+        "theme": "light",
+        "approvedNarration": "Move Greenland toward the equator by rotating its boundary on the sphere. Its spherical area stays constant; its footprint on this fixed map shrinks.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "greenland": {
+          "rotationProgress": 0.9803240740740741,
+          "originalAreaSteradians": 0.05394838020804734,
+          "movedAreaSteradians": 0.053948380208047333,
+          "relativeAreaError": 1.1102230246251565e-16,
+          "movedCentroid": [
+            -41.96503517476346,
+            1.4393094139275064
+          ],
+          "projectedArea": 441.5702729124605,
+          "originalProjectedArea": 7227.655445376661,
+          "mercatorScale": 90,
+          "mercatorTranslate": [
+            450,
+            270
+          ],
+          "clipExtent": [
+            [
+              64,
+              4
+            ],
+            [
+              818,
+              358
+            ]
+          ],
+          "geometryOperation": "rigid-spherical-rotation",
+          "planarScaling": false
+        },
+        "sourceSceneIndex": 3,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "01 · A GEOGRAPHIC MECHANISM",
+        "Move the land. Keep its spherical area.",
+        "Greenland",
+        "Africa",
+        "Equator",
+        "FIXED SPHERICAL MERCATOR",
+        "Polar regions cropped",
+        "ON THE SPHERE",
+        "Same spherical area",
+        "Lower latitude: less enlarged",
+        "Counterfactual relocation on a sphere, not actual continental motion or 2D scaling.",
+        "Sources: D3 spherical rotation · PROJ Mercator · Natural Earth 5.1.2."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "spherical-rotation",
+      "label": "a-replay",
+      "progress": 0.15,
+      "filename": "5-spherical-rotation-a-replay.png",
+      "sha256": "441364211f7c35fd5f2f09c778d4024566aae74998a83bb1907aef5915856d91",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "spherical-rotation",
+        "segmentIndex": 4,
+        "frame": 4154,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "light",
+        "approvedNarration": "Move Greenland toward the equator by rotating its boundary on the sphere. Its spherical area stays constant; its footprint on this fixed map shrinks.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "greenland": {
+          "rotationProgress": 0.019675925925925927,
+          "originalAreaSteradians": 0.05394838020804734,
+          "movedAreaSteradians": 0.05394838020804722,
+          "relativeAreaError": 2.220446049250313e-15,
+          "movedCentroid": [
+            -41.96503517476329,
+            71.7114749174489
+          ],
+          "projectedArea": 5821.179131220107,
+          "originalProjectedArea": 7227.655445376661,
+          "mercatorScale": 90,
+          "mercatorTranslate": [
+            450,
+            270
+          ],
+          "clipExtent": [
+            [
+              64,
+              4
+            ],
+            [
+              818,
+              358
+            ]
+          ],
+          "geometryOperation": "rigid-spherical-rotation",
+          "planarScaling": false
+        },
+        "sourceSceneIndex": 3,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "01 · A GEOGRAPHIC MECHANISM",
+        "Move the land. Keep its spherical area.",
+        "Greenland",
+        "Africa",
+        "Equator",
+        "FIXED SPHERICAL MERCATOR",
+        "Polar regions cropped",
+        "ON THE SPHERE",
+        "Same spherical area",
+        "High latitude: enlarged",
+        "Counterfactual relocation on a sphere, not actual continental motion or 2D scaling.",
+        "Sources: D3 spherical rotation · PROJ Mercator · Natural Earth 5.1.2."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "spherical-rotation",
+      "label": "end",
+      "progress": 1,
+      "filename": "5-spherical-rotation-end.png",
+      "sha256": "91de39235c645f98fa96491a43d26053252cf060e6d1e45647885869fda68316",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "spherical-rotation",
+        "segmentIndex": 4,
+        "frame": 5004,
+        "fps": 30,
+        "segmentFrame": 1000,
+        "segmentFrames": 1001,
+        "progress": 1,
+        "theme": "light",
+        "approvedNarration": "Move Greenland toward the equator by rotating its boundary on the sphere. Its spherical area stays constant; its footprint on this fixed map shrinks.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "greenland": {
+          "rotationProgress": 1,
+          "originalAreaSteradians": 0.05394838020804734,
+          "movedAreaSteradians": 0.05394838020804726,
+          "relativeAreaError": 1.5543122344752192e-15,
+          "movedCentroid": [
+            -41.9650351747635,
+            -5.136324878438143e-14
+          ],
+          "projectedArea": 441.2911523569419,
+          "originalProjectedArea": 7227.655445376661,
+          "mercatorScale": 90,
+          "mercatorTranslate": [
+            450,
+            270
+          ],
+          "clipExtent": [
+            [
+              64,
+              4
+            ],
+            [
+              818,
+              358
+            ]
+          ],
+          "geometryOperation": "rigid-spherical-rotation",
+          "planarScaling": false
+        },
+        "sourceSceneIndex": 3,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "01 · A GEOGRAPHIC MECHANISM",
+        "Move the land. Keep its spherical area.",
+        "Greenland",
+        "Africa",
+        "Equator",
+        "FIXED SPHERICAL MERCATOR",
+        "Polar regions cropped",
+        "ON THE SPHERE",
+        "Same spherical area",
+        "Lower latitude: less enlarged",
+        "Counterfactual relocation on a sphere, not actual continental motion or 2D scaling.",
+        "Sources: D3 spherical rotation · PROJ Mercator · Natural Earth 5.1.2."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "new-string",
+      "label": "start",
+      "progress": 0,
+      "filename": "6-new-string-start.png",
+      "sha256": "98d1b456bbd8d7f48f540a2a7bc401cd7299f27e87ce394cb6dc7ace5bce764e",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "new-string",
+        "segmentIndex": 5,
+        "frame": 5005,
+        "fps": 30,
+        "segmentFrame": 0,
+        "segmentFrames": 1001,
+        "progress": 0,
+        "theme": "light",
+        "approvedNarration": "Next, look inside code. In CPython, adding this grinning face creates a new string with four-byte slots, even for the ASCII prefix. The original remains unchanged.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "cpython": {
+          "implementation": "CPython",
+          "version": "3.11.15",
+          "commit": "2340a037f7450e70fccfe411e6531afb4d57a312",
+          "originalCodePoints": 100000,
+          "originalSlotBytes": 1,
+          "originalObjectBytes": 100049,
+          "originalUnchanged": true,
+          "addedCodePoint": "U+1F600",
+          "newCodePoints": 100001,
+          "newSlotBytes": 4,
+          "newObjectBytes": 400080,
+          "transitionProgress": 0,
+          "drawnSlotWidth": 30,
+          "intermediateWidthsAreIllustration": true,
+          "utf8Before": 100000,
+          "utf8After": 100004,
+          "utf8Delta": 4,
+          "utf8PrefixSlotBytes": 1,
+          "observations": "inherited-local-observation-not-reproduced",
+          "schematicCells": true,
+          "unicodeThreshold": "U+FFFF"
+        },
+        "sourceSceneIndex": 4,
+        "projectIntroductionOnly": false,
+        "chapterTransition": {
+          "section": "CPython",
+          "progress": 0,
+          "mechanismProgress": 0
+        }
+      },
+      "visibleText": [
+        "02 · CODE MECHANISMS",
+        "One added face. A NEW string representation.",
+        "02 · CODE MECHANISMS",
+        "CPython",
+        "Why can one added face widen an entire string?",
+        "CPython 3.11.15 · U+1F600 only · schematic slots; original str is unchanged.",
+        "Sources: PEP 393 · CPython 3.11.15 (2340a037)."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "new-string",
+      "label": "a",
+      "progress": 0.15,
+      "filename": "6-new-string-a.png",
+      "sha256": "011bdf608e265271d66028c09336dd84fd4f6b21859f6ace02b95cdf35c2ea7f",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "new-string",
+        "segmentIndex": 5,
+        "frame": 5155,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "light",
+        "approvedNarration": "Next, look inside code. In CPython, adding this grinning face creates a new string with four-byte slots, even for the ASCII prefix. The original remains unchanged.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "cpython": {
+          "implementation": "CPython",
+          "version": "3.11.15",
+          "commit": "2340a037f7450e70fccfe411e6531afb4d57a312",
+          "originalCodePoints": 100000,
+          "originalSlotBytes": 1,
+          "originalObjectBytes": 100049,
+          "originalUnchanged": true,
+          "addedCodePoint": "U+1F600",
+          "newCodePoints": 100001,
+          "newSlotBytes": 4,
+          "newObjectBytes": 400080,
+          "transitionProgress": 0,
+          "drawnSlotWidth": 30,
+          "intermediateWidthsAreIllustration": true,
+          "utf8Before": 100000,
+          "utf8After": 100004,
+          "utf8Delta": 4,
+          "utf8PrefixSlotBytes": 1,
+          "observations": "inherited-local-observation-not-reproduced",
+          "schematicCells": true,
+          "unicodeThreshold": "U+FFFF"
+        },
+        "sourceSceneIndex": 4,
+        "projectIntroductionOnly": false,
+        "chapterTransition": {
+          "section": "CPython",
+          "progress": 0.7839999999999998,
+          "mechanismProgress": 0
+        }
+      },
+      "visibleText": [
+        "02 · CODE MECHANISMS",
+        "One added face. A NEW string representation.",
+        "ORIGINAL · 'a' × 100,000",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "…  unchanged",
+        "100,049 bytes",
+        "NEW RESULT · same prefix + U+1F600",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "… + 😀",
+        "Each resulting code point uses 4 bytes.",
+        "400,080 bytes",
+        "U+1F600 > U+FFFF  ·  not every emoji / Python implementation",
+        "str object size",
+        "including overhead",
+        "02 · CODE MECHANISMS",
+        "CPython",
+        "Why can one added face widen an entire string?",
+        "CPython 3.11.15 · U+1F600 only · schematic slots; original str is unchanged.",
+        "Sources: PEP 393 · CPython 3.11.15 (2340a037)."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "new-string",
+      "label": "b",
+      "progress": 0.85,
+      "filename": "6-new-string-b.png",
+      "sha256": "83f7854c0958ecdc419159154dd6fc640829b9d7ccd6bca5db4436033e8d636f",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "new-string",
+        "segmentIndex": 5,
+        "frame": 5855,
+        "fps": 30,
+        "segmentFrame": 850,
+        "segmentFrames": 1001,
+        "progress": 0.85,
+        "theme": "light",
+        "approvedNarration": "Next, look inside code. In CPython, adding this grinning face creates a new string with four-byte slots, even for the ASCII prefix. The original remains unchanged.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "cpython": {
+          "implementation": "CPython",
+          "version": "3.11.15",
+          "commit": "2340a037f7450e70fccfe411e6531afb4d57a312",
+          "originalCodePoints": 100000,
+          "originalSlotBytes": 1,
+          "originalObjectBytes": 100049,
+          "originalUnchanged": true,
+          "addedCodePoint": "U+1F600",
+          "newCodePoints": 100001,
+          "newSlotBytes": 4,
+          "newObjectBytes": 400080,
+          "transitionProgress": 1,
+          "drawnSlotWidth": 120,
+          "intermediateWidthsAreIllustration": true,
+          "utf8Before": 100000,
+          "utf8After": 100004,
+          "utf8Delta": 4,
+          "utf8PrefixSlotBytes": 1,
+          "observations": "inherited-local-observation-not-reproduced",
+          "schematicCells": true,
+          "unicodeThreshold": "U+FFFF"
+        },
+        "sourceSceneIndex": 4,
+        "projectIntroductionOnly": false,
+        "chapterTransition": {
+          "section": "CPython",
+          "progress": 1,
+          "mechanismProgress": 0.8214285714285714
+        }
+      },
+      "visibleText": [
+        "02 · CODE MECHANISMS",
+        "One added face. A NEW string representation.",
+        "ORIGINAL · 'a' × 100,000",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "…  unchanged",
+        "100,049 bytes",
+        "NEW RESULT · same prefix + U+1F600",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "… + 😀",
+        "Each resulting code point uses 4 bytes.",
+        "400,080 bytes",
+        "U+1F600 > U+FFFF  ·  not every emoji / Python implementation",
+        "str object size",
+        "including overhead",
+        "CPython 3.11.15 · U+1F600 only · schematic slots; original str is unchanged.",
+        "Sources: PEP 393 · CPython 3.11.15 (2340a037)."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "new-string",
+      "label": "a-replay",
+      "progress": 0.15,
+      "filename": "6-new-string-a-replay.png",
+      "sha256": "011bdf608e265271d66028c09336dd84fd4f6b21859f6ace02b95cdf35c2ea7f",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "new-string",
+        "segmentIndex": 5,
+        "frame": 5155,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "light",
+        "approvedNarration": "Next, look inside code. In CPython, adding this grinning face creates a new string with four-byte slots, even for the ASCII prefix. The original remains unchanged.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "cpython": {
+          "implementation": "CPython",
+          "version": "3.11.15",
+          "commit": "2340a037f7450e70fccfe411e6531afb4d57a312",
+          "originalCodePoints": 100000,
+          "originalSlotBytes": 1,
+          "originalObjectBytes": 100049,
+          "originalUnchanged": true,
+          "addedCodePoint": "U+1F600",
+          "newCodePoints": 100001,
+          "newSlotBytes": 4,
+          "newObjectBytes": 400080,
+          "transitionProgress": 0,
+          "drawnSlotWidth": 30,
+          "intermediateWidthsAreIllustration": true,
+          "utf8Before": 100000,
+          "utf8After": 100004,
+          "utf8Delta": 4,
+          "utf8PrefixSlotBytes": 1,
+          "observations": "inherited-local-observation-not-reproduced",
+          "schematicCells": true,
+          "unicodeThreshold": "U+FFFF"
+        },
+        "sourceSceneIndex": 4,
+        "projectIntroductionOnly": false,
+        "chapterTransition": {
+          "section": "CPython",
+          "progress": 0.7839999999999998,
+          "mechanismProgress": 0
+        }
+      },
+      "visibleText": [
+        "02 · CODE MECHANISMS",
+        "One added face. A NEW string representation.",
+        "ORIGINAL · 'a' × 100,000",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "…  unchanged",
+        "100,049 bytes",
+        "NEW RESULT · same prefix + U+1F600",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "… + 😀",
+        "Each resulting code point uses 4 bytes.",
+        "400,080 bytes",
+        "U+1F600 > U+FFFF  ·  not every emoji / Python implementation",
+        "str object size",
+        "including overhead",
+        "02 · CODE MECHANISMS",
+        "CPython",
+        "Why can one added face widen an entire string?",
+        "CPython 3.11.15 · U+1F600 only · schematic slots; original str is unchanged.",
+        "Sources: PEP 393 · CPython 3.11.15 (2340a037)."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "new-string",
+      "label": "end",
+      "progress": 1,
+      "filename": "6-new-string-end.png",
+      "sha256": "83f7854c0958ecdc419159154dd6fc640829b9d7ccd6bca5db4436033e8d636f",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "new-string",
+        "segmentIndex": 5,
+        "frame": 6005,
+        "fps": 30,
+        "segmentFrame": 1000,
+        "segmentFrames": 1001,
+        "progress": 1,
+        "theme": "light",
+        "approvedNarration": "Next, look inside code. In CPython, adding this grinning face creates a new string with four-byte slots, even for the ASCII prefix. The original remains unchanged.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "cpython": {
+          "implementation": "CPython",
+          "version": "3.11.15",
+          "commit": "2340a037f7450e70fccfe411e6531afb4d57a312",
+          "originalCodePoints": 100000,
+          "originalSlotBytes": 1,
+          "originalObjectBytes": 100049,
+          "originalUnchanged": true,
+          "addedCodePoint": "U+1F600",
+          "newCodePoints": 100001,
+          "newSlotBytes": 4,
+          "newObjectBytes": 400080,
+          "transitionProgress": 1,
+          "drawnSlotWidth": 120,
+          "intermediateWidthsAreIllustration": true,
+          "utf8Before": 100000,
+          "utf8After": 100004,
+          "utf8Delta": 4,
+          "utf8PrefixSlotBytes": 1,
+          "observations": "inherited-local-observation-not-reproduced",
+          "schematicCells": true,
+          "unicodeThreshold": "U+FFFF"
+        },
+        "sourceSceneIndex": 4,
+        "projectIntroductionOnly": false,
+        "chapterTransition": {
+          "section": "CPython",
+          "progress": 1,
+          "mechanismProgress": 1
+        }
+      },
+      "visibleText": [
+        "02 · CODE MECHANISMS",
+        "One added face. A NEW string representation.",
+        "ORIGINAL · 'a' × 100,000",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "…  unchanged",
+        "100,049 bytes",
+        "NEW RESULT · same prefix + U+1F600",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "… + 😀",
+        "Each resulting code point uses 4 bytes.",
+        "400,080 bytes",
+        "U+1F600 > U+FFFF  ·  not every emoji / Python implementation",
+        "str object size",
+        "including overhead",
+        "CPython 3.11.15 · U+1F600 only · schematic slots; original str is unchanged.",
+        "Sources: PEP 393 · CPython 3.11.15 (2340a037)."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "utf8-contrast",
+      "label": "start",
+      "progress": 0,
+      "filename": "7-utf8-contrast-start.png",
+      "sha256": "56920650aa7580372bafd54149c1a07bb10ac8b05d8cb953df96410d80ed7ec6",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "utf8-contrast",
+        "segmentIndex": 6,
+        "frame": 6006,
+        "fps": 30,
+        "segmentFrame": 0,
+        "segmentFrames": 1001,
+        "progress": 0,
+        "theme": "light",
+        "approvedNarration": "That face exceeds the two-byte range. But UTF-eight encodes the ASCII prefix one byte each: the added face contributes just four extra bytes.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "cpython": {
+          "implementation": "CPython",
+          "version": "3.11.15",
+          "commit": "2340a037f7450e70fccfe411e6531afb4d57a312",
+          "originalCodePoints": 100000,
+          "originalSlotBytes": 1,
+          "originalObjectBytes": 100049,
+          "originalUnchanged": true,
+          "addedCodePoint": "U+1F600",
+          "newCodePoints": 100001,
+          "newSlotBytes": 4,
+          "newObjectBytes": 400080,
+          "transitionProgress": 1,
+          "drawnSlotWidth": 120,
+          "intermediateWidthsAreIllustration": true,
+          "utf8Before": 100000,
+          "utf8After": 100004,
+          "utf8Delta": 4,
+          "utf8PrefixSlotBytes": 1,
+          "observations": "inherited-local-observation-not-reproduced",
+          "schematicCells": true,
+          "unicodeThreshold": "U+FFFF",
+          "utf8AddedVisible": false
+        },
+        "sourceSceneIndex": 5,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "02 · A CODE REPRESENTATION",
+        "UTF-8 bytes are a different representation",
+        "str OBJECT MEMORY",
+        "Four-byte slots throughout the NEW result",
+        "400,080 bytes",
+        "UTF-8 ENCODED PAYLOAD",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "…",
+        "Add one code point",
+        "100,000 bytes",
+        "ASCII stays one byte each.",
+        "Original payload",
+        "Measured on CPython 3.11.15 · object size ≠ encoded payload ≠ process memory.",
+        "Sources: Python Unicode HOWTO · CPython 3.11.15 measurements."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "utf8-contrast",
+      "label": "a",
+      "progress": 0.15,
+      "filename": "7-utf8-contrast-a.png",
+      "sha256": "56920650aa7580372bafd54149c1a07bb10ac8b05d8cb953df96410d80ed7ec6",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "utf8-contrast",
+        "segmentIndex": 6,
+        "frame": 6156,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "light",
+        "approvedNarration": "That face exceeds the two-byte range. But UTF-eight encodes the ASCII prefix one byte each: the added face contributes just four extra bytes.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "cpython": {
+          "implementation": "CPython",
+          "version": "3.11.15",
+          "commit": "2340a037f7450e70fccfe411e6531afb4d57a312",
+          "originalCodePoints": 100000,
+          "originalSlotBytes": 1,
+          "originalObjectBytes": 100049,
+          "originalUnchanged": true,
+          "addedCodePoint": "U+1F600",
+          "newCodePoints": 100001,
+          "newSlotBytes": 4,
+          "newObjectBytes": 400080,
+          "transitionProgress": 1,
+          "drawnSlotWidth": 120,
+          "intermediateWidthsAreIllustration": true,
+          "utf8Before": 100000,
+          "utf8After": 100004,
+          "utf8Delta": 4,
+          "utf8PrefixSlotBytes": 1,
+          "observations": "inherited-local-observation-not-reproduced",
+          "schematicCells": true,
+          "unicodeThreshold": "U+FFFF",
+          "utf8AddedVisible": false
+        },
+        "sourceSceneIndex": 5,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "02 · A CODE REPRESENTATION",
+        "UTF-8 bytes are a different representation",
+        "str OBJECT MEMORY",
+        "Four-byte slots throughout the NEW result",
+        "400,080 bytes",
+        "UTF-8 ENCODED PAYLOAD",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "…",
+        "Add one code point",
+        "100,000 bytes",
+        "ASCII stays one byte each.",
+        "Original payload",
+        "Measured on CPython 3.11.15 · object size ≠ encoded payload ≠ process memory.",
+        "Sources: Python Unicode HOWTO · CPython 3.11.15 measurements."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "utf8-contrast",
+      "label": "b",
+      "progress": 0.85,
+      "filename": "7-utf8-contrast-b.png",
+      "sha256": "8bd16d6b1ef98fa97cd2ba2127a3278831ecf56dc1d944b82dbf0ff7e838ec49",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "utf8-contrast",
+        "segmentIndex": 6,
+        "frame": 6856,
+        "fps": 30,
+        "segmentFrame": 850,
+        "segmentFrames": 1001,
+        "progress": 0.85,
+        "theme": "light",
+        "approvedNarration": "That face exceeds the two-byte range. But UTF-eight encodes the ASCII prefix one byte each: the added face contributes just four extra bytes.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "cpython": {
+          "implementation": "CPython",
+          "version": "3.11.15",
+          "commit": "2340a037f7450e70fccfe411e6531afb4d57a312",
+          "originalCodePoints": 100000,
+          "originalSlotBytes": 1,
+          "originalObjectBytes": 100049,
+          "originalUnchanged": true,
+          "addedCodePoint": "U+1F600",
+          "newCodePoints": 100001,
+          "newSlotBytes": 4,
+          "newObjectBytes": 400080,
+          "transitionProgress": 1,
+          "drawnSlotWidth": 120,
+          "intermediateWidthsAreIllustration": true,
+          "utf8Before": 100000,
+          "utf8After": 100004,
+          "utf8Delta": 4,
+          "utf8PrefixSlotBytes": 1,
+          "observations": "inherited-local-observation-not-reproduced",
+          "schematicCells": true,
+          "unicodeThreshold": "U+FFFF",
+          "utf8AddedVisible": true
+        },
+        "sourceSceneIndex": 5,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "02 · A CODE REPRESENTATION",
+        "UTF-8 bytes are a different representation",
+        "str OBJECT MEMORY",
+        "Four-byte slots throughout the NEW result",
+        "400,080 bytes",
+        "UTF-8 ENCODED PAYLOAD",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "…",
+        "F0",
+        "9F",
+        "98",
+        "80",
+        "U+1F600 → F0 9F 98 80",
+        "100,004 bytes",
+        "ASCII stays one byte each.",
+        "Δ only 4 bytes",
+        "Measured on CPython 3.11.15 · object size ≠ encoded payload ≠ process memory.",
+        "Sources: Python Unicode HOWTO · CPython 3.11.15 measurements."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "utf8-contrast",
+      "label": "a-replay",
+      "progress": 0.15,
+      "filename": "7-utf8-contrast-a-replay.png",
+      "sha256": "56920650aa7580372bafd54149c1a07bb10ac8b05d8cb953df96410d80ed7ec6",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "utf8-contrast",
+        "segmentIndex": 6,
+        "frame": 6156,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "light",
+        "approvedNarration": "That face exceeds the two-byte range. But UTF-eight encodes the ASCII prefix one byte each: the added face contributes just four extra bytes.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "cpython": {
+          "implementation": "CPython",
+          "version": "3.11.15",
+          "commit": "2340a037f7450e70fccfe411e6531afb4d57a312",
+          "originalCodePoints": 100000,
+          "originalSlotBytes": 1,
+          "originalObjectBytes": 100049,
+          "originalUnchanged": true,
+          "addedCodePoint": "U+1F600",
+          "newCodePoints": 100001,
+          "newSlotBytes": 4,
+          "newObjectBytes": 400080,
+          "transitionProgress": 1,
+          "drawnSlotWidth": 120,
+          "intermediateWidthsAreIllustration": true,
+          "utf8Before": 100000,
+          "utf8After": 100004,
+          "utf8Delta": 4,
+          "utf8PrefixSlotBytes": 1,
+          "observations": "inherited-local-observation-not-reproduced",
+          "schematicCells": true,
+          "unicodeThreshold": "U+FFFF",
+          "utf8AddedVisible": false
+        },
+        "sourceSceneIndex": 5,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "02 · A CODE REPRESENTATION",
+        "UTF-8 bytes are a different representation",
+        "str OBJECT MEMORY",
+        "Four-byte slots throughout the NEW result",
+        "400,080 bytes",
+        "UTF-8 ENCODED PAYLOAD",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "…",
+        "Add one code point",
+        "100,000 bytes",
+        "ASCII stays one byte each.",
+        "Original payload",
+        "Measured on CPython 3.11.15 · object size ≠ encoded payload ≠ process memory.",
+        "Sources: Python Unicode HOWTO · CPython 3.11.15 measurements."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "utf8-contrast",
+      "label": "end",
+      "progress": 1,
+      "filename": "7-utf8-contrast-end.png",
+      "sha256": "8bd16d6b1ef98fa97cd2ba2127a3278831ecf56dc1d944b82dbf0ff7e838ec49",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "utf8-contrast",
+        "segmentIndex": 6,
+        "frame": 7006,
+        "fps": 30,
+        "segmentFrame": 1000,
+        "segmentFrames": 1001,
+        "progress": 1,
+        "theme": "light",
+        "approvedNarration": "That face exceeds the two-byte range. But UTF-eight encodes the ASCII prefix one byte each: the added face contributes just four extra bytes.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "cpython": {
+          "implementation": "CPython",
+          "version": "3.11.15",
+          "commit": "2340a037f7450e70fccfe411e6531afb4d57a312",
+          "originalCodePoints": 100000,
+          "originalSlotBytes": 1,
+          "originalObjectBytes": 100049,
+          "originalUnchanged": true,
+          "addedCodePoint": "U+1F600",
+          "newCodePoints": 100001,
+          "newSlotBytes": 4,
+          "newObjectBytes": 400080,
+          "transitionProgress": 1,
+          "drawnSlotWidth": 120,
+          "intermediateWidthsAreIllustration": true,
+          "utf8Before": 100000,
+          "utf8After": 100004,
+          "utf8Delta": 4,
+          "utf8PrefixSlotBytes": 1,
+          "observations": "inherited-local-observation-not-reproduced",
+          "schematicCells": true,
+          "unicodeThreshold": "U+FFFF",
+          "utf8AddedVisible": true
+        },
+        "sourceSceneIndex": 5,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "02 · A CODE REPRESENTATION",
+        "UTF-8 bytes are a different representation",
+        "str OBJECT MEMORY",
+        "Four-byte slots throughout the NEW result",
+        "400,080 bytes",
+        "UTF-8 ENCODED PAYLOAD",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "a",
+        "…",
+        "F0",
+        "9F",
+        "98",
+        "80",
+        "U+1F600 → F0 9F 98 80",
+        "100,004 bytes",
+        "ASCII stays one byte each.",
+        "Δ only 4 bytes",
+        "Measured on CPython 3.11.15 · object size ≠ encoded payload ≠ process memory.",
+        "Sources: Python Unicode HOWTO · CPython 3.11.15 measurements."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "layer-created",
+      "label": "start",
+      "progress": 0,
+      "filename": "8-layer-created-start.png",
+      "sha256": "9b6af41712f835ff08c5f350a0e246b46f88758e3ab09df10d24d7d3daa85437",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "layer-created",
+        "segmentIndex": 7,
+        "frame": 7007,
+        "fps": 30,
+        "segmentFrame": 0,
+        "segmentFrames": 1001,
+        "progress": 0,
+        "theme": "light",
+        "approvedNarration": "Finally, an engineering puzzle. A Docker RUN adds a file: a hundred megabytes of illustrative payload enter an immutable layer.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "docker": {
+          "mode": "create",
+          "phase": "writing",
+          "path": "/tmp/demo.bin",
+          "newTemporaryPath": true,
+          "payloadBytes": 100000000,
+          "quantity": "illustrative-uncompressed-payload",
+          "dockerBuilt": false,
+          "ordinaryUnsquashedImage": true,
+          "priorLayerPayloadBytes": 0,
+          "priorLayerImmutable": true,
+          "whiteoutInNewLayer": false,
+          "whiteoutVisibleInMergedView": false,
+          "mergedPathPresent": true,
+          "resultingDiffPayloadBytes": null,
+          "sameRunEndpointBeforePresent": false,
+          "sameRunEndpointAfterPresent": false,
+          "noClaimOfEmptyWholeLayer": true,
+          "baseFileReclamation": false
+        },
+        "sourceSceneIndex": 6,
+        "projectIntroductionOnly": false,
+        "chapterTransition": {
+          "section": "Docker",
+          "progress": 0,
+          "mechanismProgress": 0
+        }
+      },
+      "visibleText": [
+        "03 · ENGINEERING BEHAVIOR",
+        "Docker layers: a file's bytes enter the image",
+        "03 · ENGINEERING BEHAVIOR",
+        "Docker",
+        "Why can a deleted file leave its bytes behind?",
+        "100 MB = illustrative uncompressed payload; no Docker build was run.",
+        "Sources: Docker image-layer guide · Moby 27.5.1 (4c9b3b01)."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "layer-created",
+      "label": "a",
+      "progress": 0.15,
+      "filename": "8-layer-created-a.png",
+      "sha256": "353d990f627236d635aa16b3df6d888fedc1b7db52359f24d4d7c8a70c8a13ea",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "layer-created",
+        "segmentIndex": 7,
+        "frame": 7157,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "light",
+        "approvedNarration": "Finally, an engineering puzzle. A Docker RUN adds a file: a hundred megabytes of illustrative payload enter an immutable layer.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "docker": {
+          "mode": "create",
+          "phase": "writing",
+          "path": "/tmp/demo.bin",
+          "newTemporaryPath": true,
+          "payloadBytes": 100000000,
+          "quantity": "illustrative-uncompressed-payload",
+          "dockerBuilt": false,
+          "ordinaryUnsquashedImage": true,
+          "priorLayerPayloadBytes": 0,
+          "priorLayerImmutable": true,
+          "whiteoutInNewLayer": false,
+          "whiteoutVisibleInMergedView": false,
+          "mergedPathPresent": true,
+          "resultingDiffPayloadBytes": null,
+          "sameRunEndpointBeforePresent": false,
+          "sameRunEndpointAfterPresent": false,
+          "noClaimOfEmptyWholeLayer": true,
+          "baseFileReclamation": false
+        },
+        "sourceSceneIndex": 6,
+        "projectIntroductionOnly": false,
+        "chapterTransition": {
+          "section": "Docker",
+          "progress": 0.7839999999999998,
+          "mechanismProgress": 0
+        }
+      },
+      "visibleText": [
+        "03 · ENGINEERING BEHAVIOR",
+        "Docker layers: a file's bytes enter the image",
+        "RUN 1 · create /tmp/demo.bin",
+        "IMAGE LAYERS · CUTAWAY",
+        "MERGED FILESYSTEM VIEW",
+        "Later layer",
+        "No deletion marker yet",
+        "Earlier immutable layer",
+        "/tmp/demo.bin",
+        "100 MB file",
+        "Recording the assumed 100 MB payload…",
+        "03 · ENGINEERING BEHAVIOR",
+        "Docker",
+        "Why can a deleted file leave its bytes behind?",
+        "100 MB = illustrative uncompressed payload; no Docker build was run.",
+        "Sources: Docker image-layer guide · Moby 27.5.1 (4c9b3b01)."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "layer-created",
+      "label": "b",
+      "progress": 0.85,
+      "filename": "8-layer-created-b.png",
+      "sha256": "c805b413adc70811495255198ccc2f948127f1db16a77900b2685d2797822e8f",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "layer-created",
+        "segmentIndex": 7,
+        "frame": 7857,
+        "fps": 30,
+        "segmentFrame": 850,
+        "segmentFrames": 1001,
+        "progress": 0.85,
+        "theme": "light",
+        "approvedNarration": "Finally, an engineering puzzle. A Docker RUN adds a file: a hundred megabytes of illustrative payload enter an immutable layer.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "docker": {
+          "mode": "create",
+          "phase": "recorded",
+          "path": "/tmp/demo.bin",
+          "newTemporaryPath": true,
+          "payloadBytes": 100000000,
+          "quantity": "illustrative-uncompressed-payload",
+          "dockerBuilt": false,
+          "ordinaryUnsquashedImage": true,
+          "priorLayerPayloadBytes": 100000000,
+          "priorLayerImmutable": true,
+          "whiteoutInNewLayer": false,
+          "whiteoutVisibleInMergedView": false,
+          "mergedPathPresent": true,
+          "resultingDiffPayloadBytes": null,
+          "sameRunEndpointBeforePresent": false,
+          "sameRunEndpointAfterPresent": false,
+          "noClaimOfEmptyWholeLayer": true,
+          "baseFileReclamation": false
+        },
+        "sourceSceneIndex": 6,
+        "projectIntroductionOnly": false,
+        "chapterTransition": {
+          "section": "Docker",
+          "progress": 1,
+          "mechanismProgress": 0.8214285714285714
+        }
+      },
+      "visibleText": [
+        "03 · ENGINEERING BEHAVIOR",
+        "Docker layers: a file's bytes enter the image",
+        "RUN 1 · create /tmp/demo.bin",
+        "IMAGE LAYERS · CUTAWAY",
+        "MERGED FILESYSTEM VIEW",
+        "Later layer",
+        "No deletion marker yet",
+        "Earlier immutable layer",
+        "/tmp/demo.bin",
+        "100 MB file",
+        "100 MB payload retained in earlier layer",
+        "100 MB = illustrative uncompressed payload; no Docker build was run.",
+        "Sources: Docker image-layer guide · Moby 27.5.1 (4c9b3b01)."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "layer-created",
+      "label": "a-replay",
+      "progress": 0.15,
+      "filename": "8-layer-created-a-replay.png",
+      "sha256": "353d990f627236d635aa16b3df6d888fedc1b7db52359f24d4d7c8a70c8a13ea",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "layer-created",
+        "segmentIndex": 7,
+        "frame": 7157,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "light",
+        "approvedNarration": "Finally, an engineering puzzle. A Docker RUN adds a file: a hundred megabytes of illustrative payload enter an immutable layer.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "docker": {
+          "mode": "create",
+          "phase": "writing",
+          "path": "/tmp/demo.bin",
+          "newTemporaryPath": true,
+          "payloadBytes": 100000000,
+          "quantity": "illustrative-uncompressed-payload",
+          "dockerBuilt": false,
+          "ordinaryUnsquashedImage": true,
+          "priorLayerPayloadBytes": 0,
+          "priorLayerImmutable": true,
+          "whiteoutInNewLayer": false,
+          "whiteoutVisibleInMergedView": false,
+          "mergedPathPresent": true,
+          "resultingDiffPayloadBytes": null,
+          "sameRunEndpointBeforePresent": false,
+          "sameRunEndpointAfterPresent": false,
+          "noClaimOfEmptyWholeLayer": true,
+          "baseFileReclamation": false
+        },
+        "sourceSceneIndex": 6,
+        "projectIntroductionOnly": false,
+        "chapterTransition": {
+          "section": "Docker",
+          "progress": 0.7839999999999998,
+          "mechanismProgress": 0
+        }
+      },
+      "visibleText": [
+        "03 · ENGINEERING BEHAVIOR",
+        "Docker layers: a file's bytes enter the image",
+        "RUN 1 · create /tmp/demo.bin",
+        "IMAGE LAYERS · CUTAWAY",
+        "MERGED FILESYSTEM VIEW",
+        "Later layer",
+        "No deletion marker yet",
+        "Earlier immutable layer",
+        "/tmp/demo.bin",
+        "100 MB file",
+        "Recording the assumed 100 MB payload…",
+        "03 · ENGINEERING BEHAVIOR",
+        "Docker",
+        "Why can a deleted file leave its bytes behind?",
+        "100 MB = illustrative uncompressed payload; no Docker build was run.",
+        "Sources: Docker image-layer guide · Moby 27.5.1 (4c9b3b01)."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "layer-created",
+      "label": "end",
+      "progress": 1,
+      "filename": "8-layer-created-end.png",
+      "sha256": "c805b413adc70811495255198ccc2f948127f1db16a77900b2685d2797822e8f",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "layer-created",
+        "segmentIndex": 7,
+        "frame": 8007,
+        "fps": 30,
+        "segmentFrame": 1000,
+        "segmentFrames": 1001,
+        "progress": 1,
+        "theme": "light",
+        "approvedNarration": "Finally, an engineering puzzle. A Docker RUN adds a file: a hundred megabytes of illustrative payload enter an immutable layer.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "docker": {
+          "mode": "create",
+          "phase": "recorded",
+          "path": "/tmp/demo.bin",
+          "newTemporaryPath": true,
+          "payloadBytes": 100000000,
+          "quantity": "illustrative-uncompressed-payload",
+          "dockerBuilt": false,
+          "ordinaryUnsquashedImage": true,
+          "priorLayerPayloadBytes": 100000000,
+          "priorLayerImmutable": true,
+          "whiteoutInNewLayer": false,
+          "whiteoutVisibleInMergedView": false,
+          "mergedPathPresent": true,
+          "resultingDiffPayloadBytes": null,
+          "sameRunEndpointBeforePresent": false,
+          "sameRunEndpointAfterPresent": false,
+          "noClaimOfEmptyWholeLayer": true,
+          "baseFileReclamation": false
+        },
+        "sourceSceneIndex": 6,
+        "projectIntroductionOnly": false,
+        "chapterTransition": {
+          "section": "Docker",
+          "progress": 1,
+          "mechanismProgress": 1
+        }
+      },
+      "visibleText": [
+        "03 · ENGINEERING BEHAVIOR",
+        "Docker layers: a file's bytes enter the image",
+        "RUN 1 · create /tmp/demo.bin",
+        "IMAGE LAYERS · CUTAWAY",
+        "MERGED FILESYSTEM VIEW",
+        "Later layer",
+        "No deletion marker yet",
+        "Earlier immutable layer",
+        "/tmp/demo.bin",
+        "100 MB file",
+        "100 MB payload retained in earlier layer",
+        "100 MB = illustrative uncompressed payload; no Docker build was run.",
+        "Sources: Docker image-layer guide · Moby 27.5.1 (4c9b3b01)."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "later-whiteout",
+      "label": "start",
+      "progress": 0,
+      "filename": "9-later-whiteout-start.png",
+      "sha256": "e4ae4da1e8402f26e251ef40be186bcd3740112ccd93c3d02dbb2638eef01e6c",
+      "caption": {
+        "top": 632.8125,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "later-whiteout",
+        "segmentIndex": 8,
+        "frame": 8008,
+        "fps": 30,
+        "segmentFrame": 0,
+        "segmentFrames": 1001,
+        "progress": 0,
+        "theme": "light",
+        "approvedNarration": "A later RUN hides the path with a whiteout, but the earlier layer retains its bytes.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "docker": {
+          "mode": "delete",
+          "phase": "before-delete",
+          "path": "/tmp/demo.bin",
+          "newTemporaryPath": true,
+          "payloadBytes": 100000000,
+          "quantity": "illustrative-uncompressed-payload",
+          "dockerBuilt": false,
+          "ordinaryUnsquashedImage": true,
+          "priorLayerPayloadBytes": 100000000,
+          "priorLayerImmutable": true,
+          "whiteoutInNewLayer": false,
+          "whiteoutVisibleInMergedView": false,
+          "mergedPathPresent": true,
+          "resultingDiffPayloadBytes": null,
+          "sameRunEndpointBeforePresent": false,
+          "sameRunEndpointAfterPresent": false,
+          "noClaimOfEmptyWholeLayer": true,
+          "baseFileReclamation": false
+        },
+        "sourceSceneIndex": 7,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "03 · A FILESYSTEM MECHANISM",
+        "Hidden in the view. Retained in the layer.",
+        "RUN 2 · delete /tmp/demo.bin",
+        "IMAGE LAYERS · CUTAWAY",
+        "MERGED FILESYSTEM VIEW",
+        "Later layer",
+        "No deletion marker yet",
+        "Earlier immutable layer",
+        "/tmp/demo.bin",
+        "100 MB file",
+        "100 MB payload retained in earlier layer",
+        "Whiteout shown in layer cutaway only; not an ordinary file in the merged view.",
+        "Sources: OCI layer specification (af26a05f) · Moby archive implementation."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "later-whiteout",
+      "label": "a",
+      "progress": 0.15,
+      "filename": "9-later-whiteout-a.png",
+      "sha256": "e4ae4da1e8402f26e251ef40be186bcd3740112ccd93c3d02dbb2638eef01e6c",
+      "caption": {
+        "top": 632.8125,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "later-whiteout",
+        "segmentIndex": 8,
+        "frame": 8158,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "light",
+        "approvedNarration": "A later RUN hides the path with a whiteout, but the earlier layer retains its bytes.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "docker": {
+          "mode": "delete",
+          "phase": "before-delete",
+          "path": "/tmp/demo.bin",
+          "newTemporaryPath": true,
+          "payloadBytes": 100000000,
+          "quantity": "illustrative-uncompressed-payload",
+          "dockerBuilt": false,
+          "ordinaryUnsquashedImage": true,
+          "priorLayerPayloadBytes": 100000000,
+          "priorLayerImmutable": true,
+          "whiteoutInNewLayer": false,
+          "whiteoutVisibleInMergedView": false,
+          "mergedPathPresent": true,
+          "resultingDiffPayloadBytes": null,
+          "sameRunEndpointBeforePresent": false,
+          "sameRunEndpointAfterPresent": false,
+          "noClaimOfEmptyWholeLayer": true,
+          "baseFileReclamation": false
+        },
+        "sourceSceneIndex": 7,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "03 · A FILESYSTEM MECHANISM",
+        "Hidden in the view. Retained in the layer.",
+        "RUN 2 · delete /tmp/demo.bin",
+        "IMAGE LAYERS · CUTAWAY",
+        "MERGED FILESYSTEM VIEW",
+        "Later layer",
+        "No deletion marker yet",
+        "Earlier immutable layer",
+        "/tmp/demo.bin",
+        "100 MB file",
+        "100 MB payload retained in earlier layer",
+        "Whiteout shown in layer cutaway only; not an ordinary file in the merged view.",
+        "Sources: OCI layer specification (af26a05f) · Moby archive implementation."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "later-whiteout",
+      "label": "b",
+      "progress": 0.85,
+      "filename": "9-later-whiteout-b.png",
+      "sha256": "ca3be4a5f1bce3d857dd7de71b8c99fe42900e517f90400de355ad08708edaa1",
+      "caption": {
+        "top": 632.8125,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "later-whiteout",
+        "segmentIndex": 8,
+        "frame": 8858,
+        "fps": 30,
+        "segmentFrame": 850,
+        "segmentFrames": 1001,
+        "progress": 0.85,
+        "theme": "light",
+        "approvedNarration": "A later RUN hides the path with a whiteout, but the earlier layer retains its bytes.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "docker": {
+          "mode": "delete",
+          "phase": "hidden",
+          "path": "/tmp/demo.bin",
+          "newTemporaryPath": true,
+          "payloadBytes": 100000000,
+          "quantity": "illustrative-uncompressed-payload",
+          "dockerBuilt": false,
+          "ordinaryUnsquashedImage": true,
+          "priorLayerPayloadBytes": 100000000,
+          "priorLayerImmutable": true,
+          "whiteoutInNewLayer": true,
+          "whiteoutVisibleInMergedView": false,
+          "mergedPathPresent": false,
+          "resultingDiffPayloadBytes": null,
+          "sameRunEndpointBeforePresent": false,
+          "sameRunEndpointAfterPresent": false,
+          "noClaimOfEmptyWholeLayer": true,
+          "baseFileReclamation": false
+        },
+        "sourceSceneIndex": 7,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "03 · A FILESYSTEM MECHANISM",
+        "Hidden in the view. Retained in the layer.",
+        "RUN 2 · delete /tmp/demo.bin",
+        "IMAGE LAYERS · CUTAWAY",
+        "MERGED FILESYSTEM VIEW",
+        "Later layer: .wh.demo.bin",
+        "Deletion marker, not payload erasure",
+        "Earlier immutable layer",
+        "/tmp/demo.bin absent",
+        "Path hidden",
+        "100 MB payload retained in earlier layer",
+        "hides",
+        "Whiteout shown in layer cutaway only; not an ordinary file in the merged view.",
+        "Sources: OCI layer specification (af26a05f) · Moby archive implementation."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "later-whiteout",
+      "label": "a-replay",
+      "progress": 0.15,
+      "filename": "9-later-whiteout-a-replay.png",
+      "sha256": "e4ae4da1e8402f26e251ef40be186bcd3740112ccd93c3d02dbb2638eef01e6c",
+      "caption": {
+        "top": 632.8125,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "later-whiteout",
+        "segmentIndex": 8,
+        "frame": 8158,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "light",
+        "approvedNarration": "A later RUN hides the path with a whiteout, but the earlier layer retains its bytes.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "docker": {
+          "mode": "delete",
+          "phase": "before-delete",
+          "path": "/tmp/demo.bin",
+          "newTemporaryPath": true,
+          "payloadBytes": 100000000,
+          "quantity": "illustrative-uncompressed-payload",
+          "dockerBuilt": false,
+          "ordinaryUnsquashedImage": true,
+          "priorLayerPayloadBytes": 100000000,
+          "priorLayerImmutable": true,
+          "whiteoutInNewLayer": false,
+          "whiteoutVisibleInMergedView": false,
+          "mergedPathPresent": true,
+          "resultingDiffPayloadBytes": null,
+          "sameRunEndpointBeforePresent": false,
+          "sameRunEndpointAfterPresent": false,
+          "noClaimOfEmptyWholeLayer": true,
+          "baseFileReclamation": false
+        },
+        "sourceSceneIndex": 7,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "03 · A FILESYSTEM MECHANISM",
+        "Hidden in the view. Retained in the layer.",
+        "RUN 2 · delete /tmp/demo.bin",
+        "IMAGE LAYERS · CUTAWAY",
+        "MERGED FILESYSTEM VIEW",
+        "Later layer",
+        "No deletion marker yet",
+        "Earlier immutable layer",
+        "/tmp/demo.bin",
+        "100 MB file",
+        "100 MB payload retained in earlier layer",
+        "Whiteout shown in layer cutaway only; not an ordinary file in the merged view.",
+        "Sources: OCI layer specification (af26a05f) · Moby archive implementation."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "later-whiteout",
+      "label": "end",
+      "progress": 1,
+      "filename": "9-later-whiteout-end.png",
+      "sha256": "ca3be4a5f1bce3d857dd7de71b8c99fe42900e517f90400de355ad08708edaa1",
+      "caption": {
+        "top": 632.8125,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "later-whiteout",
+        "segmentIndex": 8,
+        "frame": 9008,
+        "fps": 30,
+        "segmentFrame": 1000,
+        "segmentFrames": 1001,
+        "progress": 1,
+        "theme": "light",
+        "approvedNarration": "A later RUN hides the path with a whiteout, but the earlier layer retains its bytes.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "docker": {
+          "mode": "delete",
+          "phase": "hidden",
+          "path": "/tmp/demo.bin",
+          "newTemporaryPath": true,
+          "payloadBytes": 100000000,
+          "quantity": "illustrative-uncompressed-payload",
+          "dockerBuilt": false,
+          "ordinaryUnsquashedImage": true,
+          "priorLayerPayloadBytes": 100000000,
+          "priorLayerImmutable": true,
+          "whiteoutInNewLayer": true,
+          "whiteoutVisibleInMergedView": false,
+          "mergedPathPresent": false,
+          "resultingDiffPayloadBytes": null,
+          "sameRunEndpointBeforePresent": false,
+          "sameRunEndpointAfterPresent": false,
+          "noClaimOfEmptyWholeLayer": true,
+          "baseFileReclamation": false
+        },
+        "sourceSceneIndex": 7,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "03 · A FILESYSTEM MECHANISM",
+        "Hidden in the view. Retained in the layer.",
+        "RUN 2 · delete /tmp/demo.bin",
+        "IMAGE LAYERS · CUTAWAY",
+        "MERGED FILESYSTEM VIEW",
+        "Later layer: .wh.demo.bin",
+        "Deletion marker, not payload erasure",
+        "Earlier immutable layer",
+        "/tmp/demo.bin absent",
+        "Path hidden",
+        "100 MB payload retained in earlier layer",
+        "hides",
+        "Whiteout shown in layer cutaway only; not an ordinary file in the merged view.",
+        "Sources: OCI layer specification (af26a05f) · Moby archive implementation."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "same-run",
+      "label": "start",
+      "progress": 0,
+      "filename": "10-same-run-start.png",
+      "sha256": "43ce9b0cd45729f9e1b580c42ca5ff8412a8f29b9e79a751708b0a0ade69ab28",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "same-run",
+        "segmentIndex": 9,
+        "frame": 9009,
+        "fps": 30,
+        "segmentFrame": 0,
+        "segmentFrames": 1001,
+        "progress": 0,
+        "theme": "light",
+        "approvedNarration": "Create and delete a new temporary file within one RUN instead: that payload never enters the resulting diff.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "docker": {
+          "mode": "same",
+          "phase": "before",
+          "path": "/tmp/demo.bin",
+          "newTemporaryPath": true,
+          "payloadBytes": 100000000,
+          "quantity": "illustrative-uncompressed-payload",
+          "dockerBuilt": false,
+          "ordinaryUnsquashedImage": true,
+          "priorLayerPayloadBytes": 0,
+          "priorLayerImmutable": true,
+          "whiteoutInNewLayer": false,
+          "whiteoutVisibleInMergedView": false,
+          "mergedPathPresent": false,
+          "resultingDiffPayloadBytes": null,
+          "sameRunEndpointBeforePresent": false,
+          "sameRunEndpointAfterPresent": false,
+          "noClaimOfEmptyWholeLayer": true,
+          "baseFileReclamation": false
+        },
+        "sourceSceneIndex": 8,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "03 · A FILESYSTEM MECHANISM",
+        "Change the boundary: create + delete in ONE RUN",
+        "ONE RUN · create NEW /tmp/demo.bin && delete /tmp/demo.bin",
+        "BEFORE RUN",
+        "DURING RUN",
+        "AFTER RUN",
+        "Path absent",
+        "100 MB temp file",
+        "created, then deleted",
+        "Path absent",
+        "Diff compares the endpoints, not the temporary contents.",
+        "Both endpoints lack this NEW file.",
+        "NEW temporary path only. Other metadata may remain; earlier base-file bytes are not reclaimed.",
+        "Sources: OCI filesystem changesets · Docker cleanup guidance."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "same-run",
+      "label": "a",
+      "progress": 0.15,
+      "filename": "10-same-run-a.png",
+      "sha256": "43ce9b0cd45729f9e1b580c42ca5ff8412a8f29b9e79a751708b0a0ade69ab28",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "same-run",
+        "segmentIndex": 9,
+        "frame": 9159,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "light",
+        "approvedNarration": "Create and delete a new temporary file within one RUN instead: that payload never enters the resulting diff.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "docker": {
+          "mode": "same",
+          "phase": "before",
+          "path": "/tmp/demo.bin",
+          "newTemporaryPath": true,
+          "payloadBytes": 100000000,
+          "quantity": "illustrative-uncompressed-payload",
+          "dockerBuilt": false,
+          "ordinaryUnsquashedImage": true,
+          "priorLayerPayloadBytes": 0,
+          "priorLayerImmutable": true,
+          "whiteoutInNewLayer": false,
+          "whiteoutVisibleInMergedView": false,
+          "mergedPathPresent": false,
+          "resultingDiffPayloadBytes": null,
+          "sameRunEndpointBeforePresent": false,
+          "sameRunEndpointAfterPresent": false,
+          "noClaimOfEmptyWholeLayer": true,
+          "baseFileReclamation": false
+        },
+        "sourceSceneIndex": 8,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "03 · A FILESYSTEM MECHANISM",
+        "Change the boundary: create + delete in ONE RUN",
+        "ONE RUN · create NEW /tmp/demo.bin && delete /tmp/demo.bin",
+        "BEFORE RUN",
+        "DURING RUN",
+        "AFTER RUN",
+        "Path absent",
+        "100 MB temp file",
+        "created, then deleted",
+        "Path absent",
+        "Diff compares the endpoints, not the temporary contents.",
+        "Both endpoints lack this NEW file.",
+        "NEW temporary path only. Other metadata may remain; earlier base-file bytes are not reclaimed.",
+        "Sources: OCI filesystem changesets · Docker cleanup guidance."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "same-run",
+      "label": "b",
+      "progress": 0.85,
+      "filename": "10-same-run-b.png",
+      "sha256": "7bf8657ae287d905a71ca086f17869fb8863ea64eb0725758cd11a8a9746f394",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "same-run",
+        "segmentIndex": 9,
+        "frame": 9859,
+        "fps": 30,
+        "segmentFrame": 850,
+        "segmentFrames": 1001,
+        "progress": 0.85,
+        "theme": "light",
+        "approvedNarration": "Create and delete a new temporary file within one RUN instead: that payload never enters the resulting diff.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "docker": {
+          "mode": "same",
+          "phase": "after",
+          "path": "/tmp/demo.bin",
+          "newTemporaryPath": true,
+          "payloadBytes": 100000000,
+          "quantity": "illustrative-uncompressed-payload",
+          "dockerBuilt": false,
+          "ordinaryUnsquashedImage": true,
+          "priorLayerPayloadBytes": 0,
+          "priorLayerImmutable": true,
+          "whiteoutInNewLayer": false,
+          "whiteoutVisibleInMergedView": false,
+          "mergedPathPresent": false,
+          "resultingDiffPayloadBytes": 0,
+          "sameRunEndpointBeforePresent": false,
+          "sameRunEndpointAfterPresent": false,
+          "noClaimOfEmptyWholeLayer": true,
+          "baseFileReclamation": false
+        },
+        "sourceSceneIndex": 8,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "03 · A FILESYSTEM MECHANISM",
+        "Change the boundary: create + delete in ONE RUN",
+        "ONE RUN · create NEW /tmp/demo.bin && delete /tmp/demo.bin",
+        "BEFORE RUN",
+        "DURING RUN",
+        "AFTER RUN",
+        "Path absent",
+        "100 MB temp file",
+        "created, then deleted",
+        "Path absent",
+        "Diff compares the endpoints, not the temporary contents.",
+        "Result: no payload for this path in the resulting diff.",
+        "NEW temporary path only. Other metadata may remain; earlier base-file bytes are not reclaimed.",
+        "Sources: OCI filesystem changesets · Docker cleanup guidance."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "same-run",
+      "label": "a-replay",
+      "progress": 0.15,
+      "filename": "10-same-run-a-replay.png",
+      "sha256": "43ce9b0cd45729f9e1b580c42ca5ff8412a8f29b9e79a751708b0a0ade69ab28",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "same-run",
+        "segmentIndex": 9,
+        "frame": 9159,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "light",
+        "approvedNarration": "Create and delete a new temporary file within one RUN instead: that payload never enters the resulting diff.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "docker": {
+          "mode": "same",
+          "phase": "before",
+          "path": "/tmp/demo.bin",
+          "newTemporaryPath": true,
+          "payloadBytes": 100000000,
+          "quantity": "illustrative-uncompressed-payload",
+          "dockerBuilt": false,
+          "ordinaryUnsquashedImage": true,
+          "priorLayerPayloadBytes": 0,
+          "priorLayerImmutable": true,
+          "whiteoutInNewLayer": false,
+          "whiteoutVisibleInMergedView": false,
+          "mergedPathPresent": false,
+          "resultingDiffPayloadBytes": null,
+          "sameRunEndpointBeforePresent": false,
+          "sameRunEndpointAfterPresent": false,
+          "noClaimOfEmptyWholeLayer": true,
+          "baseFileReclamation": false
+        },
+        "sourceSceneIndex": 8,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "03 · A FILESYSTEM MECHANISM",
+        "Change the boundary: create + delete in ONE RUN",
+        "ONE RUN · create NEW /tmp/demo.bin && delete /tmp/demo.bin",
+        "BEFORE RUN",
+        "DURING RUN",
+        "AFTER RUN",
+        "Path absent",
+        "100 MB temp file",
+        "created, then deleted",
+        "Path absent",
+        "Diff compares the endpoints, not the temporary contents.",
+        "Both endpoints lack this NEW file.",
+        "NEW temporary path only. Other metadata may remain; earlier base-file bytes are not reclaimed.",
+        "Sources: OCI filesystem changesets · Docker cleanup guidance."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "same-run",
+      "label": "end",
+      "progress": 1,
+      "filename": "10-same-run-end.png",
+      "sha256": "7bf8657ae287d905a71ca086f17869fb8863ea64eb0725758cd11a8a9746f394",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "same-run",
+        "segmentIndex": 9,
+        "frame": 10009,
+        "fps": 30,
+        "segmentFrame": 1000,
+        "segmentFrames": 1001,
+        "progress": 1,
+        "theme": "light",
+        "approvedNarration": "Create and delete a new temporary file within one RUN instead: that payload never enters the resulting diff.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "docker": {
+          "mode": "same",
+          "phase": "after",
+          "path": "/tmp/demo.bin",
+          "newTemporaryPath": true,
+          "payloadBytes": 100000000,
+          "quantity": "illustrative-uncompressed-payload",
+          "dockerBuilt": false,
+          "ordinaryUnsquashedImage": true,
+          "priorLayerPayloadBytes": 0,
+          "priorLayerImmutable": true,
+          "whiteoutInNewLayer": false,
+          "whiteoutVisibleInMergedView": false,
+          "mergedPathPresent": false,
+          "resultingDiffPayloadBytes": 0,
+          "sameRunEndpointBeforePresent": false,
+          "sameRunEndpointAfterPresent": false,
+          "noClaimOfEmptyWholeLayer": true,
+          "baseFileReclamation": false
+        },
+        "sourceSceneIndex": 8,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "03 · A FILESYSTEM MECHANISM",
+        "Change the boundary: create + delete in ONE RUN",
+        "ONE RUN · create NEW /tmp/demo.bin && delete /tmp/demo.bin",
+        "BEFORE RUN",
+        "DURING RUN",
+        "AFTER RUN",
+        "Path absent",
+        "100 MB temp file",
+        "created, then deleted",
+        "Path absent",
+        "Diff compares the endpoints, not the temporary contents.",
+        "Result: no payload for this path in the resulting diff.",
+        "NEW temporary path only. Other metadata may remain; earlier base-file bytes are not reclaimed.",
+        "Sources: OCI filesystem changesets · Docker cleanup guidance."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "saved-html-image",
+      "label": "start",
+      "progress": 0,
+      "filename": "11-saved-html-image-start.png",
+      "sha256": "032a37859135a207d52e7e59604ab048425542d678a8bbd362cf6c9e3cb26d8d",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "saved-html-image",
+        "segmentIndex": 10,
+        "frame": 10010,
+        "fps": 30,
+        "segmentFrame": 0,
+        "segmentFrames": 1001,
+        "progress": 0,
+        "theme": "dark",
+        "approvedNarration": "The existing Git example shows four formats: interactive HTML for exploration, and an infographic for an overview.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "formats": {
+          "example": "existing-git-merge",
+          "existingFormats": [
+            "html",
+            "png",
+            "native-pptx",
+            "narrated-video"
+          ],
+          "previews": [
+            "git-html.png",
+            "git-infographic.png"
+          ],
+          "displayedAs": "saved-raster-previews",
+          "liveInteraction": false,
+          "livePlayback": false,
+          "editingDemonstrated": false,
+          "mainThreeExamplesFormats": [
+            "video"
+          ],
+          "revealProgress": 0
+        },
+        "sourceSceneIndex": 9,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · FROM EVIDENCE TO EXPLANATION",
+        "Actual formats: the existing Git explanation",
+        "HTML · actual rendered page excerpt",
+        "PNG · actual saved infographic",
+        "HTML for exploration · PNG for a self-contained overview",
+        "Existing Git artifacts only. Greenland, CPython and Docker remain video-only.",
+        "Provenance: existing Git HTML screenshot + delivered PNG · 2026-09-16."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "saved-html-image",
+      "label": "a",
+      "progress": 0.15,
+      "filename": "11-saved-html-image-a.png",
+      "sha256": "479f000b139bc4ba0f94bafa2cb88622e93cc155ef66278e88d8b61bbd2e99b2",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "saved-html-image",
+        "segmentIndex": 10,
+        "frame": 10160,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "dark",
+        "approvedNarration": "The existing Git example shows four formats: interactive HTML for exploration, and an infographic for an overview.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "formats": {
+          "example": "existing-git-merge",
+          "existingFormats": [
+            "html",
+            "png",
+            "native-pptx",
+            "narrated-video"
+          ],
+          "previews": [
+            "git-html.png",
+            "git-infographic.png"
+          ],
+          "displayedAs": "saved-raster-previews",
+          "liveInteraction": false,
+          "livePlayback": false,
+          "editingDemonstrated": false,
+          "mainThreeExamplesFormats": [
+            "video"
+          ],
+          "revealProgress": 0.06075
+        },
+        "sourceSceneIndex": 9,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · FROM EVIDENCE TO EXPLANATION",
+        "Actual formats: the existing Git explanation",
+        "HTML · actual rendered page excerpt",
+        "PNG · actual saved infographic",
+        "HTML for exploration · PNG for a self-contained overview",
+        "Existing Git artifacts only. Greenland, CPython and Docker remain video-only.",
+        "Provenance: existing Git HTML screenshot + delivered PNG · 2026-09-16."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "saved-html-image",
+      "label": "b",
+      "progress": 0.85,
+      "filename": "11-saved-html-image-b.png",
+      "sha256": "e32e83b5ff3b75dade05a5df4c3521cba11302691ced3cbbc3d11faf86f7c75d",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "saved-html-image",
+        "segmentIndex": 10,
+        "frame": 10860,
+        "fps": 30,
+        "segmentFrame": 850,
+        "segmentFrames": 1001,
+        "progress": 0.85,
+        "theme": "dark",
+        "approvedNarration": "The existing Git example shows four formats: interactive HTML for exploration, and an infographic for an overview.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "formats": {
+          "example": "existing-git-merge",
+          "existingFormats": [
+            "html",
+            "png",
+            "native-pptx",
+            "narrated-video"
+          ],
+          "previews": [
+            "git-html.png",
+            "git-infographic.png"
+          ],
+          "displayedAs": "saved-raster-previews",
+          "liveInteraction": false,
+          "livePlayback": false,
+          "editingDemonstrated": false,
+          "mainThreeExamplesFormats": [
+            "video"
+          ],
+          "revealProgress": 0.9392499999999999
+        },
+        "sourceSceneIndex": 9,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · FROM EVIDENCE TO EXPLANATION",
+        "Actual formats: the existing Git explanation",
+        "HTML · actual rendered page excerpt",
+        "PNG · actual saved infographic",
+        "HTML for exploration · PNG for a self-contained overview",
+        "Existing Git artifacts only. Greenland, CPython and Docker remain video-only.",
+        "Provenance: existing Git HTML screenshot + delivered PNG · 2026-09-16."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "saved-html-image",
+      "label": "a-replay",
+      "progress": 0.15,
+      "filename": "11-saved-html-image-a-replay.png",
+      "sha256": "479f000b139bc4ba0f94bafa2cb88622e93cc155ef66278e88d8b61bbd2e99b2",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "saved-html-image",
+        "segmentIndex": 10,
+        "frame": 10160,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "dark",
+        "approvedNarration": "The existing Git example shows four formats: interactive HTML for exploration, and an infographic for an overview.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "formats": {
+          "example": "existing-git-merge",
+          "existingFormats": [
+            "html",
+            "png",
+            "native-pptx",
+            "narrated-video"
+          ],
+          "previews": [
+            "git-html.png",
+            "git-infographic.png"
+          ],
+          "displayedAs": "saved-raster-previews",
+          "liveInteraction": false,
+          "livePlayback": false,
+          "editingDemonstrated": false,
+          "mainThreeExamplesFormats": [
+            "video"
+          ],
+          "revealProgress": 0.06075
+        },
+        "sourceSceneIndex": 9,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · FROM EVIDENCE TO EXPLANATION",
+        "Actual formats: the existing Git explanation",
+        "HTML · actual rendered page excerpt",
+        "PNG · actual saved infographic",
+        "HTML for exploration · PNG for a self-contained overview",
+        "Existing Git artifacts only. Greenland, CPython and Docker remain video-only.",
+        "Provenance: existing Git HTML screenshot + delivered PNG · 2026-09-16."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "saved-html-image",
+      "label": "end",
+      "progress": 1,
+      "filename": "11-saved-html-image-end.png",
+      "sha256": "fbb27977f8f6741108308068a1fb04935ddc0a72bab3cb9af2740a11fcd234a0",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "saved-html-image",
+        "segmentIndex": 10,
+        "frame": 11010,
+        "fps": 30,
+        "segmentFrame": 1000,
+        "segmentFrames": 1001,
+        "progress": 1,
+        "theme": "dark",
+        "approvedNarration": "The existing Git example shows four formats: interactive HTML for exploration, and an infographic for an overview.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "formats": {
+          "example": "existing-git-merge",
+          "existingFormats": [
+            "html",
+            "png",
+            "native-pptx",
+            "narrated-video"
+          ],
+          "previews": [
+            "git-html.png",
+            "git-infographic.png"
+          ],
+          "displayedAs": "saved-raster-previews",
+          "liveInteraction": false,
+          "livePlayback": false,
+          "editingDemonstrated": false,
+          "mainThreeExamplesFormats": [
+            "video"
+          ],
+          "revealProgress": 1
+        },
+        "sourceSceneIndex": 9,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · FROM EVIDENCE TO EXPLANATION",
+        "Actual formats: the existing Git explanation",
+        "HTML · actual rendered page excerpt",
+        "PNG · actual saved infographic",
+        "HTML for exploration · PNG for a self-contained overview",
+        "Existing Git artifacts only. Greenland, CPython and Docker remain video-only.",
+        "Provenance: existing Git HTML screenshot + delivered PNG · 2026-09-16."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "saved-slides-video",
+      "label": "start",
+      "progress": 0,
+      "filename": "12-saved-slides-video-start.png",
+      "sha256": "34174ae7b92a7938d73529e6c03998890db47412759f9166070a7583744b55eb",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "saved-slides-video",
+        "segmentIndex": 11,
+        "frame": 11011,
+        "fps": 30,
+        "segmentFrame": 0,
+        "segmentFrames": 1001,
+        "progress": 0,
+        "theme": "dark",
+        "approvedNarration": "Editable slides help you present the reasoning; narrated video shows how the mechanism changes. Each format is composed for its purpose.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "formats": {
+          "example": "existing-git-merge",
+          "existingFormats": [
+            "html",
+            "png",
+            "native-pptx",
+            "narrated-video"
+          ],
+          "previews": [
+            "git-slide-03.png",
+            "git-video-03.png"
+          ],
+          "displayedAs": "saved-raster-previews",
+          "liveInteraction": false,
+          "livePlayback": false,
+          "editingDemonstrated": false,
+          "mainThreeExamplesFormats": [
+            "video"
+          ],
+          "revealProgress": 0
+        },
+        "sourceSceneIndex": 10,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · FROM EVIDENCE TO EXPLANATION",
+        "The same Git topic, authored for other media",
+        "Native slides · saved slide 03",
+        "Narrated video · saved encoded frame",
+        "PPTX for presenting ideas · video for showing change",
+        "Saved previews of existing Git artifacts; not live controls or playback.",
+        "Provenance: existing Git slide 03 render + encoded video frame 853 · 2026-09-16."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "saved-slides-video",
+      "label": "a",
+      "progress": 0.15,
+      "filename": "12-saved-slides-video-a.png",
+      "sha256": "355b2e659b4095683a933b8c7dce3d165114478206691adcdb18b7db845923f2",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "saved-slides-video",
+        "segmentIndex": 11,
+        "frame": 11161,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "dark",
+        "approvedNarration": "Editable slides help you present the reasoning; narrated video shows how the mechanism changes. Each format is composed for its purpose.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "formats": {
+          "example": "existing-git-merge",
+          "existingFormats": [
+            "html",
+            "png",
+            "native-pptx",
+            "narrated-video"
+          ],
+          "previews": [
+            "git-slide-03.png",
+            "git-video-03.png"
+          ],
+          "displayedAs": "saved-raster-previews",
+          "liveInteraction": false,
+          "livePlayback": false,
+          "editingDemonstrated": false,
+          "mainThreeExamplesFormats": [
+            "video"
+          ],
+          "revealProgress": 0.06075
+        },
+        "sourceSceneIndex": 10,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · FROM EVIDENCE TO EXPLANATION",
+        "The same Git topic, authored for other media",
+        "Native slides · saved slide 03",
+        "Narrated video · saved encoded frame",
+        "PPTX for presenting ideas · video for showing change",
+        "Saved previews of existing Git artifacts; not live controls or playback.",
+        "Provenance: existing Git slide 03 render + encoded video frame 853 · 2026-09-16."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "saved-slides-video",
+      "label": "b",
+      "progress": 0.85,
+      "filename": "12-saved-slides-video-b.png",
+      "sha256": "1d3f9c9ea6a1fb30262302a5d15ac128f44155293eea7d3401c0828ce65aec0f",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "saved-slides-video",
+        "segmentIndex": 11,
+        "frame": 11861,
+        "fps": 30,
+        "segmentFrame": 850,
+        "segmentFrames": 1001,
+        "progress": 0.85,
+        "theme": "dark",
+        "approvedNarration": "Editable slides help you present the reasoning; narrated video shows how the mechanism changes. Each format is composed for its purpose.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "formats": {
+          "example": "existing-git-merge",
+          "existingFormats": [
+            "html",
+            "png",
+            "native-pptx",
+            "narrated-video"
+          ],
+          "previews": [
+            "git-slide-03.png",
+            "git-video-03.png"
+          ],
+          "displayedAs": "saved-raster-previews",
+          "liveInteraction": false,
+          "livePlayback": false,
+          "editingDemonstrated": false,
+          "mainThreeExamplesFormats": [
+            "video"
+          ],
+          "revealProgress": 0.9392499999999999
+        },
+        "sourceSceneIndex": 10,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · FROM EVIDENCE TO EXPLANATION",
+        "The same Git topic, authored for other media",
+        "Native slides · saved slide 03",
+        "Narrated video · saved encoded frame",
+        "PPTX for presenting ideas · video for showing change",
+        "Saved previews of existing Git artifacts; not live controls or playback.",
+        "Provenance: existing Git slide 03 render + encoded video frame 853 · 2026-09-16."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "saved-slides-video",
+      "label": "a-replay",
+      "progress": 0.15,
+      "filename": "12-saved-slides-video-a-replay.png",
+      "sha256": "355b2e659b4095683a933b8c7dce3d165114478206691adcdb18b7db845923f2",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "saved-slides-video",
+        "segmentIndex": 11,
+        "frame": 11161,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "dark",
+        "approvedNarration": "Editable slides help you present the reasoning; narrated video shows how the mechanism changes. Each format is composed for its purpose.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "formats": {
+          "example": "existing-git-merge",
+          "existingFormats": [
+            "html",
+            "png",
+            "native-pptx",
+            "narrated-video"
+          ],
+          "previews": [
+            "git-slide-03.png",
+            "git-video-03.png"
+          ],
+          "displayedAs": "saved-raster-previews",
+          "liveInteraction": false,
+          "livePlayback": false,
+          "editingDemonstrated": false,
+          "mainThreeExamplesFormats": [
+            "video"
+          ],
+          "revealProgress": 0.06075
+        },
+        "sourceSceneIndex": 10,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · FROM EVIDENCE TO EXPLANATION",
+        "The same Git topic, authored for other media",
+        "Native slides · saved slide 03",
+        "Narrated video · saved encoded frame",
+        "PPTX for presenting ideas · video for showing change",
+        "Saved previews of existing Git artifacts; not live controls or playback.",
+        "Provenance: existing Git slide 03 render + encoded video frame 853 · 2026-09-16."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "saved-slides-video",
+      "label": "end",
+      "progress": 1,
+      "filename": "12-saved-slides-video-end.png",
+      "sha256": "35a1ac18ec2a94adad20d383f65c4eff36db78d35999b6aedbdcb2f5f2bbb682",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "saved-slides-video",
+        "segmentIndex": 11,
+        "frame": 12011,
+        "fps": 30,
+        "segmentFrame": 1000,
+        "segmentFrames": 1001,
+        "progress": 1,
+        "theme": "dark",
+        "approvedNarration": "Editable slides help you present the reasoning; narrated video shows how the mechanism changes. Each format is composed for its purpose.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "formats": {
+          "example": "existing-git-merge",
+          "existingFormats": [
+            "html",
+            "png",
+            "native-pptx",
+            "narrated-video"
+          ],
+          "previews": [
+            "git-slide-03.png",
+            "git-video-03.png"
+          ],
+          "displayedAs": "saved-raster-previews",
+          "liveInteraction": false,
+          "livePlayback": false,
+          "editingDemonstrated": false,
+          "mainThreeExamplesFormats": [
+            "video"
+          ],
+          "revealProgress": 1
+        },
+        "sourceSceneIndex": 10,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · FROM EVIDENCE TO EXPLANATION",
+        "The same Git topic, authored for other media",
+        "Native slides · saved slide 03",
+        "Narrated video · saved encoded frame",
+        "PPTX for presenting ideas · video for showing change",
+        "Saved previews of existing Git artifacts; not live controls or playback.",
+        "Provenance: existing Git slide 03 render + encoded video frame 853 · 2026-09-16."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "evidence-visible",
+      "label": "start",
+      "progress": 0,
+      "filename": "13-evidence-visible-start.png",
+      "sha256": "8821e68b4808b035faee23b8ed897b0c69dfdefb4ee71c890f45181772dd8600",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "evidence-visible",
+        "segmentIndex": 12,
+        "frame": 12012,
+        "fps": 30,
+        "segmentFrame": 0,
+        "segmentFrames": 1001,
+        "progress": 0,
+        "theme": "dark",
+        "approvedNarration": "Evidence supports the claim. Visuals reveal the mechanism. Aha creates explanations you can follow.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "summary": {
+          "sequence": [
+            "evidence",
+            "visible-mechanism",
+            "explanation"
+          ],
+          "focus": 0,
+          "examples": [
+            "fixed-spherical-area",
+            "unchanged-original-str",
+            "immutable-prior-layer"
+          ]
+        },
+        "sourceSceneIndex": 11,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · FROM EVIDENCE TO EXPLANATION",
+        "Evidence supports it. The mechanism explains it.",
+        "What changes?",
+        "What stays fixed?",
+        "Greenland's map footprint",
+        "Its spherical area",
+        "A new string's slot width",
+        "The original str",
+        "The merged filesystem view",
+        "The earlier layer's bytes",
+        "Evidence",
+        "→",
+        "Visible mechanism",
+        "→",
+        "Explanation",
+        "Research supported by sources → visible mechanism → an explanation you can follow.",
+        "Sources: Aha skill guides · Greenland, CPython and Docker research."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "evidence-visible",
+      "label": "a",
+      "progress": 0.15,
+      "filename": "13-evidence-visible-a.png",
+      "sha256": "8821e68b4808b035faee23b8ed897b0c69dfdefb4ee71c890f45181772dd8600",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "evidence-visible",
+        "segmentIndex": 12,
+        "frame": 12162,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "dark",
+        "approvedNarration": "Evidence supports the claim. Visuals reveal the mechanism. Aha creates explanations you can follow.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "summary": {
+          "sequence": [
+            "evidence",
+            "visible-mechanism",
+            "explanation"
+          ],
+          "focus": 0,
+          "examples": [
+            "fixed-spherical-area",
+            "unchanged-original-str",
+            "immutable-prior-layer"
+          ]
+        },
+        "sourceSceneIndex": 11,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · FROM EVIDENCE TO EXPLANATION",
+        "Evidence supports it. The mechanism explains it.",
+        "What changes?",
+        "What stays fixed?",
+        "Greenland's map footprint",
+        "Its spherical area",
+        "A new string's slot width",
+        "The original str",
+        "The merged filesystem view",
+        "The earlier layer's bytes",
+        "Evidence",
+        "→",
+        "Visible mechanism",
+        "→",
+        "Explanation",
+        "Research supported by sources → visible mechanism → an explanation you can follow.",
+        "Sources: Aha skill guides · Greenland, CPython and Docker research."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "evidence-visible",
+      "label": "b",
+      "progress": 0.85,
+      "filename": "13-evidence-visible-b.png",
+      "sha256": "53c33fa7c4023ea1625203cd8a1a7ec33fb49a433fa922f01c45cfc76e423ecd",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "evidence-visible",
+        "segmentIndex": 12,
+        "frame": 12862,
+        "fps": 30,
+        "segmentFrame": 850,
+        "segmentFrames": 1001,
+        "progress": 0.85,
+        "theme": "dark",
+        "approvedNarration": "Evidence supports the claim. Visuals reveal the mechanism. Aha creates explanations you can follow.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "summary": {
+          "sequence": [
+            "evidence",
+            "visible-mechanism",
+            "explanation"
+          ],
+          "focus": 2,
+          "examples": [
+            "fixed-spherical-area",
+            "unchanged-original-str",
+            "immutable-prior-layer"
+          ]
+        },
+        "sourceSceneIndex": 11,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · FROM EVIDENCE TO EXPLANATION",
+        "Evidence supports it. The mechanism explains it.",
+        "What changes?",
+        "What stays fixed?",
+        "Greenland's map footprint",
+        "Its spherical area",
+        "A new string's slot width",
+        "The original str",
+        "The merged filesystem view",
+        "The earlier layer's bytes",
+        "Evidence",
+        "→",
+        "Visible mechanism",
+        "→",
+        "Explanation",
+        "Research supported by sources → visible mechanism → an explanation you can follow.",
+        "Sources: Aha skill guides · Greenland, CPython and Docker research."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "evidence-visible",
+      "label": "a-replay",
+      "progress": 0.15,
+      "filename": "13-evidence-visible-a-replay.png",
+      "sha256": "8821e68b4808b035faee23b8ed897b0c69dfdefb4ee71c890f45181772dd8600",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "evidence-visible",
+        "segmentIndex": 12,
+        "frame": 12162,
+        "fps": 30,
+        "segmentFrame": 150,
+        "segmentFrames": 1001,
+        "progress": 0.15,
+        "theme": "dark",
+        "approvedNarration": "Evidence supports the claim. Visuals reveal the mechanism. Aha creates explanations you can follow.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "summary": {
+          "sequence": [
+            "evidence",
+            "visible-mechanism",
+            "explanation"
+          ],
+          "focus": 0,
+          "examples": [
+            "fixed-spherical-area",
+            "unchanged-original-str",
+            "immutable-prior-layer"
+          ]
+        },
+        "sourceSceneIndex": 11,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · FROM EVIDENCE TO EXPLANATION",
+        "Evidence supports it. The mechanism explains it.",
+        "What changes?",
+        "What stays fixed?",
+        "Greenland's map footprint",
+        "Its spherical area",
+        "A new string's slot width",
+        "The original str",
+        "The merged filesystem view",
+        "The earlier layer's bytes",
+        "Evidence",
+        "→",
+        "Visible mechanism",
+        "→",
+        "Explanation",
+        "Research supported by sources → visible mechanism → an explanation you can follow.",
+        "Sources: Aha skill guides · Greenland, CPython and Docker research."
+      ],
+      "contentOverflow": []
+    },
+    {
+      "id": "evidence-visible",
+      "label": "end",
+      "progress": 1,
+      "filename": "13-evidence-visible-end.png",
+      "sha256": "53c33fa7c4023ea1625203cd8a1a7ec33fb49a433fa922f01c45cfc76e423ecd",
+      "caption": {
+        "top": 593.625,
+        "bottom": 696,
+        "overflow": false
+      },
+      "state": {
+        "schemaVersion": 1,
+        "sceneId": "evidence-visible",
+        "segmentIndex": 12,
+        "frame": 13012,
+        "fps": 30,
+        "segmentFrame": 1000,
+        "segmentFrames": 1001,
+        "progress": 1,
+        "theme": "dark",
+        "approvedNarration": "Evidence supports the claim. Visuals reveal the mechanism. Aha creates explanations you can follow.",
+        "captionSafeTop": 550,
+        "authoredContentBottom": 548,
+        "timing": "segment-local-deterministic",
+        "summary": {
+          "sequence": [
+            "evidence",
+            "visible-mechanism",
+            "explanation"
+          ],
+          "focus": 2,
+          "examples": [
+            "fixed-spherical-area",
+            "unchanged-original-str",
+            "immutable-prior-layer"
+          ]
+        },
+        "sourceSceneIndex": 11,
+        "projectIntroductionOnly": false,
+        "chapterTransition": null
+      },
+      "visibleText": [
+        "AHA · FROM EVIDENCE TO EXPLANATION",
+        "Evidence supports it. The mechanism explains it.",
+        "What changes?",
+        "What stays fixed?",
+        "Greenland's map footprint",
+        "Its spherical area",
+        "A new string's slot width",
+        "The original str",
+        "The merged filesystem view",
+        "The earlier layer's bytes",
+        "Evidence",
+        "→",
+        "Visible mechanism",
+        "→",
+        "Explanation",
+        "Research supported by sources → visible mechanism → an explanation you can follow.",
+        "Sources: Aha skill guides · Greenland, CPython and Docker research."
+      ],
+      "contentOverflow": []
+    }
+  ],
+  "replay": [
+    {
+      "id": "research-skill",
+      "identical": true,
+      "changed": true
+    },
+    {
+      "id": "explanation-skill",
+      "identical": true,
+      "changed": true
+    },
+    {
+      "id": "three-examples",
+      "identical": true,
+      "changed": true
+    },
+    {
+      "id": "mercator-question",
+      "identical": true,
+      "changed": true
+    },
+    {
+      "id": "spherical-rotation",
+      "identical": true,
+      "changed": true
+    },
+    {
+      "id": "new-string",
+      "identical": true,
+      "changed": true
+    },
+    {
+      "id": "utf8-contrast",
+      "identical": true,
+      "changed": true
+    },
+    {
+      "id": "layer-created",
+      "identical": true,
+      "changed": true
+    },
+    {
+      "id": "later-whiteout",
+      "identical": true,
+      "changed": true
+    },
+    {
+      "id": "same-run",
+      "identical": true,
+      "changed": true
+    },
+    {
+      "id": "saved-html-image",
+      "identical": true,
+      "changed": true
+    },
+    {
+      "id": "saved-slides-video",
+      "identical": true,
+      "changed": true
+    },
+    {
+      "id": "evidence-visible",
+      "identical": true,
+      "changed": true
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "visualAcceptance": "Not established by automation.",
+  "listening": "No audio created or played."
+}

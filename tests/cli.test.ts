@@ -67,6 +67,16 @@ async function author(dir: string, format: 'html' | 'pptx', entry = cli): Promis
   return projectName;
 }
 
+test('CLI and lockfile versions match the package version', async () => temp(async dir => {
+  const { version } = JSON.parse(await fs.readFile(path.join(root, 'package.json'), 'utf8'));
+  const lock = JSON.parse(await fs.readFile(path.join(root, 'package-lock.json'), 'utf8'));
+  assert.equal(lock.version, version);
+  assert.equal(lock.packages[''].version, version);
+  for (const command of ['help', 'doctor']) {
+    assert.equal(JSON.parse(invoke(dir, [command])).version, version);
+  }
+}));
+
 test('model-free research builds a dossier and a freely authored HTML article', async () => temp(async dir => {
   const project = await author(dir, 'html');
   const result = JSON.parse(invoke(dir, ['render-html', project, 'article.html']));
@@ -206,6 +216,10 @@ test('both packaged skills operate from an unrelated directory with their bundle
     const project = await author(cwd, 'html', entry);
     invoke(cwd, ['render-html', project, 'explanation.html'], entry);
     const manifest = JSON.parse(await fs.readFile(path.join(install, 'runtime-manifest.json'), 'utf8'));
+    const { version } = JSON.parse(await fs.readFile(path.join(root, 'package.json'), 'utf8'));
+    assert.equal(manifest.version, version);
+    assert.equal(doctor.version, version);
+    assert.equal(JSON.parse(invoke(cwd, ['help'], entry)).version, version);
     for (const [relative, expected] of Object.entries(manifest.files)) {
       assert.equal(createHash('sha256').update(await fs.readFile(path.join(install, ...relative.split('/')))).digest('hex'), expected);
     }

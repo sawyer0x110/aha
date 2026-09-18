@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Why Docker keeps a deleted file's bytes</title>
+  <script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --cp-bg: #f7f4ef;
+      --cp-bg-elevated: #fcfbf8;
+      --cp-surface: #ffffff;
+      --cp-surface-soft: #f5f5f5;
+      --cp-border: #dedede;
+      --cp-border-strong: #919191;
+      --cp-text: #242424;
+      --cp-text-muted: #5c5c5c;
+      --cp-text-soft: #6f6f6f;
+      --cp-accent: #b11f4b;
+      --cp-accent-hover: #9a1a41;
+      --cp-accent-soft: rgba(177, 31, 75, 0.08);
+      --cp-accent-fg: #ffffff;
+      --cp-success: #16a34a;
+      --cp-danger: #dc2626;
+      --cp-warning: #f59e0b;
+      --cp-link: #0078d4;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+      --cp-overlay: rgba(255, 255, 255, 0.8);
+      --cp-panel: rgba(255, 255, 255, 0.86);
+      --cp-panel-strong: rgba(255, 255, 255, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.55);
+      --cp-highlight: rgba(177, 31, 75, 0.12);
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --cp-bg: #3d3b3a;
+      --cp-bg-elevated: #343231;
+      --cp-surface: #292929;
+      --cp-surface-soft: #2e2e2e;
+      --cp-border: #474747;
+      --cp-border-strong: #5f5f5f;
+      --cp-text: #dedede;
+      --cp-text-muted: #919191;
+      --cp-text-soft: #b0b0b0;
+      --cp-accent: #fd8ea1;
+      --cp-accent-hover: #fb7b91;
+      --cp-accent-soft: rgba(253, 142, 161, 0.14);
+      --cp-accent-fg: #1a1a1a;
+      --cp-success: #4ade80;
+      --cp-danger: #f87171;
+      --cp-warning: #fbbf24;
+      --cp-link: #4da6ff;
+      --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+      --cp-overlay: rgba(41, 41, 41, 0.88);
+      --cp-panel: rgba(41, 41, 41, 0.72);
+      --cp-panel-strong: rgba(41, 41, 41, 0.96);
+      --cp-sheen: rgba(255, 255, 255, 0.04);
+      --cp-highlight: rgba(253, 142, 161, 0.12);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 1280px; height: 720px; overflow: hidden; }
+    body {
+      background: var(--cp-bg);
+      color: var(--cp-text);
+      font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    svg { display: block; width: 1280px; height: 720px; }
+    text { fill: var(--cp-text); font-family: inherit; font-size: 32px; }
+    .title { font-size: 43px; font-weight: 700; }
+    .step { font-size: 32px; fill: var(--cp-accent); font-weight: 600; }
+    .source { font-size: 18px; fill: var(--cp-text-soft); }
+    .scope { font-size: 18px; fill: var(--cp-text-soft); }
+    .muted { fill: var(--cp-text-soft); }
+    .strong { font-weight: 650; }
+    .layer { fill: var(--cp-surface); stroke: var(--cp-text-soft); stroke-width: 2; }
+    .payload { fill: var(--cp-accent); stroke: var(--cp-accent); stroke-width: 2; }
+    .payload-text { fill: var(--cp-accent-fg); font-weight: 600; }
+    .marker { fill: var(--cp-bg-elevated); stroke: var(--cp-accent); stroke-width: 4; }
+    .line { fill: none; stroke: var(--cp-text-soft); stroke-width: 3; }
+    .block { fill: none; stroke: var(--cp-accent); stroke-width: 8; }
+    .work { fill: var(--cp-surface); stroke: var(--cp-text-soft); stroke-width: 2; stroke-dasharray: 9 7; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 1280 720" role="img" aria-labelledby="video-title video-description">
+    <title id="video-title">Why Docker keeps a deleted file's bytes</title>
+    <desc id="video-description">An illustrative cutaway compares two image layers with one RUN's final diff. The lower file payload remains after a later whiteout hides its path. Creating and deleting a new file in one RUN avoids adding that file payload.</desc>
+
+    <g id="layer-added">
+      <text x="64" y="66" class="title">Why Docker keeps a deleted file’s bytes</text>
+      <text x="64" y="120" class="step">ONE RUN · create a new file</text>
+      <rect x="64" y="312" width="748" height="150" rx="16" class="layer"/>
+      <text x="96" y="353" class="strong">Layer A · immutable image layer</text>
+      <g id="first-payload" transform="translate(0 -180)">
+        <rect x="96" y="374" width="588" height="64" rx="10" class="payload"/>
+        <text x="120" y="417" class="payload-text">file.bin · 100 MB payload</text>
+      </g>
+      <path id="save-guide" d="M 714 196 L 714 280 M 702 268 L 714 280 L 726 268" class="line"/>
+      <text id="first-status" x="864" y="226" class="strong">New file</text>
+      <text x="864" y="359">RUN ends</text>
+      <text x="864" y="405" class="strong">Payload saved</text>
+      <text x="864" y="447">in layer A</text>
+    </g>
+
+    <g id="later-delete" style="display:none">
+      <text x="64" y="66" class="title">Deletion hides the path, not the bytes</text>
+      <text x="64" y="120" class="step">NEXT RUN · delete file.bin</text>
+      <rect x="64" y="166" width="748" height="86" rx="16" class="layer"/>
+      <g id="merged-file">
+        <rect x="96" y="180" width="292" height="58" rx="10" class="payload"/>
+        <text x="120" y="220" class="payload-text">file.bin</text>
+      </g>
+      <text id="merged-empty" x="96" y="220" class="strong" opacity="0">file.bin is absent</text>
+      <text x="864" y="218" class="strong">Merged view</text>
+
+      <path d="M 434 390 L 434 260 M 422 272 L 434 260 L 446 272" class="line"/>
+      <g id="upper-layer">
+        <rect x="64" y="283" width="748" height="78" rx="16" class="marker"/>
+        <text x="96" y="334" class="strong">.wh.file.bin · deletion marker</text>
+      </g>
+      <path id="mask-bar" d="M 390 375 L 478 375" class="block"/>
+      <text x="864" y="312" class="strong">Layer B</text>
+      <text x="864" y="352">Whiteout mask</text>
+
+      <rect x="64" y="390" width="748" height="74" rx="16" class="layer"/>
+      <rect x="96" y="402" width="676" height="50" rx="10" class="payload"/>
+      <text x="120" y="438" class="payload-text">file.bin · 100 MB still stored</text>
+      <text x="864" y="439" class="strong">Layer A stays</text>
+    </g>
+
+    <g id="same-run" style="display:none">
+      <text x="64" y="66" class="title">Keep new temporary payload out of the diff</text>
+      <text x="64" y="120" class="step">SAME RUN · create, then delete the NEW file</text>
+      <text x="64" y="184" class="strong">Separate RUNs</text>
+      <text x="664" y="184" class="strong">Same RUN</text>
+
+      <rect x="64" y="222" width="516" height="70" rx="16" class="marker"/>
+      <text x="88" y="268">Layer B · whiteout</text>
+      <path d="M 280 302 L 366 302" class="block"/>
+      <rect x="64" y="314" width="516" height="76" rx="16" class="layer"/>
+      <rect x="80" y="327" width="484" height="50" rx="10" class="payload"/>
+      <text x="100" y="363" class="payload-text">Layer A · 100 MB payload</text>
+      <text x="64" y="442" class="strong">Payload remains</text>
+
+      <rect x="664" y="222" width="552" height="104" rx="16" class="work"/>
+      <g id="temporary-file">
+        <rect x="688" y="245" width="228" height="58" rx="10" class="payload"/>
+        <text x="712" y="285" class="payload-text">new file</text>
+      </g>
+      <path id="delete-cross" d="M 1100 248 L 1142 292 M 1142 248 L 1100 292" class="block"/>
+      <text id="work-status" x="690" y="286" opacity="0">file absent before RUN ends</text>
+      <path d="M 940 336 L 940 365 M 928 353 L 940 365 L 952 353" class="line"/>
+      <rect x="664" y="376" width="552" height="88" rx="16" class="layer"/>
+      <text x="688" y="411" class="strong">Resulting image diff</text>
+      <text id="diff-result" x="688" y="450">RUN still in progress</text>
+    </g>
+
+    <text x="64" y="492" class="source">Sources: Docker image layers · OCI layer.md (af26a05) · Moby archive (v27.5.1, 4c9b3b0)</text>
+    <text x="64" y="516" class="scope">Illustrative layer payload, not measured image size · ordinary image diff, no squashing</text>
+    <text x="64" y="540" class="scope">100 MB assumed uncompressed file payload; base and archive/compression overhead excluded.</text>
+    <!-- y=550–720 is intentionally empty for the runtime's burned captions. -->
+  </svg>
+  <script>
+    const sceneIds = ["layer-added", "later-delete", "same-run"];
+    const element = id => document.getElementById(id);
+    const clamp = value => Math.min(1, Math.max(0, value));
+    const phase = (progress, start, end) => clamp((progress - start) / (end - start));
+    const show = (id, visible) => element(id).setAttribute("opacity", visible ? "1" : "0");
+
+    window.ahaPilotState = {
+      status: "awaiting-renderFrame",
+      evidenceMode: "illustrative-not-measured",
+      dependencies: []
+    };
+
+    window.ahaVideo = {
+      async renderFrame({ frame, fps, segmentIndex, segmentFrame, segmentFrames, text }) {
+        const sceneIndex = Math.min(2, Math.max(0, segmentIndex));
+        const progress = segmentFrames > 1 ? clamp(segmentFrame / (segmentFrames - 1)) : 1;
+        const requestedTheme = new URLSearchParams(window.location.search).get("scoutTheme");
+        document.documentElement.setAttribute("data-theme", requestedTheme || (sceneIndex === 0 ? "dark" : "light"));
+        sceneIds.forEach((id, index) => {
+          element(id).style.display = index === sceneIndex ? "inline" : "none";
+        });
+
+        const savedProgress = phase(progress, 0.12, 0.66);
+        element("first-payload").setAttribute("transform", `translate(0 ${-180 * (1 - savedProgress)})`);
+        element("first-status").textContent = savedProgress < 1 ? "New file" : "Layer recorded";
+        show("save-guide", savedProgress < 1);
+
+        const whiteoutProgress = phase(progress, 0.16, 0.52);
+        const masked = progress >= 0.52;
+        element("upper-layer").setAttribute("transform", `translate(0 ${-24 * (1 - whiteoutProgress)})`);
+        show("upper-layer", progress >= 0.16);
+        show("mask-bar", masked);
+        show("merged-file", !masked);
+        show("merged-empty", masked);
+
+        const deletionProgress = phase(progress, 0.22, 0.62);
+        const temporaryPresent = progress >= 0.10 && progress < 0.66;
+        const runComplete = progress >= 0.76;
+        element("temporary-file").setAttribute("transform", `translate(${215 * deletionProgress} 0)`);
+        show("temporary-file", temporaryPresent);
+        show("delete-cross", progress >= 0.36 && progress < 0.66);
+        show("work-status", progress >= 0.66);
+        element("diff-result").textContent = runComplete ? "No new file payload" : "RUN still in progress";
+
+        // This is declared scene state for review, never a filesystem or timing measurement.
+        window.ahaPilotState = {
+          status: "frame-set",
+          sceneId: sceneIds[sceneIndex],
+          frame,
+          fps,
+          segmentFrame,
+          segmentFrames,
+          progress,
+          narration: text,
+          theme: document.documentElement.getAttribute("data-theme"),
+          evidenceMode: "illustrative-not-measured",
+          example: { path: "file.bin", assumedUncompressedPayloadBytes: 100000000, isNewFile: true },
+          layerA: {
+            payloadVisible: sceneIndex !== 0 || savedProgress === 1,
+            payloadRetainedInSeparateRunCase: sceneIndex !== 0 || savedProgress === 1,
+            immutableAfterRecording: true
+          },
+          layerB: { whiteoutVisibleInCutaway: sceneIndex === 1 ? progress >= 0.16 : sceneIndex === 2 },
+          mergedExamplePath: {
+            visible: sceneIndex === 1 ? !masked : null,
+            absent: sceneIndex === 1 ? masked : null,
+            whiteoutShownAsOrdinaryFile: false
+          },
+          sameRun: {
+            active: sceneIndex === 2,
+            temporaryFilePresent: sceneIndex === 2 && temporaryPresent,
+            deletionCompleted: sceneIndex === 2 && progress >= 0.66,
+            resultingDiffRecorded: sceneIndex === 2 && runComplete,
+            newFilePayloadInResultingDiff: sceneIndex === 2 && runComplete ? false : null
+          },
+          captionSafeArea: { x: 0, y: 550, width: 1280, height: 170 },
+          dependencies: []
+        };
+      }
+    };
+  </script>
+</body>
+</html>
