@@ -83,7 +83,7 @@ test('release ZIP, inventory and SHA256 assets are deterministic and retain earl
     assert.deepEqual(files[name], source);
     assert.deepEqual(await fs.readFile(path.join(release.directory, name)), source);
   }
-  assert.notDeepEqual(files['INSTALL.md'], await fs.readFile(path.join(root, 'INSTALL.md')));
+  await assert.rejects(fs.access(path.join(root, 'INSTALL.md')), { code: 'ENOENT' });
   const previous = await fs.readFile(again.archive);
   await fs.writeFile(again.archive, 'different assets');
   await assert.rejects(distribution.createRelease({ output: path.join(workspace, 'second-release') }), /overwrite differing/);

@@ -31,7 +31,7 @@ Release 工作流当前使用 Windows 和 Node.js 22；这不表示所有操作�
 
 在 PR 中说明问题、行为变化、兼容性影响、实际执行的检查和剩余限制。行为修改应添加聚焦的回归测试；失败或未运行的检查不能写成通过。不要混入无关依赖升级、媒体重渲染或大范围格式调整。
 
-同一改动中同步中英文入口：根 `README`、`docs/README`、`docs/INSTALL`、`docs/USAGE`、`.github/CONTRIBUTING`、`.github/SECURITY` 和 `examples/README`。中文文件以 `.zh-CN.md` 标记。简短的根 `INSTALL.md` 为旧包保留稳定链接，只作双语指引，不另维护完整指南。同步含义、限制、命令和链接，不只翻译标题；链接到中文高级文档时标明语言。`skills/**` 保持单一英文权威契约，不另外制作平行中文技能包。
+同一改动中同步中英文入口：根 `README`、`docs/README`、`docs/INSTALL`、`docs/USAGE`、`.github/CONTRIBUTING`、`.github/SECURITY` 和 `examples/README`。中文文件以 `.zh-CN.md` 标记。安装链接直接指向 `docs/` 中的指南，不在根目录另设安装入口。同步含义、限制、命令和链接，不只翻译标题；链接到中文高级文档时标明语言。`skills/**` 保持单一英文权威契约，不另外制作平行中文技能包。
 
 `docs/INSTALL.md`、`docs/INSTALL.zh-CN.md`、`docs/LICENSE-SCOPE.md` 会按原字节、原文件名复制到新安装包根目录；根 `LICENSE` 单独加入。相对链接必须同时适用于 `docs/` 和解压后的 ZIP：指南／范围说明用同级链接，`LICENSE` 用绝对仓库 URL，源码专用文档也用仓库 URL。调整发布内容时，同步构建器、安装白名单、资产校验、工作流和测试。不要覆盖已发布版本或移动 tag；发布修改后的包时使用新版本号。
 

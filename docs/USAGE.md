@@ -212,7 +212,7 @@ Stop on failure. Build output contains exactly `dist\skills\aha-research` and `d
 
 `node .\scripts\release.mjs` packages locally; it does not upload or globally register anything. Follow [INSTALL](INSTALL.md) for authorized source builds, release selection, checksums, dry-run/apply, conflicts, upgrades, host discovery, and uninstall. A local build, version change, or tag push is not evidence that a release completed.
 
-**0.3.2 packaging/documentation update:** the full English/Chinese installation guides and bilingual license scope live in `docs/` and are copied verbatim to the package root under their basenames, alongside root `LICENSE`. Each independent skill retains Aha and third-party notices. Contribution/security guides live in `.github/`; root `INSTALL.md` remains only a compatibility pointer for old release links. These changes do not translate or reseal historical media, research, or QA.
+**0.3.2 packaging/documentation update:** the full English/Chinese installation guides and bilingual license scope live in `docs/` and are copied verbatim to the package root under their basenames, alongside root `LICENSE`. Each independent skill retains Aha and third-party notices. Contribution/security guides live in `.github/`. These changes do not translate or reseal historical media, research, or QA.
 
 Runtime 0.3.1 includes offline HTML `defer`/`async` scheduling fixes, frame counts based on precise audio durations, rejection of invalid UTF-8, bidirectional research-claim coverage checks, and updated image-size/research/authoring guidance relative to 0.3.0. CLI and new video receipts derive runtime version from `package.json`; schemas remain 1.0.0. Sealed examples and historical receipts are not rewritten.
 
