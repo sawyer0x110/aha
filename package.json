@@ -1,6 +1,6 @@
 {
   "name": "aha-skills",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "type": "module",
   "description": "Deep research and freely authored visual explanations in two portable skills.",

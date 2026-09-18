@@ -6,15 +6,15 @@
 | --- | --- | --- | --- | --- |
 | [降噪耳机](anc/README.md) | [交互讲解](anc/index.html) | [1800×1200](anc/anc.png) | [9 页](anc/anc.pptx) | [127.1 秒](anc/anc.mp4) |
 | [Git merge](git-merge/README.md) | [交互讲解](git-merge/index.html) | [1800×1200](git-merge/git-merge.png) | [10 页](git-merge/git-merge.pptx) | [126.27 秒](git-merge/git-merge.mp4) |
-| [Aha 旧快照导览](project-overview/README.md) | [交互导览](project-overview/index.html) | [1080×1800](project-overview/overview.png) | [10 页](project-overview/overview.pptx) | [148.43 秒](project-overview/overview.mp4) |
+| [Aha 较早研究快照导览](project-overview/README.md) | [交互导览](project-overview/index.html) | [新版能力图 · 1080×1800](project-overview/overview.png) | [10 页](project-overview/overview.pptx) | [148.43 秒旧版](project-overview/overview.mp4) |
 | [格陵兰与地图投影](greenland/README.md) | 未请求 | 未请求 | 未请求 | [115.73 秒](greenland/greenland.mp4) |
 | [CPython 字符串](cpython-string/README.md) | 未请求 | 未请求 | 未请求 | [21.47 秒试片](cpython-string/pilot.mp4) |
 | [Docker 镜像层](docker-layers/README.md) | 未请求 | 未请求 | 未请求 | [21.27 秒试片](docker-layers/pilot.mp4) |
 | [Aha 新版介绍](aha-introduction/README.md) | 未请求 | 未收录 | 未请求 | [119.4 秒](aha-introduction/overview-v5.mp4) |
 
-另行请求的新介绍图片先作为本地比较候选，不在此次收录范围；旧版图片仍保留。
+用户于 2026-09-17 选用新版能力介绍图，现已替换 `project-overview/overview.png`；只介绍项目定位、两个 skills 和四种媒介，不展示案例。它复用该目录的原研究快照，不与新版视频伪装成同一快照。数量仍为十六份；旧图保留于 Git 历史。
 
-ANC 和 Git 的横向信息图面向至少 1200px 宽的桌面／文档阅读，不承诺手机免缩放。Aha 纵向信息图适合滚动导览，已按 390px 和 540px 实际显示宽度复查必要文字。增加像素不是可读性的替代。
+ANC 和 Git 的横向信息图面向至少 1200px 宽的桌面／文档阅读，不承诺手机免缩放。Aha 新版纵向图已检查浏览器文字边界并生成 390px／540px 缩放图；代理实际视觉复核受图片工具限制，用户已选用。详见[新图收录记录](../evals/examples/overview-image-20260917/publication.json)。旧版视觉记录不适用于新图，增加像素也不是可读性的替代。
 
 ## 当前目录契约
 
@@ -25,7 +25,7 @@ ANC 和 Git 的横向信息图面向至少 1200px 宽的桌面／文档阅读，
 - Git 的 `public/` 保留阅读的固定版本上游文件、许可和访问记录。附加动画 PPT 使用独立后处理审计，不套用基版收据。
 - [交付清单](delivery-manifest.json)索引十六份当前作品及研究、源码、输出哈希；[前三例验收记录](../evals/examples/refresh-20260916/)、[格陵兰验收记录](../evals/examples/greenland-20260917/)、[代码试片收录记录](../evals/examples/code-pilots-20260917/publication.json)和[新版介绍记录](../evals/examples/aha-introduction-20260917/publication.json)位于 `evals`，不混入作品正文。
 
-`examples` 只保留当前正式作品；旧版由 Git 历史保留（此次替换前为 `c98b1927`）。候选、原始制作过程及替换前的本地备份仍在被忽略的 `artifacts`，未当作缓存删除。旧验收记录仅说明旧版，不是新版通过的证据。历史收据里的绝对路径保持原意，当前路径以交付清单为准。
+`examples` 只保留各组正式作品与复现所需材料；旧版由 Git 历史保留（新图替换前为 `4b87e4c`）。用户明确要求清理后，本轮十个媒体制作目录中的候选、重复渲染、临时音频和本地备份已删除；必要批准及验收记录保留在 `evals`，不删除独立的技能评估材料。旧验收记录仅说明旧版，不是新版通过的证据。历史收据里的绝对路径保持原意，即使原制作目录已清理；当前路径以交付清单为准。
 
 ## 内容与验收边界
 

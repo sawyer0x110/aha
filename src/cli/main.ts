@@ -4,6 +4,7 @@ import path from 'node:path';
 import { check } from '../core/check.js';
 import { AhaError, fail } from '../core/errors.js';
 import { hashValue } from '../core/identity.js';
+import { VERSION } from '../core/version.js';
 import { ResearchKindSchema } from '../research/schema.js';
 import { createResearchDraft, checkResearchDraft, buildDossier, readDossier, writeDossier } from '../research/dossier.js';
 import { FORMATS, LANGUAGES, type Format, type ArtifactLanguage, initArtifact, checkArtifact } from '../artifacts/project.js';
@@ -14,7 +15,6 @@ import { renderVideo } from '../media/video.js';
 import { doctorRequirements, inspectDependencies } from './doctor.js';
 import { assertOutsideSource, limitedJsonText, readJson, writeNewFile } from './files.js';
 
-const VERSION = '0.3.0';
 const USAGE = [
   'doctor [--for research|html|browser|image|pptx|video|speech | --media]',
   'research-init <question> <new-draft.json> [--kind public|codebase|mixed|provided]',

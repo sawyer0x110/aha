@@ -1,0 +1,27 @@
+{
+  "authorization": "最新的video link 在哪里 发我看看 。 然后把所有最终结果放进examples里。中间结果删掉",
+  "status": "completed",
+  "finalVideo": "examples/aha-introduction/overview-v5.mp4",
+  "finalImage": "examples/project-overview/overview.png",
+  "currentOutputs": 16,
+  "preserved": [
+    "All current examples outputs, receipts, editable projects, bound research, subtitles, plans and necessary audio origins.",
+    "Existing evals evidence, including the accepted pilot and before/after correction evidence.",
+    "Unrelated artifacts/public-publish-yusu-microsoft and artifacts/skill-evals."
+  ],
+  "deletedArtifactDirectories": [
+    "code-pilots-20260917",
+    "cpython-string-pilot-20260917",
+    "docker-layers-pilot-20260917",
+    "examples-refresh-20260916",
+    "greenland-video-20260916",
+    "overview-capabilities-20260917",
+    "overview-greenland-20260917",
+    "overview-image-three-examples-20260917",
+    "overview-three-examples-20260917",
+    "overview-three-examples-qa-20260917"
+  ],
+  "safety": "Each exact child was inspected and resolved, checked for reparse points and tracked files, then removed individually. Workspace root, artifacts root, examples and evals were not deleted. Removed paths were verified absent.",
+  "beforeCleanup": "All 70 example identity tests and typecheck passed; current v5 video hash matches the saved encoded correction evidence.",
+  "oldReceiptPaths": "Historical original-render paths are intentionally preserved inside receipts; current published paths are in examples/delivery-manifest.json."
+}

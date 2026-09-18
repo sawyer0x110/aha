@@ -1,0 +1,7 @@
+{
+  "sourceHash": "4b4fa0e1e324f0df50ec3b74a50dd5d74c6b7419e9df7048309a54eeac510e6f",
+  "previousSourceHash": "198ac4b39807b948a0678faf9f48407d8103838bd2968619888802b95c7d0ad7",
+  "change": "CSS-only: move 16px of unused skill-section height to the footer to contain the source line within its intended region. Canvas, all prose, all scripts and all resources unchanged.",
+  "execution": "Within the approved local render-and-layout-check scope; no new executable behavior or capability.",
+  "qaCorrection": "Range glyph boxes can exceed tight line-height boxes even without clipping. Check line ink against the canvas and horizontal container boundaries, and text layout blocks against section vertical boundaries. Do not conflate font ascent overhang with clipped content."
+}

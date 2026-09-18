@@ -1,0 +1,23 @@
+{
+  "status": "selected-by-user-and-published",
+  "userResponse": "可以就用这个新图。 然后video之前有个问题 现在修好了吗",
+  "output": "examples/project-overview/overview.png",
+  "source": "examples/project-overview/projects/image",
+  "receipt": "examples/project-overview/overview.png.receipt.json",
+  "sourceHash": "4b4fa0e1e324f0df50ec3b74a50dd5d74c6b7419e9df7048309a54eeac510e6f",
+  "researchHash": "f100d4b64f1c41b3e48eaeed8fe88f71609f88c274b2fc3f298de3b672b484b3",
+  "outputHash": "a62585ac08c668c74d284d8b8089e2b11097d35b835cb7a723e878642c90ff44",
+  "bytes": 225906,
+  "dimensions": [1080, 1800],
+  "scope": "Product identity and capabilities only; no examples. Shared research, separately authored media.",
+  "previousOutputHash": "ca6f18349ed79696997cc99b89d358dabf55cb45fca3f22daf32cb7b99b2a403",
+  "previousVersion": "Preserved in Git at 4b87e4c. The local backup and intermediate candidates were subsequently removed at the user's explicit request.",
+  "renderFilename": "Fresh render with canonical overview.png filename; output bytes exactly match the selected aha-capabilities.png. Original receipt preserved, not edited.",
+  "runtimeReview": "runtime-review.json",
+  "visualReview": "not-performed-image-tool-limit",
+  "userSelectionDoesNotReplaceAgentVisualReview": true,
+  "readingPreviews": ["reading-390.png", "reading-540.png"],
+  "permission": "local-approval.json",
+  "layoutCorrection": "revision-review.json",
+  "designAndSourceReview": "design-review.json"
+}

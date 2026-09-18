@@ -1,6 +1,6 @@
 # Research draft and Dossier contract
 
-The research schema is `1.0.0`, independent of the runtime release version (`0.3.0`). Use the initializer; do not invent fields from design sketches or reuse older data as though it were this schema.
+The research schema is `1.0.0`, independent of the runtime release version. Use the initializer; do not invent fields from design sketches or reuse older data as though it were this schema.
 
 ```text
 node "<absolute installed skill>/scripts/aha.mjs" doctor --for research

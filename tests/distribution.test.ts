@@ -151,6 +151,7 @@ export async function resolve(specifier, context, next) {
     });
     assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
     const doctor = JSON.parse(result.stdout);
+    assert.equal(doctor.version, release.version);
     assert.equal(doctor.capabilities.research, true);
     assert.equal(doctor.capabilities.freeHtml, true);
     assert.equal(doctor.capabilities.mermaid, true);

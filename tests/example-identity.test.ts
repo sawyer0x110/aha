@@ -58,6 +58,29 @@ test('gallery links resolve and list only requested formats, including video-onl
   }
 });
 
+test('selected overview image binds current evidence and excludes case studies', async () => {
+  const entry = manifest.requestedOutputs.find((item: { topic: string; format: string }) =>
+    item.topic === 'project-overview' && item.format === 'image');
+  const result = await verifyOutput(base, entry);
+  const directory = path.join(evaluation, 'overview-image-20260917');
+  const publication = JSON.parse(await fs.readFile(path.join(directory, 'publication.json'), 'utf8'));
+  for (const field of ['sourceHash', 'researchHash', 'outputHash']) assert.equal(publication[field], result[field]);
+  assert.equal(publication.status, 'selected-by-user-and-published');
+  assert.equal(publication.visualReview, 'not-performed-image-tool-limit');
+  const runtime = JSON.parse(await fs.readFile(path.join(directory, 'runtime-review.json'), 'utf8'));
+  assert.equal(runtime.sourceHash, result.sourceHash);
+  assert.equal(runtime.passed, true);
+  assert.deepEqual(runtime.errors, []);
+  assert.equal(runtime.formatCount, 4);
+  assert(!runtime.text.some((item: { outside: boolean }) => item.outside));
+  const source = await fs.readFile(path.join(base, 'project-overview', 'projects', 'image', 'html', 'index.html'), 'utf8');
+  assert.match(source, /Research deeply/);
+  assert.match(source, /aha-research/);
+  assert.match(source, /aha-explain/);
+  assert.doesNotMatch(source, /Greenland|CPython|Docker|ANC|Git merge|Dossier|receipt/i);
+  for (const name of publication.readingPreviews) await fs.access(path.join(directory, name));
+});
+
 test('Greenland keeps its direct speech provider rather than fabricating an imported-audio origin', async () => {
   const entry = manifest.requestedOutputs.find((item: { topic: string }) => item.topic === 'greenland');
   const result = await verifyOutput(base, entry);

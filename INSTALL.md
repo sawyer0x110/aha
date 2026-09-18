@@ -146,6 +146,8 @@ node .\scripts\release.mjs
 
 ## 维护者发布入口
 
-确认 `package.json` 和 `package-lock.json` 中的版本一致后，发布匹配的 `v<version>` tag，例如版本 `0.3.0` 对应 `v0.3.0`。仓库的 [Release 工作流](.github/workflows/release.yml) 会检查版本，构建并检查分发包，再将 ZIP、清单、校验文件和安装指南上传到该 tag 的 GitHub Release。
+确认 `package.json` 和 `package-lock.json` 中的版本一致后，发布匹配的 `v<version>` tag，例如版本 `0.3.1` 对应 `v0.3.1`。仓库的 [Release 工作流](.github/workflows/release.yml) 会检查版本，构建并检查分发包，再将 ZIP、清单、校验文件和安装指南上传到该 tag 的 GitHub Release。
+
+当前源码为 `0.3.1` 发布准备版；截至 2026-09-18，GitHub 最新正式 Release 仍为 `v0.3.0`。源码版本提升和本地打包不代表新 Release 已可下载，不猜测未发布的下载地址。需要尚未发布的修复时，按上节取得授权后从固定源码提交构建。
 
 发布 tag 会触发对外发布，应单独确认发布权限与时机。工作流不运行 Copilot／Codex，不替代真实宿主发现与触发验收；在完成第 5 步前，不宣称宿主端到端兼容性已通过。
