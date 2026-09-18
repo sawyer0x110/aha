@@ -112,6 +112,10 @@ node evals\skills\prepare.mjs .\artifacts\skill-evals\subset-r1 --skill-root $cu
 
 ### stock viewer 与诚实计数
 
+这里的 stock viewer 指外部 [Anthropic skills 仓库的 skill-creator](https://github.com/anthropics/skills/tree/main/skills/skill-creator) 中的 `eval-viewer/generate_review.py`，不是 Aha 自带命令或依赖。使用前由主持人单独审阅并记录所选上游 commit、许可和实际命令帮助；浮动 `main` 链接只用于发现，不保证未来接口兼容，也不自动授予下载或执行许可。Aha 保留 `eval_metadata.json` 作为适配投影，不承诺所有 viewer 版本均兼容。
+
+不安装 viewer 也能完成本协议：直接阅读冻结产物、`eval-metadata.json`、`process-observations.json` 和逐条评分文件，用现有编辑器记录结论。动态预览作者 HTML 仍需另获授权；viewer 是否可用不改变内容、过程与真人理解的评分边界。
+
 生成完成后，主持人可在**另一个评价专用目录**按 `eval-<ID>\<盲标签>\outputs` 收集冻结、去标签的产物，并把对应 `eval_metadata.json` 放在 `eval-<ID>` 或该次运行目录中。这符合 stock `eval-viewer\generate_review.py` 查找运行目录/父目录 metadata 的规则，不必增建框架。评价后的 `grading.json` 可使用 `expectations: [{ text, passed, evidence }]`；只放已经真实评价的断言，未评的条目不要伪造 `passed`。评分、答案和 review 目录都不回传作者；任何 HTML 动态预览仍需满足前述沙箱要求。
 
 **不要直接采用 stock aggregate 脚本的默认次数或缺失值补零。** 按实际宿主执行逐条登记开始/结束、成功/失败/未运行及每案例每条件的样本量；暂存目录的数量不是完成次数。失败保留记录，追加尝试另算并披露，不能静默挑选最佳结果。

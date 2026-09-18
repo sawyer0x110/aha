@@ -2,9 +2,9 @@
 
 > 定位：深入研究一个问题，自由设计它的表达。
 >
-> 当前源码 runtime：`0.3.1` · 研究与作品协议：`1.0.0` · 发布状态见 [README](../README.md#031-补丁更新)
+> 当前源码 runtime：`0.3.1` · 研究与作品协议：`1.0.0` · 发布状态见 [README](../README.md)
 
-本文定义当前产品的能力、行为和质量要求。安装及命令见 [README](../README.md)，实现边界见[架构说明](ARCHITECTURE.md)，调研方法见[研究协议](RESEARCH.md)，效果验证见[评估协议](EVALUATION.md)。
+本文定义当前产品的能力、行为和质量要求。安装见[安装指南](../INSTALL.zh-CN.md)，命令见[使用指南](USAGE.zh-CN.md)，实现边界见[架构说明](ARCHITECTURE.md)，调研方法见[研究协议](RESEARCH.md)，效果验证见[评估协议](EVALUATION.md)。
 
 ## 1. 两项核心能力
 

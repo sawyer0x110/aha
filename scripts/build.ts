@@ -108,6 +108,9 @@ for (const name of ['aha-research', 'aha-explain']) {
   const source = path.join(root, 'skills', name);
   if ((await fs.lstat(source)).isSymbolicLink()) throw new Error(`Skill symlink refused: ${source}`);
   await copySkillText(path.join(source, 'SKILL.md'), path.join(skill, 'SKILL.md'));
+  for (const notice of ['LICENSE', 'LICENSE-SCOPE.md']) {
+    await copySkillText(path.join(root, notice), path.join(skill, notice));
+  }
   await fs.mkdir(path.join(skill, 'references'), { recursive: true });
   await copyReferences(path.join(root, 'skills', 'shared', 'references'), path.join(skill, 'references'));
   try {

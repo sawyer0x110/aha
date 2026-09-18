@@ -62,7 +62,7 @@ test('release ZIP, inventory and SHA256 assets are deterministic and retain earl
   for (const [relative, hash] of Object.entries(manifest.files)) {
     assert.equal(installer.sha256(files[relative]), hash, relative);
     if (!relative.startsWith('skills/')) {
-      assert.ok(['INSTALL.md', 'install-skills.mjs'].includes(relative));
+      assert.ok(['INSTALL.md', 'INSTALL.zh-CN.md', 'LICENSE', 'LICENSE-SCOPE.md', 'install-skills.mjs'].includes(relative));
       continue;
     }
     const [, name, ...parts] = relative.split('/');
@@ -73,6 +73,14 @@ test('release ZIP, inventory and SHA256 assets are deterministic and retain earl
   for (const name of names) {
     assert.ok(files[`skills/${name}/node_modules/playwright-core/LICENSE`]?.length);
     assert.ok(files[`skills/${name}/THIRD-PARTY-NOTICES.txt`]?.length);
+    for (const notice of ['LICENSE', 'LICENSE-SCOPE.md']) {
+      assert.deepEqual(files[`skills/${name}/${notice}`], await fs.readFile(path.join(root, notice)));
+    }
+  }
+  for (const name of ['INSTALL.md', 'INSTALL.zh-CN.md', 'LICENSE', 'LICENSE-SCOPE.md']) {
+    const source = await fs.readFile(path.join(root, name));
+    assert.deepEqual(files[name], source);
+    assert.deepEqual(await fs.readFile(path.join(release.directory, name)), source);
   }
   const previous = await fs.readFile(again.archive);
   await fs.writeFile(again.archive, 'different assets');
@@ -82,6 +90,7 @@ test('release ZIP, inventory and SHA256 assets are deterministic and retain earl
 });
 
 test('release allowlist rejects workspace files, unsafe names and unexpected dependencies', () => {
+  for (const relative of ['LICENSE', 'LICENSE-SCOPE.md']) assert.equal(installer.allowedSkillFile(relative), true);
   for (const relative of ['.env', '.venv/bin/python', 'artifacts/old-render.mp4', 'logs/session.log',
     'tokens.json', 'references/secrets.md', 'node_modules/other/index.js', 'scripts/debug.mjs',
     'assets/runtime/workspace.json', 'node_modules/playwright-core/.env',
@@ -92,6 +101,47 @@ test('release allowlist rejects workspace files, unsafe names and unexpected dep
     'references/CON.md', 'references/space .', 'a//b']) {
     assert.throws(() => installer.safeRelative(relative), /Unsafe relative/);
   }
+});
+
+test('format-1 packages without supplemental docs remain installable but cannot be republished without Aha notices', async () => {
+  const legacy = path.join(workspace, 'legacy-format');
+  await fs.cp(extracted, legacy, { recursive: true });
+  for (const name of ['INSTALL.zh-CN.md', 'LICENSE', 'LICENSE-SCOPE.md']) await fs.unlink(path.join(legacy, name));
+  const json = (value: unknown): string => `${JSON.stringify(value, null, 2)}\n`;
+  for (const name of names) {
+    const directory = path.join(legacy, 'skills', name);
+    const file = path.join(directory, 'runtime-manifest.json');
+    const manifest = JSON.parse(await fs.readFile(file, 'utf8'));
+    for (const notice of ['LICENSE', 'LICENSE-SCOPE.md']) {
+      await fs.unlink(path.join(directory, notice));
+      delete manifest.files[notice];
+    }
+    await fs.writeFile(file, json(manifest));
+  }
+  const releaseFile = path.join(legacy, 'release-manifest.json');
+  const manifest = JSON.parse(await fs.readFile(releaseFile, 'utf8'));
+  const inventory: Record<string, Buffer> = await installer.inventory(legacy);
+  manifest.files = Object.fromEntries(Object.keys(inventory).sort()
+    .filter(file => file !== 'release-manifest.json').map(file => [file, installer.sha256(inventory[file])]));
+  manifest.contentHash = installer.sha256(json({ version: manifest.version, skills: manifest.skills, files: manifest.files }));
+  await fs.writeFile(releaseFile, json(manifest));
+  const project = path.join(workspace, 'legacy-target');
+  await fs.mkdir(project);
+  const result = await installer.install({ source: legacy, project, apply: true });
+  assert.equal(result.mode, 'apply');
+  for (const name of names) {
+    await fs.access(path.join(project, '.agents', 'skills', name, 'scripts', 'aha.mjs'));
+  }
+
+  const base = path.join(workspace, 'unlicensed-build');
+  await fs.mkdir(path.join(base, 'scripts'), { recursive: true });
+  await fs.mkdir(path.join(base, 'dist'), { recursive: true });
+  for (const file of ['package.json', 'INSTALL.md', 'INSTALL.zh-CN.md', 'LICENSE', 'LICENSE-SCOPE.md']) {
+    await fs.copyFile(path.join(root, file), path.join(base, file));
+  }
+  await fs.copyFile(path.join(root, 'scripts', 'install-skills.mjs'), path.join(base, 'scripts', 'install-skills.mjs'));
+  await fs.cp(path.join(legacy, 'skills'), path.join(base, 'dist', 'skills'), { recursive: true });
+  await assert.rejects(distribution.createRelease({ base }), /Missing or differing Aha notice/);
 });
 
 test('installer defaults to the shared path with optional Copilot and Codex labels', async () => {
@@ -237,6 +287,14 @@ test('tampering and extra files are refused before target mutation', async () =>
     await fs.appendFile(skill, '\ntampered');
     assert.match(invoke(['--host', 'copilot', '--project', project, '--apply'], 1).stderr, /SHA256 mismatch/);
   } finally { await fs.writeFile(skill, original); }
+  for (const name of ['INSTALL.zh-CN.md', 'LICENSE', 'LICENSE-SCOPE.md', 'skills/aha-explain/LICENSE']) {
+    const file = path.join(extracted, ...name.split('/'));
+    const bytes = await fs.readFile(file);
+    try {
+      await fs.appendFile(file, '\nchanged');
+      assert.match(invoke(['--project', project, '--apply'], 1).stderr, /SHA256 mismatch/);
+    } finally { await fs.writeFile(file, bytes); }
+  }
   const secret = path.join(extracted, '.env');
   await fs.writeFile(secret, 'synthetic test marker, not a credential', { flag: 'wx' });
   try {
