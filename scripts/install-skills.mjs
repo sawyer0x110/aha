@@ -5,7 +5,14 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 export const skillNames = ['aha-research', 'aha-explain'];
-export const releaseRootFiles = ['INSTALL.md', 'INSTALL.zh-CN.md', 'LICENSE', 'LICENSE-SCOPE.md', 'install-skills.mjs'];
+export const releaseSources = Object.freeze({
+  'INSTALL.md': 'docs/INSTALL.md',
+  'INSTALL.zh-CN.md': 'docs/INSTALL.zh-CN.md',
+  'LICENSE': 'LICENSE',
+  'LICENSE-SCOPE.md': 'docs/LICENSE-SCOPE.md',
+  'install-skills.mjs': 'scripts/install-skills.mjs',
+});
+export const releaseRootFiles = Object.keys(releaseSources);
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 const json = value => `${JSON.stringify(value, null, 2)}\n`;
 

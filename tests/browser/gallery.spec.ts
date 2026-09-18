@@ -108,6 +108,6 @@ test('both gallery languages retain all sixteen local outputs and Chinese topic 
     expect(links).toContain(language === 'en' ? 'README.md' : 'README.zh-CN.md');
     expect(links).toContain('delivery-manifest.json');
     expect(links).toContain('../LICENSE');
-    expect(links).toContain('../LICENSE-SCOPE.md');
+    expect(links).toContain('../docs/LICENSE-SCOPE.md');
   }
 });

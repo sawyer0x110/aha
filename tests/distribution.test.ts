@@ -11,6 +11,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const distribution = await import(pathToFileURL(path.join(root, 'scripts', 'release.mjs')).href);
 const installer = await import(pathToFileURL(path.join(root, 'scripts', 'install-skills.mjs')).href);
 const names: string[] = installer.skillNames;
+const docSource = (name: string): string => path.join(root, name === 'LICENSE' ? '' : 'docs', name);
 let workspace: string;
 let extracted: string;
 let release: { archive: string; directory: string; contentHash: string; version: string };
@@ -74,14 +75,15 @@ test('release ZIP, inventory and SHA256 assets are deterministic and retain earl
     assert.ok(files[`skills/${name}/node_modules/playwright-core/LICENSE`]?.length);
     assert.ok(files[`skills/${name}/THIRD-PARTY-NOTICES.txt`]?.length);
     for (const notice of ['LICENSE', 'LICENSE-SCOPE.md']) {
-      assert.deepEqual(files[`skills/${name}/${notice}`], await fs.readFile(path.join(root, notice)));
+      assert.deepEqual(files[`skills/${name}/${notice}`], await fs.readFile(docSource(notice)));
     }
   }
   for (const name of ['INSTALL.md', 'INSTALL.zh-CN.md', 'LICENSE', 'LICENSE-SCOPE.md']) {
-    const source = await fs.readFile(path.join(root, name));
+    const source = await fs.readFile(docSource(name));
     assert.deepEqual(files[name], source);
     assert.deepEqual(await fs.readFile(path.join(release.directory, name)), source);
   }
+  assert.notDeepEqual(files['INSTALL.md'], await fs.readFile(path.join(root, 'INSTALL.md')));
   const previous = await fs.readFile(again.archive);
   await fs.writeFile(again.archive, 'different assets');
   await assert.rejects(distribution.createRelease({ output: path.join(workspace, 'second-release') }), /overwrite differing/);
@@ -136,8 +138,12 @@ test('format-1 packages without supplemental docs remain installable but cannot 
   const base = path.join(workspace, 'unlicensed-build');
   await fs.mkdir(path.join(base, 'scripts'), { recursive: true });
   await fs.mkdir(path.join(base, 'dist'), { recursive: true });
-  for (const file of ['package.json', 'INSTALL.md', 'INSTALL.zh-CN.md', 'LICENSE', 'LICENSE-SCOPE.md']) {
+  await fs.mkdir(path.join(base, 'docs'), { recursive: true });
+  for (const file of ['package.json', 'LICENSE']) {
     await fs.copyFile(path.join(root, file), path.join(base, file));
+  }
+  for (const file of ['INSTALL.md', 'INSTALL.zh-CN.md', 'LICENSE-SCOPE.md']) {
+    await fs.copyFile(docSource(file), path.join(base, 'docs', file));
   }
   await fs.copyFile(path.join(root, 'scripts', 'install-skills.mjs'), path.join(base, 'scripts', 'install-skills.mjs'));
   await fs.cp(path.join(legacy, 'skills'), path.join(base, 'dist', 'skills'), { recursive: true });

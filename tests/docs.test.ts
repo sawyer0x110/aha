@@ -5,7 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const pairs = ['README', 'INSTALL', 'CONTRIBUTING', 'SECURITY', 'docs/USAGE', 'examples/README'];
+const pairs = ['README', 'docs/README', 'docs/INSTALL', '.github/CONTRIBUTING', '.github/SECURITY', 'docs/USAGE', 'examples/README'];
 const withoutFences = (text: string): string => text.replace(/^```[^\n]*\r?\n[\s\S]*?^```[^\n]*$/gm, '');
 
 function anchors(markdown: string): Set<string> {
@@ -34,6 +34,8 @@ test('public documentation local links and Markdown heading anchors resolve', as
   const files = [
     ...(await fs.readdir(root)).filter(file => file.endsWith('.md')),
     ...(await fs.readdir(path.join(root, 'docs'))).filter(file => file.endsWith('.md')).map(file => `docs/${file}`),
+    ...(await fs.readdir(path.join(root, '.github'))).filter(file => file.endsWith('.md')).map(file => `.github/${file}`),
+    ...(await fs.readdir(path.join(root, '.github', 'ISSUE_TEMPLATE'))).filter(file => file.endsWith('.md')).map(file => `.github/ISSUE_TEMPLATE/${file}`),
     'examples/README.md', 'examples/README.zh-CN.md',
   ];
   for (const file of files) {
@@ -60,12 +62,22 @@ test('public documentation local links and Markdown heading anchors resolve', as
 test('install guides only use local links that survive release extraction', async () => {
   const packagedDocs = new Set(['INSTALL.md', 'INSTALL.zh-CN.md', 'LICENSE', 'LICENSE-SCOPE.md']);
   for (const file of packagedDocs) {
-    const text = withoutFences(await fs.readFile(path.join(root, file), 'utf8'));
+    const text = withoutFences(await fs.readFile(path.join(root, file === 'LICENSE' ? '' : 'docs', file), 'utf8'));
     for (const match of text.matchAll(/\[[^\]]*\]\(([^)\s]+)\)/g)) {
       const link = match[1]!;
       if (/^(?:[a-z][a-z0-9+.-]*:|#)/i.test(link)) continue;
       assert.ok(packagedDocs.has(link.split('#')[0]!), `${file}: source-only relative link in portable docs: ${link}`);
     }
+  }
+});
+
+test('root installation URL remains a short compatibility pointer, not a duplicate guide', async () => {
+  const stub = await fs.readFile(path.join(root, 'INSTALL.md'), 'utf8');
+  assert.ok(stub.includes('(docs/INSTALL.md)'));
+  assert.ok(stub.includes('(docs/INSTALL.zh-CN.md)'));
+  assert.ok(stub.split('\n').length < 30);
+  for (const name of ['INSTALL.zh-CN.md', 'CONTRIBUTING.md', 'CONTRIBUTING.zh-CN.md', 'SECURITY.md', 'SECURITY.zh-CN.md', 'LICENSE-SCOPE.md']) {
+    await assert.rejects(fs.access(path.join(root, name)), { code: 'ENOENT' });
   }
 });
 

@@ -9,7 +9,10 @@ import { VideoPlanSchema, AudioManifestSchema } from '../src/media/plan.js';
 import { ProvidedAudioSchema } from '../src/media/audio.js';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const { assertSafePath }: { assertSafePath: (target: string) => Promise<void> } =
+const { assertSafePath, releaseSources }: {
+  assertSafePath: (target: string) => Promise<void>;
+  releaseSources: Record<string, string>;
+} =
   await import(new URL('./install-skills.mjs', import.meta.url).href);
 const { version } = JSON.parse(await fs.readFile(path.join(root, 'package.json'), 'utf8')) as { version: string };
 const output = path.join(root, 'dist');
@@ -109,7 +112,7 @@ for (const name of ['aha-research', 'aha-explain']) {
   if ((await fs.lstat(source)).isSymbolicLink()) throw new Error(`Skill symlink refused: ${source}`);
   await copySkillText(path.join(source, 'SKILL.md'), path.join(skill, 'SKILL.md'));
   for (const notice of ['LICENSE', 'LICENSE-SCOPE.md']) {
-    await copySkillText(path.join(root, notice), path.join(skill, notice));
+    await copySkillText(path.join(root, ...releaseSources[notice]!.split('/')), path.join(skill, notice));
   }
   await fs.mkdir(path.join(skill, 'references'), { recursive: true });
   await copyReferences(path.join(root, 'skills', 'shared', 'references'), path.join(skill, 'references'));

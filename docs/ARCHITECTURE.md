@@ -1,6 +1,6 @@
 # Aha 架构与实现边界
 
-当前源码 runtime 为 `0.3.1`，研究及作品协议为 `1.0.0`。产品行为见 [PRD](PRD.md)，命令见[使用指南](USAGE.zh-CN.md)，安装见[安装指南](../INSTALL.zh-CN.md)，发布状态见 [README](../README.md)。
+当前源码 runtime 为 `0.3.2`，研究及作品协议为 `1.0.0`。产品行为见 [PRD](PRD.md)，命令见[使用指南](USAGE.zh-CN.md)，安装见[安装指南](INSTALL.zh-CN.md)，文档导航见[目录](README.zh-CN.md)，实际发布状态见 [Releases](https://github.com/sawyer0x110/aha/releases)。
 
 ## 仓库目录导航
 
@@ -13,11 +13,14 @@
 | `evals/skills/` | 技能评估准备工具、固定案例、宿主场景和评分判据；四个锁定案例与宿主场景分别管理 |
 | `evals/examples/` | 示例验收工具和保留的结果；`refresh-20260916/` 是前三例记录，`greenland-20260917/` 是格陵兰记录，`code-pilots-20260917/` 保存代码试片证据，`aha-introduction-20260917/` 保存新版介绍的授权、试片确认与修正后的编码证据，`overview-image-20260917/` 保存已选用能力图的身份、授权与检查边界；旧版结果保留为历史 |
 | `examples/` | 三个四格式例子，加上格陵兰、CPython、Docker、新版 Aha 介绍四组视频例子；保存作品、收据、`projects/<format>/` 可编辑项目、研究与音频来源；`delivery-manifest.json` 索引十六份作品。新视频介绍与旧四格式导览分开，避免混淆研究快照 |
-| `docs/` | 产品、架构、研究及评估说明；精确创作与权限契约链接到技能参考，不另建冲突副本 |
+| `docs/` | 中英文文档目录、完整安装／使用指南、双语许可范围，以及中文产品／架构／研究／评估说明；精确创作与权限契约链接到技能参考，不另建冲突副本 |
+| `.github/` | GitHub 可识别的中英文贡献／安全指南、issue／PR 模板与工作流 |
 | `dist/` | 构建生成的 CLI 与独立技能分发包，Git 忽略；从源码和锁定依赖重建，不手动维护 |
 | `artifacts/` | 本地研究、候选作品和评估运行结果，Git 忽略；可能有不可重建材料，清理需明确范围 |
 
 按职责就近放工具：技能评估用 `evals/skills/prepare.mjs`，示例验收用 `evals/examples/` 下的检查器。独立制作工具（若有）放 `examples/<topic>/tools/`；参与作品源码身份的作者模块及辅助脚本保留在 `projects/<format>/`。根目录的 `npm run eval:prepare -- <参数>` 与 `npm run examples:verify` 提供快捷入口。
+
+根部人类入口保留中英文 `README`、`LICENSE` 和简短 `INSTALL.md` 兼容指引；完整安装指南只在 `docs/` 维护。旧版发布引用的根安装 URL 继续有效，但根指引不是打包用的完整指南。
 
 正式作品不是全部任务工作目录的镜像。只有选定的交付及必要材料进入 `examples/`，最终验收记录进入 `evals/examples/`；未清理的试跑历史放在 `artifacts/`，经用户明确授权后可按范围删除。作品项目内的研究副本、原始音频和当前导入音频各有身份用途，不按文件相似度去重。封存材料及历史记录中的旧路径保留其审计含义，当前路径由示例文档说明。
 
@@ -126,11 +129,11 @@ PNG 使用独立 HTML/SVG 构图，经批准后由浏览器捕获元数据指定
 
 依赖按步骤诊断，缺失只影响相关操作：研究和 HTML 打包不需要浏览器，PNG 需要浏览器，视频渲染需要浏览器及 FFmpeg／ffprobe，在线配音另需 Python／Edge TTS。诊断不安装软件或证明在线服务可用。
 
-构建输出为 `dist/skills/aha-research` 和 `dist/skills/aha-explain`，各自携带 CLI、Schema、合并参考、本地 Mermaid、Playwright 库、Aha 的 `LICENSE`／`LICENSE-SCOPE.md` 和第三方声明；源码 `skills/` 不是独立安装包。发布器将根目录中英文安装指南原字节复制到 ZIP 和发布资产，不维护脚本内的另一套安装文案。ZIP 另含 Aha 许可与范围说明、清单和安装工具，外部 SHA-256 覆盖发布资产；安装白名单只接受明确列出的文件。旧格式包不因缺少后来新增的文档而被新安装器自动拒绝。打包不自动上传，安装默认 dry-run、拒绝冲突及覆盖。
+构建输出为 `dist/skills/aha-research` 和 `dist/skills/aha-explain`，各自携带 CLI、Schema、合并参考、本地 Mermaid、Playwright 库、Aha 的 `LICENSE`／`LICENSE-SCOPE.md` 和第三方声明；源码 `skills/` 不是独立安装包。0.3.2 发布器将 `docs/INSTALL.md`、`docs/INSTALL.zh-CN.md`、`docs/LICENSE-SCOPE.md` 原字节复制到 ZIP 根目录和发布资产，保留各自文件名，并加入根 `LICENSE`，不维护脚本内的另一套安装文案。ZIP 另含清单和安装工具，外部 SHA-256 覆盖发布资产；安装白名单只接受明确列出的文件。旧格式包不因缺少后来新增的文档而被新安装器自动拒绝。打包不自动上传，安装默认 dry-run、拒绝冲突及覆盖。
 
 实际依赖包括 Mermaid、parse5、PptxGenJS、TypeBox 和 Playwright，按锁定版本分发并保留 `THIRD-PARTY-NOTICES.txt`。浏览器、FFmpeg、Python 和 Edge TTS 客户端不随包分发；客户端许可不替代在线服务条款及数据授权。字体、图片、音频等素材需单独核实来源与再分发权限，不能把公开可读或非商业许可当作任意商用许可。
 
-Aha 原创部分采用 [MIT](../LICENSE)，第三方材料的独立许可见[许可范围](../LICENSE-SCOPE.md)。旧版 Release 不被源码变更覆盖；发布含新增许可和文档的安装包时须使用新版本。`package.json` 的 `private: true` 防止误发 npm，与 GitHub 仓库是否公开无关。
+Aha 原创部分采用 [MIT](../LICENSE)，第三方材料的独立许可见[许可范围](LICENSE-SCOPE.md)。旧版 Release 不被源码变更覆盖；0.3.2 携带新增许可和双语文档，实际可下载资产仍以 Releases 为准。`package.json` 的 `private: true` 防止误发 npm，与 GitHub 仓库是否公开无关。
 
 ## 6. 修订与交付身份
 

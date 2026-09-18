@@ -2,7 +2,7 @@
 
 ## English
 
-Aha's original source code, skill instructions, documentation, evaluation fixtures, and original example authoring are covered by the [MIT License](LICENSE), unless a file or accompanying notice states otherwise. This grant covers only rights held by the Aha contributors; it does not relicense third-party material embedded in, quoted by, or used to produce an example.
+Aha's original source code, skill instructions, documentation, evaluation fixtures, and original example authoring are covered by the [MIT License](https://github.com/sawyer0x110/aha/blob/main/LICENSE), unless a file or accompanying notice states otherwise. This grant covers only rights held by the Aha contributors; it does not relicense third-party material embedded in, quoted by, or used to produce an example.
 
 | Material | Applicable notices |
 | --- | --- |
@@ -18,7 +18,7 @@ Licensing is not a quality certificate or a grant of rights over someone else's 
 
 ## 简体中文
 
-除文件或随附声明另有规定外，Aha 原创源码、技能指令、文档、评估夹具及原创示例创作内容适用 [MIT 许可证](LICENSE)。该授权只覆盖 Aha 贡献者拥有的权利；示例中嵌入、引用或制作时使用的第三方材料不因此改用 MIT。
+除文件或随附声明另有规定外，Aha 原创源码、技能指令、文档、评估夹具及原创示例创作内容适用 [MIT 许可证](https://github.com/sawyer0x110/aha/blob/main/LICENSE)。该授权只覆盖 Aha 贡献者拥有的权利；示例中嵌入、引用或制作时使用的第三方材料不因此改用 MIT。
 
 | 材料 | 适用声明 |
 | --- | --- |
