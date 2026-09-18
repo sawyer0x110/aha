@@ -1,6 +1,6 @@
 # 报告安全问题
 
-[English](SECURITY.md) | [简体中文](SECURITY.zh-CN.md)
+[English](SECURITY.md) | [简体中文](SECURITY.zh-CN.md) · [文档目录](../docs/README.zh-CN.md)
 
 **不要把凭据、私有研究、漏洞利用细节或敏感文件放进公开 issue、讨论或 PR。**
 

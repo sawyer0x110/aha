@@ -1,6 +1,6 @@
 # Reporting security concerns
 
-[English](SECURITY.md) | [简体中文](SECURITY.zh-CN.md)
+[English](SECURITY.md) | [简体中文](SECURITY.zh-CN.md) · [Documentation](../docs/README.md)
 
 **Do not put credentials, private research, exploit details, or sensitive files in a public issue, discussion, or PR.**
 

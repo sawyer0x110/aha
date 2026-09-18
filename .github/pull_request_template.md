@@ -11,4 +11,4 @@
 
 - [ ] Updated both languages of affected entry guides, or explained why not applicable. / 已同步受影响入口的两种语言，或说明不适用。
 - [ ] Preserved sealed evidence and third-party notices; no credentials or unapproved private material. / 保留封存证据和第三方声明，未加入凭据或未获准私有材料。
-- [ ] Read CONTRIBUTING and LICENSE-SCOPE. / 已阅读贡献指南和许可范围。
+- [ ] Read [Contributing](CONTRIBUTING.md) and [license scope](../docs/LICENSE-SCOPE.md). / 已阅读[贡献指南](CONTRIBUTING.zh-CN.md)和[许可范围](../docs/LICENSE-SCOPE.md)。

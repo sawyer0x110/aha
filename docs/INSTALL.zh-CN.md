@@ -8,11 +8,11 @@
 
 Windows 已有实际使用。不宣称 macOS/Linux 已验证；POSIX 路径示例不保证平台支持。安装器宿主案例覆盖 Copilot／Codex，不等于真实宿主验收，也不是品牌白名单。其他 Agent 应检查自身发现和执行能力。文件安装、宿主发现、自然语言触发、实际任务完成是四个独立结果。
 
-当前源码／包 runtime 为 **0.3.1**，研究／作品 Schema 为 **1.0.0**。已发布的 `v0.3.1` 是历史安装包。本次文档／打包调整待未来发布，不改变该历史 Release 的资产。
+当前源码／包 runtime 为 **0.3.2**，研究／作品 Schema 为 **1.0.0**。0.3.2 安装包包含 MIT 声明与双语安装指南。是否已发布及可用资产以 [Releases](https://github.com/sawyer0x110/aha/releases) 为准；源码变化本身不代表发布完成。已发布的 `v0.3.1` 保持不变。
 
 ## 给 Agent 的任务入口
 
-> 按 https://github.com/sawyer0x110/aha/blob/main/INSTALL.zh-CN.md 将 Aha 安装到当前项目。先确认宿主、项目绝对路径与安装授权，展示所选 Release 和 dry-run 结果再安装。检查两个运行时、宿主发现和最小任务。缺失依赖或权限时报告阻塞，不自动安装其他软件、不覆盖已有目录，不把未执行的检查标为通过。
+> 按 https://github.com/sawyer0x110/aha/blob/main/docs/INSTALL.zh-CN.md 将 Aha 安装到当前项目。先确认宿主、项目绝对路径与安装授权，展示所选 Release 和 dry-run 结果再安装。检查两个运行时、宿主发现和最小任务。缺失依赖或权限时报告阻塞，不自动安装其他软件、不覆盖已有目录，不把未执行的检查标为通过。
 
 ## 1. 下载前确认
 
@@ -36,7 +36,7 @@ SHA256SUMS.txt
 INSTALL.md
 ```
 
-所选版本的基础资产为带版本的 ZIP、清单、校验文件和 `INSTALL.md`。未来包计划在 ZIP 内和 Release 附件中增加 `INSTALL.zh-CN.md`、`LICENSE`、英中双语 `LICENSE-SCOPE.md`。**不要要求历史 `v0.3.1` 必须有这些新增文件。** 不要把新文档塞入旧解压目录：旧清单只描述原始内容。
+所选版本的基础资产为带版本的 ZIP、清单、校验文件和 `INSTALL.md`。0.3.2 在 ZIP 内和 Release 附件中增加 `INSTALL.zh-CN.md`、`LICENSE`、英中双语 `LICENSE-SCOPE.md`。完整指南与许可范围取自源码 `docs/`，在 ZIP 根目录保留这些文件名；源码根目录 `INSTALL.md` 只是兼容入口，不打包。**不要要求历史 `v0.3.1` 必须有新增文件。** 不要把新文档塞入旧解压目录：旧清单只描述原始内容。
 
 ### PowerShell 下载与 SHA256 校验
 
@@ -224,8 +224,8 @@ if ($LASTEXITCODE -ne 0) { throw 'Local packaging failed.' }
 
 最后一条命令报告资产目录与 ZIP，通常在 `dist\releases\<version>\<contentHash>`。它是**本地产出的包**，不是正式发布。对这些资产执行相同的校验、解压、预检和验收流程，不直接复制源码 Skill。
 
-维护者请看[参与贡献](https://github.com/sawyer0x110/aha/blob/main/CONTRIBUTING.zh-CN.md)和 [Release 工作流](https://github.com/sawyer0x110/aha/blob/main/.github/workflows/release.yml)。包版本一致、本地构建或推送 tag 都不证明发布完成；发布需单独授权，并确认实际 Release 资产。工作流不执行真实宿主验收。
+维护者请看[参与贡献](https://github.com/sawyer0x110/aha/blob/main/.github/CONTRIBUTING.zh-CN.md)和 [Release 工作流](https://github.com/sawyer0x110/aha/blob/main/.github/workflows/release.yml)。包版本一致、本地构建或推送 tag 都不证明发布完成；发布需单独授权，并确认实际 Release 资产。工作流不执行真实宿主验收。
 
 ## 许可与安全
 
-对于包含相关文件的安装包，请阅读 [MIT 许可](LICENSE)和英中双语[许可范围](LICENSE-SCOPE.md)。这些是计划新增文件，不是安装历史 `v0.3.1` 的前提；文件缺失时可查看[仓库许可范围](https://github.com/sawyer0x110/aha/blob/main/LICENSE-SCOPE.md)。保留各 Skill 的第三方声明。漏洞报告遵循[安全政策](https://github.com/sawyer0x110/aha/blob/main/SECURITY.zh-CN.md)，不要公开包含秘密的信息。
+请阅读 [MIT 许可](https://github.com/sawyer0x110/aha/blob/main/LICENSE)和英中双语[许可范围](LICENSE-SCOPE.md)。0.3.2 安装包根目录也含许可证文件，两个 Skill 内各带许可证与范围说明。它们不是安装历史 `v0.3.1` 的前提；范围说明缺失时可查看[仓库副本](https://github.com/sawyer0x110/aha/blob/main/docs/LICENSE-SCOPE.md)。保留各 Skill 的第三方声明。漏洞报告遵循[安全政策](https://github.com/sawyer0x110/aha/blob/main/.github/SECURITY.zh-CN.md)，不要公开包含秘密的信息。

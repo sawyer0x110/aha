@@ -2,7 +2,7 @@
 
 **Investigate a complex question. Turn the understanding into an explanation worth seeing.**
 
-[English](README.md) | [简体中文](README.zh-CN.md) · [Install](INSTALL.md) · [Usage](docs/USAGE.md) · [Examples](examples/README.md)
+[English](README.md) | [简体中文](README.zh-CN.md) · [Install](docs/INSTALL.md) · [Documentation](docs/README.md) · [Examples](examples/README.md)
 
 Aha is two portable agent skills for public topics, provided materials, and authorized codebases. Research is an independent deliverable; visual explanations are authored for their medium, not poured into one slide template.
 
@@ -23,7 +23,7 @@ The [full gallery](examples/README.md) also includes noise cancellation, Git mer
 
 ## Install, then ask naturally
 
-Download a complete package from [GitHub Releases](https://github.com/sawyer0x110/aha/releases) and follow [Install](INSTALL.md) ([中文](INSTALL.zh-CN.md)). Requires **Node.js 22+**; recipients do **not** need `npm install`. Install project-locally in `.agents\skills`, then separately confirm your agent can discover and run both skills. The source `skills` directory is not an installable package.
+Download a complete package from [GitHub Releases](https://github.com/sawyer0x110/aha/releases) and follow [Install](docs/INSTALL.md) ([中文](docs/INSTALL.zh-CN.md)). Requires **Node.js 22+**; recipients do **not** need `npm install`. Install project-locally in `.agents\skills`, then separately confirm your agent can discover and run both skills. The source `skills` directory is not an installable package.
 
 > Investigate the conflicting explanations in these two documents. Give me a source-grounded report and an independent research archive, including uncertainty and missing evidence. Use only the provided materials; do not go online or make visuals.
 
@@ -46,15 +46,15 @@ This checks runtime integrity, not host discovery, factual accuracy, or optional
 - **Tools check structure, not truth.** The host agent performs the research and design. The CLI does not search the web or execute the studied repository. Source review, native PPTX inspection, and full-video review still matter.
 - **Platform and host support are bounded.** Windows has been exercised. macOS/Linux are not claimed verified; POSIX examples are path guidance, not a support guarantee. Installer cases for Copilot/Codex are not proof of live host discovery or natural-language routing.
 
-Source/package runtime: **0.3.1**. Research/artifact schemas: **1.0.0**. The published `v0.3.1` package is historical; these documentation and packaging updates are pending a future release, not a new release claim. Use the assets actually attached to your selected release.
+Source/package runtime: **0.3.2**. Research/artifact schemas: **1.0.0**. Version 0.3.2 includes MIT notices and bilingual package guides; published `v0.3.1` assets remain unchanged. Confirm publication and use the assets actually attached to your selected [release](https://github.com/sawyer0x110/aha/releases), not a source version alone.
 
 ## Documentation and contribution
 
 | Start here | Deeper reference |
 | --- | --- |
-| [Install](INSTALL.md) / [安装](INSTALL.zh-CN.md) | [Product requirements](docs/PRD.md) (Chinese) |
+| [Install](docs/INSTALL.md) / [安装](docs/INSTALL.zh-CN.md) | [Product requirements](docs/PRD.md) (Chinese) |
 | [Usage and CLI workflow](docs/USAGE.md) / [使用指南](docs/USAGE.zh-CN.md) | [Architecture and directory map](docs/ARCHITECTURE.md) (Chinese) |
-| [Contributing](CONTRIBUTING.md) / [参与贡献](CONTRIBUTING.zh-CN.md) | [Research protocol](docs/RESEARCH.md) (Chinese) |
-| [Security](SECURITY.md) / [安全政策](SECURITY.zh-CN.md) | [Evaluation protocol](docs/EVALUATION.md) (Chinese) |
+| [Contributing](.github/CONTRIBUTING.md) / [参与贡献](.github/CONTRIBUTING.zh-CN.md) | [Research protocol](docs/RESEARCH.md) (Chinese) |
+| [Security](.github/SECURITY.md) / [安全政策](.github/SECURITY.zh-CN.md) | [Evaluation protocol](docs/EVALUATION.md) (Chinese) |
 
-Original project code and documentation are licensed under [MIT](LICENSE). Read [License scope](LICENSE-SCOPE.md) for third-party dependencies, cited material, and preserved examples; inclusion is not a blanket relicensing of outside material. Advanced human-facing documents and historical evidence remain in their original language.
+Original project code and documentation are licensed under [MIT](LICENSE). Read [License scope](docs/LICENSE-SCOPE.md) for third-party dependencies, cited material, and preserved examples; inclusion is not a blanket relicensing of outside material. The [documentation index](docs/README.md) separates current guides, Chinese advanced references, and preserved evidence.

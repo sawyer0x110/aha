@@ -1,10 +1,10 @@
 # Aha 使用与 CLI 工作流
 
-[English](USAGE.md) | [简体中文](USAGE.zh-CN.md) · [首页](../README.zh-CN.md) · [安装](../INSTALL.zh-CN.md) · [参与贡献](../CONTRIBUTING.zh-CN.md)
+[English](USAGE.md) | [简体中文](USAGE.zh-CN.md) · [文档目录](README.zh-CN.md) · [安装](INSTALL.zh-CN.md) · [参与贡献](../.github/CONTRIBUTING.zh-CN.md)
 
-本指南覆盖研究、以源文件为中心的创作、渲染、权限与验收。先按 [INSTALL](../INSTALL.zh-CN.md) 安装完整包；文件安装与真实宿主验收是两回事。
+本指南覆盖研究、以源文件为中心的创作、渲染、权限与验收。先按 [INSTALL](INSTALL.zh-CN.md) 安装完整包；文件安装与真实宿主验收是两回事。
 
-Runtime **0.3.1** 与研究／作品 Schema **1.0.0** 是独立版本线。不支持的协议或命令明确报错，不静默转换数据或删除用户作品。已发布 `v0.3.1` 包仍是历史发布，当前文档／打包调整待未来发布。
+Runtime **0.3.2** 与研究／作品 Schema **1.0.0** 是独立版本线。不支持的协议或命令明确报错，不静默转换数据或删除用户作品。0.3.2 新增 MIT 声明与双语安装包指南，不改变已发布的 `v0.3.1` 资产。实际发布状态与可下载内容以 [Releases](https://github.com/sawyer0x110/aha/releases) 为准。
 
 ## 按交付分工，不按统一模板填空
 
@@ -205,11 +205,13 @@ npm run build
 node .\dist\cli\aha.mjs doctor
 ```
 
-失败即停止。构建输出恰含 `dist\skills\aha-research` 和 `dist\skills\aha-explain`。每份包含 CLI、Schema、合并后的共享参考、本地 Mermaid、Playwright 运行库与第三方声明；不带用户研究、作品、浏览器、Python 或 FFmpeg。
+失败即停止。构建输出恰含 `dist\skills\aha-research` 和 `dist\skills\aha-explain`。每份包含 CLI、Schema、合并后的共享参考、本地 Mermaid、Playwright 运行库、Aha 许可／范围说明与第三方声明；不带用户研究、作品、浏览器、Python 或 FFmpeg。
 
-`src` 是运行时源码，`skills` 是技能源码，根目录 `scripts` 放构建／发布／安装工具。`evals` 保存评估工具／用例／记录，`examples` 保存正式作品与可编辑项目／制作工具，`dist` 是可重建分发输出，`artifacts` 是不提交的任务成果。详见[架构／目录导航](ARCHITECTURE.md#仓库目录导航)（中文）。
+`src` 是运行时源码，`skills` 是技能源码，根目录 `scripts` 放构建／发布／安装工具。`docs` 保存人类指南与许可范围，`.github` 保存贡献／安全指南、模板和工作流。`evals` 保存评估工具／用例／记录，`examples` 保存正式作品与可编辑项目／制作工具，`dist` 是可重建分发输出，`artifacts` 是不提交的任务成果。详见[架构／目录导航](ARCHITECTURE.md#仓库目录导航)（中文）。
 
-`node .\scripts\release.mjs` 只本地打包，不上传、不全局注册。授权源码构建、Release 选择、哈希校验、dry-run／apply、冲突、升级、宿主发现和卸载见 [INSTALL](../INSTALL.zh-CN.md)。本地构建、版本变化或 tag 推送都不证明发布完成。
+`node .\scripts\release.mjs` 只本地打包，不上传、不全局注册。授权源码构建、Release 选择、哈希校验、dry-run／apply、冲突、升级、宿主发现和卸载见 [INSTALL](INSTALL.zh-CN.md)。本地构建、版本变化或 tag 推送都不证明发布完成。
+
+**0.3.2 打包／文档更新：**完整英中安装指南与双语许可范围位于 `docs/`，按原字节、原文件名复制到安装包根目录，并携带根 `LICENSE`。两个独立 Skill 各自保留 Aha 与第三方声明。贡献／安全指南位于 `.github/`；根 `INSTALL.md` 只为旧版发布链接保留兼容入口。这些改动不翻译或重新封存历史媒体、研究与 QA。
 
 相较 0.3.0，runtime 0.3.1 包含离线 HTML `defer`／`async` 调度修复、按精确音频时长计算帧数、无效 UTF-8 拒绝、研究主张双向覆盖检查，以及图片尺寸／研究／创作指导更新。CLI 与新视频收据从 `package.json` 获取运行时版本；Schema 保持 1.0.0。不改写封存示例或历史收据。
 
@@ -234,6 +236,6 @@ npm run test:media
 
 - [产品需求](PRD.md)、[架构](ARCHITECTURE.md)、[研究协议](RESEARCH.md)、[评估协议](EVALUATION.md)：现有进阶人类文档，**中文**。
 - [示例总览](../examples/README.zh-CN.md)提供英中双语入口。[新版 Aha 介绍视频](../examples/aha-introduction/README.md)及其他主题说明为**中文**，视频旁白为**英文**；已有媒体未翻译。
-- [参与贡献](../CONTRIBUTING.zh-CN.md)／[English](../CONTRIBUTING.md)、[安全政策](../SECURITY.zh-CN.md)／[English](../SECURITY.md)、[MIT 许可](../LICENSE)及英中双语[许可范围](../LICENSE-SCOPE.md)。
+- [参与贡献](../.github/CONTRIBUTING.zh-CN.md)／[English](../.github/CONTRIBUTING.md)、[安全政策](../.github/SECURITY.zh-CN.md)／[English](../.github/SECURITY.md)、[MIT 许可](../LICENSE)及英中双语[许可范围](LICENSE-SCOPE.md)。
 
 历史报告、收据和 Skill 参考按原样保留，不冒称它们已重新翻译或重新验收。

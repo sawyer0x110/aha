@@ -2,18 +2,16 @@ import * as fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import JSZip from 'jszip';
-import { skillNames, releaseRootFiles, sha256, inventory, validateSkill, assertSafePath, readRegular, publishDirectories, removeOwned } from './install-skills.mjs';
+import { skillNames, releaseRootFiles, releaseSources, sha256, inventory, validateSkill, assertSafePath, readRegular, publishDirectories, removeOwned } from './install-skills.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const json = value => `${JSON.stringify(value, null, 2)}\n`;
 export async function createRelease({ base = root, output = path.join(base, 'dist', 'releases') } = {}) {
   const { version } = JSON.parse(await readRegular(path.join(base, 'package.json')));
   if (typeof version !== 'string' || !/^\d+\.\d+\.\d+(?:-[a-zA-Z0-9.-]+)?$/.test(version)) throw new Error('Unsafe package version');
-  const payload = {
-    'install-skills.mjs': await readRegular(path.join(base, 'scripts', 'install-skills.mjs')),
-  };
-  for (const name of releaseRootFiles.filter(name => name !== 'install-skills.mjs')) {
-    payload[name] = await readRegular(path.join(base, name));
+  const payload = {};
+  for (const [name, source] of Object.entries(releaseSources)) {
+    payload[name] = await readRegular(path.join(base, ...source.split('/')));
   }
   for (const name of skillNames) {
     const files = await inventory(path.join(base, 'dist', 'skills', name));

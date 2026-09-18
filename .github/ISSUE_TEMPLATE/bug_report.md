@@ -6,8 +6,8 @@ labels: ''
 assignees: ''
 ---
 
-<!-- For sensitive reports, read SECURITY.md first. Do not post secrets or private research. -->
-<!-- 敏感问题先读 SECURITY.zh-CN.md；不要上传凭据或私有研究。 -->
+<!-- For sensitive reports, read .github/SECURITY.md first. Do not post secrets or private research. -->
+<!-- 敏感问题先读 .github/SECURITY.zh-CN.md；不要上传凭据或私有研究。 -->
 
 ### Problem / 问题
 

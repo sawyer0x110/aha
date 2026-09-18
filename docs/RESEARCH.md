@@ -1,5 +1,7 @@
 # Aha 复杂调研协议
 
+[文档目录](README.zh-CN.md) · [使用指南](USAGE.zh-CN.md) · [安装](INSTALL.zh-CN.md)
+
 `aha-research` 是独立能力。研究不要求引擎、实验、教学题或幻灯片；`aha-explain` 复用同一份研究档案与工作法，不维护第二套简化调查流程。
 
 ## 问题驱动的多轮研究

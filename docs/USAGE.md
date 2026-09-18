@@ -1,10 +1,10 @@
 # Aha usage and CLI workflow
 
-[English](USAGE.md) | [简体中文](USAGE.zh-CN.md) · [Home](../README.md) · [Install](../INSTALL.md) · [Contributing](../CONTRIBUTING.md)
+[English](USAGE.md) | [简体中文](USAGE.zh-CN.md) · [Documentation](README.md) · [Install](INSTALL.md) · [Contributing](../.github/CONTRIBUTING.md)
 
-This guide covers research, source-first authoring, rendering, permissions, and review. Install the complete package using [INSTALL](../INSTALL.md) first; installation and actual host acceptance are separate.
+This guide covers research, source-first authoring, rendering, permissions, and review. Install the complete package using [INSTALL](INSTALL.md) first; installation and actual host acceptance are separate.
 
-Runtime **0.3.1** and research/artifact schemas **1.0.0** are independent version lines. Unsupported protocols or commands fail explicitly; the CLI does not silently convert data or delete user work. The published `v0.3.1` package remains historical; current documentation/packaging updates await a future release.
+Runtime **0.3.2** and research/artifact schemas **1.0.0** are independent version lines. Unsupported protocols or commands fail explicitly; the CLI does not silently convert data or delete user work. Version 0.3.2 adds MIT notices and bilingual package guides without changing published `v0.3.1` assets. Check [Releases](https://github.com/sawyer0x110/aha/releases) for actual publication and available downloads.
 
 ## Choose the deliverable, not a template
 
@@ -206,11 +206,13 @@ npm run build
 node .\dist\cli\aha.mjs doctor
 ```
 
-Stop on failure. Build output contains exactly `dist\skills\aha-research` and `dist\skills\aha-explain`. Each carries CLI, schemas, merged shared references, local Mermaid, Playwright runtime, and third-party notices; no user research, artwork, browser, Python, or FFmpeg.
+Stop on failure. Build output contains exactly `dist\skills\aha-research` and `dist\skills\aha-explain`. Each carries CLI, schemas, merged shared references, local Mermaid, Playwright runtime, Aha's license/scope, and third-party notices; no user research, artwork, browser, Python, or FFmpeg.
 
-`src` is runtime source; `skills` is skill source; root `scripts` holds build/release/install tools. `evals` holds evaluation tooling/cases/records, `examples` formal works and their editable projects/tooling, `dist` rebuildable distribution, and `artifacts` uncommitted task results. See [architecture/directory map](ARCHITECTURE.md#仓库目录导航) (Chinese).
+`src` is runtime source; `skills` is skill source; root `scripts` holds build/release/install tools. `docs` holds human guides and license scope; `.github` holds contribution/security guides, templates, and workflows. `evals` holds evaluation tooling/cases/records, `examples` formal works and their editable projects/tooling, `dist` rebuildable distribution, and `artifacts` uncommitted task results. See [architecture/directory map](ARCHITECTURE.md#仓库目录导航) (Chinese).
 
-`node .\scripts\release.mjs` packages locally; it does not upload or globally register anything. Follow [INSTALL](../INSTALL.md) for authorized source builds, release selection, checksums, dry-run/apply, conflicts, upgrades, host discovery, and uninstall. A local build, version change, or tag push is not evidence that a release completed.
+`node .\scripts\release.mjs` packages locally; it does not upload or globally register anything. Follow [INSTALL](INSTALL.md) for authorized source builds, release selection, checksums, dry-run/apply, conflicts, upgrades, host discovery, and uninstall. A local build, version change, or tag push is not evidence that a release completed.
+
+**0.3.2 packaging/documentation update:** the full English/Chinese installation guides and bilingual license scope live in `docs/` and are copied verbatim to the package root under their basenames, alongside root `LICENSE`. Each independent skill retains Aha and third-party notices. Contribution/security guides live in `.github/`; root `INSTALL.md` remains only a compatibility pointer for old release links. These changes do not translate or reseal historical media, research, or QA.
 
 Runtime 0.3.1 includes offline HTML `defer`/`async` scheduling fixes, frame counts based on precise audio durations, rejection of invalid UTF-8, bidirectional research-claim coverage checks, and updated image-size/research/authoring guidance relative to 0.3.0. CLI and new video receipts derive runtime version from `package.json`; schemas remain 1.0.0. Sealed examples and historical receipts are not rewritten.
 
@@ -235,6 +237,6 @@ The [evaluation protocol](EVALUATION.md) (Chinese) fixes original materials and 
 
 - [Product requirements](PRD.md), [architecture](ARCHITECTURE.md), [research protocol](RESEARCH.md), [evaluation protocol](EVALUATION.md): existing advanced human-facing documents, **Chinese**.
 - [Examples](../examples/README.md) has an English/Chinese overview. The [latest Aha introduction video](../examples/aha-introduction/README.md) and other topic guides have **Chinese** notes and **English** video narration; existing media have not been translated.
-- [Contributing](../CONTRIBUTING.md) / [中文](../CONTRIBUTING.zh-CN.md), [Security](../SECURITY.md) / [中文](../SECURITY.zh-CN.md), [MIT license](../LICENSE), and bilingual [license scope](../LICENSE-SCOPE.md).
+- [Contributing](../.github/CONTRIBUTING.md) / [中文](../.github/CONTRIBUTING.zh-CN.md), [Security](../.github/SECURITY.md) / [中文](../.github/SECURITY.zh-CN.md), [MIT license](../LICENSE), and bilingual [license scope](LICENSE-SCOPE.md).
 
 Historical reports, receipts, and skill references are preserved rather than presented as newly translated or revalidated evidence.
