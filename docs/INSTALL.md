@@ -36,7 +36,7 @@ SHA256SUMS.txt
 INSTALL.md
 ```
 
-For the selected version, the baseline is its versioned ZIP, manifest, checksum file, and `INSTALL.md`. Version 0.3.2 adds `INSTALL.zh-CN.md`, `LICENSE`, and bilingual `LICENSE-SCOPE.md` inside the ZIP and as release assets. The full guides and scope note come from source `docs/` and retain these basenames at the ZIP root; the source root `INSTALL.md` is only a compatibility pointer and is not packaged. **Do not require the additional files for historical `v0.3.1`.** Do not add new documents to an old extracted ZIP: its manifest describes its original contents.
+For the selected version, the baseline is its versioned ZIP, manifest, checksum file, and `INSTALL.md`. Version 0.3.2 adds `INSTALL.zh-CN.md`, `LICENSE`, and bilingual `LICENSE-SCOPE.md` inside the ZIP and as release assets. The full guides and scope note come from source `docs/` and retain these basenames at the ZIP root. **Do not require the additional files for historical `v0.3.1`.** Do not add new documents to an old extracted ZIP: its manifest describes its original contents.
 
 ### PowerShell download and SHA256 check
 

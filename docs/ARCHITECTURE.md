@@ -20,7 +20,7 @@
 
 按职责就近放工具：技能评估用 `evals/skills/prepare.mjs`，示例验收用 `evals/examples/` 下的检查器。独立制作工具（若有）放 `examples/<topic>/tools/`；参与作品源码身份的作者模块及辅助脚本保留在 `projects/<format>/`。根目录的 `npm run eval:prepare -- <参数>` 与 `npm run examples:verify` 提供快捷入口。
 
-根部人类入口保留中英文 `README`、`LICENSE` 和简短 `INSTALL.md` 兼容指引；完整安装指南只在 `docs/` 维护。旧版发布引用的根安装 URL 继续有效，但根指引不是打包用的完整指南。
+根部人类入口只保留中英文 `README` 和 `LICENSE`；完整安装指南只在 `docs/` 维护，所有当前安装链接直接指向该目录，不保留旧路径入口。
 
 正式作品不是全部任务工作目录的镜像。只有选定的交付及必要材料进入 `examples/`，最终验收记录进入 `evals/examples/`；未清理的试跑历史放在 `artifacts/`，经用户明确授权后可按范围删除。作品项目内的研究副本、原始音频和当前导入音频各有身份用途，不按文件相似度去重。封存材料及历史记录中的旧路径保留其审计含义，当前路径由示例文档说明。
 

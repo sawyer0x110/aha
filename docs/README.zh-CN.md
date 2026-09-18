@@ -14,7 +14,7 @@
 
 请结合根 [MIT 许可](../LICENSE)与双语[许可范围](LICENSE-SCOPE.md)阅读。Runtime **0.3.2** 使用研究／作品 Schema **1.0.0**；实际发布状态和资产以 [Releases](https://github.com/sawyer0x110/aha/releases) 为准。
 
-完整安装指南与许可范围从本目录复制到 Release ZIP 根目录，保留原文件名。根 `INSTALL.md` 只为旧版发布链接保留兼容入口。
+完整安装指南与许可范围从本目录复制到 Release ZIP 根目录，保留原文件名。源码文档中的安装链接直接指向本目录内的指南。
 
 ## 进阶指南 — 中文
 

@@ -36,7 +36,7 @@ SHA256SUMS.txt
 INSTALL.md
 ```
 
-所选版本的基础资产为带版本的 ZIP、清单、校验文件和 `INSTALL.md`。0.3.2 在 ZIP 内和 Release 附件中增加 `INSTALL.zh-CN.md`、`LICENSE`、英中双语 `LICENSE-SCOPE.md`。完整指南与许可范围取自源码 `docs/`，在 ZIP 根目录保留这些文件名；源码根目录 `INSTALL.md` 只是兼容入口，不打包。**不要要求历史 `v0.3.1` 必须有新增文件。** 不要把新文档塞入旧解压目录：旧清单只描述原始内容。
+所选版本的基础资产为带版本的 ZIP、清单、校验文件和 `INSTALL.md`。0.3.2 在 ZIP 内和 Release 附件中增加 `INSTALL.zh-CN.md`、`LICENSE`、英中双语 `LICENSE-SCOPE.md`。完整指南与许可范围取自源码 `docs/`，在 ZIP 根目录保留这些文件名。**不要要求历史 `v0.3.1` 必须有新增文件。** 不要把新文档塞入旧解压目录：旧清单只描述原始内容。
 
 ### PowerShell 下载与 SHA256 校验
 

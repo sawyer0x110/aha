@@ -71,12 +71,8 @@ test('install guides only use local links that survive release extraction', asyn
   }
 });
 
-test('root installation URL remains a short compatibility pointer, not a duplicate guide', async () => {
-  const stub = await fs.readFile(path.join(root, 'INSTALL.md'), 'utf8');
-  assert.ok(stub.includes('(docs/INSTALL.md)'));
-  assert.ok(stub.includes('(docs/INSTALL.zh-CN.md)'));
-  assert.ok(stub.split('\n').length < 30);
-  for (const name of ['INSTALL.zh-CN.md', 'CONTRIBUTING.md', 'CONTRIBUTING.zh-CN.md', 'SECURITY.md', 'SECURITY.zh-CN.md', 'LICENSE-SCOPE.md']) {
+test('root entry documents exclude relocated guides and compatibility pointers', async () => {
+  for (const name of ['INSTALL.md', 'INSTALL.zh-CN.md', 'CONTRIBUTING.md', 'CONTRIBUTING.zh-CN.md', 'SECURITY.md', 'SECURITY.zh-CN.md', 'LICENSE-SCOPE.md']) {
     await assert.rejects(fs.access(path.join(root, name)), { code: 'ENOENT' });
   }
 });
