@@ -1,0 +1,11 @@
+{
+  "approved": true,
+  "authority": "User selected: 批准本轮本地生成、导出和副本编辑验证",
+  "recorded_at": "2026-09-20T19:19:59.9858696+08:00",
+  "review_sha256": "359e79dd986f5a2219cc9487115c47ff98a3d47b947cbf5ac9ab4343fa8ea7ad",
+  "run_manifest_sha256": "19ae8071acbc36006f15019ea0e95089423e2b1bdceb3ef5a6b6e50a129a3199",
+  "runtime_sha256": "4aa41f11c07e7ef1f622e7ed0787242ab520fff3e3fe7302ea82526bde86d4fe",
+  "scope": "Execute exactly eight reviewed source projects locally with the pinned common runtime; export actual PowerPoint slides and verify representative text/table edits on copies; use Excel for the two Greenland chart-data probes.",
+  "disclosed": "Node has host privileges and is not sandboxed.",
+  "excluded": ["Network", "Installation", "Uploads", "Overwriting original examples or seed decks", "Unreviewed source or resource changes"]
+}

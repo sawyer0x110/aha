@@ -1,0 +1,175 @@
+{
+  "case_id": "greenland",
+  "run": "B",
+  "evaluation": "repair-delta-not-first-pass",
+  "expectations": [
+    {
+      "text": "The output retains seven Chinese slides and the original Greenland/Mercator question.",
+      "passed": true,
+      "evidence": "before/application-observations.json and B/application-observations.json /slides/0 through /slides/6; slide1 Text1 id3 asks 格陵兰为什么在某些世界地图上显得巨大. Retained seed scope, not a new improvement."
+    },
+    {
+      "text": "The native area chart retains supported categories, approximately 2.17 and 30.4 million square kilometres, and an embedded workbook relationship.",
+      "passed": true,
+      "evidence": "before/ooxml.json and B/outputs/ooxml.json /charts/ppt~1charts~1chart1.xml/series/0/data: tx=面积（百万平方公里）, cat=格陵兰/非洲, val=2.17/30.4; relationship to Microsoft_Excel_Worksheet1.xlsx. Dossier /claims/0,/evidence/0,/evidence/1 and report.md 面积：约14倍，而非精确装箱. Data unchanged."
+    },
+    {
+      "text": "The native comparison table retains all 15 cells, including its final limitations row.",
+      "passed": true,
+      "evidence": "before/ooxml.json and B/outputs/ooxml.json lines11226–12177, slide6 Table0, tables[0]/rows[0..4]/cells[0..2]. Exact texts at11238,11290,11342,11399,11450,11501,11557,11608,11697,11753,11804,11893,11949,12000,12089 retained. Last row retains not-shortest-route/polar-cropping and shape/angle/direction/distance limitations. Not a visible-clearance finding."
+    },
+    {
+      "text": "Supplied application records report representative text, chart-data and table-cell edits saved and reopened on a copy, leaving the delivery unchanged.",
+      "passed": true,
+      "evidence": "B/application-observations.json /method, /originalUnchanged=true, /edits/0..2/persisted=true: slide1 id2 text, slide2 id7 workbook row2 col2 2.17→3.17 with SetSourceData, slide6 id6 table row1 col1 edit probe. Already present in before; not human editing usability or visual QA."
+    },
+    {
+      "text": "The observed slide 7 replaces ambiguous 相差14倍 with a directional area-ratio statement without clipping its main explanation.",
+      "passed": true,
+      "evidence": "Actually observed comparisons/slide-07.png BEFORE and B panels; visual-observations.json /pages/6. before→B/application-observations.json /slides/6/shapes/9 id11 Text9: 约相差14倍→非洲面积约为格陵兰的14倍. Both values and unit retained; two-line text clear. Dossier /claims/0."
+    },
+    {
+      "text": "The observed slide 7 retains reader-visible official-PDF extraction and secondary-source limitations and does not assert direct verification.",
+      "passed": true,
+      "evidence": "comparisons/slide-07.png B peach box and B/application-observations.json /slides/6/shapes/15 id17 Text15 retain official2026 PDF extraction gap, public secondary numbers, approximate-not-precise and no completed official verification. Dossier /gaps/0; unchanged protection."
+    },
+    {
+      "text": "Obsolete author-stage edit/render/QA statements in the main speaking paragraphs of notes 2, 6 and 7 are replaced by explanatory speaking guidance.",
+      "passed": true,
+      "evidence": "before/ooxml.json→B/outputs/ooxml.json /slides/1/notes/0/paragraphs/0/text, /slides/5/notes/0/paragraphs/0/text, /slides/6/notes/0/paragraphs/0/text; notesSlide2,6,7.xml lines3034,12278,14628. Replaced chart-edit/addTable/render-delivery status with axis reading, projection choice and ratio-not-subtraction/not-packing guidance. Separate production-record completeness unverified."
+    },
+    {
+      "text": "Delivered conclusion and notes preserve topical research limits without claiming stale source-only delivery status or newly completed rendering/editing validation.",
+      "passed": true,
+      "evidence": "Contextual reassessment: slide7 PDF-verification disclaimer and source headings 未在本轮重新访问 explain research scope/provenance, not obsolete deck-generation status or a claim of newly completed validation. Notes2/6/7 remove actual stale edit/render/delivery statements. B/application-observations.json /slides/6/shapes/2,/15 and B/outputs/ooxml.json notes2,6,7. Prior keyword-based failure withdrawn but preserved in revision_history. Accuracy of process assertions and separate production records remains unverified."
+    },
+    {
+      "text": "The rendered slide 6 repairs the table/bottom-takeaway collision while retaining readable rows and qualifications.",
+      "passed": true,
+      "evidence": "Later targeted review dated2026-09-20T19:40:09.111+08:00 of comparisons/slide-06.png, subsequently identified as uniformly scaled1280x720 panel history, not full-resolution/pixel-exact inspection. BEFORE takeaway contacts bottom border; B has a clear blank band with all rows and wrapped limits readable. Slightly tighter than A but no collision. visual-observations.json /pages/5. Relationship evidence, not native-bounds inference or pixel-level clearance measurement."
+    },
+    {
+      "text": "Slide 3 explicitly identifies the right diagram as a northern-hemisphere segment on the slide, not only in notes.",
+      "passed": false,
+      "evidence": "Actual comparisons-pixel-exact/slide-03.png B panel retains BEFORE's disclaimer without the hemisphere-segment clause. Central globe equator versus near-bottom right-grid equator leaves scope correspondence implicit. NotesSlide3.xml line5193 carries the explanation, but the slide does not. visual-observations.json /pages/2/later_pixel_exact_review. Narrow explanatory omission, not a claim that the entire mechanism is incorrect."
+    }
+  ],
+  "summary": {
+    "passed": 9,
+    "failed": 1,
+    "total": 10
+  },
+  "summary_scope": "Counts only these assessed binary output criteria; not a broad-rubric pass count, score, aesthetic composite or complete QA verdict.",
+  "broad_criteria": [
+    {
+      "id": "table-clearance-repair",
+      "status": "verified",
+      "delta": "improved",
+      "evidence": "Later targeted review: actual comparisons/slide-06.png BEFORE/B pixels show border/takeaway collision replaced by a clear blank band. All four rows and wrapped qualifications remain readable without apparent font shrinkage. visual-observations.json /pages/5; case/pair-review.json evidence.table."
+    },
+    {
+      "id": "conditions-retained",
+      "status": "verified",
+      "delta": "unchanged",
+      "evidence": "All pages now observed: pixel-exact derivatives1,2,3,5 and scaled history4,6,7. Necessary substantive limits remain visible at observed scale. Slide3 hemisphere scope remains implicit as in seed; narrow explanatory gap separately recorded. Room-distance readability unverified."
+    },
+    {
+      "id": "stage-notes-separation",
+      "status": "unverified",
+      "delta": "improved",
+      "evidence": "Main notes2,6,7 replace actual stale delivery/edit/render self-report with speaking guidance. Source-provenance and PDF-verification caveats are topical research limitations, not automatic defects. Prior failed status withdrawn contextually; separate QA/approval relocation remains unverified."
+    },
+    {
+      "id": "scope-data-native-preservation",
+      "status": "verified",
+      "delta": "unchanged",
+      "evidence": "Seven slides, meaningful native chart/table and explanations retained. Historical overview image absent from seed; that clause not applicable."
+    },
+    {
+      "id": "no-ungrounded-claims",
+      "status": "verified",
+      "delta": "improved",
+      "evidence": "Changed ratio and speaking guidance supported by Dossier. No new empirical measurement or official verification claim. Current-round process assertions separately unverified."
+    },
+    {
+      "id": "repair-process",
+      "status": "unverified",
+      "delta": "unverified",
+      "evidence": "No author transcript, approval or source change-set inspected."
+    },
+    {
+      "id": "source-support",
+      "status": "verified",
+      "delta": "unchanged",
+      "evidence": "Area, mechanism, local model and projection tradeoffs retain Dossier support. Seed support is not a new gain."
+    },
+    {
+      "id": "visible-explanation",
+      "status": "verified",
+      "delta": "improved",
+      "evidence": "Artifact-level explanation assessed across seven pages. Slide7 ratio improves; core mechanism and limits remain readable. Slide3 full-globe/partial-grid correspondence still implicit. Human comprehension not tested."
+    },
+    {
+      "id": "native-content",
+      "status": "unverified",
+      "delta": "unchanged",
+      "evidence": "Meaningful native chart/table/diagram roles, visible explanations and reported representative edits verified. Manual usability remains unverified."
+    },
+    {
+      "id": "cjk-layout",
+      "status": "unverified",
+      "delta": "improved",
+      "evidence": "Slide6 clearance visibly improved; no new clipping/collision observed across seven pages at available scales. Font substitution and human presentation-distance readability unverified; pages4,6,7 have only scaled history."
+    },
+    {
+      "id": "process-boundary",
+      "status": "unverified",
+      "delta": "unverified",
+      "evidence": "Author access/execution/static-check/STOP compliance not inferable from outputs or source headings."
+    },
+    {
+      "id": "area-data",
+      "status": "verified",
+      "delta": "improved",
+      "evidence": "Page2 pixel-exact derivative shows shared-zero bars30.4/2.17 and approximate million-square-km unit with reader-visible caveats. Data unchanged; slide7 explicitly names numerator/denominator of ratio."
+    },
+    {
+      "id": "projection-mechanism",
+      "status": "verified",
+      "delta": "unchanged",
+      "evidence": "Page3 meridian/angle/N-S bridge and page5 tradeoffs observed in pixel-exact derivatives; page4 local example observed as scaled history. Main explanation correct within stated conditions; page3 partial-hemisphere scope remains implicit."
+    },
+    {
+      "id": "area-evidence-limits",
+      "status": "verified",
+      "delta": "unchanged",
+      "evidence": "No inspected slide/notes assert verified officialPDF, exact packing or executed rotation experiment. Slide7 visibly retains gap."
+    }
+  ],
+  "unverified": [
+    "Pixel-exact derivative inspection of pages4,6,7; these have scaled-history evidence only",
+    "Author source/process compliance and production-note relocation",
+    "Human comprehension",
+    "Manual editing usability",
+    "Font substitution and human presentation-distance readability",
+    "Full-process or causal stable Skill gain"
+  ],
+  "review_scope": "Cumulative anonymous artifact review finalized2026-09-20T19:54:29.240+08:00. All seven pages actually observed. Pixel-exact derivatives:1,2,3,5. Scaled-history composites:4,6,7, uniformly reduced1280x720 panels within1600x900 allocations. No full-resolution claim for scaled pages. Initial inaccessible calls and withdrawals remain in visual-observations.json. Final turn used exactly one image call, slide5. No execution, rerender, networking or deck/source changes.",
+  "revision_history": [
+    {
+      "stage": "Before final cumulative review",
+      "summary": {
+        "passed": 8,
+        "failed": 1,
+        "total": 9
+      },
+      "prior_failed_expectation": "The conclusion slide and notes source headings avoid current-round production-status assertions while preserving evidence limits.",
+      "prior_evidence": "B retains 本轮未检索新来源, 不声称本轮完成了官方正文核验 and 未在本轮重新访问.",
+      "disposition": "Prior failure withdrawn: these contextual research-provenance/verification-limit statements are not equivalent to stale source-only delivery or newly completed validation. They are not failed by keyword. Actual source/process compliance remains unverified."
+    },
+    {
+      "stage": "Final cumulative review",
+      "reason_for_update": "New pixel-exact observations complete pages1,2,3,5; new narrow failed expectation concerns absent slide3 hemisphere-scope qualifier, not production wording. Original image failures/withdrawals preserved in visual record."
+    }
+  ]
+}

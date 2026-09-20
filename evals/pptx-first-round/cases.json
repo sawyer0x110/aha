@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "round": "pptx-first-round",
+  "common_prompt": "请仅使用提供的冻结 Research Dossier，创作 5–8 页中文原生可编辑 PPTX。读者可见的标题、正文、图表标签、说明和演讲者备注使用中文（必要的代码、产品名和术语可保留）。保留会影响结论的条件、不确定性和材料限制；提供有助于讲解的备注。页数是本轮资源预算，不是通用幻灯片规则。不要检索新资料或把材料里的历史记录称为本轮新观察。此次只交付作者源项目和静态检查结果，不执行作者模块、不渲染。",
+  "common_rubric": [
+    {
+      "id": "source-support",
+      "criterion": "论点、数值、单位、因果关系和限定有冻结材料支持；没有将模型、源码阅读、历史记录或引用者测量改称本轮实测。",
+      "evidence": "逐页可见文字、图示与 Dossier 的具体段落/claim 对照；记录反例和不支持的外推。"
+    },
+    {
+      "id": "visible-explanation",
+      "criterion": "面向指定读者说明机制与推理桥梁；关键限定可在幻灯片上读到，备注补充而不隐藏推翻主结论的条件。",
+      "evidence": "逐页内容和备注分别引用；不能只按 claim coverage 或形状数量判定。"
+    },
+    {
+      "id": "native-content",
+      "criterion": "核心解释采用合适的原生可编辑对象；对象存在不等于语义正确或易于修改。不对无数据案例强制图表。",
+      "evidence": "OOXML 对象类型加实际应用中的代表性编辑；分别记录原生结构与编辑实用性。"
+    },
+    {
+      "id": "cjk-layout",
+      "criterion": "中文阅读尺寸、换行、字体替代、间距与关系图清晰；有布局问题时，修复效果只能据修复前后同页的实际观察评价。",
+      "evidence": "实际 PowerPoint/兼容应用的逐页画面、应用与字体环境；仅有静态几何或作者自述时记未验证，不推断发生过修复。"
+    },
+    {
+      "id": "process-boundary",
+      "criterion": "作者仅使用分配输入及固定技能，按中文 5–8 页预算完成 main.mjs 和元数据，静态 explain-check 后停止；没有安装、网络、发布或执行生成模块。",
+      "evidence": "作者工具记录及源代码审阅；缺日志记未知，静态检查通过不构成安全、语义或视觉通过。"
+    }
+  ],
+  "cases": [
+    {
+      "id": "git-merge",
+      "research": "examples/git-merge/research",
+      "prompt": "给了解提交和分支的开发者解释：为什么 Git 合并有时会带回已撤销的修改？用材料中的具体状态帮助他们理解如何判断合并结果，并说明排查时应注意什么。",
+      "rubric": [
+        {
+          "id": "git-mechanism",
+          "criterion": "基点与两侧当前状态之间的关系可见；普通 revert 示例推导为 off/off/on → on，解释不是重放提交或永久禁令；历史参与找基点。",
+          "evidence": "report.md 的“基点”“没有运行的推导例子”；核对原生状态图与读者可见推理。"
+        },
+        {
+          "id": "git-boundaries",
+          "criterion": "保留普通文件/通常三方合并的范围及可改变结果的条件；不把普通 revert、合并提交 revert、reset、-s ours 与 -Xours 混为一谈，不声称所有差异都冲突或干净合并必然业务正确。",
+          "evidence": "report.md 的反例、三种撤销、策略与限制；按作品实际选择的范围检查，不强制塞入所有细节。"
+        }
+      ]
+    },
+    {
+      "id": "anc",
+      "research": "examples/anc/research",
+      "prompt": "给好奇但没有声学背景的成年读者解释：为什么降噪耳机能减轻飞机轰鸣，却仍听得见人声？让读者理解主动降噪如何工作，以及它在真实佩戴中的局限。",
+      "rubric": [
+        {
+          "id": "anc-mechanism",
+          "criterion": "说明目标位置的传入声压、控制声压与残余的叠加关系，以及幅度、相位/时间和传播路径的作用；不画成声音分类器或整个空间静音。",
+          "evidence": "report.md 的声压、时间误差段落；模型曲线或波形必须标识为示意/解析模型，不强制使用数据图。"
+        },
+        {
+          "id": "anc-boundaries",
+          "criterion": "区分主动与被动隔音；保留人声可部分减弱仍可听、佩戴/密封/模式影响等限定；不捏造产品分贝、频率硬截止或听感测量。",
+          "evidence": "report.md 的主动/被动、语音、真实测量段落；核对可见限定与备注。"
+        }
+      ]
+    },
+    {
+      "id": "greenland",
+      "research": "examples/greenland/research",
+      "prompt": "给一般读者解释：格陵兰为什么在某些世界地图上看起来那么大？比较格陵兰与非洲的真实面积，并解释地图投影的用途和取舍。请包含可修改数据的原生图表和一张可编辑的比较表。",
+      "rubric": [
+        {
+          "id": "area-data",
+          "criterion": "面积图使用约 2,166,086 与 30,365,000 平方公里（或一致约数），非洲约 14 倍；单位、来源范围和近似性清楚。原生图表缓存数据及表格有实际意义，而非图片或空对象。",
+          "evidence": "report.md 面积段落；chart 系列/类别/数值、table 单元格及实际编辑探针；不要求伪精确，重复单元格不可去重。"
+        },
+        {
+          "id": "projection-mechanism",
+          "criterion": "解释高纬放大与经线/纬线间距及局部保角的关系；局部 sec² 纬度倍率不是整国统一倍率。比较保角与等面积用途，不称所有地图都错或恒向线一定最短。",
+          "evidence": "report.md 机制及取舍段落；逐页机制图、比较表和限定。"
+        },
+        {
+          "id": "area-evidence-limits",
+          "criterion": "不冒称直接核验官方 PDF、精确装箱或已运行地理旋转实验；可用原生示意表达机制，不需要下载边界数据。",
+          "evidence": "report.md 官方正文提取缺口及复现边界。"
+        }
+      ]
+    },
+    {
+      "id": "project-overview",
+      "research": "examples/project-overview/research",
+      "asset": "examples/aha-introduction/projects/video/assets/git-slide-03.png",
+      "prompt": "给首次接触 Aha 的读者介绍材料所记录的 2026-09-16 冻结快照：它解决什么问题、研究如何成为视觉解释、作者与运行时各负责什么。将提供的历史截图作为插图，与可编辑的解释内容一起展示；明确它不是当前行为的新验证，也不是可编辑的原生界面。",
+      "rubric": [
+        {
+          "id": "overview-mechanism",
+          "criterion": "两技能、Dossier、作者创作/覆盖、结构检查、执行许可与实际 QA 的职责关系可见；哈希/结构不充当语义、观看或理解效果证据。",
+          "evidence": "report.md 用户旅程、快照、运行时与宿主段落；流程对象关系而非仅名词排列。"
+        },
+        {
+          "id": "overview-snapshot",
+          "criterion": "叙述绑定 2026-09-16 研究快照，不外推当前仓库/服务状态；ANC 与 Git 如被引用，保留模型源码与内嵌记录的性质。",
+          "evidence": "report.md 范围、机制案例及停止理由；不要求查询当前 checkout。"
+        },
+        {
+          "id": "screenshot-boundary",
+          "criterion": "提供截图被使用且清楚标识为历史插图；不计为原生可编辑核心机制，不冒充新观察或当前产品界面。旁边的解释仍为可编辑原生对象。",
+          "evidence": "图片关系/媒体哈希、读者可见图注、原生解释对象及实际应用审阅。"
+        }
+      ]
+    }
+  ]
+}

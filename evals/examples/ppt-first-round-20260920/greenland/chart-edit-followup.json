@@ -1,0 +1,51 @@
+{
+  "method": "PowerPoint/Excel COM B2 edit with explicit Chart.SetSourceData(A1:B3); save/reopen plus independent ZIP inspection. Not manual UI usability.",
+  "results": [
+    {
+      "label": "A",
+      "original": {
+        "b2": 2.17,
+        "numericCaches": [
+          [
+            2.17,
+            30.4
+          ]
+        ]
+      },
+      "probe": {
+        "b2": 3.17,
+        "numericCaches": [
+          [
+            3.17,
+            30.4
+          ]
+        ]
+      },
+      "workbookAndChartCacheConsistent": true
+    },
+    {
+      "label": "B",
+      "original": {
+        "b2": 2.166086,
+        "numericCaches": [
+          [
+            2.166086,
+            30.365
+          ]
+        ]
+      },
+      "probe": {
+        "b2": 3.166086,
+        "numericCaches": [
+          [
+            3.166086,
+            30.365
+          ]
+        ]
+      },
+      "workbookAndChartCacheConsistent": true
+    }
+  ],
+  "earlierProbeLimitation": "Direct Workbook.Save failed for embedded workbook; Close(true) persisted B2 but left chart cache stale until explicit SetSourceData. Earlier probe directories preserved.",
+  "limit": "Programmatic native-data edit demonstrated; manual usability and automatic refresh behavior not certified."
+}

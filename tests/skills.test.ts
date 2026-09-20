@@ -189,6 +189,24 @@ test('format routing and optional visual recipes are available in the portable s
   }
 });
 
+test('PPTX guidance connects page intent, capacity repair, object choice and notes without new metadata', async () => {
+  const pptx = await reference('pptx.md');
+  for (const concept of [
+    /Decide what each page must explain/, /Repair capacity before shrinking type/,
+    /Select objects and image slots deliberately/, /Separate the page from the talk/,
+    /not a required per-slide schema/, /Only then adjust type/,
+    /do not invent numbers/i, /slot aspect ratio/, /note.*does not establish visible-page coverage/i,
+    /does not automate text fit/, /valign: 'middle'/, /nonnegative width\/height/,
+    /automatically repaired file is not evidence/,
+  ]) assert.match(pptx, concept);
+  const design = await reference('visual-design.md');
+  assert.match(design, /short page intentions/);
+  assert.ok(relativeLinks(design).includes('pptx.md'));
+  const qa = await reference('artifact-qa.md');
+  assert.match(qa, /note-only facts do not prove visible-page coverage/);
+  assert.match(qa, /rather than manufacturing a repair/);
+});
+
 test('language guidance distinguishes bilingual HTML, English media defaults and translation review', async () => {
   const language = await reference('language.md');
   for (const concept of [/initially English/i, /data-aha-lang/, /data-aha-title/, /English\/中文/, /en-US-JennyNeural/, /zh-CN-XiaoxiaoNeural/, /legacy/i, /negation/i, /fresh approval/i]) {
@@ -197,6 +215,23 @@ test('language guidance distinguishes bilingual HTML, English media defaults and
   for (const name of ['artifact-authoring.md', 'html.md', 'image.md', 'pptx.md', 'video.md', 'artifact-qa.md']) {
     assert.ok(relativeLinks(await reference(name)).includes('language.md'), `${name}: language contract`);
   }
+});
+
+test('PPTX repair guidance uses actual table bounds and separates production status from speaker notes', async () => {
+  const pptx = await reference('pptx.md');
+  for (const concept of [
+    /table height as content-dependent/, /actual rendered table bottom/,
+    /source-coordinate gap alone does not prove clearance/,
+    /before reducing reading size/, /production status in project QA\/delivery records/,
+    /Research limitations and uncertainty still belong/,
+    /fresh application export of the same page/,
+    /moving a collision or hiding a caveat is not a repair/i,
+    /proposed change as unverified/,
+  ]) assert.match(pptx, concept);
+  const qa = await reference('artifact-qa.md');
+  assert.match(qa, /actual before\/after application exports/);
+  assert.match(qa, /an older export cannot validate a newer source/);
+  assert.match(qa, /preserving research limitations and historically scoped audit evidence/);
 });
 test('documented CLI invocations use only the canonical installed entry and command set', async () => {
   const commands = new Set([

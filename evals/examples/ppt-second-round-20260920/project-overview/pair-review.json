@@ -1,0 +1,633 @@
+{
+  "case_id": "project-overview",
+  "evaluation": "anonymous A/B repair-only from common before seed",
+  "winner": "tie",
+  "winner_rationale": "Artifact-level tie with different strengths, not a missing-evidence default. All eight BEFORE/A/B pages now have actual visual observations at explicitly declared scales. Both repair the two tables and preserve native roles, values and conditions. B better communicates skill choice on page1, retains the Chinese base-comparison bridge on page5 and has a less wrapped page6 table. A better separates this deck's production checkpoint from topic explanation on page8 and notes3/8, and gives page5's different-record qualification greater prominence. Neither dominates these substantive outcomes; no aesthetic composite or binary-count ranking is used. This is not a full-resolution/reader-effect/process conclusion.",
+  "review_history": [
+    {
+      "phase": "initial",
+      "judgment": "undetermined",
+      "reason": "Only slide8 actually visible; initial inaccessible-page descriptions withdrawn."
+    },
+    {
+      "phase": "targeted-slide4",
+      "judgment": "undetermined",
+      "reason": "Slide4 observed; other pages still missing at that checkpoint."
+    },
+    {
+      "phase": "final-cumulative",
+      "judgment": "tie",
+      "reason": "All pages observed at mixed evidence scales; balanced artifact-level strengths. Earlier failures and scale limitation remain preserved."
+    }
+  ],
+  "review_scope": {
+    "root": "artifacts\\skill-evals\\ppt-second-round\\review\\project-overview",
+    "allowed_materials_read": [
+      "eval_metadata.json",
+      "rubric.json",
+      "before\\research\\report.md and manifest.json",
+      "before\\research\\research.json claims and targeted frozen evidence (including e-git content)",
+      "before\\ooxml.json and A/B\\outputs\\ooxml.json targeted content, notes, tables and media records",
+      "before/A/B\\application-observations.json",
+      "A/B\\delivery-identity.json and stage.json",
+      "comparisons\\image-provenance.json",
+      "comparisons\\slide-01.png through slide-08.png (attempt history; successful observations on 1,4,8 only)",
+      "comparisons-pixel-exact\\slide-02.png, slide-03.png, slide-05.png, slide-06.png, slide-07.png in separate bounded turns"
+    ],
+    "actually_observed_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "actually_observed_panels": "BEFORE/A/B on every page: 24 panel observations, not 24 full-resolution screen inspections.",
+    "pixel_exact_derivative_pages": [
+      2,
+      3,
+      5,
+      6,
+      7
+    ],
+    "scaled_history_only_pages": [
+      1,
+      4,
+      8
+    ],
+    "visually_unverified_pages": [],
+    "original_resolution_unverified_pages": [
+      1,
+      4,
+      8
+    ],
+    "image_attempts": "Initial single calls and one retry each yielded only slide8 visible. Later separate user-authorized single-image turns observed old comparisons slide4 at19:40:09 and slide1 at19:46:25; corrected derivatives slide2 at19:47:05, slide3 at19:49:47, slide5 at19:52:00, slide6 at19:54:29, slide7 at19:56:11. Each later turn used one image, no retry; actual observations were immediately persisted. Final turn added only slide7 image, no new source/Dossier read.",
+    "correction_log": "Initial unsupported inaccessible-page descriptions and successful-retry claims were withdrawn and remain invalid evidence. Later timestamped observations independently supersede their unverified statuses without erasing failure history. Original null fields on those entries intentionally remain. Final interpretation also withdraws the initial blanket penalty for QA/provenance language in notes2/5/7; the production-status defect is narrowed to explicit this-deck checkpoints.",
+    "composition_limitation": "Host discovered old GDI composites uniformly scaled original panels to1280x720 within1600x900 slots due120/96 DPI, not cropped. Thus pages1/4/8 are scaled-image evidence only, never full-resolution/pixel-exact inspection. Parent subsequently reported all90 corrected full-panel ARGB hashes match original PowerPoint PNGs; reviewer accepts that supplied provenance but did not rerun it or inspect other cases. Corrected derivative identity does not establish 1:1 viewer display or presentation-distance readability.",
+    "not_performed": [
+      "No code/deck editing, execution, rendering, networking or nested subagents",
+      "No sibling, evaluator, source-project or condition-identity inspection",
+      "No author tool-log/process audit",
+      "No human comprehension study or manual editing usability test",
+      "No independent hash computation or signed provenance verification"
+    ],
+    "evidence_separation": "All visible findings come from the successful entries and later_targeted_review records in visual-observations.json at their stated scales. Geometry, native text, Dossier semantics and application edit probes remain separate evidence classes. Exports and persisted edits alone did not establish visual findings.",
+    "topic_vs_production_rule": "Aha's research/QA boundaries, hash-not-truth, approval gates, host duties, frozen research nonexecution and image-source/license limits are substantive topic/provenance content, not defects. Staleness is assessed only for explicit THIS-deck/source-revision checkpoint claims: e.g. 本轮仅改源码 plus requests for rerender carried into the delivered deck without a clear historical checkpoint label. Actual visual QA can remain pending after export; export is not treated as proof of QA. B's historical-versus-current distinction is a strength within its author context, but it is not fully separated from final speaking content.",
+    "process_causality": "Author-stage image access was incompletely confirmed across runs. Neither this review nor supplied receipts establish full-process compliance or causal/stable Skill gain."
+  },
+  "identity": {
+    "research_content_hash": "f100d4b64f1c41b3e48eaeed8fe88f71609f88c274b2fc3f298de3b672b484b3",
+    "before_deck": "79914785c3aa7c7e95c877032227cf35fe6474f44b478bdef2212fe85d4e0c25",
+    "A_deck": "7dc78aef07716c699cc950c546eabc82bafde526f4dbf996f45906ce7c8f94f3",
+    "B_deck": "7bc1325be898e429b4f6dbc1d142ce74051687d648797fbc9c5ead7f10731b74",
+    "historical_image": "a6d591c09cc6523fb827a8127239864689561805206adfed5e988c4e27bb7861",
+    "observed_composite": {
+      "artifact": "comparisons\\slide-08.png",
+      "sha256": "7bbe06424653003ee362e72fb5ebf8dcde6cea787bf6e651506e31e8759c3113",
+      "provenance_pointer": "comparisons\\image-provenance.json /pages/7",
+      "before_png_sha256": "04d006b64b8fdec230895f996c960a56e278ef2a10f5c4f6111513f58f5299fb",
+      "A_png_sha256": "ee1f70ba3e0010560f2961eb78c1240e925cb04d8d2b3f333ce20cf318680561",
+      "B_png_sha256": "0754c5e8cf3c056e029e09a5e655c1bf92a4f8cd937e526f1ffb74e87012fe71",
+      "limits": "This is the OLD SCALED composite, not a pixel-exact image. Hashes transcribed, not recomputed; old provenance's unscaled wording superseded by host DPI finding. Stage records say timing/hash binding is not signed image-to-deck provenance."
+    }
+  },
+  "page_correspondence": {
+    "native_text_mapping": "before 1→A1/B1 skills; 2→2 dossier; 3→3 journey; 4→4 Git table; 5→5 historical image; 6→6 media table; 7→7 responsibilities; 8→8 closing limitations. No reorder/split/merge found in the eight application slide arrays.",
+    "visually_confirmed": "All eight same-numbered topic pages correspond in actual BEFORE/A/B panels at the declared scales; no reorder, split or merge observed.",
+    "unchanged_inherited_pages": "Pages2/7 now directly observed using corrected derivatives, with unchanged visible arrangements and conditions. They also have equal supplied PNG hashes. Existing safe layouts are preserved, not new repair successes."
+  },
+  "evidence": [
+    {
+      "id": "E1",
+      "kind": "scaled-history visual observation plus native text and Dossier",
+      "before": {
+        "artifact": "before\\application-observations.json",
+        "slide": 1,
+        "pointer": "/slides/0/shapes/15",
+        "object": "id 17 Text 15",
+        "text": "两种技能，不是自动把报告转换成四种文件的模板引擎。"
+      },
+      "A": {
+        "artifact": "A\\application-observations.json",
+        "slide": 1,
+        "pointer": "/slides/0/shapes/15",
+        "object": "id 17 Text 15",
+        "text": "报告用 aha-research；视觉解释用 aha-explain，后者也可组织研究。"
+      },
+      "B": {
+        "artifact": "B\\application-observations.json",
+        "slide": 1,
+        "pointers": [
+          "/slides/0/shapes/8",
+          "/slides/0/shapes/15"
+        ],
+        "objects": [
+          "id 10 Text 8",
+          "id 17 Text 15"
+        ],
+        "text": "按交付目标选择技能；视觉解释可在自身工作流内研究，不要求先调用另一技能；两者不是自动把报告转换成四种文件的模板引擎。"
+      },
+      "notes": "All three OOXML /slides/0/notes/0/paragraphs/0, ppt/notesSlides/notesSlide1.xml: aha-explain can research without automatic aha-research dispatch; 2026-09-16 not current observation.",
+      "dossier": "before\\research\\report.md headings 结论 and 用户旅程：先答问题，再决定怎样展示; research.json /claims/0 c-purpose and /claims/1 c-journey; evidence e-skills/e-explain.",
+      "visual_locator": "visual-observations.json /pages/0/later_targeted_review; comparisons/slide-01.png BEFORE/A/B, scaled-history only",
+      "assessment": "Both clarify skill independence. BEFORE/A have a one-sided input→research arrow, creating a residual mandatory-research routing cue despite A's corrective prose. B removes it, adds explicit selection and keeps non-template boundary. B's new label is tight against input-card bottom but not clipped. A removes the exact non-template footer while retaining anti-automation elsewhere. B preferred on this mechanism; no full-resolution or reader-understanding claim."
+    },
+    {
+      "id": "E2",
+      "kind": "corrected-derivative visual observation plus native text and Dossier",
+      "before": {
+        "artifact": "before\\application-observations.json",
+        "slide": 2,
+        "pointer": "/slides/1/shapes/21",
+        "object": "id 23 Text 21"
+      },
+      "A": {
+        "artifact": "A\\application-observations.json",
+        "slide": 2,
+        "pointer": "/slides/1/shapes/21",
+        "object": "id 23 Text 21"
+      },
+      "B": {
+        "artifact": "B\\application-observations.json",
+        "slide": 2,
+        "pointer": "/slides/1/shapes/21",
+        "object": "id 23 Text 21"
+      },
+      "retained_text": "哈希和引用结构通过，只说明身份与记录一致；不证明论点真的被证据支持。",
+      "dossier": "report.md 快照保存可追溯性，不制造真实性; research.json /claims/2 c-snapshot.",
+      "visual_locator": "visual-observations.json /pages/1/later_targeted_review; comparisons-pixel-exact/slide-02.png BEFORE/A/B",
+      "assessment": "All four Dossier label/explanation pairs, hash panel and hash-not-truth strip actually visible, aligned and unclipped. No discernible repair or regression. Small muted footer inherited. Equality of hashes is separate; direct observation establishes current layout, not improved reader comprehension."
+    },
+    {
+      "id": "E3",
+      "kind": "corrected-derivative visual observation plus native text and notes",
+      "before": {
+        "artifact": "before\\application-observations.json",
+        "slide": 3,
+        "pointer": "/slides/2/shapes/31",
+        "object": "id 33 Text 31",
+        "text": "本轮停在 explain-check：它不导入、不执行 PPTX 作者模块，也不检查实际画面。"
+      },
+      "A": {
+        "artifact": "A\\application-observations.json",
+        "slide": 3,
+        "pointer": "/slides/2/shapes/31",
+        "object": "id 33 Text 31",
+        "text": "explain-check 只查结构与声明：不导入、不执行 PPTX 作者模块，也不检查实际画面。"
+      },
+      "B": {
+        "artifact": "B\\application-observations.json",
+        "slide": 3,
+        "pointer": "/slides/2/shapes/31",
+        "object": "id 33 Text 31",
+        "text": "explain-check 只查结构、研究绑定与声明覆盖；不执行作者模块，也不判断画面是否清楚。"
+      },
+      "retained_relations": "All application /slides/2/shapes/5-29 preserve question→research→init→author and static check→separate permission→rendered review labels/connectors. Geometric objects do not prove visible clarity.",
+      "notes": "before/A line 7983 and B line 8152 in respective ooxml.json, /slides/2/notes/0/paragraphs/0, notesSlide3.xml. A substitutes general permission/review distinction; B still appends this revision's historical-image/source-check status.",
+      "dossier": "report.md 用户旅程 and 运行时实现与宿主职责; research.json /claims/6 c-limits.",
+      "visual_locator": "visual-observations.json /pages/2/later_targeted_review; comparisons-pixel-exact/slide-03.png BEFORE/A/B",
+      "assessment": "Both visibly replace 本轮停在 with legitimate topic-level checker limitations; B explicitly names binding/coverage and A preserves non-import/no-image-inspection detail. Four cards and gap-positioned arrows plus separate permission step remain legible and unclipped. A better removes this-revision bookkeeping from notes. General actual-QA guidance is a strength, not a production defect."
+    },
+    {
+      "id": "E4",
+      "kind": "DIRECT SCALED-HISTORY VISUAL plus prior application geometry/OOXML/frozen evidence",
+      "before": {
+        "artifact": "before\\application-observations.json",
+        "slide": 4,
+        "pointer": "/slides/3/shapes/5",
+        "object": "id 7 Table 0",
+        "top_pt": 187.2,
+        "height_pt": 245.52,
+        "next_object": "/slides/3/shapes/6 id 8 Text 5 top=433.44"
+      },
+      "A": {
+        "artifact": "A\\application-observations.json",
+        "slide": 4,
+        "pointer": "/slides/3/shapes/5",
+        "object": "id 7 Table 0",
+        "top_pt": 169.2,
+        "height_pt": 245.52,
+        "calculated_bbox_gap_pt": 18.72
+      },
+      "B": {
+        "artifact": "B\\application-observations.json",
+        "slide": 4,
+        "pointer": "/slides/3/shapes/5",
+        "object": "id 7 Table 0",
+        "top_pt": 172.8,
+        "height_pt": 245.52,
+        "calculated_bbox_gap_pt": 15.12
+      },
+      "before_calculated_bbox_gap_pt": 0.72,
+      "table_locators": "Each OOXML /slides/3/objects/5/tables/0; row/column indices zero-based here. /rows/2/cells/1: before line10401 不同编辑保存在同一记录中; A line10477 and B line10646 我方改 timeout；对方改 retries\\n两处修改之间有未变内容. /rows/1 retains 30/30/60/result60; /rows/2/cells/2 retains timeout60/retries4; /rows/3 retains diff3/HEAD/no new merge node. Three columns and three data rows retained.",
+      "notes": "notesSlide4.xml paragraph0: before line10958; A line11072 adds 30→60 and 2→4, unchanged intervening content and anti-generalization; B line11241 retains seed note.",
+      "dossier": "report.md Git：按钮展示已有记录; research.json /claims/5 c-git; evidence id e-git content line330, RECORDS[1] and COPY.zh.apart.explanation; content hash 1d736dbcb733be140b77ace306b228cda8c6795f3bb850b3ca1eb8b0e6779d87.",
+      "later_targeted_observation": {
+        "time": "2026-09-20T19:40:09+08:00",
+        "artifact": "comparisons\\slide-04.png",
+        "image_calls_this_turn": 1,
+        "before": "Bottom table border nearly meets 同步显示 sentence. Middle separated-edit cell is generic 不同编辑保存在同一记录中. All three cases and values legible, but adjacent explanation is cramped.",
+        "A": "Clear gap below table; explicit two-line 我方改 timeout；对方改 retries / 两处修改之间有未变内容. Rows, values and conflict results retained; no visible clipping or overlap. Same adjacent four-panel/commit/HEAD/index explanation. Caution changes 本轮 to 新的 Git 实验 while retaining prediction/correctness limits.",
+        "B": "Clear gap, slightly smaller than A; identical explicit separated-edit wording and retained rows/results. No visible clipping/overlap. Same adjacent explanation; caution retains 本轮 Git 实验. Both small footers are separate beneath warning.",
+        "limits": "Old composite later identified as uniformly scaled, not cropped: this is scaled-image evidence, not full-resolution inspection. Small footer not audited word by word. No human-comprehension/manual-usability conclusion; not inferred from source."
+      },
+      "assessment": "Both visibly improve table/adjacent-explanation clearance and separated-edit specificity at the observed scaled size while retaining readable rows/conditions. A's slightly larger gap does not establish a meaningful page winner; slide4 repair tie. No apparent page4 regression. Slide6 has separate later corrected-derivative evidence in E6."
+    },
+    {
+      "id": "E5",
+      "kind": "corrected-derivative visual observation plus native image/text/notes",
+      "before": {
+        "artifact": "before\\application-observations.json",
+        "slide": 5,
+        "pointers": [
+          "/slides/4/shapes/4",
+          "/slides/4/shapes/8",
+          "/slides/4/shapes/10"
+        ],
+        "objects": [
+          "id 6 Image 0",
+          "id 10 Text 7",
+          "id 12 Text 9"
+        ]
+      },
+      "A": {
+        "artifact": "A\\application-observations.json",
+        "slide": 5,
+        "pointers": [
+          "/slides/4/shapes/1",
+          "/slides/4/shapes/8"
+        ],
+        "text": "历史截图是插图，不是当前行为的验证；这是 off/on 示意，不是上一页的 timeout 记录。问号未揭示执行结果。"
+      },
+      "B": {
+        "artifact": "B\\application-observations.json",
+        "slide": 5,
+        "pointers": [
+          "/slides/4/shapes/8",
+          "/slides/4/shapes/10"
+        ],
+        "text": "我方回到基线；对方仍不同。图中未揭示合并结果。此图与上一页不是同一记录；图片内部不可编辑，右侧说明可编辑；此图不验证当前行为。"
+      },
+      "media": "All ooxml.json /binary_parts/ppt~1media~1image-5-1.png hash a6d591c09cc6523fb827a8127239864689561805206adfed5e988c4e27bb7861, 27051 bytes. Image shape unchanged at 583.2×328.05 points.",
+      "notes": "before/A/B /slides/4/notes/0/paragraphs/0, notesSlide5.xml, lines12598/12790/12881 respectively: unchanged statement of ordinary file, same mode, no rename/custom driver; off/on not timeout; no result inference; no external source/license verification and no presumed publication permission.",
+      "dossier": "report.md Git section supports record/current-behavior boundary, not a new measurement. Specific supplied illustration context comes from unchanged seed image/notes, not an independent Dossier experiment.",
+      "visual_locator": "visual-observations.json /pages/4/later_targeted_review; comparisons-pixel-exact/slide-05.png BEFORE/A/B",
+      "assessment": "All show historical off/off/on/? illustration, no result disclosure, separate Chinese explanation and image-internals/native distinction. A prominently explains different off/on versus timeout records but displaces explicit Chinese base-comparison prompt; B explains ours returned to base/theirs differs and puts different-record condition in smaller strip. Both valid, complementary strengths. Small illustration source line not exhaustively read and presentation-distance readability unverified. Source/license nonvalidation in note5 is a legitimate provenance caution, not automatically a stale deck-production defect."
+    },
+    {
+      "id": "E6",
+      "kind": "corrected-derivative visual table-clearance observation plus prior application geometry/native table",
+      "before": {
+        "artifact": "before\\application-observations.json",
+        "slide": 6,
+        "pointer": "/slides/5/shapes/5",
+        "object": "id 7 Table 0",
+        "top_pt": 183.6,
+        "height_pt": 290.88,
+        "warning_top_pt": 468,
+        "calculated_bbox_gap_pt": -6.48
+      },
+      "A": {
+        "artifact": "A\\application-observations.json",
+        "slide": 6,
+        "pointer": "/slides/5/shapes/5",
+        "object": "id 7 Table 0",
+        "top_pt": 169.2,
+        "height_pt": 279.36,
+        "warning_top_pt": 468,
+        "calculated_bbox_gap_pt": 19.44
+      },
+      "B": {
+        "artifact": "B\\application-observations.json",
+        "slide": 6,
+        "pointer": "/slides/5/shapes/5",
+        "object": "id 7 Table 0",
+        "top_pt": 183.6,
+        "height_pt": 256.32,
+        "warning_top_pt": 468,
+        "calculated_bbox_gap_pt": 28.08
+      },
+      "table_locators": "Each OOXML /slides/5/objects/5/tables/0/rows/0-4, three columns. Before table starts line14788; A14980; B14843. A row3/cell2 line15609 uses 用原生作者函数编写\\n文本、形状、表格与连线. B row1/cell1 line15067 shortens HTML to 主动比较、展开说明；可支持双语; row1/cell2 line15118 retains interaction/feedback/path; row3/cell2 line15434 native text/shapes/table/connectors; row4/cell2 line15592 逐帧配合叙述，而非整页淡入. PNG actual reading-size qualification retained.",
+      "notes": "notesSlide6.xml paragraph0 before15837/A16029/B15778; B elaborates author-organized HTML and native author functions. All retain not a performance ranking, not every task needs four outputs.",
+      "dossier": "report.md 为什么四种媒介需要四次创作; research.json /claims/3 c-media and /claims/9 c-image.",
+      "visual_locator": "visual-observations.json /pages/5/later_targeted_review; comparisons-pixel-exact/slide-06.png BEFORE/A/B",
+      "assessment": "BEFORE table contacts warning; A/B both visibly restore cream gap, retain all four roles/rows and no apparent clipped text. A preserves fuller multiline wording. B makes body cells single-line with larger table-warning gap and no apparent font shrink; omits explicit 条件 in HTML cell and author-function wording in PPTX cell but preserves interaction/native roles and note6 elaborates. B has modest layout advantage, not a semantic deletion failure. Small footer/warning proximity inherited. Actual fonts and presentation-distance readability unverified."
+    },
+    {
+      "id": "E7",
+      "kind": "corrected-derivative visual observation plus native text and notes",
+      "before": {
+        "artifact": "before\\application-observations.json",
+        "slide": 7,
+        "pointers": [
+          "/slides/6/shapes/7",
+          "/slides/6/shapes/9",
+          "/slides/6/shapes/11",
+          "/slides/6/shapes/12"
+        ]
+      },
+      "A": {
+        "artifact": "A\\application-observations.json",
+        "slide": 7,
+        "pointers": [
+          "/slides/6/shapes/7",
+          "/slides/6/shapes/9",
+          "/slides/6/shapes/11",
+          "/slides/6/shapes/12"
+        ]
+      },
+      "B": {
+        "artifact": "B\\application-observations.json",
+        "slide": 7,
+        "pointers": [
+          "/slides/6/shapes/7",
+          "/slides/6/shapes/9",
+          "/slides/6/shapes/11",
+          "/slides/6/shapes/12"
+        ]
+      },
+      "retained_conditions": "Runtime structure/research/coverage and receipt identities versus host evidence/language/permission/actual operation; local permission; Node host privileges not sandbox; narration versus external voice-processing permission.",
+      "dossier": "report.md 运行时实现与宿主职责; research.json /claims/7 c-execution and /claims/11 c-host.",
+      "visual_locator": "visual-observations.json /pages/6/later_targeted_review; comparisons-pixel-exact/slide-07.png BEFORE/A/B",
+      "assessment": "All three actually show identical well-separated runtime/host panels with six contained single-line items, readable execution/non-sandbox/video-permission distinctions, no clipping/collision. Unchanged inherited success, not repair gain. These checks/permissions are legitimate Aha subject matter. A removes note7's 本轮没有执行这些流程; B retains it, but that sentence alone is not penalized as a deck self-report because its workflow/research referent is ambiguous."
+    },
+    {
+      "id": "E8",
+      "kind": "DIRECT SCALED-HISTORY VISUAL plus native text, notes and Dossier",
+      "before": {
+        "artifact": "comparisons\\slide-08.png",
+        "slide": 8,
+        "panel": "BEFORE",
+        "objects": "before/application-observations.json /slides/7/shapes/8,9,11,12,13 (ids10,11,13,14,15)"
+      },
+      "A": {
+        "artifact": "comparisons\\slide-08.png",
+        "slide": 8,
+        "panel": "A",
+        "objects": "A/application-observations.json same pointers and ids"
+      },
+      "B": {
+        "artifact": "comparisons\\slide-08.png",
+        "slide": 8,
+        "panel": "B",
+        "objects": "B/application-observations.json same pointers and ids"
+      },
+      "notes": "before/A/B OOXML /slides/7/notes/0/paragraphs/0, ppt/notesSlides/notesSlide8.xml, lines19609/19801/19550.",
+      "dossier": "report.md 运行时实现与宿主职责 and 语义复核、未决项与停止理由; research.json /claims/6 c-limits and /claims/11 c-host.",
+      "observation": "Directly visible three-box closing page in all panels. Main text fits, separated rows and warning, no apparent clipped text/overlap. A replaces delivery status with static-check limits and actual-review requirements. B distinguishes historical supplied PowerPoint evidence from this revision, but leaves 本轮仅改源码 and 修订后仍待审阅 on-slide. All preserve evidence/QA distinctions.",
+      "assessment": "A preferred for topic/production separation: checker/review/reader-observation are valid subject matter. B's 本轮仅改源码 and historical-input/prospective-rerender language explicitly concerns THIS revision and remains an undated author-stage checkpoint in the later exported deck. It should be labeled as that checkpoint or moved to production notes, without claiming export means QA passed. B's careful historical/current distinction is acknowledged. Scaled image only; no full-resolution, presentation-distance or reader-effect claim."
+    },
+    {
+      "id": "E9",
+      "kind": "supplied application observation, not manual test",
+      "before": "before/application-observations.json /edits/0-1",
+      "A": "A/application-observations.json /edits/0-1; A/outputs/editing-probe.pptx listed in stage.json",
+      "B": "B/application-observations.json /edits/0-1; B/outputs/editing-probe.pptx listed in stage.json",
+      "observation": "Microsoft PowerPoint 16.0 COM export and copy editing/save/reopen. Slide1 id2 text and slide4 id7 row1 col1 table header appended [edit probe], persisted=true. originalUnchanged=true. /unperformed explicitly lists human comprehension, manual editing usability and visual judgment.",
+      "assessment": "Representative edit persistence retained in both, not new repair gain. Probe-added text is not an original-slide defect. These observations alone do not validate visual outcome."
+    },
+    {
+      "id": "E10",
+      "kind": "notes separation audit",
+      "before": "before/ooxml.json /slides/1,2,4,6,7/notes/0/paragraphs/0; notesSlide2,3,5,7,8.xml; lines4436,7983,12598,17775,19609",
+      "A": "A/outputs/ooxml.json corresponding pointers; lines4436,7983,12790,17967,19801",
+      "B": "B/outputs/ooxml.json corresponding pointers; lines4605,8152,12881,17716,19550",
+      "dossier": "report.md 用户旅程, 运行时实现与宿主职责, 语义复核、未决项与停止理由: structural checks, execution permission and actual observation are distinct.",
+      "assessment": "A's notes3/8 now explain Aha rather than narrating this deck's checkpoint; B's notes3/8 explicitly retain this-revision/historical-input/prospective-rerender workflow in the same speaking paragraph without historical checkpoint labeling. B's more accurate author-stage distinction is acknowledged, not treated as false QA approval. Initial blanket criticism of notes2/5/7 withdrawn: hash preservation, frozen-research nonexecution and source/license caveats are legitimate content. Note5 is not failed merely for production-related words. Neither output proves author tool/process compliance or actual image access."
+    }
+  ],
+  "paired_dimensions": [
+    {
+      "id": "table-clearance-repair",
+      "A_status": "verified",
+      "B_status": "verified",
+      "A_delta": "improved",
+      "B_delta": "improved",
+      "paired": "B",
+      "evidence": [
+        "E4",
+        "E6"
+      ],
+      "reason": "Both fix slide4 table/explanation contact, effectively tied there at scaled-history viewing size. Both fix slide6 table/warning contact in corrected derivative; B additionally has single-line cells and more whitespace with roles/conditions preserved. Modest visible-layout preference, not proof of superior comprehension."
+    },
+    {
+      "id": "conditions-retained",
+      "A_status": "verified",
+      "B_status": "verified",
+      "A_delta": "improved",
+      "B_delta": "improved",
+      "paired": "tie",
+      "evidence": [
+        "E1",
+        "E2",
+        "E4",
+        "E5",
+        "E6",
+        "E8"
+      ],
+      "reason": "Both retain core limitations and promote different-record/separated-edit qualifications onto the slide. B keeps page1 non-template boundary and page5 Chinese base bridge; A gives different-record qualification greater prominence. No hidden conclusion-reversing condition found at reviewed scales."
+    },
+    {
+      "id": "stage-notes-separation",
+      "A_status": "verified",
+      "B_status": "failed",
+      "A_delta": "improved",
+      "B_delta": "mixed",
+      "paired": "A",
+      "evidence": [
+        "E3",
+        "E8",
+        "E10"
+      ],
+      "reason": "A better replaces this-deck source-only/pending-render checkpoint with topic guidance. B more carefully distinguishes historical inputs but retains explicit this-revision checkpoint on slide8/notes3/8. Topic-level QA and provenance limitations are not penalized; earlier note5 blanket failure withdrawn."
+    },
+    {
+      "id": "scope-data-native-preservation",
+      "A_delta": "unchanged",
+      "B_delta": "unchanged",
+      "paired": "tie",
+      "evidence": [
+        "E4",
+        "E5",
+        "E6",
+        "E9"
+      ],
+      "reason": "Eight pages, supported values, two native tables, same historical image. Inherited preservation, not first-pass gain."
+    },
+    {
+      "id": "no-ungrounded-claims",
+      "A_status": "verified",
+      "B_status": "verified",
+      "A_delta": "unchanged",
+      "B_delta": "unchanged",
+      "paired": "tie",
+      "evidence": [
+        "E1",
+        "E3",
+        "E4",
+        "E5",
+        "E6",
+        "E8"
+      ],
+      "reason": "Substantive topic changes supported by frozen evidence and labeled historical illustration; no new measurement/current-behavior promotion. Process self-reports remain separately unverified and B's deck-stage ambiguity is scored under separation."
+    },
+    {
+      "id": "repair-process",
+      "A_delta": "unverified",
+      "B_delta": "unverified",
+      "paired": "undetermined",
+      "evidence": [],
+      "reason": "Author transcripts/check/approval logs not reviewed; cannot pass source-process compliance."
+    },
+    {
+      "id": "source-support",
+      "A_status": "verified",
+      "B_status": "verified",
+      "A_delta": "unchanged",
+      "B_delta": "unchanged",
+      "paired": "tie",
+      "evidence": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5",
+        "E6",
+        "E7",
+        "E8"
+      ],
+      "reason": "Reviewed changes retain frozen Dossier support and units, historical illustration remains illustration. Not external source/license revalidation or a source-process audit."
+    },
+    {
+      "id": "visible-explanation",
+      "A_status": "verified",
+      "B_status": "verified",
+      "A_delta": "improved",
+      "B_delta": "improved",
+      "paired": "tie",
+      "evidence": [
+        "E1",
+        "E3",
+        "E4",
+        "E5",
+        "E6",
+        "E8"
+      ],
+      "reason": "B stronger on opening skill choice, page5 Chinese base bridge and less wrapped media table; A stronger on closing general explanation and prominent different-record distinction. Both improve table mechanism text. Actual reader understanding not tested."
+    },
+    {
+      "id": "native-content",
+      "A_delta": "unchanged",
+      "B_delta": "unchanged",
+      "paired": "tie",
+      "evidence": [
+        "E4",
+        "E5",
+        "E6",
+        "E9"
+      ],
+      "reason": "Meaningful native roles retained and supplied probes persist; no manual usability inference."
+    },
+    {
+      "id": "cjk-layout",
+      "A_status": "unverified",
+      "B_status": "unverified",
+      "A_delta": "improved",
+      "B_delta": "improved",
+      "paired": "undetermined",
+      "evidence": [
+        "E1",
+        "E4",
+        "E6",
+        "E8"
+      ],
+      "reason": "Actual visible gaps improve in both; B page6 fewer wraps, B page1 tighter bottom padding. No apparent final main-text clipping at reviewed scales. Broad font-substitution/original-resolution/presentation-distance criteria remain unverified; not an overall font-layout pass."
+    },
+    {
+      "id": "process-boundary",
+      "A_delta": "unverified",
+      "B_delta": "unverified",
+      "paired": "undetermined",
+      "evidence": [],
+      "reason": "Source/process evidence absent from review."
+    },
+    {
+      "id": "overview-mechanism",
+      "A_status": "verified",
+      "B_status": "verified",
+      "A_delta": "improved",
+      "B_delta": "improved",
+      "paired": "B",
+      "evidence": [
+        "E1",
+        "E2",
+        "E3",
+        "E7",
+        "E8"
+      ],
+      "reason": "Both visibly preserve Dossier/author/coverage/check/permission/actual-review roles and hash-not-truth boundary. B explicitly selects skills without input→research-only arrow. A's closing topic explanation is better, scored separately. Mechanism preference is artifact-level only."
+    },
+    {
+      "id": "overview-snapshot",
+      "A_delta": "unchanged",
+      "B_delta": "unchanged",
+      "paired": "tie",
+      "evidence": [
+        "E1",
+        "E4",
+        "E7",
+        "E8"
+      ],
+      "reason": "Text retains frozen date and source/record/current-observation distinctions; no new ANC claims."
+    },
+    {
+      "id": "screenshot-boundary",
+      "A_status": "verified",
+      "B_status": "verified",
+      "A_delta": "improved",
+      "B_delta": "improved",
+      "paired": "tie",
+      "evidence": [
+        "E5"
+      ],
+      "reason": "Corrected page5 panels show historical status, unknown result, distinct example identity and image/native boundary. A uses main text for record distinction; B retains Chinese base explanation with distinction in smaller strip. Tiny source line/presentation-distance legibility and licensing remain unverified."
+    }
+  ],
+  "final_issues": {
+    "A": [
+      "Slide1 retains asymmetric input→research-only arrow although prose allows independent explain research; residual routing cue may suggest unnecessary sequencing. Seen in scaled-history image.",
+      "Slide1 no longer explicitly says not a template engine; general anti-automation remains elsewhere, so this is reduced local emphasis rather than a false deck-wide claim.",
+      "Slide5 makes different-record qualification prominent but removes explicit Chinese base-comparison prompt; English historical image and Chinese state list still carry the underlying facts.",
+      "Slide6 multiline cells remain contained/readable but less compact than B. Both table repairs now visibly verified at declared evidence scales.",
+      "Note5 source/license caution is legitimate provenance content; earlier characterization as a stage-separation failure is withdrawn."
+    ],
+    "B": [
+      "Slide8 本轮仅改源码 and prospective rerender checkpoint are not clearly labeled as earlier author-stage status in the subsequently delivered/exported deck; move or explicitly date that checkpoint without claiming export equals QA.",
+      "Notes3/8 mix this-revision production bookkeeping into speaking guidance. Do not extend this penalty to general QA, frozen-research limits or image licensing in other notes. Actual author-stage image inspection remains unverified.",
+      "Slide1 added selection label has tight bottom padding, although no clipping was observed in the scaled-history image.",
+      "Slide5 different-record condition is in the smaller warning strip rather than the larger explanatory body; readable here but lower prominence.",
+      "Slide6 compression omits explicit HTML 条件 and PPTX author-function wording on-slide; core roles retained and note6 elaborates, so this is a specificity trade-off, not unsupported data deletion."
+    ],
+    "both": [
+      "Inherited small muted source footers, close to warnings on tables, and tiny embedded image source text remain readability risks; no presentation-distance assessment.",
+      "All eight pages have observed panels, but pages1/4/8 are scaled history only; no full-resolution all-page QA, font-substitution pass, source-process pass, manual editing usability or human comprehension conclusion.",
+      "Historical illustration's public-release authorization not established.",
+      "No causal/stable Skill gain conclusion."
+    ]
+  },
+  "binary_summary": {
+    "A": {
+      "assessed": 9,
+      "passed": 9,
+      "failed": 0
+    },
+    "B": {
+      "assessed": 9,
+      "passed": 7,
+      "failed": 2
+    },
+    "interpretation": "Same nine bounded binary output criteria, including table6. Two stage-related binary failures are slide-level and notes-level manifestations, not two independent causal findings. This selected checklist does not count every trade-off or constitute aesthetic/overall ranking; paired evidence supports artifact-level tie despite different pass counts."
+  }
+}

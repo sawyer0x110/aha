@@ -174,6 +174,48 @@
     ]
   },
   {
+    "id": "pptx-chinese-capacity",
+    "skill": "aha-explain",
+    "priority": "pptx",
+    "prompt": "Create a Chinese native editable presentation explaining this technical mechanism to developers. Keep the long API identifiers and the important exception understandable at projected reading size, within an agreed short presentation budget.",
+    "materials": ["Reviewed technical Dossier with a long identifier and material exception", "Local CJK font", "Presentation application"],
+    "references": ["pptx.md", "visual-design.md", "artifact-qa.md", "execution.md"],
+    "manualChecks": [
+      "Connects page questions and takeaways to appropriate compositions rather than repeating one generic card layout.",
+      "Preserves the exception in visible content instead of moving the qualification exclusively into notes.",
+      "When capacity fails, tightens or recomposes before splitting or adjusting type; does not invent a defect to claim a repair.",
+      "Inspects actual Chinese and mixed-script rendering at delivery size; estimates and character counts are not visual acceptance."
+    ]
+  },
+  {
+    "id": "pptx-data-objects",
+    "skill": "aha-explain",
+    "priority": "pptx",
+    "prompt": "Explain the numerical comparisons in this supplied research as a Chinese editable PPTX. Include a chart and a comparison table that my team can update in PowerPoint, with the relevant units, scope, sources, and speaker notes.",
+    "materials": ["Reviewed Dossier containing actual numerical data and limitations", "Presentation application supporting chart and table edits"],
+    "references": ["pptx.md", "artifact-authoring.md", "artifact-qa.md", "execution.md"],
+    "manualChecks": [
+      "Uses native chart and table objects where requested, not pictures or collections of lines masquerading as data objects.",
+      "Checks chart series, categories, numbers, units and table cells against the supplied research without inventing measurements.",
+      "Keeps qualifications that change the interpretation visible, while notes supply supported explanation rather than new unsupported facts.",
+      "Actually edits representative chart/table data on a copy and distinguishes this evidence from counting OOXML objects."
+    ]
+  },
+  {
+    "id": "pptx-evidence-image-notes",
+    "skill": "aha-explain",
+    "priority": "pptx",
+    "prompt": "Create a Chinese presentation from this research and supplied historical screenshot. Explain what the screenshot illustrates without presenting it as current verification; retain editable explanations and useful speaking notes.",
+    "materials": ["Reviewed Dossier", "Licensed historical screenshot with essential labels and known provenance", "Presentation application"],
+    "references": ["pptx.md", "visual-design.md", "artifact-authoring.md", "artifact-qa.md"],
+    "manualChecks": [
+      "Chooses an image slot and crop that retain the screenshot's essential labels, context, and historical status.",
+      "Keeps surrounding explanatory text native and discloses that the screenshot's internal content is not independently editable.",
+      "Does not hide material limits in speaker notes or treat note-only content as visible-page coverage.",
+      "Records actual rendering and editing observations without claiming the historical image verifies a new execution."
+    ]
+  },
+  {
     "id": "approved-dynamic-video",
     "skill": "aha-explain",
     "priority": "video",

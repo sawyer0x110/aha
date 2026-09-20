@@ -1,0 +1,33 @@
+{
+  "stage": "runtime-implementation-regression",
+  "not_skill_effect_evidence": true,
+  "implementation": {
+    "producer": "Version/SHA-guarded persistent PptxGenJS 4.0.1 patch during installation and build; coordinated object IDs with media reservations and noncolliding slide-number allocation.",
+    "validation": "Namespace-aware generated-OOXML checks with slide/object/property locators; rejects duplicate nonvisual IDs, invalid text/table anchors, negative extents, malformed XML and unsupported AlternateContent shape trees before delivery.",
+    "limitations": "Targeted generated-output checks, not full OOXML schema validation, layout QA, semantic reconciliation or general connector/timing reference repair."
+  },
+  "integrated_validation": {
+    "command": "npm run build && npm run typecheck && node --import tsx --test tests\\pptx-runtime.test.ts tests\\artifacts.test.ts tests\\skills.test.ts tests\\pptx-skill-evaluation.test.ts tests\\example-identity.test.ts",
+    "build": "passed",
+    "typecheck": "passed",
+    "tests": 131,
+    "passed": 131,
+    "failed": 0,
+    "skipped": 0,
+    "unchanged_sealed_example_deliverables": 16
+  },
+  "implementation_agent_validation": {
+    "clean_npm_ci": "passed",
+    "focused_tests": 26,
+    "note": "Overlaps integrated tests; do not add these counts together."
+  },
+  "repair_harness_validation": {
+    "command": "node --import tsx --test tests\\pptx-repair-evaluation.test.ts",
+    "tests": 10,
+    "passed": 10,
+    "failed": 0,
+    "frozen_run_manifest_sha256": "19ae8071acbc36006f15019ea0e95089423e2b1bdceb3ef5a6b6e50a129a3199",
+    "integrity": "verified after relocating a newly added mutable host observation file outside the frozen evaluator tree; no frozen seed, task, guide or runtime bytes changed",
+    "initial_guard_failure": "An extra author-observations.json inside evaluator was correctly rejected as an inventory mismatch. The host record was moved to the enclosing second-round directory."
+  }
+}

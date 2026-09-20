@@ -1,0 +1,437 @@
+{
+  "scope": "Directly visible comparisons only; native/source/notes evidence recorded separately. BEFORE, A, B panels in that order. No execution or rerender.",
+  "composite_resolution_limitation": {
+    "reported_at": "2026-09-20T19:46:49+08:00",
+    "source": "Host notification; not independently tested in this review",
+    "affected_evidence": "All existing comparisons/ image observations, including later targeted pages1/4 and page8.",
+    "issue": "Host pixel comparison found that approximately 120-DPI source PNGs were drawn through a 96-DPI GDI path. Panels are uniformly scaled to 1280x720 within allocated 1600x900 areas, not cropped.",
+    "interpretation": "Preserve observed wording and spatial relationships as scaled-image evidence only. Existing composites are not full-resolution or pixel-exact; provenance's unscaled description is superseded by this host correction. Fine-detail and original-resolution legibility remain unverified.",
+    "originals": "Host reports original PowerPoint PNGs and decks untouched.",
+    "pending": "Host is preparing comparisons-pixel-exact with pixel verification. No new images opened and no grading/pair-review rewritten on this notification."
+  },
+  "final_summary": {
+    "finalized_at": "2026-09-20T19:56:11+08:00",
+    "coverage_interpretation": "All eight pages have an accepted visible observation. Pages2/3/5/6/7 use the corrected pixel-exact derivative; pages1/4/8 remain scaled-history observations only. No presentation-distance readability, 1:1 display magnification or original-resolution inspection of scaled pages is claimed.",
+    "history_policy": "Initial failed attempts, withdrawn observations and prior stage summaries below are preserved as history. Later accepted observations and this final coverage supersede their pending/unverified coverage statements, not their access-failure records.",
+    "actually_observed_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "unverified_pages": [],
+    "pixel_exact_derivative_observed_pages": [
+      2,
+      3,
+      5,
+      6,
+      7
+    ],
+    "scaled_history_only_observed_pages": [
+      1,
+      4,
+      8
+    ],
+    "attempts_per_page": 2,
+    "retry_status": "Initial-turn retries completed. A separately authorized later turn on 2026-09-20T19:40:09+08:00 used exactly one page-4 image call, with no retry.",
+    "evidence_correction": "Initial-turn evidence remains page8 attempt2 only. Earlier provisional descriptions remain withdrawn. A new, actually visible page4 composite was independently observed in the later bounded turn; its appended observation is new evidence, not reinstatement of withdrawn descriptions.",
+    "provenance": "comparisons/image-provenance.json /pages/7 binds the three page-8 originals, each SHA-256 5c639e335707196837b1b3b4c5dbefdc5a82176684d222a5bc41f7bf5b178de5. Composite SHA-256 441ab19b984af48086f17c249265963f19a021dbfee5085753b8a1946c40b9fb; recorded hashes not independently recomputed.",
+    "unchanged_is_not_gain": true
+  },
+  "observations": [
+    {
+      "page": 7,
+      "review_stage": "final missing-page targeted review, 2026-09-20T19:56:11+08:00",
+      "image_calls_this_turn": 1,
+      "image": "comparisons-pixel-exact/slide-07.png",
+      "derivative": "Corrected pixel-exact derivative per host panel-hash verification; displayed composite is not asserted to be at 1:1 screen magnification.",
+      "access": "visible",
+      "before": "Dark green page has the title 排查顺序：先还原三侧状态，再讨论修复 and a separated subtitle rejecting reliance on the last commit message or only two current files. Four pale-green numbers align with bold step labels on the left and two-line questions on the right. Small downward arrows occupy spaces between numbers, not labels. Rows cover real inputs, bases/path states, undo type, and expected results. Bold bottom line explicitly requires owner confirmation, project tests and code review, saying no conflict is only a starting point. Footer says these recommendations were not executed. No text overlap or clipping visible.",
+      "A": "Same title, subtitle, four numbered rows, arrow placement and right-column questions as BEFORE. All questions fit on two lines without colliding with adjacent rows. Bottom warning and footer remain separate; no visible text or layout change, overlap or clipping.",
+      "B": "Same visible wording and layout as BEFORE/A, including the unexecuted-recommendations footer. Number-to-step alignment and arrows remain clear, the two columns are separated, and the bottom warning stays apart from row4 and footer. No clipping, overlap or changed wrapping observed.",
+      "delta": {
+        "A": "Unchanged clear diagnostic sequence and visible validation boundary; retained seed success, not repair gain.",
+        "B": "Unchanged clear diagnostic sequence and visible validation boundary; retained seed success, not repair gain."
+      },
+      "retained_conditions": "Actual Git version/strategy/options and both commits must be identified; best common ancestors and three path states are queried; ordinary revert, merge revert and reset are distinguished; independent changes/conflict/business behavior require review. No-conflict is not sufficient and recommendations are explicitly unexecuted.",
+      "final_defects": "No concrete overlap, clipped text or broken diagram relationship observed. Footer is small and subdued relative to body in every panel. No observed regression. Presentation-distance readability and human comprehension not tested.",
+      "correspondence": "Same diagnostic sequence on page7 in BEFORE/A/B.",
+      "limits": "Exactly one image call this turn, no retry or other images. Cumulative coverage includes scaled-history pages1/4/8; those are not full-resolution or pixel-exact inspections.",
+      "remaining_unverified_pages": []
+    },
+    {
+      "page": 6,
+      "review_stage": "single-image corrected-derivative follow-up, 2026-09-20T19:54:29+08:00",
+      "image_calls_this_turn": 1,
+      "image": "comparisons-pixel-exact/slide-06.png",
+      "derivative": "Corrected pixel-exact derivative per host panel-hash verification; tool display magnification is not asserted to be 1:1.",
+      "access": "visible",
+      "before": "Title reads 名字都有 ours，作用范围却完全不同. Subtitle limits the explanation to normal ort three-way merging and warns that strategy/options changes invalidate copying the conclusion. Two aligned, separated colored cards contrast -s ours / 保留本侧整棵树 against -Xours / 仅在冲突区域偏向本侧. Left two-line body warns of ignoring other branches and losing desired changes; right two-line body says nonconflicting other changes still enter and this is not a universal protection switch. Both cards contain their text with clear padding. Beneath them, a single-line ort/default/recursive-since-v2.50.0 statement, smaller exclusion line and tiny source footer remain distinct.",
+      "A": "Same visible title, subtitle, card labels and body wording as BEFORE. Both cards retain matching top/bottom alignment, clear central gutter and contained two-line explanations. Lower version statement, exclusion line, source footer and page number remain separated. No visible clipping, overlap or changed line wrapping.",
+      "B": "Same visible wording and two-card composition as BEFORE/A. The right-card warning remains fully visible on two lines, and the left card retains the possible-loss warning. Clear gap below cards before the version statement; lower exclusions/footer do not collide. No visible clipping or overlap.",
+      "delta": {
+        "A": "Unchanged visible strategy distinction and clear layout; retained seed success, not repair gain.",
+        "B": "Unchanged visible strategy distinction and clear layout; retained seed success, not repair gain."
+      },
+      "retained_conditions": "Normal ort premise and strategy/option caveat remain reader-visible. -s ours concerns the entire local tree; -Xours concerns conflicting regions and still accepts nonconflicting other changes. Other strategies, submodules, complex renames and custom drivers remain outside the model's full validation scope.",
+      "final_defects": "No concrete clipping, overlapping text or excessive wrapping observed in any panel. The source footer is substantially smaller and lighter than body text, unchanged. No observed regression; projection readability and comprehension are untested.",
+      "correspondence": "Same strategy-versus-option comparison on page6 across BEFORE/A/B.",
+      "limits": "Exactly one image call, no retry or other images. Pages1/4/8 retain scaled-history limitations. Grading and pair-review not rewritten.",
+      "remaining_unverified_pages": [
+        7
+      ]
+    },
+    {
+      "page": 5,
+      "review_stage": "single-image corrected-derivative follow-up, 2026-09-20T19:52:00+08:00",
+      "image_calls_this_turn": 1,
+      "image": "comparisons-pixel-exact/slide-05.png",
+      "derivative": "Corrected pixel-exact derivative per host panel-hash verification. Pixel fidelity of the derivative does not imply 1:1 tool display magnification.",
+      "access": "visible",
+      "before": "Title asks whether undoing content or moving history pointers. Subtitle warns that identical-looking files do not imply identical ancestry. Three-column table has a dark header and three complete rows for ordinary revert, reverting a merge commit and reset. Explanation and caution cells wrap to two lines without crossing row borders: ordinary revert preserves original ancestry and --no-commit does not commit immediately; merge revert uses -m and retains merge ancestry; reset distinguishes commit and path forms. Brown bold warning below table rejects mechanical remerge/revert-the-revert and treating reset --hard as safe automatic repair. The warning is close to the table but separated by visible whitespace; source footer and page number are lower and separate.",
+      "A": "Same visible title, subtitle, three-column table and all operation/caution text as BEFORE. Two-line body cells remain contained within their rows, with no cut-off characters or overlapping borders. Brown warning retains a narrow but clear gap below the table. Footer does not collide with warning. No visible layout change.",
+      "B": "Same visible title, subtitle, complete table rows and brown warning as BEFORE/A. Row text remains contained, warning stays below the table without touching it, and footer/page number remain separate. No visible clipping, collision or changed wording.",
+      "delta": {
+        "A": "Unchanged complete table and safe neighboring-content clearance; retained seed success, not a new repair.",
+        "B": "Unchanged complete table and safe neighboring-content clearance; retained seed success, not a new repair."
+      },
+      "retained_conditions": "Ordinary revert is not permanent prohibition; --no-commit is an exception to immediate committing. Merge revert selects a mainline parent with -m and does not erase merge ancestry. Commit reset moves HEAD while path reset only changes the index. reset --hard is not presented as a safe automatic fix.",
+      "final_defects": "No concrete clipping, row overflow or overlap observed in any panel. Table-to-warning gap is modest and unchanged, but visibly clear. Source footer is much smaller and lighter than body text; projection readability untested. No observed regression.",
+      "correspondence": "Same three-operation comparison on page5 across BEFORE/A/B.",
+      "limits": "Exactly one image call, no retry or other images. Earlier pages1/4/8 remain scaled-history evidence only. No grading/pair-review rewrite.",
+      "remaining_unverified_pages": [
+        6,
+        7
+      ]
+    },
+    {
+      "page": 3,
+      "review_stage": "single-image corrected-derivative follow-up, 2026-09-20T19:49:47+08:00",
+      "image_calls_this_turn": 1,
+      "image": "comparisons-pixel-exact/slide-03.png",
+      "derivative": "Corrected pixel-exact derivative according to host panel-hash verification; reviewer observes the tool-displayed image, not a guarantee of 1:1 screen magnification.",
+      "access": "visible",
+      "before": "Title reads 撤销一个文件，不会抹掉其它路径的独立修改. Subtitle contrasts feature.txt's zero net local change with local.txt's retained local update. Five-column table has a dark header and three complete, single-line body rows: feature.txt off/off/on/on; local.txt old/local-update/old/local-update; remote.txt old/old/other-update/other-update. Clear whitespace separates the table from the bold file-mode/object-ID takeaway. Smaller condition line refers back to preceding ordinary-file conditions and explicitly warns against applying the fast path to changes in different regions of one file. Footer states this is an unrun illustrative inference. No clipping or overlap observed.",
+      "A": "Title becomes 此例按路径合并：两侧独立修改都能保留, explicitly limiting the claim to this example. Subtitle, complete table cells, table spacing and bold takeaway visibly match BEFORE. The lower line now spells out 三侧普通文件、模式相同，无重命名或自定义驱动 and retains that same-file different-region changes require content merging. This longer self-contained qualification remains a single readable line, separate from the footer. No clipping, collision or cramped table row observed.",
+      "B": "Title, subtitle, all table rows, bold takeaway and lower qualification visibly match BEFORE. The lower line still relies on 上述普通文件条件 while keeping the explicit fast-path warning. Table cells fit and the takeaway, qualification and footer remain separate. No visible clipping, overlap or layout regression.",
+      "delta": {
+        "A": "Visible claim scoping and self-contained conditions improve; table clearance and readable single-line rows remain unchanged safe, not a new table repair.",
+        "B": "Visibly unchanged from seed on this page; existing safe table layout retained, not repair gain."
+      },
+      "retained_conditions": "Ordinary-file scope and need for content merging within one file remain on all panels. A restates same-mode/no-rename/no-custom-driver conditions locally; BEFORE/B refer back to them. All retain non-experimental status in the footer.",
+      "final_defects": "No concrete clipping, overlapping text, hidden row or table-clearance defect observed. BEFORE/B's qualifier is less self-contained than A's. The small source footer remains subordinate; projection readability and human comprehension untested.",
+      "correspondence": "Same three-path table and explanatory role on page3 in all panels.",
+      "limits": "Exactly one image call, no retry or other images. Earlier pages1/4/8 remain scaled-history evidence only. Grading and pair-review deliberately unchanged.",
+      "remaining_unverified_pages": [
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "page": 2,
+      "review_stage": "single-image corrected-derivative follow-up, 2026-09-20T19:47:05+08:00",
+      "image_calls_this_turn": 1,
+      "image": "comparisons-pixel-exact/slide-02.png",
+      "derivative": "New pixel-exact derivative; host reports full 1600x900 panel ARGB hashes match original PowerPoint PNGs. Reviewer did not recompute hashes. Tool display size is distinct from derivative pixel fidelity.",
+      "access": "visible",
+      "before": "Title says 先沿历史找基点，再比较三侧内容. Subtitle defines best common ancestor and rejects most-recent-date/current-local-file substitutes. Diagram shows B off connected rightward to A on then R off, with a separate downward-then-right branch from B to T on. 本侧当前 sits beside R, 对侧当前 beside T. Arrowheads meet rectangle edges rather than covering labels. Explanatory line says arrows indicate earlier-to-later commits and R reverts A. Pale-green lower callout names B/R/T trees and consolidation of multiple best bases. All elements and footer are separate; no clipped text or crossing text observed.",
+      "A": "Same title, subtitle, B/A/R/T states, branch routing, current-side labels and multiple-base callout as BEFORE. White text in colored blocks is readable, arrows remain outside text, and diagram-to-caption/callout gaps remain clear. No visible clipping, overlap or wording change.",
+      "B": "Same visible wording, states, arrows and spacing as BEFORE/A. B-to-T branch remains distinct from B-to-A-to-R path. Caption, pale-green callout and source footer do not collide. No visible clipping or overlap.",
+      "delta": {
+        "A": "Unchanged visible mechanism diagram and clear layout; retained seed success, not repair gain.",
+        "B": "Unchanged visible mechanism diagram and clear layout; retained seed success, not repair gain."
+      },
+      "retained_conditions": "History identifies the best common ancestor; content inputs are B/R/T trees. Multiple best bases require a synthesized ancestor tree. Arrow direction is explicitly described as historical progression.",
+      "final_defects": "No concrete overlap, clipping or relationship-routing defect identified at the available display size. Source footer remains substantially smaller than body; projection readability and comprehension are untested.",
+      "correspondence": "Same history/base mechanism on page2 across all panels.",
+      "limits": "Exactly one image this turn, no retry, no additional source/Dossier reads. Grading and pair-review intentionally not updated pending coverage completion.",
+      "remaining_unverified_pages": [
+        3,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "page": 1,
+      "review_stage": "later single-image follow-up, 2026-09-20T19:46:25+08:00",
+      "image_calls_this_turn": 1,
+      "image": "comparisons/slide-01.png",
+      "access": "visible",
+      "before": "Dark-background question slide has three separated white cards labeled 基点 B, 本侧 ours, 对侧 theirs, displaying mode=off, mode=off, mode=on. Card descriptions explain shared-ancestor content, changing to on then reverting to off, and retaining off-to-on change. Bold conclusion says 本侧相对基点没变 → 采用对侧仍存在的 on. Ordinary-file/same-mode/no-rename/custom-driver/ort qualification and model-not-run disclaimer are visible below. No text clipping or overlapping cards observed.",
+      "A": "Same three-card arrangement and state values. Bold conclusion now says 此文件本侧等于基点 → 采用对侧的 on, narrowing the statement to this file. Qualification explicitly says 三侧均有此普通文件 and keeps same mode, no rename/custom driver and ort. Both qualification lines fit and remain separated from the small footer. No visible clipping or overlap.",
+      "B": "Adds a visible line above the cards: 示例文本：feature.txt 中的 mode=off / on；不是 Git 文件模式. It fits on one line but leaves only a narrow gap above the white cards, reducing local breathing room versus BEFORE/A. Card states and descriptions remain fully visible. Bold conclusion now says 该路径本侧相对基点没变 → 采用对侧 on. Lower qualification uses 文件模式相同 and explicitly says this is a model inference, not a Git experiment.",
+      "delta": {
+        "A": "Visible file-specific conclusion and explicit three-file-presence condition improve precision; layout remains clear.",
+        "B": "Visible example-text/file-mode distinction and path-specific conclusion improve precision; added line makes space immediately above cards tighter, without overlap or clipping."
+      },
+      "final_defects": "No clipped or overlapping text observed in any panel. B's new explanatory line sits close to card tops, a minor spacing tradeoff. Small muted footer remains in all three; projection readability not tested. BEFORE/A do not explicitly distinguish example mode text from Git file mode on this page.",
+      "retained_conditions": "All panels retain ordinary-file, same-mode, no-rename/custom-driver, ort and non-experimental-model caveats. A explicitly requires presence in all three states. B disambiguates file mode from example content.",
+      "correspondence": "Same original question and off/off/on model on page1 across all three panels.",
+      "limits": "Direct pixels from this single call only. No other images, retries, source reads or grading/pair-review updates this turn.",
+      "remaining_unverified_pages": [
+        2,
+        3,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "page": 4,
+      "review_stage": "later targeted review, 2026-09-20T19:40:09+08:00",
+      "image_calls_this_turn": 1,
+      "image": "comparisons/slide-04.png",
+      "access": "visible",
+      "before": "Title reads 两个当前值一样，换个基点就可能反转结果, while the subtitle explicitly says local stays off and other stays on. Four-column table has one header and two complete body rows: off/off未变/on已变/采用对侧on and on/off已变/on未变/保留本侧off. Table is separated from orange callout by clear whitespace. Callout heading gives off / manual / on without explicit roles; two body lines retain conditional conflict and business-correctness caveat. No visible table clipping or collision.",
+      "A": "Title reads 当前值不变，基点不同，结果就可能相反, removing equality-between-sides ambiguity. Table content and readable spacing are retained. Orange heading explicitly names 基点 off | 本侧 manual | 对侧 on; a separate body line explains that neither side equals base, followed by the same two uncertainty/testing lines. All text is visible, but the last line sits close to the orange box bottom; the callout is denser than BEFORE and B. No actual clipping or overlap observed.",
+      "B": "Title reads 本侧 off、对侧 on 不变，基点改变可反转结果, making the two fixed values explicit in the title. Same complete table and clear gap before orange callout. Orange heading labels 基点 off、本侧 manual、对侧 on and says cannot quickly choose a side, followed by two caveat lines. This is more compact than A, with more bottom breathing room. No visible clipping or overlap.",
+      "delta": {
+        "A": "Visible wording/role explanation improved; table clearance unchanged safe on this page; callout density increased and bottom padding reduced.",
+        "B": "Visible title and role explanation improved; table clearance unchanged safe on this page; callout remains compact."
+      },
+      "retained_conditions": "Table explicitly labels simple ordinary-file inference. Both outputs keep different changes do not necessarily conflict, and even clean text merge requires tests and code review to confirm business correctness. No condition is removed from this page.",
+      "final_defects": "A's callout bottom line is cramped but fully visible. Small source footer remains in all three. No table-clearance repair gain: seed table already visibly clear.",
+      "correspondence": "Same page4 base-change counterexample in BEFORE/A/B; no page shift.",
+      "limits": "Current supplied pixels only; not projection testing, comprehension testing, source-process compliance or evidence about any other page."
+    },
+    {
+      "page": 1,
+      "image": "comparisons/slide-01.png",
+      "access": "unverified",
+      "before": null,
+      "A": null,
+      "B": null,
+      "delta": {
+        "A": "unverified",
+        "B": "unverified"
+      },
+      "final_defects": "First tool response explicitly withheld pixels because of image limit. Prior purported observations were invalid and are withdrawn, not evidence. One targeted retry pending.",
+      "correspondence": "unverified"
+    },
+    {
+      "page": 2,
+      "image": "comparisons/slide-02.png",
+      "access": "unverified",
+      "before": null,
+      "A": null,
+      "B": null,
+      "delta": {
+        "A": "unverified",
+        "B": "unverified"
+      },
+      "final_defects": "Tool withheld pixels. Earlier description is withdrawn as invalid, not evidence. One targeted retry pending.",
+      "correspondence": "unverified"
+    },
+    {
+      "page": 1,
+      "attempt": 2,
+      "image": "comparisons/slide-01.png",
+      "access": "unverified",
+      "before": null,
+      "A": null,
+      "B": null,
+      "delta": {
+        "A": "unverified",
+        "B": "unverified"
+      },
+      "final_defects": "Retry also withheld pixels. Any earlier purported page-1 observation is withdrawn. No more retries.",
+      "correspondence": "unverified visually"
+    },
+    {
+      "page": 2,
+      "attempt": 2,
+      "image": "comparisons/slide-02.png",
+      "access": "unverified",
+      "before": null,
+      "A": null,
+      "B": null,
+      "delta": {
+        "A": "unverified",
+        "B": "unverified"
+      },
+      "final_defects": "Retry withheld pixels. Earlier purported page-2 observations withdrawn; no further retries.",
+      "correspondence": "unverified visually"
+    },
+    {
+      "page": 3,
+      "image": "comparisons/slide-03.png",
+      "access": "unverified",
+      "before": null,
+      "A": null,
+      "B": null,
+      "delta": {
+        "A": "unverified",
+        "B": "unverified"
+      },
+      "final_defects": "Tool withheld pixels; earlier purported observation withdrawn. One targeted retry pending.",
+      "correspondence": "unverified visually"
+    },
+    {
+      "page": 4,
+      "image": "comparisons/slide-04.png",
+      "access": "unverified",
+      "before": null,
+      "A": null,
+      "B": null,
+      "delta": {
+        "A": "unverified",
+        "B": "unverified"
+      },
+      "final_defects": "Tool withheld pixels; previous purported observations withdrawn. Targeted retry pending.",
+      "correspondence": "unverified visually"
+    },
+    {
+      "page": 3,
+      "attempt": 2,
+      "image": "comparisons/slide-03.png",
+      "access": "unverified",
+      "before": null,
+      "A": null,
+      "B": null,
+      "delta": {
+        "A": "unverified",
+        "B": "unverified"
+      },
+      "final_defects": "Retry withheld pixels; all earlier purported page-3 observations withdrawn. No further retries.",
+      "correspondence": "unverified visually"
+    },
+    {
+      "page": 4,
+      "attempt": 2,
+      "image": "comparisons/slide-04.png",
+      "access": "unverified",
+      "before": null,
+      "A": null,
+      "B": null,
+      "delta": {
+        "A": "unverified",
+        "B": "unverified"
+      },
+      "final_defects": "Retry withheld pixels. All earlier purported page-4 observations are withdrawn. No further retries.",
+      "correspondence": "unverified visually"
+    },
+    {
+      "page": 5,
+      "image": "comparisons/slide-05.png",
+      "access": "unverified",
+      "before": null,
+      "A": null,
+      "B": null,
+      "delta": {
+        "A": "unverified",
+        "B": "unverified"
+      },
+      "final_defects": "Tool withheld pixels; earlier purported observation withdrawn. One targeted retry pending.",
+      "correspondence": "unverified visually"
+    },
+    {
+      "page": 6,
+      "image": "comparisons/slide-06.png",
+      "access": "unverified",
+      "before": null,
+      "A": null,
+      "B": null,
+      "delta": {
+        "A": "unverified",
+        "B": "unverified"
+      },
+      "final_defects": "Tool withheld pixels; earlier purported observation withdrawn. Targeted retry pending.",
+      "correspondence": "unverified visually"
+    },
+    {
+      "page": 5,
+      "attempt": 2,
+      "image": "comparisons/slide-05.png",
+      "access": "unverified",
+      "before": null,
+      "A": null,
+      "B": null,
+      "delta": {
+        "A": "unverified",
+        "B": "unverified"
+      },
+      "final_defects": "Retry withheld pixels; all earlier purported page-5 observations withdrawn. No further retries.",
+      "correspondence": "unverified visually"
+    },
+    {
+      "page": 6,
+      "attempt": 2,
+      "image": "comparisons/slide-06.png",
+      "access": "unverified",
+      "before": null,
+      "A": null,
+      "B": null,
+      "delta": {
+        "A": "unverified",
+        "B": "unverified"
+      },
+      "final_defects": "Retry withheld pixels. All earlier purported page-6 observations withdrawn. No further retries.",
+      "correspondence": "unverified visually"
+    },
+    {
+      "page": 7,
+      "image": "comparisons/slide-07.png",
+      "access": "unverified",
+      "before": null,
+      "A": null,
+      "B": null,
+      "delta": {
+        "A": "unverified",
+        "B": "unverified"
+      },
+      "final_defects": "Tool withheld pixels. Earlier purported observations withdrawn. One targeted retry pending.",
+      "correspondence": "unverified visually"
+    },
+    {
+      "page": 8,
+      "image": "comparisons/slide-08.png",
+      "access": "unverified",
+      "before": null,
+      "A": null,
+      "B": null,
+      "delta": {
+        "A": "unverified",
+        "B": "unverified"
+      },
+      "final_defects": "Tool withheld pixels. Earlier purported observations withdrawn. One targeted retry pending.",
+      "correspondence": "unverified visually"
+    },
+    {
+      "page": 7,
+      "attempt": 2,
+      "image": "comparisons/slide-07.png",
+      "access": "unverified",
+      "before": null,
+      "A": null,
+      "B": null,
+      "delta": {
+        "A": "unverified",
+        "B": "unverified"
+      },
+      "final_defects": "Retry withheld pixels. All earlier purported page-7 observations withdrawn. No further retries.",
+      "correspondence": "unverified visually"
+    },
+    {
+      "page": 8,
+      "attempt": 2,
+      "image": "comparisons/slide-08.png",
+      "access": "visible",
+      "before": "Left dark green version card contains Git v2.55.0, truncated commit, tag date and material date. Right two bold evidence headings and two-line paragraphs are readable and separated. Conclusion beneath title fits. Small gray footer is distant from body; no clipping/overlap observed.",
+      "A": "Same title, left version card, evidence text and spacing as BEFORE. No new clipping or overlap observed.",
+      "B": "Same title, left version card, evidence text and spacing as BEFORE. No new clipping or overlap observed.",
+      "delta": {
+        "A": "unchanged",
+        "B": "unchanged"
+      },
+      "final_defects": "Footer remains tiny and gray relative to body. No concrete new defect or visible repair on this page. Audience/projection readability untested.",
+      "retained_conditions": "Manual and fixed source are same-project evidence, not independent experiment. No new Git experiment; xdiff/drivers/all topologies not audited. Five tags do not establish full maintenance-version survey.",
+      "correspondence": "Same conclusion/evidence-boundary page across all three panels."
+    }
+  ]
+}

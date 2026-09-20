@@ -1,0 +1,106 @@
+{
+  "label": "A",
+  "stage": "technical-repair",
+  "scope": "Blind output review of supplied PowerPoint-exported PNGs, OOXML extraction, application observations and frozen research only. No source inspection, rerender, deck edit, network access or artifact execution. Binary counts are not an overall quality score.",
+  "expectations": [
+    {
+      "text": "Git 机制、示例状态、版本和操作区别得到冻结材料支持；不把模型或源码静态阅读称为本轮 Git 实测。",
+      "passed": true,
+      "evidence": "Slides 1–8 repeatedly label the content '冻结材料，非本轮实验'. Slide 3 table reproduces feature.txt off/off/on → on plus independent local.txt and remote.txt updates; slide 4 gives on/off/on → off and only possible conflict. Slides 5–6 distinguish operations and strategies; slide 8 pins v2.55.0 and static source reading. Anchors: research.json c-return, c-independent, c-counter, c-conflict, c-revert, c-revert-merge, c-reset, c-strategy, c-version; report.md §§1–5. The historical author-delivery statement on slide 8 is separately qualified below."
+    },
+    {
+      "text": "基点与两侧当前状态之间的关系可见；普通 revert 示例推导为 off/off/on → on，解释不是重放提交或永久禁令；历史参与找基点。",
+      "passed": true,
+      "evidence": "Slide 1 objects 7–16 show B=off, ours=off, theirs=on, '本侧相对基点没有净变化' and '不是给内容下“永久禁入令”'. Slide 2 title states '历史用于找基点，三侧树用于合并内容'; its B→A→R and B→T diagram preserves the topology. Slide 2 notes explicitly say the inputs are B/R/T trees, '而不是顺序重放 A 和 R'. Anchors: c-base/e-code-base (merge-ort.c 5303–5450), c-return/e-code-select (1260–1455), e-strategy."
+    },
+    {
+      "text": "核心状态和因果解释使用原生文字、形状和有真实单元格的表格，而不是把整页内容扁平化为图片。",
+      "passed": true,
+      "evidence": "A/outputs/ooxml.json: slides 1–2 use sp text/shapes, slide 2 contains native line objects 6–8 and labeled commit-state objects; slide 3 graphicFrame table contains the supplied 4×5 path/state matrix. Slide 4's aligned native text cells express both counterexample rows correctly. No chart data are present or needed for this categorical model. This asserts object representation, not manual editing ease."
+    },
+    {
+      "text": "可观察的交付包含 5–8 页中文幻灯片及中文讲解备注，必要代码、产品名和来源定位保留原文。",
+      "passed": true,
+      "evidence": "A/outputs/slide-01.png through slide-08.png and ooxml.json slides 1–8: eight pages, Chinese audience text and substantive Chinese notes on every page; mode=off/on, Git, ort and source URLs are technical exceptions. This does not verify the author's main.mjs, metadata, tool use or stopping behavior."
+    }
+  ],
+  "summary": {
+    "binary_expectations_assessed": 4,
+    "passed": 4,
+    "failed": 0
+  },
+  "criteria": [
+    {
+      "criterion": "冻结来源支持与研究身份",
+      "status": "pass",
+      "rationale": "Git explanation and counterexamples match the frozen dossier. No claim of a new Git execution or independent experimental corroboration. Version limits and partial source coverage are documented; source URLs are treated as supplied citations, not fetched evidence.",
+      "locators": ["A/outputs/ooxml.json slides 1–8 text/notes", "research/research.json claims c-version through c-strategy", "research/report.md 来源可见范围、反向核对与限制"]
+    },
+    {
+      "criterion": "机制与推理桥梁",
+      "status": "partial",
+      "rationale": "The sequence from three states to ancestry, per-path selection and changed-base counterexample is sound. Slide 4's heading '两个当前值相同' is ambiguous: ours and theirs differ; they are held fixed across the two cases. Subtitle and rows resolve the ambiguity, so this is a wording defect rather than an incorrect model.",
+      "locators": ["A/outputs/slide-01.png", "A/outputs/slide-02.png", "A/outputs/slide-03.png", "A/outputs/slide-04.png; OOXML slide 4 objects 3,5,12–19", "research/research.json c-counter"]
+    },
+    {
+      "criterion": "决定结论的限定在画面上可见",
+      "status": "partial",
+      "rationale": "Major qualification-placement issue: slide 1 only says '在这个限定案例中' without displaying what the limits are. Same file mode, no renames/custom driver and usual two-branch ort conditions are specified in slide 1 notes, not beside the main conclusion. Slide 8 eventually displays ordinary-file/ort scope and unverified drivers/renames, but never visibly states the same-file-mode assumption. Slide 3's same-file-content shortcut also leaves the mode/object-ID and same-file-region distinction to notes. Readers can apply the visible rule too broadly. Move a concise scope strip onto slides 1 and 3; do not remove the useful notes.",
+      "locators": ["A/outputs/slide-01.png; OOXML objects 15–16 and notes", "A/outputs/slide-03.png; OOXML objects 5,8 and notes", "A/outputs/slide-08.png object 9", "research/research.json c-return.limitations, c-independent.limitations, e-code-select", "research/report.md §2"]
+    },
+    {
+      "criterion": "操作、策略、反例和业务正确性边界",
+      "status": "pass",
+      "rationale": "Slides 4–6 distinguish possible from inevitable conflict, ordinary and merge revert, reset commit/path forms, -s ours and -Xours. Slide 8 visibly states '没有文本冲突 ≠ 业务逻辑正确'; slide 7 requires tests and review. No universal safe repair command is promised. Core ordinary-file applicability visibility is assessed separately.",
+      "locators": ["A/outputs/slide-04.png through slide-08.png", "research/research.json c-conflict, c-revert, c-revert-merge, c-reset, c-strategy"]
+    },
+    {
+      "criterion": "原生对象与语义适配",
+      "status": "pass",
+      "rationale": "Native labeled commit nodes/lines, the per-path table, and paired strategy panels are appropriate to this nonquantitative explanation. Slide 4's shape-based matrix is semantically correct, although a native table would better preserve row/column structure when extended. No credit is awarded for shape count.",
+      "locators": ["A/outputs/ooxml.json slides 2,3,4,6 objects", "A/outputs/slide-02.png through slide-04.png", "A/outputs/slide-06.png"]
+    },
+    {
+      "criterion": "当前 PowerPoint 导出中的中文可读性与关系图",
+      "status": "pass",
+      "rationale": "All eight actual individual PNGs were inspected at their supplied full size. Main Chinese text, code values, table rows and parent-to-child direction labels are readable. No blocking clipping, missing Chinese glyphs, content overlap or contradictory graph edge was observed. Source footers are noticeably smaller and suited to close reading rather than projection. This is specific to these exports, not every display or font environment.",
+      "locators": ["A/outputs/slide-01.png through slide-08.png", "A/outputs/ooxml.json fonts Microsoft YaHei and Consolas"]
+    },
+    {
+      "criterion": "备注有助于讲解且不代替关键画面限定",
+      "status": "partial",
+      "rationale": "Notes add valuable mode-content versus Git-mode clarification, no replay, per-path versus per-line distinctions, merge-revert caveats and source ranges. However, some conclusion-changing assumptions reside only there (qualification issue above). Slide 8 also retains an author-stage claim of no generated binary and pending review, which needs a stage label now that repaired artifacts and COM exports are supplied.",
+      "locators": ["A/outputs/ooxml.json slide 1 notes", "A/outputs/ooxml.json slides 2–5 notes", "A/outputs/slide-08.png object 10 and slide 8 notes", "A/application-observations.json"]
+    },
+    {
+      "criterion": "代表性对象的程序化编辑持久化",
+      "status": "pass",
+      "rationale": "The supplied PowerPoint 16.0 record reports a text edit on slide 1 and table-cell edit on slide 3 persisted after save/reopen on a copy; the original was unchanged. This is limited evidence of programmatic edit persistence, not a new author-skill runtime gain and not a manual usability test.",
+      "locators": ["A/application-observations.json edits[0] (slide 1, id 2)", "A/application-observations.json edits[1] (slide 3, id 6, row 1 column 1)"]
+    },
+    {
+      "criterion": "作者过程合规：输入、固定技能、main.mjs/元数据、静态停止、无安装或联网",
+      "status": "unverified",
+      "rationale": "Sources and execution history were intentionally outside this review. Slide notes' self-reports do not prove compliance; subsequent controlled repair/export must not be confused with author-stage activity.",
+      "locators": ["eval_metadata.json assertion 5 and stage", "A/outputs/ooxml.json slide 8 notes", "A/application-observations.json"]
+    },
+    {
+      "criterion": "容量修复与同页修复前后效果",
+      "status": "unverified",
+      "rationale": "No matched before/after slide exports or capacity-repair observations were supplied in the permitted scope. The current readable output does not demonstrate how a layout was repaired.",
+      "locators": ["A/outputs/slide-01.png through slide-08.png", "eval_metadata.json observation_policy"]
+    },
+    {
+      "criterion": "字体替代稳健性、人工编辑易用性与受众理解",
+      "status": "unverified",
+      "rationale": "Font declarations and one set of exports do not establish substitution behavior. The edit probes were programmatic; no human editing or comprehension results were observed. No pass or zero is assigned.",
+      "locators": ["A/outputs/ooxml.json limitations and font declarations", "A/application-observations.json method and unperformed"]
+    },
+    {
+      "criterion": "未经修复的首轮兼容性或新技能独立运行收益",
+      "status": "unverified",
+      "rationale": "This is explicitly a controlled technical-repair stage. Repaired rendering and COM persistence cannot establish first-pass success, skill identity, or an independent runtime improvement.",
+      "locators": ["eval_metadata.json stage=technical-repair", "A/application-observations.json"]
+    }
+  ]
+}

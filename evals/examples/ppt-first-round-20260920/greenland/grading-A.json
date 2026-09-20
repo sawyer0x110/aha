@@ -1,0 +1,121 @@
+{
+  "label": "A",
+  "stage": "technical-repair",
+  "scope": "Anonymous output review of supplied PowerPoint-exported PNGs, ooxml.json and application-observations.json against the frozen research. Not a review of authoring process or untouched first-pass compatibility.",
+  "expectations": [
+    {
+      "text": "成品为预算内的5–8页中文幻灯片，正文、图表分类、比较表和讲解备注采用中文，必要来源名和术语除外。",
+      "passed": true,
+      "evidence": "A/outputs/slide-01.png through slide-07.png and ooxml.json slides 1–7: seven slides; Chinese chart categories 格陵兰/非洲, Chinese table and substantive Chinese speaker notes."
+    },
+    {
+      "text": "核心地理结论、面积数值与单位、因果关系和用途取舍有冻结材料支持，没有把数学推导或历史来源记录冒称本轮地理实测。",
+      "passed": true,
+      "evidence": "Slides 1–2 state ordinary Mercator high-latitude enlargement and about fourteen times; slides 3–4 explain convergence, matching stretch and the local 60° example; slides 5–6 distinguish local conformality, rhumb lines and equal area. Notes explicitly attribute formula reasoning and earlier source access. Research anchors: c-area, c-cause, c-bridge, c-scale, c-navigation, c-poles, c-equal; e-greenland, e-africa, e-proj, e-mercator, e-flat, e-equalearth."
+    },
+    {
+      "text": "影响主结论的地图范围、局部倍率、面积口径和材料限制出现在幻灯片正文，而非只藏在备注。",
+      "passed": true,
+      "evidence": "s1: 这不是所有地图的共同问题. s2: 包括冰盖 / 并非出自统一的测量流程 / 不是轮廓装箱结论. s4: 球面墨卡托，赤道比例设为1 and 不能给整个轮廓套用一个统一倍率. s5: Web Mercator 的严格性质另有条件. s7: 官方2026年PDF正文未能提取 / 公开二手数字. Matches research c-area/c-scale/c-navigation and g-primary."
+    },
+    {
+      "text": "面积比较图缓存分类、数值、单位和近似结论与材料相符，比较表内容有实际意义。",
+      "passed": true,
+      "evidence": "s2 Chart 0 id 7 -> ppt/charts/chart1.xml, barChart: category cache [格陵兰, 非洲], value cache [2.17, 30.4], series 面积（百万平方公里）; visible caption adds 约数. Converted values 2,170,000 and 30,400,000 km² are permitted approximations to 2,166,086 and about 30,365,000; ratio 14.0092 supports 约14倍. Research report explicitly permits 217万/3040万. s6 Table 0 has five rows and three columns, comparing area, local angles/whole-continent shape, use and limitations; its contents match e-mercator/e-equalearth/e-flat. Caches are not an independent audit of the entire embedded workbook."
+    },
+    {
+      "text": "机制解释连接经线汇聚、图上经线等距、局部保角与纬线间距增加；局部面积倍率没有被当成整国统一倍率。",
+      "passed": true,
+      "evidence": "s3 title 经线在球面汇聚，在墨卡托图上却保持等距 and body 为保留局部角度，南北方向也要同步拉伸；高纬的纬线间距因此增大. s4 visible local/spherical/equatorial-baseline conditions and 2×2 area illustration; notes derive reciprocal-cosine linear scaling and its square. s5–6 explicitly say 恒向线通常不是最短路 and equal-area is not uniquely correct. Research e-proj, c-bridge, c-scale, c-navigation, c-equal."
+    },
+    {
+      "text": "面积图与比较表确为非空原生对象，核心几何示意不是整页截图。",
+      "passed": true,
+      "evidence": "ooxml.json: s2 graphicFrame Chart 0 linked to native barChart; s6 graphicFrame Table 0 with real table cells; s3–4 native sp line/ellipse/rect/chevron objects with editable text. Application observations separately record table-cell and s1 text persistence on a copy. The earlier chart probe proved workbook persistence only. chart-edit-followup.json results[label=A] now demonstrates programmatic native chart-data editing with explicit Chart.SetSourceData(A1:B3): saved/reopened B2=3.17 and independently inspected numeric cache [3.17,30.4] agree. This binary assertion remains scoped to native existence/content; neither manual usability nor automatic refresh is established."
+    },
+    {
+      "text": "成品不冒称直接核验官方PDF、精确轮廓装箱或已运行地理旋转实验。",
+      "passed": true,
+      "evidence": "s2 visibly rejects packing; s7 visibly discloses missing official PDF extraction; s3 says 关系示意，非真实地图；线条位置不可用于测量. s7 notes state 未获取地图边界，也未实现球面旋转动画. Research g-primary/g-animation and report sections 面积 / 数据与动画复现边界."
+    }
+  ],
+  "summary": {
+    "total": 7,
+    "passed": 7,
+    "failed": 0
+  },
+  "criteria": [
+    {
+      "name": "Evidence support and reasoning",
+      "status": "pass",
+      "rationale": "The ordinary-Mercator scope, statistics, causal bridge and purpose-dependent projection tradeoff are supported. Source dates are historical dossier dates, not new observations. A usefully exposes the non-unified measurement basis directly on the area slide.",
+      "locators": ["A/outputs/slide-01.png", "A/outputs/slide-02.png", "A/outputs/slide-03.png", "A/outputs/slide-04.png", "A/outputs/slide-05.png", "A/outputs/slide-06.png", "research/research.json: c-area through c-equal"]
+    },
+    {
+      "name": "Material qualifications",
+      "status": "pass",
+      "rationale": "Important conditions are audience-visible. The detailed secant derivation and Web Mercator explanation in notes expand rather than overturn the slides. The official-PDF limitation is visible on the closing slide.",
+      "locators": ["A/outputs/ooxml.json: slides 2, 4, 5, 7 paragraphs and notes", "research/research.json: g-primary, c-scale, c-navigation"]
+    },
+    {
+      "name": "Chinese readability and diagram clarity",
+      "status": "partial",
+      "rationale": "All seven actual full-size exported slide PNGs were inspected. The typography, chart labels and local-square mechanism are legible in this export. However s6's bold takeaway begins at the table's rendered bottom border: the border crosses the top of the takeaway text and leaves no visual separation. This is a visible minor layout defect, not a claim about a repair. The s3 schematic is explicitly qualitative, so it should not be treated as a coordinate-accurate graticule.",
+      "locators": ["A/outputs/slide-01.png through slide-07.png", "A/outputs/slide-06.png: Table 0 bottom border and Text 4 beginning 比较“谁更大”时", "A/outputs/slide-03.png: 关系示意 disclaimer"]
+    },
+    {
+      "name": "Native object semantics and structural hygiene",
+      "status": "partial",
+      "rationale": "The bar chart is appropriate for two published areas; the comparison table and schematic objects are meaningful. Yet s6 has duplicate object id 7 on graphicFrame Table 0 and sp Text 4. Use object kind and name as well as id to identify them. Unique IDs should be restored for reliable object addressing; no observed PowerPoint editing failure is inferred from this duplication.",
+      "locators": ["A/outputs/ooxml.json: slides[number=6].objects, Table 0 and Text 4 both id=7", "A/outputs/ooxml.json: charts ppt/charts/chart1.xml", "A/application-observations.json"]
+    },
+    {
+      "name": "Programmatic edit persistence versus workbook and human usability",
+      "status": "partial",
+      "rationale": "Earlier persisted=true remains evidence of workbook persistence only, with stale chart cache. The completed host follow-up demonstrates programmatic native chart-data editing: explicit Chart.SetSourceData(A1:B3) after the B2 change produces matching saved/reopened workbook and independently ZIP-inspected chart cache. This broader criterion remains partial because manual usability, automatic refresh, arbitrary workbook edits and comprehensive recalculation are not certified. Original delivered content is unchanged; the equally successful A/B follow-up provides no comparative advantage.",
+      "locators": ["A/application-observations.json: edits and unperformed", "A/outputs/ooxml.json: charts.ppt/charts/chart1.xml.cache_warning", "chart-edit-followup.json: method, results[label=A], earlierProbeLimitation, limit"]
+    },
+    {
+      "name": "Programmatic native chart-data edit with explicit source refresh",
+      "status": "pass",
+      "rationale": "The supplied completed host test changed s2 chart workbook B2 from 2.17 to 3.17, called Chart.SetSourceData(A1:B3), saved/reopened, and independently inspected the ZIP. Workbook B2=3.17 and chart numeric cache [3.17,30.4] match. This verifies that specific programmatic data-edit/cache-synchronization path, not manual editing usability, automatic refresh or a separately inspected post-edit rendered image.",
+      "locators": ["chart-edit-followup.json: method and results[label=A]"]
+    },
+    {
+      "name": "Useful notes and stage provenance",
+      "status": "partial",
+      "rationale": "Notes provide questions for the audience, the causal bridge, mathematical explanation and citations. They also retain unscoped source-delivery status: s7 says 未生成PPTX文件、未渲染 and 未做PowerPoint原生编辑QA, while the reviewed package has supplied PowerPoint exports and later programmatic-edit observations. Preserve these as dated authoring-stage statements or separate them from the later technical-review status; do not use them to infer process compliance or new runtime capability.",
+      "locators": ["A/outputs/ooxml.json: s2, s3, s4, s6 and s7 notes", "A/application-observations.json: method and edits", "eval_metadata.json: stage"]
+    },
+    {
+      "name": "Authoring process compliance",
+      "status": "unverified",
+      "rationale": "No generation sources, execution history, explain-check records or bundle identity were inspected. The output's seven-page budget is verified separately; restricted inputs, fixed skill use, installation/network abstention and stopping after static checks cannot be established from the final artifacts or self-report.",
+      "locators": ["eval_metadata.json: assertion 5", "A/outputs/ooxml.json: s7 notes"]
+    },
+    {
+      "name": "Capacity repair and repair effectiveness",
+      "status": "unverified",
+      "rationale": "No matched before/after same-slide evidence of a capacity repair is supplied in this scope. A visible defect is not evidence that a repair was attempted, and a clean slide is not evidence that a repair succeeded.",
+      "locators": ["eval_metadata.json: stage technical-repair", "A/outputs/slide-01.png through slide-07.png"]
+    },
+    {
+      "name": "Human understanding and manual usability",
+      "status": "unverified",
+      "rationale": "No human comprehension study or manual editing session is supplied. Programmatic changes do not establish either.",
+      "locators": ["A/application-observations.json: unperformed"]
+    },
+    {
+      "name": "Font substitution and portability",
+      "status": "unverified",
+      "rationale": "OOXML specifies Microsoft YaHei and the supplied export is readable. Cross-machine substitution, font availability and substitution-induced layout changes were not tested.",
+      "locators": ["A/outputs/ooxml.json: paragraph run fonts", "A/outputs/slide-01.png through slide-07.png"]
+    },
+    {
+      "name": "Untouched first-pass runtime compatibility or new-skill gain",
+      "status": "unverified",
+      "rationale": "This is controlled API technical repair. Later PowerPoint success is not an independently scored new-skill gain and does not establish untouched first-pass compatibility.",
+      "locators": ["eval_metadata.json: stage", "A/application-observations.json"]
+    }
+  ]
+}

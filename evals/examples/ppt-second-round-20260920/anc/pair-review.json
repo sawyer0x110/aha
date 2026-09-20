@@ -1,0 +1,891 @@
+{
+  "case_id": "anc",
+  "evaluation": "anonymous-repair-only-paired-review",
+  "winner": "A",
+  "reason": "Cumulative artifact inspection favors A: it repairs the central page-5 weakened-versus-residual false-dichotomy risk with two links and an explicit both-can-have-residue statement, and provides fuller beginner definitions on pages 2–3 without an observed layout regression. B usefully adds usually/manufacturer specificity on pages 1/6 and clearer path compensation on page 7, but leaves the page-5 ambiguity. Both retain safe native tables and scientific boundaries. This is a bounded qualitative preference for these observed artifacts, not an aesthetic numeric score or stable/causal Skill superiority; pages 1,5,7 were observed only in scaled-history composites.",
+  "review_scope": {
+    "root": "artifacts\\skill-evals\\ppt-second-round\\review\\anc",
+    "inputs": [
+      "eval_metadata.json",
+      "rubric.json",
+      "before\\research\\report.md",
+      "before\\research\\research.json",
+      "before\\research\\manifest.json",
+      "before\\ooxml.json",
+      "A\\outputs\\ooxml.json",
+      "B\\outputs\\ooxml.json",
+      "before\\application-observations.json",
+      "A\\application-observations.json",
+      "B\\application-observations.json",
+      "before\\stage.json",
+      "A\\stage.json",
+      "B\\stage.json",
+      "comparisons\\image-provenance.json",
+      "comparisons\\slide-01.png through slide-07.png",
+      "comparisons-pixel-exact\\slide-02.png",
+      "comparisons-pixel-exact\\slide-03.png",
+      "comparisons-pixel-exact\\slide-04.png",
+      "comparisons-pixel-exact\\slide-06.png",
+      "visual-observations.json cumulative successful observations"
+    ],
+    "source_projects_or_condition_identity": "Not accessed or inferred.",
+    "execution_rerender_network_deck_edits_subagents": "None.",
+    "source_code_review": "Not available in the permitted review bundle; source line locators and process compliance are unverified.",
+    "image_access": {
+      "actually_observed_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "actually_observed_panels": "BEFORE/A/B on every page number 1–7",
+      "unverified_pages": [],
+      "pixel_exact_derivative_pages": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "scaled_history_only_pages": [
+        1,
+        5,
+        7
+      ],
+      "initial_review_attempts": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 2,
+        "6": 2,
+        "7": 1
+      },
+      "later_targeted_review_attempts": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1
+      },
+      "failure": "In the initial review, pages 1–6 returned maximum-image-limit/no-image text on initial call and one targeted retry; those calls were not pixel access. Separate later user-authorized single-image turns supplied actual visible panels. Historical failures remain failures.",
+      "observation_record": "..\\visual-observations.json",
+      "correction": "Premature initial-review pixel descriptions for pages 1–6 were retracted. They remain invalid; current evidence for those pages derives only from later successful targeted observations. Original withdrawals remain in visual-observations.json.",
+      "full_page_visual_QA": "All page numbers observed at recorded display scales; NOT all pages inspected through pixel-exact derivatives. Fine typography, font substitution and human presentation-distance readability unverified. Export/edit persistence did not substitute for these observations."
+    },
+    "provenance": {
+      "method": "Mixed evidence: old comparisons panels are uniformly scaled to 1280x720 within 1600x900 allocations due to DPI handling, not cropped; they are NOT pixel-exact. New comparisons-pixel-exact panels are parent-reported ARGB-identical to original full 1600x900 PowerPoint PNGs. No new rendering or hash computation by this reviewer.",
+      "binding": "Old comparisons\\image-provenance.json /pages/0 through /pages/6 binds originals but its unscaled-method claim is superseded by host DPI finding. New derivative equality supplied by parent, not independently revalidated here.",
+      "observed_page7_composite_sha256": "aac7ffd0f8b84e8424d0d8775b1f3462c0d56fa08071e0bfc13287d6345d28b9",
+      "observed_page5_provenance_pointer": "comparisons\\image-provenance.json /pages/4; no new hash computation",
+      "stage_limit": "Stage files describe freshness as timestamps/receipt hashes, not signed image-to-deck binding."
+    },
+    "causal_inference": "Author-stage image access was incompletely confirmed across all runs. No full-process or stable causal Skill gain conclusion is supported.",
+    "human_comprehension": "unverified",
+    "human_presentation_distance_readability": "unverified",
+    "manual_editing_usability": "unverified"
+  },
+  "page_correspondence": [
+    {
+      "before": 1,
+      "A": 1,
+      "B": 1,
+      "topic": "飞机轰鸣 versus 人声",
+      "basis": "actual scaled-history pixels in later targeted review"
+    },
+    {
+      "before": 2,
+      "A": 2,
+      "B": 2,
+      "topic": "耳边目标位置声压叠加",
+      "basis": "actual pixel-exact-derivative panels"
+    },
+    {
+      "before": 3,
+      "A": 3,
+      "B": 3,
+      "topic": "时间误差与相位表",
+      "basis": "actual pixel-exact-derivative panels"
+    },
+    {
+      "before": 4,
+      "A": 4,
+      "B": 4,
+      "topic": "被动/主动比较表",
+      "basis": "actual pixel-exact-derivative panels"
+    },
+    {
+      "before": 5,
+      "A": 5,
+      "B": 5,
+      "topic": "人声衰减与残余",
+      "basis": "actual scaled-history pixels in later targeted review"
+    },
+    {
+      "before": 6,
+      "A": 6,
+      "B": 6,
+      "topic": "模式/佩戴/比较条件",
+      "basis": "actual pixel-exact-derivative panels"
+    },
+    {
+      "before": 7,
+      "A": 7,
+      "B": 7,
+      "topic": "结论与材料边界",
+      "basis": "actual scaled-history pixels and native text"
+    }
+  ],
+  "correspondence_changes": "None: all corresponding page numbers/topics observed, subject to mixed-resolution scope.",
+  "later_targeted_review": {
+    "historical_snapshot": true,
+    "time": "2026-09-20T19:40:09.058+08:00",
+    "authorization": "Bounded new-turn image check of comparisons\\slide-05.png only.",
+    "image_calls_this_turn": 1,
+    "other_images_or_retries": 0,
+    "new_source_or_dossier_reads": 0,
+    "immediate_record": "visual-observations.json /pages/4 updated immediately after successful visible image, before grading or pair-review updates.",
+    "scope": "Later page-5 pixel evidence supplements, not retroactively validates, the initial inaccessible calls.",
+    "targeted_page5_preference": "A",
+    "overall_winner": "undetermined",
+    "remaining_visually_unverified_pages": [
+      1,
+      2,
+      3,
+      4,
+      6
+    ]
+  },
+  "evidence": {
+    "e1-opening": {
+      "before": {
+        "artifact": "before\\application-observations.json",
+        "slide": 1,
+        "object_or_cell": "Text at lines 69,117,153",
+        "text": "主动降噪不是声音分类器; 一些成分较易主动控制; 仍听得见 ≠ 完全没减弱"
+      },
+      "A": {
+        "artifact": "A\\application-observations.json",
+        "slide": 1,
+        "object_or_cell": "same text objects, lines 69,117,153",
+        "text": "ANC acronym added; 低频成分较易主动控制; qualification retained"
+      },
+      "B": {
+        "artifact": "B\\application-observations.json",
+        "slide": 1,
+        "object_or_cell": "same text objects, lines 69,117,153",
+        "text": "低频成分通常较易控制; qualification retained"
+      },
+      "dossier": {
+        "artifact": "before\\research\\report.md",
+        "locator": "先回答; section 4 paragraph 1; research.json /claims/3"
+      },
+      "visual_locator": "comparisons\\slide-01.png BEFORE/A/B; visual-observations.json /pages/0/later_targeted_observations/0",
+      "observation": "Later scaled-history pixels verify both frequency-link improvements. A adds ANC acronym, B adds usually. Cards and audible-not-unattenuated qualification fit with no observed main-content overlap. B's usually is more explicitly bounded at this location; A retains broader qualifiers elsewhere."
+    },
+    "e2-mechanism": {
+      "before": {
+        "artifact": "before\\application-observations.json",
+        "slide": 2,
+        "object_or_cell": "lines 399,411,423",
+        "text": "Pressure sum; ideal same-frequency/equal-amplitude/opposite-phase; local/linear limitation"
+      },
+      "A": {
+        "artifact": "A\\application-observations.json",
+        "slide": 2,
+        "object_or_cell": "lines 399,411,423",
+        "text": "Defines same oscillation speed, equal pressure excursion and opposite changes in both directions"
+      },
+      "B": {
+        "artifact": "B\\application-observations.json",
+        "slide": 2,
+        "object_or_cell": "lines 399,411,423",
+        "text": "Defines opposite phase as equal pressure decrease while noise increases"
+      },
+      "notes": {
+        "part": "ppt/notesSlides/notesSlide2.xml",
+        "before": "before\\ooxml.json:3861",
+        "A": "A\\outputs\\ooxml.json:3941",
+        "B": "B\\outputs\\ooxml.json:3941",
+        "paragraph": "反相可理解为…; paths alter amplitude/phase; microphone/eardrum qualification"
+      },
+      "dossier": {
+        "artifact": "before\\research\\report.md",
+        "locator": "section 1 paragraphs 1–2; research.json /claims/0"
+      },
+      "visual_locator": "comparisons-pixel-exact\\slide-02.png BEFORE/A/B; visual-observations.json /pages/1/later_targeted_observations/0",
+      "observation": "Actual pixel-exact-derivative panels verify both improve the bold lower explanation. A defines matching oscillation speed/amplitude and opposite pressure changes in both directions; B defines opposite phase more concisely. Both two-line blocks fit, with separation from path caption and gray local/linear boundary. A is denser, not clipped. Pressure-sum and path diagram remain readable."
+    },
+    "e3-tables": {
+      "before": {
+        "artifact": "before\\ooxml.json",
+        "slide": [
+          3,
+          4
+        ],
+        "object_or_cell": "Table 0: slide 3 id 9, rows 1–3/columns 1–3; slide 4 id 7, rows 1–4/columns 1–3",
+        "source_lines_or_pointer": "cell text lines 5658–6079 and 8255–8910"
+      },
+      "A": {
+        "artifact": "A\\outputs\\ooxml.json",
+        "slide": [
+          3,
+          4
+        ],
+        "object_or_cell": "same tables/cells",
+        "source_lines_or_pointer": "cell text lines 5738–6159 and 8335–8990"
+      },
+      "B": {
+        "artifact": "B\\outputs\\ooxml.json",
+        "slide": [
+          3,
+          4
+        ],
+        "object_or_cell": "same tables/cells",
+        "source_lines_or_pointer": "cell text lines 5738–6159 and 8335–8990"
+      },
+      "application": {
+        "artifacts": [
+          "before\\application-observations.json",
+          "A\\application-observations.json",
+          "B\\application-observations.json"
+        ],
+        "pointers": [
+          "/slides/2/shapes/7",
+          "/slides/3/shapes/5"
+        ],
+        "recorded_bounds_pt_all_runs": {
+          "slide3": [
+            46.8,
+            269.28,
+            866.16,
+            136.08
+          ],
+          "slide4": [
+            46.8,
+            187.2,
+            866.16,
+            234.16
+          ]
+        },
+        "neighbor_locators": "all application records lines 513,537,549 and 615,639,651",
+        "warning": "Bounds and theoretical gaps are native evidence only, not observed row fit or real clearance."
+      },
+      "cells": {
+        "slide3": [
+          [
+            "声音分量",
+            "每秒振动次数",
+            "错开的相位角"
+          ],
+          [
+            "100 赫兹",
+            "100 次",
+            "3.6°"
+          ],
+          [
+            "1000 赫兹",
+            "1000 次",
+            "36°"
+          ]
+        ],
+        "slide4": [
+          [
+            "比较",
+            "被动隔音",
+            "主动降噪（ANC）"
+          ],
+          [
+            "怎么做",
+            "耳塞、耳罩和密封\n阻碍声音传入",
+            "扬声器加入控制声压\n力求在耳边抵消"
+          ],
+          [
+            "通常擅长",
+            "较高频率的衰减",
+            "低到中频的控制"
+          ],
+          [
+            "关掉 ANC 后",
+            "物理屏障仍在",
+            "不再靠主动控制减噪"
+          ]
+        ]
+      },
+      "dossier": {
+        "artifact": "before\\research\\report.md",
+        "locator": "section 2 hypothetical 0.10 ms paragraph; section 3; research.json /claims/1 and /claims/2"
+      },
+      "visual_locator": "comparisons-pixel-exact\\slide-03.png and slide-04.png BEFORE/A/B; visual-observations.json /pages/2/later_targeted_observations/0 and /pages/3/later_targeted_observations/0",
+      "observation": "Actual panels verify baseline and final tables are safe and unchanged, not newly repaired. Page 3 retains single-line cells, assumed 0.10 ms banner and separated lower warnings. Page 4 retains two-line method cells inside the taller row, other rows inside borders, and clearance to teal callout, gray qualification and footer. No hidden rows, clipping or font-shrink repair observed. A's added 360-degree cycle explanation fits without extra wrapping; B's is unchanged.",
+      "image_provenance_fact_only": "Page 4 original PNG hashes match in all three runs; page 3 BEFORE/B match. Hash identity does not establish safe visual layout.",
+      "source_geometry_lines": null
+    },
+    "e4-speech": {
+      "before": {
+        "artifact": "before\\application-observations.json",
+        "slide": 5,
+        "object_or_cell": "lines 789,813,837,849,861",
+        "text": "部分成分被削弱 / 其他成分仍有残余; occlusion terminology; external-speech limitation"
+      },
+      "A": {
+        "artifact": "A\\application-observations.json",
+        "slide": 5,
+        "object_or_cell": "lines 789,813,849,861,873",
+        "text": "More/less attenuation; 两类都可能有残余; everyday occlusion definition and external-speech limitation"
+      },
+      "B": {
+        "artifact": "B\\application-observations.json",
+        "slide": 5,
+        "object_or_cell": "lines 789,813,837,849,861",
+        "text": "Branch labels unchanged; everyday own-voice/ear-closure explanation added"
+      },
+      "notes": {
+        "part": "ppt/notesSlides/notesSlide5.xml",
+        "before": "before\\ooxml.json:11010",
+        "A": "A\\outputs\\ooxml.json:11203",
+        "B": "B\\outputs\\ooxml.json:11090",
+        "delta": "A explicitly says attenuation and residue are not mutually exclusive; B unchanged."
+      },
+      "dossier": {
+        "artifact": "before\\research\\report.md",
+        "locator": "section 4 paragraphs 1–2; research.json /claims/3"
+      },
+      "observation": "Later actual pixels verify BEFORE and B have only an orange outgoing arrow from 其他成分仍有残余 to the audible-residue conclusion, with no outgoing link from 部分成分被削弱. A visibly changes labels to more/less attenuation, connects both boxes to the conclusion, and adds 两类都可能有残余. This repairs an exclusive-looking residual relationship. Both A and B visibly improve the lower everyday occlusion explanation and retain external-speech-removal and not-amplified cautions. Main text, arrows, lower paragraph and footer do not visibly collide; B's longer first counterexample line fits.",
+      "visual_locator": "Scaled-history comparisons\\slide-05.png BEFORE/A/B panels; visual-observations.json /pages/4, later targeted review at 2026-09-20T19:40:09.058+08:00. Relationships observed at that scale; not full-resolution inspection.",
+      "visual_delta": {
+        "A": "improved",
+        "B": "mixed subcomponents: occlusion explanation improved, residual relationship unchanged; no observed layout regression"
+      },
+      "remaining": "B's one-branch outgoing relationship is a visual ambiguity, not an explicit claim that attenuation excludes residue. Fine typography and human comprehension remain unverified."
+    },
+    "e5-mode-scope": {
+      "before": {
+        "artifact": "before\\application-observations.json",
+        "slide": 6,
+        "object_or_cell": "lines 951–1083; no corresponding model-scope subtitle"
+      },
+      "A": {
+        "artifact": "A\\application-observations.json",
+        "slide": 6,
+        "object_or_cell": "line 939 added subtitle; lines 975–1107 retained content",
+        "text": "模式名称与可用功能依机型而异，并非每副耳机都有以下模式。"
+      },
+      "B": {
+        "artifact": "B\\application-observations.json",
+        "slide": 6,
+        "object_or_cell": "line 927 added subtitle; lines 963–1095 retained content",
+        "text": "以下模式以 Apple／Sony 所列设备为例；名称和可用功能因产品而异。"
+      },
+      "notes": {
+        "part": "ppt/notesSlides/notesSlide6.xml",
+        "before": "before\\ooxml.json:13588",
+        "A": "A\\outputs\\ooxml.json:13906",
+        "B": "B\\outputs\\ooxml.json:13793",
+        "paragraph": "Different products have different modes; historical prototype measurements, not current observation; future measurement requires separate approval"
+      },
+      "dossier": {
+        "artifact": "before\\research\\report.md",
+        "locator": "section 4 final paragraph and section 5; research.json /claims/4 and /claims/5"
+      },
+      "visual_locator": "comparisons-pixel-exact\\slide-06.png BEFORE/A/B; visual-observations.json /pages/5/later_targeted_observations/0",
+      "observation": "Actual panels verify both add a visible one-line product-applicability subtitle, with clearance from title and numbered columns. A says not every headset has these modes; B names Apple/Sony listed devices. Body wrapping, fit/leakage and same-source/same-wearing conditions remain clear. Lower historical-prototype/not-current-test/not-ranking boundary is retained with no collision. This is topical research qualification, not stale delivery-stage QA self-report."
+    },
+    "e6-conclusion-visible": {
+      "before": {
+        "artifact": "before\\slide-07.png",
+        "sha256": "1066860ab83aca497fea0554a5ae0f511e86bac2d7474b01485f5e640a4d070b",
+        "slide": 7,
+        "object_or_cell": "Middle 匹配 row; orange limitation; third residual row",
+        "native_locator": "before\\application-observations.json lines 1197,1209,1245,1257"
+      },
+      "A": {
+        "artifact": "A\\outputs\\slide-07.png",
+        "sha256": "1066860ab83aca497fea0554a5ae0f511e86bac2d7474b01485f5e640a4d070b",
+        "slide": 7,
+        "object_or_cell": "Same rows",
+        "native_locator": "A\\application-observations.json lines 1221,1233,1269,1281"
+      },
+      "B": {
+        "artifact": "B\\outputs\\slide-07.png",
+        "sha256": "c074f27bc46b6bb0a47b97faf20a9679c020faad341d4d2d7d71dda4bc45cce8",
+        "slide": 7,
+        "object_or_cell": "Middle 路径 row; orange limitation; third residual row",
+        "native_locator": "B\\application-observations.json lines 1209,1221,1257,1269"
+      },
+      "notes": {
+        "part": "ppt/notesSlides/notesSlide7.xml",
+        "before": "before\\ooxml.json:15731",
+        "A": "A\\outputs\\ooxml.json:16049",
+        "B": "B\\outputs\\ooxml.json:15936",
+        "paragraph": "Frozen sources accessed 2026-09-16, not new observation; model not product test"
+      },
+      "dossier": {
+        "artifact": "before\\research\\report.md",
+        "locator": "section 1 paragraph 1 (paths alter amplitude/phase); sections 4–5 (residue and unavailable personal measurements)"
+      },
+      "observation": "Actually visible in scaled-history comparison, not full-resolution inspection: A unchanged. B explicitly says control sound must compensate path-caused amplitude/phase changes. New middle sentence fits one line, no main-content clipping at inspected scale. Both retain partial speech attenuation and prominent no-personal-decibel-prediction caution. Sources are separate below. Small footer remains subordinate.",
+      "delta": {
+        "A": "unchanged",
+        "B": "improved"
+      }
+    },
+    "e7-notes-production": {
+      "parts": "ppt/notesSlides/notesSlide1.xml through notesSlide7.xml; each main notes paragraph",
+      "before": {
+        "artifact": "before\\ooxml.json",
+        "lines": [
+          1535,
+          3861,
+          6316,
+          9147,
+          11010,
+          13588,
+          15731
+        ]
+      },
+      "A": {
+        "artifact": "A\\outputs\\ooxml.json",
+        "lines": [
+          1535,
+          3941,
+          6396,
+          9227,
+          11203,
+          13906,
+          16049
+        ]
+      },
+      "B": {
+        "artifact": "B\\outputs\\ooxml.json",
+        "lines": [
+          1535,
+          3941,
+          6396,
+          9227,
+          11090,
+          13793,
+          15936
+        ]
+      },
+      "observation": "Notes are speaking guidance and scientific/evidence cautions. No newly completed render, static-validation or application-QA claim appears. A only materially expands slide-5 guidance. Research history and future separately approved acoustic measurements remain explicitly distinguished from current work. Context matters: selected historical chapters, model-not-test and not-this-round-acoustic-test wording delimit topical evidence, not stale delivery-stage self-report; no keyword-only penalty applied. Separation is inherited, not a new QA repair.",
+      "unverified": "Author QA/repair.json, source addNotes lines, production checklist, static-check transcript and approval files were not supplied in permitted reviewed material.",
+      "dossier": "before\\research\\report.md: 范围、方法和问题树; sections 2,4,5; 停止理由与尚未解决的问题"
+    },
+    "e8-native-application": {
+      "artifacts": [
+        "before\\application-observations.json",
+        "A\\application-observations.json",
+        "B\\application-observations.json"
+      ],
+      "pointers": [
+        "/application",
+        "/version",
+        "/method",
+        "/originalUnchanged",
+        "/edits/0",
+        "/edits/1",
+        "/unperformed"
+      ],
+      "observation": "PowerPoint 16.0 COM record reports exports, then representative copy edits saved/reopened: slide 1 id 2 text and slide 3 id 9 row1/column1 header. Both edits persisted in all stages and originals unchanged. Thus editability evidence is preserved, not a new improvement.",
+      "charts": {
+        "status": "not-applicable",
+        "evidence": "All three ooxml.json /charts are empty."
+      },
+      "historical_overview_image": {
+        "status": "not-applicable",
+        "evidence": "All three ooxml.json /binary_parts are empty; package_parts include no media. The generic rubric's approved historical overview image has no object in this ANC baseline."
+      },
+      "manual_usability": "unverified",
+      "visual_quality": "Not established by application export or edit probes."
+    }
+  },
+  "paired_dimensions": [
+    {
+      "id": "table-clearance-repair",
+      "A": {
+        "status": "verified",
+        "delta": "unchanged"
+      },
+      "B": {
+        "status": "verified",
+        "delta": "unchanged"
+      },
+      "paired_delta": "Tie in retained safe tables: actual page-3/4 panels show contained rows and clear neighbors before and after. No new table-clearance repair claimed.",
+      "evidence": [
+        "e3-tables"
+      ]
+    },
+    {
+      "id": "conditions-retained",
+      "A": {
+        "status": "verified",
+        "delta": "improved"
+      },
+      "B": {
+        "status": "verified",
+        "delta": "improved"
+      },
+      "paired_delta": "Both retain visible scientific conditions and add product scope on page 6. A makes both-branches residue explicit; B adds usually/manufacturer specificity. Mixed-resolution artifact evidence, not human distance readability.",
+      "evidence": [
+        "e1-opening",
+        "e2-mechanism",
+        "e3-tables",
+        "e4-speech",
+        "e5-mode-scope",
+        "e6-conclusion-visible"
+      ]
+    },
+    {
+      "id": "stage-notes-separation",
+      "A": {
+        "status": "unverified",
+        "delta": "unchanged"
+      },
+      "B": {
+        "status": "unverified",
+        "delta": "unchanged"
+      },
+      "paired_delta": "No new separation repair. Delivered notes preserve scientific boundaries; external production compliance unknown.",
+      "evidence": [
+        "e7-notes-production"
+      ]
+    },
+    {
+      "id": "scope-data-native-preservation",
+      "A": {
+        "status": "verified",
+        "delta": "unchanged"
+      },
+      "B": {
+        "status": "verified",
+        "delta": "unchanged"
+      },
+      "paired_delta": "No advantage: seven Chinese slides and native table data preserved; no baseline chart/image obligation.",
+      "evidence": [
+        "e3-tables",
+        "e8-native-application"
+      ]
+    },
+    {
+      "id": "no-ungrounded-claims",
+      "A": {
+        "status": "verified",
+        "delta": "unchanged"
+      },
+      "B": {
+        "status": "verified",
+        "delta": "unchanged"
+      },
+      "paired_delta": "Both supported in inspected output payload; neither promotes historical or model evidence to new measurement.",
+      "evidence": [
+        "e1-opening",
+        "e2-mechanism",
+        "e3-tables",
+        "e4-speech",
+        "e5-mode-scope",
+        "e6-conclusion-visible",
+        "e7-notes-production"
+      ]
+    },
+    {
+      "id": "repair-process",
+      "A": {
+        "status": "unverified",
+        "delta": "unverified"
+      },
+      "B": {
+        "status": "unverified",
+        "delta": "unverified"
+      },
+      "paired_delta": "No tool transcript/source review/approval evidence assessed; stage labels do not establish one revision, common runtime, permitted access or STOP.",
+      "evidence": [
+        "e7-notes-production"
+      ]
+    },
+    {
+      "id": "source-support",
+      "A": {
+        "status": "verified",
+        "delta": "unchanged"
+      },
+      "B": {
+        "status": "verified",
+        "delta": "unchanged"
+      },
+      "paired_delta": "Both preserve frozen-source support. Dossier manifest contentHash is supplied, not independently recomputed.",
+      "evidence": [
+        "e1-opening",
+        "e2-mechanism",
+        "e3-tables",
+        "e4-speech",
+        "e5-mode-scope",
+        "e6-conclusion-visible"
+      ]
+    },
+    {
+      "id": "visible-explanation",
+      "A": {
+        "status": "verified",
+        "delta": "improved"
+      },
+      "B": {
+        "status": "failed",
+        "delta": "improved"
+      },
+      "paired_delta": "A favored: clearer prerequisite terms/full-cycle reference on pages 2–3 and explicit two-branch residue on page 5. B improves phase/occlusion/path explanations but retains the page-5 relationship defect; failed denotes that remaining ambiguity, not absence of progress. B's page-7 summary is better. Human comprehension untested.",
+      "evidence": [
+        "e2-mechanism",
+        "e3-tables",
+        "e4-speech",
+        "e6-conclusion-visible"
+      ]
+    },
+    {
+      "id": "native-content",
+      "A": {
+        "status": "verified",
+        "delta": "unchanged"
+      },
+      "B": {
+        "status": "verified",
+        "delta": "unchanged"
+      },
+      "paired_delta": "Appropriate native tables and text retained; representative edits inherited and persistent; manual ease unknown.",
+      "evidence": [
+        "e3-tables",
+        "e8-native-application"
+      ]
+    },
+    {
+      "id": "cjk-layout",
+      "A": {
+        "status": "unverified",
+        "delta": "unchanged"
+      },
+      "B": {
+        "status": "unverified",
+        "delta": "unchanged"
+      },
+      "paired_delta": "No observed main-content clipping/overlap regression across all seven pages. Tables remain safe; expanded explanations and new subtitles fit. Broad status remains unverified for font substitution, fine typography and human presentation-distance readability; pages 1,5,7 are scaled history only.",
+      "evidence": [
+        "e2-mechanism",
+        "e3-tables",
+        "e4-speech",
+        "e5-mode-scope",
+        "e6-conclusion-visible"
+      ]
+    },
+    {
+      "id": "process-boundary",
+      "A": {
+        "status": "unverified",
+        "delta": "unverified"
+      },
+      "B": {
+        "status": "unverified",
+        "delta": "unverified"
+      },
+      "paired_delta": "Only delivered slide scope is verified. No source-process compliance inference.",
+      "evidence": [
+        "e7-notes-production"
+      ]
+    },
+    {
+      "id": "anc-mechanism",
+      "A": {
+        "status": "verified",
+        "delta": "improved"
+      },
+      "B": {
+        "status": "verified",
+        "delta": "improved"
+      },
+      "paired_delta": "Tradeoff: A visibly defines frequency/amplitude/phase more fully on page 2 and full-cycle reference on page 3; B makes path-induced changes more explicit on page 7. Both retain target-position pressure sum, path roles and ideal/local conditions.",
+      "evidence": [
+        "e2-mechanism",
+        "e3-tables",
+        "e6-conclusion-visible"
+      ]
+    },
+    {
+      "id": "anc-boundaries",
+      "A": {
+        "status": "verified",
+        "delta": "improved"
+      },
+      "B": {
+        "status": "verified",
+        "delta": "improved"
+      },
+      "paired_delta": "Both preserve visible active/passive, no-hard-cutoff, fit/mode, external-speech and personal-measurement limits; mode applicability improves. A further clarifies both branches may retain residue. B's relationship ambiguity is separately recorded as a failure, not erased by retention of explicit caveats.",
+      "evidence": [
+        "e3-tables",
+        "e4-speech",
+        "e5-mode-scope",
+        "e6-conclusion-visible"
+      ]
+    }
+  ],
+  "remaining_issues": [
+    {
+      "run": "both",
+      "issue": "Pages 1,5,7 were observed only as scaled-history composites; full-resolution detail is unverified. Pixel-exact derivatives were inspected on 2,3,4,6. No page number remains wholly unobserved.",
+      "kind": "resolution-limitation",
+      "locators": [
+        "visual-observations.json /cumulative_final_coverage"
+      ]
+    },
+    {
+      "run": "B",
+      "issue": "Later page-5 pixels confirm only the orange other-components-with-residue branch points to the audible-residue conclusion. The weakened-components branch remains disconnected, unlike A's two-arrow repair and explicit both-can-have-residue statement.",
+      "kind": "unchanged-visible-explanatory-ambiguity",
+      "locators": [
+        "comparisons\\slide-05.png B panel",
+        "e4-speech"
+      ]
+    },
+    {
+      "run": "both",
+      "issue": "Small sources/footer and gray qualifications are subordinate; no confirmed main-content clipping, but fine typography, font substitution and human presentation-distance readability remain unverified.",
+      "kind": "limited-visual-assessment",
+      "locators": [
+        "e3-tables",
+        "e5-mode-scope",
+        "e6-conclusion-visible"
+      ]
+    },
+    {
+      "run": "both",
+      "issue": "Source-process compliance, production records, manual usability and human comprehension unverified. Incomplete author-stage image-access confirmation is separate from current artifact observation.",
+      "kind": "evidence-gap",
+      "locators": [
+        "e7-notes-production",
+        "e8-native-application"
+      ]
+    }
+  ],
+  "final_visible_defects": "B retains page-5 exclusive-looking residual relationship. No concrete main-content clipping/overlap regression observed on any of the seven page numbers at the inspected scales. A page-2 explanation is denser but fits; page-4 short last qualification line is unchanged. These are not presentation-distance or all-pages-full-resolution claims.",
+  "verified_visible_repairs": [
+    {
+      "run": "A",
+      "slide": 1,
+      "repair": "Specifies low-frequency components and introduces ANC acronym; scaled-history evidence.",
+      "evidence": "e1-opening"
+    },
+    {
+      "run": "B",
+      "slide": 1,
+      "repair": "Specifies low-frequency components with usually qualifier; scaled-history evidence.",
+      "evidence": "e1-opening"
+    },
+    {
+      "run": "A",
+      "slide": 2,
+      "repair": "Defines matching frequency/amplitude and opposite pressure changes; expanded block fits.",
+      "evidence": "e2-mechanism"
+    },
+    {
+      "run": "B",
+      "slide": 2,
+      "repair": "Defines opposite phase in everyday pressure terms; expanded block fits.",
+      "evidence": "e2-mechanism"
+    },
+    {
+      "run": "A",
+      "slide": 3,
+      "repair": "Adds full-cycle 360-degree reference; table itself remains unchanged and safe.",
+      "evidence": "e3-tables"
+    },
+    {
+      "run": "A",
+      "slide": 5,
+      "repair": "More/less attenuation labels, two outgoing arrows and both-can-have-residue conclusion repair the residual relationship; all fit.",
+      "evidence": "e4-speech"
+    },
+    {
+      "run": "A",
+      "slide": 5,
+      "repair": "Everyday plugged-ear/own-low-frequency-voice explanation replaces unexplained occlusion shorthand; external-speech limitation retained.",
+      "evidence": "e4-speech"
+    },
+    {
+      "run": "B",
+      "slide": 5,
+      "repair": "Everyday ear-closure/own-low-frequency-voice explanation replaces unexplained occlusion shorthand; external-speech limitation retained.",
+      "evidence": "e4-speech"
+    },
+    {
+      "run": "A",
+      "slide": 6,
+      "repair": "Adds visible model-specific mode-applicability subtitle with clearance.",
+      "evidence": "e5-mode-scope"
+    },
+    {
+      "run": "B",
+      "slide": 6,
+      "repair": "Adds visible manufacturer/product-specific mode-applicability subtitle with clearance.",
+      "evidence": "e5-mode-scope"
+    },
+    {
+      "run": "B",
+      "slide": 7,
+      "repair": "Replaces vague matching summary with explicit path-induced amplitude/phase compensation; sentence fits in scaled-history evidence.",
+      "evidence": "e6-conclusion-visible"
+    }
+  ],
+  "verified_visible_regressions": [],
+  "numeric_aesthetic_composite": null,
+  "binary_counts": {
+    "A": {
+      "assessed": 8,
+      "passed": 8,
+      "failed": 0
+    },
+    "B": {
+      "assessed": 8,
+      "passed": 7,
+      "failed": 1
+    }
+  },
+  "counts_warning": "These are narrow assessed-output counts, not full-rubric scores, aesthetic scores or evidence of equal overall performance.",
+  "finalization": {
+    "time": "2026-09-20T19:54:29.273+08:00",
+    "last_image": "comparisons-pixel-exact\\slide-06.png",
+    "image_calls_this_turn": 1,
+    "immediate_record": "Page-6 pixels recorded in visual-observations.json before reading/updating grading or pair-review.",
+    "pixel_exact_derivative_pages": [
+      2,
+      3,
+      4,
+      6
+    ],
+    "scaled_history_only_pages": [
+      1,
+      5,
+      7
+    ],
+    "remaining_unobserved_page_numbers": [],
+    "previous_judgments": [
+      {
+        "stage": "Initial only-page-7 coverage",
+        "winner": "undetermined"
+      },
+      {
+        "stage": "Later page-5 targeted review",
+        "winner": "undetermined",
+        "note": "Historical snapshot above retained"
+      },
+      {
+        "stage": "All page numbers observed, mixed-resolution",
+        "winner": "A"
+      }
+    ],
+    "original_failures_and_withdrawals": "Preserved in image_access and visual-observations.json; successful later observations do not retroactively validate failed calls.",
+    "inference_limit": "Current anonymous artifact tradeoffs only. No stable/causal Skill superiority, author-process validation or human readability/comprehension result."
+  },
+  "stop": "Review artifacts saved; no execution, rerender or deck/source repair performed."
+}
