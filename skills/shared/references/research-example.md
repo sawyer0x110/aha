@@ -13,6 +13,12 @@ Start with two questions: the current review day and whether approval is establi
 
 No external search or repository execution belongs in this provided-only example. `researchLog` is empty because there are no real tool operations to record. Source versions identify the supplied notes; timestamps and hashes are unnecessary for these provided texts.
 
+### Why this follow-up, and when to stop
+
+After the first note, the tentative answer is "Monday; approval pending." Its date depends on the premise that no supplied revision supersedes it. Inspecting the supplied correction is the smallest sufficient check of that premise: a day-only correction changes the day, an explicit approval decision could also change approval, and an unrelated correction would leave both unchanged. The actual correction changes only the day. More copies of the first note would not resolve this version question.
+
+The final draft below records the revision and preserves the unresolved approval separately. Obtaining the authorized decision is a proposed next action in the gap, not a fabricated successful read. Stop after the two notes: the scheduling question is supported within the supplied-material scope, while approval cannot be settled by rereading them. No additional search or experiment is authorized or necessary for that bounded answer.
+
 ## Initialize and check unfinished work
 
 Use a new draft path:

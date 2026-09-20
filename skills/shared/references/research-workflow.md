@@ -16,11 +16,23 @@ Load only [public research](research-public.md), [codebase research](research-co
 
 For each bounded round:
 
-1. Read the most decision-relevant sources or code paths and record actual locators, identities, access/read extent, failures, and limitations. Record real timestamps where required for web evidence or executed logs; provided data does not require invented timestamps.
+1. Select the next evidence action using the decision rule below, then read the relevant sources or code paths and record actual locators, identities, access/read extent, failures, and limitations. Record real timestamps where required for web evidence or executed logs; provided data does not require invented timestamps.
 2. Update the claim/evidence ledger. Separate source assertions, observations, inferences, and explicit assumptions; retain supporting and contradicting evidence.
 3. Update each subquestion: answered, contradicted, unresolved, or outside scope. These are workflow concepts; use the actual schema's status values in the draft.
-4. Identify what would change the conclusion. Follow upstream citations, missing branches, disputed definitions, numbers, and alternative explanations with targeted follow-up.
+4. Revisit the premise tested: did the evidence support, contradict, narrow, or leave it unresolved? Change the answer accordingly, rather than preserving the original conclusion behind a disclaimer. Follow upstream citations, missing branches, disputed definitions, numbers, and alternative explanations with targeted follow-up.
 5. Reassess the budget and scope. Escalate consequential new permission or budget needs; do not silently expand access or turn a deep inquiry into an unlabelled summary.
+
+### Choose the smallest sufficient next check
+
+Start with the provisional answer and its most consequential unresolved premise. When orientation is missing, first make a bounded entry/source read; do not invent a hypothesis just to fill a template. Ask what evidence could change the main answer or distinguish reasonable competing explanations. Choose an authorized action sufficient to resolve that distinction; among comparably useful actions, prefer the lower cost. A cheap snippet is not sufficient when methods or surrounding code determine the claim.
+
+Before acting, identify the possible outcomes and how each would affect the conclusion. This is a decision rule, not a mandatory per-round table or extra document. Do not collect more same-lineage agreement in place of a missing reasoning link, demand a contrarian conclusion, or investigate an immaterial gap merely because it is easy.
+
+For example, when several summaries repeat a claimed benefit but the allocation method is unknown, read the original methods before collecting more summaries. Comparable randomized allocation could strengthen a causal interpretation; self-selection would require a narrower observational claim. Neither outcome alone settles every other causal assumption. If the necessary methods are inaccessible, keep that gap visible rather than treating failed access as evidence for either explanation.
+
+If only an experiment can resolve the distinction, existing read permission does not authorize execution. Describe the minimum proposed observation and required approval; remain read-only without adequate authorization/isolation. Stop when the scoped answer is supported and material counterevidence handled, or record the real access/tool/budget limit. Simple, adequately supported questions need no extra cycle.
+
+Keep consequential premises, alternative explanations, action rationale, and conclusion revisions in `report`; support/contradiction and read context in `evidence.summary`; bounded conclusions in `claims` and `limitations`; remaining unknowns and useful next actions in `gaps.description`. Only executed searches, reads, and failures belong in `researchLog`. Use existing contract fields and enum values, not new hypothesis or confidence-score fields. A log or schema pass cannot prove that a check was decisive.
 
 ## 3. Synthesize and reverse-check
 

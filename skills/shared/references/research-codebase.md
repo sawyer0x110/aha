@@ -10,10 +10,27 @@ Read [the shared workflow](research-workflow.md) first. Authorization to read a 
 - Cross-check tests, docs, configuration, and relevant history. A comment, test name, or commit message is a lead, not proof of current behavior. Follow assertions and actual code paths.
 - Record precise file/line or symbol locators and version/content identity for supporting and opposing evidence. External documentation does not prove a dirty local implementation matches it.
 
+## Match code claims to evidence
+
+Use the requirements relevant to the question, not a whole-repository checklist. Establish only the paths needed to support the claim at its stated scope. A locator identifies evidence; it does not establish that the evidence supports the wording.
+
+| Claim type | Evidence needed | If the link is missing |
+| --- | --- | --- |
+| A calls B | Actual call site and triggering condition; relevant registration or binding for dynamic dispatch. | State that the branch contains a call, not that every request reaches it. |
+| Data flows from A to Z | Relevant entry, transformations, storage/output, and branches that change the result. | Identify the last established hop; do not depict the rest as a confirmed chain. |
+| Configuration X controls Y | Default, applicable overrides/precedence, consumer, and effective branch. | Distinguish a declared option from an option consumed on this path. |
+| Cancellation prevents retry, or cleanup always happens | Signal propagation, relevant asynchronous boundaries, retry decisions, and exit/cleanup paths, including applicable failure branches. | Bound the conclusion to the traced conditions; one normal path cannot establish "always" or "never". |
+| A diff changes behavior | Both actual versions, a reachable affected path, and conditions under which outcomes differ. | Distinguish a textual change from an established behavior change. |
+| Code is unused | Call sites, registration, and relevant reflection/dynamic-loading mechanisms within a stated search scope. | Prefer "no caller found in the inspected scope"; a text search alone does not prove dead code. |
+
+For example, a pre-attempt cancellation check does not establish that cancellation during backoff promptly releases resources. The smallest relevant follow-up may be the wait-to-next-dispatch path, including signal propagation and cleanup. Missing a check in one function is not yet proof of a defect: inspect relevant delegated cancellation before concluding. Delayed cleanup and an extra send are different claims.
+
+Reverse-check a consequential guarantee against a plausible counterexample on its relevant path. If it survives, retain the supported scope; if it fails, revise or withdraw the guarantee. Do not force an unusual finding, exhaustive branch enumeration, a diagram, or a fixed number of rounds.
+
 ## Claims and observations
 
 Distinguish “source implies,” “test asserts,” “command was run,” and “runtime was observed.” Reading a test does not mean it passed. Source reading cannot establish live latency, production frequency, or environment-specific behavior.
 
 If an authorized experiment is necessary, first review the command and inputs, obtain explicit execution approval, and use an appropriately restricted environment. Record environment, input, exact command, output, and limitations. Do not execute untrusted source repository scripts, hooks, package installs, or binaries merely to improve research confidence. Without adequate permission/isolation, remain read-only and mark the missing observation.
 
-Reverse-check the central path and a plausible counterexample before concluding. Preserve scope gaps and version mismatches; do not merge incompatible observations into one apparently verified mechanism.
+Preserve scope gaps and version mismatches; do not merge incompatible observations into one apparently verified mechanism.

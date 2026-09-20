@@ -8,6 +8,7 @@
     "references": ["research-workflow.md", "research-public.md", "research-contract.md"],
     "manualChecks": [
       "Question tree evolves after the correction; actual queries, source reads, failures, and stopping reason are logged separately from plans.",
+      "Prioritizes original methods or corrections that can change the main answer over additional derivative agreement; records the consequential selection rationale without inventing executed searches.",
       "Reads methods and contrary evidence, follows primary citations, and does not count derivative articles as independent support.",
       "Reconciles units, denominators, population, time window, causal strength, and uncertainty in the direct answer.",
       "Reverse-checks consequential claims against source context; preserves gaps rather than manufacturing consensus.",
@@ -24,9 +25,38 @@
     "manualChecks": [
       "Fixes both diff endpoints and actual dirty content identities with accurate file/symbol locators.",
       "Uses bounded text navigation and traces definitions, callers, cancellation, retry state, cleanup, and a plausible counterexample.",
+      "Matches each consequential guarantee to its triggering conditions and relevant asynchronous/exit paths; distinguishes a missing local check from delegated cancellation, delayed cleanup from an extra send, and a textual diff from reachable behavior.",
       "Cross-checks tests and configuration while distinguishing source implications from observed execution.",
       "Does not run repository scripts, install navigation tools, or claim unread branches and unexecuted tests passed.",
       "Updates questions and contradictions, delivers remaining gaps and a defensible stopping reason."
+    ]
+  },
+  {
+    "id": "decisive-evidence-unavailable",
+    "skill": "aha-research",
+    "priority": "public",
+    "prompt": "Assess the supplied summary's claim that a pilot caused an improvement. Only this summary is authorized; its methods appendix is unavailable. Deliver a bounded investigation, with no network access or experiments.",
+    "materials": ["A synthetic summary reporting an observed improvement and referring to an unavailable allocation-methods appendix", "No original methods, independent observations, network access, or execution authorization"],
+    "references": ["research-workflow.md", "research-contract.md", "execution.md"],
+    "manualChecks": [
+      "Identifies the consequential missing premise and explains why another copy of the summary would not settle the causal interpretation.",
+      "Does not treat inaccessible methods as evidence that allocation was randomized or nonrandomized; limits the conclusion to supplied observations.",
+      "Names a minimum useful authorized follow-up or required permission in a gap; does not record a proposed read or experiment as executed.",
+      "Stops with an explicit access boundary rather than looping through redundant material, inventing sources, or claiming the causal question is answered."
+    ]
+  },
+  {
+    "id": "sufficient-evidence-stop",
+    "skill": "aha-research",
+    "priority": "public",
+    "prompt": "Using only the two supplied scheduling notes, give a short research report establishing the current review day and whether approval is established. No outside investigation is requested.",
+    "materials": ["Synthetic original note: review Monday, approval pending", "Synthetic correction: review Tuesday rather than Monday; the correction changes only the day"],
+    "references": ["research-workflow.md", "research-contract.md", "research-example.md"],
+    "manualChecks": [
+      "Uses the correction for the day without averaging revisions or inventing a calendar date; distinguishes scheduling from approval.",
+      "Preserves approval as unresolved with an explicit gap and useful next action rather than upgrading a scheduled review into authorization.",
+      "Ends after the supplied evidence resolves the bounded day question; no extra research cycle, forced competing hypothesis, or contrarian finding.",
+      "Delivers a concise readable report and honest source scope without mandatory per-round tables, diagrams, extra protocol fields, or fabricated logs."
     ]
   },
   {
