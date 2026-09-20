@@ -1,0 +1,252 @@
+{
+  "scope": "Direct visible-pixel observations only; composite labels identify BEFORE, A, B. Existing comparisons composites are scaled-image evidence, not full-resolution or pixel-exact evidence. Native data and notes are assessed separately.",
+  "composition_limitation": {
+    "reported_at": "2026-09-20T19:46:48.482+08:00",
+    "source": "Host report supplied by user; not independently tested in this review.",
+    "issue": "Original PNGs are approximately120 DPI, but GDI DrawImageUnscaled used96 DPI. Existing comparisons panels were uniformly scaled to1280x720 within allocated1600x900 regions, without cropping.",
+    "effect": "Preserve prior observed relationships as scaled-image evidence. Do not characterize these composites or their visual observations as full-resolution or pixel-exact. Fine typography, small gaps and other pixel-sensitive judgments are limited by scaling.",
+    "artifact_integrity": "Host reports original PowerPoint PNGs and decks untouched.",
+    "future_evidence": "At the time of this host report, comparisons-pixel-exact was pending and uninspected. Subsequent targeted observations of corrected derivatives are separately recorded below; the earlier limitation remains attached to comparisons/ history.",
+    "action": "At the time of this host-report turn, no additional images were requested and no grading or pair-report rewrites were performed."
+  },
+  "final_cumulative_review": {
+    "finalized_at": "2026-09-20T19:54:29.240+08:00",
+    "actually_observed_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "pixel_exact_derivative_pages": [
+      1,
+      2,
+      3,
+      5
+    ],
+    "scaled_history_only_pages": [
+      4,
+      6,
+      7
+    ],
+    "still_visually_unverified_pages": [],
+    "limitations": "Pages4,6,7 not inspected in full-resolution/pixel-exact derivatives. No human comprehension, manual usability, font-substitution or human presentation-distance test. Parent-reported corrected-panel verification not independently repeated. Original inaccessible calls and withdrawn provisional descriptions remain recorded.",
+    "interpretation_addendum": "Earlier page7 observations describe B's research-provenance/PDF-verification wording. Final contextual judgment does not classify that topical explanation as stale delivery-stage self-report merely because it says 本轮. Both remove actual stale source-only/not-rendered delivery notes. Original observations remain as history; the keyword-based failure is withdrawn in grading/pair judgment history.",
+    "final_turn_image_calls": "Exactly one, comparisons-pixel-exact/slide-05.png; recorded immediately before report finalization."
+  },
+  "pages": [
+    {
+      "slide": 1,
+      "image": "comparisons/slide-01.png",
+      "access": "inaccessible-after-single-targeted-retry",
+      "tool_result": "Viewed image file successfully. You've reached the maximum number of images you can view (1) so I can't provide the image for you to see.",
+      "before": null,
+      "A": null,
+      "B": null,
+      "delta_A": "unverified",
+      "delta_B": "unverified",
+      "remaining": "Earlier scaled-composite attempts supplied no pixels; their provisional descriptions remain withdrawn. See the later pixel-exact derivative observation below for newly established page1 visual evidence.",
+      "later_pixel_exact_review": {
+        "review_stage": "New user turn dated 2026-09-20T19:46:59.788+08:00; exactly one image-view call, solely this page, without retry.",
+        "image": "comparisons-pixel-exact/slide-01.png",
+        "access": "visible",
+        "provenance": "User reports parent verified every full1600x900 panel ARGB pixel hash against original PowerPoint PNGs. This review observed the new derivative; it did not independently recompute hashes. Older comparisons/ evidence remains scaled history.",
+        "before": "One-line dark teal question title sits above a two-column arrangement. Left bold answer wraps into two lines ending 放大越严重. Separate two-line body explicitly retains 这不是所有地图的共同问题. Right dark card has white 真实面积相比, large 约14倍, and 非洲 ÷ 格陵兰. The area-source/approximation line is below the left body; small projection sources and page1/7 occupy a separate bottom band. Main text, card and sources do not overlap or clip.",
+        "A": "Same visible title, two-line answer and two-line qualification as BEFORE. Ratio card retains numerator/denominator direction and approximate marker; its white text remains well separated inside the dark rectangle. Area-source line and bottom footer retain clear space. No visible content removal, shifted wrapping, clipping or overlap.",
+        "B": "Visually matches BEFORE and A in title, answer, qualification, card, source line and footer arrangement. The not-all-maps condition and approximate Africa/Greenland ratio remain readable. No visible clipping, collision or apparent text-size change.",
+        "delta_A": "unchanged",
+        "delta_B": "unchanged",
+        "paired": "No concrete visible A/B difference or regression. Retained seed quality, not a new repair.",
+        "remaining": "Bottom projection-source text is much smaller and lighter than main content; room-distance readability not tested. No concrete main-content defect observed.",
+        "coverage_after_this_turn": {
+          "pixel_exact_derivative_observed": [
+            1
+          ],
+          "scaled_history_observed": [
+            4,
+            6,
+            7
+          ],
+          "still_visually_unverified": [
+            2,
+            3,
+            5
+          ]
+        }
+      }
+    },
+    {
+      "slide": 2,
+      "image": "comparisons/slide-02.png",
+      "access": "inaccessible-after-single-targeted-retry",
+      "tool_result": "Viewed image file successfully. You've reached the maximum number of images you can view (1) so I can't provide the image for you to see.",
+      "before": null,
+      "A": null,
+      "B": null,
+      "delta_A": "unverified",
+      "delta_B": "unverified",
+      "remaining": "Earlier scaled-composite attempts supplied no pixels; their provisional descriptions remain withdrawn. Later pixel-exact derivative observation below supplies new page2 visual evidence.",
+      "later_pixel_exact_review": {
+        "review_stage": "New user turn dated 2026-09-20T19:49:47.918+08:00; exactly one image-view call, solely this page, without retry.",
+        "image": "comparisons-pixel-exact/slide-02.png",
+        "access": "visible",
+        "provenance": "New pixel-exact derivative per the user's parent-verified panel-hash report; hashes not independently recomputed here. Older comparisons/ observations retain their scaled-history limitation.",
+        "before": "One-line title states Africa's true area is approximately14 times Greenland's. The chart heading visibly specifies 面积（百万平方公里，约数）. Horizontal bars share an axis starting at0 with ticks through35: Africa's long upper bar has30.4 outside its right end, Greenland's short lower bar has2.17 outside its right end. Category labels, value labels and ticks are separated without collisions. Peach right-hand card visibly retains total-area-includes-icecap/not-only-ice-free, non-unified measurement workflow, and area-ratio-not-outline-packing qualifications. The final orange qualification wraps over two lines entirely inside the card. Footer sources and page2/7 are in a separate bottom band.",
+        "A": "Visually matches BEFORE in title, units, bar lengths, values30.4/2.17, zero-based axis, category labels and right-card line wraps. All three qualifications remain readable, including the orange area-ratio/not-packing statement. No chart/card overlap, label clipping or apparent font-size reduction observed.",
+        "B": "Visually matches BEFORE and A in the chart, unit/approximation heading, card contents and spacing. Long and short bars retain their common zero baseline and labels; all card text stays within the peach background. No clipping, overlap, changed wrap or concrete regression observed.",
+        "delta_A": "unchanged",
+        "delta_B": "unchanged",
+        "paired": "No concrete visible difference between BEFORE, A and B. Chart and reader-visible qualifications are retained seed successes, not newly repaired content.",
+        "remaining": "Source-footer text is substantially smaller than chart labels and card body. It is distinguishable in this displayed image, but projected-room readability is unverified. No concrete main-content defect observed.",
+        "coverage_after_this_turn": {
+          "pixel_exact_derivative_observed": [
+            1,
+            2
+          ],
+          "scaled_history_observed": [
+            4,
+            6,
+            7
+          ],
+          "still_visually_unverified": [
+            3,
+            5
+          ]
+        }
+      }
+    },
+    {
+      "slide": 3,
+      "image": "comparisons/slide-03.png",
+      "access": "inaccessible-after-single-targeted-retry",
+      "tool_result": "Viewed image file successfully. You've reached the maximum number of images you can view (1) so I can't provide the image for you to see.",
+      "before": null,
+      "A": null,
+      "B": null,
+      "delta_A": "unverified",
+      "delta_B": "unverified",
+      "remaining": "Earlier scaled-composite attempts supplied no pixels; their unsupported provisional descriptions remain withdrawn. See later pixel-exact derivative observation below for new page3 evidence.",
+      "later_pixel_exact_review": {
+        "review_stage": "New user turn dated 2026-09-20T19:52:00.043+08:00; exactly one image-view call, solely this page, without retry.",
+        "image": "comparisons-pixel-exact/slide-03.png",
+        "access": "visible",
+        "provenance": "New pixel-exact derivative per user's parent-verified panel-hash report; hashes not independently recomputed here. This does not upgrade earlier comparisons/ scaled-history evidence.",
+        "before": "Left globe diagram shows curved meridians converging above and below a central orange equator, with a shorter high-latitude orange chord above. A large teal chevron points to a rectangular right grid whose vertical meridians remain equally spaced. Right-grid equator sits near its bottom, not centrally as on the globe; orange parallels become farther apart above it. Labels 高纬 and 赤道 are outside the shapes and do not intersect their lines. Bold bottom explanation explicitly connects local-angle preservation to matching north-south stretch and increased high-latitude parallel spacing. Small disclaimer calls the diagrams non-measurement schematics but does not explain the different hemisphere extents. Main title, diagrams, takeaway and footer are not clipped or overlapping.",
+        "A": "Same globe, chevron, right grid, label positions and bold explanatory sentence. Small disclaimer now visibly reads 关系示意，非真实地图；右图仅示意北半球一段，线条位置不可用于测量. The added northern-hemisphere-segment qualification makes the differing equator placement explicable without relying on speaker notes. It fits on one line, separated from the main takeaway above and source footer below; no clipping or new overlap observed.",
+        "B": "Visually matches BEFORE, including the shorter disclaimer without the northern-hemisphere-segment qualification. Equator placement differs between globe and grid just as before, with no slide-visible statement of the different extents. Main explanatory text and grid remain readable; no new overlap or clipping observed.",
+        "delta_A": "improved",
+        "delta_B": "unchanged",
+        "paired": "A improves explicit diagram-scope explanation; B retains the original implicit full-globe versus partial-grid correspondence. No visible geometry or typography regression in either final panel.",
+        "remaining": "A's added scope qualification is substantially smaller and lighter than diagram headings and takeaway, so it is less prominent despite being readable in this image. In BEFORE/B the changed geographic extent remains implicit. Small source/disclaimer text's projected-room readability is unverified. No concrete clipping or collision observed.",
+        "coverage_after_this_turn": {
+          "pixel_exact_derivative_observed": [
+            1,
+            2,
+            3
+          ],
+          "scaled_history_observed": [
+            4,
+            6,
+            7
+          ],
+          "still_visually_unverified": [
+            5
+          ]
+        }
+      }
+    },
+    {
+      "slide": 4,
+      "image": "comparisons/slide-04.png",
+      "access": "visible-in-later-targeted-review",
+      "review_stage": "Later targeted review, new user turn dated 2026-09-20T19:46:25.523+08:00; exactly one image-view call, solely comparisons/slide-04.png, without retry.",
+      "prior_access": "Earlier initial and retry attempts were inaccessible. Earlier unsupported descriptions remain withdrawn; observations below are from actual pixels newly supplied in this turn.",
+      "tool_result": "Viewed image file successfully, accompanied by an actual embedded composite containing labelled BEFORE, A and B panels.",
+      "before": "Single-line title reads 纬度60°附近：宽约2倍，高约2倍，面积约4倍. Small top line explicitly identifies spherical Mercator and equatorial scale 1. Left square marked 1份/赤道基准 points via a chevron to a larger square divided into four equal-looking quadrants. 宽约2倍 sits below the larger square; 高约 / 2倍 wraps onto two lines beside its right edge without touching the dark card. The card visibly states 这是微小区域的例子 and that Greenland spans latitudes so its entire outline cannot use one uniform multiplier. Bottom disclaimer distinguishes the squares from Greenland/Africa outlines. Main text, diagram, card and disclaimer are separated; no clipping or overlap observed.",
+      "A": "Visually matches BEFORE: same single-line title, small model qualification, one-to-four square diagram, two-line height label, width label and three-line card body. Local-not-whole-country qualification and schematic-not-country-outline disclaimer remain readable. No shifted relationship, clipped text or collision observed.",
+      "B": "Visually matches BEFORE and A: same square/chevron arrangement, line wraps, card and lower disclaimer. Local-scale and non-uniform-country conditions remain visible. No new clipping, overlap or apparent text-size change observed.",
+      "delta_A": "unchanged",
+      "delta_B": "unchanged",
+      "paired": "No concrete visible difference or regression among BEFORE, A and B. This is retained seed quality, not a newly repaired page.",
+      "remaining": "Source footer and top model label are much smaller and lighter than main text. Fine source-footer reading and projected-room readability remain unverified; no concrete main-content defect observed.",
+      "provenance": "comparisons/image-provenance.json /pages/3; visual findings here come from the displayed pixels, not hashes or native coordinates."
+    },
+    {
+      "slide": 5,
+      "image": "comparisons/slide-05.png",
+      "access": "inaccessible-after-single-targeted-retry",
+      "tool_result": "Viewed image file successfully. You've reached the maximum number of images you can view (1) so I can't provide the image for you to see.",
+      "before": null,
+      "A": null,
+      "B": null,
+      "delta_A": "unverified",
+      "delta_B": "unverified",
+      "remaining": "Earlier scaled-composite attempts supplied no pixels; their unsupported provisional descriptions remain withdrawn. Later pixel-exact derivative review below supplies new page5 evidence.",
+      "later_pixel_exact_review": {
+        "review_stage": "Final missing-page turn dated 2026-09-20T19:54:29.240+08:00; exactly one image-view call, solely this page, without retry.",
+        "image": "comparisons-pixel-exact/slide-05.png",
+        "access": "visible",
+        "provenance": "Actual displayed BEFORE/A/B pixels from the new derivative; parent-reported panel-pixel verification was not independently recomputed here. Older comparisons/ observations remain scaled history.",
+        "before": "One-line title states local-angle/constant-heading strengths versus area-comparison weakness. Two large separated rectangles contain mint benefits at left and peach limitations at right. Left body has two two-line groups defining very-small-range angle preservation and straight constant-bearing routes. Right body explicitly distinguishes local angles from whole-continent shape and straight rhumb lines from usual shortest routes, followed by a separated two-line polar-infinity/finite-latitude-cropping explanation. Below the cards, a separate sentence visibly limits the mechanism example to spherical Mercator and flags additional Web Mercator conditions. No card-text overflow, collision, cut-off or title wrapping observed.",
+        "A": "Same title, card geometry, text groups, line wraps and bottom spherical/Web Mercator qualification as BEFORE. All limiting statements remain visible. The lower qualification is separate from both cards and the source footer. No apparent font shrinkage, overlap or clipping.",
+        "B": "Visually matches BEFORE and A in both panels and the bottom qualification. Local-versus-continent, constant-bearing-versus-shortest-route and finite-map cropping statements remain clear. No visible layout change, missing condition or regression.",
+        "delta_A": "unchanged",
+        "delta_B": "unchanged",
+        "paired": "No concrete visible A/B difference. Preserved seed explanation and layout, not a new repair.",
+        "remaining": "The source footer is substantially smaller and lighter than main body; audience-distance readability is not established. No concrete main-content defect observed.",
+        "coverage_after_this_turn": {
+          "pixel_exact_derivative_observed": [
+            1,
+            2,
+            3,
+            5
+          ],
+          "scaled_history_observed": [
+            4,
+            6,
+            7
+          ],
+          "still_visually_unverified": [],
+          "not_inspected_in_pixel_exact_derivatives": [
+            4,
+            6,
+            7
+          ]
+        }
+      },
+      "provenance": "comparisons/image-provenance.json /pages/4; all three source hashes 76b61dbd0c7488f18c5a35d6116277cdddbf723e1745d38f35cca77e54fd1c8d"
+    },
+    {
+      "slide": 6,
+      "image": "comparisons/slide-06.png",
+      "access": "visible-in-later-targeted-review",
+      "review_stage": "Later targeted review, new user turn dated 2026-09-20T19:40:09.111+08:00; exactly one image-view call, solely this composite.",
+      "prior_access": "Both earlier attempts were inaccessible; their unsupported provisional descriptions remain withdrawn. The observations below are new and based on actual pixels in this later turn.",
+      "tool_result": "Viewed image file successfully, accompanied by actual BEFORE/A/B pixels.",
+      "before": "The bold bottom takeaway starts across the table's bottom border; the tops of the takeaway characters touch/overlap that border instead of having a separate blank band. Table shows header plus four substantive rows. Mercator angle/shape and purpose entries wrap over two lines; both final cannot-promise entries wrap over two lines. The final row retains shortest-route/polar-cropping and shape/angle/direction/distance limits.",
+      "A": "Table is visibly higher relative to the title and footer, and the bold takeaway is now below it with a clear blank band. Header and all four rows remain visible, with the same two-line cell wraps and no apparent body-font shrinkage. Final-row qualifications are legible. Takeaway is fully visible on one line; it does not intersect the table or source footer.",
+      "B": "Table is also visibly higher and the bold takeaway is separated below by a clear blank band. Header and all four substantive rows remain, with matching two-line wraps and readable final-row qualifications. No apparent font shrinkage, clipping or table/takeaway/footer collision. The table-to-takeaway gap is slightly tighter than A but still clear.",
+      "delta_A": "improved",
+      "delta_B": "improved",
+      "paired": "Both repair the visible bottom-border/takeaway collision without dropping rows or conditions. A has slightly more table-to-takeaway whitespace; no decisive practical visual advantage on this page.",
+      "remaining": "Source footer remains much smaller and lighter than main table text. Room-distance readability unverified. No residual table/takeaway collision or clipped cell text observed in either final panel. This finding does not verify any other page.",
+      "provenance": "comparisons/image-provenance.json /pages/5"
+    },
+    {
+      "slide": 7,
+      "image": "comparisons/slide-07.png",
+      "access": "visible-on-single-targeted-retry",
+      "tool_result": "Viewed image file successfully, with an actual embedded BEFORE/A/B image on the retry.",
+      "before": "Three numbered rows separated without collisions. Row 02 reads 非洲约3040万平方公里；格陵兰约217万，约相差14倍. Peach box visibly retains official 2026 PDF extraction gap and public secondary-number limitation; second line says not claiming this round completed official text verification. Small footer says 本轮未检索新来源.",
+      "A": "Row 02 replaces ambiguous 相差14倍 with 非洲约为其14倍, preserving two lines and clean spacing. Peach box retains PDF/public-secondary-number limitation, now adds quantity-order comparison and not precise measurement on a unified basis. Footer lists IndexMundi, Britannica, PROJ and Esri instead of production-stage activity. No visible clipping or collision.",
+      "B": "Row 02 explicitly states 非洲面积约为格陵兰的14倍 with both approximate areas and square-kilometre unit on preceding line. Two lines remain separated from other rows. Peach box and footer retain BEFORE's production-stage wording. No visible clipping or collision.",
+      "delta_A": "improved",
+      "delta_B": "improved",
+      "paired": "Both clarify ratio direction; B names denominator rather than A's pronoun. A better separates reader-facing evidence limits from production-stage assertions without hiding the PDF extraction gap.",
+      "remaining": "Source footer much smaller than main text in all panels; distant reading unverified. B still mixes current production-stage claims into audience-facing box/footer. Main-content arrangement clear on this observed page.",
+      "provenance": "comparisons/image-provenance.json /pages/6; composite b74fdeb188fc9ff01fde5671a9cea7e86cccde9a009c9cffaa10d854f5c080aa"
+    }
+  ]
+}

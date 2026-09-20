@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "round": "pptx-second-round-repair-only",
+  "design": "Paired repair-only comparison of old-current and new guides on identical previously generated candidate seeds, using one common runtime. Not fresh generation, not a first-pass skill-effect test.",
+  "case_ids": ["git-merge", "anc", "greenland", "project-overview"],
+  "conditions": ["baseline", "candidate"],
+  "budget": { "language": "zh", "slides_min": 5, "slides_max": 8, "source_submissions": 1 },
+  "prompt": "请审阅提供的实际 PowerPoint 渲染画面和已有源项目，修复可具体指出的布局、解释或演讲者备注问题；不得添加无材料支持的新事实。保持原问题范围、有意义的原生图表/表格/图片和数据。交付仍为 5–8 页中文幻灯片（这是本轮相同资源预算，不是通用规则），只提交一次源代码修订。按页记录改动与理由，并另列尚未执行的 QA；没有发现具体问题时可保留原内容，但不可把既有成功称为本轮改进。只做静态检查，不执行作者模块或渲染。",
+  "sequence": [
+    "Freeze protocol, original bundle inventories, overlaid bundle bytes, common runtime and corresponding third-party notices, seeds, tasks and evaluator-only rubric; regenerate each bundle's complete runtime-manifest file hashes without copying the candidate manifest or altering guide content. Verify integrity before either author starts.",
+    "Each author inspects every supplied PNG, source Dossier, assigned SKILL.md and PPT references, then submits one bounded repair change set and static checks only.",
+    "Host verifies integrity and reviews source changes, allowed literal image path, tool logs and unchanged non-editable files; record explicit execution approval separately.",
+    "Only after approval, host uses the pinned common runtime and actual Microsoft PowerPoint to rerender both submissions under the same application/font/export environment.",
+    "Independent grader compares each submission against its identical seed and then compares paired deltas. Record before/after evidence, regressions and unverified checks, not an aesthetic composite."
+  ],
+  "inference_limits": [
+    "Known seed successes are prior observations, never new first-pass results.",
+    "One repair submission per condition; no grader feedback to authors and no second repair.",
+    "Static checks, object counts and hash matches do not prove visual quality, source safety, editability or procedural compliance.",
+    "Shared-filesystem procedural boundaries are not a sandbox. The overview source retains one external approved image literal; its original file must remain available and hash-verified.",
+    "The manifest is not authenticated; retain its returned SHA-256 independently. Freeze checks are point-in-time checks, not proof of author behavior.",
+    "No model execution, source execution, render, PowerPoint invocation or network access is performed by this harness."
+  ],
+  "judgment_statuses": ["pending", "verified", "failed", "unverified", "not-applicable"],
+  "delta_statuses": ["pending", "improved", "unchanged", "regressed", "mixed", "unverified", "not-applicable"],
+  "repair_criteria": [
+    {
+      "id": "table-clearance-repair",
+      "criterion": "Compare actual before/after PowerPoint table bounds, wrapped rows and neighboring content. A repair must create real clearance without hiding text, removing necessary rows/conditions, or merely shrinking fonts into unreadability. Record unchanged safe tables as unchanged, not a new success.",
+      "locators": ["before/after rendered slide PNG and slide number", "PowerPoint observations JSON pointer /slides/<index>/shapes/<index>, shape id/name, row/column", "before/after main.mjs line range for table geometry, widths, margins and font size"]
+    },
+    {
+      "id": "conditions-retained",
+      "criterion": "Necessary conditions and uncertainty remain reader-visible after repair; notes must not conceal a qualification that changes the slide's conclusion. Compare text and explanatory relationships, not only coverage IDs.",
+      "locators": ["before/after slide PNG, slide number and text/shape", "Dossier report.md heading/lines or research.json claim pointer", "before/after source line range and notes part/paragraph"]
+    },
+    {
+      "id": "stage-notes-separation",
+      "criterion": "Speaker notes separate explanatory speaking guidance from stage-specific checks, approvals and unperformed QA. Do not present static checks, historical evidence, planned application checks or prior rendering as newly completed validation.",
+      "locators": ["before/after ppt/notesSlides/notesSlideN.xml and paragraph text", "main.mjs addNotes call line range", "qa/repair.json changes versus unperformed_qa, and host approval/tool-log locator"]
+    },
+    {
+      "id": "scope-data-native-preservation",
+      "criterion": "Preserve the original question, 5–8 Chinese-slide scope, supported values/units and meaningful native chart/table/image roles. Inspect editable chart data, table cells and native explanations; do not trade a layout fix for rasterization, deletion or unsupported data changes. The overview image remains a historical illustration at its approved hash.",
+      "locators": ["before/after artifact.json coverage/omissions pointers and source lines", "chart XML series/category/value or table row/cell, relationship/media hash", "actual PowerPoint edit-probe artifact and application observation locator", "seed Dossier claim/source pointer"]
+    },
+    {
+      "id": "no-ungrounded-claims",
+      "criterion": "Every added or changed substantive claim has frozen Dossier support; no model, source reading, seed evidence or historical screenshot is promoted to current measurement or newly verified behavior.",
+      "locators": ["before/after slide/notes exact text and source lines", "Dossier report.md heading/lines or research.json claim/evidence pointer", "host evidence record establishing observation date and stage"]
+    },
+    {
+      "id": "repair-process",
+      "criterion": "One revision only, same seed and common runtime, only permitted output edits, no forbidden execution/access, and static checks followed by STOP. Missing tool logs or approval remain unverified, not passed.",
+      "locators": ["frozen manifest and integrity result SHA-256", "author tool transcript event and submitted change-set hash", "node --check and explain-check result", "separate host source-review and execution-approval record"]
+    }
+  ]
+}

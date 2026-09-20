@@ -9,6 +9,10 @@ import { VideoPlanSchema, AudioManifestSchema } from '../src/media/plan.js';
 import { ProvidedAudioSchema } from '../src/media/audio.js';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
+// Also enforce the persistent producer patch when install scripts were disabled.
+const { patchPptxGenJS }: { patchPptxGenJS: () => Promise<void> } =
+  await import(new URL('./patch-pptxgenjs.mjs', import.meta.url).href);
+await patchPptxGenJS();
 const { assertSafePath, releaseSources }: {
   assertSafePath: (target: string) => Promise<void>;
   releaseSources: Record<string, string>;
@@ -58,6 +62,10 @@ let allNotices = `Runtime dependencies distributed with Aha ${version}\n`;
 for (const directory of [...packageRoots].sort()) {
   const manifest = JSON.parse(await fs.readFile(path.join(directory, 'package.json'), 'utf8'));
   const licenseFiles = (await fs.readdir(directory)).filter(file => /^(licen[cs]e|copying|copyright|notice)([.-]|$)/i.test(file));
+  if (!licenseFiles.length && manifest.name === 'saxes' && manifest.version === '6.0.0') {
+    allNotices += `\n${manifest.name} ${manifest.version}\n${await fs.readFile(path.join(root, 'scripts', 'licenses', 'saxes-6.0.0.txt'), 'utf8')}\n`;
+    continue;
+  }
   if (!licenseFiles.length && manifest.name === 'isarray' && manifest.version === '1.0.0') {
     const readme = await fs.readFile(path.join(directory, 'README.md'), 'utf8');
     const license = readme.slice(readme.indexOf('## License'));

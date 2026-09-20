@@ -1,0 +1,82 @@
+{
+  "label": "B",
+  "stage": "technical-repair",
+  "scope": "Anonymous output-only review. All seven supplied PowerPoint-exported slide PNGs inspected individually at their supplied full size, with supplied OOXML text, notes, object geometry and application observations. No generation sources, label mapping, external sources or author modules inspected or executed.",
+  "expectations": [
+    {
+      "text": "论点、数值、单位、因果关系和限定有冻结材料支持；没有将模型、源码阅读、历史记录或引用者测量改称本轮实测。",
+      "passed": true,
+      "evidence": "S3 says '假设未补偿误差为 0.10 毫秒' and '教学假设，不是耳机测量'; its 100 Hz / 3.6° and 1000 Hz / 36° match c-delay/report.md §2. S6 notes identify the historical feedback prototype, not a current test or stock QC45 review. S7 distinguishes frozen access records, partial source reading and missing personal data. S5's full source-consistent relative-salience condition is present in notes, although its visible compression needs improvement."
+    },
+    {
+      "text": "说明目标位置的传入声压、控制声压与残余的叠加关系，以及幅度、相位/时间和传播路径的作用；不画成声音分类器或整个空间静音。",
+      "passed": true,
+      "evidence": "S2 separately routes incoming sound and loudspeaker control sound to '耳边目标位置：两者相加', states '同频、等幅、反相', and visibly warns that flipping the external microphone signal is insufficient after propagation. S3 explains phase and timing error. S1 rejects a classifier; S2 notes explicitly reject all-ear/all-cabin silence and explain path-induced amplitude/phase changes. Anchors: c-pressure, c-delay, e-rwth and e-paper §2.1–2.2."
+    },
+    {
+      "text": "区分主动与被动隔音；保留人声可部分减弱仍可听、佩戴/密封/模式影响等限定；不捏造产品分贝、频率硬截止或听感测量。",
+      "passed": true,
+      "evidence": "S4 separates physical barriers from added control pressure and says '关掉 ANC ≠ 摘下耳机'; its frequency tendencies are expressly not absolute. S5 preserves partially attenuated but audible speech and limits the own-voice counterexample. S6 includes leakage, fit and model-specific modes. S3 rejects a universal cutoff and S7 declines to predict dB/intelligibility. Anchors: c-passive, c-speech, c-modes, g-device."
+    },
+    {
+      "text": "可见成品为 5–8 页中文幻灯片，并含中文讲解备注。",
+      "passed": true,
+      "evidence": "outputs/ooxml.json contains slides 1–7 with Chinese body text and substantive Chinese notes on every slide; outputs/slide-01.png through slide-07.png were individually inspected. Necessary units, product names and ANC are retained. This is not a judgment about source-authoring process compliance."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4
+  },
+  "criteria": [
+    {
+      "criterion": "面向无声学背景读者的机制与推理桥梁",
+      "status": "partial",
+      "rationale": "The opening explicitly connects rumble to persistent lower-frequency components. S3's normalized-period bands make the phase-error comparison tangible, and S5's sequence clearly connects passive/active action to audible residual. However, '自身语音的低频闭塞增强' is not explained for a novice; the meaning of Hz is explained only in notes.",
+      "locators": ["outputs/slide-01.png: object 10", "outputs/slide-03.png: objects 9–17", "outputs/slide-05.png: objects 8–19", "outputs/ooxml.json: slide 3 notes", "research/report.md §§2,4"]
+    },
+    {
+      "criterion": "关键限定在页面可见，而非仅藏在备注",
+      "status": "partial",
+      "rationale": "Most important limits are visible: no universal cutoff, mode differences, partial speech attenuation, no personal dB prediction. But S2's small-signal and internal-microphone/eardrum locality limitation is only in notes, and S3's steady single-tone linear-model scope and possible increased residual are also notes-only. S5 compresses '轰鸣削弱更多时' from notes into visible '轰鸣减少后', omitting the comparative condition. These are bounded omissions, not evidence of a global-silence or measured-performance claim.",
+      "locators": ["outputs/slide-02.png: objects 20–22; corresponding notes", "outputs/slide-03.png: objects 8–19; corresponding notes", "outputs/slide-05.png: object 20; corresponding notes", "research/research.json: c-pressure limitations, c-delay limitations, c-speech limitations", "research/report.md §§1,2,4"]
+    },
+    {
+      "criterion": "合适的原生可编辑对象",
+      "status": "pass",
+      "rationale": "Text and diagrams are native shapes/text rather than flattened slide images. S3's bands accurately encode 1% and 10% of separately normalized periods: native widths 0.0604998 and 0.605 inches over identical 6.05-inch bands. The visible explanation states what the proportions mean; they are not invented measured attenuation. S4's comparison cards do not require a table; no chart is necessary for this no-performance-data case. No credit is assigned for object quantity.",
+      "locators": ["outputs/ooxml.json: slide 3 objects 11,12,15,16 geometry; charts={}", "outputs/slide-03.png", "outputs/slide-04.png", "research/research.json: c-delay"]
+    },
+    {
+      "criterion": "当前 PowerPoint 导出中的中文可读性与关系图",
+      "status": "pass",
+      "rationale": "All seven supplied PNGs were individually inspected. Titles, main body and essential caveats are readable, Chinese glyphs are intact, and no blocking clipping, overlap or broken diagram relationship was observed. S3's 1% marker is necessarily small but supported by the explicit 3.6° label. This establishes the current render only, not cross-machine font-substitution behavior.",
+      "locators": ["outputs/slide-01.png", "outputs/slide-02.png", "outputs/slide-03.png", "outputs/slide-04.png", "outputs/slide-05.png", "outputs/slide-06.png", "outputs/slide-07.png"]
+    },
+    {
+      "criterion": "备注对讲解有用",
+      "status": "pass",
+      "rationale": "Notes explain normalized periods, calculate the example, describe local superposition, distinguish manufacturer guidance from general law and historical measurement from current evidence, and provide full frozen-source links. These are useful teaching aids, although moving the specified model qualifications onto the slide would improve standalone use.",
+      "locators": ["outputs/ooxml.json: slides 1–7 notes", "research/report.md §§1–5"]
+    },
+    {
+      "criterion": "作者过程合规：仅分配输入/技能、main.mjs/元数据、静态检查后停止、无安装网络发布执行",
+      "status": "unverified",
+      "rationale": "Sources and execution logs were deliberately outside review scope. The deck's own no-network/no-measurement statements are not independent proof of author actions. Seven Chinese slides are verified separately, not used to pass the composite process assertion.",
+      "locators": ["../eval_metadata.json: assertions[4], stage"]
+    },
+    {
+      "criterion": "容量修复行为、同页修复前后效果、首次运行兼容性",
+      "status": "unverified",
+      "rationale": "No matched before/after slide evidence or capacity-repair record was supplied. Do not infer capacity fixes from final appearance. This is controlled API-error repair, so runtime/export success is not untouched first-pass compatibility or independent evidence of new-skill gain.",
+      "locators": ["../eval_metadata.json: stage", "application-observations.json: method"]
+    },
+    {
+      "criterion": "人工编辑可用性与人类理解",
+      "status": "unverified",
+      "rationale": "Only a slide-1 text edit was programmatically performed, saved and reopened on a copy. It persisted, but no diagram-editing task, manual usability test or comprehension study was performed.",
+      "locators": ["application-observations.json: method, edits[0], unperformed"]
+    }
+  ]
+}

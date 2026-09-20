@@ -15,6 +15,8 @@ Before styling, record these decisions in the project's existing authoring or QA
 
 For example: “Explain why a queue backs up to engineers; distinguish arrival rate from service capacity; pair a labeled queue schematic with a measured backlog chart and an uncertainty note; use an engineering baseline, not six equal summary cards.” Do not turn this brief into mandatory metadata or a rigid slide outline.
 
+For PPTX, refine this brief into short page intentions at the point of composition: what the page answers, what must be visible, why this composition fits, and what the speaker adds. Follow [PPTX](pptx.md) for capacity repair, native-object selection, image slots, and notes separation; keep these medium-specific decisions out of unrelated HTML/image/video workflows.
+
 ## Establish a grammar; vary the composition
 
 Choose a baseline from the [recipe index](design-themes.md), read only that section and its palette row, or invent another without loading recipes. Keep type roles, spacing rhythm, entity identities, arrow meanings, and evidence treatment coherent. Change composition to fit the content: a full-width mechanism, a margin-annotated passage, a direct comparison, a timeline, a native table, or a restrained conclusion page. A universal grid of rounded cards is not a substitute for reasoning.

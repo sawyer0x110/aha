@@ -27,6 +27,10 @@ When the user requests evidence of understanding, agree a small learner evaluati
 
 Static checks, browser automation receipts, valid OOXML, and successful encoding are separate evidence, not a declaration of aesthetic quality or human acceptance. Do not fabricate human feedback, user sign-off, screenshots, playback, or interaction results.
 
+For PPTX, review the [page intentions and object choices](pptx.md) against the final output, not only the author plan. Distinguish visible text from speaker notes: note-only facts do not prove visible-page coverage, and a material qualification belongs with the claim it limits. Check Chinese/mixed-script wrapping and reading-size legibility after repairs; preserve screenshot context and compare chart categories/values and table cells with their inputs. Record missing native content or awkward editing even if the package contains other native shapes. If no capacity defect occurred, record that observation rather than manufacturing a repair. These observations are separate from structural tests and do not assert automated layout or semantic validation.
+
+For repaired PPTX pages, compare actual before/after application exports of the same page and inspect its neighbors. In particular, check the rendered table bottom, takeaway, and footer rather than trusting authored table height. Retain the defect locator, source change, output identity, and remaining gaps in QA records; an older export cannot validate a newer source. Keep source-only/render-pending/approval status out of speaker notes, while preserving research limitations and historically scoped audit evidence.
+
 ## Language acceptance
 
 Review the project's selected language under [the language contract](language.md); QA does not reselect defaults or upgrade legacy metadata.

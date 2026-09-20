@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "status": "completed-with-explicit-evidence-limits",
+  "design": "Paired repair-only comparison of old-current and new guides on identical previously generated candidate seeds, using one common runtime. Not fresh generation, not a first-pass skill-effect test.",
+  "artifact_root": "artifacts\\skill-evals\\ppt-second-round",
+  "run_root": "artifacts\\skill-evals\\ppt-second-round\\runs-final",
+  "manifest_sha256": "19ae8071acbc36006f15019ea0e95089423e2b1bdceb3ef5a6b6e50a129a3199",
+  "common_runtime_sha256": "4aa41f11c07e7ef1f622e7ed0787242ab520fff3e3fe7302ea82526bde86d4fe",
+  "application_results": {
+    "decks_opened_without_repair": 8,
+    "pages_exported": 60,
+    "persisted_text_edits": 8,
+    "persisted_table_edits": 8,
+    "persisted_chart_data_edits": 2,
+    "saved_chart_cache_checks": 2,
+    "originals_unchanged": true
+  },
+  "comparisons": [
+    {
+      "case": "git-merge",
+      "artifact_preference": "tie",
+      "anonymous_winner": "tie",
+      "reason": "Both repair supported explanation and speaker-note issues while preserving eight pages, native tables and model data. A provides stronger local qualification on pages1/3 and an explicit page4 fast-path explanation; B disambiguates example mode from Git file mode, names fixed off/on in the page4 title, preserves more callout space there, and more consistently removes stage-bound notes prose. These are complementary benefits without a decisive overall advantage. A crowds page4 callout padding; B tightens page1 card-top spacing. No clipping/overlap identified at reviewed sizes. All seed tables were already visibly clear, so neither earns a table-clearance repair gain. This supports a scoped tie, not equivalence at presentation distance or a stable/causal Skill conclusion.",
+      "review": "git-merge/pair-review.json"
+    },
+    {
+      "case": "anc",
+      "artifact_preference": "baseline",
+      "anonymous_winner": "A",
+      "reason": "Cumulative artifact inspection favors A: it repairs the central page-5 weakened-versus-residual false-dichotomy risk with two links and an explicit both-can-have-residue statement, and provides fuller beginner definitions on pages 2–3 without an observed layout regression. B usefully adds usually/manufacturer specificity on pages 1/6 and clearer path compensation on page 7, but leaves the page-5 ambiguity. Both retain safe native tables and scientific boundaries. This is a bounded qualitative preference for these observed artifacts, not an aesthetic numeric score or stable/causal Skill superiority; pages 1,5,7 were observed only in scaled-history composites.",
+      "review": "anc/pair-review.json"
+    },
+    {
+      "case": "greenland",
+      "artifact_preference": "candidate",
+      "anonymous_winner": "A",
+      "reason": "Modest preference for the observed A artifact, not causal Skill superiority. Both repair slide6 table/takeaway collision, preserve substantive conditions/native data and improve slide7 ratio wording. A additionally makes slide3's partial-northern-hemisphere scope explicit on the slide, resolving a concrete globe/grid correspondence ambiguity without clipping. B's slide7 denominator is more explicit than A's pronoun, but both ratios are clear. A's neutral research wording is a polish choice; B's research-provenance/PDF caveats are not treated as stale delivery failures. All seven pages now have actual visible evidence, with mixed-resolution coverage explicitly limited below.",
+      "review": "greenland/pair-review.json"
+    },
+    {
+      "case": "project-overview",
+      "artifact_preference": "tie",
+      "anonymous_winner": "tie",
+      "reason": "Artifact-level tie with different strengths, not a missing-evidence default. All eight BEFORE/A/B pages now have actual visual observations at explicitly declared scales. Both repair the two tables and preserve native roles, values and conditions. B better communicates skill choice on page1, retains the Chinese base-comparison bridge on page5 and has a less wrapped page6 table. A better separates this deck's production checkpoint from topic explanation on page8 and notes3/8, and gives page5's different-record qualification greater prominence. Neither dominates these substantive outcomes; no aesthetic composite or binary-count ranking is used. This is not a full-resolution/reader-effect/process conclusion.",
+      "review": "project-overview/pair-review.json"
+    }
+  ],
+  "limitations": [
+    "Repair-only comparison: both conditions start from the same first-round candidate seed; not fresh generation or an untouched first-pass success test.",
+    "One author submission per case/condition. All authors invoked the host pptx skill. Resolved model, token cost and generation time unavailable.",
+    "Author-stage image access was incompletely confirmed and overstated claims were corrected in image-access-clarifications.json. The intended full-process comparison was not verified.",
+    "Final independent reviewers recovered page coverage with single-image turns. Some pages were observed only in uniformly scaled initial composites; pixel-exact derivative coverage is listed in each pair review. Human presentation-distance readability is unverified.",
+    "Initial GDI composite DPI scaling was detected by pixel comparison. Corrected composites preserve all 90 panels exactly; initial scaled evidence and failed attempts are retained, not silently replaced.",
+    "Common runtime reliability gains belong to both conditions, not to the candidate guide alone.",
+    "Binary grades are evaluator-written diagnostic checks, including post-inspection refinements. They are not a preregistered aesthetic score or causal improvement metric; no aggregate ranking is computed.",
+    "Representative programmatic edit persistence is not manual editing usability, automatic chart refresh or human comprehension.",
+    "Procedural shared-filesystem isolation and hashes are not a sandbox or a complete author tool audit."
+  ],
+  "outputs": {
+    "archive": "artifacts\\skill-evals\\ppt-second-round\\ppt-comparison.zip",
+    "archive_sha256": "77b3091bdc4d8302d76c2fef5a74cd1dc3cc924da994995c2bc47f55cdd21d1b",
+    "viewer": "artifacts\\skill-evals\\ppt-second-round\\review.html",
+    "previous_output": "Common before seed for each label, not a separate author run."
+  }
+}

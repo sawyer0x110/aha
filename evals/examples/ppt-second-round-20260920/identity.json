@@ -1,0 +1,671 @@
+{
+  "manifest_sha256": "19ae8071acbc36006f15019ea0e95089423e2b1bdceb3ef5a6b6e50a129a3199",
+  "common_runtime": {
+    "original_path": "C:\\Users\\yusu\\scoop\\buckets\\copilot-worktrees\\aha\\sawyer0x110-solid-guacamole\\dist\\skills\\aha-explain\\scripts\\aha.mjs",
+    "bytes": 1526799,
+    "sha256": "4aa41f11c07e7ef1f622e7ed0787242ab520fff3e3fe7302ea82526bde86d4fe",
+    "notices": {
+      "original_path": "C:\\Users\\yusu\\scoop\\buckets\\copilot-worktrees\\aha\\sawyer0x110-solid-guacamole\\dist\\skills\\aha-explain\\THIRD-PARTY-NOTICES.txt",
+      "bytes": 231067,
+      "sha256": "7f7990a2de359a00f6112bfed5888922d218f06445c0acfdf1140bfe02352a22"
+    }
+  },
+  "bundles": {
+    "baseline": {
+      "pinned_path": "C:\\Users\\yusu\\scoop\\buckets\\copilot-worktrees\\aha\\sawyer0x110-solid-guacamole\\artifacts\\skill-evals\\ppt-second-round\\runs-final\\bundles\\baseline\\aha-explain",
+      "original_inventory_sha256": "73b8befd7eb1d32ebd86e78781256aba6a225aa8f1ccb4adb16b9d0d911b9ed8",
+      "used_inventory_sha256": "b8419ca596c40d642ffc41729627fb4d382686a9bd3431829cab12104fad26ea",
+      "files": 370,
+      "runtime_sha256": "4aa41f11c07e7ef1f622e7ed0787242ab520fff3e3fe7302ea82526bde86d4fe",
+      "notices_sha256": "7f7990a2de359a00f6112bfed5888922d218f06445c0acfdf1140bfe02352a22",
+      "manifest_sha256": "730b5eb7361f3f10aa558535c80f1561907ffd27d8473eed23d2f6b5fc524430",
+      "guide_hashes": {
+        "references/artifact-qa.md": "5b54a6f6b86dde9e63e39c59aa7c079f73b12b3d8ae77057f0b007bd8c93bcee",
+        "references/pptx.md": "4aabb3de550c6a97f4f20a31802083880f16b7248fa0d6cb77f46ec052ced272",
+        "SKILL.md": "61e0c752b286eb634d13bd883236396139599394f2667b165d361b12b7ad9ec2"
+      }
+    },
+    "candidate": {
+      "pinned_path": "C:\\Users\\yusu\\scoop\\buckets\\copilot-worktrees\\aha\\sawyer0x110-solid-guacamole\\artifacts\\skill-evals\\ppt-second-round\\runs-final\\bundles\\candidate\\aha-explain",
+      "original_inventory_sha256": "80af02c7036f357592545b7941db80bbbcb0149478d394411ff09469ce12f388",
+      "used_inventory_sha256": "6f07f6a6fd452b6567c26f48fece2a6e59f1856de951dd99b89c460097183872",
+      "files": 370,
+      "runtime_sha256": "4aa41f11c07e7ef1f622e7ed0787242ab520fff3e3fe7302ea82526bde86d4fe",
+      "notices_sha256": "7f7990a2de359a00f6112bfed5888922d218f06445c0acfdf1140bfe02352a22",
+      "manifest_sha256": "59e152af7619dc2e7b8633eef7677cb9af54e4905c0f452c9263446df278c6c8",
+      "guide_hashes": {
+        "references/artifact-qa.md": "74e232dc26d9038500471aa28e6ed38f332c95bab2c4df47861c443ca9f67bc0",
+        "references/pptx.md": "b63f1baa02beca52b5ebc770655f75290258fce55b45a5d49c5d5231b9b62fca",
+        "SKILL.md": "61e0c752b286eb634d13bd883236396139599394f2667b165d361b12b7ad9ec2"
+      }
+    }
+  },
+  "mappings": [
+    {
+      "case": "git-merge",
+      "label": "A",
+      "condition": "baseline",
+      "stage": "after-second-round-repair-only-single-submission",
+      "before_stage": "before-second-round-repair-only-common-seed",
+      "before_outputHash": "cf4cc81ba725d7bbc38a84a3ce35402b9e28abcaabbe4db4170b57e89ea1d582",
+      "outputHash": "14101b42964e1575b22dfbef107debe533e4462546d32d0a776129ca8d6635a1",
+      "sourceHash": "37ad0d6be26f5c95f86b5d1f2830a926c35fd9ec5c26b1bb68b51361d9a947af",
+      "receipt": {
+        "bytes": 734,
+        "sha256": "17f2b9cc05dbb599f7b330bfb91697b803840ad3893be5ee45c74c06bd0c30a1"
+      },
+      "evidence": {
+        "deck": {
+          "bytes": 261807,
+          "sha256": "14101b42964e1575b22dfbef107debe533e4462546d32d0a776129ca8d6635a1"
+        },
+        "application_observations": {
+          "bytes": 38611,
+          "sha256": "0386df0bded8c7fe80012d01b5e84dba2f7a75dfa03ace5bcde27134c88f51e8"
+        },
+        "rendered_files": {
+          "contact-01.png": {
+            "bytes": 208796,
+            "sha256": "ebdb6820b1ceca9df6be760a3e84c388c7a8a6499a01cc5fbdbaeaaf87e6c7dc"
+          },
+          "contact-02.png": {
+            "bytes": 263264,
+            "sha256": "146ba96202bc0e66dffb82b23287b00e1c390d1b58ac627e40bb91c6b7955249"
+          },
+          "edit-table-cell-03.png": {
+            "bytes": 124887,
+            "sha256": "d250d07c8b3388aab4296289b726ed7069798136bf7902315335919f9bff92d7"
+          },
+          "edit-text-01.png": {
+            "bytes": 113133,
+            "sha256": "f2c7988bb3fd5e9ac28fbed18c79fc5d45e9c7400543661813b5778c8f7a96b3"
+          },
+          "editing-probe.pptx": {
+            "bytes": 50695,
+            "sha256": "832b4a12a04309df8cb74d823ed659cfb4885e5b9968fe70eb1fb442cc5ba69c"
+          },
+          "slide-01.png": {
+            "bytes": 112405,
+            "sha256": "31a84f280e8b35143efa80aca46e8010ccb8957abb320c5b8799a09e14b8c929"
+          },
+          "slide-02.png": {
+            "bytes": 82293,
+            "sha256": "b0bae4979c93c26823446c2acc4d48f494f39baa598bfb0fb8419a167e5c8feb"
+          },
+          "slide-03.png": {
+            "bytes": 121878,
+            "sha256": "679877ce4b8eef40a183416242b6d1fdc241800f74a9cef3792550b68add4615"
+          },
+          "slide-04.png": {
+            "bytes": 129602,
+            "sha256": "0619263a294862e5369eceb36deef3435f3810ee59e0f5a4637be6f61c2936f0"
+          },
+          "slide-05.png": {
+            "bytes": 158426,
+            "sha256": "a862dd005019f2e13d0508be6f6051b2eb31ed4c1dbd9e289f26e10490204759"
+          },
+          "slide-06.png": {
+            "bytes": 141321,
+            "sha256": "ed7731a1cacfe854c52e930ead4942c2d16d49545011f69244fb90dd4d29f7c1"
+          },
+          "slide-07.png": {
+            "bytes": 61017,
+            "sha256": "57aa6c82411b2122ec08658320ecf9745cad602f50c4e30238eff3caf6de6e58"
+          },
+          "slide-08.png": {
+            "bytes": 59409,
+            "sha256": "5c639e335707196837b1b3b4c5dbefdc5a82176684d222a5bc41f7bf5b178de5"
+          }
+        },
+        "freshness": "Deck/receipt/source hashes plus export timestamps between delivery and application observation; not a signed image-to-deck binding."
+      }
+    },
+    {
+      "case": "git-merge",
+      "label": "B",
+      "condition": "candidate",
+      "stage": "after-second-round-repair-only-single-submission",
+      "before_stage": "before-second-round-repair-only-common-seed",
+      "before_outputHash": "cf4cc81ba725d7bbc38a84a3ce35402b9e28abcaabbe4db4170b57e89ea1d582",
+      "outputHash": "cac0697d1f19986cb2ca9b29965bbfe41e74f6779b3abe769a4e704fa2a78965",
+      "sourceHash": "f51c3b1178e2bdd7746e045e6807386359da34f49d4b6a221a1c648ae19ada20",
+      "receipt": {
+        "bytes": 740,
+        "sha256": "8876e991c217ba5dd11f4efc6cc101bde8504ac911f2049dd797a6fbca8be1ac"
+      },
+      "evidence": {
+        "deck": {
+          "bytes": 261975,
+          "sha256": "cac0697d1f19986cb2ca9b29965bbfe41e74f6779b3abe769a4e704fa2a78965"
+        },
+        "application_observations": {
+          "bytes": 38641,
+          "sha256": "e58f1ee6771c14b06a65774fc6297bc2cb26dab2d22152dfcd96dd884d2c9ca5"
+        },
+        "rendered_files": {
+          "contact-01.png": {
+            "bytes": 211849,
+            "sha256": "3ad09d5803f374f68930934374e47152aada49b4f7f88d015066169a6df509a7"
+          },
+          "contact-02.png": {
+            "bytes": 263264,
+            "sha256": "146ba96202bc0e66dffb82b23287b00e1c390d1b58ac627e40bb91c6b7955249"
+          },
+          "edit-table-cell-03.png": {
+            "bytes": 126736,
+            "sha256": "5bc81330d45dfb4cdb6169d7a1e82a8189640f703e1eeb960964c3fd40136347"
+          },
+          "edit-text-01.png": {
+            "bytes": 123913,
+            "sha256": "3f0a2052ee6049540f2cd8e83087ee34071f5b059f2ea60a0eec185752024301"
+          },
+          "editing-probe.pptx": {
+            "bytes": 50787,
+            "sha256": "38c6eb57fd395181bd3b518c8c2c4ed3a79f884d538f8b2c8eacb0c376d00959"
+          },
+          "slide-01.png": {
+            "bytes": 123167,
+            "sha256": "aae059cab9e0903b753d4d2a413b6c56652400fbbb4dd324039583224661f00d"
+          },
+          "slide-02.png": {
+            "bytes": 82293,
+            "sha256": "b0bae4979c93c26823446c2acc4d48f494f39baa598bfb0fb8419a167e5c8feb"
+          },
+          "slide-03.png": {
+            "bytes": 123729,
+            "sha256": "07ceb12b099fd50e19b8c6399486d62b89fd9e39bfe97ff0931218bff04da424"
+          },
+          "slide-04.png": {
+            "bytes": 122343,
+            "sha256": "6adea917ef57c438a4fe06881ae2530813cf9e040380d14e0d632f9357de6af5"
+          },
+          "slide-05.png": {
+            "bytes": 158426,
+            "sha256": "a862dd005019f2e13d0508be6f6051b2eb31ed4c1dbd9e289f26e10490204759"
+          },
+          "slide-06.png": {
+            "bytes": 141321,
+            "sha256": "ed7731a1cacfe854c52e930ead4942c2d16d49545011f69244fb90dd4d29f7c1"
+          },
+          "slide-07.png": {
+            "bytes": 61017,
+            "sha256": "57aa6c82411b2122ec08658320ecf9745cad602f50c4e30238eff3caf6de6e58"
+          },
+          "slide-08.png": {
+            "bytes": 59409,
+            "sha256": "5c639e335707196837b1b3b4c5dbefdc5a82176684d222a5bc41f7bf5b178de5"
+          }
+        },
+        "freshness": "Deck/receipt/source hashes plus export timestamps between delivery and application observation; not a signed image-to-deck binding."
+      }
+    },
+    {
+      "case": "anc",
+      "label": "A",
+      "condition": "baseline",
+      "stage": "after-second-round-repair-only-single-submission",
+      "before_stage": "before-second-round-repair-only-common-seed",
+      "before_outputHash": "be77a7a840f7c9218a89de628b4e60322340c42c49678c247628bd3865821851",
+      "outputHash": "06d33a4b0810c4d189b88708b4bef4b9d219f99784cf5228ca3aa9b97161baf5",
+      "sourceHash": "d61e3805a1734833b93e65a2bd79407935eac721458dee9e781a9c5db70f2825",
+      "receipt": {
+        "bytes": 747,
+        "sha256": "efcf5548d7d75e08326c2eb71ac6aa62f6bc00ae2e75ad82b0d294de59e3c2e8"
+      },
+      "evidence": {
+        "deck": {
+          "bytes": 206105,
+          "sha256": "06d33a4b0810c4d189b88708b4bef4b9d219f99784cf5228ca3aa9b97161baf5"
+        },
+        "application_observations": {
+          "bytes": 35754,
+          "sha256": "55e7098e73ff028066baf17fc842adfdcfa514f03472242f6592d21750d03a05"
+        },
+        "rendered_files": {
+          "contact-01.png": {
+            "bytes": 226676,
+            "sha256": "3f893f8f6980d7aa3869f0f2793ce163c2d2e858a5582ca3b3fe87f0691804e9"
+          },
+          "contact-02.png": {
+            "bytes": 186325,
+            "sha256": "836cddc17a9816055b10cf8fd66d401cc363ca2b273eaef790bcde6fd13c6cc6"
+          },
+          "edit-table-cell-03.png": {
+            "bytes": 60228,
+            "sha256": "e9d5f3156d4b129c827bd865aaf4ad307f0bac1c14d8363e2f2ef17424360b5f"
+          },
+          "edit-text-01.png": {
+            "bytes": 48403,
+            "sha256": "9e7ff128a79642a6d526a1d75f45c43c9527d7ebf45c74ab45473af30b74ce50"
+          },
+          "editing-probe.pptx": {
+            "bytes": 46177,
+            "sha256": "ecdec365b363e1acfd9ef781e04937bb0712cc7df63fc482ac76efbe6c2989ab"
+          },
+          "slide-01.png": {
+            "bytes": 48017,
+            "sha256": "f46ba6d3407457f30f1ee4ffb69226cb73492886fd53205b795e431fa8cd4661"
+          },
+          "slide-02.png": {
+            "bytes": 122575,
+            "sha256": "e64d5cf8412ce380bf55c655b02ed47430cdf570f0247e4a08aa2b43bbccac5a"
+          },
+          "slide-03.png": {
+            "bytes": 59077,
+            "sha256": "05cb42c295a625adcbc40ef7ca336c446c8f005ef0d23a673934d3cb4c3ce500"
+          },
+          "slide-04.png": {
+            "bytes": 55816,
+            "sha256": "bb00f59350d0d2c348dbc98799c4f545708392b5f8531ba4d5e8251b01785e94"
+          },
+          "slide-05.png": {
+            "bytes": 127395,
+            "sha256": "8b8ab2f69b0749ea5503143fdd437857e30858396999aa65858f300e2f64c05e"
+          },
+          "slide-06.png": {
+            "bytes": 138515,
+            "sha256": "92232f62725880dad7e651a75b82b8085e4a32fc0281f87779aab52936271e1e"
+          },
+          "slide-07.png": {
+            "bytes": 55250,
+            "sha256": "1066860ab83aca497fea0554a5ae0f511e86bac2d7474b01485f5e640a4d070b"
+          }
+        },
+        "freshness": "Deck/receipt/source hashes plus export timestamps between delivery and application observation; not a signed image-to-deck binding."
+      }
+    },
+    {
+      "case": "anc",
+      "label": "B",
+      "condition": "candidate",
+      "stage": "after-second-round-repair-only-single-submission",
+      "before_stage": "before-second-round-repair-only-common-seed",
+      "before_outputHash": "be77a7a840f7c9218a89de628b4e60322340c42c49678c247628bd3865821851",
+      "outputHash": "0a7f579addd9d833d527bc492546409d18df0adaa101b67361d19a1a70f6436f",
+      "sourceHash": "7cd0aa7f95b5ba2f92d359c7f8a51939ee251c0f59a2d39e68523d449c574132",
+      "receipt": {
+        "bytes": 747,
+        "sha256": "3696f74582dda27d6e653202801efef72de47bd91b29f63e69787b9a8e2df468"
+      },
+      "evidence": {
+        "deck": {
+          "bytes": 204996,
+          "sha256": "0a7f579addd9d833d527bc492546409d18df0adaa101b67361d19a1a70f6436f"
+        },
+        "application_observations": {
+          "bytes": 35412,
+          "sha256": "7f05693a81b75acaa0a82da5079368d93ca7c91da3af7c107d1c8a18bd9ffc03"
+        },
+        "rendered_files": {
+          "contact-01.png": {
+            "bytes": 221261,
+            "sha256": "5fc9e6be2e86ef9afdc4ce38d52fac4343e02d78eef02acf29f3ec9d4a8ee406"
+          },
+          "contact-02.png": {
+            "bytes": 186260,
+            "sha256": "08b94f28c1110443263bd30cbc4248b6a56d8a58e800a763f4469191cfe7fa9f"
+          },
+          "edit-table-cell-03.png": {
+            "bytes": 58120,
+            "sha256": "e9e40a494f291184613e7a56470e9d52dae602c2cc821d3d845798aa3372d491"
+          },
+          "edit-text-01.png": {
+            "bytes": 47463,
+            "sha256": "14abe87e2b2ceba12876abd4f62a4b665339957012f2077a414ba89d4c1afd31"
+          },
+          "editing-probe.pptx": {
+            "bytes": 46008,
+            "sha256": "d1712439f8c14c822b32c5579d61119ca911e651330883163241a1a480f14e74"
+          },
+          "slide-01.png": {
+            "bytes": 47077,
+            "sha256": "c1bc8649e2263a2d27893c964e4bb71340dbfce128bc5c08512a237f2e8c75f4"
+          },
+          "slide-02.png": {
+            "bytes": 118552,
+            "sha256": "12a4a5afefcd3d75b99c3c4370f833869fa507454ea6521d0f22c7d589802631"
+          },
+          "slide-03.png": {
+            "bytes": 56988,
+            "sha256": "54ee5f863610bc0731e36cc38266357d96151274b2db41a1c18ae4e787c89cfe"
+          },
+          "slide-04.png": {
+            "bytes": 55816,
+            "sha256": "bb00f59350d0d2c348dbc98799c4f545708392b5f8531ba4d5e8251b01785e94"
+          },
+          "slide-05.png": {
+            "bytes": 117797,
+            "sha256": "06362776acbfffe84229dba752e481480836d885803abcaea27af5c35b275573"
+          },
+          "slide-06.png": {
+            "bytes": 139968,
+            "sha256": "78723a8d2ae637bea3164fa441251f08b6b01b51d9c5bd942dbdca5b31c2be49"
+          },
+          "slide-07.png": {
+            "bytes": 57242,
+            "sha256": "c074f27bc46b6bb0a47b97faf20a9679c020faad341d4d2d7d71dda4bc45cce8"
+          }
+        },
+        "freshness": "Deck/receipt/source hashes plus export timestamps between delivery and application observation; not a signed image-to-deck binding."
+      }
+    },
+    {
+      "case": "greenland",
+      "label": "A",
+      "condition": "candidate",
+      "stage": "after-second-round-repair-only-single-submission",
+      "before_stage": "before-second-round-repair-only-common-seed",
+      "before_outputHash": "7e99d949379427cdf238aa82411f4d8d9f19515c1ca5d9ee1fa69dc69f2f5adb",
+      "outputHash": "0e770a38f7261449bf426c2649e96ad06501f77e74ae7542c854cff171580ba0",
+      "sourceHash": "835f8f63fb44edc68d6d0e0361edf60a2556463ce582d3bb829e5adf785d5bf1",
+      "receipt": {
+        "bytes": 741,
+        "sha256": "e363b6b03c675abdb0454c63bed7f711989611957f6f1de2758f1b5ae9752cae"
+      },
+      "evidence": {
+        "deck": {
+          "bytes": 211070,
+          "sha256": "0e770a38f7261449bf426c2649e96ad06501f77e74ae7542c854cff171580ba0"
+        },
+        "application_observations": {
+          "bytes": 33242,
+          "sha256": "c1c5c29fc8ae001074407417b196148deeca1efbb9d9aefb322289d0c4724792"
+        },
+        "rendered_files": {
+          "contact-01.png": {
+            "bytes": 184184,
+            "sha256": "6281beb5bf2bbe86d12c2b10e2e878e71c0662a8261e361096a6f3f6776addd3"
+          },
+          "contact-02.png": {
+            "bytes": 187376,
+            "sha256": "577d692cfb8cb060b3aeb679824528d3a41d533b16ae78d396f74793f46f16aa"
+          },
+          "edit-chart-data-02.png": {
+            "bytes": 92318,
+            "sha256": "e71424b08b44fabdefc160efd4204f14322fd33da9d0bb99644faa9813f56044"
+          },
+          "edit-table-cell-06.png": {
+            "bytes": 62021,
+            "sha256": "d55b8d3161bf75cb2addb8afdf6bab5afe58fa66db201cad5a33d4a216855d5b"
+          },
+          "edit-text-01.png": {
+            "bytes": 47171,
+            "sha256": "5a846e06569c64e0b91222b49acaee3ab1f8fc707b63689bdf516a265b0b4128"
+          },
+          "editing-probe.pptx": {
+            "bytes": 54412,
+            "sha256": "fd37308d861809fb8fa3fe2217fb70c1b472a74d7f453470365bad7831c3ba5a"
+          },
+          "slide-01.png": {
+            "bytes": 46566,
+            "sha256": "c5d00fb420e2e8d6e5de31d95067db10f7fa4b1b27712842a01c005324d69df6"
+          },
+          "slide-02.png": {
+            "bytes": 92256,
+            "sha256": "2749999a80e1513250dce4c9e7b9845493ad1834bfe7dc48221cfe1559b8fd18"
+          },
+          "slide-03.png": {
+            "bytes": 101163,
+            "sha256": "ec15cc665101df1dbd2fca0105aa00d92d8074e0590128372132fa16042f7c84"
+          },
+          "slide-04.png": {
+            "bytes": 46133,
+            "sha256": "379918ac26cb9f957e2216b4bdbdb5c8be002b88e92b1ad1738b8aa61cc7109c"
+          },
+          "slide-05.png": {
+            "bytes": 60475,
+            "sha256": "76b61dbd0c7488f18c5a35d6116277cdddbf723e1745d38f35cca77e54fd1c8d"
+          },
+          "slide-06.png": {
+            "bytes": 60716,
+            "sha256": "67f67bd9c974a1377c50f6dee06c905e0505884280c09e9893b8d62b07df2724"
+          },
+          "slide-07.png": {
+            "bytes": 127409,
+            "sha256": "07ee5103ebc1fc4f4f8eba219dbe66eaaecca5ed726c3b0db7732de123b5821f"
+          }
+        },
+        "freshness": "Deck/receipt/source hashes plus export timestamps between delivery and application observation; not a signed image-to-deck binding."
+      }
+    },
+    {
+      "case": "greenland",
+      "label": "B",
+      "condition": "baseline",
+      "stage": "after-second-round-repair-only-single-submission",
+      "before_stage": "before-second-round-repair-only-common-seed",
+      "before_outputHash": "7e99d949379427cdf238aa82411f4d8d9f19515c1ca5d9ee1fa69dc69f2f5adb",
+      "outputHash": "b8a08d38ee407c34ee41b14e5c36d004d848290e6bfa0078093faa8dbc023d83",
+      "sourceHash": "ae494788dd8b0902381427653aeba7f39de9603da28d8b5a4add9f57ea97e746",
+      "receipt": {
+        "bytes": 741,
+        "sha256": "531f4110dae29ffa8b22eda970db7c9bfa2bd115324acd9ff4c76c8ca32ddadb"
+      },
+      "evidence": {
+        "deck": {
+          "bytes": 211307,
+          "sha256": "b8a08d38ee407c34ee41b14e5c36d004d848290e6bfa0078093faa8dbc023d83"
+        },
+        "application_observations": {
+          "bytes": 33229,
+          "sha256": "68f9c0a901e79e760033f418b9642b1cd3c3d5b8bc348923046c7e96e908b017"
+        },
+        "rendered_files": {
+          "contact-01.png": {
+            "bytes": 183441,
+            "sha256": "4e2ae16984ebd1183a106042438ad49528d0f0798ec450778aa49202721e2913"
+          },
+          "contact-02.png": {
+            "bytes": 190032,
+            "sha256": "ce45aefb3e5277a2aa15a01fcf42dc2b4786d9b676784a22f7fc36bbe2a4b311"
+          },
+          "edit-chart-data-02.png": {
+            "bytes": 92318,
+            "sha256": "e71424b08b44fabdefc160efd4204f14322fd33da9d0bb99644faa9813f56044"
+          },
+          "edit-table-cell-06.png": {
+            "bytes": 61875,
+            "sha256": "2cac76c3d92eaf9fdef34724946dfe1a84b63bcf4b505e22b394d8a4ba1f7922"
+          },
+          "edit-text-01.png": {
+            "bytes": 47171,
+            "sha256": "5a846e06569c64e0b91222b49acaee3ab1f8fc707b63689bdf516a265b0b4128"
+          },
+          "editing-probe.pptx": {
+            "bytes": 54531,
+            "sha256": "73e3ae6da803a3c4eabd1922fdb10cc44e4702158753766a2a5cc5af5d47e108"
+          },
+          "slide-01.png": {
+            "bytes": 46566,
+            "sha256": "c5d00fb420e2e8d6e5de31d95067db10f7fa4b1b27712842a01c005324d69df6"
+          },
+          "slide-02.png": {
+            "bytes": 92256,
+            "sha256": "2749999a80e1513250dce4c9e7b9845493ad1834bfe7dc48221cfe1559b8fd18"
+          },
+          "slide-03.png": {
+            "bytes": 99984,
+            "sha256": "b30ca845c5d4bf1536c2e2a8f52aa6b050e10beb91a4e6fb833916d52f1cc8ee"
+          },
+          "slide-04.png": {
+            "bytes": 46133,
+            "sha256": "379918ac26cb9f957e2216b4bdbdb5c8be002b88e92b1ad1738b8aa61cc7109c"
+          },
+          "slide-05.png": {
+            "bytes": 60475,
+            "sha256": "76b61dbd0c7488f18c5a35d6116277cdddbf723e1745d38f35cca77e54fd1c8d"
+          },
+          "slide-06.png": {
+            "bytes": 60916,
+            "sha256": "72f9b0a228960e444a770747de02b05cdd104edbaaf4ba1259b9ae22dec69f54"
+          },
+          "slide-07.png": {
+            "bytes": 132414,
+            "sha256": "9b5be383994c82f09b8021e1ca773ce483f17ca95bec4119456f9c2e8150b2c0"
+          }
+        },
+        "freshness": "Deck/receipt/source hashes plus export timestamps between delivery and application observation; not a signed image-to-deck binding."
+      }
+    },
+    {
+      "case": "project-overview",
+      "label": "A",
+      "condition": "candidate",
+      "stage": "after-second-round-repair-only-single-submission",
+      "before_stage": "before-second-round-repair-only-common-seed",
+      "before_outputHash": "79914785c3aa7c7e95c877032227cf35fe6474f44b478bdef2212fe85d4e0c25",
+      "outputHash": "7dc78aef07716c699cc950c546eabc82bafde526f4dbf996f45906ce7c8f94f3",
+      "sourceHash": "cd66367d78c269cf0a0258301af194a3b9df2fe801f3b51f7407c37a5e5307c5",
+      "receipt": {
+        "bytes": 747,
+        "sha256": "51067e65f34b824b57e8e1c8b0f560042f11991403ec6c32c855d39889708d14"
+      },
+      "evidence": {
+        "deck": {
+          "bytes": 266037,
+          "sha256": "7dc78aef07716c699cc950c546eabc82bafde526f4dbf996f45906ce7c8f94f3"
+        },
+        "application_observations": {
+          "bytes": 41563,
+          "sha256": "730484426554048f363b496618e6008b97ef0b91e571f1b27dfe1c5d21c7109a"
+        },
+        "rendered_files": {
+          "contact-01.png": {
+            "bytes": 236108,
+            "sha256": "91139558f7e99641c2dd9f5b34d5572baeb0ec70820f2d7de06353470fcfe1e9"
+          },
+          "contact-02.png": {
+            "bytes": 265365,
+            "sha256": "f2432ea7fe180e88ab30c78b28325ce5710649c67b6ef36b8c2a0e20b608ae75"
+          },
+          "edit-table-cell-04.png": {
+            "bytes": 146482,
+            "sha256": "20ed21e47fdaa8ef4e963cdbfb9e7e4a4adf3fcf6b74fcb2217b359073a7bb7a"
+          },
+          "edit-text-01.png": {
+            "bytes": 115599,
+            "sha256": "8c7406db9b90de1c32cad06d6ef1e66ec58fc099fc60b3095c63c295ce98faf9"
+          },
+          "editing-probe.pptx": {
+            "bytes": 75745,
+            "sha256": "f4144fddc00cdc48cafa198a88351876e9313239879f8c196d67f749a00755c5"
+          },
+          "slide-01.png": {
+            "bytes": 114886,
+            "sha256": "23479de107fff62297899d368fdc630230d18d988504ab605116f9d84fa920f7"
+          },
+          "slide-02.png": {
+            "bytes": 57199,
+            "sha256": "a7f61240d12b61450dc1a2a59fcb2839b72e2f002ca8c3672f3a36a56b1952b2"
+          },
+          "slide-03.png": {
+            "bytes": 119205,
+            "sha256": "e832ff8c3a7854e47b159e8dd5ffa1d6b38851e084070dfddb67d28352f26a44"
+          },
+          "slide-04.png": {
+            "bytes": 142723,
+            "sha256": "331dc9158bd12cb4332857c8e34dec3f69e14ec45622f64a8cdbbec64741ddb4"
+          },
+          "slide-05.png": {
+            "bytes": 186792,
+            "sha256": "7d5175e6560e31ad9b802beaf64f61a8161bb014582b7494a95fe627f7e63072"
+          },
+          "slide-06.png": {
+            "bytes": 150721,
+            "sha256": "e1079058d7e0f243e9d7a92a4041e1171e06b646f8b64241ed29e56c79f9b41f"
+          },
+          "slide-07.png": {
+            "bytes": 133911,
+            "sha256": "3bedfa82049ff3a70bd6088f9c70c7b8665bcf78f32a3221c8e031385ab965e3"
+          },
+          "slide-08.png": {
+            "bytes": 60883,
+            "sha256": "ee1f70ba3e0010560f2961eb78c1240e925cb04d8d2b3f333ce20cf318680561"
+          }
+        },
+        "freshness": "Deck/receipt/source hashes plus export timestamps between delivery and application observation; not a signed image-to-deck binding."
+      }
+    },
+    {
+      "case": "project-overview",
+      "label": "B",
+      "condition": "baseline",
+      "stage": "after-second-round-repair-only-single-submission",
+      "before_stage": "before-second-round-repair-only-common-seed",
+      "before_outputHash": "79914785c3aa7c7e95c877032227cf35fe6474f44b478bdef2212fe85d4e0c25",
+      "outputHash": "7bc1325be898e429b4f6dbc1d142ce74051687d648797fbc9c5ead7f10731b74",
+      "sourceHash": "2de073b5d7416f2a66d49df1d94131287786242c6d278267eff00fe6faacf337",
+      "receipt": {
+        "bytes": 747,
+        "sha256": "da53ecbe432b826781d97ba0415317b90327a037baaa0b67852ec08118771551"
+      },
+      "evidence": {
+        "deck": {
+          "bytes": 264900,
+          "sha256": "7bc1325be898e429b4f6dbc1d142ce74051687d648797fbc9c5ead7f10731b74"
+        },
+        "application_observations": {
+          "bytes": 41635,
+          "sha256": "76630cb56e1e7844265f22e2e4cbc626e3e9d973f0d303cc74a461bd4010d809"
+        },
+        "rendered_files": {
+          "contact-01.png": {
+            "bytes": 245753,
+            "sha256": "7948409c75d864f2bbedc08727e0954b334b7c17c1ddb797c82cc6c3eec342d1"
+          },
+          "contact-02.png": {
+            "bytes": 261171,
+            "sha256": "7f69295c41a48870575ff8efc4b8daa2534f4ee1bcede3dd468f7cbeb683b8eb"
+          },
+          "edit-table-cell-04.png": {
+            "bytes": 146998,
+            "sha256": "bbcc4f6024cd427c02906f9b13967ba102159b82bdf6064f07d6045a9d4b06c6"
+          },
+          "edit-text-01.png": {
+            "bytes": 134846,
+            "sha256": "4f5b3bc936690a690e7830e9ed242800a835e50eaa399bd5837ad55a83d3e6ca"
+          },
+          "editing-probe.pptx": {
+            "bytes": 75826,
+            "sha256": "52b57e27f00f0e312915c8c6f01d3a48a111bd0accf1577c8723a500ee8fe6a9"
+          },
+          "slide-01.png": {
+            "bytes": 134108,
+            "sha256": "8d8dff7ee627dfd574cb594518cfdf57e56b1ccf15004ac6298e7c2fdc080e4b"
+          },
+          "slide-02.png": {
+            "bytes": 57199,
+            "sha256": "a7f61240d12b61450dc1a2a59fcb2839b72e2f002ca8c3672f3a36a56b1952b2"
+          },
+          "slide-03.png": {
+            "bytes": 122001,
+            "sha256": "236885fe1649e68c8983080a7aae2295e3fc13f4c4c3c51d28ed269b074553bb"
+          },
+          "slide-04.png": {
+            "bytes": 143280,
+            "sha256": "da0c120ad98a5d1298021ff68fc7fc82c0feef520cc898a8605c694a8a7d8d43"
+          },
+          "slide-05.png": {
+            "bytes": 182416,
+            "sha256": "1bfda0cbc98a231a22f34abe32e560cd62b8e398e846a74fc647b43157045518"
+          },
+          "slide-06.png": {
+            "bytes": 137351,
+            "sha256": "dad09d80e35f7f24318dda932db183857cf02bd0c84afdbeba86179d52d0b0d5"
+          },
+          "slide-07.png": {
+            "bytes": 133911,
+            "sha256": "3bedfa82049ff3a70bd6088f9c70c7b8665bcf78f32a3221c8e031385ab965e3"
+          },
+          "slide-08.png": {
+            "bytes": 64260,
+            "sha256": "0754c5e8cf3c056e029e09a5e655c1bf92a4f8cd937e526f1ffb74e87012fe71"
+          }
+        },
+        "freshness": "Deck/receipt/source hashes plus export timestamps between delivery and application observation; not a signed image-to-deck binding."
+      }
+    }
+  ],
+  "source_review_sha256": "359e79dd986f5a2219cc9487115c47ff98a3d47b947cbf5ac9ab4343fa8ea7ad",
+  "approval_sha256": "1353970bc8944b4d6a86ff5e07d6e7fed66ab8f55003d177cdf0b63c71bf937b"
+}

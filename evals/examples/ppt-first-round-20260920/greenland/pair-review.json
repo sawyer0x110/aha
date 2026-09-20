@@ -1,0 +1,319 @@
+{
+  "eval_name": "greenland",
+  "stage": "technical-repair",
+  "labels": "A and B are anonymous random labels; no old/new mapping was inspected or inferred.",
+  "additional_host_probe_finding": {
+    "received_at": "2026-09-20T16:55:12.056+08:00",
+    "applies_to": ["A", "B"],
+    "observation": "Host reports that the saved/reopened chart workbook B2 edit persists, but independent ZIP inspection finds the chart numeric cache still holds original values.",
+    "acceptance": "partial",
+    "interpretation": "Historical earlier-probe result: application-observations chart-data persisted=true proves workbook persistence ONLY. That probe did not establish chart display/cache synchronization. See completed_host_chart_followup for the later explicit-refresh test.",
+    "limits": "Preserved as earlier limited evidence, not the final programmatic-edit conclusion. Original delivered deck content and PNGs are unchanged. This is host-supplied evidence, not a reviewer-repeated ZIP inspection; no experimental-condition identity or A/B distinction is inferred."
+  },
+  "completed_host_chart_followup": {
+    "received_at": "2026-09-20T16:56:38.336+08:00",
+    "source": "chart-edit-followup.json",
+    "applies_to": ["A", "B"],
+    "status": "pass",
+    "assessed_scope": "Programmatic native chart-data editing with explicit Chart.SetSourceData(A1:B3), followed by save/reopen and independent ZIP cache inspection.",
+    "A": "Workbook B2 2.17 -> 3.17; resulting chart numeric cache [3.17,30.4] matches.",
+    "B": "Workbook B2 2.166086 -> 3.166086; resulting chart numeric cache [3.166086,30.365] matches.",
+    "boundary": "This demonstrates the specific programmatic native data-edit/cache-synchronization path for both labels. It does not certify automatic refresh, manual usability, all workbook cells, arbitrary edits, or a separately reviewed post-edit rendered image. Earlier application-observations remains unchanged and retains its narrower evidentiary meaning. No original deck/image changes, comparative runtime gain or label identity are inferred.",
+    "earlier_probe_limitation": "The follow-up reports that direct Workbook.Save failed for the embedded workbook; Close(true) persisted B2 but left the chart cache stale until explicit SetSourceData."
+  },
+  "scope": {
+    "root": "C:\\Users\\yusu\\scoop\\buckets\\copilot-worktrees\\aha\\sawyer0x110-solid-guacamole\\artifacts\\skill-evals\\ppt-first-round\\review\\greenland",
+    "evidence_read": [
+      "eval_metadata.json",
+      "research/report.md",
+      "research/research.json",
+      "A/outputs/ooxml.json",
+      "B/outputs/ooxml.json",
+      "A/application-observations.json",
+      "B/application-observations.json",
+      "Every slide-01.png through slide-07.png in A/outputs and B/outputs"
+    ],
+    "method": "Direct full-size inspection of the existing PowerPoint-exported slide PNGs; read-only parsing of supplied JSON for text, notes, native object kinds, table cells and chart caches. No contact sheet substituted for a slide. No new rendering, artifact-code execution, network research, subagents, source-deck edits or generation-source inspection.",
+    "limits": "Only final repaired-stage outputs were assessed. Scientific facts were checked against supplied frozen evidence, not independently re-researched. No inference about bundle identity, process compliance, capacity-repair behavior or untouched first-pass compatibility."
+  },
+  "inspected_slides": {
+    "A": [1, 2, 3, 4, 5, 6, 7],
+    "B": [1, 2, 3, 4, 5, 6, 7],
+    "image_scope": "All fourteen individual slide PNGs were viewed at their supplied full size; no slide skipped."
+  },
+  "slide_observations": {
+    "A": [
+      {
+        "slide": 1,
+        "locator": "A/outputs/slide-01.png; ooxml.json s1",
+        "observation": "Headline asks why Greenland appears huge on some maps. The body attributes this to Mercator high-latitude enlargement, explicitly says 这不是所有地图的共同问题, and labels the 约14倍 callout 非洲 ÷ 格陵兰. Main text and callout are readable.",
+        "research_anchors": ["c-cause", "c-area", "e-mercator", "e-greenland", "e-africa"]
+      },
+      {
+        "slide": 2,
+        "locator": "A/outputs/slide-02.png; ooxml.json s2 Chart 0",
+        "observation": "Readable same-scale horizontal bars use million km² and approximate figures. The side explanation visibly says Greenland includes ice cover, sources do not use a unified measurement process, and fourteen times is not outline packing. Meaningful cached categories and values are checked below.",
+        "research_anchors": ["c-area", "e-greenland", "e-africa", "report: 面积：约14倍，而非精确装箱"]
+      },
+      {
+        "slide": 3,
+        "locator": "A/outputs/slide-03.png; ooxml.json s3 sp diagram and notes",
+        "observation": "A globe-like native schematic is paired with a rectangular grid. Visible text supplies convergence versus equal meridian spacing, then matching north-south stretch to preserve local angles. 关系示意，非真实地图；线条位置不可用于测量 appropriately prevents reading geographic coordinates from the drawing.",
+        "research_anchors": ["c-bridge", "e-proj", "e-mercator"]
+      },
+      {
+        "slide": 4,
+        "locator": "A/outputs/slide-04.png; ooxml.json s4 Shape 5, Shape 9 and Text 15–17",
+        "observation": "One square versus a four-cell larger square supports width about twice, height about twice, area about four times. Spherical Mercator and equatorial scale one appear in the heading; the warning rejects a whole-Greenland multiplier. Shapes and labels are legible; notes additionally clarify comparison of equal-sized tiny surface patches.",
+        "research_anchors": ["c-scale", "e-proj"]
+      },
+      {
+        "slide": 5,
+        "locator": "A/outputs/slide-05.png; ooxml.json s5",
+        "observation": "Readable two-column explanation contrasts local conformality/straight rhumb lines with whole-continent distortion, usually non-shortest routes and polar truncation. The model qualifier mentions Web Mercator separately.",
+        "research_anchors": ["c-navigation", "c-poles", "e-mercator"]
+      },
+      {
+        "slide": 6,
+        "locator": "A/outputs/slide-06.png; ooxml.json s6 Table 0 and Text 4",
+        "observation": "A meaningful native table compares area, angles/shape, use and limitations. All cell content is readable, but the bold takeaway 比较“谁更大”时，等面积投影更合适 begins against the rendered bottom border, which touches/crosses its top. Both table and takeaway are extracted with id 7; kind/name disambiguate them.",
+        "research_anchors": ["c-equal", "c-navigation", "c-poles", "e-flat", "e-equalearth", "e-mercator"]
+      },
+      {
+        "slide": 7,
+        "locator": "A/outputs/slide-07.png; ooxml.json s7 notes",
+        "observation": "Readable three-step conclusion repeats identification, same-scale area comparison and purpose-based map choice. A visible limitations panel states official 2026 PDF text was not extracted and public secondary figures are used. Notes contain useful recap instructions but also retained source-stage delivery status.",
+        "research_anchors": ["c-area", "c-cause", "c-equal", "g-primary", "g-animation"]
+      }
+    ],
+    "B": [
+      {
+        "slide": 1,
+        "locator": "B/outputs/slide-01.png; ooxml.json s1",
+        "observation": "Readable headline 放大的是地图上的面积，不是地球上的格陵兰 separates appearance and ground area. Ordinary Mercator scope and the warning against generalizing to all maps are visible; the approximately fourteen-times callout specifies 非洲 ÷ 格陵兰.",
+        "research_anchors": ["c-cause", "c-area", "e-mercator"]
+      },
+      {
+        "slide": 2,
+        "locator": "B/outputs/slide-02.png; ooxml.json s2 Chart 0",
+        "observation": "The horizontal chart uses a common zero-based scale, visible million-km² units and approximate 217万/3040万 callouts. Greenland is labeled as including ice-covered area, and the bottom statement rejects packing. Chart caches retain the published values; source-method differences appear in notes and visibly on s7 rather than beside these bars.",
+        "research_anchors": ["c-area", "e-greenland", "e-africa"]
+      },
+      {
+        "slide": 3,
+        "locator": "B/outputs/slide-03.png; ooxml.json s3 Text 20–21 and native lines",
+        "observation": "Converging lines and highlighted spans on the left contrast with equal-width meridian spans on the right. The two-step text explicitly explains shorter real east-west distance and matching north-south expansion. It visibly disclaims a real globe outline, latitude coordinates or complete graticule; no false geographic precision is claimed.",
+        "research_anchors": ["c-bridge", "e-proj", "e-mercator"]
+      },
+      {
+        "slide": 4,
+        "locator": "B/outputs/slide-04.png; ooxml.json s4",
+        "observation": "A visible conditions sentence specifies spherical Mercator, equatorial scale one, and tiny equal-area ground patches. Squares labeled 1份/赤道附近 and 4份/60°附近 make the scale comparison explicit. The bottom statement rules out multiplying or dividing all Greenland by four. No material clipping observed.",
+        "research_anchors": ["c-scale", "e-proj"]
+      },
+      {
+        "slide": 5,
+        "locator": "B/outputs/slide-05.png; ooxml.json s5 Table 0 and Text 3",
+        "observation": "Readable native table compares what is retained, sacrificed, suited to a task and not to be inferred. The bottom takeaway is separated from the table in the actual export. Table 0 and Text 3 nevertheless share object id 6 in the supplied extraction.",
+        "research_anchors": ["c-equal", "c-navigation", "e-flat", "e-equalearth", "e-mercator"]
+      },
+      {
+        "slide": 6,
+        "locator": "B/outputs/slide-06.png; ooxml.json s6",
+        "observation": "Three clearly separated text sections emphasize local rather than whole-country claims, polar infinity/cropping, and the spherical-Mercator versus Web Mercator distinction. These are visible conditions, not buried notes.",
+        "research_anchors": ["c-scale", "c-navigation", "c-poles", "e-mercator"]
+      },
+      {
+        "slide": 7,
+        "locator": "B/outputs/slide-07.png; ooxml.json s7 notes",
+        "observation": "Readable summary connects identify projection, read area and ask purpose. Visible limitations state different public sources, approximate numbers, no direct official-PDF check and no real boundary map or validated migration animation. Notes add a comprehension question, but retain unscoped source-only/QA-not-yet-done status.",
+        "research_anchors": ["c-area", "c-cause", "c-equal", "g-primary", "g-animation"]
+      }
+    ]
+  },
+  "data_verification": {
+    "area_chart_interpretation": "The requested area comparison is implemented appropriately as a horizontal bar chart in each deck, not as the Excel filled-area chart type. Both are native barChart objects.",
+    "frozen_reference": {
+      "Greenland_km2": 2166086,
+      "Africa_km2": 30365000,
+      "ratio": 14.018372308394033,
+      "qualification": "Greenland includes ice cap; Africa value is approximate; source methods are not unified. Published-area ratio is not geometric packing.",
+      "locators": ["research/research.json: e-greenland, e-africa, c-area", "research/report.md: 面积：约14倍，而非精确装箱"]
+    },
+    "A": {
+      "slide": 2,
+      "object": "graphicFrame Chart 0 id 7; ppt/charts/chart1.xml",
+      "cached_categories_in_order": ["格陵兰", "非洲"],
+      "cached_values_in_order": [2.17, 30.4],
+      "units": "百万平方公里",
+      "series_label": "面积（百万平方公里）",
+      "category_formula": "Sheet1!$A$2:$A$3",
+      "value_formula": "Sheet1!$B$2:$B$3",
+      "converted_km2": [2170000, 30400000],
+      "ratio": 14.009216589861751,
+      "judgment": "Consistent dossier-authorized approximations; visible 约数/约14倍 and source-method disclaimer are appropriate.",
+      "application_probe": "Earlier probe: B2 2.17 -> 3.17 persisted but chart cache stayed original. Completed chart-edit-followup.json results[label=A]: explicit Chart.SetSourceData(A1:B3) synchronizes the cache to [3.17,30.4]; saved/reopened workbook B2 and independently ZIP-inspected cache match. Programmatic native chart-data editing is demonstrated, not automatic refresh or manual usability. The reviewed original remained unchanged."
+    },
+    "B": {
+      "slide": 2,
+      "object": "graphicFrame Chart 0 id 6; ppt/charts/chart1.xml",
+      "cached_categories_in_order": ["格陵兰", "非洲"],
+      "cached_values_in_order": [2.166086, 30.365],
+      "units": "百万平方公里",
+      "series_label": "总面积",
+      "category_formula": "Sheet1!$A$2:$A$3",
+      "value_formula": "Sheet1!$B$2:$B$3",
+      "converted_km2": [2166086, 30365000],
+      "ratio": 14.018372308394033,
+      "judgment": "Caches preserve supplied source figures while visible rounded callouts and approximately fourteen-times conclusion avoid claiming unified precise measurement.",
+      "application_probe": "Earlier probe: B2 2.166086 -> 3.166086 persisted but chart cache stayed original. Completed chart-edit-followup.json results[label=B]: explicit Chart.SetSourceData(A1:B3) synchronizes the cache to [3.166086,30.365]; saved/reopened workbook B2 and independently ZIP-inspected cache match. Programmatic native chart-data editing is demonstrated, not automatic refresh or manual usability. The reviewed original remained unchanged."
+    },
+    "table_checks": [
+      {
+        "label": "A",
+        "slide": 6,
+        "object": "graphicFrame Table 0 id 7",
+        "dimensions": "5 rows including header, 3 columns",
+        "headers": ["比较维度", "普通墨卡托", "Equal Earth（等面积）"],
+        "rows_checked": [
+          ["面积比例", "不保留；高纬放大严重", "保留面积比例"],
+          ["角度与形状", "局部保角；不保留大陆整体形状", "不保角；形状仍会变形"],
+          ["用途取向", "表达恒定航向；恒向线为直线", "比较地区的面积大小"],
+          ["不能承诺", "恒向线通常不是最短路；有限地图需裁切两极", "不能同时保全形状、角度、方向和距离"]
+        ],
+        "judgment": "All row meanings supported by e-mercator, e-equalearth and e-flat; not empty cells or image simulation. Line breaks normalized here only."
+      },
+      {
+        "label": "B",
+        "slide": 5,
+        "object": "graphicFrame Table 0 id 6",
+        "dimensions": "5 rows including header, 3 columns",
+        "headers": ["比较维度", "普通墨卡托", "Equal Earth（等面积）"],
+        "rows_checked": [
+          ["保留什么", "局部角度；恒定罗盘航向的恒向线画成直线", "区域间的面积比例"],
+          ["牺牲什么", "面积比例；越接近两极放大越严重", "形状、角度、方向和距离仍会变形"],
+          ["适合什么问题", "关注局部角度，或表达恒定罗盘航向", "比较不同地区的面积大小"],
+          ["不可误读", "保角不等于大陆形状不变；恒向线通常不是最短路线", "等面积不等于所有性质准确，也不意味着唯一正确"]
+        ],
+        "judgment": "All row meanings supported by e-mercator, e-equalearth and e-flat; not empty cells or image simulation. Line breaks normalized here only."
+      }
+    ],
+    "workbook_limit": "Original chart-cache/source consistency was checked. Earlier application-observations persisted=true proves workbook persistence only. The separate completed chart-edit-followup.json now demonstrates programmatic B2 editing plus explicit SetSourceData and matching saved/reopened workbook/ZIP numeric cache for both labels. This is host-supplied independent cache inspection, not a reviewer audit of the entire workbook. Automatic refresh, manual usability, arbitrary category/data edits, comprehensive recalculation and post-edit rendered appearance remain unverified. Original decks/images are unchanged."
+  },
+  "actionable_defects": [
+    {
+      "id": "A-layout-6",
+      "labels": ["A"],
+      "severity": "minor",
+      "page": 6,
+      "object": "Table 0 bottom border and sp Text 4, both extracted id 7",
+      "observation": "In the actual slide PNG, the rendered table bottom border intersects/touches the top of the bold takeaway beginning 比较“谁更大”时，等面积投影更合适. The takeaway is still readable, so this is not rated a blocking or major content loss.",
+      "action": "Move the table upward or shorten its rendered rows, or lower the takeaway while preserving footer clearance. Verify the same slide in PowerPoint after that change; do not trust the static frame extent alone.",
+      "locators": ["A/outputs/slide-06.png", "A/outputs/ooxml.json: s6 Table 0 and Text 4"]
+    },
+    {
+      "id": "both-native-ids",
+      "labels": ["A", "B"],
+      "severity": "minor",
+      "page": {"A": 6, "B": 5},
+      "object": {"A": "graphicFrame Table 0 and sp Text 4 both id 7", "B": "graphicFrame Table 0 and sp Text 3 both id 6"},
+      "observation": "The supplied OOXML extraction reports duplicate slide-local object identifiers on the native table and adjacent text in both decks. This is an object-addressing/structural hygiene defect, not evidence that the existing table probe failed.",
+      "action": "Assign unique slide-local nonvisual IDs and preserve/update any referencing relationships. Reopen and repeat targeted text/table editing checks; use object name and type to disambiguate current locators.",
+      "locators": ["A/outputs/ooxml.json: s6.objects", "B/outputs/ooxml.json: s5.objects", "A/application-observations.json", "B/application-observations.json"]
+    },
+    {
+      "id": "both-notes-stage",
+      "labels": ["A", "B"],
+      "severity": "minor",
+      "page": {"A": 7, "B": 7},
+      "object": "Speaker notes: retained source-delivery status",
+      "observation": "A says 未生成PPTX文件、未渲染 and B says 当前只有源项目 ... 未生成PPTX、未做视觉或原生编辑QA. Those statements are source-stage status embedded in final exported packages with later supplied PowerPoint observations. The scientific qualifications remain useful, but the temporal scope is ambiguous.",
+      "action": "Label the original status as authoring-stage history and separately record the later technical-repair/export/programmatic-edit status. Do not rewrite it as evidence that the original author performed those later steps, and do not remove unresolved human/portability limitations.",
+      "locators": ["A/outputs/ooxml.json: s7 notes", "B/outputs/ooxml.json: s7 notes", "A/application-observations.json", "B/application-observations.json"]
+    }
+  ],
+  "blocking_or_major_issues": {
+    "issues": [],
+    "rationale": "No blocking or major scientific, data, visible-content or readability defect was identified in the supplied evidence. Both decks' duplicate IDs and retained stage-status notes are explicitly reported above rather than omitted because they are shared. Their demonstrated consequence does not justify inventing a major runtime or human-usability failure."
+  },
+  "comparisons": [
+    {
+      "dimension": "Source support and numerical integrity",
+      "winner": "tie",
+      "A": "Uses dossier-approved rounded chart values and places non-unified measurement methods directly on s2.",
+      "B": "Retains source numbers in caches, uses rounded audience callouts, and shows source-method limitations on s7.",
+      "reason": "Both preserve correct units, ordering, approximate fourteen-times inference and secondary-source limits. More cached decimal places are not inherently better evidence.",
+      "locators": ["A and B s2 and s7", "research e-greenland/e-africa/c-area/g-primary"]
+    },
+    {
+      "dimension": "Mechanism and reader-facing reasoning",
+      "winner": "B",
+      "A": "s3 gives a fuller globe/grid qualitative illustration and the causal bridge; s4 shows one versus four cells with local/spherical qualifiers.",
+      "B": "s3 isolates the same-longitude-span comparison, and s4 explicitly makes 微小、等面积的地表片区 visible beside the one/four-part illustration.",
+      "reason": "B makes what is held constant in the local comparison easier to understand without relying on the speaker notes. This is a modest explanatory preference, not proof of measured comprehension.",
+      "locators": ["A/outputs/slide-03.png", "A/outputs/slide-04.png", "B/outputs/slide-03.png", "B/outputs/slide-04.png", "research c-bridge/c-scale"]
+    },
+    {
+      "dimension": "Visible qualifications",
+      "winner": "tie",
+      "A": "Especially strong adjacent area-source caveats on s2; explicit local/model conditions on s4–5 and PDF gap on s7.",
+      "B": "Especially explicit same-area local patches on s4, dedicated limits on s6, and no-boundary/no-validated-animation statement on s7.",
+      "reason": "Both keep material conditions visible and avoid notes-only reversals of the main conclusion. Different placement yields offsetting strengths.",
+      "locators": ["A s2, s4, s5, s7", "B s2, s4, s6, s7", "research c-area/c-scale/c-navigation/g-primary/g-animation"]
+    },
+    {
+      "dimension": "Appropriate native objects and data semantics",
+      "winner": "tie",
+      "A": "Meaningful native bar chart, comparison table and explanatory shapes; duplicate table/text id on s6.",
+      "B": "Meaningful native bar chart, comparison table and explanatory shapes; duplicate table/text id on s5.",
+      "reason": "Object types match the tasks and original table/graph meanings are supported. Both share structural hygiene and unverified manual-usability limits. Completed chart-edit-followup.json demonstrates programmatic native B2 editing and workbook/cache agreement after explicit SetSourceData for both; earlier workbook-only persistence remains limited evidence. Manual usability and automatic refresh are not certified. This supplies no A/B distinction or independent runtime skill gain. Object counts are not quality evidence.",
+      "locators": ["A/outputs/ooxml.json", "B/outputs/ooxml.json", "A/application-observations.json", "B/application-observations.json", "chart-edit-followup.json: method, results, earlierProbeLimitation, limit"]
+    },
+    {
+      "dimension": "Chinese readability and final-slide layout",
+      "winner": "B",
+      "A": "Generally readable, but the s6 table bottom border crowds/intersects the takeaway.",
+      "B": "Readable table and separate takeaway on s5; no comparable material collision observed on its seven exported pages.",
+      "reason": "B has the cleaner observed final layout. No numerical aesthetic score, cross-machine claim or capacity-repair credit is assigned.",
+      "locators": ["All fourteen slide PNGs", "A/outputs/slide-06.png", "B/outputs/slide-05.png"]
+    },
+    {
+      "dimension": "Useful notes versus hidden conditions",
+      "winner": "tie",
+      "A": "Useful prompts, local derivation, source caveats and step-by-step explanation; source-stage status remains in s7 notes.",
+      "B": "Useful prompts, model and schematic limits, explicit comparison assumptions and source attribution; source-stage status remains in s7 notes.",
+      "reason": "Both notes add actual teaching support and do not hide a condition that overturns the conclusion. Both need temporal scoping of authoring-status statements.",
+      "locators": ["A/outputs/ooxml.json: all slide notes", "B/outputs/ooxml.json: all slide notes"]
+    },
+    {
+      "dimension": "Process, repair behavior, runtime gain and human understanding",
+      "winner": "tie",
+      "comparison_status": "unverified",
+      "A": "No permitted evidence establishes these outcomes.",
+      "B": "No permitted evidence establishes these outcomes.",
+      "reason": "Tie means no evidence-based distinction, not that either passed. Programmatic saved-copy probes and final exported slides do not establish original process compliance, capacity-repair behavior, untouched first-pass runtime success or human understanding.",
+      "locators": ["eval_metadata.json", "A/application-observations.json: unperformed", "B/application-observations.json: unperformed"]
+    }
+  ],
+  "overall": {
+    "winner": "B",
+    "strength": "modest",
+    "reasons": [
+      "Both are factually supported and satisfy the checked numerical/native-content output assertions.",
+      "B explicitly states equal-area tiny surface patches on the local-scaling slide, reducing reliance on notes for the comparison baseline.",
+      "B avoids A's observed table/takeaway collision.",
+      "A has better area-source-method caveat placement on s2; this is a real countervailing strength.",
+      "Shared duplicate IDs and source-stage note status remain actionable; B is not a clean pass on every criterion."
+    ],
+    "not_claimed": "No old/new attribution, independent runtime new-skill gain, authoring-process compliance, capacity repair success, manual editing ease or measured human comprehension."
+  },
+  "uncertainties": [
+    "The full embedded workbooks were not independently inspected or recalculated by this reviewer. Completed host follow-up verifies matching workbook B2 and numeric cache after explicit SetSourceData, demonstrating that programmatic native editing path. Automatic refresh, arbitrary edits, manual usability and post-edit rendered appearance remain unverified; earlier application-observations alone still proves only workbook persistence.",
+    "Application observations were supplied records of programmatic edits on copies, not reviewer-conducted or human manual-editing tests.",
+    "No same-slide before/after repair images were supplied; observed final layout differences are not repair-effectiveness measurements.",
+    "Cross-machine font substitution and portability are unverified despite readable current exports and Microsoft YaHei declarations.",
+    "Native object ID duplication was observed in the supplied extraction; no claim is made that it caused a demonstrated editing failure.",
+    "The original authoring-stop/process assertions are not inferable from later controlled technical-repair artifacts.",
+    "The original research official-PDF and animation gaps remain unresolved; no external sources were visited."
+  ]
+}

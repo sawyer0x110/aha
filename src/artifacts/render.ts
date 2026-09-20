@@ -3,7 +3,6 @@ import path from 'node:path';
 import { createHash, randomUUID } from 'node:crypto';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { spawn } from 'node:child_process';
-import JSZip from 'jszip';
 import PptxGenJS from 'pptxgenjs';
 import type { Page, Frame } from 'playwright-core';
 import { fail } from '../core/errors.js';
@@ -13,6 +12,7 @@ import { openBrowser } from '../media/browser.js';
 import { assertAuthored, sourceHash, type Artifact, type Format } from './project.js';
 import { outsideProject, noLinks, sourceFiles, hashFiles } from './files.js';
 import { prepareHtml } from './html.js';
+import { validatePptx } from './pptx-validation.js';
 
 const EXECUTION_MS = 60_000;
 const MAX_OUTPUT_BYTES = 128 * 1024 * 1024;
@@ -217,42 +217,6 @@ export async function runPptxWorker(directory: string, output: string): Promise<
   if (!(buffer instanceof Uint8Array)) fail('PPTX_OUTPUT', 'Native PPTX generator did not return bytes.');
   await outsideProject(root, file);
   await writeNewFile(file, buffer);
-}
-
-async function validatePptx(bytes: Buffer): Promise<number> {
-  if (bytes.length < 4 || bytes.length > MAX_OUTPUT_BYTES || bytes.readUInt32LE(0) !== 0x04034b50) fail('PPTX_OUTPUT', 'Expected a true PPTX ZIP file.');
-  const zip = await JSZip.loadAsync(bytes);
-  const entries = Object.values(zip.files);
-  if (entries.length > 10000) fail('PPTX_SIZE', 'PPTX package exceeds 10000 entries.');
-  let expanded = 0;
-  for (const entry of entries) {
-    if (entry.name.startsWith('/') || entry.name.includes('\\') || entry.name.split('/').includes('..')) {
-      fail('PPTX_OUTPUT', 'PowerPoint package contains an unsafe member path.');
-    }
-    const size = (entry as unknown as { _data?: { uncompressedSize?: number } })._data?.uncompressedSize ?? 0;
-    expanded += size;
-    if (expanded > MAX_OUTPUT_BYTES) fail('PPTX_SIZE', 'Expanded PPTX package exceeds 128 MiB.');
-  }
-  if (!zip.file('[Content_Types].xml') || !zip.file('ppt/presentation.xml')) fail('PPTX_OUTPUT', 'Missing PowerPoint package parts.');
-  if (!(await zip.file('[Content_Types].xml')!.async('string')).includes('application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml')
-    || !/<p:presentation\b/.test(await zip.file('ppt/presentation.xml')!.async('string'))) {
-    fail('PPTX_OUTPUT', 'Invalid native PowerPoint presentation content type.');
-  }
-  for (const entry of entries.filter(item => item.name.endsWith('.rels'))) {
-    const relationships = await entry.async('string');
-    for (const relationship of relationships.matchAll(/<Relationship\b[^>]*>/g)) {
-      if (/TargetMode=["']External["']/.test(relationship[0]) && !/\/hyperlink["']/.test(relationship[0])) {
-        fail('PPTX_EXTERNAL', 'PowerPoint media and other dependencies must be embedded, not externally linked.', entry.name);
-      }
-    }
-  }
-  const slides = entries.filter(entry => /^ppt\/slides\/slide\d+\.xml$/.test(entry.name));
-  if (!slides.length) fail('PPTX_EMPTY', 'Author at least one native PowerPoint slide.');
-  for (const slide of slides) {
-    const xml = await slide.async('string');
-    if (!/<p:(?:sp|graphicFrame|cxnSp)\b/.test(xml)) fail('PPTX_NATIVE', 'Each slide must contain native text, shapes, charts or tables; screenshot-only slides are not accepted.', slide.name);
-  }
-  return slides.length;
 }
 
 async function worker(directory: string, output: string): Promise<void> {

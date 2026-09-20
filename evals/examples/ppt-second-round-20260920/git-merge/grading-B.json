@@ -1,0 +1,188 @@
+{
+  "run": "B",
+  "evaluation": "anonymous repair-only against common before",
+  "expectations": [
+    {
+      "text": "Output retains eight Chinese pages and the original Git merge/revert question.",
+      "passed": true,
+      "evidence": "before/application-observations.json /slides/0..7 and B/application-observations.json /slides/0..7: question on slide1, same mechanisms/operations/strategies and conclusion order; eight slide parts in B/outputs/ooxml.json /package_parts. Retained scope, not new gain."
+    },
+    {
+      "text": "The three native tables retain all model states, operation rows and qualifications as structured cells.",
+      "passed": true,
+      "evidence": "Table 0 id7 on slides3/4/5 in both application records /slides/2,3,4/shapes/5. before/ooxml.json cell text lines6644–7633,9680–10255,12753–13522 equals B/outputs/ooxml.json 6767–7756,9803–10378,12876–13645. 4x5,3x4,4x3 tables retained. Not a wrapping/readability check."
+    },
+    {
+      "text": "The slide-4 title and speaker explanation distinguish unchanged pairs across cases from equality between the two sides.",
+      "passed": true,
+      "evidence": "before/application-observations.json:639 '两个当前值一样' -> B/application-observations.json:651 '本侧 off、对侧 on 不变'; title id3. notesSlide4.xml first paragraph before/ooxml.json:10564 -> B/outputs/ooxml.json:10687 explicitly '并不是本侧与对侧相等'. Dossier report.md §3; research.json /claims/4 c-counter. Later targeted page4 pixels confirm the changed title is visible and fits, explicitly naming both fixed values."
+    },
+    {
+      "text": "Necessary model conditions and uncertainty remain in slide text rather than only in notes.",
+      "passed": true,
+      "evidence": "B/application-observations.json:81,:249,:621,:735,:867–1011; Dossier /claims/2..5,/claims/9. Cumulative images confirm the example-text/file-mode distinction on scaled page1 and retained caveats across all pages. Pages2/3/5/6/7 use corrected derivatives; pages1/4/8 scaled history. No original-resolution or audience-readability claim for scaled pages."
+    },
+    {
+      "text": "The obsolete slide-8 production/approval checklist is removed from the speaker note and replaced with explanatory closing guidance.",
+      "passed": true,
+      "evidence": "before/ooxml.json:20336, ppt/notesSlides/notesSlide8.xml paragraph0 fourth block '本轮仅编写8页...仍须另行批准并验证' -> B/outputs/ooxml.json:20459 fourth block '收束时回到第3、4页...' explaining bases/path states. Repeated boilerplate also becomes frozen-source/model disclosure rather than current-round process language. External QA log/source-process separation unverified."
+    },
+    {
+      "text": "The supplied application record reports persisted representative native text and table-cell edits on a copy.",
+      "passed": true,
+      "evidence": "B/application-observations.json /edits/0: slide1 id2 text; /edits/1: slide3 id7 row1 column1; persisted true and originalUnchanged true. PowerPoint16.0 COM save/reopen. Same success before; not human manual-edit usability or repair gain."
+    },
+    {
+      "text": "The later-observed page4 preserves the complete table, explicit three-state callout and conflict/business-correctness caveats without visible clipping or overlap.",
+      "passed": true,
+      "evidence": "Later targeted review of comparisons/slide-04.png, BEFORE top/B bottom: complete header and two body rows with clear table-to-callout gap. B names base/local/other within a compact heading; two caveat lines remain fully visible, with more bottom breathing room than A. Seed table already clear; not a clearance-repair gain."
+    },
+    {
+      "text": "The actually observed final page 8 retains the evidence boundary and has no newly observed body-text clipping or collision.",
+      "passed": true,
+      "evidence": "visual-observations.json page8 attempt2, comparisons/slide-08.png bottom B vs top BEFORE. Version card and evidence-limit paragraphs fit; unchanged, small gray footer retained. Other pages explicitly excluded."
+    }
+  ],
+  "summary": {
+    "passed": 8,
+    "failed": 0,
+    "total": 8,
+    "scope": "Eight assessed binary output checks, including one later page4 check; not a 13-criterion pass rate or aesthetic score."
+  },
+  "final_review": {
+    "timestamp": "2026-09-20T19:56:11+08:00",
+    "actually_observed_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "pixel_exact_derivative_pages": [
+      2,
+      3,
+      5,
+      6,
+      7
+    ],
+    "scaled_history_only_pages": [
+      1,
+      4,
+      8
+    ],
+    "unobserved_pages": [],
+    "resolution_limit": "Old comparisons/ panels are uniformly scaled to1280x720 inside1600x900 allocations, not cropped. Corrected derivatives preserve source pixels according to host hashes, not independently recomputed here. No1:1 display or presentation-distance readability claim.",
+    "history": "Initial failures/withdrawals preserved in visual-observations.json. Final coverage supersedes incomplete coverage in later_targeted_review below without reinstating withdrawn observations.",
+    "outcome": "Supported page1 file-mode disambiguation, page4 role/title repair and more durable notes. Tables already visibly clear before; no clearance repair credited. Added page1 line slightly tightens card-top spacing.",
+    "process_limit": "No stable, causal or full-process Skill conclusion; author-stage image access incompletely confirmed."
+  },
+  "later_targeted_review": {
+    "timestamp": "2026-09-20T19:40:09+08:00",
+    "image": "comparisons/slide-04.png",
+    "image_calls_this_turn": 1,
+    "observed_pages_cumulative": [
+      4,
+      8
+    ],
+    "remaining_unverified_pages": [
+      1,
+      2,
+      3,
+      5,
+      6,
+      7
+    ],
+    "finding": "Page4 title and role labels visibly improve; table clearance unchanged safe; callout remains compact. No generalization to other pages."
+  },
+  "broad_criteria": [
+    {
+      "id": "table-clearance-repair",
+      "status": "verified",
+      "delta": "unchanged",
+      "evidence": "Corrected pages3/5 and scaled-history page4 show complete rows and clear neighboring gaps in BEFORE/B. Seed tables already safe at inspected sizes; no clearance repair credited."
+    },
+    {
+      "id": "conditions-retained",
+      "status": "verified",
+      "delta": "improved",
+      "evidence": "Scaled page1 visibly distinguishes example text from Git file mode and retains ordinary-file/ort/model caveats; page4 retains conditional conflict/testing. Corrected pages3/5/6/7 preserve content-merge, operation and strategy boundaries. Page3 still refers back to earlier ordinary-file conditions."
+    },
+    {
+      "id": "stage-notes-separation",
+      "status": "verified",
+      "delta": "improved",
+      "evidence": "Slide8 production paragraph removed, all notes use durable frozen-source/model disclosure, page7 replaces stage-specific unperformed-command prose with speaking guidance. External production QA record unverified."
+    },
+    {
+      "id": "scope-data-native-preservation",
+      "status": "verified",
+      "delta": "unchanged",
+      "evidence": "Eight pages; same native table cells; charts and binary_parts empty before/after. Overview-image requirement not applicable. Manual usability unverified."
+    },
+    {
+      "id": "no-ungrounded-claims",
+      "status": "verified",
+      "delta": "improved",
+      "evidence": "Added mode label explains Dossier example text versus actual file mode; page4 roles and fixed-current-values clarified. No new measurement claims."
+    },
+    {
+      "id": "repair-process",
+      "status": "unverified",
+      "delta": "unverified",
+      "evidence": "No author transcripts/source revision/approval review."
+    },
+    {
+      "id": "source-support",
+      "status": "verified",
+      "delta": "improved",
+      "evidence": "Dossier report.md §§1–5 supports native tables, notes and changed statements; no external verification performed."
+    },
+    {
+      "id": "visible-explanation",
+      "status": "verified",
+      "delta": "improved",
+      "evidence": "Scaled page1 disambiguates example mode and narrows to a path; scaled page4 title names fixed off/on and callout labels roles compactly. Corrected pages2/3/5/6/7 retain coherent mechanisms. Human comprehension remains unverified."
+    },
+    {
+      "id": "native-content",
+      "status": "unverified",
+      "delta": "unchanged",
+      "evidence": "Structure and representative programmatic persistence verified; manual editing usability not tested."
+    },
+    {
+      "id": "cjk-layout",
+      "status": "verified",
+      "delta": "mixed",
+      "evidence": "No clipping/overlap identified across declared coverage; page4 compact callout retained. Added page1 line tightens gap above cards (scaled evidence). Small footers remain. Original-resolution scaled-page detail, font substitution and presentation-distance readability unverified."
+    },
+    {
+      "id": "process-boundary",
+      "status": "unverified",
+      "delta": "unverified",
+      "evidence": "Cannot infer author access/execution compliance from supplied outputs."
+    },
+    {
+      "id": "git-mechanism",
+      "status": "verified",
+      "delta": "improved",
+      "evidence": "Off/off/on -> on on scaled page1 and corrected page3; history/base inputs and multiple-base caveat on corrected page2. Gain is path/example-mode disambiguation and page4 role clarity, not new mechanism coverage."
+    },
+    {
+      "id": "git-boundaries",
+      "status": "verified",
+      "delta": "unchanged",
+      "evidence": "Scaled page4 retains ordinary-file and conditional conflict/testing boundaries. Corrected pages5/6 retain ordinary revert/merge revert/reset and -s ours/-Xours distinctions. Retained seed success."
+    }
+  ],
+  "unverified": [
+    "Original-resolution detail on scaled-history pages1/4/8",
+    "Author process compliance",
+    "Human comprehension",
+    "Manual editing usability",
+    "Font substitution and presentation-distance readability",
+    "Full-process or causal stable Skill gain"
+  ]
+}
