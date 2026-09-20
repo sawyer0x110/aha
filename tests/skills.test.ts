@@ -141,6 +141,25 @@ test('authored source, provenance, permissions, and actual QA remain distinct co
   }
 });
 
+test('research decision guidance is shared and preserves scoped evidence and permission boundaries', async () => {
+  for (const skill of skillNames) {
+    const workflow = await reference('research-workflow.md', skill);
+    const code = await reference('research-codebase.md', skill);
+    assert.match(workflow, /smallest sufficient next check/i);
+    assert.match(workflow, /comparably useful actions/i);
+    assert.match(workflow, /Simple, adequately supported questions need no extra cycle/);
+    assert.match(workflow, /Only executed searches, reads, and failures belong in `researchLog`/);
+    assert.match(workflow, /read permission does not authorize execution/);
+    assert.match(code, /Match code claims to evidence/);
+    for (const claim of ['A calls B', 'Data flows from A to Z', 'Configuration X controls Y', 'Cancellation prevents retry', 'A diff changes behavior', 'Code is unused']) {
+      assert.ok(code.includes(claim), `${skill}: missing claim guidance ${claim}`);
+    }
+    assert.match(code, /not a whole-repository checklist/);
+    assert.match(code, /no caller found in the inspected scope/);
+    assert.match(code, /Delayed cleanup and an extra send are different claims/);
+  }
+});
+
 test('format references describe free authoring and truthful media capabilities', async () => {
   const html = await reference('html.md');
   for (const concept of [/Mermaid/, /SVG/, /keyboard/i, /reduced.motion/i, /narrow.screen/i, /offline/i]) assert.match(html, concept);
@@ -343,4 +362,17 @@ test('manual benchmark fixtures cover both entry points and all media without pr
   }
   assert.deepEqual([...priorities].sort(), ['codebase', 'html', 'image', 'pptx', 'public', 'video']);
   assert.deepEqual([...coveredSkills].sort(), [...skillNames].sort());
+});
+
+test('research host scenarios include evidence selection, unavailable evidence and an early-stop control', () => {
+  for (const id of [
+    'deep-public-conflicting-results', 'dirty-codebase-cancellation',
+    'decisive-evidence-unavailable', 'sufficient-evidence-stop',
+  ]) {
+    const scenario = benchmarkPromptFixtures.find(item => item.id === id);
+    assert.ok(scenario, `missing host scenario ${id}`);
+    assert.equal(scenario.skill, 'aha-research');
+    assert.ok(scenario.references.includes('research-workflow.md'));
+  }
+  // These assertions check scenario availability, not author behavior or semantic quality.
 });
