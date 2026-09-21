@@ -4,7 +4,7 @@
 
 本指南覆盖研究、以源文件为中心的创作、渲染、权限与验收。先按 [INSTALL](INSTALL.zh-CN.md) 安装完整包；文件安装与真实宿主验收是两回事。
 
-Runtime **0.3.2** 与研究／作品 Schema **1.0.0** 是独立版本线。不支持的协议或命令明确报错，不静默转换数据或删除用户作品。实际发布状态与可下载内容以 [Releases](https://github.com/sawyer0x110/aha/releases) 为准。
+Runtime **0.3.3** 与研究／作品 Schema **1.0.0** 是独立版本线。不支持的协议或命令明确报错，不静默转换数据或删除用户作品。实际发布状态与可下载内容以 [Releases](https://github.com/sawyer0x110/aha/releases) 为准。
 
 ## 按交付分工，不按统一模板填空
 

@@ -8,7 +8,7 @@ This guide is usable in a source checkout and, when included, an extracted relea
 
 Windows has been exercised. macOS/Linux have not been verified; POSIX path examples do not guarantee support. Installer host cases cover Copilot/Codex, not live host acceptance or a brand allowlist. Other agents must check their own discovery and execution capabilities. File installation, host discovery, natural-language routing, and actual task completion are four separate results.
 
-Current source/package runtime is **0.3.2**, with research/artifact schemas **1.0.0**. Version 0.3.2 packages include MIT notices and bilingual installation guides. Confirm publication and available assets on [Releases](https://github.com/sawyer0x110/aha/releases); source changes alone do not mean a release is available. Published `v0.3.1` remains unchanged.
+Current source/package runtime is **0.3.3**, with research/artifact schemas **1.0.0**. Packages retain MIT notices and bilingual installation guides introduced in 0.3.2. Confirm publication and available assets on [Releases](https://github.com/sawyer0x110/aha/releases); source changes alone do not mean a release is available. Published earlier versions remain unchanged.
 
 ## Ask your agent to install
 

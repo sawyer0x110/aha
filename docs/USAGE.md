@@ -4,7 +4,7 @@
 
 This guide covers research, source-first authoring, rendering, permissions, and review. Install the complete package using [INSTALL](INSTALL.md) first; installation and actual host acceptance are separate.
 
-Runtime **0.3.2** and research/artifact schemas **1.0.0** are independent version lines. Unsupported protocols or commands fail explicitly; the CLI does not silently convert data or delete user work. Check [Releases](https://github.com/sawyer0x110/aha/releases) for actual publication and available downloads.
+Runtime **0.3.3** and research/artifact schemas **1.0.0** are independent version lines. Unsupported protocols or commands fail explicitly; the CLI does not silently convert data or delete user work. Check [Releases](https://github.com/sawyer0x110/aha/releases) for actual publication and available downloads.
 
 ## Choose the deliverable, not a template
 

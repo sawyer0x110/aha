@@ -46,7 +46,7 @@ node "C:\your-project\.agents\skills\aha-explain\scripts\aha.mjs" doctor
 - **工具检查结构，不证明真相。** 宿主 Agent 负责实际研究与设计；CLI 不内置联网搜索、不执行被研究仓库。来源回查、原生 PPTX 检视与完整视频验收仍不可省略。
 - **平台和宿主支持有边界。** Windows 已有实际使用；不宣称 macOS/Linux 已验证。POSIX 示例只是路径写法，不保证平台支持。Copilot／Codex 安装器案例不等于真实宿主发现或自然语言路由验收。
 
-源码／包 runtime 为 **0.3.2**，研究／作品 Schema 为 **1.0.0**。0.3.2 包含 MIT 声明与双语安装包指南；已发布的 `v0.3.1` 资产保持不变。请在 [Releases](https://github.com/sawyer0x110/aha/releases) 确认发布状态并使用所选版本实际附带的资产，不能只凭源码版本判断发布完成。
+源码／包 runtime 为 **0.3.3**，研究／作品 Schema 为 **1.0.0**。0.3.3 改进研究证据指导、原生 PPTX 创作与校验，并在仓库中更新示例及评估工具；已发布的旧版本资产保持不变。请在 [Releases](https://github.com/sawyer0x110/aha/releases) 确认发布状态并使用所选版本实际附带的资产，不能只凭源码版本判断发布完成。
 
 ## 文档与贡献
 

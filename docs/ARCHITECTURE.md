@@ -1,6 +1,6 @@
 # Aha 架构与实现边界
 
-当前源码 runtime 为 `0.3.2`，研究及作品协议为 `1.0.0`。产品行为见 [PRD](PRD.md)，命令见[使用指南](USAGE.zh-CN.md)，安装见[安装指南](INSTALL.zh-CN.md)，文档导航见[目录](README.zh-CN.md)，实际发布状态见 [Releases](https://github.com/sawyer0x110/aha/releases)。
+当前源码 runtime 为 `0.3.3`，研究及作品协议为 `1.0.0`。产品行为见 [PRD](PRD.md)，命令见[使用指南](USAGE.zh-CN.md)，安装见[安装指南](INSTALL.zh-CN.md)，文档导航见[目录](README.zh-CN.md)，实际发布状态见 [Releases](https://github.com/sawyer0x110/aha/releases)。
 
 ## 仓库目录导航
 

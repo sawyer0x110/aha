@@ -8,7 +8,7 @@
 
 Windows 已有实际使用。不宣称 macOS/Linux 已验证；POSIX 路径示例不保证平台支持。安装器宿主案例覆盖 Copilot／Codex，不等于真实宿主验收，也不是品牌白名单。其他 Agent 应检查自身发现和执行能力。文件安装、宿主发现、自然语言触发、实际任务完成是四个独立结果。
 
-当前源码／包 runtime 为 **0.3.2**，研究／作品 Schema 为 **1.0.0**。0.3.2 安装包包含 MIT 声明与双语安装指南。是否已发布及可用资产以 [Releases](https://github.com/sawyer0x110/aha/releases) 为准；源码变化本身不代表发布完成。已发布的 `v0.3.1` 保持不变。
+当前源码／包 runtime 为 **0.3.3**，研究／作品 Schema 为 **1.0.0**。安装包保留自 0.3.2 引入的 MIT 声明与双语安装指南。是否已发布及可用资产以 [Releases](https://github.com/sawyer0x110/aha/releases) 为准；源码变化本身不代表发布完成。已发布的旧版本保持不变。
 
 ## 给 Agent 的任务入口
 

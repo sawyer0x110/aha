@@ -12,7 +12,7 @@
 | 报告敏感问题 | [Security](../.github/SECURITY.md) | [安全政策](../.github/SECURITY.zh-CN.md) |
 | 浏览保留示例 | [Gallery guide](../examples/README.md) | [作品目录](../examples/README.zh-CN.md) |
 
-请结合根 [MIT 许可](../LICENSE)与双语[许可范围](LICENSE-SCOPE.md)阅读。Runtime **0.3.2** 使用研究／作品 Schema **1.0.0**；实际发布状态和资产以 [Releases](https://github.com/sawyer0x110/aha/releases) 为准。
+请结合根 [MIT 许可](../LICENSE)与双语[许可范围](LICENSE-SCOPE.md)阅读。Runtime **0.3.3** 使用研究／作品 Schema **1.0.0**；实际发布状态和资产以 [Releases](https://github.com/sawyer0x110/aha/releases) 为准。
 
 完整安装指南与许可范围从本目录复制到 Release ZIP 根目录，保留原文件名。源码文档中的安装链接直接指向本目录内的指南。
 
