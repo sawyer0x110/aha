@@ -82,6 +82,27 @@ test('entry guides describe the current gallery without advertising the retired 
   assert.match(chinese, /四份当前 PPTX/);
 });
 
+test('README illustration is a standalone project introduction, not a gallery example', async () => {
+  for (const [file, language] of [['README.md', 'en'], ['README.zh-CN.md', 'zh-CN']] as const) {
+    const text = await fs.readFile(path.join(root, file), 'utf8');
+    const images = [...text.matchAll(/<img\b[^>]*\bsrc="([^"]+)"[^>]*>/g)];
+    assert.equal(images.length, 1);
+    assert.equal(images[0]![1], `docs/assets/readme-intro.${language}.png`);
+    assert.match(images[0]![0], /width="800"/);
+    const png = await fs.readFile(path.join(root, 'docs', 'assets', `readme-intro.${language}.png`));
+    assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
+    assert.equal(png.readUInt32BE(16), 1600);
+    assert.equal(png.readUInt32BE(20), 1040);
+  }
+  const source = await fs.readFile(path.join(root, 'docs', 'assets', 'readme-intro.html'), 'utf8');
+  for (const term of ['aha-research', 'aha-explain', 'HTML', 'PNG', 'PPTX', 'VIDEO', 'Not an automatic pipeline']) {
+    assert.ok(source.includes(term), `Missing project concept: ${term}`);
+  }
+  assert.doesNotMatch(source, /examples[\\/]|Greenland|CPython|Docker|Git merge|格陵兰|降噪/i);
+  assert.doesNotMatch(source, /<(?:img|iframe)\b|<script\b[^>]*\bsrc=|<link\b[^>]*\bhref=/i);
+  await fs.access(path.join(root, 'docs', 'assets', 'render-readme-intro.mjs'));
+});
+
 test('install guides only use local links that survive release extraction', async () => {
   const packagedDocs = new Set(['INSTALL.md', 'INSTALL.zh-CN.md', 'LICENSE', 'LICENSE-SCOPE.md']);
   for (const file of packagedDocs) {

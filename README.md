@@ -12,7 +12,7 @@ Aha is two portable agent skills for public topics, provided materials, and auth
 | `aha-explain` | Researches as needed, designs the explanation, authors source, and renders and reviews the requested medium | Rich HTML with diagrams/interactions, PNG infographics, native editable PPTX, or narrated dynamic video |
 
 <p align="center">
-  <img src="examples/aha-introduction/overview.png" alt="Aha introduction in Chinese: two skills, four media choices, and three mechanism examples" width="540">
+  <img src="docs/assets/readme-intro.en.png" alt="Aha: research deeply and explain clearly. Two host-coordinated skills deliver independent research or medium-specific HTML, PNG, editable PPTX and narrated video." width="800">
 </p>
 
 ## See what it makes

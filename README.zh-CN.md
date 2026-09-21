@@ -12,7 +12,7 @@ Aha 是两个可移植的 Agent Skill，面向公开问题、用户提供的材�
 | `aha-explain` | 按需研究、策划解释、编写作品源、渲染并检查所选媒介 | 富文本 HTML／图解／交互、一图流 PNG、原生可编辑 PPTX、配音动态视频 |
 
 <p align="center">
-  <img src="examples/aha-introduction/overview.png" alt="Aha 中文介绍：两个技能、四种表达与三个机制例子" width="540">
+  <img src="docs/assets/readme-intro.zh-CN.png" alt="Aha：深入研究，清晰解释。两项技能由宿主协调，交付独立研究，或按需创作 HTML、PNG、可编辑 PPTX 与配音视频。" width="800">
 </p>
 
 ## 先看作品
