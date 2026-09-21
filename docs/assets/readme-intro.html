@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aha — Research deeply. Explain clearly.</title>
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<style>
+:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  width: 1600px;
+  height: 1040px;
+  background: var(--cp-bg);
+  color: var(--cp-text);
+  font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+main { padding: 48px 80px 32px; }
+.masthead { display: flex; justify-content: space-between; align-items: center; }
+.brand { font-size: 72px; font-weight: 750; letter-spacing: -4px; line-height: 1; }
+.brand span { color: var(--cp-accent); }
+.tag { font-size: 28px; color: var(--cp-text-soft); letter-spacing: 2px; }
+h1 { font-size: 68px; line-height: 1.15; letter-spacing: -2px; margin: 36px 0 12px; font-weight: 650; }
+.subtitle { font-size: 36px; line-height: 1.4; color: var(--cp-text-muted); margin: 0; }
+html[lang="zh-CN"] .subtitle { letter-spacing: 3px; }
+.skills { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; margin-top: 32px; }
+.skill { border-top: 3px solid var(--cp-accent); padding-top: 24px; }
+.skill-name { font: 600 32px/1.3 Consolas, "Courier New", Courier, monospace; color: var(--cp-accent); }
+h2 { font-size: 44px; line-height: 1.2; margin: 12px 0; font-weight: 650; letter-spacing: -1px; }
+.description { font-size: 28px; line-height: 1.55; color: var(--cp-text-muted); margin: 0; white-space: pre-line; }
+.output { margin-top: 24px; height: 220px; padding: 24px 28px; background: var(--cp-surface); border: 1px solid var(--cp-border); border-radius: 16px; }
+.label { font-size: 24px; letter-spacing: 2px; color: var(--cp-text-soft); }
+.deliverable { margin-top: 12px; font-size: 31px; font-weight: 600; line-height: 1.35; }
+.detail { margin-top: 8px; font-size: 26px; line-height: 1.4; color: var(--cp-text-muted); }
+.formats { display: flex; gap: 12px; margin-top: 16px; }
+.formats span { font-size: 28px; font-weight: 650; padding: 8px 16px; border: 1px solid var(--cp-border); border-radius: 10px; }
+.relationship { display: flex; align-items: center; gap: 24px; margin-top: 24px; }
+.relationship::before, .relationship::after { content: ""; height: 1px; background: var(--cp-border-strong); flex: 1; }
+.relationship p { margin: 0; text-align: center; font-size: 27px; line-height: 1.5; }
+.relationship span { color: var(--cp-text-soft); font-size: 25px; }
+footer { display: flex; justify-content: space-between; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--cp-border); font-size: 25px; color: var(--cp-text-soft); }
+</style>
+</head>
+<body>
+<main>
+  <div class="masthead">
+    <div class="brand">Aha<span>!</span></div>
+    <div class="tag" data-zh="两项可移植的智能体技能">TWO PORTABLE AGENT SKILLS</div>
+  </div>
+  <h1 data-zh="深入研究，清晰解释。">Research deeply. Explain clearly.</h1>
+  <p class="subtitle" data-zh="把理解变成看得懂的解释。">Turn understanding into explanations that make sense.</p>
+  <div class="skills">
+    <section class="skill" aria-labelledby="research">
+      <div class="skill-name">aha-research</div>
+      <h2 id="research" data-zh="建立深入理解">Build understanding.</h2>
+      <p class="description" data-zh="拆解问题 · 查证来源 · 比较解释&#10;保留依据，也保留不确定性。">Frame questions. Check sources. Compare views.
+Keep the evidence and the uncertainty.</p>
+      <div class="output">
+        <div class="label" data-zh="独立研究交付">INDEPENDENT RESEARCH</div>
+        <div class="deliverable" data-zh="可读报告 + 研究档案">Report + Research Dossier</div>
+        <div class="detail" data-zh="保留来源关联，可独立阅读和复用。">Source-linked findings, ready to read and reuse.</div>
+      </div>
+    </section>
+    <section class="skill" aria-labelledby="explain">
+      <div class="skill-name">aha-explain</div>
+      <h2 id="explain" data-zh="让理解清晰可见">Make it understandable.</h2>
+      <p class="description" data-zh="按需研究 · 组织叙事 · 创作图解&#10;为所选媒介设计，不套同一模板。">Research as needed. Shape the story.
+Design for the medium, not a single template.</p>
+      <div class="output">
+        <div class="label" data-zh="按媒介创作解释">MEDIUM-SPECIFIC EXPLANATIONS</div>
+        <div class="formats"><span>HTML</span><span>PNG</span><span>PPTX</span><span data-zh="视频">VIDEO</span></div>
+        <div class="detail" data-zh="交互网页 · 信息图 · 可编辑演示 · 配音视频">Interactive pages, infographics, editable slides<br>and narrated video.</div>
+      </div>
+    </section>
+  </div>
+  <div class="relationship">
+    <p><strong data-zh="由宿主协调，而非自动流水线。">Host-coordinated. Not an automatic pipeline.</strong><br><span data-zh="研究可独立交付，作品按需创作。">Independent research. Explanations on demand.</span></p>
+  </div>
+  <footer>
+    <span data-zh="依据始终可追溯。">Evidence stays traceable.</span>
+    <span data-zh="解释有依据，表达有选择。">Grounded explanations. Thoughtful formats.</span>
+  </footer>
+</main>
+<script>
+  const language = new URLSearchParams(window.location.search).get("lang") || "en";
+  if (!["en", "zh-CN"].includes(language)) throw new Error(`Unsupported language: ${language}`);
+  document.documentElement.lang = language;
+  if (language === "zh-CN") {
+    document.title = "Aha — 深入研究，清晰解释。";
+    document.querySelectorAll("[data-zh]").forEach(node => { node.textContent = node.dataset.zh; });
+  }
+</script>
+</body>
+</html>
