@@ -9,7 +9,7 @@ Add-Type -AssemblyName System.Drawing
 $font = [Drawing.Font]::new('Arial', 16)
 $brush = [Drawing.SolidBrush]::new([Drawing.Color]::Black)
 try {
-    foreach ($case in @('git-merge', 'anc', 'greenland', 'project-overview')) {
+    foreach ($case in @('git-merge', 'anc', 'greenland', 'aha-introduction')) {
         $caseRoot = Join-Path $root $case
         $destination = Join-Path $caseRoot $OutputName
         if (Test-Path -LiteralPath $destination) { throw "Refusing existing output: $destination" }

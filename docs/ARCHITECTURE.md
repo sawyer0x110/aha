@@ -11,8 +11,8 @@
 | `scripts/` | 仓库级构建、发布、安装工具，不汇集领域专用脚本 |
 | `tests/` | 自动化测试、测试辅助代码和专用 fixtures；不嵌入宿主作者评估场景数据 |
 | `evals/skills/` | 技能评估准备工具、固定案例、宿主场景和评分判据；四个锁定案例与宿主场景分别管理 |
-| `evals/examples/` | 示例验收工具和保留的结果；`refresh-20260916/` 是前三例记录，`greenland-20260917/` 是格陵兰记录，`code-pilots-20260917/` 保存代码试片证据，`aha-introduction-20260917/` 保存新版介绍的授权、试片确认与修正后的编码证据，`overview-image-20260917/` 保存已选用能力图的身份、授权与检查边界；旧版结果保留为历史 |
-| `examples/` | 三个四格式例子，加上格陵兰、CPython、Docker、新版 Aha 介绍四组视频例子；保存作品、收据、`projects/<format>/` 可编辑项目、研究与音频来源；`delivery-manifest.json` 索引十六份作品。新视频介绍与旧四格式导览分开，避免混淆研究快照 |
+| `evals/examples/` | 示例验收工具和保留的结果；`refresh-20260916/` 的共享记录用于 ANC/Git，旧概览独占目录已移除；`greenland-20260917/` 是格陵兰记录，`code-pilots-20260917/` 保存代码试片证据，`aha-introduction-20260917/` 保存介绍视频的授权、试片确认与修正后的编码证据；介绍 HTML/PNG 与当前 PPTX 的证据由 `examples/` 中对应收录记录绑定 |
+| `examples/` | 三个四格式例子、格陵兰 PPTX／视频及两组代码视频试片，共六组、十六份当前作品；项目介绍只保留 `aha-introduction/`。保存匹配的源码、收据、资源、研究与 QA；`delivery-manifest.json` 索引成品，`pptx-publication.json` 绑定当前幻灯片的技能来源与应用检查；生成版本与研究快照分开记录 |
 | `docs/` | 中英文文档目录、完整安装／使用指南、双语许可范围，以及中文产品／架构／研究／评估说明；精确创作与权限契约链接到技能参考，不另建冲突副本 |
 | `.github/` | GitHub 可识别的中英文贡献／安全指南、issue／PR 模板与工作流 |
 | `dist/` | 构建生成的 CLI 与独立技能分发包，Git 忽略；从源码和锁定依赖重建，不手动维护 |
@@ -129,11 +129,11 @@ PNG 使用独立 HTML/SVG 构图，经批准后由浏览器捕获元数据指定
 
 依赖按步骤诊断，缺失只影响相关操作：研究和 HTML 打包不需要浏览器，PNG 需要浏览器，视频渲染需要浏览器及 FFmpeg／ffprobe，在线配音另需 Python／Edge TTS。诊断不安装软件或证明在线服务可用。
 
-构建输出为 `dist/skills/aha-research` 和 `dist/skills/aha-explain`，各自携带 CLI、Schema、合并参考、本地 Mermaid、Playwright 库、Aha 的 `LICENSE`／`LICENSE-SCOPE.md` 和第三方声明；源码 `skills/` 不是独立安装包。0.3.2 发布器将 `docs/INSTALL.md`、`docs/INSTALL.zh-CN.md`、`docs/LICENSE-SCOPE.md` 原字节复制到 ZIP 根目录和发布资产，保留各自文件名，并加入根 `LICENSE`，不维护脚本内的另一套安装文案。ZIP 另含清单和安装工具，外部 SHA-256 覆盖发布资产；安装白名单只接受明确列出的文件。旧格式包不因缺少后来新增的文档而被新安装器自动拒绝。打包不自动上传，安装默认 dry-run、拒绝冲突及覆盖。
+构建输出为 `dist/skills/aha-research` 和 `dist/skills/aha-explain`，各自携带 CLI、Schema、合并参考、本地 Mermaid、Playwright 库、Aha 的 `LICENSE`／`LICENSE-SCOPE.md` 和第三方声明；源码 `skills/` 不是独立安装包。发布器将 `docs/INSTALL.md`、`docs/INSTALL.zh-CN.md`、`docs/LICENSE-SCOPE.md` 原字节复制到 ZIP 根目录和发布资产，保留各自文件名，并加入根 `LICENSE`，不维护脚本内的另一套安装文案。ZIP 另含清单和安装工具，外部 SHA-256 覆盖发布资产；安装白名单只接受明确列出的文件。旧格式包不因缺少后来新增的文档而被新安装器自动拒绝。打包不自动上传，安装默认 dry-run、拒绝冲突及覆盖。
 
 实际依赖包括 Mermaid、parse5、PptxGenJS、TypeBox 和 Playwright，按锁定版本分发并保留 `THIRD-PARTY-NOTICES.txt`。浏览器、FFmpeg、Python 和 Edge TTS 客户端不随包分发；客户端许可不替代在线服务条款及数据授权。字体、图片、音频等素材需单独核实来源与再分发权限，不能把公开可读或非商业许可当作任意商用许可。
 
-Aha 原创部分采用 [MIT](../LICENSE)，第三方材料的独立许可见[许可范围](LICENSE-SCOPE.md)。旧版 Release 不被源码变更覆盖；0.3.2 携带新增许可和双语文档，实际可下载资产仍以 Releases 为准。`package.json` 的 `private: true` 防止误发 npm，与 GitHub 仓库是否公开无关。
+Aha 原创部分采用 [MIT](../LICENSE)，第三方材料的独立许可见[许可范围](LICENSE-SCOPE.md)。已发布的 Release 资产保持不变，实际可下载版本以 Releases 为准。`package.json` 的 `private: true` 防止误发 npm，与 GitHub 仓库是否公开无关。
 
 ## 6. 修订与交付身份
 

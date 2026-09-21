@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aha: two skills, from evidence to explanation</title><script>(() => {
+  const param = new URLSearchParams(window.location.search).get("scoutTheme");
+  const theme =
+    param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  document.documentElement.setAttribute("data-theme", theme);
+})();</script><style>
+:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--cp-bg); color: var(--cp-text); font: 18px/1.65 "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif; }
+code, pre { font-family: Consolas, "Courier New", Courier, monospace; }
+a { color: var(--cp-accent); }
+button { font: inherit; min-height: 44px; padding: 8px 16px; border: 1px solid var(--cp-border-strong); border-radius: 0.625rem; color: var(--cp-text); background: var(--cp-surface); cursor: pointer; }
+button:hover { background: var(--cp-accent-soft); }
+:focus-visible { outline: 3px solid var(--cp-accent); outline-offset: 3px; }
+
+[hidden] { display: none !important; }
+main { max-width: 1184px; margin: auto; padding: 80px 48px 56px; }
+h1, h2, h3, p, figure { margin: 0; }
+h1 { font-size: clamp(40px, 5.5vw, 72px); line-height: 1.2; letter-spacing: -.035em; max-width: 940px; }
+h2 { font-size: clamp(28px, 3vw, 40px); line-height: 1.2; letter-spacing: -.02em; }
+h3 { font-size: 23px; line-height: 1.35; }
+p + p { margin-top: 16px; }
+.eyebrow { font-size: 16px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--cp-accent); margin-bottom: 20px; }
+.lead { max-width: 850px; font-size: 23px; line-height: 1.5; margin: 28px 0 36px; }
+.host { border: 1px solid var(--cp-border-strong); border-radius: 16px; padding: 28px; background: var(--cp-bg-elevated); }
+.host > p { max-width: 850px; }
+.skill-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin: 24px 0; }
+.skill-pair > div { border-top: 4px solid var(--cp-accent); padding-top: 16px; }
+.skill-pair h3 { margin-bottom: 8px; }
+.small { font-size: 16px; color: var(--cp-text-soft); }
+.host-note { padding-top: 16px; border-top: 1px solid var(--cp-border); }
+.chapter { margin-top: 72px; padding-top: 32px; border-top: 1px solid var(--cp-border-strong); }
+.chapter-head { display: grid; grid-template-columns: 80px 1fr; align-items: start; gap: 16px; margin-bottom: 28px; }
+.number { font-size: 42px; color: var(--cp-accent); line-height: 1; }
+.chapter-head p { max-width: 780px; margin-top: 16px; }
+.two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+.prose { max-width: 760px; }
+.note { border-left: 4px solid var(--cp-accent); padding: 12px 20px; background: var(--cp-accent-soft); margin-top: 24px; }
+.source { font-size: 16px; margin-top: 20px; color: var(--cp-text-soft); overflow-wrap: anywhere; }
+figure { padding: 24px; border-radius: 16px; background: var(--cp-surface); border: 1px solid var(--cp-border); }
+figcaption { font-size: 16px; margin-top: 16px; }
+svg { display: block; width: 100%; height: auto; }
+.svg-line { stroke: var(--cp-border-strong); stroke-width: 2; fill: none; }
+.svg-accent { stroke: var(--cp-accent); stroke-width: 3; fill: none; }
+.svg-soft { fill: var(--cp-accent-soft); stroke: var(--cp-accent); stroke-width: 2; }
+.svg-text { fill: var(--cp-text); font: 24px "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif; }
+.svg-em { fill: var(--cp-accent); font-weight: 700; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
+button[aria-pressed="true"] { background: var(--cp-accent); border-color: var(--cp-accent); color: var(--cp-accent-fg); }
+.comparison { background: var(--cp-surface); border: 1px solid var(--cp-border); border-radius: 16px; padding: 24px; }
+.comparison h3 { margin-bottom: 12px; }
+.slot-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 16px 0; }
+.slot { inline-size: 56px; flex: none; text-align: center; border: 2px solid var(--cp-border-strong); padding: 8px; font-family: Consolas, "Courier New", Courier, monospace; }
+.slot.wide { inline-size: 140px; border-color: var(--cp-accent); background: var(--cp-accent-soft); }
+.slot-label { font-size: 16px; color: var(--cp-text-muted); }
+.table-wrap { overflow-x: auto; margin-top: 28px; }
+table { width: 100%; border-collapse: collapse; font-size: 17px; text-align: left; }
+caption { text-align: left; font-weight: 600; margin-bottom: 12px; }
+th, td { padding: 12px 14px; border-bottom: 1px solid var(--cp-border); vertical-align: top; }
+th { background: var(--cp-surface-soft); }
+tbody th { font-weight: 500; }
+.layer-stack { display: grid; gap: 12px; margin-top: 20px; }
+.layer { padding: 16px 20px; border: 2px solid var(--cp-border-strong); }
+.layer strong { display: block; }
+.retained { border-color: var(--cp-accent); background: var(--cp-accent-soft); }
+.merged { border-style: dashed; }
+.media-list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; margin-top: 28px; }
+.media-list > div { padding: 20px 0; border-bottom: 1px solid var(--cp-border); }
+.media-list h3 { margin-bottom: 8px; }
+footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--cp-border-strong); }
+@media (max-width: 680px) {
+  main { padding: 76px 20px 36px; }
+  .lead { font-size: 21px; }
+  .host, figure, .comparison { padding: 20px; }
+  .skill-pair, .two-column, .media-list { grid-template-columns: 1fr; gap: 24px; }
+  .chapter { margin-top: 48px; }
+  .chapter-head { grid-template-columns: 48px 1fr; gap: 8px; }
+  .number { font-size: 32px; }
+  th, td { padding: 10px 8px; }
+  table { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+</style></head><body>
+<main>
+<section data-aha-lang="en" lang="en" data-aha-title="Aha: two skills, from evidence to explanation">
+  <header id="en-skills">
+    <p class="eyebrow">Aha / An introduction</p>
+    <h1>Aha: two skills.<br>From evidence to explanation.</h1>
+    <p class="lead">Aha is a pair of portable skills: <strong>research establishes what happens, why, and how far the evidence reaches;</strong> explain turns that supported account into the medium you request.</p>
+    <div class="host">
+      <h2>The host coordinates the work</h2>
+      <div class="skill-pair">
+        <div><h3><code>aha-research</code></h3><p>Investigate the question. Keep the answer, sources, reasoning, and limitations together in a Research Dossier—a reusable evidence record.</p></div>
+        <div><h3><code>aha-explain</code></h3><p>Use that evidence to author the requested visual explanation. Choose a composition that makes the mechanism visible, rather than merely restyling a report.</p></div>
+      </div>
+      <p class="host-note"><strong>Two skills, not automatic dispatch.</strong> The host decides when to research, reuse a Dossier, and author a medium. Research can also be the final deliverable.</p>
+    </div>
+  </header>
+
+  <section class="chapter" id="en-map">
+    <div class="chapter-head"><span class="number" aria-hidden="true">01</span><div><h2>Greenland: map footprint is not spherical area</h2><p>A useful explanation first separates what changes from what stays fixed.</p></div></div>
+    <div class="two-column">
+      <div>
+        <p>On a spherical Mercator map, enlargement grows at high latitudes. Longitude spacing stays fixed on the map even though meridians converge on the sphere; preserving local angles requires matching north–south enlargement.</p>
+        <p>Now apply the same rigid spherical rotation to every point of Greenland’s boundary. Its <strong>spherical area stays the same</strong>, but moving it toward lower latitudes changes its <strong>apparent footprint on the fixed projection</strong>. This is not a two-dimensional shrink operation.</p>
+      </div>
+      <figure>
+        <svg viewBox="0 0 460 240" role="img" aria-labelledby="en-map-title en-map-desc">
+          <title id="en-map-title">A sphere and a fixed projection describe different properties</title>
+          <desc id="en-map-desc">A conceptual globe is paired with a rectangular projection grid. Text distinguishes preserved spherical area from a changed map footprint. No Greenland boundary or computed relocation is drawn.</desc>
+          <circle class="svg-line" cx="108" cy="96" r="66"/><ellipse class="svg-line" cx="108" cy="96" rx="25" ry="66"/><ellipse class="svg-line" cx="108" cy="96" rx="66" ry="24"/><path class="svg-accent" d="M62 49 A66 66 0 0 1 167 126"/>
+          <rect class="svg-line" x="254" y="30" width="174" height="132"/><path class="svg-line" d="M297 30V162 M341 30V162 M385 30V162 M254 59H428 M254 96H428 M254 133H428"/>
+          <text class="svg-text" x="108" y="196" text-anchor="middle">On the sphere</text><text class="svg-text svg-em" x="108" y="226" text-anchor="middle">area preserved</text>
+          <text class="svg-text" x="341" y="196" text-anchor="middle">On the fixed map</text><text class="svg-text svg-em" x="341" y="226" text-anchor="middle">footprint changes</text>
+        </svg>
+        <figcaption>Conceptual distinction, not a plotted boundary, a size ratio, or a relocation simulation.</figcaption>
+      </figure>
+    </div>
+    <p class="note"><strong>Scope matters.</strong> This is a generalized spherical model with polar cropping, not every map or a precision area measurement. Relocation is hypothetical—not real continental motion. There is no single uniform whole-country scale factor.</p>
+    <p class="source">Inherited sources: <a href="https://raw.githubusercontent.com/OSGeo/PROJ/9.9/docs/source/operations/projections/merc.rst">PROJ’s Mercator description</a> and Natural Earth 5.1.2 generalized boundaries (<a href="https://www.naturalearthdata.com/about/terms-of-use/">data terms</a>). No new map calculation is performed here.</p>
+  </section>
+
+  <section class="chapter" id="en-python">
+    <div class="chapter-head"><span class="number" aria-hidden="true">02</span><div><h2>CPython: the object is not its UTF-8 encoding</h2><p>Start with 100,000 ASCII characters. Concatenate U+1F600. The new string and its encoded payload answer different size questions.</p></div></div>
+    <p class="prose">In this <strong>CPython 3.11.15</strong> example, the resulting compact <code>str</code> uses one code-point slot width throughout. Because U+1F600 exceeds U+FFFF, the <strong>new object needs four-byte slots, including its ASCII prefix</strong>. The original immutable <code>str</code> is untouched. UTF-8, by contrast, keeps each ASCII character at one byte and adds four bytes for U+1F600.</p>
+    <div class="controls" role="group" aria-label="Compare string representation and encoding">
+      <button type="button" id="en-object-button" data-python="object" aria-pressed="true" aria-controls="en-object en-encoding">Inside the str object</button>
+      <button type="button" id="en-encoding-button" data-python="encoding" aria-pressed="false" aria-controls="en-object en-encoding">UTF-8 payload</button>
+    </div>
+    <div aria-live="polite">
+      <div class="comparison" id="en-object" data-python-panel="object">
+        <h3>One width for the new result</h3>
+        <div class="slot-row" aria-hidden="true"><span class="slot wide">A</span><span class="slot wide">A</span><span>…</span><span class="slot wide">U+1F600</span></div>
+        <p>Every code-point slot in the new result is 4 bytes. These are schematic slots, not 100,001 drawn cells and not a memory-address diagram. Display widths are not numerically proportional to byte counts.</p>
+        <p class="small">The earlier ASCII-only object still has its original representation. Concatenation uses the operands’ representation ranges; this is not a claim that every concatenation scans all code points.</p>
+      </div>
+      <div class="comparison" id="en-encoding" data-python-panel="encoding" hidden>
+        <h3>Variable-length encoding, not uniform slots</h3>
+        <div class="slot-row" aria-hidden="true"><span class="slot">A</span><span class="slot">A</span><span>…</span><span class="slot wide">U+1F600</span></div>
+        <p>The 100,000-character ASCII prefix stays at 100,000 bytes. U+1F600 adds 4 bytes, giving a 100,004-byte UTF-8 payload. The boxes are schematic; display widths are not numerically proportional to byte counts.</p>
+        <p class="small">These are encoded payload bytes, not the memory occupied by a Python bytes object, a process, or a measured file.</p>
+      </div>
+    </div>
+    <div class="table-wrap"><table>
+      <caption>Inherited local observations—not new measurements. All values are bytes.</caption>
+      <thead><tr><th scope="col">What is counted?</th><th scope="col">ASCII × 100,000</th><th scope="col">New result: + U+1F600</th></tr></thead>
+      <tbody><tr><th scope="row"><code>str</code> object size</th><td>100,049</td><td>400,080</td></tr><tr><th scope="row">UTF-8 payload length</th><td>100,000</td><td>100,004</td></tr></tbody>
+    </table></div>
+    <p class="note"><strong>Not “all emoji quadruple Python memory.”</strong> This is one code point in one pinned implementation. Object totals include more than character payload and are not exactly fourfold. Non-ASCII does not automatically mean four-byte slots.</p>
+    <p class="source">Inherited sources: <a href="https://peps.python.org/pep-0393/">PEP 393</a> and <a href="https://github.com/python/cpython/blob/2340a037f7450e70fccfe411e6531afb4d57a312/Objects/unicodeobject.c">CPython 3.11.15’s pinned Unicode implementation</a>. No Python experiment was run for this explanation.</p>
+  </section>
+
+  <section class="chapter" id="en-docker">
+    <div class="chapter-head"><span class="number" aria-hidden="true">03</span><div><h2>Docker: an absent path can leave retained bytes</h2><p>Separate the merged filesystem view from the immutable image layers beneath it.</p></div></div>
+    <p class="prose">In an ordinary unsquashed image, a first <code>RUN</code> records a new file’s content in a layer. A later <code>RUN</code> can record a <strong>whiteout</strong>—a deletion entry that hides the lower path in the merged view. It does not rewrite the earlier layer blob.</p>
+    <div class="controls" role="group" aria-label="Compare two illustrative image-layer states">
+      <button type="button" id="en-created-button" data-docker="created" aria-pressed="false" aria-controls="en-created en-deleted">After the creating RUN</button>
+      <button type="button" id="en-deleted-button" data-docker="deleted" aria-pressed="true" aria-controls="en-created en-deleted">After a later deleting RUN</button>
+    </div>
+    <div aria-live="polite">
+      <div class="comparison" id="en-created" data-docker-panel="created" hidden>
+        <h3>Path visible; payload recorded</h3>
+        <div class="layer-stack"><div class="layer merged"><strong>Merged view</strong><code>/demo/payload</code> is visible.</div><div class="layer retained"><strong>Earlier immutable layer</strong>New file payload: hypothetical uncompressed 100 MB.</div></div>
+      </div>
+      <div class="comparison" id="en-deleted" data-docker-panel="deleted">
+        <h3>Path hidden; earlier payload retained</h3>
+        <div class="layer-stack"><div class="layer merged"><strong>Merged view</strong><code>/demo/payload</code> is absent. No ordinary whiteout file is shown here.</div><div class="layer"><strong>Later layer cutaway</strong>Whiteout entry hides the lower path.</div><div class="layer retained"><strong>Earlier immutable layer—unchanged</strong>The hypothetical uncompressed 100 MB payload remains.</div></div>
+      </div>
+    </div>
+    <p class="small" style="margin-top:16px">Controls select illustrative states from the inherited explanation. They do not execute Docker or measure storage.</p>
+    <div class="note"><h3>Why one RUN can differ</h3><p>A <strong>NEW temporary file</strong> created and deleted within one <code>RUN</code> is absent at both endpoints. Its payload is therefore absent from that path’s resulting diff. This does <strong>not</strong> make the entire layer empty or reclaim a preexisting base-layer file.</p></div>
+    <p class="source">100 MB means an assumed <strong>100,000,000-byte uncompressed payload</strong>, not compressed image size, transfer size, cache usage, or physical storage. No Docker build was run. Inherited sources: <a href="https://github.com/opencontainers/image-spec/blob/af26a05fba5ee648512f4ea3c9fda1fcc1b6d6dc/layer.md">pinned OCI layer specification</a> and <a href="https://github.com/moby/moby/tree/4c9b3b011ae4c30145a7b344c870bdda01b454e2">Moby 27.5.1</a>. The reused trace covers selected classic/fallback paths, not every BuildKit backend or running-container writable-layer behavior.</p>
+  </section>
+
+  <section class="chapter" id="en-media">
+    <div class="chapter-head"><span class="number" aria-hidden="true">04</span><div><h2>Choose the medium for the explanation</h2><p>The evidence stays bounded; the composition changes. These are supported choices, not a claim that every example has all four completed outputs.</p></div></div>
+    <div class="media-list">
+      <div><h3>HTML · explore a distinction</h3><p>Let readers compare representations or inspect a mechanism at their own pace, with the sources close at hand.</p></div>
+      <div><h3>PNG · keep the essential contrast</h3><p>Compose a self-contained visual summary for its actual reading size—not a miniature article.</p></div>
+      <div><h3>Native PPTX · explain in sequence</h3><p>Use editable text and shapes to support a presented argument, with an intentional purpose for each slide.</p></div>
+      <div><h3>Video · make change visible</h3><p>Coordinate mechanism changes with narration and captions, rather than relying on page transitions alone.</p></div>
+    </div>
+    <p class="note" id="en-synthesis">The common thread is not a visual template. It is the relationship between <strong>supported evidence, a visible mechanism, and a clearly stated limit</strong>. That is the editorial aim of these examples—not a measured learning outcome.</p>
+  </section>
+  <footer><p><strong>About the evidence.</strong> This introduction reuses the sealed <em>Aha: evidence made visible through three mechanisms</em> Dossier, whose local inspection horizon is 17 September 2026. Technical sources and observations are inherited; no new web research, upstream-code inspection, or experiments were performed.</p><p class="small">The Dossier’s dated gallery inventory is not used as a current completion claim. Detailed projection derivations, intermediate string cases, and running-container behavior are outside this introduction.</p></footer>
+</section>
+
+<section data-aha-lang="zh" lang="zh-CN" data-aha-title="Aha：两个技能，从证据到讲解" hidden>
+  <header id="zh-skills">
+    <p class="eyebrow">Aha / 项目介绍</p>
+    <h1>Aha：两个技能，<br>从证据到讲解。</h1>
+    <p class="lead">Aha 是一对可移植技能：<strong>research 查清发生了什么、为什么，以及证据能支持到哪里；</strong>explain 则依据这些证据，创作你所需媒介的视觉讲解。</p>
+    <div class="host">
+      <h2>由宿主协调，而非技能自动接力</h2>
+      <div class="skill-pair">
+        <div><h3><code>aha-research</code></h3><p>围绕问题开展调查，把结论、来源、推理与限制一并保存在 Research Dossier（研究档案）中，供后续查阅和复用。</p></div>
+        <div><h3><code>aha-explain</code></h3><p>根据证据，为指定媒介创作视觉讲解。构图要让机制变得可见，而不只是给报告换一套样式。</p></div>
+      </div>
+      <p class="host-note"><strong>两个技能，不是自动分发流水线。</strong>何时研究、何时复用研究档案、何时制作某种媒介，由宿主决定。研究本身也可以是最终交付物。</p>
+    </div>
+  </header>
+
+  <section class="chapter" id="zh-map">
+    <div class="chapter-head"><span class="number" aria-hidden="true">01</span><div><h2>格陵兰：地图上的大小，不等于球面面积</h2><p>讲清一个机制，先区分什么变了、什么没有变。</p></div></div>
+    <div class="two-column">
+      <div><p>球面墨卡托投影在高纬度的放大更明显。球面上的经线逐渐汇聚，地图却保持经线等距；为了保持局部角度，南北方向也必须相应放大。</p><p>假设给格陵兰边界的每一个点施加同一个球面刚性旋转。它的<strong>球面面积不变</strong>，但移向低纬度后，在<strong>固定投影上的轮廓大小会改变</strong>。这不是把二维图形直接缩小。</p></div>
+      <figure>
+        <svg viewBox="0 0 460 240" role="img" aria-labelledby="zh-map-title zh-map-desc">
+          <title id="zh-map-title">球面与固定投影描述不同的属性</title><desc id="zh-map-desc">概念性的球体与矩形投影网格并列，文字区分不变的球面面积与变化的地图轮廓。本图没有绘制格陵兰边界或计算搬移结果。</desc>
+          <circle class="svg-line" cx="108" cy="96" r="66"/><ellipse class="svg-line" cx="108" cy="96" rx="25" ry="66"/><ellipse class="svg-line" cx="108" cy="96" rx="66" ry="24"/><path class="svg-accent" d="M62 49 A66 66 0 0 1 167 126"/>
+          <rect class="svg-line" x="254" y="30" width="174" height="132"/><path class="svg-line" d="M297 30V162 M341 30V162 M385 30V162 M254 59H428 M254 96H428 M254 133H428"/>
+          <text class="svg-text" x="108" y="196" text-anchor="middle">在球面上</text><text class="svg-text svg-em" x="108" y="226" text-anchor="middle">面积保持不变</text>
+          <text class="svg-text" x="341" y="196" text-anchor="middle">在固定地图上</text><text class="svg-text svg-em" x="341" y="226" text-anchor="middle">轮廓大小改变</text>
+        </svg>
+        <figcaption>这是概念区分图，不是边界绘图、面积比例图或搬移模拟器。</figcaption>
+      </figure>
+    </div>
+    <p class="note"><strong>适用范围不能省略。</strong>这里使用概化的球面模型，并裁去极区；不能推及所有地图，也不是精密面积测量。搬移是假设的几何操作，不是真实大陆运动；整个格陵兰也不存在一个统一的放大倍数。</p>
+    <p class="source">沿用来源：<a href="https://raw.githubusercontent.com/OSGeo/PROJ/9.9/docs/source/operations/projections/merc.rst">PROJ 的墨卡托投影说明</a>及 Natural Earth 5.1.2 概化边界（<a href="https://www.naturalearthdata.com/about/terms-of-use/">数据使用条款</a>）。本页没有执行新的地图计算。</p>
+  </section>
+
+  <section class="chapter" id="zh-python">
+    <div class="chapter-head"><span class="number" aria-hidden="true">02</span><div><h2>CPython：字符串对象，不等于 UTF-8 编码</h2><p>从 100,000 个 ASCII 字符开始，再拼接 U+1F600。新字符串对象与它的编码数据，回答的是两种不同的大小问题。</p></div></div>
+    <p class="prose">在这个 <strong>CPython 3.11.15</strong> 示例中，拼接所得的紧凑型 <code>str</code> 为所有码点采用统一槽宽。U+1F600 超过 U+FFFF，因此<strong>新对象需要四字节槽，ASCII 前缀也包括在内</strong>。原来的不可变 <code>str</code> 没有被修改。UTF-8 则不同：ASCII 字符仍各占一字节，U+1F600 只增加四字节。</p>
+    <div class="controls" role="group" aria-label="比较字符串内部表示与编码">
+      <button type="button" id="zh-object-button" data-python="object" aria-pressed="true" aria-controls="zh-object zh-encoding">看 str 对象内部</button>
+      <button type="button" id="zh-encoding-button" data-python="encoding" aria-pressed="false" aria-controls="zh-object zh-encoding">看 UTF-8 编码数据</button>
+    </div>
+    <div aria-live="polite">
+      <div class="comparison" id="zh-object" data-python-panel="object">
+        <h3>新结果中的码点槽，宽度一致</h3>
+        <div class="slot-row" aria-hidden="true"><span class="slot wide">A</span><span class="slot wide">A</span><span>…</span><span class="slot wide">U+1F600</span></div>
+        <p>新结果中的每个码点槽都是四字节。上图只是槽位示意，没有画出全部 100,001 个槽，也不是内存地址图。显示宽度不与字节数成比例。</p>
+        <p class="small">原来的 ASCII 字符串仍保留原有表示。拼接会利用操作数的表示范围，这不意味着每次拼接都会扫描全部码点。</p>
+      </div>
+      <div class="comparison" id="zh-encoding" data-python-panel="encoding" hidden>
+        <h3>编码长度可变，不采用统一槽宽</h3>
+        <div class="slot-row" aria-hidden="true"><span class="slot">A</span><span class="slot">A</span><span>…</span><span class="slot wide">U+1F600</span></div>
+        <p>100,000 个 ASCII 字符仍占 100,000 字节。U+1F600 增加四字节，因此 UTF-8 编码数据合计 100,004 字节。方框仅作示意，显示宽度不与字节数成比例。</p>
+        <p class="small">这里数的是编码数据的字节，不是 Python bytes 对象的内存占用、进程内存或实测文件大小。</p>
+      </div>
+    </div>
+    <div class="table-wrap"><table>
+      <caption>沿用既有本地观测，并非本次新测量。以下单位均为字节。</caption>
+      <thead><tr><th scope="col">统计什么？</th><th scope="col">ASCII × 100,000</th><th scope="col">新结果：+ U+1F600</th></tr></thead>
+      <tbody><tr><th scope="row"><code>str</code> 对象大小</th><td>100,049</td><td>400,080</td></tr><tr><th scope="row">UTF-8 数据长度</th><td>100,000</td><td>100,004</td></tr></tbody>
+    </table></div>
+    <p class="note"><strong>不能概括成“所有 emoji 都让 Python 内存翻四倍”。</strong>这里只讨论固定实现中的一个码点。对象总大小不只有字符数据，也并非恰好四倍。非 ASCII 字符并不必然需要四字节槽。</p>
+    <p class="source">沿用来源：<a href="https://peps.python.org/pep-0393/">PEP 393</a>与<a href="https://github.com/python/cpython/blob/2340a037f7450e70fccfe411e6531afb4d57a312/Objects/unicodeobject.c">固定提交的 CPython 3.11.15 Unicode 实现</a>。本次讲解没有运行 Python 实验。</p>
+  </section>
+
+  <section class="chapter" id="zh-docker">
+    <div class="chapter-head"><span class="number" aria-hidden="true">03</span><div><h2>Docker：路径不见了，旧层的字节还在</h2><p>把合并后的文件系统视图，与下方不可变的镜像层分开看。</p></div></div>
+    <p class="prose">在普通、未压平的镜像中，第一次 <code>RUN</code> 把新文件内容记录到一层里。后一次 <code>RUN</code> 可以记录 <strong>whiteout</strong>（删除标记），使较低层的路径在合并视图中不可见，但不会重写较早的层数据。</p>
+    <div class="controls" role="group" aria-label="比较两个示意性的镜像层状态">
+      <button type="button" id="zh-created-button" data-docker="created" aria-pressed="false" aria-controls="zh-created zh-deleted">创建文件的 RUN 之后</button>
+      <button type="button" id="zh-deleted-button" data-docker="deleted" aria-pressed="true" aria-controls="zh-created zh-deleted">后续删除的 RUN 之后</button>
+    </div>
+    <div aria-live="polite">
+      <div class="comparison" id="zh-created" data-docker-panel="created" hidden>
+        <h3>路径可见，内容已写入层</h3>
+        <div class="layer-stack"><div class="layer merged"><strong>合并视图</strong><code>/demo/payload</code> 可见。</div><div class="layer retained"><strong>较早的不可变层</strong>新文件内容：假设的未压缩 100 MB。</div></div>
+      </div>
+      <div class="comparison" id="zh-deleted" data-docker-panel="deleted">
+        <h3>路径隐藏，旧层内容保留</h3>
+        <div class="layer-stack"><div class="layer merged"><strong>合并视图</strong><code>/demo/payload</code> 不可见。这里也不会出现普通的 whiteout 文件。</div><div class="layer"><strong>后续层的剖面</strong>whiteout 条目隐藏较低层的路径。</div><div class="layer retained"><strong>较早的不可变层——没有变化</strong>假设的未压缩 100 MB 内容仍然保留。</div></div>
+      </div>
+    </div>
+    <p class="small" style="margin-top:16px">按钮只切换既有讲解中的示意状态，不会执行 Docker，也不会测量存储。</p>
+    <div class="note"><h3>为什么同一次 RUN 可能不同？</h3><p>如果<strong>新建临时文件</strong>在同一次 <code>RUN</code> 中创建又删除，那么操作前后都没有这个文件。因此，该路径的最终差异中不会留下它的内容。这<strong>不代表</strong>整个层为空，也不会回收基础层中原有文件的数据。</p></div>
+    <p class="source">100 MB 指假设的 <strong>100,000,000 字节未压缩内容</strong>，不是压缩镜像大小、传输量、缓存用量或物理存储量。本次没有运行 Docker 构建。沿用来源：<a href="https://github.com/opencontainers/image-spec/blob/af26a05fba5ee648512f4ea3c9fda1fcc1b6d6dc/layer.md">固定版本的 OCI 层规范</a>与 <a href="https://github.com/moby/moby/tree/4c9b3b011ae4c30145a7b344c870bdda01b454e2">Moby 27.5.1</a>。既有代码追踪仅涉及选定的经典／回退路径，不涵盖所有 BuildKit 后端，也不讲解运行中容器的可写层。</p>
+  </section>
+
+  <section class="chapter" id="zh-media">
+    <div class="chapter-head"><span class="number" aria-hidden="true">04</span><div><h2>依据讲解任务，选择媒介</h2><p>证据的边界不变，表达方式可以不同。以下是支持的选择，并不意味着每个案例都已经交付四种格式。</p></div></div>
+    <div class="media-list">
+      <div><h3>HTML · 自主比较</h3><p>让读者按自己的节奏比较表示方式、查看机制，随时查阅相邻的来源。</p></div>
+      <div><h3>PNG · 留住关键区别</h3><p>按实际阅读尺寸独立构图，形成自足的视觉摘要，而不是把文章缩成小图。</p></div>
+      <div><h3>原生 PPTX · 逐步讲述</h3><p>用可编辑的文字与形状组织演示，让每一页都承担明确的讲解任务。</p></div>
+      <div><h3>视频 · 展示变化</h3><p>让机制的变化与旁白、字幕配合，而不只是为页面加上转场。</p></div>
+    </div>
+    <p class="note" id="zh-synthesis">贯穿这些媒介的不是固定模板，而是<strong>有依据的结论、看得见的机制与说得清的限制</strong>之间的关系。这是这些案例的编辑目标，不是经过测量的学习效果。</p>
+  </section>
+  <footer><p><strong>证据说明。</strong>本页复用已封存的《Aha: evidence made visible through three mechanisms》研究档案，其本地检查时间截至 2026 年 9 月 17 日。技术来源与观测均沿用既有记录；本次没有新增网页研究、上游代码检查或实验。</p><p class="small">档案中有日期限制的格式库存，不作为当前交付情况的依据。详细投影推导、其他字符串案例及运行中容器的行为，不在本篇介绍范围内。</p></footer>
+</section>
+</main>
+<script>
+(() => {
+  const roots = Array.from(document.querySelectorAll('section[data-aha-lang]'));
+  for (const root of roots) {
+    for (const group of ['python', 'docker']) {
+      const buttons = Array.from(root.querySelectorAll(`[data-${group}]`));
+      const panels = Array.from(root.querySelectorAll(`[data-${group}-panel]`));
+      for (const button of buttons) {
+        button.addEventListener('click', () => {
+          const selected = button.getAttribute(`data-${group}`);
+          for (const peer of buttons) peer.setAttribute('aria-pressed', String(peer === button));
+          for (const panel of panels) panel.hidden = panel.getAttribute(`data-${group}-panel`) !== selected;
+        });
+      }
+    }
+  }
+  window.addEventListener('aha:languagechange', (event) => {
+    const root = roots.find((item) => item.getAttribute('data-aha-lang') === event.detail.language);
+    if (!root) return;
+    for (const group of ['python', 'docker']) {
+      const selected = root.querySelector(`[data-${group}][aria-pressed="true"]`);
+      if (!selected) continue;
+      for (const panel of root.querySelectorAll(`[data-${group}-panel]`)) {
+        panel.hidden = panel.getAttribute(`data-${group}-panel`) !== selected.getAttribute(`data-${group}`);
+      }
+    }
+  });
+})();
+</script>
+</body></html>

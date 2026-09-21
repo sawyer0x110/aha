@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aha：先查证，再讲清</title><script>(() => {
+  const param = new URLSearchParams(window.location.search).get("scoutTheme");
+  const theme =
+    param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  document.documentElement.setAttribute("data-theme", theme);
+})();</script>
+<script>
+(() => {
+  const requested = new URLSearchParams(window.location.search).get("scoutTheme");
+  document.documentElement.setAttribute("data-theme", requested === "dark" ? "dark" : "light");
+})();
+</script><style>
+:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+* { box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; }
+body { margin: 0; background: var(--cp-bg); color: var(--cp-text); font: 44px/1.23 "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif; }
+code, pre { font-family: Consolas, "Courier New", Courier, monospace; }
+main { width: 1080px; height: 1920px; padding: 64px; display: grid; grid-template-rows: 176px 284px 200px 848px 188px; gap: 24px; }
+h1, h2, h3, p { margin: 0; }
+h1 { font-size: 80px; line-height: 1.2; letter-spacing: -.025em; }
+header p { margin-top: 20px; }
+h2, h3 { font-size: 48px; line-height: 1.25; }
+strong { font-weight: 700; }
+.accent { color: var(--cp-accent); }
+.skills { border-top: 4px solid var(--cp-accent); padding-top: 20px; }
+.skill-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.skill-pair h2 { font: 46px/1.25 Consolas, "Courier New", Courier, monospace; color: var(--cp-accent); margin-bottom: 12px; }
+.host { border-top: 2px solid var(--cp-border); padding-top: 12px; margin-top: 12px; font-weight: 600; }
+.media h2 { font-size: 44px; line-height: 1.25; }
+.media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 40px; margin-top: 12px; }
+.medium { display: flex; align-items: center; gap: 16px; min-height: 56px; }
+.medium svg { width: 44px; height: 44px; flex: none; stroke: var(--cp-accent); fill: none; stroke-width: 2; }
+.examples { display: grid; grid-template-rows: 250px 250px 304px; gap: 22px; }
+.case { border-top: 2px solid var(--cp-border-strong); padding-top: 20px; }
+.case h3 { margin-bottom: 8px; }
+.case p { line-height: 1.2; }
+.case code { font-size: 44px; }
+.num { color: var(--cp-accent); margin-right: 12px; }
+footer { padding-top: 16px; border-top: 4px solid var(--cp-accent); font-size: 44px; line-height: 1.23; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+</style></head><body>
+<main aria-label="Aha 项目介绍海报">
+  <header id="poster-purpose">
+    <h1>Aha：先查证，再讲清</h1>
+    <p>两个可移植技能，从研究到视觉讲解。</p>
+  </header>
+  <section class="skills" id="poster-skills" aria-label="两个技能与宿主的关系">
+    <div class="skill-pair">
+      <div><h2>aha-research</h2><p>查清是什么、为什么，<br>保留证据与适用边界。</p></div>
+      <div><h2>aha-explain</h2><p>依据研究档案，<br>创作所需媒介的讲解。</p></div>
+    </div>
+    <p class="host">宿主协调两项技能，不会自动分发。</p>
+  </section>
+  <section class="media" id="poster-media" aria-label="支持的媒介选择，不是完成清单">
+    <h2>按需选择媒介，不等于全部已交付</h2>
+    <div class="media-grid">
+      <div class="medium"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="5" width="26" height="22" rx="2"/><path d="M3 11H29 M10 17L7 20L10 23 M22 17L25 20L22 23"/></svg><span><strong>HTML</strong> 自主探索</span></div>
+      <div class="medium"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="3" width="26" height="26" rx="2"/><circle cx="11" cy="11" r="3"/><path d="M4 25L13 17L18 22L23 16L28 22"/></svg><span><strong>PNG</strong> 视觉摘要</span></div>
+      <div class="medium"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="4" width="26" height="20" rx="2"/><path d="M16 24V29 M10 29H22 M8 10H24 M8 16H19"/></svg><span><strong>原生 PPTX</strong> 可编辑</span></div>
+      <div class="medium"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="5" width="26" height="22" rx="2"/><path d="M13 11L22 16L13 21Z"/></svg><span><strong>视频</strong> 展示变化</span></div>
+    </div>
+  </section>
+  <section class="examples" aria-label="三个有适用边界的例子">
+    <article class="case" id="poster-map">
+      <h3><span class="num">01</span>格陵兰：球面面积 ≠ 地图大小</h3>
+      <p>固定球面墨卡托：假设旋转格陵兰，<br>球面面积不变，地图轮廓大小改变。<br>概化边界、极区裁切；不是真实搬移。</p>
+    </article>
+    <article class="case" id="poster-python">
+      <h3><span class="num">02</span>CPython 3.11.15：新串 ≠ 旧串</h3>
+      <p>ASCII 加 U+1F600：新串四字节槽。<br>旧串不变；UTF-8 中 ASCII 仍一字节。<br>仅限此码点与版本，不泛指所有 emoji。</p>
+    </article>
+    <article class="case" id="poster-docker">
+      <h3><span class="num">03</span>Docker：隐藏路径 ≠ 清除旧层</h3>
+      <p>未压平镜像：whiteout 只隐藏路径，<br>旧层载荷仍在。同一 RUN 内新建再<br>删除的临时文件，不进入最终层差异；<br>不是清空整层，也不回收基础层字节。</p>
+    </article>
+  </section>
+  <footer id="poster-sources">
+    <p>来源：封存研究档案（2026-09-17）<br>沿用 PROJ / PEP 393 / OCI 证据。<br>概念示意；没有新增实验或效果测量。</p>
+  </footer>
+</main>
+</body></html>

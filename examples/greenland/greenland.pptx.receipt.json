@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "delivered",
+  "format": "pptx",
+  "title": "格陵兰为什么在某些世界地图上显得巨大？",
+  "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6",
+  "sourceHash": "835f8f63fb44edc68d6d0e0361edf60a2556463ce582d3bb829e5adf785d5bf1",
+  "outputHash": "8d93efad74d19a6367be59861df739325246089af3ae8c7efeb0dd9c239e1c6c",
+  "output": "greenland.pptx",
+  "createdAt": "2026-09-21T03:14:04.870Z",
+  "codeExecuted": true,
+  "sandboxed": false,
+  "native": true,
+  "slides": 7,
+  "verification": "Source/output hashes and declared claim coverage, not semantic truth or visual quality. Receipts describe a specific source revision; recheck the source hash after edits."
+}

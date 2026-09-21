@@ -8,9 +8,8 @@ const gallery = pathToFileURL(path.join(examples, 'index.html')).href;
 const outputs = [
   'anc/index.html', 'anc/anc.png', 'anc/anc.pptx', 'anc/anc.mp4',
   'git-merge/index.html', 'git-merge/git-merge.png', 'git-merge/git-merge.pptx', 'git-merge/git-merge.mp4',
-  'project-overview/index.html', 'project-overview/overview.png',
-  'project-overview/overview.pptx', 'project-overview/overview.mp4',
-  'greenland/greenland.mp4', 'cpython-string/pilot.mp4',
+  'aha-introduction/index.html', 'aha-introduction/overview.png', 'aha-introduction/overview.pptx',
+  'greenland/greenland.pptx', 'greenland/greenland.mp4', 'cpython-string/pilot.mp4',
   'docker-layers/pilot.mp4', 'aha-introduction/overview-v5.mp4',
 ].sort();
 
@@ -36,7 +35,7 @@ for (const width of [1280, 390]) {
       await expect(page.locator('html')).toHaveAttribute('lang', 'en');
       await expect(page).toHaveTitle('Aha — From concrete questions to explanations across media');
       await expect(page.getByRole('navigation')).toHaveAttribute('aria-label', 'Gallery language');
-      await expect(page.getByRole('article')).toHaveCount(7);
+      await expect(page.getByRole('article')).toHaveCount(6);
       await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
 
       const english = page.locator('[data-gallery-lang="en"]');
@@ -62,7 +61,7 @@ for (const width of [1280, 390]) {
       await expect(chinese).toBeVisible();
       await expect(english).toBeHidden();
       await expect(english).toHaveAttribute('inert', '');
-      await expect(page.getByRole('article')).toHaveCount(7);
+      await expect(page.getByRole('article')).toHaveCount(6);
       await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
 
       // Even a programmatic focus attempt cannot enter the inactive language.
@@ -95,13 +94,15 @@ test('both gallery languages retain all sixteen local outputs and Chinese topic 
     const section = page.locator(`[data-gallery-lang="${language}"]`);
     const links = await section.locator('a').evaluateAll(anchors =>
       anchors.map(anchor => anchor.getAttribute('href')!));
+    expect(links.some(link => link.startsWith('project-overview/'))).toBe(false);
+    expect(await section.locator('.number').allTextContents()).toEqual(['01', '02', '03', '04', '05', '06']);
     for (const link of links) {
       expect(link).not.toMatch(/^(?:[a-z]+:|\/\/|#)/i);
       await access(path.join(examples, link));
     }
     expect([...new Set(links.filter(link => /\.(html|png|pptx|mp4)$/.test(link)))].sort()).toEqual(outputs);
     const notes = section.locator('article a[href$="/README.md"]');
-    await expect(notes).toHaveCount(7);
+    await expect(notes).toHaveCount(6);
     for (const text of await notes.allTextContents()) {
       expect(text).toContain(language === 'en' ? 'Chinese notes' : '中文说明');
     }

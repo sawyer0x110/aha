@@ -1,8 +1,0 @@
-{
-  "slides": 10,
-  "reader": "Presenter and adult audience",
-  "native": "Editable text/shapes/connectors plus native line charts; no whole-slide raster images",
-  "composition": "Dark cover/end; light body; pipeline, 2x2 medium comparisons, fixed-scale two-state ANC chart, Git clean/conflict state build, responsibility comparison and video flow",
-  "animation": "Native slide-to-slide causal build sequences 4→5 and 6→7. No timed PowerPoint object-animation authoring API used. Do not describe this as tested Morph/timing animation.",
-  "plannedEditProbe": "Change native ANC chart series value, Git node label and one diagram connector in a copy; inspect layout in PowerPoint."
-}

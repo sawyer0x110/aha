@@ -1,9 +1,0 @@
-{
-  "dimensions": [1080, 1800],
-  "readingWidths": [390, 540],
-  "direction": "Optimize the user's supplied warm-light editorial reference. Explain only what Aha is and what it can do; no case studies.",
-  "composition": "Product identity, two skill responsibility rows, four medium capability cells with original icons, shared research and separate authoring principle.",
-  "content": "Two portable skills coordinated by the AI host. Research yields a report with evidence and open questions. Visual authoring uses research and the requested medium. No automatic conversion or verified-truth promise.",
-  "resources": "Original HTML/CSS and inline SVG; installed system fonts; no external assets.",
-  "researchReuse": "Same product/media claims and sealed dossier as the original project-overview; current local README and installed skill guidance re-read on 2026-09-17."
-}

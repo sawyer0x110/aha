@@ -4,26 +4,30 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 import JSZip from 'jszip';
+import { SaxesParser } from 'saxes';
 import { readDossier } from '../../src/research/dossier.ts';
 import { checkArtifact, sourceHash } from '../../src/artifacts/project.ts';
+import { validatePptx } from '../../src/artifacts/pptx-validation.ts';
 import { checkPlan, validateVideoPlan, checkAudioTiming, subtitles } from '../../src/media/plan.ts';
 import { audioTiming } from '../../src/media/duration.ts';
 import { hashValue } from '../../src/core/identity.ts';
 
 export const root = fileURLToPath(new URL('../../', import.meta.url));
 export const topics = {
-  anc: { basename: 'anc', width: 1800, height: 1200, slides: 9, frames: 3813 },
-  'git-merge': { basename: 'git-merge', width: 1800, height: 1200, slides: 10, frames: 3788 },
-  'project-overview': { basename: 'overview', width: 1080, height: 1800, slides: 10, frames: 4453 },
-  greenland: { basename: 'greenland', formats: ['video'], frames: 3472, provider: 'edge-tts' },
+  anc: { basename: 'anc', width: 1800, height: 1200, slides: 7, frames: 3813 },
+  'git-merge': { basename: 'git-merge', width: 1800, height: 1200, slides: 8, frames: 3788 },
+  greenland: { basename: 'greenland', formats: ['pptx', 'video'], slides: 7, frames: 3472, provider: 'edge-tts' },
   'cpython-string': { basename: 'pilot', formats: ['video'], frames: 644, provider: 'edge-tts' },
   'docker-layers': { basename: 'pilot', formats: ['video'], frames: 638, provider: 'edge-tts' },
-  'aha-introduction': { basename: 'overview-v5', formats: ['video'], frames: 3582, provider: 'provided-audio' },
+  'aha-introduction': { basename: 'overview', basenames: { video: 'overview-v5' }, width: 1080, height: 1920, slides: 8, frames: 3582, provider: 'provided-audio' },
 };
 export const formatsFor = topic => topics[topic].formats ?? ['html', 'image', 'pptx', 'video'];
-const multiFormatTopics = Object.keys(topics).filter(topic => formatsFor(topic).includes('html'));
+const historicalBrowserTopics = ['anc', 'git-merge'];
+const pptxTopics = Object.keys(topics).filter(topic => formatsFor(topic).includes('pptx'));
+const basenameFor = (topic, format) => topics[topic].basenames?.[format] ?? topics[topic].basename;
 export const sha = bytes => createHash('sha256').update(bytes).digest('hex');
-const json = async file => JSON.parse(await readFile(file, 'utf8'));
+// PowerShell 5.1 emits a UTF-8 BOM; strip it only for parsing, never for byte hashing.
+const json = async file => JSON.parse((await readFile(file, 'utf8')).replace(/^\uFEFF/, ''));
 const optionalJson = async file => json(file).catch(error => {
   if (error.code !== 'ENOENT') throw error;
 });
@@ -61,7 +65,7 @@ export async function verifyOutput(base, entry) {
   assert(['html', 'image', 'pptx', 'video'].includes(format), `Unknown format: ${format}`);
   assert(formatsFor(topic).includes(format), `Unrequested format: ${topic}/${format}`);
   const spec = topics[topic];
-  const filename = format === 'html' ? 'index.html' : `${spec.basename}.${{ image: 'png', pptx: 'pptx', video: 'mp4' }[format]}`;
+  const filename = format === 'html' ? 'index.html' : `${basenameFor(topic, format)}.${{ image: 'png', pptx: 'pptx', video: 'mp4' }[format]}`;
   equal(entry.file, `${topic}/${filename}`, 'Canonical output path');
   equal(entry.sourceProject, `${topic}/projects/${format}`, 'Canonical source path');
   equal(entry.report, `${topic}/research/report.md`, 'Canonical report path');
@@ -79,7 +83,8 @@ export async function verifyOutput(base, entry) {
   equal(metadata.format, format, 'Project format');
   const source = await sourceHash(project);
   const research = dossier.manifest.contentHash;
-  const receipt = await json(path.join(base, entry.receipt));
+  const receiptBytes = await readFile(path.join(base, entry.receipt));
+  const receipt = JSON.parse(receiptBytes.toString('utf8').replace(/^\uFEFF/, ''));
   const bytes = await readFile(path.join(base, entry.file));
   const output = sha(bytes);
   equal(entry.bytes, bytes.length, `${entry.file}: byte count`);
@@ -97,8 +102,13 @@ export async function verifyOutput(base, entry) {
     equal(receipt.selfContained, true, 'Packaged HTML is self-contained');
     equal(metadata.language, 'bilingual', 'HTML language contract');
     for (const language of ['en', 'zh']) assert(bytes.includes(Buffer.from(`data-aha-lang="${language}"`)));
+    if (topic === 'aha-introduction') equal(entry.language, 'bilingual', 'Introduction HTML manifest language');
   }
   if (format === 'image') {
+    if (topic === 'aha-introduction') {
+      equal(metadata.language, 'zh', 'Introduction image source language');
+      equal(entry.language, 'zh', 'Introduction image manifest language');
+    }
     assert.deepEqual(bytes.subarray(0, 8), Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
     equal(bytes.readUInt32BE(16), spec.width, 'PNG width');
     equal(bytes.readUInt32BE(20), spec.height, 'PNG height');
@@ -109,10 +119,13 @@ export async function verifyOutput(base, entry) {
     }
   }
   if (format === 'pptx') {
+    equal(metadata.language, 'zh', 'Presentation source language');
+    equal(entry.language, 'zh', 'Presentation manifest language');
     equal(entry.native, true, 'Native presentation');
     equal(receipt.native, true, 'Native presentation receipt');
     equal(entry.slides, spec.slides, 'Manifest slide count');
     equal(receipt.slides, spec.slides, 'Receipt slide count');
+    equal(await validatePptx(bytes), spec.slides, 'Runtime-validated native slide count');
     const zip = await JSZip.loadAsync(bytes);
     const slides = Object.keys(zip.files).filter(name => /^ppt\/slides\/slide\d+\.xml$/.test(name));
     equal(slides.length, spec.slides, 'Actual slide count');
@@ -185,19 +198,290 @@ export async function verifyOutput(base, entry) {
       }
     }
   }
-  return { topic, format, outputHash: output, sourceHash: source, researchHash: research, receipt, plan, originalPlanHash };
+  return { topic, format, outputHash: output, sourceHash: source, researchHash: research, receiptHash: sha(receiptBytes), receipt, plan, originalPlanHash };
 }
 
-const xmlText = text => text.replace(/&#x([0-9a-f]+);/gi, (_, value) => String.fromCodePoint(parseInt(value, 16)))
-  .replace(/&#(\d+);/g, (_, value) => String.fromCodePoint(Number(value)))
-  .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&amp;/g, '&');
 const compact = text => text.replace(/\s+/g, '');
 
-async function verifyEvidence(base, evaluation, verified) {
+function xmlTree(xml) {
+  const parser = new SaxesParser({ xmlns: true });
+  const stack = [];
+  let root;
+  parser.on('error', error => { throw error; });
+  parser.on('doctype', () => assert.fail('No DOCTYPE in native evidence XML'));
+  parser.on('opentag', tag => {
+    const node = { name: tag.name, attrs: Object.fromEntries(Object.values(tag.attributes).map(attr => [attr.name, attr.value])), children: [], text: '' };
+    if (stack.length) stack.at(-1).children.push(node);
+    else root = node;
+    stack.push(node);
+  });
+  parser.on('text', text => {
+    if (stack.length) stack.at(-1).text += text;
+    else assert.equal(text.trim(), '', 'Only whitespace is allowed outside the XML root');
+  });
+  parser.on('closetag', () => { stack.pop(); });
+  parser.write(xml).close();
+  return root;
+}
+
+const descendants = (node, name) => [
+  ...(node.name === name ? [node] : []), ...node.children.flatMap(child => descendants(child, name)),
+];
+const nativeText = node => descendants(node, 'a:t').map(item => item.text).join('');
+const hash = (value, label) => assert(typeof value === 'string' && /^[a-f0-9]{64}$/.test(value), label);
+
+function currentIdentity(record, current, label, keys = ['sourceHash', 'researchHash', 'outputHash', 'receiptHash']) {
+  for (const key of keys) {
+    hash(record[key], `${label} ${key}`);
+    equal(record[key], current[key], `${label} ${key}`);
+  }
+}
+
+function nonemptyStatements(values, label) {
+  assert(Array.isArray(values) && values.length > 0
+    && values.every(value => typeof value === 'string' && value.trim()), label);
+}
+
+async function verifyCurrentAgentReview(base, reference, current, reviewedFiles) {
+  const filename = `${current.topic}/projects/${current.format}/qa/agent-review.json`;
+  equal(reference?.file, filename, 'Canonical current agent review');
+  await verifySealedEvidence(base, [reference]);
+  const review = await json(path.join(base, ...filename.split('/')));
+  equal(review.schemaVersion, 1, 'Current agent review schema');
+  equal(review.status, 'reviewed-current', 'Actual current agent review status');
+  equal(review.format, current.format, 'Current agent review format');
+  currentIdentity(review, current, 'Current agent review');
+  equal(review.reviewer.kind, 'agent', 'Agent review is not human acceptance');
+  assert(typeof review.reviewer.id === 'string' && review.reviewer.id.trim(), 'Recorded agent reviewer');
+  const sorted = items => [...items].sort((a, b) => a.file.localeCompare(b.file));
+  assert.deepEqual(sorted(review.reviewedFiles), sorted(reviewedFiles), 'Agent reviewed exact current visual evidence');
+  await verifySealedEvidence(base, review.reviewedFiles);
+  nonemptyStatements(review.semanticFindings, 'Explicit current semantic findings');
+  nonemptyStatements(review.visualFindings, 'Explicit current visual findings');
+  nonemptyStatements(review.limitations, 'Explicit current agent review limitations');
+  assert.deepEqual(review.unperformed, ['Human comprehension', 'Human acceptance'], 'Preserve unperformed human review boundaries');
+}
+
+async function verifyPngEvidence(base, reference, width, height) {
+  await verifySealedEvidence(base, [reference]);
+  const bytes = await readFile(path.join(base, ...reference.file.split('/')));
+  assert.deepEqual(bytes.subarray(0, 8), Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]), 'Current visual evidence is PNG');
+  assert(bytes.length >= 24, 'Current evidence PNG header');
+  equal(bytes.readUInt32BE(16), width, 'Current evidence PNG width');
+  if (height !== undefined) equal(bytes.readUInt32BE(20), height, 'Current evidence PNG height');
+  else assert(bytes.readUInt32BE(20) > 0, 'Current evidence PNG height');
+}
+
+export const introductionBrowserCases = [1280, 390].flatMap(width =>
+  ['en', 'zh'].flatMap(language => ['light', 'dark'].map(theme => ({ width, language, theme }))));
+
+export async function verifyCurrentIntroductionEvidence(base, verified) {
+  const publication = await json(path.join(base, 'aha-introduction', 'publication.json'));
+  equal(publication.schemaVersion, 1, 'Current introduction publication schema');
+  equal(publication.status, 'published-current-introduction', 'Current introduction publication status');
+  assert.deepEqual(publication.outputs.map(item => item.format).sort(), ['html', 'image'], 'Exactly current introduction HTML and image evidence');
+  const selected = verified.filter(item => item.topic === 'aha-introduction' && ['html', 'image'].includes(item.format));
+  assert.deepEqual(selected.map(item => item.format).sort(), ['html', 'image'], 'Exactly verified introduction HTML and image');
+  for (const record of publication.outputs) {
+    const current = selected.find(item => item.format === record.format);
+    currentIdentity(record, current, 'Current introduction publication');
+    const { format } = current;
+    await verifySealedEvidence(base, [{
+      file: `aha-introduction/${format === 'html' ? 'index.html' : 'overview.png'}`, sha256: current.outputHash,
+    }]);
+    const qa = `aha-introduction/projects/${format}/qa`;
+    equal(record.observations.file, `${qa}/${format === 'html' ? 'browser' : 'image'}-observations.json`, 'Canonical current introduction observations');
+    await verifySealedEvidence(base, [record.observations]);
+    const observations = await json(path.join(base, ...record.observations.file.split('/')));
+    currentIdentity(observations, current, 'Current observations', ['sourceHash', 'researchHash', 'outputHash']);
+    assert(typeof observations.method === 'string' && observations.method.trim(), 'Recorded current observation method');
+    assert(typeof observations.observedAt === 'string' && Number.isFinite(Date.parse(observations.observedAt)), 'Recorded current observation time');
+    nonemptyStatements(observations.unperformed, 'Explicit observation limits');
+    const localImage = item => {
+      assert(typeof item.file === 'string' && /^[a-zA-Z0-9_-][a-zA-Z0-9._-]*\.png$/.test(item.file), 'Safe current QA PNG filename');
+      return { file: `${qa}/${item.file}`, sha256: item.sha256 };
+    };
+    let reviewedFiles;
+    if (format === 'html') {
+      assert.deepEqual(observations.failures, [], 'Current browser failures');
+      const caseId = item => `${item.width}-${item.language}-${item.theme}`;
+      assert.deepEqual(observations.cases.map(caseId).sort(), introductionBrowserCases.map(caseId).sort(), 'Exact current introduction browser cases');
+      const checks = [...(observations.checks ?? [])];
+      reviewedFiles = [record.observations];
+      for (const item of observations.cases) {
+        assert(Array.isArray(item.checks) && item.checks.length > 0, 'Recorded checks for every browser case');
+        checks.push(...item.checks);
+        assert(item.controls && typeof item.controls === 'object' && !Array.isArray(item.controls)
+          && Object.keys(item.controls).length > 0, 'Recorded actual browser control observations');
+        assert(Array.isArray(item.screenshots) && item.screenshots.length > 0, 'Screenshots for every current browser case');
+        for (const screenshot of item.screenshots) {
+          const reference = localImage(screenshot);
+          await verifyPngEvidence(base, reference, item.width);
+          reviewedFiles.push(reference);
+        }
+      }
+      for (const check of checks) {
+        assert(typeof check.name === 'string' && check.name.trim(), 'Named current browser check');
+        equal(check.passed, true, `Current introduction ${check.name} check`);
+      }
+      for (const name of ['initialEnglish', 'keyboard', 'pointer', 'languageSwitch', 'themeSwitch', 'reducedMotion', 'offline', 'console', 'overflow']) {
+        assert(checks.some(check => check.name === name), `Required current introduction ${name} check`);
+      }
+      await verifySealedEvidence(base, reviewedFiles);
+    } else {
+      equal(observations.width, 1080, 'Current introduction PNG width');
+      equal(observations.height, 1920, 'Current introduction PNG height');
+      assert.deepEqual(observations.previews.map(item => ({ file: item.file, width: item.width, height: item.height })),
+        [{ file: 'reading-390.png', width: 390, height: 694 }], 'Current introduction reading preview');
+      const preview = localImage(observations.previews[0]);
+      await verifyPngEvidence(base, preview, 390, 694);
+      const output = { file: 'aha-introduction/overview.png', sha256: current.outputHash };
+      await verifyPngEvidence(base, output, 1080, 1920);
+      reviewedFiles = [record.observations, preview, output];
+    }
+    await verifyCurrentAgentReview(base, record.review, current, reviewedFiles);
+  }
+}
+
+export async function verifyPptxEvidence(base, verified) {
+  const publication = await json(path.join(base, 'pptx-publication.json'));
+  equal(publication.schemaVersion, 1, 'Current PPTX publication schema');
+  equal(publication.status, 'published-current-pptx', 'Current PPTX publication status');
+  equal(publication.skill.name, 'aha-explain', 'PPTX skill provenance');
+  assert.match(publication.skill.sourceRevision, /^[a-f0-9]{40}$/, 'PPTX skill source revision');
+  assert(publication.skill.guideHashes && Object.keys(publication.skill.guideHashes).length > 0, 'Frozen guide hashes');
+  for (const value of Object.values(publication.skill.guideHashes)) hash(value, 'Frozen guide hash');
+  hash(publication.runtimeHash, 'Recorded runtime hash');
+  assert.deepEqual(publication.outputs.map(item => item.topic).sort(), [...pptxTopics].sort(), 'Exactly four unique current PPTX topics');
+  assert.deepEqual(verified.filter(item => item.format === 'pptx').map(item => item.topic).sort(),
+    [...pptxTopics].sort(), 'Exactly four verified PPTX outputs');
+  for (const record of publication.outputs) {
+    const { topic } = record;
+    const current = verified.find(item => item.topic === topic && item.format === 'pptx');
+    for (const key of ['sourceHash', 'researchHash', 'outputHash', 'receiptHash']) {
+      hash(record[key], `PPTX publication ${key}`);
+      equal(record[key], current[key], `PPTX publication ${key}`);
+    }
+    equal(record.slides, topics[topic].slides, 'PPTX publication slide count');
+    equal(record.language, 'zh', 'PPTX publication language');
+    if (topic === 'aha-introduction') {
+      assert.deepEqual(record.origin, { generation: 'current-skill-authoring' }, 'Introduction PPTX is current authoring, not a recovered candidate');
+      equal(record.visualReview.status, 'reviewed-current', 'Introduction PPTX requires current agent visual review');
+    } else {
+      equal(record.origin.generation, 'latest-iterated-skill-candidate', 'PPTX candidate generation');
+      hash(record.origin.candidateSourceHash, 'Candidate source hash');
+      hash(record.origin.candidateOutputHash, 'Candidate output hash');
+      equal(typeof record.origin.sourceRelocated, 'boolean', 'Explicit candidate source relocation');
+      equal(record.visualReview.status, 'bounded-historical', 'Do not promote application checks to independent visual acceptance');
+    }
+    assert(Array.isArray(record.visualReview.limitations) && record.visualReview.limitations.length > 0
+      && record.visualReview.limitations.every(item => typeof item === 'string' && item.trim()), 'Explicit visual review limitations');
+    const qa = `${topic}/projects/pptx/qa`;
+    equal(record.application.file, `${qa}/powerpoint-observations.json`, 'Canonical PowerPoint observations path');
+    const expectedPages = Array.from({ length: record.slides }, (_, i) => `${qa}/slide-${String(i + 1).padStart(2, '0')}.png`);
+    assert.deepEqual(record.pages.map(item => item.file), expectedPages, 'Exact sequential current PPTX pages');
+    await verifySealedEvidence(base, [record.application, ...record.pages]);
+    for (const page of record.pages) {
+      hash(page.sha256, 'PPTX page hash');
+      const bytes = await readFile(path.join(base, ...page.file.split('/')));
+      assert.deepEqual(bytes.subarray(0, 8), Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]), 'PowerPoint page is PNG');
+      assert(bytes.length >= 24, 'PowerPoint page header');
+      equal(bytes.readUInt32BE(16), 1600, 'PowerPoint page width');
+      equal(bytes.readUInt32BE(20), 900, 'PowerPoint page height');
+    }
+    if (topic === 'aha-introduction') {
+      await verifyCurrentAgentReview(base, record.visualReview.evidence, current, record.pages);
+    }
+    hash(record.application.sha256, 'PowerPoint observations hash');
+    const application = await json(path.join(base, ...record.application.file.split('/')));
+    equal(application.application, 'Microsoft PowerPoint', 'Actual application observations');
+    assert(typeof application.version === 'string' && application.version.trim(), 'PowerPoint version');
+    equal(application.method, 'PowerPoint COM export and programmatic edits on a copy, saved and reopened', 'PowerPoint application method');
+    equal(application.outputHash, current.outputHash, 'PowerPoint observations outputHash must match current output, even when resealed');
+    equal(application.originalUnchanged, true, 'Application probes preserve original output');
+    assert.deepEqual(application.unperformed, [
+      'Human comprehension', 'Manual editing usability', 'Visual judgment: exported images require separate review',
+    ], 'Application success does not claim human or visual acceptance');
+    assert.deepEqual(application.slides.map(item => item.slide),
+      Array.from({ length: record.slides }, (_, i) => i + 1), 'PowerPoint observations slide count and order');
+    const bytes = await readFile(path.join(base, topic, `${basenameFor(topic, 'pptx')}.pptx`));
+    equal(sha(bytes), current.outputHash, 'Current PPTX bytes for application evidence');
+    const deck = await JSZip.loadAsync(bytes);
+    const objects = new Map();
+    for (const slide of application.slides) {
+      equal(slide.image, `slide-${String(slide.slide).padStart(2, '0')}.png`, 'PowerPoint slide image');
+      const tree = xmlTree(await deck.file(`ppt/slides/slide${slide.slide}.xml`).async('string'));
+      const native = descendants(tree, 'p:spTree')[0].children.filter(node =>
+        ['p:sp', 'p:graphicFrame', 'p:pic', 'p:cxnSp', 'p:grpSp'].includes(node.name));
+      const byId = new Map(native.map(node => [Number(descendants(node, 'p:cNvPr')[0].attrs.id), node]));
+      assert.deepEqual(slide.shapes.map(shape => shape.id).sort((a, b) => a - b),
+        [...byId.keys()].sort((a, b) => a - b), 'Observed native object IDs');
+      let textCount = 0;
+      for (const shape of slide.shapes) {
+        const node = byId.get(shape.id);
+        equal(shape.name, descendants(node, 'p:cNvPr')[0].attrs.name, 'Observed native object name');
+        equal(shape.hasTable, descendants(node, 'a:tbl').length > 0, 'Observed native table');
+        equal(shape.hasChart, descendants(node, 'c:chart').length > 0, 'Observed native chart');
+        assert(Number.isInteger(shape.type), 'PowerPoint native shape type');
+        for (const key of ['left', 'top', 'width', 'height']) assert(Number.isFinite(shape[key]), 'Native object geometry');
+        assert(shape.width >= 0 && shape.height >= 0, 'Native object extents');
+        if (shape.text?.trim()) {
+          equal(compact(shape.text), compact(nativeText(node)), 'Observed text belongs to current native object');
+          textCount++;
+        } else if (node.name === 'p:sp') {
+          equal(compact(nativeText(node)), '', 'Native editable text must be observed');
+        }
+        objects.set(`${slide.slide}/${shape.id}`, { node, shape });
+      }
+      assert(textCount > 0, 'Native slide includes observed editable text');
+    }
+    const hasChart = [...objects.values()].some(object => object.shape.hasChart);
+    const expectedEdits = ['text', 'table-cell', ...(topic === 'greenland' || hasChart ? ['chart-data'] : [])];
+    assert.deepEqual(application.edits.map(edit => edit.type).sort(), expectedEdits.sort(), 'Required persisted native edit probes');
+    for (const edit of application.edits) {
+      equal(edit.persisted, true, 'Native edit saved and reopened');
+      const object = objects.get(`${edit.slide}/${edit.id}`);
+      assert(object, 'Edit probe identifies current native object');
+      const { node, shape } = object;
+      if (edit.type === 'text') {
+        assert(typeof shape.text === 'string' && shape.text.trim(), 'Text probe targets native text');
+        equal(compact(edit.before), compact(nativeText(node)), 'Text probe before matches native object');
+        equal(edit.after, `${edit.before} [edit probe]`, 'Text probe actual change');
+      } else if (edit.type === 'table-cell') {
+        equal(shape.hasTable, true, 'Table probe targets native table');
+        equal(edit.row, 1, 'Table probe row');
+        equal(edit.column, 1, 'Table probe column');
+        equal(compact(edit.before), compact(nativeText(descendants(node, 'a:tc')[0])), 'Table probe before matches native cell');
+        equal(edit.after, `${edit.before} [edit probe]`, 'Table probe actual change');
+      } else {
+        equal(shape.hasChart, true, 'Chart probe targets native chart');
+        equal(edit.row, 2, 'Chart probe row');
+        equal(edit.column, 2, 'Chart probe column');
+        assert(Number.isFinite(edit.before), 'Chart probe numeric value');
+        equal(edit.after, edit.before + 1, 'Chart probe actual change');
+        equal(edit.refresh, 'Explicit Chart.SetSourceData A1:B3, then workbook close/save', 'Chart workbook refresh');
+        const chartId = descendants(node, 'c:chart')[0].attrs['r:id'];
+        const relationships = xmlTree(await deck.file(`ppt/slides/_rels/slide${edit.slide}.xml.rels`).async('string'));
+        const relation = descendants(relationships, 'Relationship').find(item => item.attrs.Id === chartId);
+        assert(relation && !relation.attrs.TargetMode, 'Native chart relationship');
+        const chartPath = path.posix.normalize(relation.attrs.Target.startsWith('/')
+          ? relation.attrs.Target.slice(1) : path.posix.join('ppt/slides', relation.attrs.Target));
+        const chartPart = deck.file(chartPath);
+        assert(chartPart, 'Native chart relationship resolves to a package part');
+        const chart = xmlTree(await chartPart.async('string'));
+        const values = descendants(descendants(chart, 'c:val')[0], 'c:numCache')[0];
+        const first = descendants(values, 'c:pt').find(item => item.attrs.idx === '0');
+        equal(Number(descendants(first, 'c:v')[0].text), edit.before, 'Chart probe before matches current native data');
+      }
+    }
+  }
+}
+
+async function verifyEvidence(evaluation, verified) {
   const production = await json(path.join(evaluation, 'production-status.json'));
   const review = await json(path.join(evaluation, 'final-visual-review.json'));
   assert.equal(review.residual_defects.length, 0, 'Final bounded review defects');
-  for (const topic of multiFormatTopics) {
+  for (const topic of historicalBrowserTopics) {
     const formats = Object.fromEntries(verified.filter(item => item.topic === topic).map(item => [item.format, item]));
     const directory = path.join(evaluation, topic);
     const browser = await json(path.join(directory, 'browser-observations.json'));
@@ -222,31 +506,17 @@ async function verifyEvidence(base, evaluation, verified) {
     assert.deepEqual(media.samples.map(sample => sample.narration), formats.video.plan.segments.map(segment => segment.text));
     equal(production.speechApproval.approvedFullOfflineImportPlans[topic], formats.video.receipt.planHash, 'Recorded approval for exact import plan');
     equal(production.speechApproval.approvedFullOnlinePlans[topic], formats.video.originalPlanHash, 'Recorded approval for original synthesis plan');
-    const native = await json(path.join(directory, 'slides', 'native-observations.json'));
-    equal(native.renderer, 'Microsoft PowerPoint', 'Recorded native renderer');
-    equal(native.nativeTextEditInMemory, true, 'Recorded native edit probe');
-    equal(native.savedChanges, false, 'Probe did not change source');
-    equal(native.slides.length, topics[topic].slides, 'Native observations slide count');
-    const deck = await JSZip.loadAsync(await readFile(path.join(base, topic, `${topics[topic].basename}.pptx`)));
-    for (let i = 1; i <= topics[topic].slides; i++) {
-      equal(native.slides[i - 1].number, i, 'Native observations slide order');
-      const xml = await deck.file(`ppt/slides/slide${i}.xml`).async('string');
-      const text = compact([...xml.matchAll(/<a:t>([\s\S]*?)<\/a:t>/g)].map(match => xmlText(match[1])).join(''));
-      const shapes = native.slides[i - 1].shapes.filter(shape => shape.text?.trim());
-      assert(shapes.length > 0, 'Native observations include editable text');
-      for (const shape of shapes) assert(text.includes(compact(shape.text)), `${topic}/slide-${i}: observed text must belong to current native slide`);
-      await access(path.join(directory, 'slides', `slide-${String(i).padStart(2, '0')}.png`));
-    }
   }
   const recheckFile = path.join(evaluation, 'browser-recheck', 'runtime.json');
   const recheck = await optionalJson(recheckFile);
   if (recheck) {
     assert.deepEqual(recheck.failures, []);
-    equal(recheck.cases.length, 24, 'Fresh browser coverage');
-    const expected = multiFormatTopics.flatMap(topic => [1280, 390].flatMap(width =>
+    // Archived observations retain retired topics; only current outputs are validated here.
+    const currentCases = recheck.cases.filter(record => historicalBrowserTopics.includes(record.topic));
+    const expected = historicalBrowserTopics.flatMap(topic => [1280, 390].flatMap(width =>
       ['light', 'dark'].flatMap(theme => ['en', 'zh'].map(language => `${topic}-${width}-${theme}-${language}`))));
-    assert.deepEqual(recheck.cases.map(item => item.id).sort(), expected.sort(), 'Fresh browser case identities');
-    for (const record of recheck.cases) {
+    assert.deepEqual(currentCases.map(item => item.id).sort(), expected.sort(), 'Current browser case identities in historical evidence');
+    for (const record of currentCases) {
       const html = verified.find(item => item.topic === record.topic && item.format === 'html');
       for (const key of ['sourceHash', 'outputHash', 'researchHash']) equal(record[key], html[key], `Fresh browser ${key}`);
       equal(record.checks.length, 4, 'Fresh browser checks per case');
@@ -432,9 +702,13 @@ export async function verifyExamples({
   assert.equal(manifest.requestedOutputs.length, expectedOutputs.length, 'Exactly sixteen requested outputs');
   assert.deepEqual(manifest.requestedOutputs.map(item => `${item.topic}/${item.format}`).sort(),
     expectedOutputs.sort());
+  equal(manifest.pptxPublication, 'pptx-publication.json', 'Required canonical current PPTX publication');
+  equal(manifest.introductionPublication, 'aha-introduction/publication.json', 'Required canonical current introduction publication');
   const verified = [];
   for (const entry of manifest.requestedOutputs) verified.push(await verifyOutput(base, entry));
-  await verifyEvidence(base, evaluation, verified);
+  await verifyPptxEvidence(base, verified);
+  await verifyCurrentIntroductionEvidence(base, verified);
+  await verifyEvidence(evaluation, verified);
   await verifyGreenlandEvidence(evaluation, verified);
   equal(manifest.codePilotEvaluation, '../evals/examples/code-pilots-20260917/publication.json', 'Canonical code-pilot evidence link');
   await verifyCodePilotEvidence(path.resolve(evaluation, '..', 'code-pilots-20260917'), verified);
@@ -468,7 +742,7 @@ export async function verifyExamples({
   }
   return {
     status: 'passed', outputs: verified.map(({ receipt, plan, ...item }) => item),
-    scope: 'Current sealed provenance, native structure, WAV timing and exact subtitles; no authored code executed. Imported browser/native observations are bounded historical evidence, not a new visual, listening, slideshow or comprehension review.',
+    scope: 'Current sealed provenance, runtime-validated native structure, hash-bound PowerPoint/browser observations, WAV timing and exact subtitles; no authored code executed. Historical evidence and current introduction agent reviews remain distinct. Neither constitutes human acceptance, listening, slideshow, manual editing or comprehension review.',
   };
 }
 

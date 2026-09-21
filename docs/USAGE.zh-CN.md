@@ -4,7 +4,7 @@
 
 本指南覆盖研究、以源文件为中心的创作、渲染、权限与验收。先按 [INSTALL](INSTALL.zh-CN.md) 安装完整包；文件安装与真实宿主验收是两回事。
 
-Runtime **0.3.2** 与研究／作品 Schema **1.0.0** 是独立版本线。不支持的协议或命令明确报错，不静默转换数据或删除用户作品。0.3.2 新增 MIT 声明与双语安装包指南，不改变已发布的 `v0.3.1` 资产。实际发布状态与可下载内容以 [Releases](https://github.com/sawyer0x110/aha/releases) 为准。
+Runtime **0.3.2** 与研究／作品 Schema **1.0.0** 是独立版本线。不支持的协议或命令明确报错，不静默转换数据或删除用户作品。实际发布状态与可下载内容以 [Releases](https://github.com/sawyer0x110/aha/releases) 为准。
 
 ## 按交付分工，不按统一模板填空
 
@@ -211,9 +211,7 @@ node .\dist\cli\aha.mjs doctor
 
 `node .\scripts\release.mjs` 只本地打包，不上传、不全局注册。授权源码构建、Release 选择、哈希校验、dry-run／apply、冲突、升级、宿主发现和卸载见 [INSTALL](INSTALL.zh-CN.md)。本地构建、版本变化或 tag 推送都不证明发布完成。
 
-**0.3.2 打包／文档更新：**完整英中安装指南与双语许可范围位于 `docs/`，按原字节、原文件名复制到安装包根目录，并携带根 `LICENSE`。两个独立 Skill 各自保留 Aha 与第三方声明。贡献／安全指南位于 `.github/`。这些改动不翻译或重新封存历史媒体、研究与 QA。
-
-相较 0.3.0，runtime 0.3.1 包含离线 HTML `defer`／`async` 调度修复、按精确音频时长计算帧数、无效 UTF-8 拒绝、研究主张双向覆盖检查，以及图片尺寸／研究／创作指导更新。CLI 与新视频收据从 `package.json` 获取运行时版本；Schema 保持 1.0.0。不改写封存示例或历史收据。
+完整英中安装指南与双语许可范围从 `docs/` 按原字节、原文件名复制到安装包根目录，并携带根 `LICENSE`。CLI 与新视频收据从 `package.json` 获取运行时版本，不改写封存示例或历史收据。
 
 源码验证命令：
 
@@ -235,7 +233,7 @@ npm run test:media
 ## 延伸阅读
 
 - [产品需求](PRD.md)、[架构](ARCHITECTURE.md)、[研究协议](RESEARCH.md)、[评估协议](EVALUATION.md)：现有进阶人类文档，**中文**。
-- [示例总览](../examples/README.zh-CN.md)提供英中双语入口。[新版 Aha 介绍视频](../examples/aha-introduction/README.md)及其他主题说明为**中文**，视频旁白为**英文**；已有媒体未翻译。
+- [示例总览](../examples/README.zh-CN.md)提供英中双语入口。[Aha 项目介绍](../examples/aha-introduction/README.md)为主入口，包含**英中双语 HTML**、**中文 PPTX 与 PNG**，并保留原有**英文视频**。主题说明为中文，各作品分别注明语言与验收限制。
 - [参与贡献](../.github/CONTRIBUTING.zh-CN.md)／[English](../.github/CONTRIBUTING.md)、[安全政策](../.github/SECURITY.zh-CN.md)／[English](../.github/SECURITY.md)、[MIT 许可](../LICENSE)及英中双语[许可范围](LICENSE-SCOPE.md)。
 
 历史报告、收据和 Skill 参考按原样保留，不冒称它们已重新翻译或重新验收。

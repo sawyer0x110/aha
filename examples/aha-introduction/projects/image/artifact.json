@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0.0",
+  "format": "image",
+  "language": "zh",
+  "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+  "title": "Aha：先查证，再讲清",
+  "status": "authored",
+  "entry": "html/index.html",
+  "coverage": [
+    { "id": "poster-purpose", "claimIds": ["c-synthesis"] },
+    { "id": "poster-skills", "claimIds": ["c-skills"] },
+    { "id": "poster-map", "claimIds": ["c-map"] },
+    { "id": "poster-python", "claimIds": ["c-python", "c-utf8"] },
+    { "id": "poster-docker", "claimIds": ["c-delete", "c-same"] }
+  ],
+  "omissions": [
+    { "claimId": "c-layer", "reason": "The compact poster does not show the first creating RUN or its hypothetical 100 MB payload. It explains later path hiding versus retained prior content without a size claim." },
+    { "claimId": "c-formats", "reason": "The 2026-09-17 gallery inventory is outdated and omitted. The four labels identify supported medium choices, explicitly not completed outputs for each example." },
+    { "claimId": "c-intermediate", "reason": "Intermediate Latin-1/BMP cases are omitted at poster scale. The visible example is restricted to CPython 3.11.15 and U+1F600, not every emoji or implementation." },
+    { "claimId": "c-container", "reason": "Running-container writable-layer behavior is not part of this immutable-image-layer poster." }
+  ],
+  "width": 1080,
+  "height": 1920
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "delivered",
+  "format": "pptx",
+  "title": "Aha 是什么：让有依据的解释变得可见",
+  "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+  "sourceHash": "5abdb39958ba863a632d86347983d6082318c574646e80bcd21a07c1382f41f2",
+  "outputHash": "a002c6da960d15ef53d6b70d1ad80ef8a7276021347a4a6c723aaf32bc71c688",
+  "output": "overview.pptx",
+  "createdAt": "2026-09-21T04:00:58.401Z",
+  "codeExecuted": true,
+  "sandboxed": false,
+  "native": true,
+  "slides": 8,
+  "verification": "Source/output hashes and declared claim coverage, not semantic truth or visual quality. Receipts describe a specific source revision; recheck the source hash after edits."
+}

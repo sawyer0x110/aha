@@ -23,10 +23,10 @@ The full installation guides and license scope are copied from this directory to
 - [Research protocol](RESEARCH.md): evidence, counterevidence, identity, and delivery.
 - [Evaluation protocol](EVALUATION.md): controlled comparisons and separate human-understanding measurement.
 
-These guides remain in Chinese; they are not newly translated evidence.
+These advanced guides are maintained in Chinese.
 
 ## Skill contracts and preserved evidence
 
-[Skill sources](../skills/) contain the English agent instructions and authoritative authoring/execution references. Read only the relevant contract at each stage; the source skill directories are not installable packages. They are not duplicated into translated skill bundles by this documentation update.
+[Skill sources](../skills/) contain the English agent instructions and authoritative authoring/execution references, maintained as a single source across languages. Read only the relevant contract at each stage; the source skill directories are not installable packages.
 
-[Examples](../examples/README.md) and [evaluation records](../evals/) include version-bound research, authored projects, receipts, approvals, and historical QA. Those snapshots and accepted historical paths remain unchanged during this documentation migration. New evidence or revised artwork needs a new snapshot/output and its own checks; live guides and a new runtime version do not retroactively revalidate old media.
+[Examples](../examples/README.md) and [evaluation records](../evals/) include version-bound research, authored projects, receipts, approvals, and historical QA. New evidence or revised artwork needs a new snapshot/output and its own checks; live guides and a new runtime version do not retroactively revalidate old media.

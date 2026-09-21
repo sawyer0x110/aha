@@ -1,0 +1,38 @@
+{
+  "status": "source-authored-static-checks-passed-runtime-unperformed",
+  "parentEditorialRevision": "Replaced Docker paragraph with the exact requested four lines: whiteout only hides a path, earlier payload remains, a new temporary file created/deleted within one RUN is absent from the final layer diff, not a whole-layer clearing or base-byte reclamation. explain-check passed again. No capture or browser execution.",
+  "staticChecks": {
+    "explainCheck": "Passed: ready true, coverage 5, omissions 4; no authored code executed.",
+    "javascript": "Both inline theme scripts extracted in memory and parsed with node --check --input-type=commonjs via stdin; passed without executing either script.",
+    "domReferences": "No duplicate IDs.",
+    "researchIdentity": "Research copies compared byte-for-byte with canonical examples/aha-introduction/research; unchanged.",
+    "geometryArithmetic": "Main grid rows total 1696px, four gaps total 96px and vertical gutters total 128px, matching 1920px. This arithmetic is not observed layout or proof of no font-induced wrapping.",
+    "scope": "Static checks only. No capture, browser run or visual acceptance."
+  },
+  "brief": {
+    "reader": "Chinese-speaking first-time reader seeing a mobile-sized introduction poster.",
+    "argument": "Aha is two host-coordinated portable skills, not automatic dispatch. Research preserves what/why/evidence boundaries and explain composes the requested medium. Three bounded examples make important distinctions concrete.",
+    "dimensions": {"width": 1080, "height": 1920, "intendedDisplayWidth": 390},
+    "rationale": "User-selected portrait canvas supports a sequential mobile read: purpose, skills/host, medium choices, three concise distinctions, sources/scope.",
+    "composition": "Independently authored poster, not an HTML article capture. Five planned regions with 64px outer gutters, 24px gaps and 44px minimum essential type (about 15.9px at 390px display width). Region heights sum to the viewport; actual glyph wrapping and overflow remain unobserved.",
+    "visualResponsibilities": "Hierarchy and typography carry the argument. Four original geometric SVG icons mark media affordances, not evidence of saved outputs. No map or byte-count visualization is fabricated.",
+    "theme": "Mandatory host Clawpilot variables/script/font stack, then explicit light preference with valid scoutTheme=dark override. This host intervention must be disclosed; no Aha-only aesthetics claim.",
+    "resources": "Original geometric SVG/HTML/CSS only; no assets, fonts, dependencies, screenshots, foreign code or network requests.",
+    "permissions": "Source and static validation only. Parent must obtain explicit reviewed local execution approval before PNG capture or any browser QA."
+  },
+  "contentReview": {
+    "facts": "Kept host coordination and two-skill responsibilities; fixed spherical Mercator, hypothetical rotation, unchanged spherical area, generalized boundaries and polar crop; CPython 3.11.15 and U+1F600 new uniform four-byte slots versus unchanged original, ASCII UTF-8 bytes; ordinary unsquashed image whiteout with retained prior content and NEW-file same-RUN endpoint limitation.",
+    "compression": "Detailed CPython totals and UTF-8 added-code-point byte total are omitted from this poster. c-utf8 coverage is limited to the unchanged one-byte ASCII-prefix encoding mechanism. Hypothetical Docker 100 MB and creating-RUN sequence are omitted; c-layer is explicitly omitted. The image introduces distinctions rather than reproducing the article.",
+    "clarity": "Source-level Chinese read reviewed named objects and contrasted quantities. Media choices explicitly do not imply current four-format completion.",
+    "omissions": "Outdated 2026-09-17 inventory, detailed projection derivation, intermediate strings, exact byte totals, initial Docker payload size and running-container behavior.",
+    "limits": "Not a newly run experiment or human learning study; source-level editorial review is not visual acceptance."
+  },
+  "selectors": ["main", "#poster-purpose", "#poster-skills", "#poster-media", "#poster-map", "#poster-python", "#poster-docker", "#poster-sources"],
+  "unperformed": [
+    "PNG capture, pixel-dimension verification and source/receipt/output binding",
+    "Full viewport overflow/cropping check at 1080x1920 with actual CJK/system glyph metrics",
+    "Complete poster review scaled to 390 CSS pixels with no zoom, including sources and every case",
+    "Light capture pilot, valid dark query override, actual contrast, glyph fallback and text wrap inspection",
+    "Human comprehension and visual acceptance"
+  ]
+}

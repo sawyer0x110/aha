@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "status": "reviewed-current",
+  "format": "html",
+  "sourceHash": "21aac193b757a5e485c6c131122e525aa125938c40e90ea3a570a801d12f15d8",
+  "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+  "outputHash": "e76d956fb1f7d3d0bc060f9295ad7f63c27e43f7cbd3abe3696e984580c94cd4",
+  "receiptHash": "9891195a76ac84781ff44ca5ef578bef4dff25a3bf4af3c25ecc79ec2887af7d",
+  "reviewer": {
+    "kind": "agent",
+    "id": "8208c089-09ef-4aef-9717-a3da7df578fb"
+  },
+  "reviewedFiles": [
+    {
+      "file": "aha-introduction/projects/html/qa/browser-observations.json",
+      "sha256": "21863059c521b1be56064f319a3862837d2f1794d5aa759f76a7b450c53d6d87"
+    },
+    {
+      "file": "aha-introduction/projects/html/qa/html-1280-en-light.png",
+      "sha256": "2052612b560c5783937fd5e210d20d2f82fac679a227068d43ec0a3bf7054e41"
+    },
+    {
+      "file": "aha-introduction/projects/html/qa/html-1280-zh-light.png",
+      "sha256": "15bed7eec5d7dd07cbb6ee267cecafddaca05f2abc52d32722912772f37b84e2"
+    },
+    {
+      "file": "aha-introduction/projects/html/qa/html-1280-en-dark.png",
+      "sha256": "1494456db06a337768aba17836c440669e69594c97d163b9361c7cb8f1034cc2"
+    },
+    {
+      "file": "aha-introduction/projects/html/qa/html-1280-zh-dark.png",
+      "sha256": "9efc59377df4b739906a6fd579b2689b4d1a9b21bb4f4925abc8be5e7b6fd45e"
+    },
+    {
+      "file": "aha-introduction/projects/html/qa/html-390-en-light.png",
+      "sha256": "7eddc42a797ffcdf4178aeabf005b8ee7b5408e454e3338efbad12fe1544e262"
+    },
+    {
+      "file": "aha-introduction/projects/html/qa/html-390-zh-light.png",
+      "sha256": "2a70a1230ac59545b56f243418c719daf0ff6ea8e736223db91a69f72e7038ce"
+    },
+    {
+      "file": "aha-introduction/projects/html/qa/html-390-en-dark.png",
+      "sha256": "698822b5e6b9b11fa40f8d81dd3358d24e7a2710f9019c1b5914a51419b4d2b7"
+    },
+    {
+      "file": "aha-introduction/projects/html/qa/html-390-zh-dark.png",
+      "sha256": "79288db3a7542283121d5f960c58438a979edd49262d3ffb1a8ec633f599b4fe"
+    }
+  ],
+  "semanticFindings": [
+    "English and Chinese were read independently at source/DOM level, then compared for quantities, negation, versions and material limitations; both give a self-contained introduction before the examples.",
+    "The Greenland diagram is expressly conceptual, not a new map calculation or a measured area ratio.",
+    "Both Python panels and the native HTML table preserve the inherited object-versus-encoding distinction and exact100049/400080 versus100000/100004 byte totals.",
+    "Both Docker states retain the assumed100MB earlier-layer payload; the later whiteout changes the merged view, and the one-RUN comparison stays limited to newly created temporary files.",
+    "The old gallery inventory is explicitly not used as a present-day completion claim. All four media are choices, not a promise of four completed outputs for each case."
+  ],
+  "visualFindings": [
+    "Final full-page captures for both languages at1280/390px in light/dark themes were inspected for overall composition, hierarchy, section continuity and visible diagram/table placement.",
+    "Desktop skill and map columns have distinct reading order; narrow layouts become a single column without page-level horizontal overflow.",
+    "The equal-width wide slots remain schematic, while ASCII encoding slots are narrower. Controls and table columns fit their containers; no missing glyphs or blank diagrams were observed.",
+    "Dark captures retain a charcoal surface with pale text and rose controls/citations; light captures use warm paper, dark copy and the matching accent.",
+    "Full-page narrow captures are scaled when viewed as a whole. Legibility judgments also use actual CSS sizes, font/geometry checks and the complete DOM copy; this is not pixel-by-pixel reading of every glyph at physical-phone size.",
+    "Eight actual offline browser cases exercised pointer and keyboard mechanism controls, language round trips, retained numeric totals, explicit theme overrides and reduced-motion behavior, with no console/page errors or automatic external requests."
+  ],
+  "limitations": [
+    "Full-page visual observations are composition-level; no physical-phone, screen-reader or exhaustive accessibility acceptance was performed.",
+    "Agent translation/editorial review is not independent human translation review or human comprehension evidence.",
+    "The chosen diagram states are illustrative navigation, not execution of CPython or Docker or a geographic experiment."
+  ],
+  "unperformed": [
+    "Human comprehension",
+    "Human acceptance"
+  ],
+  "production": {
+    "research": "Unchanged September 17 introduction Dossier; no new primary research, CPython experiment or Docker build.",
+    "guidance": "Current aha-explain skill and selected medium, writing, design, language and QA references.",
+    "coInterventions": [
+      "Host pptx skill and PptxGenJS guide",
+      "Host web-artifacts-builder Clawpilot theme",
+      "Microsoft PowerPoint 16.0",
+      "Installed Edge through Playwright"
+    ],
+    "attribution": "A mixed-tool production run, not a controlled estimate of Aha-only effectiveness.",
+    "approval": "User approved Chinese PPT/PNG, bilingual HTML, offline local rendering, PowerPoint copy probes and same-scope reviewed refinements.",
+    "repairs": [
+      "Before execution, made the HTML title independently name Aha, clarified the PNG Docker endpoint-diff wording, and made HTML four-byte schematic slots equal-width without asserting numerical width proportionality.",
+      "PPT slide2 caption was deliberately split into two complete lines without reducing type. An initial image-tool-based claim of an observed v1 defect was retracted; only final v2 clearance is visually established.",
+      "HTML headline line-height increased from1.07 to1.2. Browser diagnostics found visible font-ink overhang, not proven clipping: overflow was visible and a28px gap remained. The QA predicate was corrected to distinguish true clipping/neighbor overlap from harmless ink overhang.",
+      "Secondary HTML text now uses the required palette's text-soft role and citations its accent role. Actual selected secondary-text/background ratios pass4.5 in both themes; this is not a complete accessibility certification."
+    ],
+    "imageToolBoundary": "Only actual visible bitmaps were counted. Earlier success-looking image-limit responses and associated inferred observations were explicitly withdrawn. Final-image observations do not establish a before/after effect or human acceptance."
+  }
+}

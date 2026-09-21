@@ -1,12 +1,20 @@
 {
   "schemaVersion": "1.0.0",
   "format": "pptx",
-  "language": "en",
+  "language": "zh",
   "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
-  "title": "Why ANC quiets aircraft rumble but leaves voices",
+  "title": "降噪耳机：飞机轰鸣变轻了，为什么人声还在？",
   "status": "authored",
   "entry": "pptx/main.mjs",
-  "coverage": [{"id":"slide-1-answer","claimIds":["c-speech"]},{"id":"slide-2-paths","claimIds":["c-pressure","c-passive"]},{"id":"slides-3-5-causal-build","claimIds":["c-pressure","c-delay"]},{"id":"slide-6-voice-counterexample","claimIds":["c-speech"]},{"id":"slide-7-settings","claimIds":["c-modes"]},{"id":"slide-8-evidence","claimIds":["c-measure"]},{"id":"slide-9-close","claimIds":["c-speech","c-delay"]}],
+  "coverage": [
+    { "id": "slide-01-answer", "claimIds": ["c-pressure", "c-speech"] },
+    { "id": "slide-02-local-pressure", "claimIds": ["c-pressure"] },
+    { "id": "slide-03-timing", "claimIds": ["c-delay"] },
+    { "id": "slide-04-two-mechanisms", "claimIds": ["c-passive"] },
+    { "id": "slide-05-speech-residual", "claimIds": ["c-speech"] },
+    { "id": "slide-06-real-wearing", "claimIds": ["c-modes", "c-measure"] },
+    { "id": "slide-07-conclusion-sources", "claimIds": ["c-pressure", "c-passive", "c-speech", "c-measure"] }
+  ],
   "omissions": [],
   "width": 1280,
   "height": 720

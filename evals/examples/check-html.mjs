@@ -73,35 +73,6 @@ async function gitControls(branch, language) {
     assert.equal(await details.evaluate(element => element.open), false);
   }
 }
-async function overviewControls(branch) {
-  const phase = branch.locator('[data-phase]'), wave = branch.locator('[data-wave="sum"]');
-  await phase.focus(); await phase.press('Home');
-  assert.equal(await branch.locator('[data-ratio]').innerText(), '0.00');
-  const cancelled = await wave.getAttribute('d');
-  await phase.press('End');
-  assert.equal(await branch.locator('[data-ratio]').innerText(), '2.00');
-  assert.notEqual(await wave.getAttribute('d'), cancelled);
-  await branch.locator('[data-reset]').click();
-  assert.equal(await phase.inputValue(), '0');
-  assert.equal(await wave.getAttribute('d'), cancelled);
-  const cases = {
-    revert: ['timeout = 30', 'timeout = 30', 'timeout = 60', 'timeout = 60'],
-    apart: ['timeout = 30\n…\nretries = 2', 'timeout = 60\n…\nretries = 2', 'timeout = 30\n…\nretries = 4', 'timeout = 60\n…\nretries = 4'],
-    conflict: ['timeout = 30', 'timeout = 60', 'timeout = 90', '<<<<<<< ours\n60\n||||||| base\n30\n=======\n90\n>>>>>>> theirs'],
-  };
-  for (const [key, values] of Object.entries(cases)) {
-    await activate(branch.locator(`[data-case="${key}"]`), key !== 'apart');
-    for (const [index, name] of ['base', 'ours', 'theirs', 'result'].entries()) {
-      assert.equal(await branch.locator(`[data-file="${name}"]`).textContent(), values[index]);
-    }
-    assert.equal(await branch.locator('[data-conflict-node]').getAttribute('hidden') !== null, key !== 'conflict');
-    for (const node of await branch.locator('[data-merge-node],[data-merge-edge]').all()) {
-      assert.equal(await node.getAttribute('hidden') !== null, key === 'conflict');
-    }
-    assert.equal(await branch.locator('[data-case][aria-pressed="true"]').count(), 1);
-  }
-}
-
 let browser;
 try {
   browser = await chromium.launch({
@@ -109,7 +80,7 @@ try {
     ...(process.env.AHA_BROWSER_EXECUTABLE ? { executablePath: process.env.AHA_BROWSER_EXECUTABLE }
       : { channel: process.env.AHA_BROWSER_CHANNEL || 'msedge' }),
   });
-  for (const topic of ['anc', 'git-merge', 'project-overview']) {
+  for (const topic of ['anc', 'git-merge']) {
     const file = path.join(root, 'examples', topic, 'index.html');
     const receipt = JSON.parse(await readFile(`${file}.receipt.json`, 'utf8'));
     assert.equal(sha(await readFile(file)), receipt.outputHash, `${topic}: packaged output hash`);
@@ -148,8 +119,7 @@ try {
           });
           await check(record, 'Keyboard and pointer controls', async () => {
             if (topic === 'anc') await ancControls(branch);
-            else if (topic === 'git-merge') await gitControls(branch, language);
-            else await overviewControls(branch);
+            else await gitControls(branch, language);
           });
           await check(record, 'Viewport, theme and local anchors', async () => {
             assert.equal(await page.locator('html').getAttribute('data-theme'), theme);
