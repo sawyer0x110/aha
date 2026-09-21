@@ -12,7 +12,7 @@
 | Report sensitive issues | [Security](../.github/SECURITY.md) | [安全政策](../.github/SECURITY.zh-CN.md) |
 | Browse preserved examples | [Gallery guide](../examples/README.md) | [作品目录](../examples/README.zh-CN.md) |
 
-Read the root [MIT license](../LICENSE) and bilingual [license scope](LICENSE-SCOPE.md) together. Runtime **0.3.2** uses research/artifact schemas **1.0.0**; confirm actual release availability and assets on [Releases](https://github.com/sawyer0x110/aha/releases).
+Read the root [MIT license](../LICENSE) and bilingual [license scope](LICENSE-SCOPE.md) together. Runtime **0.3.3** uses research/artifact schemas **1.0.0**; confirm actual release availability and assets on [Releases](https://github.com/sawyer0x110/aha/releases).
 
 The full installation guides and license scope are copied from this directory to the release ZIP root under the same basenames. Source documentation links directly to the guides in this directory.
 

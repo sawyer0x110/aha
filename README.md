@@ -46,7 +46,7 @@ This checks runtime integrity, not host discovery, factual accuracy, or optional
 - **Tools check structure, not truth.** The host agent performs the research and design. The CLI does not search the web or execute the studied repository. Source review, native PPTX inspection, and full-video review still matter.
 - **Platform and host support are bounded.** Windows has been exercised. macOS/Linux are not claimed verified; POSIX examples are path guidance, not a support guarantee. Installer cases for Copilot/Codex are not proof of live host discovery or natural-language routing.
 
-Source/package runtime: **0.3.2**. Research/artifact schemas: **1.0.0**. Version 0.3.2 includes MIT notices and bilingual package guides; published `v0.3.1` assets remain unchanged. Confirm publication and use the assets actually attached to your selected [release](https://github.com/sawyer0x110/aha/releases), not a source version alone.
+Source/package runtime: **0.3.3**. Research/artifact schemas: **1.0.0**. Version 0.3.3 improves research evidence guidance and native PPTX authoring and validation, with refreshed examples and evaluation tools in the repository. Published earlier assets remain unchanged. Confirm publication and use the assets actually attached to your selected [release](https://github.com/sawyer0x110/aha/releases), not a source version alone.
 
 ## Documentation and contribution
 
