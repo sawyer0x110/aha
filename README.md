@@ -12,14 +12,14 @@ Aha is two portable agent skills for public topics, provided materials, and auth
 | `aha-explain` | Researches as needed, designs the explanation, authors source, and renders and reviews the requested medium | Rich HTML with diagrams/interactions, PNG infographics, native editable PPTX, or narrated dynamic video |
 
 <p align="center">
-  <img src="examples/project-overview/overview.png" alt="Aha capability overview: two skills for research and four visual explanation formats" width="800">
+  <img src="examples/aha-introduction/overview.png" alt="Aha introduction in Chinese: two skills, four media choices, and three mechanism examples" width="540">
 </p>
 
 ## See what it makes
 
-Start with the [latest Aha introduction video](examples/aha-introduction/README.md) (1:59): the project, three mechanisms, and a recap. Explore the [Greenland](examples/greenland/README.md), [CPython strings](examples/cpython-string/README.md), and [Docker image layers](examples/docker-layers/README.md) videos. Topic guides are in Chinese; video narration is in English. Each guide records its own sources, editable project, outputs, and review limits. These entry-document translations do not translate existing media.
+Start with the [Aha introduction](examples/aha-introduction/README.md): [bilingual HTML](examples/aha-introduction/index.html), an [8-slide Chinese native PPTX](examples/aha-introduction/overview.pptx), a [Chinese infographic](examples/aha-introduction/overview.png), or the existing [1:59 English video](examples/aha-introduction/overview-v5.mp4). This is the primary project introduction, based on its September 17 research snapshot. Explore the [Greenland](examples/greenland/README.md), [CPython strings](examples/cpython-string/README.md), and [Docker image layers](examples/docker-layers/README.md) examples separately. Topic guides record sources, editable projects, outputs, and review limits.
 
-The [full gallery](examples/README.md) also includes noise cancellation, Git merge, and a historical project tour. Preserved examples are snapshots, not promises about the current runtime. A successful render or short preview is not a substitute for complete visual and listening review.
+The [full gallery](examples/README.md) also includes noise cancellation and Git merge. Aha introduction is the only project tour. Preserved examples are snapshots, not promises about the current runtime. A successful render or short preview is not a substitute for complete visual and listening review.
 
 ## Install, then ask naturally
 

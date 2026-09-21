@@ -53,7 +53,17 @@ test('preparation freezes four paired cases, actual bytes, bundles and evaluator
   assert.match(run.isolation, /no OS isolation/);
   assert.deepEqual(Object.values(run.metrics), [null, null, null, null, null]);
   const corpus = await readJson(path.join(harness, 'cases.json'));
-  assert.deepEqual(corpus.cases.map((item: { id: string }) => item.id), ['git-merge', 'anc', 'greenland', 'project-overview']);
+  assert.equal(corpus.corpus_revision, 'aha-introduction-20260917');
+  assert.deepEqual(corpus.cases.map((item: { id: string }) => item.id), ['git-merge', 'anc', 'greenland', 'aha-introduction']);
+  const introduction = corpus.cases.find((item: { id: string }) => item.id === 'aha-introduction');
+  assert.equal(introduction.research, 'examples/aha-introduction/research');
+  const dossier = await readJson(path.join(root, introduction.research, 'manifest.json'));
+  assert.equal(dossier.contentHash, '6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d');
+  assert.match(introduction.prompt, /2026-09-17/);
+  for (const mechanism of ['格陵兰', 'CPython', 'Docker']) {
+    assert.ok(introduction.prompt.includes(mechanism));
+    assert.ok(introduction.rubric.some((row: { criterion: string }) => row.criterion.includes(mechanism)));
+  }
   for (const item of corpus.cases) {
     const a = run.cases.find((entry: { id: string; condition: string }) => entry.id === item.id && entry.condition === 'baseline');
     const b = run.cases.find((entry: { id: string; condition: string }) => entry.id === item.id && entry.condition === 'candidate');
@@ -73,10 +83,10 @@ test('preparation freezes four paired cases, actual bytes, bundles and evaluator
         assert.deepEqual(entry.staged_inputs[`research/${file}`], hash);
       }
       assert.deepEqual(Object.keys(entry.staged_inputs).filter(file => file.startsWith('assets/')),
-        item.id === 'project-overview' ? ['assets/git-slide-03.png'] : []);
+        item.id === 'aha-introduction' ? ['assets/git-slide-03.png'] : []);
       if (task.approved_image_path) {
         assert.equal(prepare.sha256(await fs.readFile(task.approved_image_path)), entry.input_source.asset.sha256);
-        assert.match(task.prompt, /历史截图/);
+        assert.match(task.prompt, /历史幻灯片截图/);
       }
       const instructions = await fs.readFile(path.join(entry.author_directory, 'RUN.md'), 'utf8');
       assert.ok(instructions.includes('explain-init inputs\\research pptx outputs\\project --language zh'));

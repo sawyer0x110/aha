@@ -1,0 +1,52 @@
+{
+  "status": "source-authored-static-checks-passed-runtime-unperformed",
+  "parentEditorialRevision": "Standalone English and Chinese h1 headlines now explicitly name Aha. Uniform four-byte slots have equal 140px border-box inline size; ordinary UTF-8 ASCII slots have 56px inline size. flex:none and centered text prevent content-dependent width; wrapping remains enabled, and conflicting mobile padding was removed. Both Python states in both languages explicitly label displayed widths as schematic, not numerically proportional to bytes. explain-check passed again. No browser or authored-code execution.",
+  "staticChecks": {
+    "explainCheck": "Passed: ready true, coverage 5, omissions 3; no authored code executed.",
+    "javascript": "Both inline scripts extracted in memory and parsed with node --check --input-type=commonjs via stdin; passed without executing either script.",
+    "domReferences": "No duplicate IDs; all aria-controls target IDs exist.",
+    "researchIdentity": "Both initialized projects' research files compared byte-for-byte against canonical examples/aha-introduction/research; unchanged.",
+    "repair": "Initial explain-check rejected scroll-behavior due to the installed CSS resource scanner's behavior token match. Removed unnecessary scroll-behavior:auto; no smooth scrolling is authored. Recheck passed.",
+    "scope": "Static provenance/syntax/reference checks only, not semantic certification or runtime/visual review."
+  },
+  "brief": {
+    "reader": "Curious first-time reader who needs to understand what Aha is before inspecting its examples.",
+    "question": "How do the two portable skills connect evidence to a requested visual explanation?",
+    "argument": "The host coordinates research that establishes claims and evidence boundaries and explain that authors medium-specific mechanisms; three examples distinguish a visible result from the object or quantity underneath it.",
+    "readingContext": "Responsive long-form HTML at 1280px desktop and 390px mobile, bilingual English initially, independently complete Chinese branch.",
+    "visualResponsibilities": "Prose supplies mechanisms and caveats; abstract SVG separates spherical area from map footprint without pretending to calculate relocation; native table compares recorded quantities; buttons compare object/encoding and illustrative Docker layer states.",
+    "direction": "Editorial explanation with large opening thesis, paired skill responsibilities, numbered mechanism chapters, native table, layer cutaway, and medium affordances. Not a repeated-card dashboard.",
+    "resources": "Only original HTML/CSS/JS and inline geometric SVG. No imported assets, fonts, dependencies or research previews. External natural source hyperlinks are inert until a reader chooses navigation.",
+    "typography": "Exact host Segoe UI/Aptos/Calibri/-apple-system/BlinkMacSystemFont/sans-serif stack; Consolas/Courier New/Courier/monospace code stack. CJK fallback remains an untested environmental dependency.",
+    "theme": "Exact mandatory host Clawpilot variables, theme script and font stack. This host co-intervention means the result is not evidence of Aha-only aesthetic quality.",
+    "permissions": "Inert authoring and structural checks only. No browser execution, render, screenshot, install, new external research or publication."
+  },
+  "contentReview": {
+    "method": "Source-level reverse-read against canonical aha-introduction report.md and research.json, not new upstream evidence.",
+    "facts": "Preserved fixed spherical Mercator, spherical rigid rotation, generalized boundary/polar crop/counterfactual limitations; CPython pin, specific U+1F600, new object versus original, inherited object sizes versus UTF-8 payload lengths; Docker hypothetical uncompressed decimal payload, whiteout placement, retained earlier layer and NEW-file same-RUN boundary.",
+    "clarity": "Defined Dossier and whiteout in context. Framed all interactions as comparisons, not experiments. Distinct objects remain named in every interactive state.",
+    "language": "Both branches source-reviewed as complete explanations and compared for quantities, negation, scopes, technical pins and sources. This is agent editorial review, not observed bilingual runtime or human comprehension.",
+    "omissions": "Outdated gallery inventory, detailed projection derivations, intermediate CPython cases, running-container behavior. Supported media affordances are not completion claims.",
+    "qaClaims": "No runtime, visual, usability, accessibility, contrast, learner or measured-effectiveness acceptance is claimed."
+  },
+  "interactionContract": {
+    "language": "Exactly two nonnested section[data-aha-lang] roots with localized data-aha-title. Chinese initially hidden. Aha must inject its own offline English/中文 control; no custom language switch exists.",
+    "python": "Branch-local buttons [data-python=object] and [data-python=encoding] update aria-pressed and hidden on matching [data-python-panel]. Both branches start in object mode.",
+    "docker": "Branch-local buttons [data-docker=created] and [data-docker=deleted] update aria-pressed and hidden on matching [data-docker-panel]. Both branches start in deleted mode.",
+    "keyboard": "Native buttons use default Enter/Space behavior and visible focus CSS. Interaction groups use aria-label, controls reference panels, content regions use aria-live=polite.",
+    "branchChanges": "aha:languagechange synchronizes selected panel visibility within the newly active root without resetting the other branch. No geometry depends on initial hidden layout.",
+    "ids": ["en-skills", "zh-skills", "en-map", "zh-map", "en-python", "zh-python", "en-object-button", "zh-object-button", "en-encoding-button", "zh-encoding-button", "en-docker", "zh-docker", "en-created-button", "zh-created-button", "en-deleted-button", "zh-deleted-button", "en-media", "zh-media"]
+  },
+  "unperformed": [
+    "Packaging with Aha and actual initial English display, injected language switching, localized title/lang and excluded inactive focus targets",
+    "Offline 1280px desktop and 390px mobile full-branch review; overflow, tables, SVG readability, text wrapping and CJK glyph fallback",
+    "Pointer and keyboard operation of every state in both languages, including switching language after changing a state",
+    "Actual console, focus order, assistive-technology behavior, light/dark and scoutTheme overrides, contrast and reduced-motion checks",
+    "Human comprehension or aesthetic review"
+  ],
+  "guidanceNotes": [
+    "Requested skills/shared/references/language.md is absent. Read the current authoritative skills/aha-explain/references/language.md instead.",
+    "Read skills/shared/references/execution.md and the requested current aha-explain skill and authoring, HTML, image, writing, design and QA references.",
+    "No source was taken from the older project-overview."
+  ]
+}

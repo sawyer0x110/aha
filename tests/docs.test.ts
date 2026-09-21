@@ -31,12 +31,15 @@ test('human entry guides provide reciprocal English and Chinese links', async ()
 });
 
 test('public documentation local links and Markdown heading anchors resolve', async () => {
+  const manifest = JSON.parse(await fs.readFile(path.join(root, 'examples', 'delivery-manifest.json'), 'utf8'));
+  const topics = [...new Set(manifest.requestedOutputs.map((entry: { topic: string }) => entry.topic))];
   const files = [
     ...(await fs.readdir(root)).filter(file => file.endsWith('.md')),
     ...(await fs.readdir(path.join(root, 'docs'))).filter(file => file.endsWith('.md')).map(file => `docs/${file}`),
     ...(await fs.readdir(path.join(root, '.github'))).filter(file => file.endsWith('.md')).map(file => `.github/${file}`),
     ...(await fs.readdir(path.join(root, '.github', 'ISSUE_TEMPLATE'))).filter(file => file.endsWith('.md')).map(file => `.github/ISSUE_TEMPLATE/${file}`),
     'examples/README.md', 'examples/README.zh-CN.md',
+    ...topics.map(topic => `examples/${topic}/README.md`),
   ];
   for (const file of files) {
     const absolute = path.join(root, file);
@@ -57,6 +60,26 @@ test('public documentation local links and Markdown heading anchors resolve', as
       }
     }
   }
+});
+
+test('entry guides describe the current gallery without advertising the retired project tour', async () => {
+  for (const file of ['README.md', 'README.zh-CN.md', 'examples/README.md', 'examples/README.zh-CN.md']) {
+    const text = await fs.readFile(path.join(root, file), 'utf8');
+    assert.match(text, /aha-introduction/);
+    assert.doesNotMatch(text, /project-overview|historical project tour|历史快照项目导览/);
+  }
+  const manifest = JSON.parse(await fs.readFile(path.join(root, 'examples', 'delivery-manifest.json'), 'utf8'));
+  const publication = JSON.parse(await fs.readFile(path.join(root, 'examples', 'pptx-publication.json'), 'utf8'));
+  assert.equal(new Set(manifest.requestedOutputs.map((entry: { topic: string }) => entry.topic)).size, 6);
+  assert.equal(manifest.requestedOutputs.length, 16);
+  assert.equal(publication.outputs.length, 4);
+  assert.equal(publication.outputs.reduce((total: number, deck: { slides: number }) => total + deck.slides, 0), 30);
+  const english = await fs.readFile(path.join(root, 'examples', 'README.md'), 'utf8');
+  const chinese = await fs.readFile(path.join(root, 'examples', 'README.zh-CN.md'), 'utf8');
+  assert.match(english, /six example groups and sixteen artifacts/);
+  assert.match(english, /All four current PPTX decks/);
+  assert.match(chinese, /六组示例、十六份作品/);
+  assert.match(chinese, /四份当前 PPTX/);
 });
 
 test('install guides only use local links that survive release extraction', async () => {

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "format": "pptx",
+  "language": "zh",
+  "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+  "title": "Aha 是什么：让有依据的解释变得可见",
+  "status": "authored",
+  "entry": "pptx/main.mjs",
+  "coverage": [
+    { "id": "s01-orientation", "claimIds": ["c-skills", "c-synthesis"] },
+    { "id": "s02-two-skills", "claimIds": ["c-skills", "c-synthesis"] },
+    { "id": "s03-medium-choices", "claimIds": ["c-skills", "c-synthesis"] },
+    { "id": "s04-greenland", "claimIds": ["c-map"] },
+    { "id": "s05-cpython", "claimIds": ["c-python", "c-utf8"] },
+    { "id": "s06-docker", "claimIds": ["c-layer", "c-delete", "c-same"] },
+    { "id": "s07-synthesis", "claimIds": ["c-map", "c-python", "c-utf8", "c-delete", "c-synthesis"] },
+    { "id": "s08-start-with-question", "claimIds": ["c-skills", "c-synthesis"] }
+  ],
+  "omissions": [
+    {
+      "claimId": "c-formats",
+      "reason": "该库存事实仅属于 2026-09-17 历史状态。本次不调查新库存，不把 Greenland 或当前简介说成仍只有视频，也不声称三个案例均具备四种交付。媒介表仅作当前技能职责的选型建议，完整省略旧库存断言。"
+    },
+    {
+      "claimId": "c-intermediate",
+      "reason": "首次介绍聚焦 ASCII 前缀加 U+1F600 的指定例子，不展开 Latin-1/BMP 中间案例；保留非所有 emoji/实现的限制，备注也排除所有非 ASCII 的泛化。"
+    },
+    {
+      "claimId": "c-container",
+      "reason": "本次只讲镜像层与 RUN 端点差异，不展开运行容器可写层，避免把不同对象混为一谈。"
+    }
+  ],
+  "width": 1280,
+  "height": 720
+}

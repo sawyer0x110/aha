@@ -1,0 +1,463 @@
+{
+  "claims": [
+    {
+      "evidenceIds": [
+        "e-greenland",
+        "e-africa"
+      ],
+      "id": "c-area",
+      "kind": "inference",
+      "limitations": [
+        "Approximate ratio of published areas, not a geometric packing claim; Greenland official PDF text was not extracted."
+      ],
+      "subquestionIds": [
+        "q-area",
+        "q-primary"
+      ],
+      "text": "Africa has about fourteen times Greenland's area: approximately 30.4 versus 2.17 million square kilometers."
+    },
+    {
+      "evidenceIds": [
+        "e-proj",
+        "e-mercator"
+      ],
+      "id": "c-cause",
+      "kind": "fact",
+      "limitations": [
+        "Not a claim about every world map."
+      ],
+      "subquestionIds": [
+        "q-mechanism"
+      ],
+      "text": "On ordinary Mercator maps, enlargement increases toward the poles, making high-latitude Greenland appear disproportionately large."
+    },
+    {
+      "evidenceIds": [
+        "e-proj",
+        "e-mercator"
+      ],
+      "id": "c-bridge",
+      "kind": "inference",
+      "limitations": [
+        "Spherical model; local geometric reasoning."
+      ],
+      "subquestionIds": [
+        "q-mechanism"
+      ],
+      "text": "Meridians converge on the sphere but remain equally spaced on the Mercator map; maintaining local angles requires matching north-south stretching."
+    },
+    {
+      "evidenceIds": [
+        "e-proj"
+      ],
+      "id": "c-scale",
+      "kind": "inference",
+      "limitations": [
+        "A local example, not a single magnification factor for all of Greenland."
+      ],
+      "subquestionIds": [
+        "q-mechanism"
+      ],
+      "text": "For spherical Mercator with equatorial scale one, a tiny patch near sixty degrees has twice the linear scale in each direction and four times the area scale relative to the equator."
+    },
+    {
+      "evidenceIds": [
+        "e-mercator",
+        "e-proj"
+      ],
+      "id": "c-navigation",
+      "kind": "fact",
+      "limitations": [
+        "Not preservation of entire continental shapes; Web Mercator on the ellipsoid has additional qualifications."
+      ],
+      "subquestionIds": [
+        "q-tradeoff"
+      ],
+      "text": "Ordinary Mercator preserves local angles and makes constant-heading rhumb lines straight; these are usually not shortest routes."
+    },
+    {
+      "evidenceIds": [
+        "e-mercator"
+      ],
+      "id": "c-poles",
+      "kind": "fact",
+      "limitations": [
+        "The chosen cutoff is an implementation choice."
+      ],
+      "subquestionIds": [
+        "q-tradeoff"
+      ],
+      "text": "The poles project to infinity in Mercator; a finite map must truncate its latitude extent."
+    },
+    {
+      "evidenceIds": [
+        "e-flat",
+        "e-equalearth"
+      ],
+      "id": "c-equal",
+      "kind": "fact",
+      "limitations": [
+        "Equal-area is not a guarantee of accurate angles or distances."
+      ],
+      "subquestionIds": [
+        "q-tradeoff"
+      ],
+      "text": "No flat world map preserves everything; Equal Earth preserves area proportions but still distorts shapes and other properties."
+    },
+    {
+      "evidenceIds": [
+        "e-boundaries",
+        "e-license"
+      ],
+      "id": "c-resource",
+      "kind": "fact",
+      "limitations": [
+        "Generalized boundaries are not precise measurement data; package version must be recorded at download."
+      ],
+      "subquestionIds": [
+        "q-resource"
+      ],
+      "text": "Natural Earth 110m country data separates Greenland and is public domain, permitting modified redistribution."
+    },
+    {
+      "evidenceIds": [
+        "e-d3",
+        "e-proj"
+      ],
+      "id": "c-motion",
+      "kind": "inference",
+      "limitations": [
+        "Implementation and numerical invariance must be checked separately; not an affine two-dimensional shrinking operation."
+      ],
+      "subquestionIds": [
+        "q-resource"
+      ],
+      "text": "A rigid spherical rotation preserves the region's spherical area; reprojecting that rotated region in a fixed Mercator view changes its apparent size."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e-greenland",
+      "kind": "web",
+      "locator": "Area: total, land, note, Definition and Source",
+      "retrievedAt": "2026-09-16T09:36:11.005Z",
+      "sourceVersion": "Page updated 2021-09-18",
+      "summary": "Read by delegated research agent; lists 2,166,086 square kilometers including ice cap, attributed to CIA World Factbook. Secondary source, not direct official PDF verification.",
+      "title": "IndexMundi: Greenland Area",
+      "url": "https://www.indexmundi.com/greenland/area.html"
+    },
+    {
+      "id": "e-africa",
+      "kind": "web",
+      "locator": "Opening area paragraph and island context, first 3200 returned characters",
+      "retrievedAt": "2026-09-16T09:36:33.406Z",
+      "sourceVersion": "Accessed webpage 2026-09-16; article revision date not captured",
+      "summary": "Read and reverse-checked by research agent; approximately 30,365,000 square kilometers. Timestamp is recorded read-batch completion, not inferred publication date.",
+      "title": "Britannica: Africa",
+      "url": "https://www.britannica.com/place/Africa"
+    },
+    {
+      "id": "e-proj",
+      "kind": "web",
+      "locator": "Lines 7-12 and 87-106; spherical forward equations",
+      "retrievedAt": "2026-09-16T09:36:10.259Z",
+      "sourceVersion": "PROJ 9.9 branch, not pinned commit",
+      "summary": "Research agent read definitions and sphere/ellipsoid equations. Supports differentiation yielding local sec(latitude) and sec-squared area scaling. Derivation is inference.",
+      "title": "PROJ: Mercator documentation",
+      "url": "https://raw.githubusercontent.com/OSGeo/PROJ/9.9/docs/source/operations/projections/merc.rst"
+    },
+    {
+      "id": "e-mercator",
+      "kind": "web",
+      "locator": "Description, Graticule, Distortion, Variants, Limitations, Web Mercator Coordinate System",
+      "retrievedAt": "2026-09-16T09:36:11.115Z",
+      "sourceVersion": "ArcGIS Pro 3.6; HTTP Last-Modified 2025-10-09",
+      "summary": "Research agent read and reverse-checked local conformality, pole singularities, straight rhumb lines, non-shortest routes, and ellipsoid Web Mercator qualifications.",
+      "title": "Esri ArcGIS Pro 3.6: Mercator",
+      "url": "https://pro.arcgis.com/en/pro-app/3.6/help/mapping/properties/mercator.htm"
+    },
+    {
+      "id": "e-flat",
+      "kind": "web",
+      "locator": "Opening projection tradeoff paragraphs and Mercator discussion",
+      "retrievedAt": "2026-09-16T09:36:33.406Z",
+      "sourceVersion": "Accessed webpage 2026-09-16; revision date not captured",
+      "summary": "Research agent read inevitable flat-map distortion and property tradeoffs; batch completion timestamp.",
+      "title": "Britannica: Map projections",
+      "url": "https://www.britannica.com/science/map/Map-projections"
+    },
+    {
+      "id": "e-equalearth",
+      "kind": "web",
+      "locator": "Description, Distortion, Usage",
+      "retrievedAt": "2026-09-16T09:36:10.272Z",
+      "sourceVersion": "HTTP Last-Modified 2026-08-28",
+      "summary": "Research agent reverse-checked equal-area property and distortion of shape, angle, direction and distance.",
+      "title": "Esri: Equal Earth",
+      "url": "https://doc.esri.com/en/arcgis-pro/latest/help/mapping/properties/equal-earth.html"
+    },
+    {
+      "id": "e-boundaries",
+      "kind": "web",
+      "locator": "About, Greenland separate from Denmark, Disclaimer",
+      "retrievedAt": "2026-09-16T09:36:33.406Z",
+      "sourceVersion": "Accessed landing page 2026-09-16; dataset archive not yet downloaded",
+      "summary": "Research agent read entire returned text. Coarse countries dataset is appropriate for public visual explanation, not precision measurements; batch completion timestamp.",
+      "title": "Natural Earth: 110m Admin 0 Countries",
+      "url": "https://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-admin-0-countries/"
+    },
+    {
+      "id": "e-license",
+      "kind": "web",
+      "locator": "Public-domain permission, modification, distribution and attribution paragraphs",
+      "retrievedAt": "2026-09-16T09:36:33.406Z",
+      "sourceVersion": "Accessed webpage 2026-09-16",
+      "summary": "Research agent read full returned terms and reverse-checked permission paragraphs. Data is public domain; recommended Made with Natural Earth credit retained.",
+      "title": "Natural Earth: Terms of Use",
+      "url": "https://www.naturalearthdata.com/about/terms-of-use/"
+    },
+    {
+      "id": "e-d3",
+      "kind": "web",
+      "locator": "geoArea lines 5-7, geoRotation lines 33-43",
+      "retrievedAt": "2026-09-16T09:36:10.293Z",
+      "sourceVersion": "d3 main branch documentation, not pinned commit",
+      "summary": "Research agent read entire returned document and reverse-checked area in steradians and spherical rotation. Supports implementation design, not an execution claim.",
+      "title": "D3 spherical math documentation",
+      "url": "https://raw.githubusercontent.com/d3/d3/main/docs/d3-geo/math.md"
+    }
+  ],
+  "gaps": [
+    {
+      "description": "Official Greenland 2026 PDF body was not extracted. Confirm official area with an authorized working PDF reader if more precision is required; keep current comparison approximate.",
+      "id": "g-primary",
+      "subquestionIds": [
+        "q-primary"
+      ]
+    },
+    {
+      "description": "Spherical-rotation method is a reasoned design, not yet tested implementation. Validate spherical area invariance, polygon winding, projection clipping and actual encoded scenes before claiming a working demonstration.",
+      "id": "g-animation",
+      "subquestionIds": [
+        "q-resource"
+      ]
+    }
+  ],
+  "id": "research-cc762619-52a8-49b5-834c-a0078af2de3b",
+  "kind": "public",
+  "language": "zh",
+  "question": "为什么墨卡托地图上的格陵兰看起来那么大？",
+  "report": "# 格陵兰为何在墨卡托地图上显得巨大？\n\n## 直接回答\n这不是所有世界地图的共同问题。普通墨卡托投影越靠近两极，面积放大越严重。格陵兰位于高纬地区，所以在这类地图上显得异常巨大；按常用面积统计，非洲约为格陵兰的14倍。[e-greenland][e-africa][e-mercator]\n\n## 范围、方法与问题树\n为一般成年观众解释反直觉现象，研究报告用中文，后续视频使用英文。时间范围是2026-09-16可访问的来源；预算为针对决定性问题的一轮来源检索及定向补查，不穷尽投影史。问题树先比较面积(q-area)，再解释放大机制(q-mechanism)，最后检查用途与边界(q-tradeoff)以及可合法复现的地图材料(q-resource)。q-primary单列官方统计正文核验缺口。没有研究政治动机、地图对心理的因果影响或实际航海导航。研究代理实际阅读与反向检查记录由主协调者编入本档案，不将其当作主协调者独立重复研究。\n\n## 面积：约14倍，而非精确装箱\nIndexMundi的Greenland Area页面列出2,166,086平方公里，注明包括冰盖覆盖区域，来源为CIA World Factbook，页面更新2021-09-18。Britannica Africa页面给出约30,365,000平方公里。比值约14.018，适合表达为约14倍；画面可用217万和3040万平方公里的约数。不能把格陵兰无冰区当总面积，不能说14个轮廓一定可以无重叠放进非洲。来源并非统一测量流程，使用约数避免伪精确。[e-greenland][e-africa]\n\n官方Statistics Greenland 2026 PDF被找到并访问，但正文提取失败；CIA旧网址重定向至退役公告。因此不声称本次直接核验了官方PDF内的数字。公开二手数字足以支持数量级比较，此缺口保留在q-primary。\n\n## 机制：球面上的距离与纸上的间距不同\n球面上，经线向极点汇聚，同一经度差的东西距离随纬度增大而缩短。普通墨卡托图上经线却始终等距。因此越往高纬，东西方向越被放大。为了保留局部角度，南北方向必须同样放大，纬线间距也随之增加。[e-proj][e-mercator]\n\n对赤道比例为1的球面模型，PROJ给出x=Rλ、y=R ln tan(π/4+φ/2)。从公式求导并与球面距离比较，可得局部线性倍率sec(φ)，局部面积倍率sec²(φ)。在60度附近的微小区域，两方向各约2倍、面积约4倍。这是对公式的数学推导，不是来源直接给出的整国倍率。格陵兰横跨不同纬度，不可给整个轮廓统一乘一个系数；非洲也不能用单个纬度概括。[e-proj]\n\n## 墨卡托没有画错，而是在取舍\n普通墨卡托在无穷小范围保角，不意味着大陆整体形状或面积不变。恒定罗盘航向的恒向线在普通墨卡托上是直线，但通常不是最短路线。两极对应无穷远，因此有限地图必须裁切纬度范围。Web Mercator将椭球纬度代入球面公式，严格性质与普通椭球墨卡托不同；视频应明确标注Spherical Mercator，避免混用。[e-mercator]\n\n把球面画成平面必有变形。Equal Earth是等面积投影，保留面积比例，却仍改变形状、角度、方向与距离。不能称它为唯一正确地图：比较面积时它合适，普通墨卡托则有局部保角与恒向线表达的用途。[e-flat][e-equalearth]\n\n## 数据与动画复现边界\nNatural Earth 1:110 million Countries将格陵兰与丹麦分列，数据为公共领域，可修改与再分发。110m表示1:1.1亿概化尺度，不是110米精度。实际下载后须记录来源版本和哈希，不能从商业来源截图复制地图。[e-boundaries][e-license]\n\n动画建议：将实际格陵兰边界转换为球面单位向量，对所有顶点应用同一个三维旋转，再投影到固定的球面墨卡托地图。旋转保持球面面积，但纸上的轮廓改变；不能用二维等比缩小冒充地理计算。D3提供geoRotation与球面geoArea，可用于实现和不变量检查。这是推导的实现方案，还不是执行成功的实验。低分辨率边界计算面积不应冒充精确统计值，动画须保持固定地图尺度、处理环方向和裁切。[e-d3]\n\n## 反向核查与停止理由\n已对主要句子检查对象、条件、单位与推理桥梁：保留“墨卡托而非所有地图”“局部而非整个国家”“约14倍而非装箱”“恒向线而非最短路径”。PROJ公式与Esri性质说明互相补充，不以来源数量投票。官方统计正文访问缺口明确保留；动画数值、视觉和听看验收尚未执行。结构校验与哈希不能证明事实。核心机制、数量级、反例与资源许可已覆盖，继续追逐失败PDF不会明显改变保守结论，因此停止来源扩展，进入作品制作。\n\n## 来源\n- e-greenland: https://www.indexmundi.com/greenland/area.html\n- e-africa: https://www.britannica.com/place/Africa\n- e-proj: https://raw.githubusercontent.com/OSGeo/PROJ/9.9/docs/source/operations/projections/merc.rst\n- e-mercator: https://pro.arcgis.com/en/pro-app/3.6/help/mapping/properties/mercator.htm\n- e-flat: https://www.britannica.com/science/map/Map-projections\n- e-equalearth: https://doc.esri.com/en/arcgis-pro/latest/help/mapping/properties/equal-earth.html\n- e-boundaries: https://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-admin-0-countries/\n- e-license: https://www.naturalearthdata.com/about/terms-of-use/\n- e-d3: https://raw.githubusercontent.com/d3/d3/main/docs/d3-geo/math.md",
+  "researchLog": [
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-greenland"
+      ],
+      "id": "l-greenland",
+      "locator": "https://www.indexmundi.com/greenland/area.html",
+      "occurredAt": "2026-09-16T09:36:11.005Z",
+      "outcome": "success",
+      "readRange": "Area fields, definition, source",
+      "subquestionIds": [
+        "q-area",
+        "q-primary"
+      ],
+      "summary": "Delegated researcher read and reverse-checked secondary area source."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-africa"
+      ],
+      "id": "l-africa",
+      "locator": "https://www.britannica.com/place/Africa",
+      "occurredAt": "2026-09-16T09:36:33.406Z",
+      "outcome": "success",
+      "readRange": "First 3200 returned characters including area and island context",
+      "subquestionIds": [
+        "q-area"
+      ],
+      "summary": "Delegated researcher reverse-checked Africa area; recorded batch completion time."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-proj"
+      ],
+      "id": "l-proj",
+      "locator": "https://raw.githubusercontent.com/OSGeo/PROJ/9.9/docs/source/operations/projections/merc.rst",
+      "occurredAt": "2026-09-16T09:36:10.259Z",
+      "outcome": "success",
+      "readRange": "Lines 7-12, 87-106",
+      "subquestionIds": [
+        "q-mechanism",
+        "q-tradeoff"
+      ],
+      "summary": "Delegated researcher checked spherical formulas."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-mercator"
+      ],
+      "id": "l-mercator",
+      "locator": "https://pro.arcgis.com/en/pro-app/3.6/help/mapping/properties/mercator.htm",
+      "occurredAt": "2026-09-16T09:36:11.115Z",
+      "outcome": "success",
+      "readRange": "Description through Web Mercator Coordinate System",
+      "subquestionIds": [
+        "q-tradeoff",
+        "q-mechanism"
+      ],
+      "summary": "Delegated researcher checked conformality qualifications, poles and navigation."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-flat"
+      ],
+      "id": "l-flat",
+      "locator": "https://www.britannica.com/science/map/Map-projections",
+      "occurredAt": "2026-09-16T09:36:33.406Z",
+      "outcome": "success",
+      "readRange": "Opening paragraphs and Mercator section",
+      "subquestionIds": [
+        "q-tradeoff"
+      ],
+      "summary": "Delegated researcher read tradeoff paragraphs; batch completion time."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-equalearth"
+      ],
+      "id": "l-equal",
+      "locator": "https://doc.esri.com/en/arcgis-pro/latest/help/mapping/properties/equal-earth.html",
+      "occurredAt": "2026-09-16T09:36:10.272Z",
+      "outcome": "success",
+      "readRange": "Description, Distortion, Usage",
+      "subquestionIds": [
+        "q-tradeoff"
+      ],
+      "summary": "Delegated researcher read area preservation and other distortion."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-boundaries"
+      ],
+      "id": "l-boundary",
+      "locator": "https://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-admin-0-countries/",
+      "occurredAt": "2026-09-16T09:36:33.406Z",
+      "outcome": "success",
+      "readRange": "Full returned text",
+      "subquestionIds": [
+        "q-resource"
+      ],
+      "summary": "Delegated researcher read countries scope; batch completion time."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-license"
+      ],
+      "id": "l-license",
+      "locator": "https://www.naturalearthdata.com/about/terms-of-use/",
+      "occurredAt": "2026-09-16T09:36:33.406Z",
+      "outcome": "success",
+      "readRange": "Full returned terms, reverse-check opening permission paragraphs",
+      "subquestionIds": [
+        "q-resource"
+      ],
+      "summary": "Delegated researcher read redistribution terms; batch completion time."
+    },
+    {
+      "action": "read",
+      "evidenceIds": [
+        "e-d3"
+      ],
+      "id": "l-d3",
+      "locator": "https://raw.githubusercontent.com/d3/d3/main/docs/d3-geo/math.md",
+      "occurredAt": "2026-09-16T09:36:10.293Z",
+      "outcome": "success",
+      "readRange": "Full file; reverse-check lines 5-7, 33-43",
+      "subquestionIds": [
+        "q-resource"
+      ],
+      "summary": "Delegated researcher checked spherical area and rotation docs."
+    },
+    {
+      "action": "failure",
+      "evidenceIds": [],
+      "id": "l-pdf-failure",
+      "occurredAt": "2026-09-16T09:35:21.175Z",
+      "outcome": "failure",
+      "query": "site.stat.gl Greenland total area 2166086 Greenland in figures area",
+      "subquestionIds": [
+        "q-primary"
+      ],
+      "summary": "Delegated researcher retrieved official 2026 PDF but could not extract its text; installed pdftotext attempt returned usage with exit 99. No official body text used as evidence."
+    }
+  ],
+  "schemaVersion": "1.0.0",
+  "status": "complete",
+  "stopReason": "Core comparison, mechanism, tradeoffs and resource permission are supported; official PDF extraction and future animation execution remain explicit gaps. Stop broad research and begin bounded video authoring.",
+  "subquestions": [
+    {
+      "claimIds": [
+        "c-area"
+      ],
+      "gapIds": [],
+      "id": "q-area",
+      "question": "真实面积大约相差多少？",
+      "status": "answered"
+    },
+    {
+      "claimIds": [
+        "c-cause",
+        "c-bridge",
+        "c-scale"
+      ],
+      "gapIds": [],
+      "id": "q-mechanism",
+      "question": "哪些几何关系导致高纬放大？",
+      "status": "answered"
+    },
+    {
+      "claimIds": [
+        "c-navigation",
+        "c-poles",
+        "c-equal"
+      ],
+      "gapIds": [],
+      "id": "q-tradeoff",
+      "question": "墨卡托保留什么，等面积投影又牺牲什么？",
+      "status": "answered"
+    },
+    {
+      "claimIds": [
+        "c-resource",
+        "c-motion"
+      ],
+      "gapIds": [
+        "g-animation"
+      ],
+      "id": "q-resource",
+      "question": "怎样合法且真实地呈现地图移动？",
+      "status": "partial"
+    },
+    {
+      "claimIds": [
+        "c-area"
+      ],
+      "gapIds": [
+        "g-primary"
+      ],
+      "id": "q-primary",
+      "question": "是否直接核验官方格陵兰统计正文？",
+      "status": "partial"
+    }
+  ],
+  "title": "为什么墨卡托地图上的格陵兰看起来那么大？"
+}

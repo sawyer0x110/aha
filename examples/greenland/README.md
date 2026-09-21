@@ -1,8 +1,8 @@
 # Why does Greenland look so big?
 
-[观看讲解视频](greenland.mp4) · [英文字幕](greenland.mp4.srt) · [中文研究报告](research/report.md) · [返回作品入口](../index.html)
+[7 页中文原生 PPTX](greenland.pptx) · [观看讲解视频](greenland.mp4) · [英文字幕](greenland.mp4.srt) · [中文研究报告](research/report.md) · [返回作品入口](../index.html)
 
-本例仅制作用户请求的视频，不提供独立交互网页、PNG 或 PPTX。英文 Aria 配音，正常语速，1280×720、30 fps、H.264/AAC，115.733 秒（3472 帧）；字幕已烧录，另附 SRT。
+本例提供迭代后技能创作的中文原生 PPTX 与原有视频，不提供独立交互网页或 PNG。PPTX 保留可编辑图表、表格与解释图形；视频为英文 Aria 配音，正常语速，1280×720、30 fps、H.264/AAC，115.733 秒（3472 帧），字幕已烧录，另附 SRT。
 
 ## 解释主线
 
@@ -13,6 +13,7 @@
 ## 文件与来源
 
 - `greenland.mp4`、`.mp4.json`、`.mp4.srt`：最终视频、原始渲染收据及字幕，逐字节保留。
+- `greenland.pptx`、`.pptx.receipt.json`、`projects/pptx/`：当前幻灯片、收据、可编辑作者项目及项目内 QA；与视频共用封存研究。
 - `projects/video/`：可编辑视频场景源码、绑定研究副本及本地地理库。内部 HTML 是逐帧渲染源，不是独立交互网页成品。
 - `research/`：中文报告、证据台账和研究身份。
 - `video-plan.json`、`audio/`：用户批准的完整旁白与原始 Edge TTS 音频。此次直接合成成功，没有导入音频，不创建虚假的 `audio-origin/`。
@@ -22,6 +23,8 @@
 研究身份：`8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6`。
 
 ## 验收边界
+
+PPTX 的技能来源、当前生成身份、PowerPoint 导出与副本编辑检查见 [PPTX 收录记录](../pptx-publication.json)。应用检查不代表人工可用性或真人理解；继承的视觉限制仍明确记录。
 
 22 秒机制试片已由用户实际听看确认。完整版已完整解码，字幕与批准原文一致，十四个编码后场景中点画面已审阅；源码阶段记录了球面面积不变量与 A→B→A 重放检查。**完整版连续听看仍未确认**；用户要求收录并提交不等于音频听审或理解迁移验收。
 

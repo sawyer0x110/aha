@@ -14,7 +14,7 @@ const { prepareRepairEval, verifyRepairRun, discoverImageLiteral } = await impor
   pathToFileURL(path.join(harness, 'prepare.mjs')).href);
 const { inventory, sha256 } = await import(pathToFileURL(path.join(root, 'evals', 'pptx-first-round', 'prepare.mjs')).href);
 const { prepareRepairReview, receiptSourceHash } = await import(pathToFileURL(path.join(harness, 'prepare-review.mjs')).href);
-const ids = ['git-merge', 'anc', 'greenland', 'project-overview'];
+const ids = ['git-merge', 'anc', 'greenland', 'aha-introduction'];
 const conditions = ['baseline', 'candidate'];
 const workspace = path.join(harness, `.fixtures-${randomUUID()}`);
 const baseline = path.join(workspace, 'baseline');
@@ -28,7 +28,7 @@ let result: Awaited<ReturnType<typeof prepareRepairEval>>;
 let originalSeeds: unknown;
 let originalBundles: unknown[];
 let imagePath: string;
-let overviewSource: string;
+let introductionSource: string;
 const readJson = async (file: string) => JSON.parse((await fs.readFile(file, 'utf8')).replace(/^\uFEFF/, ''));
 async function write(file: string, contents: string | Buffer) {
   await fs.mkdir(path.dirname(file), { recursive: true });
@@ -81,7 +81,7 @@ before(async () => {
   }
   await write(commonRuntime, 'throw new Error("NEVER EXECUTE COMMON RUNTIME IN HARNESS");\r\n');
   await write(commonNotices, 'Common bundled runtime notices: saxes and xmlchars\n');
-  imagePath = path.join(seedRunRoot, 'project-overview', 'candidate', 'inputs', 'assets', 'original-approved.png');
+  imagePath = path.join(seedRunRoot, 'aha-introduction', 'candidate', 'inputs', 'assets', 'original-approved.png');
   const png = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10, 1, 2, 3]);
   await write(imagePath, png);
   for (const id of ids) {
@@ -89,14 +89,15 @@ before(async () => {
     const project = path.join(original, 'project-repaired');
     const code = `// Byte-exact fixture: 中文\r\nexport default function ({ pptx }) {\r\n` +
       `  const s = pptx.addSlide();\r\n` +
-      (id === 'project-overview' ? `  s.addImage({ path: ${JSON.stringify(imagePath)}, x: 1, y: 1, w: 2, h: 2 });\r\n` : '') +
+      (id === 'aha-introduction' ? `  s.addImage({ path: ${JSON.stringify(imagePath)}, x: 1, y: 1, w: 2, h: 2 });\r\n` : '') +
       `  s.addNotes('保留来源边界');\r\n}\r\n`;
-    if (id === 'project-overview') overviewSource = code;
+    if (id === 'aha-introduction') introductionSource = code;
     await write(path.join(project, 'pptx', 'main.mjs'), code);
-    await write(path.join(project, 'artifact.json'), JSON.stringify({ format: 'pptx', language: 'zh', status: 'authored', researchHash: id }));
-    await write(path.join(project, 'research', 'manifest.json'), JSON.stringify({ id }));
-    await write(path.join(project, 'research', 'research.json'), JSON.stringify({ claims: [{ id: 'c1', text: '冻结事实' }] }));
-    await write(path.join(project, 'research', 'report.md'), `# ${id}\r\nFrozen fixture Dossier.\r\n`);
+    await fs.cp(path.join(root, 'examples', id, 'research'), path.join(project, 'research'), { recursive: true });
+    const dossier = await readJson(path.join(project, 'research', 'manifest.json'));
+    await write(path.join(project, 'artifact.json'), JSON.stringify({
+      format: 'pptx', language: 'zh', status: 'authored', researchHash: dossier.contentHash,
+    }));
     const deck = await syntheticDeck(`Seed ${id}`);
     await write(path.join(original, 'deck-repaired.pptx'), deck);
     const rendered = path.join(original, 'rendered-repaired');
@@ -152,7 +153,7 @@ test('freezes four identical repair seed pairs, one submission budget and pendin
       const instructions = await fs.readFile(path.join(author, 'RUN.md'), 'utf8');
       for (const text of ['node --check', 'explain-check', 'STOP', '--allow-code', '所有 PNG', '不是安全沙箱',
         'evaluator', '子代理', '动态 import', 'process', '文件系统', '网络', '不重写路径']) {
-        if (text === '不重写路径' && id !== 'project-overview') continue;
+        if (text === '不重写路径' && id !== 'aha-introduction') continue;
         assert.ok(instructions.includes(text), text);
       }
       assert.ok(!instructions.includes('explain-init'));
@@ -172,6 +173,23 @@ test('freezes four identical repair seed pairs, one submission budget and pendin
   }
   assert.deepEqual(await inventory(seedRunRoot), originalSeeds);
   assert.deepEqual(await Promise.all([inventory(baseline), inventory(candidate)]), originalBundles);
+});
+
+test('all PPT evaluation entry points use the introduction corpus instead of the retired overview', async () => {
+  const protocol = await readJson(path.join(harness, 'protocol.json'));
+  const corpus = await readJson(path.join(root, 'evals', 'pptx-first-round', 'cases.json'));
+  assert.equal(protocol.corpus_revision, corpus.corpus_revision);
+  assert.deepEqual(protocol.case_ids, ids);
+  assert.deepEqual(corpus.cases.map((item: { id: string }) => item.id), ids);
+  for (const file of [
+    path.join(harness, 'compose-pages.ps1'),
+    path.join(harness, 'prepare.mjs'),
+    path.join(root, 'evals', 'pptx-first-round', 'verify-run.mjs'),
+  ]) {
+    const source = await fs.readFile(file, 'utf8');
+    for (const id of ids) assert(source.includes(`'${id}'`), `${file}: missing ${id}`);
+    assert(!source.includes('project-overview'), `${file}: retired case`);
+  }
 });
 
 test('accepts PowerShell BOM observations while preserving original seed bytes and hashes', async () => {
@@ -211,24 +229,24 @@ test('overlays identical runtime/notices and regenerates own complete release ma
   assert.equal((await verifyRepairRun(output, result.manifest_sha256)).pairs, 4);
 });
 
-test('preserves overview CRLF source and the discovered external addImage literal byte for byte', async () => {
-  const approved = result.run.seeds['project-overview'].approved_image;
+test('preserves introduction CRLF source and the discovered external addImage literal byte for byte', async () => {
+  const approved = result.run.seeds['aha-introduction'].approved_image;
   assert.equal(approved.path, imagePath);
   assert.equal(approved.literal, JSON.stringify(imagePath));
   assert.equal(approved.source_line, 4);
   assert.equal(approved.sha256, sha256(await fs.readFile(imagePath)));
   for (const condition of conditions) {
-    const author = path.join(output, 'project-overview', condition);
+    const author = path.join(output, 'aha-introduction', condition);
     for (const area of ['inputs', 'outputs']) {
-      assert.equal(await fs.readFile(path.join(author, area, 'project', 'pptx', 'main.mjs'), 'utf8'), overviewSource);
+      assert.equal(await fs.readFile(path.join(author, area, 'project', 'pptx', 'main.mjs'), 'utf8'), introductionSource);
     }
     assert.deepEqual(await fs.readFile(path.join(author, 'inputs', 'assets', 'approved-image.png')), await fs.readFile(imagePath));
     assert.deepEqual((await readJson(path.join(author, 'task.json'))).approved_image, approved);
   }
-  assert.throws(() => discoverImageLiteral('s.addImage({path: getPath()});', 'project-overview'), /literal/);
+  assert.throws(() => discoverImageLiteral('s.addImage({path: getPath()});', 'aha-introduction'), /literal/);
   assert.throws(() => discoverImageLiteral(`s.addImage({path: ${JSON.stringify(imagePath)}});`, 'anc'), /Unexpected/);
-  assert.throws(() => discoverImageLiteral('s.addImage(options);', 'project-overview'), /explicit object/);
-  assert.throws(() => discoverImageLiteral('s.addImage({path: "relative.png"});', 'project-overview'), /absolute PNG/);
+  assert.throws(() => discoverImageLiteral('s.addImage(options);', 'aha-introduction'), /explicit object/);
+  assert.throws(() => discoverImageLiteral('s.addImage({path: "relative.png"});', 'aha-introduction'), /absolute PNG/);
 });
 
 test('rubric stays evaluator-only with concrete evidence locators and unverified judgments, not an aesthetic score', async () => {
@@ -279,6 +297,28 @@ test('rejects mismatched seed deck observations before creating the output direc
     await assert.rejects(fs.lstat(invalid), { code: 'ENOENT' });
   } finally {
     await fs.writeFile(file, before);
+  }
+});
+
+test('rejects renamed stale introduction research and mismatched metadata before freezing', async () => {
+  const project = path.join(seedRunRoot, 'aha-introduction', 'candidate', 'outputs', 'project-repaired');
+  for (const [relative, expected] of [
+    [path.join('research', 'manifest.json'), /seed research must match current corpus: aha-introduction/],
+    [path.join('research', 'report.md'), /seed research must match current corpus: aha-introduction/],
+    ['artifact.json', /seed artifact research identity: aha-introduction/],
+  ] as const) {
+    const file = path.join(project, relative);
+    const previous = await fs.readFile(file);
+    const invalid = path.join(workspace, `stale-research-${path.basename(relative)}`);
+    try {
+      await fs.writeFile(file, relative.endsWith('.json')
+        ? JSON.stringify({ ...JSON.parse(previous.toString()), contentHash: '0'.repeat(64), researchHash: '0'.repeat(64) })
+        : '# Retired overview research under a new directory name.\n');
+      await assert.rejects(prepareRepairEval({ ...options, output: invalid }), expected);
+      await assert.rejects(fs.lstat(invalid), { code: 'ENOENT' });
+    } finally {
+      await fs.writeFile(file, previous);
+    }
   }
 });
 
@@ -335,7 +375,8 @@ async function finalOutputFixtures() {
       const source = await receiptSourceHash(project);
       assert.equal(source, hashFiles(await sourceFiles(project)), 'receipt framing must match the actual runtime');
       const receipt = {
-        sourceHash: source, outputHash: sha256(deck), researchHash: id, output: 'deck.pptx',
+        sourceHash: source, outputHash: sha256(deck),
+        researchHash: (await readJson(path.join(project, 'artifact.json'))).researchHash, output: 'deck.pptx',
         format: 'pptx', status: 'delivered', slides: 5, codeExecuted: true,
       };
       await write(path.join(directory, 'deck.pptx'), deck);

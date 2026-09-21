@@ -1,0 +1,216 @@
+{
+  "stage": "source-only",
+  "artifact": "Aha 是什么：让有依据的解释变得可见",
+  "language": "zh",
+  "slideCount": 8,
+  "layout": "LAYOUT_WIDE",
+  "research": {
+    "canonicalDirectory": "examples/aha-introduction/research",
+    "snapshotDate": "2026-09-17",
+    "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+    "handling": "Initialized by trusted existing absolute explain-init CLI. Bound research copies remain unchanged. English research is not rewritten to match Chinese output.",
+    "newResearch": false,
+    "newMeasurements": false
+  },
+  "brief": {
+    "reader": "对 Aha 好奇、尚不了解产品的首次读者",
+    "question": "Aha 是什么，研究与解释如何配合，三个机制例子说明了什么？",
+    "argument": "Aha 是宿主协调的两项可移植技能：研究保存依据，解释依阅读目的让关系可见。",
+    "readingSituation": "16:9 屏幕逐页讲解；中文原生可编辑对象；不依赖讲者备注补齐必要限定。",
+    "direction": "暖白底、深炭灰文字、深玫红强调；封面和结尾深色，中间采用职责对照、原生表格、机制示意、图表与关系总结。",
+    "visualResponsibilities": "文字承担因果与限定；球面和投影示意区分面积与图上占幅；槽位与数值图表区分表示机制与继承对象大小；分层图区分可见路径与载荷；表格用于媒介选型。",
+    "density": "正文优先 19–24 pt，必要短限定 15–18.5 pt，来源 11.5 pt；未使用自动缩字。可视化实际容量尚未验证。"
+  },
+  "coInterventions": {
+    "ahaGuidance": [
+      "skills/aha-explain/SKILL.md",
+      "skills/aha-explain/references/artifact-authoring.md",
+      "skills/aha-explain/references/pptx.md",
+      "skills/aha-explain/references/explanation-writing.md",
+      "skills/aha-explain/references/visual-design.md",
+      "skills/aha-explain/references/artifact-qa.md",
+      "skills/aha-explain/references/language.md",
+      "skills/shared/references/execution.md"
+    ],
+    "hostSkill": "Host pptx skill invoked; C:/Users/yusu/.copilot/skills/pptx/pptxgenjs.md read.",
+    "scope": "Mixed Aha and host PPTX authoring guidance. Do not attribute any future quality outcome to Aha alone.",
+    "hostQaDeferred": "Host skill's render/visual review loop and delegation are not performed in this expressly source-only task."
+  },
+  "resources": {
+    "font": "Microsoft YaHei",
+    "fontAcquisition": "No installation, download, embedding or redistribution. Font name requested through native theme and object properties.",
+    "fontRisk": "Actual glyph coverage and cross-machine substitution require presentation-application review.",
+    "palette": {
+      "warmOffWhite": "F7F3ED",
+      "darkCharcoal": "292629",
+      "deepRose": "873E55"
+    },
+    "images": [],
+    "externalResources": [],
+    "nativeObjects": [
+      "Editable titles, body text, source cues and caveats",
+      "Native shapes and nonnegative-extent connectors",
+      "One native 5-row, 3-column table on slide 3",
+      "One native single-series, two-category bar chart on slide 5",
+      "Presenter notes on all eight slides"
+    ],
+    "runtimeApi": "Existing PptxGenJS 4.0.1 API, supplied pptx instance; no module imports, filesystem/network/process access, write calls, XML injection or private object manipulation."
+  },
+  "pages": [
+    {
+      "id": "s01-orientation",
+      "question": "Aha 是什么？",
+      "takeaway": "两项可移植技能，由宿主协调，不是自动流水线。",
+      "composition": "深色封面、明确产品定义、右侧两项技能面板。",
+      "visibleClaims": ["c-skills", "c-synthesis"],
+      "materialConditions": ["宿主协调", "非自动分发"],
+      "speakerContribution": "解释宿主的含义并引出分工。"
+    },
+    {
+      "id": "s02-two-skills",
+      "question": "研究与解释分别负责什么？",
+      "takeaway": "研究保存结论、证据和限制；解释按媒介组织关系。",
+      "composition": "两栏职责对照；单一箭头只表示依据复用。",
+      "visibleClaims": ["c-skills", "c-synthesis"],
+      "materialConditions": ["Dossier 为研究档案", "箭头不代表自动调用"],
+      "speakerContribution": "解释复用前的适用范围检查，不添加实现断言。"
+    },
+    {
+      "id": "s03-medium-choices",
+      "question": "如何按读者用途选择四种媒介？",
+      "takeaway": "按使用目的选型，不做四次复制。",
+      "composition": "一张原生表格，标题行加四行媒介；短句单行优先。",
+      "visibleClaims": ["c-skills", "c-synthesis"],
+      "materialConditions": ["选型建议，不是案例完成清单"],
+      "speakerContribution": "解释选型表与已发布文件库存的区别。",
+      "capacity": "表从 y=2.48 起、目标底部 5.83；takeaway y=6.24，footer y=6.96。表格关闭自动分页、valign middle。行高仍需实际应用验证，不能仅凭坐标判定通过。"
+    },
+    {
+      "id": "s04-greenland",
+      "question": "为什么图上占幅变了，球面面积没变？",
+      "takeaway": "球面旋转保持面积，固定墨卡托的纬度放大使图上占幅改变。",
+      "composition": "左侧球面两个位置标记，右侧同一投影前后概念占幅。",
+      "visibleClaims": ["c-map"],
+      "materialConditions": [
+        "球面墨卡托、极区裁切、概化边界",
+        "固定比例与平移",
+        "反事实移动，不是大陆运动或二维缩图",
+        "符号不是格陵兰轮廓、实测地图或定量面积比"
+      ],
+      "speakerContribution": "解释经线会聚与墨卡托高纬放大的定性关系。",
+      "uncertainty": "仅原生概念图；未计算、绘制或验证实际地理边界，不可用示意圆面积反推地理数值。"
+    },
+    {
+      "id": "s05-cpython",
+      "question": "对象大小为何与 UTF-8 载荷增长不同？",
+      "takeaway": "U+1F600 使新 str 使用四字节槽位，原 str 不变；UTF-8 载荷只增加四字节。",
+      "composition": "左槽位示意、右原生对象大小条形图、下方 UTF-8 数值带。",
+      "visibleClaims": ["c-python", "c-utf8"],
+      "chart": {
+        "seriesCount": 1,
+        "categoryCount": 2,
+        "expectedEditableWorkbookRange": "A1:B3",
+        "name": "str 对象大小（字节）",
+        "labels": ["原 ASCII str", "加 U+1F600 后"],
+        "values": [100049, 400080],
+        "axisStart": 0,
+        "unit": "字节",
+        "provenance": "Dossier 继承的本地观察，不是本次测量",
+        "actualWorkbookRangeVerified": false
+      },
+      "materialConditions": [
+        "CPython 3.11.15；100000 ASCII + U+1F600",
+        "新 str；原 str 保持不变",
+        "对象大小不等于 UTF-8 载荷、进程或文件大小",
+        "不是所有 emoji 或所有 Python 实现"
+      ],
+      "speakerContribution": "说明对象开销、UTF-8 表示与拼接表示范围；不把总量说成精确四倍。"
+    },
+    {
+      "id": "s06-docker",
+      "question": "为什么删了路径还保留载荷？什么时候同 RUN 清理有不同结果？",
+      "takeaway": "后层 whiteout 改变合并视图；新临时文件在同 RUN 两端都不存在，才不进入该路径的 diff 载荷。",
+      "composition": "左层剖面保留玫红载荷，右单 RUN 起止状态；分清视图与层条目。",
+      "visibleClaims": ["c-layer", "c-delete", "c-same"],
+      "materialConditions": [
+        "普通、未压平镜像",
+        "100 MB = 假设未压缩 100000000 字节，不是构建结果",
+        "whiteout 不是合并视图里的普通文件",
+        "同 RUN 必须是新建临时文件",
+        "不表示整层为零或回收基础层文件",
+        "没有运行 Docker 构建"
+      ],
+      "speakerContribution": "讲清为什么开始与结束的端点状态重要。"
+    },
+    {
+      "id": "s07-synthesis",
+      "question": "三个案例共同示范什么解释动作？",
+      "takeaway": "先确定观察对象，再区分它与另一种表示。",
+      "composition": "三个编号关系行，不用假数据图表。",
+      "visibleClaims": ["c-map", "c-python", "c-utf8", "c-delete", "c-synthesis"],
+      "materialConditions": ["每行保留模型、实现或镜像条件", "不是学习效果实验"],
+      "speakerContribution": "串起对象与表示的区别，不声称三例机制相同。"
+    },
+    {
+      "id": "s08-start-with-question",
+      "question": "读者下一步怎样提出合适的问题？",
+      "takeaway": "把问题、材料与用途交给宿主，先核对依据再选表达。",
+      "composition": "深色结束页；问题、依据、表达三个行动提示。",
+      "visibleClaims": ["c-skills", "c-synthesis"],
+      "materialConditions": ["宿主协调所需技能"],
+      "speakerContribution": "给出提问组织方法，不假装自动执行或保证效果。"
+    }
+  ],
+  "omissions": [
+    {
+      "claimId": "c-formats",
+      "reason": "Dossier 的库存事实只属于 2026-09-17 历史状态。本次未调查新库存，且用户明确禁止将 Greenland/当前简介说成仍只有视频；因此完整省略旧库存断言。媒介表仅作当前技能职责的编辑选型建议，不宣称每例具备四种交付。"
+    },
+    {
+      "claimId": "c-intermediate",
+      "reason": "8 页首次介绍聚焦 ASCII 前缀加 U+1F600 的反差；中间 Latin-1/BMP 案例不展开。可见页明确阻止所有 emoji/实现的泛化，备注也阻止所有非 ASCII 的泛化。"
+    },
+    {
+      "claimId": "c-container",
+      "reason": "只讲镜像层的两个 RUN 与同 RUN 对照，不扩展运行容器的可写层。"
+    }
+  ],
+  "sourceReview": {
+    "factualSupport": "对照 canonical report.md 与 research.json 做静态语义编辑；没有重访外部一手来源。",
+    "clarity": "先产品定义与分工，再选型与案例。检查代表段落保留对象、变化、原因、结果与条件；不是读者测试。",
+    "language": "中文原创表达，保留 API/代码标识；研究档案原文不改。",
+    "productionNotes": "制作阶段、待审批和未执行 QA 只放本记录，不放讲者备注。",
+    "staticChecks": {
+      "nodeSyntaxCheck": {
+        "command": "node --check artifacts/introduction-current/projects/pptx/pptx/main.mjs",
+        "exitCode": 0
+      },
+      "explainCheck": {
+        "command": "node <absolute existing dist/skills/aha-explain/scripts/aha.mjs> explain-check <absolute project>",
+        "exitCode": 0,
+        "ok": true,
+        "ready": true,
+        "researchId": "research-579b94c5-d229-4119-9c8f-b63dc7e9fedb",
+        "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+        "sourceHash": "b2d124cf67e5c52ec0661eb0ff577d79ce2d42c1d37f6c6226521e5103baf4c5",
+        "coverage": 8,
+        "omissions": 3,
+        "verification": "Structural provenance and declared coverage only; not semantic or visual verification. No authored code executed."
+      },
+      "interpretation": "结构就绪不等于语义、视觉、原生编辑或发布验收。qa/ 记录不参与 sourceHash。"
+    },
+    "noClaimOfCompletion": "authored 仅表示八页实质源码与覆盖完成，不是已渲染或可发布。"
+  },
+  "unperformedQa": [
+    "父级源码复核与用户明确的本地执行审批",
+    "导入或执行作者模块",
+    "PPTX 生成与实际 OOXML 对象/图表工作簿检查",
+    "PowerPoint 或兼容应用打开、无修复提示验证",
+    "每页渲染、相邻页连贯性与阅读尺寸审查",
+    "中文字体替换、换行、裁切、图表标签与表格实际底部检查",
+    "代表性文本、形状、表格、图表原生编辑试验",
+    "可见事实、数字和必要限定的最终输出反向核对",
+    "视觉缺陷修复与新输出复验",
+    "人类理解效果测试"
+  ]
+}

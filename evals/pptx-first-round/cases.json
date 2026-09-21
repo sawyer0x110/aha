@@ -1,6 +1,7 @@
 {
   "schema_version": 1,
   "round": "pptx-first-round",
+  "corpus_revision": "aha-introduction-20260917",
   "common_prompt": "请仅使用提供的冻结 Research Dossier，创作 5–8 页中文原生可编辑 PPTX。读者可见的标题、正文、图表标签、说明和演讲者备注使用中文（必要的代码、产品名和术语可保留）。保留会影响结论的条件、不确定性和材料限制；提供有助于讲解的备注。页数是本轮资源预算，不是通用幻灯片规则。不要检索新资料或把材料里的历史记录称为本轮新观察。此次只交付作者源项目和静态检查结果，不执行作者模块、不渲染。",
   "common_rubric": [
     {
@@ -87,20 +88,25 @@
       ]
     },
     {
-      "id": "project-overview",
-      "research": "examples/project-overview/research",
+      "id": "aha-introduction",
+      "research": "examples/aha-introduction/research",
       "asset": "examples/aha-introduction/projects/video/assets/git-slide-03.png",
-      "prompt": "给首次接触 Aha 的读者介绍材料所记录的 2026-09-16 冻结快照：它解决什么问题、研究如何成为视觉解释、作者与运行时各负责什么。将提供的历史截图作为插图，与可编辑的解释内容一起展示；明确它不是当前行为的新验证，也不是可编辑的原生界面。",
+      "prompt": "给首次接触 Aha 的读者介绍材料所记录的 2026-09-17 冻结快照：先说明两项技能如何由宿主协调，再通过格陵兰投影、CPython 字符串和 Docker 镜像层的三个机制，解释研究如何成为有依据的视觉讲解。将提供的 Git 历史幻灯片截图作为媒介示例，与可编辑的解释内容一起展示；明确截图不是当前行为的新验证，也不是可编辑的原生对象。材料中的旧作品数量与格式清单不作为当前事实。",
       "rubric": [
         {
-          "id": "overview-mechanism",
-          "criterion": "两技能、Dossier、作者创作/覆盖、结构检查、执行许可与实际 QA 的职责关系可见；哈希/结构不充当语义、观看或理解效果证据。",
-          "evidence": "report.md 用户旅程、快照、运行时与宿主段落；流程对象关系而非仅名词排列。"
+          "id": "introduction-skills",
+          "criterion": "先说明 aha-research 保留有依据的研究与限制，aha-explain 为目标媒介创作讲解，由宿主协调而非自动流水线；结构检查、作品身份、实际 QA 与真人理解效果不混为一谈。",
+          "evidence": "report.md 的 Direct answer、Question tree and method、Semantic reverse-check and counterevidence；检查可见的职责关系。"
         },
         {
-          "id": "overview-snapshot",
-          "criterion": "叙述绑定 2026-09-16 研究快照，不外推当前仓库/服务状态；ANC 与 Git 如被引用，保留模型源码与内嵌记录的性质。",
-          "evidence": "report.md 范围、机制案例及停止理由；不要求查询当前 checkout。"
+          "id": "introduction-mechanisms",
+          "criterion": "三个案例均说明什么改变、什么不变及原因：格陵兰球面刚体旋转保面积而固定墨卡托足迹改变；CPython 3.11.15 的新 str 因 U+1F600 使用统一四字节槽，原字符串不变且 UTF-8 载荷另算；Docker 后层 whiteout 隐藏路径而不重写旧层，同 RUN 对比仅针对新临时文件。数值若使用，区分继承测量、示意载荷与新实验。",
+          "evidence": "report.md 的 Mechanism 1/2/3 与 Semantic reverse-check and counterevidence；检查可见解释及限定，不强制展示所有数值或将机制栅格化。"
+        },
+        {
+          "id": "introduction-snapshot",
+          "criterion": "绑定 2026-09-17 的综合研究及原始版本限定，不冒称重新调研当前代码或重跑继承实验；不将旧作品清单、格式数量或历史生成状态当成当前事实。模型、源码阅读、继承记录与实际观察分开表述。",
+          "evidence": "report.md 的 Scope, purpose, audience and budget、Actual formats, not invented completion、Local state and stopping reason；不要求查询当前 checkout。"
         },
         {
           "id": "screenshot-boundary",

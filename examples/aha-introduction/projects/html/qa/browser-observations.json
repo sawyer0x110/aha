@@ -1,0 +1,1669 @@
+{
+  "observedAt": "2026-09-21T04:21:47.221Z",
+  "sourceHash": "21aac193b757a5e485c6c131122e525aa125938c40e90ea3a570a801d12f15d8",
+  "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+  "outputHash": "e76d956fb1f7d3d0bc060f9295ad7f63c27e43f7cbd3abe3696e984580c94cd4",
+  "method": "Fresh isolated offline Edge browser; delivered HTML, pointer and keyboard controls, both languages and themes at 1280 and 390 CSS pixels.",
+  "cases": [
+    {
+      "id": "aha-introduction-1280-light-en",
+      "topic": "aha-introduction",
+      "width": 1280,
+      "height": 960,
+      "theme": "light",
+      "language": "en",
+      "sourceHash": "21aac193b757a5e485c6c131122e525aa125938c40e90ea3a570a801d12f15d8",
+      "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+      "outputHash": "e76d956fb1f7d3d0bc060f9295ad7f63c27e43f7cbd3abe3696e984580c94cd4",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, text boundaries, theme and reduced motion",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        },
+        {
+          "name": "Both representations preserve inherited numeric totals",
+          "passed": true
+        },
+        {
+          "name": "Language round trip preserves mechanism states",
+          "passed": true
+        },
+        {
+          "name": "Secondary text contrast in the selected theme",
+          "passed": true
+        },
+        {
+          "name": "keyboard",
+          "passed": true
+        },
+        {
+          "name": "pointer",
+          "passed": true
+        },
+        {
+          "name": "languageSwitch",
+          "passed": true
+        },
+        {
+          "name": "themeSwitch",
+          "passed": true
+        },
+        {
+          "name": "reducedMotion",
+          "passed": true
+        },
+        {
+          "name": "overflow",
+          "passed": true
+        },
+        {
+          "name": "console",
+          "passed": true
+        }
+      ],
+      "screenshots": [
+        {
+          "file": "html-1280-en-light.png",
+          "sha256": "2052612b560c5783937fd5e210d20d2f82fac679a227068d43ec0a3bf7054e41"
+        }
+      ],
+      "controls": {
+        "observedStates": [
+          {
+            "label": "Inside the str object",
+            "method": "pointer",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": false,
+            "observation": {
+              "mechanism": "python",
+              "state": "object",
+              "visibleText": "One width for the new result\nA\nA\n…\nU+1F600\n\nEvery code-point slot in the new result is 4 bytes. These are schematic slots, not 100,001 drawn cells and not a memory-address diagram. Display widths are not numerically proportional to byte counts.\n\nThe earlier ASCII-only object still has its original representation. Concatenation uses the operands’ representation ranges; this is not a claim that every concatenation scans all code points."
+            }
+          },
+          {
+            "label": "UTF-8 payload",
+            "method": "keyboard Enter",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "python",
+              "state": "encoding",
+              "visibleText": "Variable-length encoding, not uniform slots\nA\nA\n…\nU+1F600\n\nThe 100,000-character ASCII prefix stays at 100,000 bytes. U+1F600 adds 4 bytes, giving a 100,004-byte UTF-8 payload. The boxes are schematic; display widths are not numerically proportional to byte counts.\n\nThese are encoded payload bytes, not the memory occupied by a Python bytes object, a process, or a measured file."
+            }
+          },
+          {
+            "label": "After the creating RUN",
+            "method": "pointer",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "docker",
+              "state": "created",
+              "mergedView": "Merged view\n/demo/payload is visible.",
+              "retainedPayload": "100 MB"
+            }
+          },
+          {
+            "label": "After a later deleting RUN",
+            "method": "keyboard Enter",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "docker",
+              "state": "deleted",
+              "mergedView": "Merged view\n/demo/payload is absent. No ordinary whiteout file is shown here.",
+              "retainedPayload": "100 MB"
+            }
+          }
+        ]
+      },
+      "scrollWidth": 1280,
+      "visibleInkOverhang": [
+        {
+          "tag": "H1",
+          "text": "Aha: two skills.From evidence to explanation.",
+          "horizontalOverflow": false,
+          "verticalClipping": false,
+          "nextBlockOverlap": false,
+          "visibleInkOverhang": 4
+        }
+      ],
+      "contentOverflow": [],
+      "contrast": [
+        {
+          "color": "rgb(36, 36, 36)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 15.522910417680388
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.024865064757633
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        }
+      ],
+      "text": "AHA / AN INTRODUCTION\n\nAha: two skills.\nFrom evidence to explanation.\n\nAha is a pair of portable skills: research establishes what happens, why, and how far the evidence reaches; explain turns that supported account into the medium you request.\n\nThe host coordinates the work\naha-research\n\nInvestigate the question. Keep the answer, sources, reasoning, and limitations together in a Research Dossier—a reusable evidence record.\n\naha-explain\n\nUse that evidence to author the requested visual explanation. Choose a composition that makes the mechanism visible, rather than merely restyling a report.\n\nTwo skills, not automatic dispatch. The host decides when to research, reuse a Dossier, and author a medium. Research can also be the final deliverable.\n\n01\nGreenland: map footprint is not spherical area\n\nA useful explanation first separates what changes from what stays fixed.\n\nOn a spherical Mercator map, enlargement grows at high latitudes. Longitude spacing stays fixed on the map even though meridians converge on the sphere; preserving local angles requires matching north–south enlargement.\n\nNow apply the same rigid spherical rotation to every point of Greenland’s boundary. Its spherical area stays the same, but moving it toward lower latitudes changes its apparent footprint on the fixed projection. This is not a two-dimensional shrink operation.\n\nOn the sphere\narea preserved\nOn the fixed map\nfootprint changes\nConceptual distinction, not a plotted boundary, a size ratio, or a relocation simulation.\n\nScope matters. This is a generalized spherical model with polar cropping, not every map or a precision area measurement. Relocation is hypothetical—not real continental motion. There is no single uniform whole-country scale factor.\n\nInherited sources: PROJ’s Mercator description and Natural Earth 5.1.2 generalized boundaries (data terms). No new map calculation is performed here.\n\n02\nCPython: the object is not its UTF-8 encoding\n\nStart with 100,000 ASCII characters. Concatenate U+1F600. The new string and its encoded payload answer different size questions.\n\nIn this CPython 3.11.15 example, the resulting compact str uses one code-point slot width throughout. Because U+1F600 exceeds U+FFFF, the new object needs four-byte slots, including its ASCII prefix. The original immutable str is untouched. UTF-8, by contrast, keeps each ASCII character at one byte and adds four bytes for U+1F600.\n\nInside the str object\nUTF-8 payload\nVariable-length encoding, not uniform slots\nA\nA\n…\nU+1F600\n\nThe 100,000-character ASCII prefix stays at 100,000 bytes. U+1F600 adds 4 bytes, giving a 100,004-byte UTF-8 payload. The boxes are schematic; display widths are not numerically proportional to byte counts.\n\nThese are encoded payload bytes, not the memory occupied by a Python bytes object, a process, or a measured file.\n\nInherited local observations—not new measurements. All values are bytes.\nWhat is counted?\tASCII × 100,000\tNew result: + U+1F600\nstr object size\t100,049\t400,080\nUTF-8 payload length\t100,000\t100,004\n\nNot “all emoji quadruple Python memory.” This is one code point in one pinned implementation. Object totals include more than character payload and are not exactly fourfold. Non-ASCII does not automatically mean four-byte slots.\n\nInherited sources: PEP 393 and CPython 3.11.15’s pinned Unicode implementation. No Python experiment was run for this explanation.\n\n03\nDocker: an absent path can leave retained bytes\n\nSeparate the merged filesystem view from the immutable image layers beneath it.\n\nIn an ordinary unsquashed image, a first RUN records a new file’s content in a layer. A later RUN can record a whiteout—a deletion entry that hides the lower path in the merged view. It does not rewrite the earlier layer blob.\n\nAfter the creating RUN\nAfter a later deleting RUN\nPath hidden; earlier payload retained\nMerged view\n/demo/payload is absent. No ordinary whiteout file is shown here.\nLater layer cutaway\nWhiteout entry hides the lower path.\nEarlier immutable layer—unchanged\nThe hypothetical uncompressed 100 MB payload remains.\n\nControls select illustrative states from the inherited explanation. They do not execute Docker or measure storage.\n\nWhy one RUN can differ\n\nA NEW temporary file created and deleted within one RUN is absent at both endpoints. Its payload is therefore absent from that path’s resulting diff. This does not make the entire layer empty or reclaim a preexisting base-layer file.\n\n100 MB means an assumed 100,000,000-byte uncompressed payload, not compressed image size, transfer size, cache usage, or physical storage. No Docker build was run. Inherited sources: pinned OCI layer specification and Moby 27.5.1. The reused trace covers selected classic/fallback paths, not every BuildKit backend or running-container writable-layer behavior.\n\n04\nChoose the medium for the explanation\n\nThe evidence stays bounded; the composition changes. These are supported choices, not a claim that every example has all four completed outputs.\n\nHTML · explore a distinction\n\nLet readers compare representations or inspect a mechanism at their own pace, with the sources close at hand.\n\nPNG · keep the essential contrast\n\nCompose a self-contained visual summary for its actual reading size—not a miniature article.\n\nNative PPTX · explain in sequence\n\nUse editable text and shapes to support a presented argument, with an intentional purpose for each slide.\n\nVideo · make change visible\n\nCoordinate mechanism changes with narration and captions, rather than relying on page transitions alone.\n\nThe common thread is not a visual template. It is the relationship between supported evidence, a visible mechanism, and a clearly stated limit. That is the editorial aim of these examples—not a measured learning outcome.\n\nAbout the evidence. This introduction reuses the sealed Aha: evidence made visible through three mechanisms Dossier, whose local inspection horizon is 17 September 2026. Technical sources and observations are inherited; no new web research, upstream-code inspection, or experiments were performed.\n\nThe Dossier’s dated gallery inventory is not used as a current completion claim. Detailed projection derivations, intermediate string cases, and running-container behavior are outside this introduction."
+    },
+    {
+      "id": "aha-introduction-1280-light-zh",
+      "topic": "aha-introduction",
+      "width": 1280,
+      "height": 960,
+      "theme": "light",
+      "language": "zh",
+      "sourceHash": "21aac193b757a5e485c6c131122e525aa125938c40e90ea3a570a801d12f15d8",
+      "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+      "outputHash": "e76d956fb1f7d3d0bc060f9295ad7f63c27e43f7cbd3abe3696e984580c94cd4",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, text boundaries, theme and reduced motion",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        },
+        {
+          "name": "Both representations preserve inherited numeric totals",
+          "passed": true
+        },
+        {
+          "name": "Language round trip preserves mechanism states",
+          "passed": true
+        },
+        {
+          "name": "Secondary text contrast in the selected theme",
+          "passed": true
+        },
+        {
+          "name": "keyboard",
+          "passed": true
+        },
+        {
+          "name": "pointer",
+          "passed": true
+        },
+        {
+          "name": "languageSwitch",
+          "passed": true
+        },
+        {
+          "name": "themeSwitch",
+          "passed": true
+        },
+        {
+          "name": "reducedMotion",
+          "passed": true
+        },
+        {
+          "name": "overflow",
+          "passed": true
+        },
+        {
+          "name": "console",
+          "passed": true
+        }
+      ],
+      "screenshots": [
+        {
+          "file": "html-1280-zh-light.png",
+          "sha256": "15bed7eec5d7dd07cbb6ee267cecafddaca05f2abc52d32722912772f37b84e2"
+        }
+      ],
+      "controls": {
+        "observedStates": [
+          {
+            "label": "看 str 对象内部",
+            "method": "pointer",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": false,
+            "observation": {
+              "mechanism": "python",
+              "state": "object",
+              "visibleText": "新结果中的码点槽，宽度一致\nA\nA\n…\nU+1F600\n\n新结果中的每个码点槽都是四字节。上图只是槽位示意，没有画出全部 100,001 个槽，也不是内存地址图。显示宽度不与字节数成比例。\n\n原来的 ASCII 字符串仍保留原有表示。拼接会利用操作数的表示范围，这不意味着每次拼接都会扫描全部码点。"
+            }
+          },
+          {
+            "label": "看 UTF-8 编码数据",
+            "method": "keyboard Enter",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "python",
+              "state": "encoding",
+              "visibleText": "编码长度可变，不采用统一槽宽\nA\nA\n…\nU+1F600\n\n100,000 个 ASCII 字符仍占 100,000 字节。U+1F600 增加四字节，因此 UTF-8 编码数据合计 100,004 字节。方框仅作示意，显示宽度不与字节数成比例。\n\n这里数的是编码数据的字节，不是 Python bytes 对象的内存占用、进程内存或实测文件大小。"
+            }
+          },
+          {
+            "label": "创建文件的 RUN 之后",
+            "method": "pointer",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "docker",
+              "state": "created",
+              "mergedView": "合并视图\n/demo/payload 可见。",
+              "retainedPayload": "100 MB"
+            }
+          },
+          {
+            "label": "后续删除的 RUN 之后",
+            "method": "keyboard Enter",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "docker",
+              "state": "deleted",
+              "mergedView": "合并视图\n/demo/payload 不可见。这里也不会出现普通的 whiteout 文件。",
+              "retainedPayload": "100 MB"
+            }
+          }
+        ]
+      },
+      "scrollWidth": 1280,
+      "visibleInkOverhang": [
+        {
+          "tag": "H1",
+          "text": "Aha：两个技能，从证据到讲解。",
+          "horizontalOverflow": false,
+          "verticalClipping": false,
+          "nextBlockOverlap": false,
+          "visibleInkOverhang": 4
+        }
+      ],
+      "contentOverflow": [],
+      "contrast": [
+        {
+          "color": "rgb(36, 36, 36)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 15.522910417680388
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.024865064757633
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        }
+      ],
+      "text": "AHA / 项目介绍\n\nAha：两个技能，\n从证据到讲解。\n\nAha 是一对可移植技能：research 查清发生了什么、为什么，以及证据能支持到哪里；explain 则依据这些证据，创作你所需媒介的视觉讲解。\n\n由宿主协调，而非技能自动接力\naha-research\n\n围绕问题开展调查，把结论、来源、推理与限制一并保存在 Research Dossier（研究档案）中，供后续查阅和复用。\n\naha-explain\n\n根据证据，为指定媒介创作视觉讲解。构图要让机制变得可见，而不只是给报告换一套样式。\n\n两个技能，不是自动分发流水线。何时研究、何时复用研究档案、何时制作某种媒介，由宿主决定。研究本身也可以是最终交付物。\n\n01\n格陵兰：地图上的大小，不等于球面面积\n\n讲清一个机制，先区分什么变了、什么没有变。\n\n球面墨卡托投影在高纬度的放大更明显。球面上的经线逐渐汇聚，地图却保持经线等距；为了保持局部角度，南北方向也必须相应放大。\n\n假设给格陵兰边界的每一个点施加同一个球面刚性旋转。它的球面面积不变，但移向低纬度后，在固定投影上的轮廓大小会改变。这不是把二维图形直接缩小。\n\n在球面上\n面积保持不变\n在固定地图上\n轮廓大小改变\n这是概念区分图，不是边界绘图、面积比例图或搬移模拟器。\n\n适用范围不能省略。这里使用概化的球面模型，并裁去极区；不能推及所有地图，也不是精密面积测量。搬移是假设的几何操作，不是真实大陆运动；整个格陵兰也不存在一个统一的放大倍数。\n\n沿用来源：PROJ 的墨卡托投影说明及 Natural Earth 5.1.2 概化边界（数据使用条款）。本页没有执行新的地图计算。\n\n02\nCPython：字符串对象，不等于 UTF-8 编码\n\n从 100,000 个 ASCII 字符开始，再拼接 U+1F600。新字符串对象与它的编码数据，回答的是两种不同的大小问题。\n\n在这个 CPython 3.11.15 示例中，拼接所得的紧凑型 str 为所有码点采用统一槽宽。U+1F600 超过 U+FFFF，因此新对象需要四字节槽，ASCII 前缀也包括在内。原来的不可变 str 没有被修改。UTF-8 则不同：ASCII 字符仍各占一字节，U+1F600 只增加四字节。\n\n看 str 对象内部\n看 UTF-8 编码数据\n编码长度可变，不采用统一槽宽\nA\nA\n…\nU+1F600\n\n100,000 个 ASCII 字符仍占 100,000 字节。U+1F600 增加四字节，因此 UTF-8 编码数据合计 100,004 字节。方框仅作示意，显示宽度不与字节数成比例。\n\n这里数的是编码数据的字节，不是 Python bytes 对象的内存占用、进程内存或实测文件大小。\n\n沿用既有本地观测，并非本次新测量。以下单位均为字节。\n统计什么？\tASCII × 100,000\t新结果：+ U+1F600\nstr 对象大小\t100,049\t400,080\nUTF-8 数据长度\t100,000\t100,004\n\n不能概括成“所有 emoji 都让 Python 内存翻四倍”。这里只讨论固定实现中的一个码点。对象总大小不只有字符数据，也并非恰好四倍。非 ASCII 字符并不必然需要四字节槽。\n\n沿用来源：PEP 393与固定提交的 CPython 3.11.15 Unicode 实现。本次讲解没有运行 Python 实验。\n\n03\nDocker：路径不见了，旧层的字节还在\n\n把合并后的文件系统视图，与下方不可变的镜像层分开看。\n\n在普通、未压平的镜像中，第一次 RUN 把新文件内容记录到一层里。后一次 RUN 可以记录 whiteout（删除标记），使较低层的路径在合并视图中不可见，但不会重写较早的层数据。\n\n创建文件的 RUN 之后\n后续删除的 RUN 之后\n路径隐藏，旧层内容保留\n合并视图\n/demo/payload 不可见。这里也不会出现普通的 whiteout 文件。\n后续层的剖面\nwhiteout 条目隐藏较低层的路径。\n较早的不可变层——没有变化\n假设的未压缩 100 MB 内容仍然保留。\n\n按钮只切换既有讲解中的示意状态，不会执行 Docker，也不会测量存储。\n\n为什么同一次 RUN 可能不同？\n\n如果新建临时文件在同一次 RUN 中创建又删除，那么操作前后都没有这个文件。因此，该路径的最终差异中不会留下它的内容。这不代表整个层为空，也不会回收基础层中原有文件的数据。\n\n100 MB 指假设的 100,000,000 字节未压缩内容，不是压缩镜像大小、传输量、缓存用量或物理存储量。本次没有运行 Docker 构建。沿用来源：固定版本的 OCI 层规范与 Moby 27.5.1。既有代码追踪仅涉及选定的经典／回退路径，不涵盖所有 BuildKit 后端，也不讲解运行中容器的可写层。\n\n04\n依据讲解任务，选择媒介\n\n证据的边界不变，表达方式可以不同。以下是支持的选择，并不意味着每个案例都已经交付四种格式。\n\nHTML · 自主比较\n\n让读者按自己的节奏比较表示方式、查看机制，随时查阅相邻的来源。\n\nPNG · 留住关键区别\n\n按实际阅读尺寸独立构图，形成自足的视觉摘要，而不是把文章缩成小图。\n\n原生 PPTX · 逐步讲述\n\n用可编辑的文字与形状组织演示，让每一页都承担明确的讲解任务。\n\n视频 · 展示变化\n\n让机制的变化与旁白、字幕配合，而不只是为页面加上转场。\n\n贯穿这些媒介的不是固定模板，而是有依据的结论、看得见的机制与说得清的限制之间的关系。这是这些案例的编辑目标，不是经过测量的学习效果。\n\n证据说明。本页复用已封存的《Aha: evidence made visible through three mechanisms》研究档案，其本地检查时间截至 2026 年 9 月 17 日。技术来源与观测均沿用既有记录；本次没有新增网页研究、上游代码检查或实验。\n\n档案中有日期限制的格式库存，不作为当前交付情况的依据。详细投影推导、其他字符串案例及运行中容器的行为，不在本篇介绍范围内。"
+    },
+    {
+      "id": "aha-introduction-1280-dark-en",
+      "topic": "aha-introduction",
+      "width": 1280,
+      "height": 960,
+      "theme": "dark",
+      "language": "en",
+      "sourceHash": "21aac193b757a5e485c6c131122e525aa125938c40e90ea3a570a801d12f15d8",
+      "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+      "outputHash": "e76d956fb1f7d3d0bc060f9295ad7f63c27e43f7cbd3abe3696e984580c94cd4",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, text boundaries, theme and reduced motion",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        },
+        {
+          "name": "Both representations preserve inherited numeric totals",
+          "passed": true
+        },
+        {
+          "name": "Language round trip preserves mechanism states",
+          "passed": true
+        },
+        {
+          "name": "Secondary text contrast in the selected theme",
+          "passed": true
+        },
+        {
+          "name": "keyboard",
+          "passed": true
+        },
+        {
+          "name": "pointer",
+          "passed": true
+        },
+        {
+          "name": "languageSwitch",
+          "passed": true
+        },
+        {
+          "name": "themeSwitch",
+          "passed": true
+        },
+        {
+          "name": "reducedMotion",
+          "passed": true
+        },
+        {
+          "name": "overflow",
+          "passed": true
+        },
+        {
+          "name": "console",
+          "passed": true
+        }
+      ],
+      "screenshots": [
+        {
+          "file": "html-1280-en-dark.png",
+          "sha256": "1494456db06a337768aba17836c440669e69594c97d163b9361c7cb8f1034cc2"
+        }
+      ],
+      "controls": {
+        "observedStates": [
+          {
+            "label": "Inside the str object",
+            "method": "pointer",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": false,
+            "observation": {
+              "mechanism": "python",
+              "state": "object",
+              "visibleText": "One width for the new result\nA\nA\n…\nU+1F600\n\nEvery code-point slot in the new result is 4 bytes. These are schematic slots, not 100,001 drawn cells and not a memory-address diagram. Display widths are not numerically proportional to byte counts.\n\nThe earlier ASCII-only object still has its original representation. Concatenation uses the operands’ representation ranges; this is not a claim that every concatenation scans all code points."
+            }
+          },
+          {
+            "label": "UTF-8 payload",
+            "method": "keyboard Enter",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "python",
+              "state": "encoding",
+              "visibleText": "Variable-length encoding, not uniform slots\nA\nA\n…\nU+1F600\n\nThe 100,000-character ASCII prefix stays at 100,000 bytes. U+1F600 adds 4 bytes, giving a 100,004-byte UTF-8 payload. The boxes are schematic; display widths are not numerically proportional to byte counts.\n\nThese are encoded payload bytes, not the memory occupied by a Python bytes object, a process, or a measured file."
+            }
+          },
+          {
+            "label": "After the creating RUN",
+            "method": "pointer",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "docker",
+              "state": "created",
+              "mergedView": "Merged view\n/demo/payload is visible.",
+              "retainedPayload": "100 MB"
+            }
+          },
+          {
+            "label": "After a later deleting RUN",
+            "method": "keyboard Enter",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "docker",
+              "state": "deleted",
+              "mergedView": "Merged view\n/demo/payload is absent. No ordinary whiteout file is shown here.",
+              "retainedPayload": "100 MB"
+            }
+          }
+        ]
+      },
+      "scrollWidth": 1280,
+      "visibleInkOverhang": [
+        {
+          "tag": "H1",
+          "text": "Aha: two skills.From evidence to explanation.",
+          "horizontalOverflow": false,
+          "verticalClipping": false,
+          "nextBlockOverlap": false,
+          "visibleInkOverhang": 4
+        }
+      ],
+      "contentOverflow": [],
+      "contrast": [
+        {
+          "color": "rgb(222, 222, 222)",
+          "background": "rgb(41, 41, 41)",
+          "ratio": 10.813616896535128
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(41, 41, 41)",
+          "ratio": 6.70815541605857
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        }
+      ],
+      "text": "AHA / AN INTRODUCTION\n\nAha: two skills.\nFrom evidence to explanation.\n\nAha is a pair of portable skills: research establishes what happens, why, and how far the evidence reaches; explain turns that supported account into the medium you request.\n\nThe host coordinates the work\naha-research\n\nInvestigate the question. Keep the answer, sources, reasoning, and limitations together in a Research Dossier—a reusable evidence record.\n\naha-explain\n\nUse that evidence to author the requested visual explanation. Choose a composition that makes the mechanism visible, rather than merely restyling a report.\n\nTwo skills, not automatic dispatch. The host decides when to research, reuse a Dossier, and author a medium. Research can also be the final deliverable.\n\n01\nGreenland: map footprint is not spherical area\n\nA useful explanation first separates what changes from what stays fixed.\n\nOn a spherical Mercator map, enlargement grows at high latitudes. Longitude spacing stays fixed on the map even though meridians converge on the sphere; preserving local angles requires matching north–south enlargement.\n\nNow apply the same rigid spherical rotation to every point of Greenland’s boundary. Its spherical area stays the same, but moving it toward lower latitudes changes its apparent footprint on the fixed projection. This is not a two-dimensional shrink operation.\n\nOn the sphere\narea preserved\nOn the fixed map\nfootprint changes\nConceptual distinction, not a plotted boundary, a size ratio, or a relocation simulation.\n\nScope matters. This is a generalized spherical model with polar cropping, not every map or a precision area measurement. Relocation is hypothetical—not real continental motion. There is no single uniform whole-country scale factor.\n\nInherited sources: PROJ’s Mercator description and Natural Earth 5.1.2 generalized boundaries (data terms). No new map calculation is performed here.\n\n02\nCPython: the object is not its UTF-8 encoding\n\nStart with 100,000 ASCII characters. Concatenate U+1F600. The new string and its encoded payload answer different size questions.\n\nIn this CPython 3.11.15 example, the resulting compact str uses one code-point slot width throughout. Because U+1F600 exceeds U+FFFF, the new object needs four-byte slots, including its ASCII prefix. The original immutable str is untouched. UTF-8, by contrast, keeps each ASCII character at one byte and adds four bytes for U+1F600.\n\nInside the str object\nUTF-8 payload\nVariable-length encoding, not uniform slots\nA\nA\n…\nU+1F600\n\nThe 100,000-character ASCII prefix stays at 100,000 bytes. U+1F600 adds 4 bytes, giving a 100,004-byte UTF-8 payload. The boxes are schematic; display widths are not numerically proportional to byte counts.\n\nThese are encoded payload bytes, not the memory occupied by a Python bytes object, a process, or a measured file.\n\nInherited local observations—not new measurements. All values are bytes.\nWhat is counted?\tASCII × 100,000\tNew result: + U+1F600\nstr object size\t100,049\t400,080\nUTF-8 payload length\t100,000\t100,004\n\nNot “all emoji quadruple Python memory.” This is one code point in one pinned implementation. Object totals include more than character payload and are not exactly fourfold. Non-ASCII does not automatically mean four-byte slots.\n\nInherited sources: PEP 393 and CPython 3.11.15’s pinned Unicode implementation. No Python experiment was run for this explanation.\n\n03\nDocker: an absent path can leave retained bytes\n\nSeparate the merged filesystem view from the immutable image layers beneath it.\n\nIn an ordinary unsquashed image, a first RUN records a new file’s content in a layer. A later RUN can record a whiteout—a deletion entry that hides the lower path in the merged view. It does not rewrite the earlier layer blob.\n\nAfter the creating RUN\nAfter a later deleting RUN\nPath hidden; earlier payload retained\nMerged view\n/demo/payload is absent. No ordinary whiteout file is shown here.\nLater layer cutaway\nWhiteout entry hides the lower path.\nEarlier immutable layer—unchanged\nThe hypothetical uncompressed 100 MB payload remains.\n\nControls select illustrative states from the inherited explanation. They do not execute Docker or measure storage.\n\nWhy one RUN can differ\n\nA NEW temporary file created and deleted within one RUN is absent at both endpoints. Its payload is therefore absent from that path’s resulting diff. This does not make the entire layer empty or reclaim a preexisting base-layer file.\n\n100 MB means an assumed 100,000,000-byte uncompressed payload, not compressed image size, transfer size, cache usage, or physical storage. No Docker build was run. Inherited sources: pinned OCI layer specification and Moby 27.5.1. The reused trace covers selected classic/fallback paths, not every BuildKit backend or running-container writable-layer behavior.\n\n04\nChoose the medium for the explanation\n\nThe evidence stays bounded; the composition changes. These are supported choices, not a claim that every example has all four completed outputs.\n\nHTML · explore a distinction\n\nLet readers compare representations or inspect a mechanism at their own pace, with the sources close at hand.\n\nPNG · keep the essential contrast\n\nCompose a self-contained visual summary for its actual reading size—not a miniature article.\n\nNative PPTX · explain in sequence\n\nUse editable text and shapes to support a presented argument, with an intentional purpose for each slide.\n\nVideo · make change visible\n\nCoordinate mechanism changes with narration and captions, rather than relying on page transitions alone.\n\nThe common thread is not a visual template. It is the relationship between supported evidence, a visible mechanism, and a clearly stated limit. That is the editorial aim of these examples—not a measured learning outcome.\n\nAbout the evidence. This introduction reuses the sealed Aha: evidence made visible through three mechanisms Dossier, whose local inspection horizon is 17 September 2026. Technical sources and observations are inherited; no new web research, upstream-code inspection, or experiments were performed.\n\nThe Dossier’s dated gallery inventory is not used as a current completion claim. Detailed projection derivations, intermediate string cases, and running-container behavior are outside this introduction."
+    },
+    {
+      "id": "aha-introduction-1280-dark-zh",
+      "topic": "aha-introduction",
+      "width": 1280,
+      "height": 960,
+      "theme": "dark",
+      "language": "zh",
+      "sourceHash": "21aac193b757a5e485c6c131122e525aa125938c40e90ea3a570a801d12f15d8",
+      "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+      "outputHash": "e76d956fb1f7d3d0bc060f9295ad7f63c27e43f7cbd3abe3696e984580c94cd4",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, text boundaries, theme and reduced motion",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        },
+        {
+          "name": "Both representations preserve inherited numeric totals",
+          "passed": true
+        },
+        {
+          "name": "Language round trip preserves mechanism states",
+          "passed": true
+        },
+        {
+          "name": "Secondary text contrast in the selected theme",
+          "passed": true
+        },
+        {
+          "name": "keyboard",
+          "passed": true
+        },
+        {
+          "name": "pointer",
+          "passed": true
+        },
+        {
+          "name": "languageSwitch",
+          "passed": true
+        },
+        {
+          "name": "themeSwitch",
+          "passed": true
+        },
+        {
+          "name": "reducedMotion",
+          "passed": true
+        },
+        {
+          "name": "overflow",
+          "passed": true
+        },
+        {
+          "name": "console",
+          "passed": true
+        }
+      ],
+      "screenshots": [
+        {
+          "file": "html-1280-zh-dark.png",
+          "sha256": "9efc59377df4b739906a6fd579b2689b4d1a9b21bb4f4925abc8be5e7b6fd45e"
+        }
+      ],
+      "controls": {
+        "observedStates": [
+          {
+            "label": "看 str 对象内部",
+            "method": "pointer",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": false,
+            "observation": {
+              "mechanism": "python",
+              "state": "object",
+              "visibleText": "新结果中的码点槽，宽度一致\nA\nA\n…\nU+1F600\n\n新结果中的每个码点槽都是四字节。上图只是槽位示意，没有画出全部 100,001 个槽，也不是内存地址图。显示宽度不与字节数成比例。\n\n原来的 ASCII 字符串仍保留原有表示。拼接会利用操作数的表示范围，这不意味着每次拼接都会扫描全部码点。"
+            }
+          },
+          {
+            "label": "看 UTF-8 编码数据",
+            "method": "keyboard Enter",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "python",
+              "state": "encoding",
+              "visibleText": "编码长度可变，不采用统一槽宽\nA\nA\n…\nU+1F600\n\n100,000 个 ASCII 字符仍占 100,000 字节。U+1F600 增加四字节，因此 UTF-8 编码数据合计 100,004 字节。方框仅作示意，显示宽度不与字节数成比例。\n\n这里数的是编码数据的字节，不是 Python bytes 对象的内存占用、进程内存或实测文件大小。"
+            }
+          },
+          {
+            "label": "创建文件的 RUN 之后",
+            "method": "pointer",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "docker",
+              "state": "created",
+              "mergedView": "合并视图\n/demo/payload 可见。",
+              "retainedPayload": "100 MB"
+            }
+          },
+          {
+            "label": "后续删除的 RUN 之后",
+            "method": "keyboard Enter",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "docker",
+              "state": "deleted",
+              "mergedView": "合并视图\n/demo/payload 不可见。这里也不会出现普通的 whiteout 文件。",
+              "retainedPayload": "100 MB"
+            }
+          }
+        ]
+      },
+      "scrollWidth": 1280,
+      "visibleInkOverhang": [
+        {
+          "tag": "H1",
+          "text": "Aha：两个技能，从证据到讲解。",
+          "horizontalOverflow": false,
+          "verticalClipping": false,
+          "nextBlockOverlap": false,
+          "visibleInkOverhang": 4
+        }
+      ],
+      "contentOverflow": [],
+      "contrast": [
+        {
+          "color": "rgb(222, 222, 222)",
+          "background": "rgb(41, 41, 41)",
+          "ratio": 10.813616896535128
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(41, 41, 41)",
+          "ratio": 6.70815541605857
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        }
+      ],
+      "text": "AHA / 项目介绍\n\nAha：两个技能，\n从证据到讲解。\n\nAha 是一对可移植技能：research 查清发生了什么、为什么，以及证据能支持到哪里；explain 则依据这些证据，创作你所需媒介的视觉讲解。\n\n由宿主协调，而非技能自动接力\naha-research\n\n围绕问题开展调查，把结论、来源、推理与限制一并保存在 Research Dossier（研究档案）中，供后续查阅和复用。\n\naha-explain\n\n根据证据，为指定媒介创作视觉讲解。构图要让机制变得可见，而不只是给报告换一套样式。\n\n两个技能，不是自动分发流水线。何时研究、何时复用研究档案、何时制作某种媒介，由宿主决定。研究本身也可以是最终交付物。\n\n01\n格陵兰：地图上的大小，不等于球面面积\n\n讲清一个机制，先区分什么变了、什么没有变。\n\n球面墨卡托投影在高纬度的放大更明显。球面上的经线逐渐汇聚，地图却保持经线等距；为了保持局部角度，南北方向也必须相应放大。\n\n假设给格陵兰边界的每一个点施加同一个球面刚性旋转。它的球面面积不变，但移向低纬度后，在固定投影上的轮廓大小会改变。这不是把二维图形直接缩小。\n\n在球面上\n面积保持不变\n在固定地图上\n轮廓大小改变\n这是概念区分图，不是边界绘图、面积比例图或搬移模拟器。\n\n适用范围不能省略。这里使用概化的球面模型，并裁去极区；不能推及所有地图，也不是精密面积测量。搬移是假设的几何操作，不是真实大陆运动；整个格陵兰也不存在一个统一的放大倍数。\n\n沿用来源：PROJ 的墨卡托投影说明及 Natural Earth 5.1.2 概化边界（数据使用条款）。本页没有执行新的地图计算。\n\n02\nCPython：字符串对象，不等于 UTF-8 编码\n\n从 100,000 个 ASCII 字符开始，再拼接 U+1F600。新字符串对象与它的编码数据，回答的是两种不同的大小问题。\n\n在这个 CPython 3.11.15 示例中，拼接所得的紧凑型 str 为所有码点采用统一槽宽。U+1F600 超过 U+FFFF，因此新对象需要四字节槽，ASCII 前缀也包括在内。原来的不可变 str 没有被修改。UTF-8 则不同：ASCII 字符仍各占一字节，U+1F600 只增加四字节。\n\n看 str 对象内部\n看 UTF-8 编码数据\n编码长度可变，不采用统一槽宽\nA\nA\n…\nU+1F600\n\n100,000 个 ASCII 字符仍占 100,000 字节。U+1F600 增加四字节，因此 UTF-8 编码数据合计 100,004 字节。方框仅作示意，显示宽度不与字节数成比例。\n\n这里数的是编码数据的字节，不是 Python bytes 对象的内存占用、进程内存或实测文件大小。\n\n沿用既有本地观测，并非本次新测量。以下单位均为字节。\n统计什么？\tASCII × 100,000\t新结果：+ U+1F600\nstr 对象大小\t100,049\t400,080\nUTF-8 数据长度\t100,000\t100,004\n\n不能概括成“所有 emoji 都让 Python 内存翻四倍”。这里只讨论固定实现中的一个码点。对象总大小不只有字符数据，也并非恰好四倍。非 ASCII 字符并不必然需要四字节槽。\n\n沿用来源：PEP 393与固定提交的 CPython 3.11.15 Unicode 实现。本次讲解没有运行 Python 实验。\n\n03\nDocker：路径不见了，旧层的字节还在\n\n把合并后的文件系统视图，与下方不可变的镜像层分开看。\n\n在普通、未压平的镜像中，第一次 RUN 把新文件内容记录到一层里。后一次 RUN 可以记录 whiteout（删除标记），使较低层的路径在合并视图中不可见，但不会重写较早的层数据。\n\n创建文件的 RUN 之后\n后续删除的 RUN 之后\n路径隐藏，旧层内容保留\n合并视图\n/demo/payload 不可见。这里也不会出现普通的 whiteout 文件。\n后续层的剖面\nwhiteout 条目隐藏较低层的路径。\n较早的不可变层——没有变化\n假设的未压缩 100 MB 内容仍然保留。\n\n按钮只切换既有讲解中的示意状态，不会执行 Docker，也不会测量存储。\n\n为什么同一次 RUN 可能不同？\n\n如果新建临时文件在同一次 RUN 中创建又删除，那么操作前后都没有这个文件。因此，该路径的最终差异中不会留下它的内容。这不代表整个层为空，也不会回收基础层中原有文件的数据。\n\n100 MB 指假设的 100,000,000 字节未压缩内容，不是压缩镜像大小、传输量、缓存用量或物理存储量。本次没有运行 Docker 构建。沿用来源：固定版本的 OCI 层规范与 Moby 27.5.1。既有代码追踪仅涉及选定的经典／回退路径，不涵盖所有 BuildKit 后端，也不讲解运行中容器的可写层。\n\n04\n依据讲解任务，选择媒介\n\n证据的边界不变，表达方式可以不同。以下是支持的选择，并不意味着每个案例都已经交付四种格式。\n\nHTML · 自主比较\n\n让读者按自己的节奏比较表示方式、查看机制，随时查阅相邻的来源。\n\nPNG · 留住关键区别\n\n按实际阅读尺寸独立构图，形成自足的视觉摘要，而不是把文章缩成小图。\n\n原生 PPTX · 逐步讲述\n\n用可编辑的文字与形状组织演示，让每一页都承担明确的讲解任务。\n\n视频 · 展示变化\n\n让机制的变化与旁白、字幕配合，而不只是为页面加上转场。\n\n贯穿这些媒介的不是固定模板，而是有依据的结论、看得见的机制与说得清的限制之间的关系。这是这些案例的编辑目标，不是经过测量的学习效果。\n\n证据说明。本页复用已封存的《Aha: evidence made visible through three mechanisms》研究档案，其本地检查时间截至 2026 年 9 月 17 日。技术来源与观测均沿用既有记录；本次没有新增网页研究、上游代码检查或实验。\n\n档案中有日期限制的格式库存，不作为当前交付情况的依据。详细投影推导、其他字符串案例及运行中容器的行为，不在本篇介绍范围内。"
+    },
+    {
+      "id": "aha-introduction-390-light-en",
+      "topic": "aha-introduction",
+      "width": 390,
+      "height": 960,
+      "theme": "light",
+      "language": "en",
+      "sourceHash": "21aac193b757a5e485c6c131122e525aa125938c40e90ea3a570a801d12f15d8",
+      "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+      "outputHash": "e76d956fb1f7d3d0bc060f9295ad7f63c27e43f7cbd3abe3696e984580c94cd4",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, text boundaries, theme and reduced motion",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        },
+        {
+          "name": "Both representations preserve inherited numeric totals",
+          "passed": true
+        },
+        {
+          "name": "Language round trip preserves mechanism states",
+          "passed": true
+        },
+        {
+          "name": "Secondary text contrast in the selected theme",
+          "passed": true
+        },
+        {
+          "name": "keyboard",
+          "passed": true
+        },
+        {
+          "name": "pointer",
+          "passed": true
+        },
+        {
+          "name": "languageSwitch",
+          "passed": true
+        },
+        {
+          "name": "themeSwitch",
+          "passed": true
+        },
+        {
+          "name": "reducedMotion",
+          "passed": true
+        },
+        {
+          "name": "overflow",
+          "passed": true
+        },
+        {
+          "name": "console",
+          "passed": true
+        }
+      ],
+      "screenshots": [
+        {
+          "file": "html-390-en-light.png",
+          "sha256": "7eddc42a797ffcdf4178aeabf005b8ee7b5408e454e3338efbad12fe1544e262"
+        }
+      ],
+      "controls": {
+        "observedStates": [
+          {
+            "label": "Inside the str object",
+            "method": "pointer",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": false,
+            "observation": {
+              "mechanism": "python",
+              "state": "object",
+              "visibleText": "One width for the new result\nA\nA\n…\nU+1F600\n\nEvery code-point slot in the new result is 4 bytes. These are schematic slots, not 100,001 drawn cells and not a memory-address diagram. Display widths are not numerically proportional to byte counts.\n\nThe earlier ASCII-only object still has its original representation. Concatenation uses the operands’ representation ranges; this is not a claim that every concatenation scans all code points."
+            }
+          },
+          {
+            "label": "UTF-8 payload",
+            "method": "keyboard Enter",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "python",
+              "state": "encoding",
+              "visibleText": "Variable-length encoding, not uniform slots\nA\nA\n…\nU+1F600\n\nThe 100,000-character ASCII prefix stays at 100,000 bytes. U+1F600 adds 4 bytes, giving a 100,004-byte UTF-8 payload. The boxes are schematic; display widths are not numerically proportional to byte counts.\n\nThese are encoded payload bytes, not the memory occupied by a Python bytes object, a process, or a measured file."
+            }
+          },
+          {
+            "label": "After the creating RUN",
+            "method": "pointer",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "docker",
+              "state": "created",
+              "mergedView": "Merged view\n/demo/payload is visible.",
+              "retainedPayload": "100 MB"
+            }
+          },
+          {
+            "label": "After a later deleting RUN",
+            "method": "keyboard Enter",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "docker",
+              "state": "deleted",
+              "mergedView": "Merged view\n/demo/payload is absent. No ordinary whiteout file is shown here.",
+              "retainedPayload": "100 MB"
+            }
+          }
+        ]
+      },
+      "scrollWidth": 390,
+      "visibleInkOverhang": [],
+      "contentOverflow": [],
+      "contrast": [
+        {
+          "color": "rgb(36, 36, 36)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 15.522910417680388
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.024865064757633
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        }
+      ],
+      "text": "AHA / AN INTRODUCTION\n\nAha: two skills.\nFrom evidence to explanation.\n\nAha is a pair of portable skills: research establishes what happens, why, and how far the evidence reaches; explain turns that supported account into the medium you request.\n\nThe host coordinates the work\naha-research\n\nInvestigate the question. Keep the answer, sources, reasoning, and limitations together in a Research Dossier—a reusable evidence record.\n\naha-explain\n\nUse that evidence to author the requested visual explanation. Choose a composition that makes the mechanism visible, rather than merely restyling a report.\n\nTwo skills, not automatic dispatch. The host decides when to research, reuse a Dossier, and author a medium. Research can also be the final deliverable.\n\n01\nGreenland: map footprint is not spherical area\n\nA useful explanation first separates what changes from what stays fixed.\n\nOn a spherical Mercator map, enlargement grows at high latitudes. Longitude spacing stays fixed on the map even though meridians converge on the sphere; preserving local angles requires matching north–south enlargement.\n\nNow apply the same rigid spherical rotation to every point of Greenland’s boundary. Its spherical area stays the same, but moving it toward lower latitudes changes its apparent footprint on the fixed projection. This is not a two-dimensional shrink operation.\n\nOn the sphere\narea preserved\nOn the fixed map\nfootprint changes\nConceptual distinction, not a plotted boundary, a size ratio, or a relocation simulation.\n\nScope matters. This is a generalized spherical model with polar cropping, not every map or a precision area measurement. Relocation is hypothetical—not real continental motion. There is no single uniform whole-country scale factor.\n\nInherited sources: PROJ’s Mercator description and Natural Earth 5.1.2 generalized boundaries (data terms). No new map calculation is performed here.\n\n02\nCPython: the object is not its UTF-8 encoding\n\nStart with 100,000 ASCII characters. Concatenate U+1F600. The new string and its encoded payload answer different size questions.\n\nIn this CPython 3.11.15 example, the resulting compact str uses one code-point slot width throughout. Because U+1F600 exceeds U+FFFF, the new object needs four-byte slots, including its ASCII prefix. The original immutable str is untouched. UTF-8, by contrast, keeps each ASCII character at one byte and adds four bytes for U+1F600.\n\nInside the str object\nUTF-8 payload\nVariable-length encoding, not uniform slots\nA\nA\n…\nU+1F600\n\nThe 100,000-character ASCII prefix stays at 100,000 bytes. U+1F600 adds 4 bytes, giving a 100,004-byte UTF-8 payload. The boxes are schematic; display widths are not numerically proportional to byte counts.\n\nThese are encoded payload bytes, not the memory occupied by a Python bytes object, a process, or a measured file.\n\nInherited local observations—not new measurements. All values are bytes.\nWhat is counted?\tASCII × 100,000\tNew result: + U+1F600\nstr object size\t100,049\t400,080\nUTF-8 payload length\t100,000\t100,004\n\nNot “all emoji quadruple Python memory.” This is one code point in one pinned implementation. Object totals include more than character payload and are not exactly fourfold. Non-ASCII does not automatically mean four-byte slots.\n\nInherited sources: PEP 393 and CPython 3.11.15’s pinned Unicode implementation. No Python experiment was run for this explanation.\n\n03\nDocker: an absent path can leave retained bytes\n\nSeparate the merged filesystem view from the immutable image layers beneath it.\n\nIn an ordinary unsquashed image, a first RUN records a new file’s content in a layer. A later RUN can record a whiteout—a deletion entry that hides the lower path in the merged view. It does not rewrite the earlier layer blob.\n\nAfter the creating RUN\nAfter a later deleting RUN\nPath hidden; earlier payload retained\nMerged view\n/demo/payload is absent. No ordinary whiteout file is shown here.\nLater layer cutaway\nWhiteout entry hides the lower path.\nEarlier immutable layer—unchanged\nThe hypothetical uncompressed 100 MB payload remains.\n\nControls select illustrative states from the inherited explanation. They do not execute Docker or measure storage.\n\nWhy one RUN can differ\n\nA NEW temporary file created and deleted within one RUN is absent at both endpoints. Its payload is therefore absent from that path’s resulting diff. This does not make the entire layer empty or reclaim a preexisting base-layer file.\n\n100 MB means an assumed 100,000,000-byte uncompressed payload, not compressed image size, transfer size, cache usage, or physical storage. No Docker build was run. Inherited sources: pinned OCI layer specification and Moby 27.5.1. The reused trace covers selected classic/fallback paths, not every BuildKit backend or running-container writable-layer behavior.\n\n04\nChoose the medium for the explanation\n\nThe evidence stays bounded; the composition changes. These are supported choices, not a claim that every example has all four completed outputs.\n\nHTML · explore a distinction\n\nLet readers compare representations or inspect a mechanism at their own pace, with the sources close at hand.\n\nPNG · keep the essential contrast\n\nCompose a self-contained visual summary for its actual reading size—not a miniature article.\n\nNative PPTX · explain in sequence\n\nUse editable text and shapes to support a presented argument, with an intentional purpose for each slide.\n\nVideo · make change visible\n\nCoordinate mechanism changes with narration and captions, rather than relying on page transitions alone.\n\nThe common thread is not a visual template. It is the relationship between supported evidence, a visible mechanism, and a clearly stated limit. That is the editorial aim of these examples—not a measured learning outcome.\n\nAbout the evidence. This introduction reuses the sealed Aha: evidence made visible through three mechanisms Dossier, whose local inspection horizon is 17 September 2026. Technical sources and observations are inherited; no new web research, upstream-code inspection, or experiments were performed.\n\nThe Dossier’s dated gallery inventory is not used as a current completion claim. Detailed projection derivations, intermediate string cases, and running-container behavior are outside this introduction."
+    },
+    {
+      "id": "aha-introduction-390-light-zh",
+      "topic": "aha-introduction",
+      "width": 390,
+      "height": 960,
+      "theme": "light",
+      "language": "zh",
+      "sourceHash": "21aac193b757a5e485c6c131122e525aa125938c40e90ea3a570a801d12f15d8",
+      "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+      "outputHash": "e76d956fb1f7d3d0bc060f9295ad7f63c27e43f7cbd3abe3696e984580c94cd4",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, text boundaries, theme and reduced motion",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        },
+        {
+          "name": "Both representations preserve inherited numeric totals",
+          "passed": true
+        },
+        {
+          "name": "Language round trip preserves mechanism states",
+          "passed": true
+        },
+        {
+          "name": "Secondary text contrast in the selected theme",
+          "passed": true
+        },
+        {
+          "name": "keyboard",
+          "passed": true
+        },
+        {
+          "name": "pointer",
+          "passed": true
+        },
+        {
+          "name": "languageSwitch",
+          "passed": true
+        },
+        {
+          "name": "themeSwitch",
+          "passed": true
+        },
+        {
+          "name": "reducedMotion",
+          "passed": true
+        },
+        {
+          "name": "overflow",
+          "passed": true
+        },
+        {
+          "name": "console",
+          "passed": true
+        }
+      ],
+      "screenshots": [
+        {
+          "file": "html-390-zh-light.png",
+          "sha256": "2a70a1230ac59545b56f243418c719daf0ff6ea8e736223db91a69f72e7038ce"
+        }
+      ],
+      "controls": {
+        "observedStates": [
+          {
+            "label": "看 str 对象内部",
+            "method": "pointer",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": false,
+            "observation": {
+              "mechanism": "python",
+              "state": "object",
+              "visibleText": "新结果中的码点槽，宽度一致\nA\nA\n…\nU+1F600\n\n新结果中的每个码点槽都是四字节。上图只是槽位示意，没有画出全部 100,001 个槽，也不是内存地址图。显示宽度不与字节数成比例。\n\n原来的 ASCII 字符串仍保留原有表示。拼接会利用操作数的表示范围，这不意味着每次拼接都会扫描全部码点。"
+            }
+          },
+          {
+            "label": "看 UTF-8 编码数据",
+            "method": "keyboard Enter",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "python",
+              "state": "encoding",
+              "visibleText": "编码长度可变，不采用统一槽宽\nA\nA\n…\nU+1F600\n\n100,000 个 ASCII 字符仍占 100,000 字节。U+1F600 增加四字节，因此 UTF-8 编码数据合计 100,004 字节。方框仅作示意，显示宽度不与字节数成比例。\n\n这里数的是编码数据的字节，不是 Python bytes 对象的内存占用、进程内存或实测文件大小。"
+            }
+          },
+          {
+            "label": "创建文件的 RUN 之后",
+            "method": "pointer",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "docker",
+              "state": "created",
+              "mergedView": "合并视图\n/demo/payload 可见。",
+              "retainedPayload": "100 MB"
+            }
+          },
+          {
+            "label": "后续删除的 RUN 之后",
+            "method": "keyboard Enter",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "docker",
+              "state": "deleted",
+              "mergedView": "合并视图\n/demo/payload 不可见。这里也不会出现普通的 whiteout 文件。",
+              "retainedPayload": "100 MB"
+            }
+          }
+        ]
+      },
+      "scrollWidth": 390,
+      "visibleInkOverhang": [],
+      "contentOverflow": [],
+      "contrast": [
+        {
+          "color": "rgb(36, 36, 36)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 15.522910417680388
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.024865064757633
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(177, 31, 75)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 6.044016993384626
+        },
+        {
+          "color": "rgb(111, 111, 111)",
+          "background": "rgb(247, 244, 239)",
+          "ratio": 4.5801654216576475
+        }
+      ],
+      "text": "AHA / 项目介绍\n\nAha：两个技能，\n从证据到讲解。\n\nAha 是一对可移植技能：research 查清发生了什么、为什么，以及证据能支持到哪里；explain 则依据这些证据，创作你所需媒介的视觉讲解。\n\n由宿主协调，而非技能自动接力\naha-research\n\n围绕问题开展调查，把结论、来源、推理与限制一并保存在 Research Dossier（研究档案）中，供后续查阅和复用。\n\naha-explain\n\n根据证据，为指定媒介创作视觉讲解。构图要让机制变得可见，而不只是给报告换一套样式。\n\n两个技能，不是自动分发流水线。何时研究、何时复用研究档案、何时制作某种媒介，由宿主决定。研究本身也可以是最终交付物。\n\n01\n格陵兰：地图上的大小，不等于球面面积\n\n讲清一个机制，先区分什么变了、什么没有变。\n\n球面墨卡托投影在高纬度的放大更明显。球面上的经线逐渐汇聚，地图却保持经线等距；为了保持局部角度，南北方向也必须相应放大。\n\n假设给格陵兰边界的每一个点施加同一个球面刚性旋转。它的球面面积不变，但移向低纬度后，在固定投影上的轮廓大小会改变。这不是把二维图形直接缩小。\n\n在球面上\n面积保持不变\n在固定地图上\n轮廓大小改变\n这是概念区分图，不是边界绘图、面积比例图或搬移模拟器。\n\n适用范围不能省略。这里使用概化的球面模型，并裁去极区；不能推及所有地图，也不是精密面积测量。搬移是假设的几何操作，不是真实大陆运动；整个格陵兰也不存在一个统一的放大倍数。\n\n沿用来源：PROJ 的墨卡托投影说明及 Natural Earth 5.1.2 概化边界（数据使用条款）。本页没有执行新的地图计算。\n\n02\nCPython：字符串对象，不等于 UTF-8 编码\n\n从 100,000 个 ASCII 字符开始，再拼接 U+1F600。新字符串对象与它的编码数据，回答的是两种不同的大小问题。\n\n在这个 CPython 3.11.15 示例中，拼接所得的紧凑型 str 为所有码点采用统一槽宽。U+1F600 超过 U+FFFF，因此新对象需要四字节槽，ASCII 前缀也包括在内。原来的不可变 str 没有被修改。UTF-8 则不同：ASCII 字符仍各占一字节，U+1F600 只增加四字节。\n\n看 str 对象内部\n看 UTF-8 编码数据\n编码长度可变，不采用统一槽宽\nA\nA\n…\nU+1F600\n\n100,000 个 ASCII 字符仍占 100,000 字节。U+1F600 增加四字节，因此 UTF-8 编码数据合计 100,004 字节。方框仅作示意，显示宽度不与字节数成比例。\n\n这里数的是编码数据的字节，不是 Python bytes 对象的内存占用、进程内存或实测文件大小。\n\n沿用既有本地观测，并非本次新测量。以下单位均为字节。\n统计什么？\tASCII × 100,000\t新结果：+ U+1F600\nstr 对象大小\t100,049\t400,080\nUTF-8 数据长度\t100,000\t100,004\n\n不能概括成“所有 emoji 都让 Python 内存翻四倍”。这里只讨论固定实现中的一个码点。对象总大小不只有字符数据，也并非恰好四倍。非 ASCII 字符并不必然需要四字节槽。\n\n沿用来源：PEP 393与固定提交的 CPython 3.11.15 Unicode 实现。本次讲解没有运行 Python 实验。\n\n03\nDocker：路径不见了，旧层的字节还在\n\n把合并后的文件系统视图，与下方不可变的镜像层分开看。\n\n在普通、未压平的镜像中，第一次 RUN 把新文件内容记录到一层里。后一次 RUN 可以记录 whiteout（删除标记），使较低层的路径在合并视图中不可见，但不会重写较早的层数据。\n\n创建文件的 RUN 之后\n后续删除的 RUN 之后\n路径隐藏，旧层内容保留\n合并视图\n/demo/payload 不可见。这里也不会出现普通的 whiteout 文件。\n后续层的剖面\nwhiteout 条目隐藏较低层的路径。\n较早的不可变层——没有变化\n假设的未压缩 100 MB 内容仍然保留。\n\n按钮只切换既有讲解中的示意状态，不会执行 Docker，也不会测量存储。\n\n为什么同一次 RUN 可能不同？\n\n如果新建临时文件在同一次 RUN 中创建又删除，那么操作前后都没有这个文件。因此，该路径的最终差异中不会留下它的内容。这不代表整个层为空，也不会回收基础层中原有文件的数据。\n\n100 MB 指假设的 100,000,000 字节未压缩内容，不是压缩镜像大小、传输量、缓存用量或物理存储量。本次没有运行 Docker 构建。沿用来源：固定版本的 OCI 层规范与 Moby 27.5.1。既有代码追踪仅涉及选定的经典／回退路径，不涵盖所有 BuildKit 后端，也不讲解运行中容器的可写层。\n\n04\n依据讲解任务，选择媒介\n\n证据的边界不变，表达方式可以不同。以下是支持的选择，并不意味着每个案例都已经交付四种格式。\n\nHTML · 自主比较\n\n让读者按自己的节奏比较表示方式、查看机制，随时查阅相邻的来源。\n\nPNG · 留住关键区别\n\n按实际阅读尺寸独立构图，形成自足的视觉摘要，而不是把文章缩成小图。\n\n原生 PPTX · 逐步讲述\n\n用可编辑的文字与形状组织演示，让每一页都承担明确的讲解任务。\n\n视频 · 展示变化\n\n让机制的变化与旁白、字幕配合，而不只是为页面加上转场。\n\n贯穿这些媒介的不是固定模板，而是有依据的结论、看得见的机制与说得清的限制之间的关系。这是这些案例的编辑目标，不是经过测量的学习效果。\n\n证据说明。本页复用已封存的《Aha: evidence made visible through three mechanisms》研究档案，其本地检查时间截至 2026 年 9 月 17 日。技术来源与观测均沿用既有记录；本次没有新增网页研究、上游代码检查或实验。\n\n档案中有日期限制的格式库存，不作为当前交付情况的依据。详细投影推导、其他字符串案例及运行中容器的行为，不在本篇介绍范围内。"
+    },
+    {
+      "id": "aha-introduction-390-dark-en",
+      "topic": "aha-introduction",
+      "width": 390,
+      "height": 960,
+      "theme": "dark",
+      "language": "en",
+      "sourceHash": "21aac193b757a5e485c6c131122e525aa125938c40e90ea3a570a801d12f15d8",
+      "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+      "outputHash": "e76d956fb1f7d3d0bc060f9295ad7f63c27e43f7cbd3abe3696e984580c94cd4",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, text boundaries, theme and reduced motion",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        },
+        {
+          "name": "Both representations preserve inherited numeric totals",
+          "passed": true
+        },
+        {
+          "name": "Language round trip preserves mechanism states",
+          "passed": true
+        },
+        {
+          "name": "Secondary text contrast in the selected theme",
+          "passed": true
+        },
+        {
+          "name": "keyboard",
+          "passed": true
+        },
+        {
+          "name": "pointer",
+          "passed": true
+        },
+        {
+          "name": "languageSwitch",
+          "passed": true
+        },
+        {
+          "name": "themeSwitch",
+          "passed": true
+        },
+        {
+          "name": "reducedMotion",
+          "passed": true
+        },
+        {
+          "name": "overflow",
+          "passed": true
+        },
+        {
+          "name": "console",
+          "passed": true
+        }
+      ],
+      "screenshots": [
+        {
+          "file": "html-390-en-dark.png",
+          "sha256": "698822b5e6b9b11fa40f8d81dd3358d24e7a2710f9019c1b5914a51419b4d2b7"
+        }
+      ],
+      "controls": {
+        "observedStates": [
+          {
+            "label": "Inside the str object",
+            "method": "pointer",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": false,
+            "observation": {
+              "mechanism": "python",
+              "state": "object",
+              "visibleText": "One width for the new result\nA\nA\n…\nU+1F600\n\nEvery code-point slot in the new result is 4 bytes. These are schematic slots, not 100,001 drawn cells and not a memory-address diagram. Display widths are not numerically proportional to byte counts.\n\nThe earlier ASCII-only object still has its original representation. Concatenation uses the operands’ representation ranges; this is not a claim that every concatenation scans all code points."
+            }
+          },
+          {
+            "label": "UTF-8 payload",
+            "method": "keyboard Enter",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "python",
+              "state": "encoding",
+              "visibleText": "Variable-length encoding, not uniform slots\nA\nA\n…\nU+1F600\n\nThe 100,000-character ASCII prefix stays at 100,000 bytes. U+1F600 adds 4 bytes, giving a 100,004-byte UTF-8 payload. The boxes are schematic; display widths are not numerically proportional to byte counts.\n\nThese are encoded payload bytes, not the memory occupied by a Python bytes object, a process, or a measured file."
+            }
+          },
+          {
+            "label": "After the creating RUN",
+            "method": "pointer",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "docker",
+              "state": "created",
+              "mergedView": "Merged view\n/demo/payload is visible.",
+              "retainedPayload": "100 MB"
+            }
+          },
+          {
+            "label": "After a later deleting RUN",
+            "method": "keyboard Enter",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "docker",
+              "state": "deleted",
+              "mergedView": "Merged view\n/demo/payload is absent. No ordinary whiteout file is shown here.",
+              "retainedPayload": "100 MB"
+            }
+          }
+        ]
+      },
+      "scrollWidth": 390,
+      "visibleInkOverhang": [],
+      "contentOverflow": [],
+      "contrast": [
+        {
+          "color": "rgb(222, 222, 222)",
+          "background": "rgb(41, 41, 41)",
+          "ratio": 10.813616896535128
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(41, 41, 41)",
+          "ratio": 6.70815541605857
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        }
+      ],
+      "text": "AHA / AN INTRODUCTION\n\nAha: two skills.\nFrom evidence to explanation.\n\nAha is a pair of portable skills: research establishes what happens, why, and how far the evidence reaches; explain turns that supported account into the medium you request.\n\nThe host coordinates the work\naha-research\n\nInvestigate the question. Keep the answer, sources, reasoning, and limitations together in a Research Dossier—a reusable evidence record.\n\naha-explain\n\nUse that evidence to author the requested visual explanation. Choose a composition that makes the mechanism visible, rather than merely restyling a report.\n\nTwo skills, not automatic dispatch. The host decides when to research, reuse a Dossier, and author a medium. Research can also be the final deliverable.\n\n01\nGreenland: map footprint is not spherical area\n\nA useful explanation first separates what changes from what stays fixed.\n\nOn a spherical Mercator map, enlargement grows at high latitudes. Longitude spacing stays fixed on the map even though meridians converge on the sphere; preserving local angles requires matching north–south enlargement.\n\nNow apply the same rigid spherical rotation to every point of Greenland’s boundary. Its spherical area stays the same, but moving it toward lower latitudes changes its apparent footprint on the fixed projection. This is not a two-dimensional shrink operation.\n\nOn the sphere\narea preserved\nOn the fixed map\nfootprint changes\nConceptual distinction, not a plotted boundary, a size ratio, or a relocation simulation.\n\nScope matters. This is a generalized spherical model with polar cropping, not every map or a precision area measurement. Relocation is hypothetical—not real continental motion. There is no single uniform whole-country scale factor.\n\nInherited sources: PROJ’s Mercator description and Natural Earth 5.1.2 generalized boundaries (data terms). No new map calculation is performed here.\n\n02\nCPython: the object is not its UTF-8 encoding\n\nStart with 100,000 ASCII characters. Concatenate U+1F600. The new string and its encoded payload answer different size questions.\n\nIn this CPython 3.11.15 example, the resulting compact str uses one code-point slot width throughout. Because U+1F600 exceeds U+FFFF, the new object needs four-byte slots, including its ASCII prefix. The original immutable str is untouched. UTF-8, by contrast, keeps each ASCII character at one byte and adds four bytes for U+1F600.\n\nInside the str object\nUTF-8 payload\nVariable-length encoding, not uniform slots\nA\nA\n…\nU+1F600\n\nThe 100,000-character ASCII prefix stays at 100,000 bytes. U+1F600 adds 4 bytes, giving a 100,004-byte UTF-8 payload. The boxes are schematic; display widths are not numerically proportional to byte counts.\n\nThese are encoded payload bytes, not the memory occupied by a Python bytes object, a process, or a measured file.\n\nInherited local observations—not new measurements. All values are bytes.\nWhat is counted?\tASCII × 100,000\tNew result: + U+1F600\nstr object size\t100,049\t400,080\nUTF-8 payload length\t100,000\t100,004\n\nNot “all emoji quadruple Python memory.” This is one code point in one pinned implementation. Object totals include more than character payload and are not exactly fourfold. Non-ASCII does not automatically mean four-byte slots.\n\nInherited sources: PEP 393 and CPython 3.11.15’s pinned Unicode implementation. No Python experiment was run for this explanation.\n\n03\nDocker: an absent path can leave retained bytes\n\nSeparate the merged filesystem view from the immutable image layers beneath it.\n\nIn an ordinary unsquashed image, a first RUN records a new file’s content in a layer. A later RUN can record a whiteout—a deletion entry that hides the lower path in the merged view. It does not rewrite the earlier layer blob.\n\nAfter the creating RUN\nAfter a later deleting RUN\nPath hidden; earlier payload retained\nMerged view\n/demo/payload is absent. No ordinary whiteout file is shown here.\nLater layer cutaway\nWhiteout entry hides the lower path.\nEarlier immutable layer—unchanged\nThe hypothetical uncompressed 100 MB payload remains.\n\nControls select illustrative states from the inherited explanation. They do not execute Docker or measure storage.\n\nWhy one RUN can differ\n\nA NEW temporary file created and deleted within one RUN is absent at both endpoints. Its payload is therefore absent from that path’s resulting diff. This does not make the entire layer empty or reclaim a preexisting base-layer file.\n\n100 MB means an assumed 100,000,000-byte uncompressed payload, not compressed image size, transfer size, cache usage, or physical storage. No Docker build was run. Inherited sources: pinned OCI layer specification and Moby 27.5.1. The reused trace covers selected classic/fallback paths, not every BuildKit backend or running-container writable-layer behavior.\n\n04\nChoose the medium for the explanation\n\nThe evidence stays bounded; the composition changes. These are supported choices, not a claim that every example has all four completed outputs.\n\nHTML · explore a distinction\n\nLet readers compare representations or inspect a mechanism at their own pace, with the sources close at hand.\n\nPNG · keep the essential contrast\n\nCompose a self-contained visual summary for its actual reading size—not a miniature article.\n\nNative PPTX · explain in sequence\n\nUse editable text and shapes to support a presented argument, with an intentional purpose for each slide.\n\nVideo · make change visible\n\nCoordinate mechanism changes with narration and captions, rather than relying on page transitions alone.\n\nThe common thread is not a visual template. It is the relationship between supported evidence, a visible mechanism, and a clearly stated limit. That is the editorial aim of these examples—not a measured learning outcome.\n\nAbout the evidence. This introduction reuses the sealed Aha: evidence made visible through three mechanisms Dossier, whose local inspection horizon is 17 September 2026. Technical sources and observations are inherited; no new web research, upstream-code inspection, or experiments were performed.\n\nThe Dossier’s dated gallery inventory is not used as a current completion claim. Detailed projection derivations, intermediate string cases, and running-container behavior are outside this introduction."
+    },
+    {
+      "id": "aha-introduction-390-dark-zh",
+      "topic": "aha-introduction",
+      "width": 390,
+      "height": 960,
+      "theme": "dark",
+      "language": "zh",
+      "sourceHash": "21aac193b757a5e485c6c131122e525aa125938c40e90ea3a570a801d12f15d8",
+      "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+      "outputHash": "e76d956fb1f7d3d0bc060f9295ad7f63c27e43f7cbd3abe3696e984580c94cd4",
+      "checks": [
+        {
+          "name": "Language switch and title",
+          "passed": true
+        },
+        {
+          "name": "Keyboard and pointer controls",
+          "passed": true
+        },
+        {
+          "name": "Viewport, text boundaries, theme and reduced motion",
+          "passed": true
+        },
+        {
+          "name": "No page errors or automatic external requests",
+          "passed": true
+        },
+        {
+          "name": "Both representations preserve inherited numeric totals",
+          "passed": true
+        },
+        {
+          "name": "Language round trip preserves mechanism states",
+          "passed": true
+        },
+        {
+          "name": "Secondary text contrast in the selected theme",
+          "passed": true
+        },
+        {
+          "name": "keyboard",
+          "passed": true
+        },
+        {
+          "name": "pointer",
+          "passed": true
+        },
+        {
+          "name": "languageSwitch",
+          "passed": true
+        },
+        {
+          "name": "themeSwitch",
+          "passed": true
+        },
+        {
+          "name": "reducedMotion",
+          "passed": true
+        },
+        {
+          "name": "overflow",
+          "passed": true
+        },
+        {
+          "name": "console",
+          "passed": true
+        }
+      ],
+      "screenshots": [
+        {
+          "file": "html-390-zh-dark.png",
+          "sha256": "79288db3a7542283121d5f960c58438a979edd49262d3ffb1a8ec633f599b4fe"
+        }
+      ],
+      "controls": {
+        "observedStates": [
+          {
+            "label": "看 str 对象内部",
+            "method": "pointer",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": false,
+            "observation": {
+              "mechanism": "python",
+              "state": "object",
+              "visibleText": "新结果中的码点槽，宽度一致\nA\nA\n…\nU+1F600\n\n新结果中的每个码点槽都是四字节。上图只是槽位示意，没有画出全部 100,001 个槽，也不是内存地址图。显示宽度不与字节数成比例。\n\n原来的 ASCII 字符串仍保留原有表示。拼接会利用操作数的表示范围，这不意味着每次拼接都会扫描全部码点。"
+            }
+          },
+          {
+            "label": "看 UTF-8 编码数据",
+            "method": "keyboard Enter",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "python",
+              "state": "encoding",
+              "visibleText": "编码长度可变，不采用统一槽宽\nA\nA\n…\nU+1F600\n\n100,000 个 ASCII 字符仍占 100,000 字节。U+1F600 增加四字节，因此 UTF-8 编码数据合计 100,004 字节。方框仅作示意，显示宽度不与字节数成比例。\n\n这里数的是编码数据的字节，不是 Python bytes 对象的内存占用、进程内存或实测文件大小。"
+            }
+          },
+          {
+            "label": "创建文件的 RUN 之后",
+            "method": "pointer",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "docker",
+              "state": "created",
+              "mergedView": "合并视图\n/demo/payload 可见。",
+              "retainedPayload": "100 MB"
+            }
+          },
+          {
+            "label": "后续删除的 RUN 之后",
+            "method": "keyboard Enter",
+            "pressed": "true",
+            "selected": null,
+            "contentChanged": true,
+            "observation": {
+              "mechanism": "docker",
+              "state": "deleted",
+              "mergedView": "合并视图\n/demo/payload 不可见。这里也不会出现普通的 whiteout 文件。",
+              "retainedPayload": "100 MB"
+            }
+          }
+        ]
+      },
+      "scrollWidth": 390,
+      "visibleInkOverhang": [],
+      "contentOverflow": [],
+      "contrast": [
+        {
+          "color": "rgb(222, 222, 222)",
+          "background": "rgb(41, 41, 41)",
+          "ratio": 10.813616896535128
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(41, 41, 41)",
+          "ratio": 6.70815541605857
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(253, 142, 161)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.071536729628135
+        },
+        {
+          "color": "rgb(176, 176, 176)",
+          "background": "rgb(61, 59, 58)",
+          "ratio": 5.136626616638519
+        }
+      ],
+      "text": "AHA / 项目介绍\n\nAha：两个技能，\n从证据到讲解。\n\nAha 是一对可移植技能：research 查清发生了什么、为什么，以及证据能支持到哪里；explain 则依据这些证据，创作你所需媒介的视觉讲解。\n\n由宿主协调，而非技能自动接力\naha-research\n\n围绕问题开展调查，把结论、来源、推理与限制一并保存在 Research Dossier（研究档案）中，供后续查阅和复用。\n\naha-explain\n\n根据证据，为指定媒介创作视觉讲解。构图要让机制变得可见，而不只是给报告换一套样式。\n\n两个技能，不是自动分发流水线。何时研究、何时复用研究档案、何时制作某种媒介，由宿主决定。研究本身也可以是最终交付物。\n\n01\n格陵兰：地图上的大小，不等于球面面积\n\n讲清一个机制，先区分什么变了、什么没有变。\n\n球面墨卡托投影在高纬度的放大更明显。球面上的经线逐渐汇聚，地图却保持经线等距；为了保持局部角度，南北方向也必须相应放大。\n\n假设给格陵兰边界的每一个点施加同一个球面刚性旋转。它的球面面积不变，但移向低纬度后，在固定投影上的轮廓大小会改变。这不是把二维图形直接缩小。\n\n在球面上\n面积保持不变\n在固定地图上\n轮廓大小改变\n这是概念区分图，不是边界绘图、面积比例图或搬移模拟器。\n\n适用范围不能省略。这里使用概化的球面模型，并裁去极区；不能推及所有地图，也不是精密面积测量。搬移是假设的几何操作，不是真实大陆运动；整个格陵兰也不存在一个统一的放大倍数。\n\n沿用来源：PROJ 的墨卡托投影说明及 Natural Earth 5.1.2 概化边界（数据使用条款）。本页没有执行新的地图计算。\n\n02\nCPython：字符串对象，不等于 UTF-8 编码\n\n从 100,000 个 ASCII 字符开始，再拼接 U+1F600。新字符串对象与它的编码数据，回答的是两种不同的大小问题。\n\n在这个 CPython 3.11.15 示例中，拼接所得的紧凑型 str 为所有码点采用统一槽宽。U+1F600 超过 U+FFFF，因此新对象需要四字节槽，ASCII 前缀也包括在内。原来的不可变 str 没有被修改。UTF-8 则不同：ASCII 字符仍各占一字节，U+1F600 只增加四字节。\n\n看 str 对象内部\n看 UTF-8 编码数据\n编码长度可变，不采用统一槽宽\nA\nA\n…\nU+1F600\n\n100,000 个 ASCII 字符仍占 100,000 字节。U+1F600 增加四字节，因此 UTF-8 编码数据合计 100,004 字节。方框仅作示意，显示宽度不与字节数成比例。\n\n这里数的是编码数据的字节，不是 Python bytes 对象的内存占用、进程内存或实测文件大小。\n\n沿用既有本地观测，并非本次新测量。以下单位均为字节。\n统计什么？\tASCII × 100,000\t新结果：+ U+1F600\nstr 对象大小\t100,049\t400,080\nUTF-8 数据长度\t100,000\t100,004\n\n不能概括成“所有 emoji 都让 Python 内存翻四倍”。这里只讨论固定实现中的一个码点。对象总大小不只有字符数据，也并非恰好四倍。非 ASCII 字符并不必然需要四字节槽。\n\n沿用来源：PEP 393与固定提交的 CPython 3.11.15 Unicode 实现。本次讲解没有运行 Python 实验。\n\n03\nDocker：路径不见了，旧层的字节还在\n\n把合并后的文件系统视图，与下方不可变的镜像层分开看。\n\n在普通、未压平的镜像中，第一次 RUN 把新文件内容记录到一层里。后一次 RUN 可以记录 whiteout（删除标记），使较低层的路径在合并视图中不可见，但不会重写较早的层数据。\n\n创建文件的 RUN 之后\n后续删除的 RUN 之后\n路径隐藏，旧层内容保留\n合并视图\n/demo/payload 不可见。这里也不会出现普通的 whiteout 文件。\n后续层的剖面\nwhiteout 条目隐藏较低层的路径。\n较早的不可变层——没有变化\n假设的未压缩 100 MB 内容仍然保留。\n\n按钮只切换既有讲解中的示意状态，不会执行 Docker，也不会测量存储。\n\n为什么同一次 RUN 可能不同？\n\n如果新建临时文件在同一次 RUN 中创建又删除，那么操作前后都没有这个文件。因此，该路径的最终差异中不会留下它的内容。这不代表整个层为空，也不会回收基础层中原有文件的数据。\n\n100 MB 指假设的 100,000,000 字节未压缩内容，不是压缩镜像大小、传输量、缓存用量或物理存储量。本次没有运行 Docker 构建。沿用来源：固定版本的 OCI 层规范与 Moby 27.5.1。既有代码追踪仅涉及选定的经典／回退路径，不涵盖所有 BuildKit 后端，也不讲解运行中容器的可写层。\n\n04\n依据讲解任务，选择媒介\n\n证据的边界不变，表达方式可以不同。以下是支持的选择，并不意味着每个案例都已经交付四种格式。\n\nHTML · 自主比较\n\n让读者按自己的节奏比较表示方式、查看机制，随时查阅相邻的来源。\n\nPNG · 留住关键区别\n\n按实际阅读尺寸独立构图，形成自足的视觉摘要，而不是把文章缩成小图。\n\n原生 PPTX · 逐步讲述\n\n用可编辑的文字与形状组织演示，让每一页都承担明确的讲解任务。\n\n视频 · 展示变化\n\n让机制的变化与旁白、字幕配合，而不只是为页面加上转场。\n\n贯穿这些媒介的不是固定模板，而是有依据的结论、看得见的机制与说得清的限制之间的关系。这是这些案例的编辑目标，不是经过测量的学习效果。\n\n证据说明。本页复用已封存的《Aha: evidence made visible through three mechanisms》研究档案，其本地检查时间截至 2026 年 9 月 17 日。技术来源与观测均沿用既有记录；本次没有新增网页研究、上游代码检查或实验。\n\n档案中有日期限制的格式库存，不作为当前交付情况的依据。详细投影推导、其他字符串案例及运行中容器的行为，不在本篇介绍范围内。"
+    }
+  ],
+  "failures": [],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "externalRequests": [],
+  "unperformed": [
+    "Human comprehension",
+    "Independent human translation",
+    "Physical phone",
+    "Screen reader"
+  ],
+  "checks": [
+    {
+      "name": "initialEnglish",
+      "passed": true,
+      "observation": "Runner asserted en before any language activation in each fresh browser context."
+    },
+    {
+      "name": "offline",
+      "passed": true,
+      "observation": "All contexts were offline, service workers blocked and every non-navigation request denied; actual externalRequests is empty."
+    }
+  ],
+  "themeScope": "themeSwitch means explicit scoutTheme light/dark override in fresh cases, not a nonexistent in-page theme button.",
+  "overflowScope": "Visible font-ink overhang with clear neighboring content is recorded separately from true clipping or overlap."
+}

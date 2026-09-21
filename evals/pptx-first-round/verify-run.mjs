@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { inventory, readRegular, safePath, safeRelative, sha256 } from './prepare.mjs';
 
 const conditions = ['baseline', 'candidate'];
-const caseIds = ['git-merge', 'anc', 'greenland', 'project-overview'];
+const caseIds = ['git-merge', 'anc', 'greenland', 'aha-introduction'];
 const sourceNames = ['cases.json', 'prepare.mjs', 'inspect.mjs', 'verify-run.mjs'];
 const json = value => `${JSON.stringify(value, null, 2)}\n`;
 const stable = value => JSON.stringify(value, (_, item) => item && typeof item === 'object' && !Array.isArray(item)
@@ -188,7 +188,7 @@ export async function verifyRun(runRoot, reportPath) {
           equal(scope, 'task-pinned-skill', null, bundle, task.skill);
           equal(scope, 'task-research-path', null, path.join('inputs', 'research'), task.research);
           equal(scope, 'task-project-path', null, path.join('outputs', 'project'), task.project);
-          equal(scope, 'approved-image-path', null, id === 'project-overview'
+          equal(scope, 'approved-image-path', null, id === 'aha-introduction'
             ? path.join(author, 'inputs', 'assets', 'git-slide-03.png') : null, task.approved_image_path);
           if (typeof task.prompt !== 'string' || !task.prompt.trim()) fail(scope, 'nonempty-prompt', null, 'nonempty string', task.prompt ?? null);
           const original = corpus?.cases?.find(item => item.id === id);

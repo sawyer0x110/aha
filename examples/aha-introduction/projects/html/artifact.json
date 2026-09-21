@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0.0",
+  "format": "html",
+  "language": "bilingual",
+  "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+  "title": "Aha: two skills, from evidence to explanation",
+  "status": "authored",
+  "entry": "html/index.html",
+  "coverage": [
+    { "id": "en-skills / zh-skills", "claimIds": ["c-skills"] },
+    { "id": "en-map / zh-map", "claimIds": ["c-map"] },
+    { "id": "en-python / zh-python", "claimIds": ["c-python", "c-utf8"] },
+    { "id": "en-docker / zh-docker", "claimIds": ["c-layer", "c-delete", "c-same"] },
+    { "id": "en-synthesis / zh-synthesis", "claimIds": ["c-synthesis"] }
+  ],
+  "omissions": [
+    { "claimId": "c-formats", "reason": "The gallery inventory was inspected on 2026-09-17 and is now outdated. Do not repeat video-only or four-format completion claims. Media choices describe supported affordances of the two skills, not present gallery inventory." },
+    { "claimId": "c-intermediate", "reason": "Latin-1 and BMP intermediate cases are not developed in this introduction. The visible copy explicitly rejects a universal non-ASCII-to-four-byte rule." },
+    { "claimId": "c-container", "reason": "Running-container writable-layer behavior is explicitly outside the image-layer example." }
+  ],
+  "width": 1280,
+  "height": 720
+}

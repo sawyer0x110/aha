@@ -2,7 +2,7 @@ import * as fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
-import { inventory, safePath, safeRelative, readRegular, sha256 } from '../pptx-first-round/prepare.mjs';
+import { inventory, safePath, safeRelative, readRegular, sha256, repositoryRoot } from '../pptx-first-round/prepare.mjs';
 
 const here = fileURLToPath(new URL('./', import.meta.url));
 const corpusPath = fileURLToPath(new URL('../pptx-first-round/cases.json', import.meta.url));
@@ -76,10 +76,10 @@ export function discoverImageLiteral(source, id) {
     ts.forEachChild(node, visit);
   }
   visit(ast);
-  if (images.length !== (id === 'project-overview' ? 1 : 0)) throw new Error(`Unexpected seed image allowance: ${id}`);
+  if (images.length !== (id === 'aha-introduction' ? 1 : 0)) throw new Error(`Unexpected seed image allowance: ${id}`);
   if (!images.length) return null;
   if (!path.isAbsolute(images[0].path) || path.extname(images[0].path).toLowerCase() !== '.png') {
-    throw new Error('Overview image must be an existing absolute PNG literal');
+    throw new Error('Introduction image must be an existing absolute PNG literal');
   }
   return images[0];
 }
@@ -133,7 +133,7 @@ Verify the frozen manifest digest before both authors and again before host exec
 Record the author/tool/model provenance and one submitted change-set hash per condition; never rerun an author with feedback.
 Manually review permitted output diffs and all source execution risks; static explain-check is not a security approval.
 Only main.mjs and artifact.json may differ inside outputs/project; outputs/qa/repair.json is optional.
-Check the original external overview PNG at the recorded path/hash; never silently rewrite the seed or asset path.
+Check the original external introduction PNG at the recorded path/hash; never silently rewrite the seed or asset path.
 Record explicit host approval before executing with bundles/<condition>/aha-explain/scripts/aha.mjs.
 Both pinned scripts must match the frozen common runtime SHA-256, including later rendering, not just static checks.
 Use the same actual Microsoft PowerPoint version, font environment and export/edit-probe procedure for both conditions.
@@ -171,6 +171,8 @@ export async function prepareRepairEval({ output, baseline, candidate, seedRunRo
   const protocol = JSON.parse(protocolBytes);
   const corpusBytes = await readRegular(corpusPath);
   const corpus = JSON.parse(corpusBytes);
+  equal(protocol.corpus_revision, corpus.corpus_revision, 'repair protocol/corpus revision');
+  equal(protocol.case_ids, corpus.cases.map(item => item.id), 'repair protocol/corpus cases');
   const runtime = await readRegular(commonRuntime);
   if (!runtime.length) throw new Error('Common runtime must not be empty');
   const noticesPath = path.join(path.dirname(path.dirname(commonRuntime)), 'THIRD-PARTY-NOTICES.txt');
@@ -196,11 +198,20 @@ export async function prepareRepairEval({ output, baseline, candidate, seedRunRo
   }
   const seeds = {};
   for (const id of protocol.case_ids) {
+    const item = corpus.cases.find(item => item.id === id);
     const original = path.join(seedRunRoot, id, 'candidate', 'outputs');
     const project = path.join(original, 'project-repaired');
     const projectFiles = await inventory(project);
     requireFiles(projectFiles, ['pptx/main.mjs', 'artifact.json', 'research/manifest.json',
       'research/research.json', 'research/report.md'], 'seed project file');
+    const researchFiles = await inventory(at(repositoryRoot, item.research));
+    const seedResearch = Object.fromEntries(Object.entries(projectFiles)
+      .filter(([name]) => name.startsWith('research/'))
+      .map(([name, value]) => [name.slice('research/'.length), value]));
+    equal(seedResearch, researchFiles, `seed research must match current corpus: ${id}`);
+    const artifact = JSON.parse(await readRegular(path.join(project, 'artifact.json')));
+    const researchManifest = JSON.parse(await readRegular(path.join(project, 'research', 'manifest.json')));
+    equal(artifact.researchHash, researchManifest.contentHash, `seed artifact research identity: ${id}`);
     const deck = await readRegular(path.join(original, 'deck-repaired.pptx'));
     if (!deck.length) throw new Error(`Empty seed deck: ${id}`);
     const rendered = path.join(original, 'rendered-repaired');
@@ -229,10 +240,9 @@ export async function prepareRepairEval({ output, baseline, candidate, seedRunRo
     if (approved) {
       disjoint(target, approved.path);
       asset = await readRegular(approved.path);
-      if (!asset.length) throw new Error('Approved overview PNG is empty');
+      if (!asset.length) throw new Error('Approved introduction PNG is empty');
       Object.assign(approved, fingerprint(asset));
     }
-    if (!corpus.cases.find(item => item.id === id)) throw new Error(`Unknown corpus case: ${id}`);
     seeds[id] = { original, project, projectFiles, deck, rendered, selected, observations, approved, asset };
   }
   const sourceFiles = { 'protocol.json': protocolBytes, 'first-round-cases.json': corpusBytes };
@@ -359,7 +369,7 @@ export async function verifyRepairRun(output, expectedManifestSha256) {
   equal(run.schema_version, 1, 'manifest schema');
   equal(run.round, 'pptx-second-round-repair-only', 'round');
   equal(run.root, root, 'run root');
-  const caseIds = ['git-merge', 'anc', 'greenland', 'project-overview'];
+  const caseIds = ['git-merge', 'anc', 'greenland', 'aha-introduction'];
   const conditions = ['baseline', 'candidate'];
   const evaluator = path.join(root, 'evaluator');
   const mutable = new Set(['run.json', 'review-mapping.json', ...caseIds.map(id => `${id}/eval_metadata.json`)]);
