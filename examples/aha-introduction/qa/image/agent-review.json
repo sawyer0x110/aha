@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "status": "reviewed-current",
+  "format": "image",
+  "sourceHash": "a6b45f1d00bb3d1b81bf1094e1dbe645c555de170c2c89ddf3f7f777704f84bd",
+  "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+  "outputHash": "98196ae1ff619bd1224c3025e48dbf559708e637894d41a0f2f9286674deabec",
+  "receiptHash": "ad942c6f918e4dddd16925e7768b368e605f15511584f0963f0aa1a3d862fc41",
+  "reviewer": {
+    "kind": "agent",
+    "id": "8208c089-09ef-4aef-9717-a3da7df578fb"
+  },
+  "reviewedFiles": [
+    {
+      "file": "aha-introduction/qa/image/image-observations.json",
+      "sha256": "2a56d139233e2b98125574328d15fb99f4298d386455f30857a67fc577ec8adb"
+    },
+    {
+      "file": "aha-introduction/qa/image/reading-390.png",
+      "sha256": "57c98c0053118cd96a493af1633f2fa553d578667fe63057b22d7e9a9a0f03ac"
+    },
+    {
+      "file": "aha-introduction/aha-introduction.png",
+      "sha256": "98196ae1ff619bd1224c3025e48dbf559708e637894d41a0f2f9286674deabec"
+    }
+  ],
+  "semanticFindings": [
+    "The independent Chinese poster identifies Aha, differentiates research from explanation, and explicitly assigns coordination to the host.",
+    "Four medium affordances are presented as supported choices, not a case-completion inventory.",
+    "Compressed Greenland, CPython and Docker distinctions retain fixed spherical Mercator, CPython3.11.15/U+1F600/original-string, and new-temporary-file/endpoint-diff qualifications.",
+    "Exact Python byte totals and the Docker100MB example are intentionally omitted from this compressed medium, not replaced with invented figures. Source horizon and absence of new experiments remain visible."
+  ],
+  "visualFindings": [
+    "The complete1080x1920 PNG and its actual390x694px reading preview were inspected: all six principal regions and the three-line source footer remain visible.",
+    "The two skill columns, four medium labels/icons and three case sections have a consistent hierarchy; no clipped glyphs, crossing dividers or overlapping text were observed.",
+    "At390px display width the essential text corresponds to about15.9 CSS pixels; the actual preview preserves readable case distinctions and the footer without a cropped bottom edge.",
+    "A separately observed offline source capture is byte-identical to the delivered PNG, with1080x1920 scroll/capture bounds and no source-browser errors or external requests."
+  ],
+  "limitations": [
+    "The intended context is scrolling a390px-wide poster, not fitting all1920 source pixels into a single small-phone viewport.",
+    "Physical-phone and independent human reading/comprehension acceptance remain unperformed.",
+    "System-font rendering was observed on this Windows/Edge environment; cross-machine font substitution remains possible when reproducing from source."
+  ],
+  "unperformed": [
+    "Human comprehension",
+    "Human acceptance"
+  ],
+  "production": {
+    "research": "Unchanged September 17 introduction Dossier; no new primary research, CPython experiment or Docker build.",
+    "guidance": "Current aha-explain skill and selected medium, writing, design, language and QA references.",
+    "coInterventions": [
+      "Host pptx skill and PptxGenJS guide",
+      "Host web-artifacts-builder Clawpilot theme",
+      "Microsoft PowerPoint 16.0",
+      "Installed Edge through Playwright"
+    ],
+    "attribution": "A mixed-tool production run, not a controlled estimate of Aha-only effectiveness.",
+    "approval": "User approved Chinese PPT/PNG, bilingual HTML, offline local rendering, PowerPoint copy probes and same-scope reviewed refinements.",
+    "imageToolBoundary": "Only actual visible bitmaps were counted. Earlier success-looking image-limit responses and associated inferred observations were explicitly withdrawn. Final-image observations do not establish a before/after effect or human acceptance."
+  }
+}

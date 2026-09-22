@@ -1,11 +1,11 @@
 # 降噪耳机：为什么人声还在？
 
-先看[交互讲解](index.html)，再按阅读场景选择 [1800×1200 信息图](anc.png)、[7 页中文原生 PPTX](anc.pptx)或 [127.1 秒英文配音视频](anc.mp4)。[字幕](anc.mp4.srt)与[研究报告](research/report.md)随附。
+先看[交互讲解](anc.html)，再按阅读场景选择 [1800×1200 信息图](anc.png)、[7 页中文原生 PPTX](anc.pptx)或 [127.1 秒英文配音视频](anc.mp4)。[字幕](anc.mp4.srt)与[研究报告](research/report.md)随附。
 
 主线从两路声压在耳边相加，依次解释匹配、相位偏差、时延与频率、主动／被动两层以及残余语音线索。曲线是理想等振幅单频模型，不是耳机实测、分贝或主观响度；反例和测量边界保留在各自适合的媒介中。
 
 PNG 面向至少 1200px 宽的桌面／文档阅读。PPT 的原生文字、形状可编辑，以逐页因果展开推动机制，不宣称含页内定时动画。视频为 1280×720、30fps、3813 帧，带烧录字幕与 SRT。
 
-[四种独立作者项目](projects/)绑定同一份[研究快照](research/manifest.json)。[当前完整旁白计划](video-plan.json)为 `provided-audio`；[音频清单](audio/manifest.json)和[原配音来源](audio-origin/)记录 `edge-tts==7.2.8`、`en-US-AriaNeural`、`+0%` 的已批准录音。初始 90–120 秒限制未通过，用户接受 127.1 秒自然时长后批准本地导入，未补静音凑时长或再次联网配音。
+[四种独立作者项目](projects/)绑定同一份[研究快照](research/manifest.json)。[当前完整旁白计划](video-plan.json)为 `provided-audio`；[音频清单](audio/manifest.json)和[录音来源](audio/provenance.json)记录已批准的 `en-US-AriaNeural`、`+0%` 录音。自然时长为 127.1 秒，未补静音凑时长或再次联网配音。
 
-PPTX 来自迭代后的技能，其来源与当前检查见 [PPTX 收录记录](../pptx-publication.json)和[项目 QA](projects/pptx/qa/)。其他格式仍使用[原验收记录](../../evals/examples/refresh-20260916/anc/)，不沿用其中旧幻灯片的验收结论。试片已由用户听看确认；完整视频听看未确认，解码与画面检查不能替代听审。完整边界见[统一说明](../README.md)。
+各格式来源与检查统一见[交付清单](../delivery-manifest.json)和[当前 QA](qa/)。PNG 有阅读尺寸预览，但不据此宣称独立视觉验收通过。完整视频听看未确认，解码与抽样画面检查不能替代听审。完整边界见[统一说明](../README.md)。

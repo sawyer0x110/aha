@@ -1,0 +1,1144 @@
+{
+  "records": [
+    {
+      "id": "opening",
+      "segmentIndex": 0,
+      "progress": 0.5,
+      "theme": "dark",
+      "motion": {
+        "progress": 0,
+        "relativeError": 3.219646771412954e-15,
+        "centroid": [
+          -41.96503517476323,
+          73.1507843313765
+        ],
+        "projectedArea": 8053.035851175841,
+        "originalAreaSteradians": 0.05394838020804734,
+        "movedAreaSteradians": 0.05394838020804717,
+        "scale": 95,
+        "translate": [
+          455,
+          285
+        ]
+      },
+      "caption": {
+        "text": "Why does Greenland look enormous beside Africa on Mercator maps? The projection magnifies high latitudes, not actual land.",
+        "x": 64,
+        "y": 593.625,
+        "width": 1152,
+        "height": 102.375,
+        "right": 1216,
+        "bottom": 696
+      },
+      "font": "\"Segoe UI\", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif"
+    },
+    {
+      "id": "area-bars",
+      "segmentIndex": 1,
+      "progress": 0.5,
+      "theme": "light",
+      "motion": null,
+      "caption": {
+        "text": "Greenland covers about two point one seven million square kilometers. Africa covers thirty point four million: roughly fourteen times as much area.",
+        "x": 64,
+        "y": 593.625,
+        "width": 1152,
+        "height": 102.375,
+        "right": 1216,
+        "bottom": 696
+      },
+      "font": "\"Segoe UI\", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif"
+    },
+    {
+      "id": "meridians-globe",
+      "segmentIndex": 2,
+      "progress": 0.5,
+      "theme": "light",
+      "motion": null,
+      "caption": {
+        "text": "On a globe, meridians converge toward the poles. Distances between neighboring lines of longitude get smaller.",
+        "x": 64,
+        "y": 593.625,
+        "width": 1152,
+        "height": 102.375,
+        "right": 1216,
+        "bottom": 696
+      },
+      "font": "\"Segoe UI\", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif"
+    },
+    {
+      "id": "meridians-map",
+      "segmentIndex": 3,
+      "progress": 0.5,
+      "theme": "light",
+      "motion": null,
+      "caption": {
+        "text": "Mercator draws meridians as equally spaced parallel lines. This stretches east-west distances more at high latitudes.",
+        "x": 64,
+        "y": 593.625,
+        "width": 1152,
+        "height": 102.375,
+        "right": 1216,
+        "bottom": 696
+      },
+      "font": "\"Segoe UI\", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif"
+    },
+    {
+      "id": "latitude-stretch",
+      "segmentIndex": 4,
+      "progress": 0.5,
+      "theme": "light",
+      "motion": null,
+      "caption": {
+        "text": "To preserve local angles, north-south distances must stretch equally. That is why latitude lines spread apart.",
+        "x": 64,
+        "y": 593.625,
+        "width": 1152,
+        "height": 102.375,
+        "right": 1216,
+        "bottom": 696
+      },
+      "font": "\"Segoe UI\", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif"
+    },
+    {
+      "id": "local-patch",
+      "segmentIndex": 5,
+      "progress": 0.5,
+      "theme": "light",
+      "motion": null,
+      "caption": {
+        "text": "Consider a tiny patch at sixty degrees latitude, in a spherical model with scale one at the equator.",
+        "x": 64,
+        "y": 593.625,
+        "width": 1152,
+        "height": 102.375,
+        "right": 1216,
+        "bottom": 696
+      },
+      "font": "\"Segoe UI\", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif"
+    },
+    {
+      "id": "local-area",
+      "segmentIndex": 6,
+      "progress": 0.5,
+      "theme": "light",
+      "motion": null,
+      "caption": {
+        "text": "Locally, width doubles and height doubles: four times the area. This is not one factor for all Greenland.",
+        "x": 64,
+        "y": 593.625,
+        "width": 1152,
+        "height": 102.375,
+        "right": 1216,
+        "bottom": 696
+      },
+      "font": "\"Segoe UI\", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif"
+    },
+    {
+      "id": "moving-greenland",
+      "segmentIndex": 7,
+      "progress": 0.5,
+      "theme": "light",
+      "motion": {
+        "progress": 0.5,
+        "relativeError": 9.992007221626409e-16,
+        "centroid": [
+          -41.9650351747634,
+          36.5753921656881
+        ],
+        "projectedArea": 773.4535565684419,
+        "originalAreaSteradians": 0.05394838020804734,
+        "movedAreaSteradians": 0.053948380208047285,
+        "scale": 95,
+        "translate": [
+          455,
+          285
+        ]
+      },
+      "caption": {
+        "text": "Watch Greenland move south. We rotate its boundary rigidly on a sphere, then redraw it on this fixed Mercator map.",
+        "x": 64,
+        "y": 593.625,
+        "width": 1152,
+        "height": 102.375,
+        "right": 1216,
+        "bottom": 696
+      },
+      "font": "\"Segoe UI\", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif"
+    },
+    {
+      "id": "unchanged-area",
+      "segmentIndex": 8,
+      "progress": 0.5,
+      "theme": "light",
+      "motion": {
+        "progress": 1,
+        "relativeError": 1.5543122344752192e-15,
+        "centroid": [
+          -41.9650351747635,
+          -5.136324878438143e-14
+        ],
+        "projectedArea": 491.68551234836195,
+        "originalAreaSteradians": 0.05394838020804734,
+        "movedAreaSteradians": 0.05394838020804726,
+        "scale": 95,
+        "translate": [
+          455,
+          285
+        ]
+      },
+      "caption": {
+        "text": "Its spherical area stays unchanged. The outline looks smaller near the equator because the map magnifies it less.",
+        "x": 64,
+        "y": 593.625,
+        "width": 1152,
+        "height": 102.375,
+        "right": 1216,
+        "bottom": 696
+      },
+      "font": "\"Segoe UI\", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif"
+    },
+    {
+      "id": "local-angles",
+      "segmentIndex": 9,
+      "progress": 0.5,
+      "theme": "light",
+      "motion": null,
+      "caption": {
+        "text": "Mercator is not simply wrong. It preserves local angles, useful for expressing compass headings.",
+        "x": 64,
+        "y": 593.625,
+        "width": 1152,
+        "height": 102.375,
+        "right": 1216,
+        "bottom": 696
+      },
+      "font": "\"Segoe UI\", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif"
+    },
+    {
+      "id": "constant-heading",
+      "segmentIndex": 10,
+      "progress": 0.5,
+      "theme": "light",
+      "motion": null,
+      "caption": {
+        "text": "A constant-heading route becomes a straight line on Mercator. It is usually not the shortest path across the globe.",
+        "x": 64,
+        "y": 593.625,
+        "width": 1152,
+        "height": 102.375,
+        "right": 1216,
+        "bottom": 696
+      },
+      "font": "\"Segoe UI\", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif"
+    },
+    {
+      "id": "equal-earth",
+      "segmentIndex": 11,
+      "progress": 0.5,
+      "theme": "light",
+      "motion": null,
+      "caption": {
+        "text": "For comparing areas, choose an equal-area projection such as Equal Earth. Greenland and Africa now have their correct relative areas.",
+        "x": 64,
+        "y": 593.625,
+        "width": 1152,
+        "height": 102.375,
+        "right": 1216,
+        "bottom": 696
+      },
+      "font": "\"Segoe UI\", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif"
+    },
+    {
+      "id": "projection-tradeoff",
+      "segmentIndex": 12,
+      "progress": 0.5,
+      "theme": "light",
+      "motion": null,
+      "caption": {
+        "text": "Equal Earth changes shapes and angles. No flat map avoids every kind of distortion.",
+        "x": 64,
+        "y": 632.8125,
+        "width": 1152,
+        "height": 63.1875,
+        "right": 1216,
+        "bottom": 696
+      },
+      "font": "\"Segoe UI\", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif"
+    },
+    {
+      "id": "closing-choice",
+      "segmentIndex": 13,
+      "progress": 0.5,
+      "theme": "dark",
+      "motion": null,
+      "caption": {
+        "text": "Need to compare land area, or follow a compass heading? Choose the projection for that purpose.",
+        "x": 64,
+        "y": 593.625,
+        "width": 1152,
+        "height": 102.375,
+        "right": 1216,
+        "bottom": 696
+      },
+      "font": "\"Segoe UI\", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif"
+    }
+  ],
+  "replay": [
+    {
+      "scene": "opening",
+      "identical": true
+    },
+    {
+      "scene": "area-bars",
+      "identical": true
+    },
+    {
+      "scene": "meridians-globe",
+      "identical": true
+    },
+    {
+      "scene": "meridians-map",
+      "identical": true
+    },
+    {
+      "scene": "latitude-stretch",
+      "identical": true
+    },
+    {
+      "scene": "local-patch",
+      "identical": true
+    },
+    {
+      "scene": "local-area",
+      "identical": true
+    },
+    {
+      "scene": "moving-greenland",
+      "identical": true
+    },
+    {
+      "scene": "unchanged-area",
+      "identical": true
+    },
+    {
+      "scene": "local-angles",
+      "identical": true
+    },
+    {
+      "scene": "constant-heading",
+      "identical": true
+    },
+    {
+      "scene": "equal-earth",
+      "identical": true
+    },
+    {
+      "scene": "projection-tradeoff",
+      "identical": true
+    },
+    {
+      "scene": "closing-choice",
+      "identical": true
+    }
+  ],
+  "numerical": {
+    "samples": 201,
+    "maxRelativeError": 3.219646771412954e-15,
+    "originalAreaSteradians": 0.05394838020804734,
+    "initialProjectedArea": 8053.035851175841,
+    "finalProjectedArea": 491.68551234836195,
+    "projectedReduction": 16.378428180064457,
+    "monotonicDecrease": true,
+    "allMovingBoundsInsideClip": true,
+    "finalCentroid": [
+      -41.9650351747635,
+      -5.136324878438143e-14
+    ],
+    "fixedMercatorScale": 95,
+    "fixedMercatorTranslate": [
+      455,
+      285
+    ],
+    "reportedRatio": 14.018372308394035,
+    "sphericalRatio": 13.71971651269227,
+    "equalRatio": 13.717697553705259,
+    "equalRatioRelativeError": 0.00014715748573557175,
+    "equalEarthCountryAreaErrors": [
+      {
+        "name": "Fiji",
+        "error": 0.0002413755767473047
+      },
+      {
+        "name": "United Republic of Tanzania",
+        "error": 0.0000186241541649812
+      },
+      {
+        "name": "Western Sahara",
+        "error": 0.0001038658630598821
+      },
+      {
+        "name": "Canada",
+        "error": 0.000011890412170423303
+      },
+      {
+        "name": "United States of America",
+        "error": 0.000009162688343167247
+      },
+      {
+        "name": "Kazakhstan",
+        "error": 0.000005370338522436846
+      },
+      {
+        "name": "Uzbekistan",
+        "error": 6.826344300936427e-8
+      },
+      {
+        "name": "Papua New Guinea",
+        "error": 0.000034494492840320135
+      },
+      {
+        "name": "Indonesia",
+        "error": 0.000008942253119759158
+      },
+      {
+        "name": "Argentina",
+        "error": 0.000018514701417116086
+      },
+      {
+        "name": "Chile",
+        "error": 0.000046818187697694746
+      },
+      {
+        "name": "Democratic Republic of the Congo",
+        "error": 0.00003364794210092281
+      },
+      {
+        "name": "Somalia",
+        "error": 0.00007587700779054796
+      },
+      {
+        "name": "Kenya",
+        "error": 0.00004258139212276468
+      },
+      {
+        "name": "Sudan",
+        "error": 0.00003982464063978508
+      },
+      {
+        "name": "Chad",
+        "error": 0.000031746881345440237
+      },
+      {
+        "name": "Haiti",
+        "error": 0.00013737006908087768
+      },
+      {
+        "name": "Dominican Republic",
+        "error": 0.000011638376153699781
+      },
+      {
+        "name": "Russia",
+        "error": 0.0000052643555503717465
+      },
+      {
+        "name": "The Bahamas",
+        "error": 0.0004352109420595607
+      },
+      {
+        "name": "Falkland Islands",
+        "error": 0.00045658447678587066
+      },
+      {
+        "name": "Norway",
+        "error": 0.00005943851843892567
+      },
+      {
+        "name": "Greenland",
+        "error": 0.000023255786035902837
+      },
+      {
+        "name": "French Southern and Antarctic Lands",
+        "error": 0.0002748962336021066
+      },
+      {
+        "name": "East Timor",
+        "error": 0.0003010008678341336
+      },
+      {
+        "name": "South Africa",
+        "error": 0.00001083873888996223
+      },
+      {
+        "name": "Lesotho",
+        "error": 0.00006315578861171289
+      },
+      {
+        "name": "Mexico",
+        "error": 0.000010307604885184674
+      },
+      {
+        "name": "Uruguay",
+        "error": 0.00008372094524256024
+      },
+      {
+        "name": "Brazil",
+        "error": 0.00001556057932050603
+      },
+      {
+        "name": "Bolivia",
+        "error": 0.000040808037563455635
+      },
+      {
+        "name": "Peru",
+        "error": 0.000027212213356775372
+      },
+      {
+        "name": "Colombia",
+        "error": 0.0000194350296064405
+      },
+      {
+        "name": "Panama",
+        "error": 0.00002563253497489537
+      },
+      {
+        "name": "Costa Rica",
+        "error": 0.000028081947112790218
+      },
+      {
+        "name": "Nicaragua",
+        "error": 0.000026342093140341305
+      },
+      {
+        "name": "Honduras",
+        "error": 0.000019252773256206446
+      },
+      {
+        "name": "El Salvador",
+        "error": 0.00008282765611844489
+      },
+      {
+        "name": "Guatemala",
+        "error": 0.00013159211531077464
+      },
+      {
+        "name": "Belize",
+        "error": 0.00047297692785841505
+      },
+      {
+        "name": "Venezuela",
+        "error": 0.000040264724373240135
+      },
+      {
+        "name": "Guyana",
+        "error": 0.0000031646915574778944
+      },
+      {
+        "name": "Suriname",
+        "error": 0.00007729452705462769
+      },
+      {
+        "name": "France",
+        "error": 0.000008037238199642971
+      },
+      {
+        "name": "Ecuador",
+        "error": 0.000017842441427440292
+      },
+      {
+        "name": "Puerto Rico",
+        "error": 0.0000834507218901992
+      },
+      {
+        "name": "Jamaica",
+        "error": 0.000076515430919466
+      },
+      {
+        "name": "Cuba",
+        "error": 0.00009162734693202168
+      },
+      {
+        "name": "Zimbabwe",
+        "error": 0.00002375433827217499
+      },
+      {
+        "name": "Botswana",
+        "error": 0.00007825388109372611
+      },
+      {
+        "name": "Namibia",
+        "error": 0.0001129346078408977
+      },
+      {
+        "name": "Senegal",
+        "error": 0.000016453484612544145
+      },
+      {
+        "name": "Mali",
+        "error": 0.000013902375636587472
+      },
+      {
+        "name": "Mauritania",
+        "error": 0.00010454467043896631
+      },
+      {
+        "name": "Benin",
+        "error": 0.000005734807737911574
+      },
+      {
+        "name": "Niger",
+        "error": 0.00003075482111758454
+      },
+      {
+        "name": "Nigeria",
+        "error": 0.000027166555737978548
+      },
+      {
+        "name": "Cameroon",
+        "error": 0.000028712094729099746
+      },
+      {
+        "name": "Togo",
+        "error": 0.00004880724669220626
+      },
+      {
+        "name": "Ghana",
+        "error": 0.000014414624212921723
+      },
+      {
+        "name": "Ivory Coast",
+        "error": 0.000006093850434263359
+      },
+      {
+        "name": "Guinea",
+        "error": 0.000003006636343894087
+      },
+      {
+        "name": "Guinea-Bissau",
+        "error": 0.00010648543024560642
+      },
+      {
+        "name": "Liberia",
+        "error": 0.000045894747654928736
+      },
+      {
+        "name": "Sierra Leone",
+        "error": 0.0000017267284297961538
+      },
+      {
+        "name": "Burkina Faso",
+        "error": 0.000057471872191849904
+      },
+      {
+        "name": "Central African Republic",
+        "error": 0.000030547190568941396
+      },
+      {
+        "name": "Republic of the Congo",
+        "error": 0.000017839309675249382
+      },
+      {
+        "name": "Gabon",
+        "error": 0.000023771620843549002
+      },
+      {
+        "name": "Equatorial Guinea",
+        "error": 0.00012313647637129943
+      },
+      {
+        "name": "Zambia",
+        "error": 0.000016523930402190246
+      },
+      {
+        "name": "Malawi",
+        "error": 0.0001853908781676017
+      },
+      {
+        "name": "Mozambique",
+        "error": 0.000009765498510505566
+      },
+      {
+        "name": "eSwatini",
+        "error": 0.00017414339895371889
+      },
+      {
+        "name": "Angola",
+        "error": 0.000046306685649422086
+      },
+      {
+        "name": "Burundi",
+        "error": 0.00027396215456221285
+      },
+      {
+        "name": "Israel",
+        "error": 0.0002230303374588516
+      },
+      {
+        "name": "Lebanon",
+        "error": 0.000293152043633782
+      },
+      {
+        "name": "Madagascar",
+        "error": 0.00004975860778200225
+      },
+      {
+        "name": "Palestine",
+        "error": 0.0001381318940152365
+      },
+      {
+        "name": "Gambia",
+        "error": 0.00014489730550937274
+      },
+      {
+        "name": "Tunisia",
+        "error": 0.00009372177200650533
+      },
+      {
+        "name": "Algeria",
+        "error": 0.000011721427423116992
+      },
+      {
+        "name": "Jordan",
+        "error": 0.00006420052828293166
+      },
+      {
+        "name": "United Arab Emirates",
+        "error": 0.00014395154345192562
+      },
+      {
+        "name": "Qatar",
+        "error": 0.00006672323932011004
+      },
+      {
+        "name": "Kuwait",
+        "error": 0.0004063651540762159
+      },
+      {
+        "name": "Iraq",
+        "error": 0.00002726952744014355
+      },
+      {
+        "name": "Oman",
+        "error": 0.00003215318697669112
+      },
+      {
+        "name": "Vanuatu",
+        "error": 0.00003048966726992841
+      },
+      {
+        "name": "Cambodia",
+        "error": 0.00004482605572508902
+      },
+      {
+        "name": "Thailand",
+        "error": 0.0000013436285366541512
+      },
+      {
+        "name": "Laos",
+        "error": 0.0000029401826513453244
+      },
+      {
+        "name": "Myanmar",
+        "error": 0.00000566732114881674
+      },
+      {
+        "name": "Vietnam",
+        "error": 0.00008040865288871935
+      },
+      {
+        "name": "North Korea",
+        "error": 0.0001669648754556441
+      },
+      {
+        "name": "South Korea",
+        "error": 0.000013308434538839009
+      },
+      {
+        "name": "Mongolia",
+        "error": 0.00001704487077969219
+      },
+      {
+        "name": "India",
+        "error": 0.00002489329671573337
+      },
+      {
+        "name": "Bangladesh",
+        "error": 0.0001264116538672866
+      },
+      {
+        "name": "Bhutan",
+        "error": 0.00010995212226805329
+      },
+      {
+        "name": "Nepal",
+        "error": 0.00006734505742045371
+      },
+      {
+        "name": "Pakistan",
+        "error": 0.000024123485302451897
+      },
+      {
+        "name": "Afghanistan",
+        "error": 0.00000124998543649113
+      },
+      {
+        "name": "Tajikistan",
+        "error": 0.000013958649141443402
+      },
+      {
+        "name": "Kyrgyzstan",
+        "error": 0.000051029225461851624
+      },
+      {
+        "name": "Turkmenistan",
+        "error": 0.000025916659061264724
+      },
+      {
+        "name": "Iran",
+        "error": 0.000007127278173535423
+      },
+      {
+        "name": "Syria",
+        "error": 0.000010957631116248479
+      },
+      {
+        "name": "Armenia",
+        "error": 0.000002516878752190088
+      },
+      {
+        "name": "Sweden",
+        "error": 0.000025184321453375347
+      },
+      {
+        "name": "Belarus",
+        "error": 0.00005233615572974859
+      },
+      {
+        "name": "Ukraine",
+        "error": 0.000010032512877122812
+      },
+      {
+        "name": "Poland",
+        "error": 0.000009126572356299434
+      },
+      {
+        "name": "Austria",
+        "error": 0.00004342294285142323
+      },
+      {
+        "name": "Hungary",
+        "error": 0.00018905376235323068
+      },
+      {
+        "name": "Moldova",
+        "error": 0.00011284382071741206
+      },
+      {
+        "name": "Romania",
+        "error": 0.000032968562549862135
+      },
+      {
+        "name": "Lithuania",
+        "error": 0.0001778972242172383
+      },
+      {
+        "name": "Latvia",
+        "error": 0.00021802794746206278
+      },
+      {
+        "name": "Estonia",
+        "error": 0.00006959149478236171
+      },
+      {
+        "name": "Germany",
+        "error": 0.00007508488122909274
+      },
+      {
+        "name": "Bulgaria",
+        "error": 0.0000868338683694958
+      },
+      {
+        "name": "Greece",
+        "error": 0.000051924388349555706
+      },
+      {
+        "name": "Turkey",
+        "error": 0.000031309203908369554
+      },
+      {
+        "name": "Albania",
+        "error": 0.00004274359304168307
+      },
+      {
+        "name": "Croatia",
+        "error": 0.00005449169937132847
+      },
+      {
+        "name": "Switzerland",
+        "error": 0.00003502135040855947
+      },
+      {
+        "name": "Luxembourg",
+        "error": 0.00028591847611469934
+      },
+      {
+        "name": "Belgium",
+        "error": 0.00011001664001852873
+      },
+      {
+        "name": "Netherlands",
+        "error": 0.00020306296190264472
+      },
+      {
+        "name": "Portugal",
+        "error": 0.00005598173013643404
+      },
+      {
+        "name": "Spain",
+        "error": 0.000010142051260819684
+      },
+      {
+        "name": "Ireland",
+        "error": 0.000004464765183787023
+      },
+      {
+        "name": "New Caledonia",
+        "error": 0.00010832143621031243
+      },
+      {
+        "name": "Solomon Islands",
+        "error": 0.00028447684355037417
+      },
+      {
+        "name": "New Zealand",
+        "error": 0.00005841056614941387
+      },
+      {
+        "name": "Australia",
+        "error": 0.000006994943041238599
+      },
+      {
+        "name": "Sri Lanka",
+        "error": 0.00018463712121330467
+      },
+      {
+        "name": "China",
+        "error": 0.0000055877550735328185
+      },
+      {
+        "name": "Taiwan",
+        "error": 0.000141914205710858
+      },
+      {
+        "name": "Italy",
+        "error": 0.000083499193772818
+      },
+      {
+        "name": "Denmark",
+        "error": 0.00006151927702058302
+      },
+      {
+        "name": "United Kingdom",
+        "error": 0.000009835654720458109
+      },
+      {
+        "name": "Iceland",
+        "error": 0.0000333175953191045
+      },
+      {
+        "name": "Azerbaijan",
+        "error": 0.000001969545565305708
+      },
+      {
+        "name": "Georgia",
+        "error": 0.00011203036571449942
+      },
+      {
+        "name": "Philippines",
+        "error": 0.00009518193993418578
+      },
+      {
+        "name": "Malaysia",
+        "error": 0.00006667314554453796
+      },
+      {
+        "name": "Brunei",
+        "error": 0.00021547420214573787
+      },
+      {
+        "name": "Slovenia",
+        "error": 0.000060609866524674594
+      },
+      {
+        "name": "Finland",
+        "error": 0.000029261976740579954
+      },
+      {
+        "name": "Slovakia",
+        "error": 0.000021288943226949186
+      },
+      {
+        "name": "Czechia",
+        "error": 0.0000036684910978967977
+      },
+      {
+        "name": "Eritrea",
+        "error": 0.000009907103980077991
+      },
+      {
+        "name": "Japan",
+        "error": 0.000008566555596889458
+      },
+      {
+        "name": "Paraguay",
+        "error": 0.000008694716602808406
+      },
+      {
+        "name": "Yemen",
+        "error": 0.00003348440703310196
+      },
+      {
+        "name": "Saudi Arabia",
+        "error": 0.000008821620781751527
+      },
+      {
+        "name": "Antarctica",
+        "error": 0.00008163422046614244
+      },
+      {
+        "name": "Northern Cyprus",
+        "error": 0.001314852738575345
+      },
+      {
+        "name": "Cyprus",
+        "error": 0.0005430864995989992
+      },
+      {
+        "name": "Morocco",
+        "error": 0.00001845994690885533
+      },
+      {
+        "name": "Egypt",
+        "error": 0.000016862433042774683
+      },
+      {
+        "name": "Libya",
+        "error": 0.000012384392964026603
+      },
+      {
+        "name": "Ethiopia",
+        "error": 0.00001831826924236779
+      },
+      {
+        "name": "Djibouti",
+        "error": 0.000008155096018813701
+      },
+      {
+        "name": "Somaliland",
+        "error": 8.29397421853173e-8
+      },
+      {
+        "name": "Uganda",
+        "error": 0.00005336064936367624
+      },
+      {
+        "name": "Rwanda",
+        "error": 0.00003933660142962925
+      },
+      {
+        "name": "Bosnia and Herzegovina",
+        "error": 0.00011848274537484826
+      },
+      {
+        "name": "North Macedonia",
+        "error": 0.000033131023400856385
+      },
+      {
+        "name": "Republic of Serbia",
+        "error": 0.00015181457485369254
+      },
+      {
+        "name": "Montenegro",
+        "error": 0.00013796125324638808
+      },
+      {
+        "name": "Kosovo",
+        "error": 0.00015278568619270239
+      },
+      {
+        "name": "Trinidad and Tobago",
+        "error": 0.0005261444273121363
+      },
+      {
+        "name": "South Sudan",
+        "error": 0.000024467063324484783
+      }
+    ],
+    "localLinearScale": 1.9999999999999996,
+    "localAreaScale": 3.9999999999999982,
+    "featureCount": 177,
+    "validCountryWinding": true,
+    "comparisonGreenlandNotCropped": true,
+    "equalEarthSphereBounds": [
+      [
+        694.1635215651768,
+        61.53317512088833
+      ],
+      [
+        1213.8364784348232,
+        314.46682487911164
+      ]
+    ],
+    "comparisonBounds": {
+      "mercatorGreenland": [
+        [
+          256.0093692352687,
+          58.40337674343351
+        ],
+        [
+          328.510601181184,
+          165.3595591932645
+        ]
+      ],
+      "equalGreenland": [
+        [
+          887.6623781512271,
+          62.678867453965125
+        ],
+        [
+          943.2254620439605,
+          83.47568992033334
+        ]
+      ],
+      "equalAfrica": [
+        [
+          928.958000261302,
+          118.13885381287574
+        ],
+        [
+          1027.079677231975,
+          253.47623806087336
+        ]
+      ]
+    }
+  },
+  "barRatioChecks": [
+    {
+      "frame": 0,
+      "ratio": 14.018372308394037
+    },
+    {
+      "frame": 50,
+      "ratio": 14.018372308394037
+    },
+    {
+      "frame": 100,
+      "ratio": 14.018372308394035
+    }
+  ],
+  "violations": [],
+  "errors": [],
+  "blocked": [],
+  "wordCount": 245,
+  "scope": "Offline Edge browser source screenshots, numerical geometry and sampled A-B-A replay. No full audio, measured duration, synthesis, video rendering or playback."
+}

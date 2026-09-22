@@ -69,7 +69,7 @@ try {
       : { channel: process.env.AHA_BROWSER_CHANNEL || 'msedge' }),
   });
   for (const topic of ['anc', 'git-merge']) {
-    const file = path.join(root, 'examples', topic, 'index.html');
+    const file = path.join(root, 'examples', topic, `${topic}.html`);
     const receipt = JSON.parse(await readFile(`${file}.receipt.json`, 'utf8'));
     assert.equal(sha(await readFile(file)), receipt.outputHash, `${topic}: packaged output hash`);
     for (const width of [1280, 390]) for (const theme of ['light', 'dark']) {

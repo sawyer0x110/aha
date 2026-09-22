@@ -43,7 +43,7 @@ PowerShell 使用 Windows 路径，POSIX shell 使用对应正斜杠路径。Win
 ## 1. 先完成复杂调研
 
 ```powershell
-node .\dist\cli\aha.mjs research-init "这个代码库如何处理请求失败？" ".\artifacts\topic.draft.json" --kind codebase
+node .\dist\cli\aha.mjs research-init "这个代码库如何处理请求失败？" ".\artifacts\topic\research.draft.json" --kind codebase
 ```
 
 初始化只创建未完成草案，**不执行调研**。`--kind` 接受 `public`、`codebase`、`mixed`、`provided`，应匹配实际使用的材料。按研究工作法实际阅读来源，编写报告、子问题、主张、证据、日志、反证、缺口与真实停止理由。研究语言按请求决定，独立于作品默认值。精确字段见生成的 `schemas\research-draft.schema.json` 和[研究契约](../skills/shared/references/research-contract.md)，不要自行发明字段。
@@ -51,7 +51,7 @@ node .\dist\cli\aha.mjs research-init "这个代码库如何处理请求失败�
 创作途中可运行：
 
 ```powershell
-node .\dist\cli\aha.mjs research-check ".\artifacts\topic.draft.json" --draft
+node .\dist\cli\aha.mjs research-check ".\artifacts\topic\research.draft.json" --draft
 ```
 
 结构正确但尚未完成时返回 `status: "draft-checked"`、`ready: false`、`pending`，不生成快照或内容哈希。未知引用、重复 ID、无效日期／日志／来源元数据及哈希不匹配仍会报错。检查不修改草稿，不能代替最终校验。
@@ -59,19 +59,19 @@ node .\dist\cli\aha.mjs research-check ".\artifacts\topic.draft.json" --draft
 [带纠正材料的研究示例](../skills/shared/references/research-example.md)明确使用虚构材料，不是真实研究证据。实际完成并审阅内容后，严格检查并封存新快照：
 
 ```powershell
-node .\dist\cli\aha.mjs research-check ".\artifacts\topic.draft.json"
-node .\dist\cli\aha.mjs research-build ".\artifacts\topic.draft.json" ".\artifacts\topic.research"
-node .\dist\cli\aha.mjs research-validate ".\artifacts\topic.research"
+node .\dist\cli\aha.mjs research-check ".\artifacts\topic\research.draft.json"
+node .\dist\cli\aha.mjs research-build ".\artifacts\topic\research.draft.json" ".\artifacts\topic\research"
+node .\dist\cli\aha.mjs research-validate ".\artifacts\topic\research"
 ```
 
-失败时停止，不继续依赖它的命令。`topic.research` 包含 `manifest.json`、`research.json`、`report.md`；报告必须与研究数据中的报告字符串逐字一致。Manifest 绑定 `schemaVersion`、`researchId`、`contentHash`。可编辑草案放在封存目录之外。不要手改封存报告或哈希；修订草案后构建到新目录。已有作品仍绑定旧研究身份，除非主动重建。
+失败时停止，不继续依赖它的命令。`artifacts\topic\research` 包含 `manifest.json`、`research.json`、`report.md`；报告必须与研究数据中的报告字符串逐字一致。Manifest 绑定 `schemaVersion`、`researchId`、`contentHash`。可编辑草案放在封存目录之外。不要手改封存报告或哈希；修订草案后构建到新目录。已有作品仍绑定旧研究身份，除非主动重建。
 
 无需实验引擎、场景、slides 或先选模型。`research-check` 检查结构与引用，不搜索、不补证、不证明实际阅读发生，也不授予“事实已验证”认证。宿主 Agent 负责研究和语义回查；CLI 不执行被研究仓库。
 
 ## 2. 按媒介编写作品
 
 ```powershell
-node .\dist\cli\aha.mjs explain-init ".\artifacts\topic.research" html ".\artifacts\topic-html"
+node .\dist\cli\aha.mjs explain-init ".\artifacts\topic\research" html ".\artifacts\topic\projects\html"
 ```
 
 格式可选 `html`、`image`、`pptx`、`video`。复用前检查研究快照的时效与范围。在新项目中编辑 `artifact.json` 指定的入口，替换占位内容，把覆盖的 Claim ID 映射到作品位置，并记录有理由的省略项。每个主张必须覆盖或明确省略，不能两者兼有。完成后才设为 `authored` 并移除 scaffold 标记。研究快照不随排版修改。
@@ -111,8 +111,8 @@ Scaffold 仍是草稿：验收前必须实际编写两种语言。Schema 通过�
 ### 检查与渲染
 
 ```powershell
-node .\dist\cli\aha.mjs explain-check ".\artifacts\topic-html"
-node .\dist\cli\aha.mjs render-html ".\artifacts\topic-html" ".\artifacts\topic.html"
+node .\dist\cli\aha.mjs explain-check ".\artifacts\topic\projects\html"
+node .\dist\cli\aha.mjs render-html ".\artifacts\topic\projects\html" ".\artifacts\topic\runs\round-01\outputs\topic.html"
 ```
 
 HTML 打包不执行脚本，内嵌本地资源与本地 Mermaid，不靠 CDN 兜底。默认交付独立离线文件，不自动把完整研究档案塞进页面。
@@ -121,9 +121,9 @@ HTML 打包不执行脚本，内嵌本地资源与本地 Mermaid，不靠 CDN �
 
 ```powershell
 # 先审阅作品代码并明确允许执行；--allow-code 不是沙箱。
-node .\dist\cli\aha.mjs browser-check ".\artifacts\topic-html" --allow-code
-node .\dist\cli\aha.mjs render-image ".\artifacts\topic-image" ".\artifacts\topic.png" --allow-code
-node .\dist\cli\aha.mjs render-pptx ".\artifacts\topic-pptx" ".\artifacts\topic.pptx" --allow-code
+node .\dist\cli\aha.mjs browser-check ".\artifacts\topic\projects\html" --allow-code
+node .\dist\cli\aha.mjs render-image ".\artifacts\topic\projects\image" ".\artifacts\topic\runs\round-01\outputs\topic.png" --allow-code
+node .\dist\cli\aha.mjs render-pptx ".\artifacts\topic\projects\pptx" ".\artifacts\topic\runs\round-01\outputs\topic.pptx" --allow-code
 ```
 
 PNG 捕获专门编写的一图流，不截图整篇文章。PPTX 入口接收运行时提供的 PptxGenJS 实例，创建原生文本、形状、图表与页面。成功写出文件，不代表已在演示应用中验证原生可编辑性和每页视觉效果。
@@ -134,15 +134,15 @@ PNG 捕获专门编写的一图流，不截图整篇文章。PPTX 入口接收�
 
 ```powershell
 node .\dist\cli\aha.mjs doctor --for video
-node .\dist\cli\aha.mjs prepare-video ".\artifacts\topic-video" ".\artifacts\video-plan.json"
-node .\dist\cli\aha.mjs video-plan-check ".\artifacts\topic-video" ".\artifacts\video-plan.json"
+node .\dist\cli\aha.mjs prepare-video ".\artifacts\topic\projects\video" ".\artifacts\topic\runs\round-01\video-plan.json"
+node .\dist\cli\aha.mjs video-plan-check ".\artifacts\topic\projects\video" ".\artifacts\topic\runs\round-01\video-plan.json"
 ```
 
 `prepare-video` 创建 `status: "draft"` 的计划。编写 `segments[].text` 完整旁白、逐段来源、声线、语速与目标时长。完成后才将计划改为 `"authored"` 并重新运行 `video-plan-check`。向用户展示完整计划及当前 `planHash`。**只有批准这份准确文本及外发处理后**才执行：
 
 ```powershell
-node .\dist\cli\aha.mjs synthesize ".\artifacts\topic-video" ".\artifacts\video-plan.json" ".\artifacts\audio-v1" --approve "<已批准的planHash>" --allow-network
-node .\dist\cli\aha.mjs render-video ".\artifacts\topic-video" ".\artifacts\video-plan.json" ".\artifacts\audio-v1" ".\artifacts\topic.mp4" --approve "<已批准的planHash>" --allow-code
+node .\dist\cli\aha.mjs synthesize ".\artifacts\topic\projects\video" ".\artifacts\topic\runs\round-01\video-plan.json" ".\artifacts\topic\runs\round-01\audio" --approve "<已批准的planHash>" --allow-network
+node .\dist\cli\aha.mjs render-video ".\artifacts\topic\projects\video" ".\artifacts\topic\runs\round-01\video-plan.json" ".\artifacts\topic\runs\round-01\audio" ".\artifacts\topic\runs\round-01\outputs\topic.mp4" --approve "<已批准的planHash>" --allow-code
 ```
 
 渲染命令另需审阅后的本地代码执行授权。前一步校验或合成失败时停止。
@@ -189,9 +189,13 @@ node .\dist\cli\aha.mjs render-video ".\artifacts\topic-video" ".\artifacts\vide
 
 区分三个位置：可编辑项目／源、工作历史、当前交付。新候选输出、视频计划和音频目录放在作品项目之外。CLI 输出目标必须是新路径，不覆盖旧文件。
 
+默认采用[统一输出布局](../skills/shared/references/output-layout.md)：`artifacts\<task>\projects\<format>` 保存源码，`runs\<run-id>\outputs` 保存每轮新成品，`runs\<run-id>\qa\<format>` 保存检查，`delivery` 保存选定交付。研究草案与封存的 `research` 分开；只创建实际需要的格式。用户指定路径优先，这不是新增 CLI 模式。
+
+成品统一用 `<task>.html`、`<task>.png`、`<task>.pptx`、`<task>.mp4`；仅作品入口使用 `index.html`。所有新渲染收据均为 `<成品文件名>.receipt.json`，视频字幕为 `<成品文件名>.srt`。一个 `delivery-manifest.json` 索引全部当前格式及 `qa\<format>` 的证据，不再为 PPT 或每轮生成建立另一份当前交付清单。
+
 当前交付只展示选定版本及必要材料，不陈列每次试作。替换、归档或删除需要对精确范围授权；保留用户修改与可恢复的旧版本，除非用户明确要求移除。`artifacts` 是任务成果，不是可随意清空的缓存。
 
-成品与匹配收据成对提升到交付位置，保留字节和输出文件名。磁盘收据记录输出文件名，CLI 结果另含完整目标路径。需要改名时，在新目录按该名称重建，不手改收据。校验身份，并更新链接与 QA 以匹配所选输出；旧 QA 不证明新内容已通过。
+成品与匹配收据成对提升到交付位置，保留字节。优先在渲染时使用最终名称；明确授权的纯目录迁移可以改名，但须在清单记录原路径及 QA 引用映射，核对全部身份，不修改原收据。收据内路径保留生成时含义；源或成品字节改变则必须重新生成，不能冒充搬迁。更新链接与 QA；旧 QA 不证明新内容已通过。
 
 交付所请求的产物、可编辑源／项目、研究快照身份、资源／许可说明和真实 QA 结果。这是 Agent 管理的生命周期，不是原子发布命令。详见[工作历史与当前交付](../skills/aha-explain/references/artifact-authoring.md#working-history-and-current-delivery)。
 

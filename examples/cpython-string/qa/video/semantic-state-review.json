@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "evidence": [
+    {
+      "topic": "cpython-string",
+      "sourceHash": "4500ece23a3fd2e282375d5f660c67631d0dd2b4a93cec66ff259fe30f2148c1",
+      "planHash": "9a87e23140f1144e06a4258a34d35aa595dcdf84441181bf074b8c7255962289"
+    }
+  ],
+  "checks": [
+    "CPython fixed-width ratio, immutable-original distinction and UTF-8 payload delta",
+    "Visible glyph bounds and subtitle reserve at sampled states",
+    "A/B/A sampled pixel replay"
+  ],
+  "limitation": "Checks authored explanatory states, not CPython allocation events, Docker builds, learner understanding or audio."
+}

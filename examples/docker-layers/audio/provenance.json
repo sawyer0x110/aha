@@ -1,0 +1,38 @@
+{
+  "provider": "edge-tts",
+  "voice": "en-US-AriaNeural",
+  "rate": "+0%",
+  "recordingPlanHash": "e4c928b388b1f3274478a2d03d36890a8fc5850bd9ebe0303522ba2f363e4319",
+  "narration": [
+    {
+      "id": "layer-added",
+      "text": "Suppose one RUN adds a hundred-megabyte file: its payload enters an immutable image layer, which later steps cannot rewrite."
+    },
+    {
+      "id": "later-delete",
+      "text": "A later RUN hides the file with a whiteout, but the earlier layer still holds its bytes."
+    },
+    {
+      "id": "same-run",
+      "text": "Create and delete that new file within the same RUN, and its payload never enters the resulting image diff."
+    }
+  ],
+  "recordings": [
+    {
+      "id": "layer-added",
+      "file": "segment-001.wav",
+      "sha256": "5ba0125852ac50fb1e20578291c556d559162b953f9ae6badd6789a70382c6ae"
+    },
+    {
+      "id": "later-delete",
+      "file": "segment-002.wav",
+      "sha256": "69534e14477ab4ed196273c78f6b6c1ad2f8d324e1fa6eb2591b063138af9e32"
+    },
+    {
+      "id": "same-run",
+      "file": "segment-003.wav",
+      "sha256": "84f7e347416a1e1222a7f47509212b1c58e4235e625e5aee4169186c6a50832a"
+    }
+  ],
+  "scope": "Existing Edge TTS recordings imported locally. This provenance does not claim another synthesis or current-source generation by the speech service."
+}

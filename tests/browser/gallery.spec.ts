@@ -6,11 +6,11 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const examples = fileURLToPath(new URL('../../examples/', import.meta.url));
 const gallery = pathToFileURL(path.join(examples, 'index.html')).href;
 const outputs = [
-  'anc/index.html', 'anc/anc.png', 'anc/anc.pptx', 'anc/anc.mp4',
-  'git-merge/index.html', 'git-merge/git-merge.png', 'git-merge/git-merge.pptx', 'git-merge/git-merge.mp4',
-  'aha-introduction/index.html', 'aha-introduction/overview.png', 'aha-introduction/overview.pptx',
-  'greenland/greenland.pptx', 'greenland/greenland.mp4', 'cpython-string/pilot.mp4',
-  'docker-layers/pilot.mp4', 'aha-introduction/overview-v5.mp4',
+  'anc/anc.html', 'anc/anc.png', 'anc/anc.pptx', 'anc/anc.mp4',
+  'git-merge/git-merge.html', 'git-merge/git-merge.png', 'git-merge/git-merge.pptx', 'git-merge/git-merge.mp4',
+  'aha-introduction/aha-introduction.html', 'aha-introduction/aha-introduction.png', 'aha-introduction/aha-introduction.pptx',
+  'greenland/greenland.pptx', 'greenland/greenland.mp4', 'cpython-string/cpython-string.mp4',
+  'docker-layers/docker-layers.mp4', 'aha-introduction/aha-introduction.mp4',
 ].sort();
 
 for (const width of [1280, 390]) {

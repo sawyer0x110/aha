@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "status": "reviewed-current",
+  "format": "pptx",
+  "sourceHash": "5abdb39958ba863a632d86347983d6082318c574646e80bcd21a07c1382f41f2",
+  "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
+  "outputHash": "a002c6da960d15ef53d6b70d1ad80ef8a7276021347a4a6c723aaf32bc71c688",
+  "receiptHash": "273100a4d78810196dfd47a5249676471228ac7d68f901620beabf92a2526d90",
+  "reviewer": {
+    "kind": "agent",
+    "id": "8208c089-09ef-4aef-9717-a3da7df578fb"
+  },
+  "reviewedFiles": [
+    {
+      "file": "aha-introduction/qa/pptx/slide-01.png",
+      "sha256": "99adb10a1d50bb6f5e6beaa6a0cabeabdaf30342728cd0126d8bc37658d4cd46"
+    },
+    {
+      "file": "aha-introduction/qa/pptx/slide-02.png",
+      "sha256": "c3b79e94c77d8d229d56b8ed77bd90b1e3cb30f1578aca09d4296f0909d4235a"
+    },
+    {
+      "file": "aha-introduction/qa/pptx/slide-03.png",
+      "sha256": "cc7191c9c77046fb9f5e712470b1fc27e409570323a8e744b009a0fdd6249868"
+    },
+    {
+      "file": "aha-introduction/qa/pptx/slide-04.png",
+      "sha256": "1993c02ebef80a463b202d3e07cd2b9d8ad85c38a673e741eed4e27084e64d23"
+    },
+    {
+      "file": "aha-introduction/qa/pptx/slide-05.png",
+      "sha256": "5bf0fdc37fd679111e8d988b9e2fb777262bcba1e92d0de4e990f619fe8da28b"
+    },
+    {
+      "file": "aha-introduction/qa/pptx/slide-06.png",
+      "sha256": "ed6516fc917f6f34e6bff4d74cfc3ebd245099d070dcafabebb0e9ce1a2d125d"
+    },
+    {
+      "file": "aha-introduction/qa/pptx/slide-07.png",
+      "sha256": "03458b0b8e6a3e7b072b537e797bb86964daa4da1f14484732405181f9dff0ce"
+    },
+    {
+      "file": "aha-introduction/qa/pptx/slide-08.png",
+      "sha256": "cbc575286f0e826fa61f2475d57e05ba32b3470ddeb34b860ef315279aaf644c"
+    }
+  ],
+  "semanticFindings": [
+    "Slides1-2 correctly introduce two portable skills and explicit host coordination, not automatic dispatch.",
+    "Slide3 is a media-purpose table, not a claim that every example has four delivered files.",
+    "Slide4 labels the globe/map marks schematic, keeps the projection fixed, preserves spherical area and retains hypothetical-relocation, spherical-model and polar-cropping limitations.",
+    "Slide5 visibly separates the new CPython3.11.15 str from the unchanged original and from UTF-8 payload. Native chart values100049/400080 bytes and the100000-to100004 UTF-8 comparison match inherited evidence; qualifications are not confined to notes.",
+    "Slide6 keeps whiteout in the later-layer cutaway and the100MB hypothetical uncompressed payload in the earlier layer. Same-RUN reasoning is restricted to a newly created temporary file, not the entire layer or base-layer reclamation.",
+    "Slides7-8 synthesize the case distinctions and ask for a question, evidence and intended use; speaker notes contain presenter explanation rather than build or approval status."
+  ],
+  "visualFindings": [
+    "All eight final PowerPoint slide exports were inspected. Parent reviewed1,2,3,5,6,7,8; reviewer4cec3c6b-d48d-4d44-9530-d14a56ae78ee supplied actual-pixel observations for4 and final2.",
+    "Slide1's charcoal cover, two skill cards and host-coordination statement are clear; no cropped glyphs were observed.",
+    "Final slide2's right lower caption has two complete lines, keeps 为什么 together, and clears the card and the host statement below. This is final-state verification, not a verified v1 defect comparison.",
+    "Slide3's five native-table rows remain inside the table area with space before its takeaway and footer.",
+    "Slide4's two map panels, globe markers, arrows and visible caveats are separated; the illustration does not masquerade as a precise boundary plot.",
+    "Slide5's uniform new-result slots, native numeric bars, exact values and separate UTF-8 band are readable without overlap.",
+    "Slide6's arrow occupies the gap between the whiteout band and merged-view box; the retained layer and new-temporary-file qualifications remain visible.",
+    "Slide7's three comparison rows and scope lines are unclipped; slide8's three-step close has clear hierarchy. Warm light pages and charcoal opening/closing maintain continuity.",
+    "Fresh exports of slides1,3,4,5,6,7,8 are byte-identical to v1. Only slide2 changed; its final v2 pixels were inspected separately."
+  ],
+  "limitations": [
+    "Footer and chart-axis text are smaller than main copy; physical projection-distance readability and cross-machine font substitution remain untested.",
+    "Text, a table cell and chart data were edited programmatically on a copy, saved and reopened. This is not manual editing-usability acceptance or a test of every object.",
+    "Agent editorial and visual observations are not human comprehension, independent human translation or human approval."
+  ],
+  "unperformed": [
+    "Human comprehension",
+    "Human acceptance"
+  ],
+  "production": {
+    "research": "Unchanged September 17 introduction Dossier; no new primary research, CPython experiment or Docker build.",
+    "guidance": "Current aha-explain skill and selected medium, writing, design, language and QA references.",
+    "coInterventions": [
+      "Host pptx skill and PptxGenJS guide",
+      "Host web-artifacts-builder Clawpilot theme",
+      "Microsoft PowerPoint 16.0",
+      "Installed Edge through Playwright"
+    ],
+    "attribution": "A mixed-tool production run, not a controlled estimate of Aha-only effectiveness.",
+    "approval": "User approved Chinese PPT/PNG, bilingual HTML, offline local rendering, PowerPoint copy probes and same-scope reviewed refinements.",
+    "imageToolBoundary": "Only actual visible bitmaps were counted. Earlier success-looking image-limit responses and associated inferred observations were explicitly withdrawn. Final-image observations do not establish a before/after effect or human acceptance."
+  }
+}

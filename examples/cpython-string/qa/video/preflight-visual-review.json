@@ -1,0 +1,48 @@
+{
+  "reviewType": "independent-actual-source-preview-visual-review",
+  "overallOutcome": "blocked-incomplete-visual-evidence",
+  "scope": {
+    "requestedUniqueImages": 14,
+    "actuallyDisplayedAndReviewed": 1,
+    "blocked": 13,
+    "fullMp4Reviewed": false,
+    "audioListenedTo": false,
+    "sourceEdited": false,
+    "rerendered": false
+  },
+  "method": "Actual displayed PNGs only. A tool message saying 'Viewed image file successfully' followed by 'maximum number of images ... (1)' without an image was not treated as visual evidence. Each blocked image received exactly one retry, using a one-image parallel wrapper plus an independent report text read. No further retries.",
+  "blockedReason": "Image delivery returned the max-images-1 message without displaying the PNG, on both initial attempt and the single retry.",
+  "pilots": [
+    {
+      "topic": "CPython string representation",
+      "sourceHash": "4500ece23a3fd2e282375d5f660c67631d0dd2b4a93cec66ff259fe30f2148c1",
+      "planHash": "9a87e23140f1144e06a4258a34d35aa595dcdf84441181bf074b8c7255962289",
+      "reportPath": "preview/report.json",
+      "outcome": "blocked",
+      "reviewedPaths": [],
+      "blockedPaths": [
+        "preview/1-ascii-baseline-start.png",
+        "preview/1-ascii-baseline-end.png",
+        "preview/2-whole-string-widens-start.png",
+        "preview/2-whole-string-widens-end.png",
+        "preview/2-whole-string-widens-b.png",
+        "preview/3-utf8-contrast-start.png",
+        "preview/3-utf8-contrast-end.png"
+      ],
+      "confirmedVisualDefects": [],
+      "unverified": [
+        "Text overflow, hidden content, caption overlap, contrast and coordinate-label agreement.",
+        "Six a cells representing 100000 characters; 40-to-160-pixel widening plus the new face cell.",
+        "Whether visible geometry misleadingly resizes the immutable original instead of conveying construction of a new result.",
+        "Result str 400080 B versus UTF-8 100004 B.",
+        "Whether the mechanism visibly moves rather than behaving as text slides."
+      ],
+      "suggestedNextStep": "Obtain an actual visual review of these exact blocked PNGs before visual approval; no source change is justified by unavailable images."
+    }
+  ],
+  "approval": {
+    "visualPreflightPassed": false,
+    "reason": "Coverage blocked, not a confirmed content failure. Report metadata was used for identity only, not as a substitute for displayed pixels.",
+    "narrationConsent": "Not requested or granted by this review; main may ask separately while clearly disclosing incomplete visual preflight."
+  }
+}

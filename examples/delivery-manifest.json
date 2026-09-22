@@ -2,7 +2,6 @@
   "status": "published-examples-with-explicit-qa-limits",
   "createdAt": "2026-09-16T06:33:02.805Z",
   "gallery": "index.html",
-  "originalExamplesUnchanged": false,
   "requestedOutputs": [
     {
       "topic": "greenland",
@@ -14,22 +13,136 @@
       "sourceHash": "3c61c71807f2a7fa610300e7b311371816d8f730242308b3d23a6471e8dde2ea",
       "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6",
       "report": "greenland/research/report.md",
-      "receipt": "greenland/greenland.mp4.json",
+      "receipt": "greenland/greenland.mp4.receipt.json",
       "durationSeconds": 115.73333333333333,
       "frames": 3472,
-      "provider": "edge-tts"
+      "provider": "edge-tts",
+      "receiptHash": "4994e7454619f64df66b89054a9a57fc3c9793fddd15cccf1333138d04a5a2eb",
+      "qa": {
+        "directory": "greenland/qa/video",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "greenland/qa/video/author/browser-observations.json",
+            "sha256": "b161f8cbb68f4425e392d193c7330f1e8827120ecf16f99b6a868d2b2206f376"
+          },
+          {
+            "file": "greenland/qa/video/author/source-plan-consistency.json",
+            "sha256": "f4408e6f558ee06ec38b7c08b0d0d2afc26e08d0db8ae75b8ac3308752573271"
+          },
+          {
+            "file": "greenland/qa/video/author/video-plan-check.json",
+            "sha256": "e152a37c997b8c08cb2805965e844827c89b27aa2ee2ef935973395465a9fb04"
+          },
+          {
+            "file": "greenland/qa/video/encoded/01-opening.png",
+            "sha256": "8c4f3170edace5d730fcc948283e01960f3c646c9bde5a52bff475006be81eb7"
+          },
+          {
+            "file": "greenland/qa/video/encoded/02-area-bars.png",
+            "sha256": "66725fffcac1fd96ceb6d8ea5bd69b0539b5285c833c9ebfdc9f5170336fe8cd"
+          },
+          {
+            "file": "greenland/qa/video/encoded/03-meridians-globe.png",
+            "sha256": "bfb3cb78d23b7269880d8ecd47de0c85e4b9060d980a550f6f3e6c566f216572"
+          },
+          {
+            "file": "greenland/qa/video/encoded/04-meridians-map.png",
+            "sha256": "850d24cc5ebbc0ab871ac794df1a56665dd7e4c457740ca358efd70695aa82af"
+          },
+          {
+            "file": "greenland/qa/video/encoded/05-latitude-stretch.png",
+            "sha256": "6b1f81077363fa1735e85f7529c6d0116cf7794811691d45eb0d52b600b23761"
+          },
+          {
+            "file": "greenland/qa/video/encoded/06-local-patch.png",
+            "sha256": "f08f7f59f433c9f2f7cd1f814abadc16c1516d97920e46a93067ee80ad91b286"
+          },
+          {
+            "file": "greenland/qa/video/encoded/07-local-area.png",
+            "sha256": "ac6fe2a7cd79a59241b71abef88cf84900b10b1f1826661019ece04efb1e7d89"
+          },
+          {
+            "file": "greenland/qa/video/encoded/08-moving-greenland.png",
+            "sha256": "6fb52c3010cd075ed9df3cb89aab97aa2169587789479c2618200d6b53b4ed39"
+          },
+          {
+            "file": "greenland/qa/video/encoded/09-unchanged-area.png",
+            "sha256": "0e60856f0f5b5c7542e244f10d8e577c54de5c2bdaf8475e7efea0d3de555912"
+          },
+          {
+            "file": "greenland/qa/video/encoded/10-local-angles.png",
+            "sha256": "05589765acb795d4462eb40f4c8a2e19e5cf6302e0a841f5b5cee745718cfc60"
+          },
+          {
+            "file": "greenland/qa/video/encoded/11-constant-heading.png",
+            "sha256": "b6a30488e9d241d0d9a960f1830380b88f78f5244a684c25f4ccadce7fb496e8"
+          },
+          {
+            "file": "greenland/qa/video/encoded/12-equal-earth.png",
+            "sha256": "254ffeb2f13083d349b8221991e0ddc349a3100afbb696466822768efe686f12"
+          },
+          {
+            "file": "greenland/qa/video/encoded/13-projection-tradeoff.png",
+            "sha256": "7de1631174a011d7424c5c6eddefb6cf657fc171e157159a6ce9b05533c6c25e"
+          },
+          {
+            "file": "greenland/qa/video/encoded/14-closing-choice.png",
+            "sha256": "63b5d0e55d9b667ab1f7e19269ee84bf89d4ff2a09229e444005f921b08949fa"
+          },
+          {
+            "file": "greenland/qa/video/encoded/encoded-visual-review.json",
+            "sha256": "6d18bac46079acb0365d6ed4a2af5c1d4cb0286e8bfd8d3562d07b9c0d80c23c"
+          },
+          {
+            "file": "greenland/qa/video/encoded/technical-review.json",
+            "sha256": "408af6d23051252b52ab8d8e5f6739d32b722ef4cbc6f59c0f3cc8973fd5d81e"
+          }
+        ]
+      }
     },
     {
       "topic": "anc",
       "format": "html",
-      "file": "anc/index.html",
+      "file": "anc/anc.html",
       "bytes": 27490,
       "sha256": "0116f3f80756bb04df4d4c45a42cbe09e30dafcfdfb85765b929dd3a6036dfe4",
       "sourceProject": "anc/projects/html",
       "sourceHash": "7cdad7fa9aff35dd70efee5ac9c663bc6bf4ae822ecaefcdf9e6289cbd621f7f",
       "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
       "report": "anc/research/report.md",
-      "receipt": "anc/index.html.receipt.json"
+      "receipt": "anc/anc.html.receipt.json",
+      "receiptHash": "95e3b8fb81c20fc70912c1f6f42e338bb59641f7205a42cab7557e4a88d73d02",
+      "qa": {
+        "directory": "anc/qa/html",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "anc/qa/html/browser-check.json",
+            "sha256": "3a65dd5e09d281435a408012759a98fae0cc052fcc696462b6be3b7b5ea41d86"
+          },
+          {
+            "file": "anc/qa/html/browser-observations.json",
+            "sha256": "2bc62787040de836d9f4822b0722f450a93ff7bc85bcdaad376c5c2df4278e19"
+          },
+          {
+            "file": "anc/qa/html/html-en-1280.png",
+            "sha256": "7a0ed1e162b18aff432906e4bd6d5d5cbdc43bf3528e4125c4962d57cc937b9f"
+          },
+          {
+            "file": "anc/qa/html/html-en-390.png",
+            "sha256": "960c88b18030bafc17e2e7b7de621afde9b3bd06fe5d9973b32330f933d0a4a6"
+          },
+          {
+            "file": "anc/qa/html/html-zh-1280.png",
+            "sha256": "13563fe834b42f49be62f85e835f799685c97cf4bebe08de06016197cedaec39"
+          },
+          {
+            "file": "anc/qa/html/html-zh-390.png",
+            "sha256": "44d37210e8ee9148b7a30cc6111b2cba4a21843b9624e31e86ab5fbfa0ef6334"
+          }
+        ]
+      }
     },
     {
       "topic": "anc",
@@ -43,7 +156,18 @@
       "report": "anc/research/report.md",
       "receipt": "anc/anc.png.receipt.json",
       "width": 1800,
-      "height": 1200
+      "height": 1200,
+      "receiptHash": "c8c05830ae528a65e15f90dca5bf82b4f3bd6b44981d2b0b03fffc12688e41f2",
+      "qa": {
+        "directory": "anc/qa/image",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "anc/qa/image/review-scope.json",
+            "sha256": "5dfd493ff37eb4f356749cd8db2cdb1859714698c411c34ffe710906aacc763c"
+          }
+        ]
+      }
     },
     {
       "topic": "anc",
@@ -58,7 +182,100 @@
       "receipt": "anc/anc.pptx.receipt.json",
       "slides": 7,
       "native": true,
-      "language": "zh"
+      "language": "zh",
+      "provenance": {
+        "skill": {
+          "name": "aha-explain",
+          "sourceRevision": "9f1a35359079531fe78eecf10b482f4d759c0356",
+          "guideHashes": {
+            "references/artifact-qa.md": "74e232dc26d9038500471aa28e6ed38f332c95bab2c4df47861c443ca9f67bc0",
+            "references/pptx.md": "b63f1baa02beca52b5ebc770655f75290258fce55b45a5d49c5d5231b9b62fca",
+            "SKILL.md": "61e0c752b286eb634d13bd883236396139599394f2667b165d361b12b7ad9ec2"
+          }
+        },
+        "runtimeHash": "4aa41f11c07e7ef1f622e7ed0787242ab520fff3e3fe7302ea82526bde86d4fe"
+      },
+      "receiptHash": "94ac27c2dd1799f86e3588fce5d6c24f7d992f3afa55682a50b5f522386a5721",
+      "qa": {
+        "directory": "anc/qa/pptx",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "anc/qa/pptx/powerpoint-observations.json",
+            "sha256": "04bad63e857b158fa3f090c07e414603fb45b975d4b8e63150181dbe28238b33"
+          },
+          {
+            "file": "anc/qa/pptx/slide-01.png",
+            "sha256": "c1bc8649e2263a2d27893c964e4bb71340dbfce128bc5c08512a237f2e8c75f4"
+          },
+          {
+            "file": "anc/qa/pptx/slide-02.png",
+            "sha256": "12a4a5afefcd3d75b99c3c4370f833869fa507454ea6521d0f22c7d589802631"
+          },
+          {
+            "file": "anc/qa/pptx/slide-03.png",
+            "sha256": "54ee5f863610bc0731e36cc38266357d96151274b2db41a1c18ae4e787c89cfe"
+          },
+          {
+            "file": "anc/qa/pptx/slide-04.png",
+            "sha256": "bb00f59350d0d2c348dbc98799c4f545708392b5f8531ba4d5e8251b01785e94"
+          },
+          {
+            "file": "anc/qa/pptx/slide-05.png",
+            "sha256": "06362776acbfffe84229dba752e481480836d885803abcaea27af5c35b275573"
+          },
+          {
+            "file": "anc/qa/pptx/slide-06.png",
+            "sha256": "78723a8d2ae637bea3164fa441251f08b6b01b51d9c5bd942dbdca5b31c2be49"
+          },
+          {
+            "file": "anc/qa/pptx/slide-07.png",
+            "sha256": "c074f27bc46b6bb0a47b97faf20a9679c020faad341d4d2d7d71dda4bc45cce8"
+          }
+        ],
+        "application": {
+          "file": "anc/qa/pptx/powerpoint-observations.json",
+          "sha256": "04bad63e857b158fa3f090c07e414603fb45b975d4b8e63150181dbe28238b33"
+        },
+        "pages": [
+          {
+            "file": "anc/qa/pptx/slide-01.png",
+            "sha256": "c1bc8649e2263a2d27893c964e4bb71340dbfce128bc5c08512a237f2e8c75f4"
+          },
+          {
+            "file": "anc/qa/pptx/slide-02.png",
+            "sha256": "12a4a5afefcd3d75b99c3c4370f833869fa507454ea6521d0f22c7d589802631"
+          },
+          {
+            "file": "anc/qa/pptx/slide-03.png",
+            "sha256": "54ee5f863610bc0731e36cc38266357d96151274b2db41a1c18ae4e787c89cfe"
+          },
+          {
+            "file": "anc/qa/pptx/slide-04.png",
+            "sha256": "bb00f59350d0d2c348dbc98799c4f545708392b5f8531ba4d5e8251b01785e94"
+          },
+          {
+            "file": "anc/qa/pptx/slide-05.png",
+            "sha256": "06362776acbfffe84229dba752e481480836d885803abcaea27af5c35b275573"
+          },
+          {
+            "file": "anc/qa/pptx/slide-06.png",
+            "sha256": "78723a8d2ae637bea3164fa441251f08b6b01b51d9c5bd942dbdca5b31c2be49"
+          },
+          {
+            "file": "anc/qa/pptx/slide-07.png",
+            "sha256": "c074f27bc46b6bb0a47b97faf20a9679c020faad341d4d2d7d71dda4bc45cce8"
+          }
+        ],
+        "visualReview": {
+          "status": "bounded-review",
+          "limitations": [
+            "Current PowerPoint open/export and copy-edit checks are application observations, not a new independent visual or human-comprehension review.",
+            "Candidate visuals were reviewed with mixed full-resolution and scaled-history images. Complete original-resolution and presentation-distance readability remains unverified.",
+            "Inherited page 5 diagram connects only the residual branch to audibility; attenuation and residual speech need careful explanation."
+          ]
+        }
+      }
     },
     {
       "topic": "anc",
@@ -70,23 +287,133 @@
       "sourceHash": "5b6732b7cbf5e101cdcab09492613bba12c856691954f42f04950e68c784ad25",
       "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
       "report": "anc/research/report.md",
-      "receipt": "anc/anc.mp4.json",
+      "receipt": "anc/anc.mp4.receipt.json",
       "durationSeconds": 127.1,
       "frames": 3813,
-      "provider": "provided-audio"
+      "provider": "provided-audio",
+      "receiptHash": "362b9f4bebb3dc7113ef21dfb15e7904689012c9f72bfc4a102970e1b832bbc1",
+      "qa": {
+        "directory": "anc/qa/video",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "anc/qa/video/approval.json",
+            "sha256": "94a198d3f56dc6e823620a8939dfb52511d7521412465cb62e1605ec0a5a40cf"
+          },
+          {
+            "file": "anc/qa/video/browser-observations.json",
+            "sha256": "540ba12f742b504681775f8b72e5cbabddede6d0ec2134d1433ef9b0647f8597"
+          },
+          {
+            "file": "anc/qa/video/encoded-video/contact-1.png",
+            "sha256": "8f55d34080e60ec5a054b86ed7be2d76d9bb9b2d90ac7634362544c5ecc14989"
+          },
+          {
+            "file": "anc/qa/video/encoded-video/contact-9.png",
+            "sha256": "866b5e2c3ca9fe2852b31bc063338e95cc17339050746daab4bbfe6f5d5c6448"
+          },
+          {
+            "file": "anc/qa/video/encoded-video/segment-01.png",
+            "sha256": "9015e2a16af4a6819da0e34c2ad6cef166b7266c4c344c325a376cf43fe59061"
+          },
+          {
+            "file": "anc/qa/video/encoded-video/segment-02.png",
+            "sha256": "18db550697c085c1331c8bef7eba63546c9f83cb331e3a2bd3ff81b07270071e"
+          },
+          {
+            "file": "anc/qa/video/encoded-video/segment-03.png",
+            "sha256": "e145f569913dd74ca1429ea344907e82c1d5b6f280479a3abb785a76dbfeadbc"
+          },
+          {
+            "file": "anc/qa/video/encoded-video/segment-04.png",
+            "sha256": "b482dc11bb6a15b88afe1bf7bac56da9a3f9a1641f7f18cdde9afb5777f103cb"
+          },
+          {
+            "file": "anc/qa/video/encoded-video/segment-05.png",
+            "sha256": "903c73d0b4f2988b5eb54212c16404181a8e1f29b1698924d1a04202dae5bbc4"
+          },
+          {
+            "file": "anc/qa/video/encoded-video/segment-06.png",
+            "sha256": "79e4ba8ef906d8ba65bb6fa1d2ee56ff65d5d509caaf3bd29b7b4e4b00551d06"
+          },
+          {
+            "file": "anc/qa/video/encoded-video/segment-07.png",
+            "sha256": "bdf819ec594cb5171b66e0c09bc2d7a67902708d9ebeabf038352dc20a2e7656"
+          },
+          {
+            "file": "anc/qa/video/encoded-video/segment-08.png",
+            "sha256": "a65472811024a707da91c672fb13d29b136afe4e1dfb1fed42b04f9b1e73025f"
+          },
+          {
+            "file": "anc/qa/video/encoded-video/segment-09.png",
+            "sha256": "75b55dd40e10a5b7ba0eb4b6bded4438434b40669b54019701523b607fc9a30b"
+          },
+          {
+            "file": "anc/qa/video/encoded-video/segment-10.png",
+            "sha256": "c595fea01fd1bebc6aa0c1d0c713bf74d179d1c084ef6a84ac222bd38e91ddc1"
+          },
+          {
+            "file": "anc/qa/video/encoded-video/segment-11.png",
+            "sha256": "afcc2b4ce7b71b619be59494bb483ceb00795e3448e504fa91f055a97a71b7e1"
+          },
+          {
+            "file": "anc/qa/video/encoded-video/segment-12.png",
+            "sha256": "bd9cfe5b83d24225eddcbed576e9d6c937b9c94fb03fe29cb5aa1674f053c02a"
+          },
+          {
+            "file": "anc/qa/video/encoded-video/segment-13.png",
+            "sha256": "cb5ba5a751e322536ee6089a66fcddcba46909e23ad079defa8349366ff23089"
+          },
+          {
+            "file": "anc/qa/video/encoded-video/segment-14.png",
+            "sha256": "0000083062f636e89cc8b5ef7e31b35c0d9bfef10f0878f64ae4b2feb1ff8732"
+          },
+          {
+            "file": "anc/qa/video/media-check.json",
+            "sha256": "5c58ada78dcfbab5774c7b3f7a01895c0c812ca19162b086f98b48f3081d5d59"
+          }
+        ]
+      }
     },
     {
       "topic": "git-merge",
       "format": "html",
-      "file": "git-merge/index.html",
+      "file": "git-merge/git-merge.html",
       "bytes": 16413,
       "sha256": "465e063102fddad6a0beb754c6460e03c9397fe280993bcff4c389f602003c7c",
       "sourceProject": "git-merge/projects/html",
       "sourceHash": "c51ba75aa63c892d3fee25ae69ce26439daa3097820224a5a54477623888d915",
       "researchHash": "c38647d6d79318b96aa30e9c5f86f2babe042dec286ad390a56d22f908ee2019",
       "report": "git-merge/research/report.md",
-      "receipt": "git-merge/index.html.receipt.json",
-      "language": "zh"
+      "receipt": "git-merge/git-merge.html.receipt.json",
+      "language": "zh",
+      "receiptHash": "55e2b904a7d3e23d53ff27bef0b8204b3e8bc95b75444919aa23baf8cb92e80b",
+      "qa": {
+        "directory": "git-merge/qa/html",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "git-merge/qa/html/browser-observations.json",
+            "sha256": "8d9540e47c694f7fe6042558fdce6f4e4e53b5ae705ffdfc7941f6d9498f91e8"
+          },
+          {
+            "file": "git-merge/qa/html/html-1280.png",
+            "sha256": "21f063dd2754ee524a883fe20afd1d55158d638415353ca90ed9d4b5ac6bd59b"
+          },
+          {
+            "file": "git-merge/qa/html/html-320.png",
+            "sha256": "8e10362f4e2c83b77c7a00b2878827c537e564918fdcdd2d91685ae74b4284e7"
+          },
+          {
+            "file": "git-merge/qa/html/html-390.png",
+            "sha256": "9fc1eea8c33b63741a30916f4effd96c3dfc113e2b5f0a76473370ff55ad151e"
+          },
+          {
+            "file": "git-merge/qa/html/review.json",
+            "sha256": "b29d69fc89e5e178819c6f1bfb108f3a5219376432c76a0dd8738aa8013c79ff"
+          }
+        ]
+      }
     },
     {
       "topic": "git-merge",
@@ -100,7 +427,18 @@
       "report": "git-merge/research/report.md",
       "receipt": "git-merge/git-merge.png.receipt.json",
       "width": 1800,
-      "height": 1200
+      "height": 1200,
+      "receiptHash": "068bca209f56c3a3702c77664899df248e5d45942c510f31c28c8a8005e1a696",
+      "qa": {
+        "directory": "git-merge/qa/image",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "git-merge/qa/image/review-scope.json",
+            "sha256": "fbce94b3987a4b17f675502105bc65f21db194a2c5ec105b5ef4968e6509d488"
+          }
+        ]
+      }
     },
     {
       "topic": "git-merge",
@@ -115,7 +453,108 @@
       "receipt": "git-merge/git-merge.pptx.receipt.json",
       "slides": 8,
       "native": true,
-      "language": "zh"
+      "language": "zh",
+      "provenance": {
+        "skill": {
+          "name": "aha-explain",
+          "sourceRevision": "9f1a35359079531fe78eecf10b482f4d759c0356",
+          "guideHashes": {
+            "references/artifact-qa.md": "74e232dc26d9038500471aa28e6ed38f332c95bab2c4df47861c443ca9f67bc0",
+            "references/pptx.md": "b63f1baa02beca52b5ebc770655f75290258fce55b45a5d49c5d5231b9b62fca",
+            "SKILL.md": "61e0c752b286eb634d13bd883236396139599394f2667b165d361b12b7ad9ec2"
+          }
+        },
+        "runtimeHash": "4aa41f11c07e7ef1f622e7ed0787242ab520fff3e3fe7302ea82526bde86d4fe"
+      },
+      "receiptHash": "db440b6c4ad2a7d72bf7d455ce7b7c882aecf4350dbeea31137ba8f1ccbb6ae5",
+      "qa": {
+        "directory": "git-merge/qa/pptx",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "git-merge/qa/pptx/powerpoint-observations.json",
+            "sha256": "9e3aa92536c695263f51ee8ad69506e574c9fe34998e4031bd7f7ad03866fcd1"
+          },
+          {
+            "file": "git-merge/qa/pptx/slide-01.png",
+            "sha256": "aae059cab9e0903b753d4d2a413b6c56652400fbbb4dd324039583224661f00d"
+          },
+          {
+            "file": "git-merge/qa/pptx/slide-02.png",
+            "sha256": "b0bae4979c93c26823446c2acc4d48f494f39baa598bfb0fb8419a167e5c8feb"
+          },
+          {
+            "file": "git-merge/qa/pptx/slide-03.png",
+            "sha256": "07ceb12b099fd50e19b8c6399486d62b89fd9e39bfe97ff0931218bff04da424"
+          },
+          {
+            "file": "git-merge/qa/pptx/slide-04.png",
+            "sha256": "6adea917ef57c438a4fe06881ae2530813cf9e040380d14e0d632f9357de6af5"
+          },
+          {
+            "file": "git-merge/qa/pptx/slide-05.png",
+            "sha256": "a862dd005019f2e13d0508be6f6051b2eb31ed4c1dbd9e289f26e10490204759"
+          },
+          {
+            "file": "git-merge/qa/pptx/slide-06.png",
+            "sha256": "ed7731a1cacfe854c52e930ead4942c2d16d49545011f69244fb90dd4d29f7c1"
+          },
+          {
+            "file": "git-merge/qa/pptx/slide-07.png",
+            "sha256": "57aa6c82411b2122ec08658320ecf9745cad602f50c4e30238eff3caf6de6e58"
+          },
+          {
+            "file": "git-merge/qa/pptx/slide-08.png",
+            "sha256": "5c639e335707196837b1b3b4c5dbefdc5a82176684d222a5bc41f7bf5b178de5"
+          }
+        ],
+        "application": {
+          "file": "git-merge/qa/pptx/powerpoint-observations.json",
+          "sha256": "9e3aa92536c695263f51ee8ad69506e574c9fe34998e4031bd7f7ad03866fcd1"
+        },
+        "pages": [
+          {
+            "file": "git-merge/qa/pptx/slide-01.png",
+            "sha256": "aae059cab9e0903b753d4d2a413b6c56652400fbbb4dd324039583224661f00d"
+          },
+          {
+            "file": "git-merge/qa/pptx/slide-02.png",
+            "sha256": "b0bae4979c93c26823446c2acc4d48f494f39baa598bfb0fb8419a167e5c8feb"
+          },
+          {
+            "file": "git-merge/qa/pptx/slide-03.png",
+            "sha256": "07ceb12b099fd50e19b8c6399486d62b89fd9e39bfe97ff0931218bff04da424"
+          },
+          {
+            "file": "git-merge/qa/pptx/slide-04.png",
+            "sha256": "6adea917ef57c438a4fe06881ae2530813cf9e040380d14e0d632f9357de6af5"
+          },
+          {
+            "file": "git-merge/qa/pptx/slide-05.png",
+            "sha256": "a862dd005019f2e13d0508be6f6051b2eb31ed4c1dbd9e289f26e10490204759"
+          },
+          {
+            "file": "git-merge/qa/pptx/slide-06.png",
+            "sha256": "ed7731a1cacfe854c52e930ead4942c2d16d49545011f69244fb90dd4d29f7c1"
+          },
+          {
+            "file": "git-merge/qa/pptx/slide-07.png",
+            "sha256": "57aa6c82411b2122ec08658320ecf9745cad602f50c4e30238eff3caf6de6e58"
+          },
+          {
+            "file": "git-merge/qa/pptx/slide-08.png",
+            "sha256": "5c639e335707196837b1b3b4c5dbefdc5a82176684d222a5bc41f7bf5b178de5"
+          }
+        ],
+        "visualReview": {
+          "status": "bounded-review",
+          "limitations": [
+            "Current PowerPoint open/export and copy-edit checks are application observations, not a new independent visual or human-comprehension review.",
+            "Candidate visuals were reviewed with mixed full-resolution and scaled-history images. Complete original-resolution and presentation-distance readability remains unverified.",
+            "Inherited page 1 card-top spacing is tight; small footers remain."
+          ]
+        }
+      }
     },
     {
       "topic": "git-merge",
@@ -127,56 +566,736 @@
       "sourceHash": "a69708ed4925798e697ed6e1011e42945bee1037b3065974022bdf415eb71b28",
       "researchHash": "c38647d6d79318b96aa30e9c5f86f2babe042dec286ad390a56d22f908ee2019",
       "report": "git-merge/research/report.md",
-      "receipt": "git-merge/git-merge.mp4.json",
+      "receipt": "git-merge/git-merge.mp4.receipt.json",
       "durationSeconds": 126.26666666666667,
       "frames": 3788,
-      "provider": "provided-audio"
+      "provider": "provided-audio",
+      "receiptHash": "d6494463822917a5ef230eb641d4778ae477524154fc634735db9b4933f57868",
+      "qa": {
+        "directory": "git-merge/qa/video",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "git-merge/qa/video/approval.json",
+            "sha256": "8af7e0e48dc8932fd16ad6d9f1c3a0c0d1a6f61951b1f0cd26fd00434113cd1f"
+          },
+          {
+            "file": "git-merge/qa/video/browser-observations.json",
+            "sha256": "985892e122602648957a386423747f72808ddf811c9449b4b18244943bb8f1e5"
+          },
+          {
+            "file": "git-merge/qa/video/encoded-video/contact-all.png",
+            "sha256": "7c3c95e090ff55553599a74e043f3ad96613fde1f7b8ad5aa7fb146f8c3ae1c1"
+          },
+          {
+            "file": "git-merge/qa/video/encoded-video/segment-01.png",
+            "sha256": "599817e168dcb40d40f1587c904e1522aeca47d26e5ee44beee23b0b47f7f68a"
+          },
+          {
+            "file": "git-merge/qa/video/encoded-video/segment-02.png",
+            "sha256": "b146e7a7fa2db47aad98526ff7a6a5625d4501eeb7ffe928f9ce23f8d3c886cf"
+          },
+          {
+            "file": "git-merge/qa/video/encoded-video/segment-03.png",
+            "sha256": "eed3020579da270e5ba5c144ecbd57ece3fd4aa4608f8ba662cb6d2bb38e0276"
+          },
+          {
+            "file": "git-merge/qa/video/encoded-video/segment-04.png",
+            "sha256": "74ace4e01c91e1c1e2c33d7e20540fc75587c86574cb1e7e4483e340166a38ac"
+          },
+          {
+            "file": "git-merge/qa/video/encoded-video/segment-05.png",
+            "sha256": "821df020fbbb6af668e12ae6c22e93de731d2602135d13081903661a4a6d73c3"
+          },
+          {
+            "file": "git-merge/qa/video/encoded-video/segment-06.png",
+            "sha256": "07b7a38520a505e506f51297ccbda8f7c7db6009120f164ca46e477975ed3888"
+          },
+          {
+            "file": "git-merge/qa/video/encoded-video/segment-07.png",
+            "sha256": "e9cbe46d824b8fc7cfc7748af28d1c47101a52ec5177db4ab48960ee1cdbc12a"
+          },
+          {
+            "file": "git-merge/qa/video/encoded-video/segment-08.png",
+            "sha256": "f5a828ef6e3fa1160e0aba317b53d4e9ec69649272cf92419938dc25870a5e61"
+          },
+          {
+            "file": "git-merge/qa/video/encoded-video/segment-09.png",
+            "sha256": "14fffeedb71d812256460a78ff9f9a3ae89c67d7648b58356c41e789a585d90d"
+          },
+          {
+            "file": "git-merge/qa/video/encoded-video/segment-10.png",
+            "sha256": "abc09fd4c68978c5e297623f4c64f50b8621c46c7aebd3f3ea8549e6fb985542"
+          },
+          {
+            "file": "git-merge/qa/video/media-check.json",
+            "sha256": "b5781f8668e9d13e95bbd83aca32dfe10be67d9a36a1d91fa6b9f51a3dae0a94"
+          }
+        ]
+      }
     },
     {
       "topic": "cpython-string",
       "format": "video",
-      "file": "cpython-string/pilot.mp4",
+      "file": "cpython-string/cpython-string.mp4",
       "bytes": 596720,
       "sha256": "c0a9da2471a627a52a309b7afcc8905a46a112fb93b91384afe41dcd5d93c386",
       "sourceProject": "cpython-string/projects/video",
       "sourceHash": "4500ece23a3fd2e282375d5f660c67631d0dd2b4a93cec66ff259fe30f2148c1",
       "researchHash": "04cdf5f8906f1385f8575b9c99d46ae60bfe4c2c37e79982658a19d9d617daf8",
       "report": "cpython-string/research/report.md",
-      "receipt": "cpython-string/pilot.mp4.json",
+      "receipt": "cpython-string/cpython-string.mp4.receipt.json",
       "durationSeconds": 21.466666666666665,
       "frames": 644,
-      "provider": "edge-tts"
+      "provider": "edge-tts",
+      "receiptHash": "6241f6c50d4b96e92a062437d17ec2f56493eb22cba9d6cb9e01d46696d3c07e",
+      "qa": {
+        "directory": "cpython-string/qa/video",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "cpython-string/qa/video/approvals.json",
+            "sha256": "307260efaf00804579fb175e249495025b85c08751063563dc4ebad6152eaa50"
+          },
+          {
+            "file": "cpython-string/qa/video/author-review.json",
+            "sha256": "237795de78cb5f3b2c6995a53f0077c695bca3581580bcf01b3bd72a574dc311"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/1-ascii-baseline-end.png",
+            "sha256": "765eed2296e98d88e4f05efd1063e2f4b66c7909f28d39b1439daeb9d282b96e"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/1-ascii-baseline-middle.png",
+            "sha256": "29eb50bcd80b72ab3cb458e795adff40f5999e853ed6e13053a8030d29ef8f38"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/1-ascii-baseline-start.png",
+            "sha256": "8577834a06994a2fc1ad97675314ebb9798073065663bb6a04c4c0fcba493002"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/2-whole-string-widens-end.png",
+            "sha256": "972d449bc50de8895c53309411d82817d729e7e4d318e900bd07131205fc42e8"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/2-whole-string-widens-middle.png",
+            "sha256": "15bfe21ba33b10fda69b97600df7e2e08de78dbedf719d4d9bcaf061117182cd"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/2-whole-string-widens-start.png",
+            "sha256": "3b8f6503abd6ae62848e0a9a091872d115b3b3a0b17606056c92f0eec683dba6"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/3-utf8-contrast-end.png",
+            "sha256": "33ec1f246bb8e1f99db5933640bb46bcd14ebf02a195d0e2d586217068faeb31"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/3-utf8-contrast-middle.png",
+            "sha256": "76af9c46f97a5b5e740d03a4f2bb36fca7a2a816c0d408d68be4df59b2c6dcff"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/3-utf8-contrast-start.png",
+            "sha256": "84f1719d98dd7d9cbd21e425075505c6f2858f4f430982068e0a0c53b4c87541"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/technical-review.json",
+            "sha256": "ce2c5946ebb65b50c5578c7a05080ba7f6a64e1f05f0f705799e3bbd5877815c"
+          },
+          {
+            "file": "cpython-string/qa/video/preflight-visual-review.json",
+            "sha256": "05ac20def9ca6d11c3f2632092e6685320d6e452d2ef18d737fa68c62b350d6c"
+          },
+          {
+            "file": "cpython-string/qa/video/preview/1-ascii-baseline-a-replay.png",
+            "sha256": "0e30eb73c6dfd6b7569a1e49a637d152db8e50802ccf8fef422cab72e8ef350e"
+          },
+          {
+            "file": "cpython-string/qa/video/preview/1-ascii-baseline-a.png",
+            "sha256": "0e30eb73c6dfd6b7569a1e49a637d152db8e50802ccf8fef422cab72e8ef350e"
+          },
+          {
+            "file": "cpython-string/qa/video/preview/1-ascii-baseline-b.png",
+            "sha256": "6114a4f9d54b5d404a7276789e5aa8119377f782eb6cddb91fa3f0ce540df06c"
+          },
+          {
+            "file": "cpython-string/qa/video/preview/1-ascii-baseline-end.png",
+            "sha256": "3f777ba88f65ac09efe1cda4b94944cab4f12161f9db260933ee4e1b972785e9"
+          },
+          {
+            "file": "cpython-string/qa/video/preview/1-ascii-baseline-start.png",
+            "sha256": "1629825e1241a356bb84fea4557f5b6b792cd53f753c2381a81a238f144b927d"
+          },
+          {
+            "file": "cpython-string/qa/video/preview/2-whole-string-widens-a-replay.png",
+            "sha256": "cf9cc3dafd584fda0d58223d97f56f50d4649dcf7d1371027fe8c682ea5be8df"
+          },
+          {
+            "file": "cpython-string/qa/video/preview/2-whole-string-widens-a.png",
+            "sha256": "cf9cc3dafd584fda0d58223d97f56f50d4649dcf7d1371027fe8c682ea5be8df"
+          },
+          {
+            "file": "cpython-string/qa/video/preview/2-whole-string-widens-b.png",
+            "sha256": "b71433fd82bed50a3a54debae11a21f77128a3c03ade7342d09bde4c40311a81"
+          },
+          {
+            "file": "cpython-string/qa/video/preview/2-whole-string-widens-end.png",
+            "sha256": "b71433fd82bed50a3a54debae11a21f77128a3c03ade7342d09bde4c40311a81"
+          },
+          {
+            "file": "cpython-string/qa/video/preview/2-whole-string-widens-start.png",
+            "sha256": "fb6a053f9bd65e354a47e42505c1d9b6e212bb25abec2f84b1f6ab5ea18ea5df"
+          },
+          {
+            "file": "cpython-string/qa/video/preview/3-utf8-contrast-a-replay.png",
+            "sha256": "d053ef82a0b97d7d472cdb73c583776054d38a07263d4888d159d83a0f316862"
+          },
+          {
+            "file": "cpython-string/qa/video/preview/3-utf8-contrast-a.png",
+            "sha256": "d053ef82a0b97d7d472cdb73c583776054d38a07263d4888d159d83a0f316862"
+          },
+          {
+            "file": "cpython-string/qa/video/preview/3-utf8-contrast-b.png",
+            "sha256": "d179a29f1c05f75f72aa2614d796524b9ef7c9b58e78bd0686a493779f730167"
+          },
+          {
+            "file": "cpython-string/qa/video/preview/3-utf8-contrast-end.png",
+            "sha256": "e526c0160704d60a6cd278c4b9735a17911f68f20205b143de79cbc65b4cde53"
+          },
+          {
+            "file": "cpython-string/qa/video/preview/3-utf8-contrast-start.png",
+            "sha256": "b25894b201d82dfe1e0838c21905108592068015e8703a829314b0111e96990a"
+          },
+          {
+            "file": "cpython-string/qa/video/preview/report.json",
+            "sha256": "289721f77a73f34ddcca8d08480c07236de7f7dd578b1011f455404021eb1288"
+          },
+          {
+            "file": "cpython-string/qa/video/semantic-state-review.json",
+            "sha256": "daab5ad570392b777a6cb8a8b84fb90d51bd2b892fb2daeac7d911a2df072726"
+          }
+        ]
+      }
     },
     {
       "topic": "docker-layers",
       "format": "video",
-      "file": "docker-layers/pilot.mp4",
+      "file": "docker-layers/docker-layers.mp4",
       "bytes": 628194,
       "sha256": "94c7629843596a7a1f4c70d3edff0702e07d5df3a1847decf5a52a4f4a68c95d",
       "sourceProject": "docker-layers/projects/video",
       "sourceHash": "2219d6f667a1a7c0e99e7e25334edcb48458d3371ddb041035c28b9c716fbccb",
       "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
       "report": "docker-layers/research/report.md",
-      "receipt": "docker-layers/pilot.mp4.json",
+      "receipt": "docker-layers/docker-layers.mp4.receipt.json",
       "durationSeconds": 21.266666666666666,
       "frames": 638,
       "provider": "provided-audio",
-      "language": "en"
+      "language": "en",
+      "receiptHash": "56909ba51e8a9cf047d88812903b5a2e1b018c0765d835bb8ff09a7ea92acb3e",
+      "qa": {
+        "directory": "docker-layers/qa/video",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "docker-layers/qa/video/approval.json",
+            "sha256": "9eed8dc8a910a5be14c646713b4d0030b596fe80e96e82fdd27c137cc802d421"
+          },
+          {
+            "file": "docker-layers/qa/video/frames/frame-009.png",
+            "sha256": "f33910e0e67bc240bf1fc61c8d21b97e2c387eb6564b45cf957e9128d2b7eb87"
+          },
+          {
+            "file": "docker-layers/qa/video/media-observations.json",
+            "sha256": "8c37c3bc31960e78ca418b10440ba8c468a7b0fa4d8fcbbd50985734237a3d8a"
+          },
+          {
+            "file": "docker-layers/qa/video/result-at-640.png",
+            "sha256": "4d75b9a9a8e2e45cdb9f1616be47e5d95258f35b7b34411f0ac4b9683065bc6a"
+          },
+          {
+            "file": "docker-layers/qa/video/review.json",
+            "sha256": "0df57aa2c43f183a65fe59cbfc0bfa4a9877cf6bc2416af54ee49fe30f976828"
+          },
+          {
+            "file": "docker-layers/qa/video/source-diagnostics.json",
+            "sha256": "46e8aa675691107d56a7faf4ddb70ee656f4981b5a21c9a53fab10dca65db9d2"
+          },
+          {
+            "file": "docker-layers/qa/video/transition-contact-sheet.png",
+            "sha256": "1d0a57650807c23364152af7712ff987a6fdbcca655e0847851c0a7a40806ebb"
+          },
+          {
+            "file": "docker-layers/qa/video/transitions/frame-002.png",
+            "sha256": "44e28c04c52916cd37513694304e2bd4e8a68c4bdb3d38eff06adb20b59ff8e1"
+          },
+          {
+            "file": "docker-layers/qa/video/transitions/frame-003.png",
+            "sha256": "985887be8dedf2ddfbf3b26518523d8e705a8cbb1ca516a4f42f1ac966dcdc9c"
+          },
+          {
+            "file": "docker-layers/qa/video/video-contact-sheet.png",
+            "sha256": "ff0d2847b1eaad855ef4d34ca371db6c857017b584178a165ed5e8aed13cc969"
+          }
+        ]
+      }
     },
     {
       "topic": "aha-introduction",
       "format": "video",
-      "file": "aha-introduction/overview-v5.mp4",
+      "file": "aha-introduction/aha-introduction.mp4",
       "bytes": 4025806,
       "sha256": "7cfa0cacc6e6e6f03b684c4fccbf653dee9603a1a5f8dba5391aae6db9177deb",
       "sourceProject": "aha-introduction/projects/video",
       "sourceHash": "9f6cb9b7d6b99821b4b181822a5b5f2ca877c42e98aea6d7cd90371cc123554c",
       "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
       "report": "aha-introduction/research/report.md",
-      "receipt": "aha-introduction/overview-v5.mp4.json",
+      "receipt": "aha-introduction/aha-introduction.mp4.receipt.json",
       "durationSeconds": 119.4,
       "frames": 3582,
-      "provider": "provided-audio"
+      "provider": "provided-audio",
+      "receiptHash": "6b1a0184ae1bc56efd5c389a7f03a6413452de5cdeb58de6847f547cb24e415b",
+      "qa": {
+        "directory": "aha-introduction/qa/video",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "aha-introduction/qa/video/approval.json",
+            "sha256": "355b15f3b07d72aae992cb9ac9bbae02605e239ca0c8be290e198dddfe0f9733"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/1-research-skill-end.png",
+            "sha256": "d2909eded79d7b768fa2b613b2e0dbd216804dc06b9ef01b02fd2e91eeb5a40a"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/1-research-skill-middle.png",
+            "sha256": "967fe249a362813d4e3ba6c31cbae98314400a507f7b5db0dc5b6ac5116503c7"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/1-research-skill-start.png",
+            "sha256": "8432e5218dbc0a02214bdb0a803faea8d64c94738485ac59dc91b87c45b7079e"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/10-same-run-end.png",
+            "sha256": "08c490704059de9402fffd39abe341b170515f21a03e956deab0f146410276ad"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/10-same-run-middle.png",
+            "sha256": "0d5331bcc774d0820a796a8f18e3c854aa769ad5147f94df80e95cb06c35db3d"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/10-same-run-start.png",
+            "sha256": "a2833eb2fc13944a7acd93da17375bb54f8172e2315c3d6d0b15422ee7db2c88"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/11-saved-html-image-end.png",
+            "sha256": "c30bb4dad7edb37cd814e8de8af9de8749ccac08208acafb65711f236a43b5cf"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/11-saved-html-image-middle.png",
+            "sha256": "8501bdcfc0eba674150875a9267e0c906329bd5ea88b3651f9ae2288483b4ccd"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/11-saved-html-image-start.png",
+            "sha256": "5fa9ab856f2149936f2ce5525ee031df18d3b30cee2619e337fe4b9fe2bd6847"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/12-saved-slides-video-end.png",
+            "sha256": "d6e5ad9c0a94d61f6b7c91e3a60eccc3299ee95f3aa42ae96198823266f4ba81"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/12-saved-slides-video-middle.png",
+            "sha256": "2f5159ceff52abcec8639b70cea150d71fd7bb7480cf36c25af4a6994656aa96"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/12-saved-slides-video-start.png",
+            "sha256": "b74d68f0a97701f9df86060465be6a877c370dac3bfc8abdbde3de8d58f952f8"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/13-evidence-visible-end.png",
+            "sha256": "309aa0f25e7ace34014fedfbe924ebd403e32202db85e4c5c795cf0223a383a6"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/13-evidence-visible-middle.png",
+            "sha256": "39f304dbfbb61ec45494cf55dff0651cc8457acbf3d8a234ca1132a11ea777ad"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/13-evidence-visible-start.png",
+            "sha256": "8f81571cfe1d1a6d11fa1b1ce9e2615248cbfd69d3881bea7331324b27fcb702"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/2-explanation-skill-end.png",
+            "sha256": "1d1821d0d3116a0ca1bb02a1db301d4a76c195617a946570cba6baf15b1ac184"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/2-explanation-skill-middle.png",
+            "sha256": "659bfe9eec34995a4c71045020a8c19bd9da194d32d5219fe1a52952e6bfc43e"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/2-explanation-skill-start.png",
+            "sha256": "59dad9374b2564c8676684e4d0845cdfe5e2bd1361db2e2130c0c243b56879ca"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/3-three-examples-end.png",
+            "sha256": "6f4617de4a288595a608c197ad49a54f8e029cbc4505a663e4055039473131d1"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/3-three-examples-middle.png",
+            "sha256": "eac31affac18237a4b7d7ec71bd2d5e5b78bf760afb47ce9adf60958de6943ea"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/3-three-examples-start.png",
+            "sha256": "c70e0fc8980fd1710b7140912aa458bcdc838805daba558df97591f8249e9839"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/4-mercator-question-end.png",
+            "sha256": "511c5c91b84ebbab64955df5029ed48eb952b9ad44d17a8ec2e041f29d2d8831"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/4-mercator-question-middle.png",
+            "sha256": "c92312632700704f1d20a69eb740c4d340eea767287860330920d1968e610800"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/4-mercator-question-start.png",
+            "sha256": "e515ff799a49e70d0fb67ae9834052a2b506cb07ec994953dda1f13b3fa1026c"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/5-spherical-rotation-end.png",
+            "sha256": "e6003a1fc50e022d594598a13e6aa8870ad6d75abd750e4c6ebd90f01bd9a182"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/5-spherical-rotation-middle.png",
+            "sha256": "a69f089b8d32305177e2810b9c0aee001f96610ed44f6085942dc2278dae1187"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/5-spherical-rotation-start.png",
+            "sha256": "ae99881a44549402d57513c0c1b14a8aab19fe0f919b937c98f6833dc6d51be9"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/6-new-string-end.png",
+            "sha256": "2be06d21a21a0dd370460598b93d5b0b9f5cb9c2278c15c909d41471ba13b65f"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/6-new-string-middle.png",
+            "sha256": "05305bc728e9e454a5667624df10a59e358bb69bcce50670c2914779ea009c0e"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/6-new-string-start.png",
+            "sha256": "06a372cd2d1d83fcea5a0236d3bc3b4f3f7b02a2f0b4843d4e09243ecd536f71"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/7-utf8-contrast-end.png",
+            "sha256": "d100a88b9f66ee374ee9e1c09105dd3e341634c56c401e3f8bc04f73c385f70b"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/7-utf8-contrast-middle.png",
+            "sha256": "3d3ba43c0544a5dd433618b70039747b6baeaf53c7b1166b51ab46639b0653a6"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/7-utf8-contrast-start.png",
+            "sha256": "671f41b06c2b3f740349759d08d1699a515eccaeed18583ccdf19882b992ea30"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/8-layer-created-end.png",
+            "sha256": "79dac23cbca0fdb8082078fe89a2034acacc9a9984dee4526cce5df44a12cc12"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/8-layer-created-middle.png",
+            "sha256": "7446378c987e8db16a612424cc9956eebab0e37d559d1f90a46438deecb0b44f"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/8-layer-created-start.png",
+            "sha256": "d8663bf8b58300e25e578c4308763e97e815d754c61483bf5c9f8d925a9a9f81"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/9-later-whiteout-end.png",
+            "sha256": "697d2d55ef0188576c153d170ff667833523fb7fd1f66d3dd9a41d78ba959a39"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/9-later-whiteout-middle.png",
+            "sha256": "697d2d55ef0188576c153d170ff667833523fb7fd1f66d3dd9a41d78ba959a39"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/9-later-whiteout-start.png",
+            "sha256": "23d596caef1b21d92c8906253bdfafe00f7d7f5a5f4b9e2d0d21d914fb18d721"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/technical-review.json",
+            "sha256": "ce0d80c22b438126873587056d630d3842ad6abd08d692ea9869a89d2d479538"
+          },
+          {
+            "file": "aha-introduction/qa/video/encoded/visual-review.json",
+            "sha256": "12a51b52b2735c6978fea200bf42d9b04037d5988dce8d7025ebb18675732031"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/1-research-skill-a-replay.png",
+            "sha256": "60d8a1bcb4be4fc9a9a7d141380071f0f77f020153180537854bd275613228f8"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/1-research-skill-a.png",
+            "sha256": "60d8a1bcb4be4fc9a9a7d141380071f0f77f020153180537854bd275613228f8"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/1-research-skill-b.png",
+            "sha256": "f756c95cbb9383745fef7127fbb3de4b62ccff1242762e069b0dbf7b5fce13bc"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/1-research-skill-end.png",
+            "sha256": "0ec18690b2bdf9c0f83cd357c464491dd291ad257a3ed94ac1059cb73f05bb0b"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/1-research-skill-start.png",
+            "sha256": "9dba44d7f502b4a92d26db52a087db418e934386bdaee3c5d47a0dd87107d49f"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/10-same-run-a-replay.png",
+            "sha256": "43ce9b0cd45729f9e1b580c42ca5ff8412a8f29b9e79a751708b0a0ade69ab28"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/10-same-run-a.png",
+            "sha256": "43ce9b0cd45729f9e1b580c42ca5ff8412a8f29b9e79a751708b0a0ade69ab28"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/10-same-run-b.png",
+            "sha256": "7bf8657ae287d905a71ca086f17869fb8863ea64eb0725758cd11a8a9746f394"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/10-same-run-end.png",
+            "sha256": "7bf8657ae287d905a71ca086f17869fb8863ea64eb0725758cd11a8a9746f394"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/10-same-run-start.png",
+            "sha256": "43ce9b0cd45729f9e1b580c42ca5ff8412a8f29b9e79a751708b0a0ade69ab28"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/11-saved-html-image-a-replay.png",
+            "sha256": "479f000b139bc4ba0f94bafa2cb88622e93cc155ef66278e88d8b61bbd2e99b2"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/11-saved-html-image-a.png",
+            "sha256": "479f000b139bc4ba0f94bafa2cb88622e93cc155ef66278e88d8b61bbd2e99b2"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/11-saved-html-image-b.png",
+            "sha256": "e32e83b5ff3b75dade05a5df4c3521cba11302691ced3cbbc3d11faf86f7c75d"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/11-saved-html-image-end.png",
+            "sha256": "fbb27977f8f6741108308068a1fb04935ddc0a72bab3cb9af2740a11fcd234a0"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/11-saved-html-image-start.png",
+            "sha256": "032a37859135a207d52e7e59604ab048425542d678a8bbd362cf6c9e3cb26d8d"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/12-saved-slides-video-a-replay.png",
+            "sha256": "355b2e659b4095683a933b8c7dce3d165114478206691adcdb18b7db845923f2"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/12-saved-slides-video-a.png",
+            "sha256": "355b2e659b4095683a933b8c7dce3d165114478206691adcdb18b7db845923f2"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/12-saved-slides-video-b.png",
+            "sha256": "1d3f9c9ea6a1fb30262302a5d15ac128f44155293eea7d3401c0828ce65aec0f"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/12-saved-slides-video-end.png",
+            "sha256": "35a1ac18ec2a94adad20d383f65c4eff36db78d35999b6aedbdcb2f5f2bbb682"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/12-saved-slides-video-start.png",
+            "sha256": "34174ae7b92a7938d73529e6c03998890db47412759f9166070a7583744b55eb"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/13-evidence-visible-a-replay.png",
+            "sha256": "8821e68b4808b035faee23b8ed897b0c69dfdefb4ee71c890f45181772dd8600"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/13-evidence-visible-a.png",
+            "sha256": "8821e68b4808b035faee23b8ed897b0c69dfdefb4ee71c890f45181772dd8600"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/13-evidence-visible-b.png",
+            "sha256": "53c33fa7c4023ea1625203cd8a1a7ec33fb49a433fa922f01c45cfc76e423ecd"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/13-evidence-visible-end.png",
+            "sha256": "53c33fa7c4023ea1625203cd8a1a7ec33fb49a433fa922f01c45cfc76e423ecd"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/13-evidence-visible-start.png",
+            "sha256": "8821e68b4808b035faee23b8ed897b0c69dfdefb4ee71c890f45181772dd8600"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/2-explanation-skill-a-replay.png",
+            "sha256": "b9d9c235929153c34acb900ea53b890249ef87518ca3617e90abcf8f063e61e3"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/2-explanation-skill-a.png",
+            "sha256": "b9d9c235929153c34acb900ea53b890249ef87518ca3617e90abcf8f063e61e3"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/2-explanation-skill-b.png",
+            "sha256": "567367d17ef4cc5211036c988a0b3f9942656b9733b0a4651c6c9109e8feae87"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/2-explanation-skill-end.png",
+            "sha256": "af55c5e7326744923beb5c67510750d722af7c9258a8739e0b620d295ab00f21"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/2-explanation-skill-start.png",
+            "sha256": "ab2f9dcf38af025cdbd8d17f0962295a121841f23eeb90a6421bc4ade0f0781f"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/3-three-examples-a-replay.png",
+            "sha256": "3fd5ca10e291eacd4fddcf21f593746f87de1d3b92789e9cd0d1f2c6636158c1"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/3-three-examples-a.png",
+            "sha256": "3fd5ca10e291eacd4fddcf21f593746f87de1d3b92789e9cd0d1f2c6636158c1"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/3-three-examples-b.png",
+            "sha256": "bc7af7f7f08c6fd9e1fa22643f6b2ed71e67a03aab3e49ffe211c2f8395d82e3"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/3-three-examples-end.png",
+            "sha256": "bc7af7f7f08c6fd9e1fa22643f6b2ed71e67a03aab3e49ffe211c2f8395d82e3"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/3-three-examples-start.png",
+            "sha256": "2ecad286bacff32c2e692f29f7f476296cf1b2dba598b7027691f416691c60fb"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/4-mercator-question-a-replay.png",
+            "sha256": "037ac57e99742bbb35d349ca75ee62c63ed25d7c62c073ba8857b5f44399a28c"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/4-mercator-question-a.png",
+            "sha256": "037ac57e99742bbb35d349ca75ee62c63ed25d7c62c073ba8857b5f44399a28c"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/4-mercator-question-b.png",
+            "sha256": "874a66bcac5314823c88caecf7f6ad606edd6d4605f43f959ae981b968b3df12"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/4-mercator-question-end.png",
+            "sha256": "874a66bcac5314823c88caecf7f6ad606edd6d4605f43f959ae981b968b3df12"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/4-mercator-question-start.png",
+            "sha256": "df1d26bd2b527f00faa40f5b27f3b494d744d68c1a77d5562836ba696679b01c"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/5-spherical-rotation-a-replay.png",
+            "sha256": "441364211f7c35fd5f2f09c778d4024566aae74998a83bb1907aef5915856d91"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/5-spherical-rotation-a.png",
+            "sha256": "441364211f7c35fd5f2f09c778d4024566aae74998a83bb1907aef5915856d91"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/5-spherical-rotation-b.png",
+            "sha256": "287cdd5b59cd93f5d044d1cc98679d40cfdf71adfbe1bd5b8410afbd80b41653"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/5-spherical-rotation-end.png",
+            "sha256": "91de39235c645f98fa96491a43d26053252cf060e6d1e45647885869fda68316"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/5-spherical-rotation-start.png",
+            "sha256": "98ddc310f9b1d1029c01a685eb8d7ed7d79c75f461e605bb2ba2ced9c9b95fe7"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/6-new-string-a-replay.png",
+            "sha256": "011bdf608e265271d66028c09336dd84fd4f6b21859f6ace02b95cdf35c2ea7f"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/6-new-string-a.png",
+            "sha256": "011bdf608e265271d66028c09336dd84fd4f6b21859f6ace02b95cdf35c2ea7f"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/6-new-string-b.png",
+            "sha256": "83f7854c0958ecdc419159154dd6fc640829b9d7ccd6bca5db4436033e8d636f"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/6-new-string-end.png",
+            "sha256": "83f7854c0958ecdc419159154dd6fc640829b9d7ccd6bca5db4436033e8d636f"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/6-new-string-start.png",
+            "sha256": "98d1b456bbd8d7f48f540a2a7bc401cd7299f27e87ce394cb6dc7ace5bce764e"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/7-utf8-contrast-a-replay.png",
+            "sha256": "56920650aa7580372bafd54149c1a07bb10ac8b05d8cb953df96410d80ed7ec6"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/7-utf8-contrast-a.png",
+            "sha256": "56920650aa7580372bafd54149c1a07bb10ac8b05d8cb953df96410d80ed7ec6"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/7-utf8-contrast-b.png",
+            "sha256": "8bd16d6b1ef98fa97cd2ba2127a3278831ecf56dc1d944b82dbf0ff7e838ec49"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/7-utf8-contrast-end.png",
+            "sha256": "8bd16d6b1ef98fa97cd2ba2127a3278831ecf56dc1d944b82dbf0ff7e838ec49"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/7-utf8-contrast-start.png",
+            "sha256": "56920650aa7580372bafd54149c1a07bb10ac8b05d8cb953df96410d80ed7ec6"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/8-layer-created-a-replay.png",
+            "sha256": "353d990f627236d635aa16b3df6d888fedc1b7db52359f24d4d7c8a70c8a13ea"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/8-layer-created-a.png",
+            "sha256": "353d990f627236d635aa16b3df6d888fedc1b7db52359f24d4d7c8a70c8a13ea"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/8-layer-created-b.png",
+            "sha256": "c805b413adc70811495255198ccc2f948127f1db16a77900b2685d2797822e8f"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/8-layer-created-end.png",
+            "sha256": "c805b413adc70811495255198ccc2f948127f1db16a77900b2685d2797822e8f"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/8-layer-created-start.png",
+            "sha256": "9b6af41712f835ff08c5f350a0e246b46f88758e3ab09df10d24d7d3daa85437"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/9-later-whiteout-a-replay.png",
+            "sha256": "e4ae4da1e8402f26e251ef40be186bcd3740112ccd93c3d02dbb2638eef01e6c"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/9-later-whiteout-a.png",
+            "sha256": "e4ae4da1e8402f26e251ef40be186bcd3740112ccd93c3d02dbb2638eef01e6c"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/9-later-whiteout-b.png",
+            "sha256": "ca3be4a5f1bce3d857dd7de71b8c99fe42900e517f90400de355ad08708edaa1"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/9-later-whiteout-end.png",
+            "sha256": "ca3be4a5f1bce3d857dd7de71b8c99fe42900e517f90400de355ad08708edaa1"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/9-later-whiteout-start.png",
+            "sha256": "e4ae4da1e8402f26e251ef40be186bcd3740112ccd93c3d02dbb2638eef01e6c"
+          },
+          {
+            "file": "aha-introduction/qa/video/preview/report.json",
+            "sha256": "c7fedf936ace8c09227f415f370e9dc96d594c14f2f4fec621a425cb4c176761"
+          },
+          {
+            "file": "aha-introduction/qa/video/speech-approval.json",
+            "sha256": "48524b860952c32eb1efbe36ccd8b0a7186096c4963e88a88f51a1bbc6561304"
+          }
+        ]
+      }
     },
     {
       "topic": "greenland",
@@ -191,71 +1310,347 @@
       "receipt": "greenland/greenland.pptx.receipt.json",
       "slides": 7,
       "native": true,
-      "language": "zh"
+      "language": "zh",
+      "provenance": {
+        "skill": {
+          "name": "aha-explain",
+          "sourceRevision": "9f1a35359079531fe78eecf10b482f4d759c0356",
+          "guideHashes": {
+            "references/artifact-qa.md": "74e232dc26d9038500471aa28e6ed38f332c95bab2c4df47861c443ca9f67bc0",
+            "references/pptx.md": "b63f1baa02beca52b5ebc770655f75290258fce55b45a5d49c5d5231b9b62fca",
+            "SKILL.md": "61e0c752b286eb634d13bd883236396139599394f2667b165d361b12b7ad9ec2"
+          }
+        },
+        "runtimeHash": "4aa41f11c07e7ef1f622e7ed0787242ab520fff3e3fe7302ea82526bde86d4fe"
+      },
+      "receiptHash": "cfe207a4d14606d439047e4c8614ba02a8ff9ef42c2195a1554c7637cc2667c7",
+      "qa": {
+        "directory": "greenland/qa/pptx",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "greenland/qa/pptx/powerpoint-observations.json",
+            "sha256": "9ac058a838bb6b871152ca31b0920bd6b177c016c2f5457cbad4a5bc9efcf2e1"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-01.png",
+            "sha256": "c5d00fb420e2e8d6e5de31d95067db10f7fa4b1b27712842a01c005324d69df6"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-02.png",
+            "sha256": "2749999a80e1513250dce4c9e7b9845493ad1834bfe7dc48221cfe1559b8fd18"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-03.png",
+            "sha256": "ec15cc665101df1dbd2fca0105aa00d92d8074e0590128372132fa16042f7c84"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-04.png",
+            "sha256": "379918ac26cb9f957e2216b4bdbdb5c8be002b88e92b1ad1738b8aa61cc7109c"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-05.png",
+            "sha256": "76b61dbd0c7488f18c5a35d6116277cdddbf723e1745d38f35cca77e54fd1c8d"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-06.png",
+            "sha256": "67f67bd9c974a1377c50f6dee06c905e0505884280c09e9893b8d62b07df2724"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-07.png",
+            "sha256": "07ee5103ebc1fc4f4f8eba219dbe66eaaecca5ed726c3b0db7732de123b5821f"
+          }
+        ],
+        "application": {
+          "file": "greenland/qa/pptx/powerpoint-observations.json",
+          "sha256": "9ac058a838bb6b871152ca31b0920bd6b177c016c2f5457cbad4a5bc9efcf2e1"
+        },
+        "pages": [
+          {
+            "file": "greenland/qa/pptx/slide-01.png",
+            "sha256": "c5d00fb420e2e8d6e5de31d95067db10f7fa4b1b27712842a01c005324d69df6"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-02.png",
+            "sha256": "2749999a80e1513250dce4c9e7b9845493ad1834bfe7dc48221cfe1559b8fd18"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-03.png",
+            "sha256": "ec15cc665101df1dbd2fca0105aa00d92d8074e0590128372132fa16042f7c84"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-04.png",
+            "sha256": "379918ac26cb9f957e2216b4bdbdb5c8be002b88e92b1ad1738b8aa61cc7109c"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-05.png",
+            "sha256": "76b61dbd0c7488f18c5a35d6116277cdddbf723e1745d38f35cca77e54fd1c8d"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-06.png",
+            "sha256": "67f67bd9c974a1377c50f6dee06c905e0505884280c09e9893b8d62b07df2724"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-07.png",
+            "sha256": "07ee5103ebc1fc4f4f8eba219dbe66eaaecca5ed726c3b0db7732de123b5821f"
+          }
+        ],
+        "visualReview": {
+          "status": "bounded-review",
+          "limitations": [
+            "Current PowerPoint open/export and copy-edit checks are application observations, not a new independent visual or human-comprehension review.",
+            "Candidate visuals were reviewed with mixed full-resolution and scaled-history images. Complete original-resolution and presentation-distance readability remains unverified.",
+            "Inherited hemisphere scope label is small and muted."
+          ]
+        }
+      }
     },
     {
       "topic": "aha-introduction",
       "format": "html",
-      "file": "aha-introduction/index.html",
+      "file": "aha-introduction/aha-introduction.html",
       "bytes": 39058,
       "sha256": "e76d956fb1f7d3d0bc060f9295ad7f63c27e43f7cbd3abe3696e984580c94cd4",
       "sourceProject": "aha-introduction/projects/html",
       "sourceHash": "21aac193b757a5e485c6c131122e525aa125938c40e90ea3a570a801d12f15d8",
       "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
       "report": "aha-introduction/research/report.md",
-      "receipt": "aha-introduction/index.html.receipt.json",
-      "language": "bilingual"
+      "receipt": "aha-introduction/aha-introduction.html.receipt.json",
+      "language": "bilingual",
+      "receiptHash": "37407ec0a0b338b6068c46419c46795606f11ae359fc6a90b96c87b91ce46646",
+      "qa": {
+        "directory": "aha-introduction/qa/html",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "aha-introduction/qa/html/agent-review.json",
+            "sha256": "6087976950e84c2a6b8b3204318f641c900bbcc21a17ccd681e899d0737956a8"
+          },
+          {
+            "file": "aha-introduction/qa/html/browser-observations.json",
+            "sha256": "21863059c521b1be56064f319a3862837d2f1794d5aa759f76a7b450c53d6d87"
+          },
+          {
+            "file": "aha-introduction/qa/html/html-1280-en-dark.png",
+            "sha256": "1494456db06a337768aba17836c440669e69594c97d163b9361c7cb8f1034cc2"
+          },
+          {
+            "file": "aha-introduction/qa/html/html-1280-en-light.png",
+            "sha256": "2052612b560c5783937fd5e210d20d2f82fac679a227068d43ec0a3bf7054e41"
+          },
+          {
+            "file": "aha-introduction/qa/html/html-1280-zh-dark.png",
+            "sha256": "9efc59377df4b739906a6fd579b2689b4d1a9b21bb4f4925abc8be5e7b6fd45e"
+          },
+          {
+            "file": "aha-introduction/qa/html/html-1280-zh-light.png",
+            "sha256": "15bed7eec5d7dd07cbb6ee267cecafddaca05f2abc52d32722912772f37b84e2"
+          },
+          {
+            "file": "aha-introduction/qa/html/html-390-en-dark.png",
+            "sha256": "698822b5e6b9b11fa40f8d81dd3358d24e7a2710f9019c1b5914a51419b4d2b7"
+          },
+          {
+            "file": "aha-introduction/qa/html/html-390-en-light.png",
+            "sha256": "7eddc42a797ffcdf4178aeabf005b8ee7b5408e454e3338efbad12fe1544e262"
+          },
+          {
+            "file": "aha-introduction/qa/html/html-390-zh-dark.png",
+            "sha256": "79288db3a7542283121d5f960c58438a979edd49262d3ffb1a8ec633f599b4fe"
+          },
+          {
+            "file": "aha-introduction/qa/html/html-390-zh-light.png",
+            "sha256": "2a70a1230ac59545b56f243418c719daf0ff6ea8e736223db91a69f72e7038ce"
+          }
+        ],
+        "observations": {
+          "file": "aha-introduction/qa/html/browser-observations.json",
+          "sha256": "21863059c521b1be56064f319a3862837d2f1794d5aa759f76a7b450c53d6d87"
+        },
+        "review": {
+          "file": "aha-introduction/qa/html/agent-review.json",
+          "sha256": "6087976950e84c2a6b8b3204318f641c900bbcc21a17ccd681e899d0737956a8"
+        }
+      }
     },
     {
       "topic": "aha-introduction",
       "format": "image",
-      "file": "aha-introduction/overview.png",
+      "file": "aha-introduction/aha-introduction.png",
       "bytes": 344006,
       "sha256": "98196ae1ff619bd1224c3025e48dbf559708e637894d41a0f2f9286674deabec",
       "sourceProject": "aha-introduction/projects/image",
       "sourceHash": "a6b45f1d00bb3d1b81bf1094e1dbe645c555de170c2c89ddf3f7f777704f84bd",
       "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
       "report": "aha-introduction/research/report.md",
-      "receipt": "aha-introduction/overview.png.receipt.json",
+      "receipt": "aha-introduction/aha-introduction.png.receipt.json",
       "language": "zh",
       "width": 1080,
-      "height": 1920
+      "height": 1920,
+      "receiptHash": "ad942c6f918e4dddd16925e7768b368e605f15511584f0963f0aa1a3d862fc41",
+      "qa": {
+        "directory": "aha-introduction/qa/image",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "aha-introduction/qa/image/agent-review.json",
+            "sha256": "bdf6e8cfe008a089a7d9d27bfebfbafbdd491f3f77a8cad88a645a36197958ae"
+          },
+          {
+            "file": "aha-introduction/qa/image/image-observations.json",
+            "sha256": "2a56d139233e2b98125574328d15fb99f4298d386455f30857a67fc577ec8adb"
+          },
+          {
+            "file": "aha-introduction/qa/image/reading-390.png",
+            "sha256": "57c98c0053118cd96a493af1633f2fa553d578667fe63057b22d7e9a9a0f03ac"
+          }
+        ],
+        "observations": {
+          "file": "aha-introduction/qa/image/image-observations.json",
+          "sha256": "2a56d139233e2b98125574328d15fb99f4298d386455f30857a67fc577ec8adb"
+        },
+        "review": {
+          "file": "aha-introduction/qa/image/agent-review.json",
+          "sha256": "bdf6e8cfe008a089a7d9d27bfebfbafbdd491f3f77a8cad88a645a36197958ae"
+        }
+      }
     },
     {
       "topic": "aha-introduction",
       "format": "pptx",
-      "file": "aha-introduction/overview.pptx",
+      "file": "aha-introduction/aha-introduction.pptx",
       "bytes": 254739,
       "sha256": "a002c6da960d15ef53d6b70d1ad80ef8a7276021347a4a6c723aaf32bc71c688",
       "sourceProject": "aha-introduction/projects/pptx",
       "sourceHash": "5abdb39958ba863a632d86347983d6082318c574646e80bcd21a07c1382f41f2",
       "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
       "report": "aha-introduction/research/report.md",
-      "receipt": "aha-introduction/overview.pptx.receipt.json",
+      "receipt": "aha-introduction/aha-introduction.pptx.receipt.json",
       "language": "zh",
       "slides": 8,
-      "native": true
+      "native": true,
+      "provenance": {
+        "skill": {
+          "name": "aha-explain",
+          "sourceRevision": "9f1a35359079531fe78eecf10b482f4d759c0356",
+          "guideHashes": {
+            "references/artifact-qa.md": "74e232dc26d9038500471aa28e6ed38f332c95bab2c4df47861c443ca9f67bc0",
+            "references/pptx.md": "b63f1baa02beca52b5ebc770655f75290258fce55b45a5d49c5d5231b9b62fca",
+            "SKILL.md": "61e0c752b286eb634d13bd883236396139599394f2667b165d361b12b7ad9ec2"
+          }
+        },
+        "runtimeHash": "4aa41f11c07e7ef1f622e7ed0787242ab520fff3e3fe7302ea82526bde86d4fe"
+      },
+      "receiptHash": "273100a4d78810196dfd47a5249676471228ac7d68f901620beabf92a2526d90",
+      "qa": {
+        "directory": "aha-introduction/qa/pptx",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "aha-introduction/qa/pptx/agent-review.json",
+            "sha256": "b965e9a947fbdd48475a9272a455509257ff1006e4213e4791816c2df89112da"
+          },
+          {
+            "file": "aha-introduction/qa/pptx/powerpoint-observations.json",
+            "sha256": "cb2e42813cc44c0b491a5dc43e5ebc529bc17acdbc51c91a551bb18062b6ccd6"
+          },
+          {
+            "file": "aha-introduction/qa/pptx/slide-01.png",
+            "sha256": "99adb10a1d50bb6f5e6beaa6a0cabeabdaf30342728cd0126d8bc37658d4cd46"
+          },
+          {
+            "file": "aha-introduction/qa/pptx/slide-02.png",
+            "sha256": "c3b79e94c77d8d229d56b8ed77bd90b1e3cb30f1578aca09d4296f0909d4235a"
+          },
+          {
+            "file": "aha-introduction/qa/pptx/slide-03.png",
+            "sha256": "cc7191c9c77046fb9f5e712470b1fc27e409570323a8e744b009a0fdd6249868"
+          },
+          {
+            "file": "aha-introduction/qa/pptx/slide-04.png",
+            "sha256": "1993c02ebef80a463b202d3e07cd2b9d8ad85c38a673e741eed4e27084e64d23"
+          },
+          {
+            "file": "aha-introduction/qa/pptx/slide-05.png",
+            "sha256": "5bf0fdc37fd679111e8d988b9e2fb777262bcba1e92d0de4e990f619fe8da28b"
+          },
+          {
+            "file": "aha-introduction/qa/pptx/slide-06.png",
+            "sha256": "ed6516fc917f6f34e6bff4d74cfc3ebd245099d070dcafabebb0e9ce1a2d125d"
+          },
+          {
+            "file": "aha-introduction/qa/pptx/slide-07.png",
+            "sha256": "03458b0b8e6a3e7b072b537e797bb86964daa4da1f14484732405181f9dff0ce"
+          },
+          {
+            "file": "aha-introduction/qa/pptx/slide-08.png",
+            "sha256": "cbc575286f0e826fa61f2475d57e05ba32b3470ddeb34b860ef315279aaf644c"
+          }
+        ],
+        "application": {
+          "file": "aha-introduction/qa/pptx/powerpoint-observations.json",
+          "sha256": "cb2e42813cc44c0b491a5dc43e5ebc529bc17acdbc51c91a551bb18062b6ccd6"
+        },
+        "pages": [
+          {
+            "file": "aha-introduction/qa/pptx/slide-01.png",
+            "sha256": "99adb10a1d50bb6f5e6beaa6a0cabeabdaf30342728cd0126d8bc37658d4cd46"
+          },
+          {
+            "file": "aha-introduction/qa/pptx/slide-02.png",
+            "sha256": "c3b79e94c77d8d229d56b8ed77bd90b1e3cb30f1578aca09d4296f0909d4235a"
+          },
+          {
+            "file": "aha-introduction/qa/pptx/slide-03.png",
+            "sha256": "cc7191c9c77046fb9f5e712470b1fc27e409570323a8e744b009a0fdd6249868"
+          },
+          {
+            "file": "aha-introduction/qa/pptx/slide-04.png",
+            "sha256": "1993c02ebef80a463b202d3e07cd2b9d8ad85c38a673e741eed4e27084e64d23"
+          },
+          {
+            "file": "aha-introduction/qa/pptx/slide-05.png",
+            "sha256": "5bf0fdc37fd679111e8d988b9e2fb777262bcba1e92d0de4e990f619fe8da28b"
+          },
+          {
+            "file": "aha-introduction/qa/pptx/slide-06.png",
+            "sha256": "ed6516fc917f6f34e6bff4d74cfc3ebd245099d070dcafabebb0e9ce1a2d125d"
+          },
+          {
+            "file": "aha-introduction/qa/pptx/slide-07.png",
+            "sha256": "03458b0b8e6a3e7b072b537e797bb86964daa4da1f14484732405181f9dff0ce"
+          },
+          {
+            "file": "aha-introduction/qa/pptx/slide-08.png",
+            "sha256": "cbc575286f0e826fa61f2475d57e05ba32b3470ddeb34b860ef315279aaf644c"
+          }
+        ],
+        "visualReview": {
+          "status": "reviewed-current",
+          "limitations": [
+            "Footer and chart-axis text are smaller than main copy; physical projection-distance readability and cross-machine font substitution remain untested.",
+            "Text, a table cell and chart data were edited programmatically on a copy, saved and reopened. This is not manual editing-usability acceptance or a test of every object.",
+            "Agent editorial and visual observations are not human comprehension, independent human translation or human approval."
+          ],
+          "evidence": {
+            "file": "aha-introduction/qa/pptx/agent-review.json",
+            "sha256": "b965e9a947fbdd48475a9272a455509257ff1006e4213e4791816c2df89112da"
+          }
+        }
+      }
     }
   ],
   "qa": {
-    "structuralSourceAndOutputIdentity": "Sixteen outputs across six topics; four Chinese native PPTX decks. Introduction HTML/PPTX/PNG have current bound sources and evidence. Retained output identities are unchanged by retiring the older project overview. Identity is not semantic proof.",
-    "html": "Current Git HTML is a Chinese plan review with new 1280/390/320px and pixel evidence; ANC and introduction retain their separate bilingual evidence.",
-    "slides": "Thirty current slides exported by PowerPoint. Introduction text/table/chart-data copy edits persisted; the original deck stayed unchanged. Three earlier decks retain candidate provenance; the introduction has fresh current-skill authoring and final-page review, not a recovered-candidate comparison.",
-    "images": "The primary introduction is an independently authored Chinese1080x1920 poster, with byte-identical offline source capture and an actually inspected390px reading-size preview. Other images retain their own existing evidence and limitations.",
-    "video": "Docker now uses the second-round scene with exact offline-imported original recordings, fresh approved source-bound plan and encoded-frame evidence. Small-player auxiliary text remains dense; listening and comprehension unperformed.",
-    "pilotListeningAndViewing": "General approval to promote the revised Docker sample does not assert continuous auditory review. Other retained pilot acceptance records are unchanged.",
-    "completeVideoListeningAndViewing": "Awaiting separate user acceptance; agent does not claim auditory perception.",
-    "humanComprehensionStudy": "Not performed."
+    "structuralSourceAndOutputIdentity": "Sixteen outputs across six topics; current source, research, receipts and QA identities. Identity is not semantic proof.",
+    "html": "Chinese Git plan review at 1280/390/320px; ANC and introduction have bilingual browser observations.",
+    "slides": "Thirty PowerPoint-exported slides with native copy-edit observations and explicit visual-review limitations.",
+    "images": "Chinese 1080x1920 introduction poster has a reviewed 390px preview. ANC/Git reading previews do not establish phone readability or standalone visual acceptance.",
+    "video": "Decode, approved subtitles, source replay and sampled-frame observations. Docker auxiliary text remains small at 640px display width.",
+    "completeVideoListeningAndViewing": "Not confirmed; no agent auditory acceptance claim.",
+    "humanComprehensionStudy": "Not performed.",
+    "layout": "One current manifest; topic-named artifacts and receipts; self-contained QA under <topic>/qa/<format>. Paths are current and relative; no archive or relocation dependency."
   },
-  "previousPublishedVersion": "c98b192797d8f682ba3db3ca610c7c6802e023ac",
-  "greenlandEvaluation": "../evals/examples/greenland-20260917/publication.json",
-  "previousExamplesPreserved": "Git history",
-  "promotedAt": "2026-09-16T06:40:30.076Z",
-  "codePilotEvaluation": "../evals/examples/code-pilots-20260917/publication.json",
-  "updatedAt": "2026-09-22T04:38:32.325Z",
-  "ahaIntroductionEvaluation": "../evals/examples/aha-introduction-20260917/publication.json",
-  "pptxPublication": "pptx-publication.json",
-  "historicalVisualReview": "../evals/examples/refresh-20260916/final-visual-review.json",
-  "introductionPublication": "aha-introduction/publication.json",
-  "taskVideoEvaluation": "../evals/examples/task-video-20260922/publication.json"
+  "updatedAt": "2026-09-22T07:18:50.512Z",
+  "schemaVersion": 2,
+  "layout": "topic-format-v1"
 }

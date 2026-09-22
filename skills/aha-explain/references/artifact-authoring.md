@@ -17,7 +17,7 @@ The initialized scaffold has `status: "draft"` and is intentionally incomplete. 
 
 ## Implemented project contract
 
-Initialization writes `artifact.json`, a copied Dossier under `research/`, and `html/index.html` (HTML/image/video) or `pptx/main.mjs` (PPTX). There is no required `provenance.json` or shared slide schema. Keep optional content/design plans and resource/license notes as ordinary local source documents; put review notes in `qa/`.
+Initialization writes `artifact.json`, a copied Dossier under `research/`, and `html/index.html` (HTML/image/video) or `pptx/main.mjs` (PPTX). There is no required `provenance.json` or shared slide schema. Keep optional content/design plans and resource/license notes as ordinary local source documents; put review notes outside the project in the run's `qa/<format>/`.
 
 The following `artifact.json` fields are required except `language`, which is optional for legacy compatibility; extra properties are rejected:
 
@@ -75,8 +75,10 @@ Separate three locations, without adding schema fields or a new CLI mode:
 - **Working history:** new render destinations outside the project, with receipts and useful revision/failure notes. Keep these outside a user-facing gallery by default.
 - **Current delivery:** only the selected current output, its matching receipt, source/research references, necessary licensed resources and current QA. A gallery is not an archive of every attempt.
 
+Use [the shared task and delivery layout](output-layout.md) when choosing paths: `projects/<format>/`, `runs/<run-id>/outputs/`, run-level `qa/<format>/`, and a selected `delivery/`. Name delivered media with one task/topic stem and keep one delivery manifest; reserve `index.html` for a gallery, not every downloaded HTML.
+
 Render into a fresh working destination; the CLI still rejects overwrites. Review that candidate before updating a current delivery. For replacement, archiving or deletion, establish the exact files and user-authorized scope first. Preserve user edits and the recoverable previous version unless the user explicitly requested its removal. Never clear a directory or delete user files merely because this guide recommends tidy delivery.
 
-Promote the output and its receipt together, preserving their bytes and original output filename; the on-disk receipt records that filename, while the CLI result also reports the resolved destination. If a different published filename is needed, render a fresh candidate with that name in a new directory rather than editing the receipt. Update gallery links and QA bindings to the selected version, and verify hashes and local links after promotion. Do not hand-edit receipt identities or present stale QA as current. This is an agent-managed workflow, not an atomic publishing feature of the CLI.
+Promote the output and its matching receipt together. Prefer the final filename at render time. Authorized filename normalization may update receipt location fields and current QA references; recompute dependent metadata hashes without changing actual observation times or claiming a new render. Keep the delivery self-contained, without previous-path mappings or archive-dependent QA, as described in the shared layout. Changed source or output bytes require a new candidate, not rewritten receipt identities. Update gallery links and QA bindings and verify hashes after promotion. This is an agent-managed workflow, not an atomic publishing feature of the CLI.
 
 Deliver requested output, editable project/source, research snapshot identity, resources/license notes, and candid QA results. Keep the full private Dossier separate from public output unless explicitly authorized. If cleanup was not authorized, leave the history intact and identify the current version clearly rather than silently removing it.

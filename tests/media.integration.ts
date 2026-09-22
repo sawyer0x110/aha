@@ -153,6 +153,7 @@ test('offline authored video uses measured synthetic audio and publishes verifie
     const receipt = await renderVideo(project, plan, audioDir, output, true) as Record<string, unknown>;
     const { version } = JSON.parse(await fs.readFile(path.join(root, 'package.json'), 'utf8'));
     assert.equal(receipt.rendererVersion, version);
+    assert.equal(receipt.output, output);
     assert.equal(receipt.provider, 'provided-audio');
     assert.equal(receipt.totalFrames, 30);
     assert.equal(receipt.durationSeconds, 1);
@@ -160,8 +161,9 @@ test('offline authored video uses measured synthetic audio and publishes verifie
     assert.equal(receipt.sampledVisualChange, true);
     assert.equal(receipt.artifactHash, await fileHash(output));
     assert.match(await fs.readFile(`${output}.srt`, 'utf8'), /00:00:01,000/);
-    assert.equal(JSON.parse(await fs.readFile(`${output}.json`, 'utf8')).status, 'delivered');
-    assert.equal(JSON.parse(await fs.readFile(`${output}.json`, 'utf8')).rendererVersion, version);
+    assert.equal(JSON.parse(await fs.readFile(`${output}.receipt.json`, 'utf8')).status, 'delivered');
+    assert.equal(JSON.parse(await fs.readFile(`${output}.receipt.json`, 'utf8')).output, 'test.mp4');
+    assert.equal(JSON.parse(await fs.readFile(`${output}.receipt.json`, 'utf8')).rendererVersion, version);
     await assert.rejects(renderVideo(project, plan, audioDir, output, true), { code: 'OUTPUT_EXISTS' });
     await fs.appendFile(path.join(project, 'html', 'index.html'), '\n<!-- visual revision -->');
     await assert.rejects(renderVideo(project, plan, audioDir, path.join(dir, 'stale.mp4'), true), { code: 'VIDEO_SOURCE_MISMATCH' });
@@ -231,7 +233,7 @@ test('a failed authored render leaves a failure receipt but no successful movie 
     await importAudio(plan, { segments: [{ id: plan.segments[0]!.id, file: 'fixture.wav' }] }, dir, path.join(dir, 'audio'));
     const output = path.join(dir, 'failed.mp4');
     await assert.rejects(renderVideo(project, plan, path.join(dir, 'audio'), output, true));
-    for (const file of [output, `${output}.srt`, `${output}.json`]) await assert.rejects(fs.stat(file));
+    for (const file of [output, `${output}.srt`, `${output}.receipt.json`]) await assert.rejects(fs.stat(file));
     const failure = await fs.readFile(`${output}.failure.json`, 'utf8');
     assert.equal(JSON.parse(failure).status, 'failed');
     assert.ok(!failure.includes('private'));

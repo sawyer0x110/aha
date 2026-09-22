@@ -1,0 +1,138 @@
+{
+  "provider": "edge-tts",
+  "version": "7.2.8",
+  "voice": "en-US-AriaNeural",
+  "rate": "+0%",
+  "recordingPlanHash": "a8dacf7f9be11c1a1f77ee2f3d51ef7f09459e1a91627ab48c2fa6114fc79b21",
+  "narration": [
+    {
+      "id": "opening",
+      "text": "Aircraft rumble fades, but someone is still talking. Active noise cancellation works on pressure at your ear, not sound categories."
+    },
+    {
+      "id": "ear-sum",
+      "text": "Outside noise reaches the ear through one path. The headphone speaker adds another pressure contribution. What remains is their sum."
+    },
+    {
+      "id": "matched-pressure",
+      "text": "In this ideal single-tone model, matching amplitude and opposite phase at the target makes the residual shrink to zero."
+    },
+    {
+      "id": "phase-slip",
+      "text": "Now keep the amplitude and shift the control wave. The residual returns because the peaks and troughs no longer match."
+    },
+    {
+      "id": "same-delay",
+      "text": "Assume a timing error of one tenth of a millisecond: three point six degrees at one hundred hertz, but thirty-six at one thousand."
+    },
+    {
+      "id": "no-wall",
+      "text": "This tightens timing tolerance, not a universal frequency wall. Reference preview, acoustic paths, bandwidth, and feedback stability also matter."
+    },
+    {
+      "id": "two-layers",
+      "text": "Passive isolation changes transmission through the seal and ear cup. Active control adds pressure. Switching it off leaves the barrier in place."
+    },
+    {
+      "id": "residual-voice",
+      "text": "Speech is not one high-frequency tone. Some components can be reduced while enough residual survives for the voice to remain audible."
+    },
+    {
+      "id": "voice-counterexample",
+      "text": "Here is a counterexample: active control can reduce low-frequency amplification of your own voice caused by a closed ear canal."
+    },
+    {
+      "id": "counterexample-bound",
+      "text": "That does not promise to erase another person's whole voice. More noticeable speech does not prove its pressure was amplified."
+    },
+    {
+      "id": "check-mode",
+      "text": "Also check the mode. Transparency deliberately lets outside sound in, while adaptive modes can change the balance on supported devices."
+    },
+    {
+      "id": "check-fit",
+      "text": "Fit changes acoustic paths too. Compare cancellation on and off without moving the headphones or changing the source."
+    },
+    {
+      "id": "measurement-limit",
+      "text": "Published prototype measurements varied with wearer and fit. We ran no acoustic test, and this model cannot predict your personal reduction."
+    },
+    {
+      "id": "closing",
+      "text": "Ask what remains at the ear: path, timing, fit, and mode. Audible speech can still be attenuated."
+    }
+  ],
+  "recordings": [
+    {
+      "id": "opening",
+      "file": "segment-001.wav",
+      "sha256": "79caf38567accee507ec4294437ed6ffedab508c7baab90e87bc9849b691e53e"
+    },
+    {
+      "id": "ear-sum",
+      "file": "segment-002.wav",
+      "sha256": "49956c9978fd7a8fc7dd2b1384afa923521d8abaaa7dee86cbd27e84a2c5e6c6"
+    },
+    {
+      "id": "matched-pressure",
+      "file": "segment-003.wav",
+      "sha256": "7ec93a8f069adb06f328e2eaaeaa7230f67961f3f2847670ba0f21cb1c8936ed"
+    },
+    {
+      "id": "phase-slip",
+      "file": "segment-004.wav",
+      "sha256": "992236de936dc2d052c5bd6722a1d5273b575b3619855e82106334e88a79a9a2"
+    },
+    {
+      "id": "same-delay",
+      "file": "segment-005.wav",
+      "sha256": "6b949256208685c27ba71e3402e06dbbb5cc7fdaba1ee62e4c8b05427fe04405"
+    },
+    {
+      "id": "no-wall",
+      "file": "segment-006.wav",
+      "sha256": "a06a31573f5f70fbaddcababdac61376b0e2f4eb0a5d3514daa9c26ee90d3139"
+    },
+    {
+      "id": "two-layers",
+      "file": "segment-007.wav",
+      "sha256": "88c52b8be46c80801b7e932b52e7dc36fd92c569a9894d78364349268c9a307f"
+    },
+    {
+      "id": "residual-voice",
+      "file": "segment-008.wav",
+      "sha256": "35db01016f75198d36bfefd640307fe986234183ad1291f18755280dd3bf55ee"
+    },
+    {
+      "id": "voice-counterexample",
+      "file": "segment-009.wav",
+      "sha256": "5f695e46ab56eb2839cb004b7b41815ba1669860d37b929db16bc65eb55bb904"
+    },
+    {
+      "id": "counterexample-bound",
+      "file": "segment-010.wav",
+      "sha256": "a2377ff0a6bba2b889df54d867881b5f171d49e4bd65a825f5578cde8d21ba2a"
+    },
+    {
+      "id": "check-mode",
+      "file": "segment-011.wav",
+      "sha256": "1f45e6e19c77f8cdfc3c9865716776f992a91b4d0a88374452a608bfabee332f"
+    },
+    {
+      "id": "check-fit",
+      "file": "segment-012.wav",
+      "sha256": "2c12df05a6f0a9d0e69cc4eb8dc04c1975d8a3d76041c3343c411398c8d9d8f3"
+    },
+    {
+      "id": "measurement-limit",
+      "file": "segment-013.wav",
+      "sha256": "03b66dc27ce9d00f6997decc95d1594649224daecb12e7b5fcad49ce0c18c075"
+    },
+    {
+      "id": "closing",
+      "file": "segment-014.wav",
+      "sha256": "762e0df6ce46dd4acc33a3111adca99d41d99c8c58a26c62992aeed70f00e495"
+    }
+  ],
+  "scope": "Existing Edge TTS recordings imported locally. This provenance does not claim another synthesis or current-source generation by the speech service."
+}

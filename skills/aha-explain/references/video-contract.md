@@ -47,7 +47,7 @@ Online synthesis requires the installed Python `edge-tts==7.2.8` adapter plus FF
 
 The new audio directory contains `manifest.json` and `segment-001.wav`, `segment-002.wav`, and so on. The manifest contains `schemaVersion`, `planHash`, `provider`, `voice`, and ordered `segments` with `id`, `filename`, `sha256`, and `frames`. These hashes and timings are generated from actual files, not author inputs to fabricate. Validation checks files, format, order, identity, and measured duration. An incomplete audio directory with a failure record is not renderable completion.
 
-Rendering writes the new MP4 plus `<new.mp4>.srt` and `<new.mp4>.json` receipt. Captions are burned in and also exported as sentence/segment-level SRT. Encoding/sample hashes and codec checks do not establish a useful explanation or visual quality: actually watch and listen.
+Rendering writes the new MP4 plus `<new.mp4>.srt` and `<new.mp4>.receipt.json` receipt, matching other formats. The receipt's `output` names the MP4 basename. Follow the shared output layout for authorized filename normalization and metadata hash updates. Captions are burned in and also exported as sentence/segment-level SRT. Encoding/sample hashes and codec checks do not establish a useful explanation or visual quality: actually watch and listen.
 
 Both caption forms derive from authored `segments[].text`; neither automatically translates it. Verify language, fonts, pronunciation, and semantic fidelity during playback.
 

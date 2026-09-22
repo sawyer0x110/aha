@@ -63,6 +63,26 @@ async function reference(name: string, skill: SkillName = 'aha-explain'): Promis
   return fs.readFile(file, 'utf8');
 }
 
+test('shared output layout separates source, attempts, selected delivery and format QA', async () => {
+  for (const skill of skillNames) {
+    const text = await reference('output-layout.md', skill);
+    for (const required of ['projects/<format>/', 'runs/<run-id>/', 'outputs/<task>.<ext>',
+      'qa/<format>/', 'delivery-manifest.json', '<artifact>.receipt.json', 'self-contained']) {
+      assert(text.includes(required), `${skill}: ${required}`);
+    }
+    assert.match(text, /Create only needed directories and requested media/);
+    assert.match(text, /not a new CLI command/);
+    assert.match(text, /Never change identity hashes/);
+    assert.match(text, /recompute receipt and evidence hashes/);
+    assert.match(text, /Cleanup requires explicit scope and approval/);
+  }
+  const authoring = await reference('artifact-authoring.md');
+  assert(authoring.includes('(output-layout.md)'));
+  const research = await fs.readFile(path.join(root, 'skills', 'aha-research', 'SKILL.md'), 'utf8');
+  assert(research.includes('(references/output-layout.md)'));
+  assert((await reference('video-contract.md')).includes('<new.mp4>.receipt.json'));
+});
+
 test('only two short independent skill entrances have research and creation triggers', async () => {
   const entrances = (await markdownFiles(path.join(root, 'skills')))
     .filter(file => path.basename(file) === 'SKILL.md')
@@ -367,7 +387,8 @@ test('common contracts have explicit owners and delivery distinguishes history f
   for (const concept of [
     /owns permissions and dependencies/, /owns final acceptance/, /owns source identity/,
     /Working history/, /Current delivery/, /CLI still rejects overwrites/,
-    /user-authorized scope/, /output and its receipt together/, /original output filename/,
+    /user-authorized scope/, /output and its matching receipt together/, /Authorized filename normalization/,
+    /without changing actual observation times/, /without previous-path mappings/,
     /not an atomic publishing feature/, /cleanup was not authorized/,
   ]) assert.match(authoring, concept);
   const lifecycle = 'artifact-authoring.md#working-history-and-current-delivery';
