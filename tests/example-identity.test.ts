@@ -12,7 +12,7 @@ const base = path.join(root, 'examples');
 const evaluation = path.join(root, 'evals', 'examples');
 const {
   verifyExamples, verifyOutput, verifyPptxEvidence, verifyCurrentIntroductionEvidence,
-  verifyCodePilotEvidence, verifyIntroductionEvidence, formatsFor, topics, sha,
+  verifyCodePilotEvidence, verifyIntroductionEvidence, verifyTaskVideoEvidence, formatsFor, topics, sha,
 } = await import(pathToFileURL(path.join(evaluation, 'verify.mjs')).href);
 const manifest = JSON.parse(await fs.readFile(path.join(base, 'delivery-manifest.json'), 'utf8'));
 
@@ -542,15 +542,16 @@ test('Greenland adds native PPTX while keeping its direct speech provider and no
   assert.equal((await verifyOutput(base, pptx)).receipt.native, true);
 });
 
-test('both code pilots retain direct speech, video-only scope and current evidence', async () => {
+test('code pilots retain video-only scope, CPython direct speech and Docker imported speech', async () => {
   const verified = [];
   for (const topic of ['cpython-string', 'docker-layers']) {
     const entry = manifest.requestedOutputs.find((item: { topic: string }) => item.topic === topic);
     const result = await verifyOutput(base, entry);
     verified.push(result);
-    assert.equal(result.plan.provider, 'edge-tts');
-    assert.equal(result.originalPlanHash, undefined);
-    await assert.rejects(verifyOutput(base, { ...entry, provider: 'provided-audio' }), /provider/i);
+    const imported = topic === 'docker-layers';
+    assert.equal(result.plan.provider, imported ? 'provided-audio' : 'edge-tts');
+    assert.equal(typeof result.originalPlanHash, imported ? 'string' : 'undefined');
+    await assert.rejects(verifyOutput(base, { ...entry, provider: imported ? 'edge-tts' : 'provided-audio' }), /provider/i);
     await assert.rejects(verifyOutput(base, { ...entry, format: 'html' }), /Unrequested format/);
   }
   const workspace = await fs.mkdtemp(path.join(evaluation, '.pilot-evidence-'));
@@ -562,6 +563,66 @@ test('both code pilots retain direct speech, video-only scope and current eviden
     report.artifactHash = '0'.repeat(64);
     await fs.writeFile(filename, JSON.stringify(report));
     await assert.rejects(verifyCodePilotEvidence(workspace, verified), /evidence hash/i);
+  } finally { await fs.rm(workspace, { recursive: true, force: true }); }
+});
+
+test('task/video promotion binds current evidence and preserves review limitations after resealing', async t => {
+  const entries = manifest.requestedOutputs.filter((entry: { topic: string; format: string }) =>
+    (entry.topic === 'git-merge' && entry.format === 'html') || entry.topic === 'docker-layers');
+  const verified = await Promise.all(entries.map((entry: object) => verifyOutput(base, entry)));
+  const workspace = await fs.mkdtemp(path.join(evaluation, '.task-video-evidence-'));
+  try {
+    await fs.cp(path.join(evaluation, 'task-video-20260922'), workspace, { recursive: true });
+    await verifyTaskVideoEvidence(workspace, verified);
+    const publicationFile = path.join(workspace, 'publication.json');
+    const publicationBytes = await fs.readFile(publicationFile);
+    const mutate = async <T>(name: string, relative: string, change: (value: T) => void, reseal = true) => {
+      await t.test(name, async () => {
+        const file = path.join(workspace, relative), original = await fs.readFile(file);
+        try {
+          const value = JSON.parse(original.toString());
+          change(value);
+          await fs.writeFile(file, JSON.stringify(value));
+          if (reseal && relative !== 'publication.json') {
+            const publication = JSON.parse(publicationBytes.toString());
+            publication.evidence.find((item: { file: string }) => item.file === relative).sha256 = sha(await fs.readFile(file));
+            await fs.writeFile(publicationFile, JSON.stringify(publication));
+          }
+          await assert.rejects(verifyTaskVideoEvidence(workspace, verified));
+        } finally {
+          await fs.writeFile(file, original);
+          await fs.writeFile(publicationFile, publicationBytes);
+        }
+      });
+    };
+    await mutate('stale current output', 'publication.json', (value: { outputs: { sha256: string }[] }) => { value.outputs[0]!.sha256 = '0'.repeat(64); });
+    await mutate('missing current evidence seal', 'publication.json', (value: { evidence: { file: string }[] }) => { value.evidence = value.evidence.filter(item => item.file !== 'docker-layers/source-diagnostics.json'); });
+    await mutate('density limitation cannot disappear', 'publication.json', (value: { videoDensity: string }) => { value.videoDensity = 'fully-resolved'; });
+    await mutate('listening cannot become accepted', 'publication.json', (value: { listening: string }) => { value.listening = 'passed'; });
+    await mutate('resealed stale HTML review', 'git-merge/review.json', (value: { outputHash: string }) => { value.outputHash = '0'.repeat(64); });
+    await mutate('resealed mobile overflow', 'git-merge/browser-observations.json', (value: { observations: { scrollWidth: number }[] }) => { value.observations[2]!.scrollWidth = 660; });
+    await mutate('resealed wrong source approval', 'execution-consent.json', (value: { plans: { condition: string; sourceHash: string }[] }) => { value.plans.find(plan => plan.condition === 'with_skill')!.sourceHash = '0'.repeat(64); });
+    await mutate('resealed failed replay', 'docker-layers/source-diagnostics.json', (value: { replay: { matches: boolean }[] }) => { value.replay[0]!.matches = false; });
+    await mutate('resealed failed decode', 'docker-layers/media-observations.json', (value: { fullDecode: string }) => { value.fullDecode = 'failed'; });
+    await mutate('unsealed review change', 'docker-layers/review.json', (value: { status: string }) => { value.status = 'accepted'; }, false);
+  } finally { await fs.rm(workspace, { recursive: true, force: true }); }
+});
+
+test('Docker preserves narration with only its explicit on-screen claim addition', async () => {
+  const entry = manifest.requestedOutputs.find((item: { topic: string }) => item.topic === 'docker-layers');
+  const workspace = await fs.mkdtemp(path.join(evaluation, '.docker-origin-'));
+  try {
+    await fs.cp(path.join(base, 'docker-layers'), path.join(workspace, 'docker-layers'), { recursive: true });
+    await verifyOutput(workspace, entry);
+    const file = path.join(workspace, 'docker-layers', 'audio-origin', 'claim-associations.json');
+    const associations = JSON.parse(await fs.readFile(file, 'utf8'));
+    associations.additions[0].claimId = 'c-layer';
+    await fs.writeFile(file, JSON.stringify(associations));
+    await assert.rejects(verifyOutput(workspace, entry), /deep-equal/);
+    await fs.rm(file);
+    await assert.rejects(verifyOutput(workspace, entry), /ENOENT/);
+    const html = manifest.requestedOutputs.find((item: { topic: string; format: string }) => item.topic === 'git-merge' && item.format === 'html');
+    await assert.rejects(verifyOutput(base, { ...html, language: 'bilingual' }), /Chinese HTML manifest language/);
   } finally { await fs.rm(workspace, { recursive: true, force: true }); }
 });
 
@@ -687,6 +748,7 @@ test('Git autocrlf preserves all sixteen sealed outputs, source trees, audio and
     await collect(path.join('evals', 'examples', 'greenland-20260917'));
     await collect(path.join('evals', 'examples', 'code-pilots-20260917'));
     await collect(path.join('evals', 'examples', 'aha-introduction-20260917'));
+    await collect(path.join('evals', 'examples', 'task-video-20260922'));
     const qaFiles = [
       '.gitattributes', 'anc-git/runtime.json', 'anc-git/review.json',
       'anc-git/screenshots/anc-390-light-zh-opening.png',

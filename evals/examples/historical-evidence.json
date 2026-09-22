@@ -7,10 +7,11 @@
     "aha-introduction-20260917/publication.json",
     "greenland-20260917/publication.json",
     "code-pilots-20260917/publication.json",
+    "task-video-20260922/publication.json",
     "refresh-20260916"
   ],
   "historicalEvidence": ["anc-git"],
-  "reason": "The current gallery has sixteen outputs. Introduction evidence binds the actual aha-introduction artifacts, never relabeled older-overview observations. Shared September 16 records remain unchanged for ANC and Git; any retired-topic observations inside them are historical only.",
+  "reason": "The current gallery has sixteen outputs. Introduction evidence binds the actual aha-introduction artifacts, never relabeled older-overview observations. Task/video September 22 evidence binds current Chinese Git HTML and the imported-audio Docker scene. Shared September 16 records remain current for unchanged ANC and Git media but historical for replaced Git HTML; September 17 code-pilot evidence remains current for CPython and historical for Docker.",
   "genericPlaybackHelper": "check-playback.mjs requires explicit --allow-code and a new output report; paths resolve from the repository root.",
   "commands": [
     "npm run examples:verify",

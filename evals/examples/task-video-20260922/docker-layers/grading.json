@@ -1,0 +1,49 @@
+{
+  "expectations": [
+    {
+      "text": "The later-deletion scene keeps the original layer payload while the merged-view example path becomes absent; a whiteout is not depicted as an ordinary visible merged file.",
+      "passed": true,
+      "evidence": "frames/frame-006.png (429): lower payload stays, merged-view strip says absent, whiteout shown only in cutaway; this result persists in segment3 and the final frame."
+    },
+    {
+      "text": "The same-RUN contrast concerns a NEW temporary file absent at both diff endpoints, not erasing a preexisting base-layer payload or an entirely empty image.",
+      "passed": true,
+      "evidence": "frames/frame-009.png (637): Before RUN and After RUN absent; result only excludes this file payload, qualifier preserves preexisting bytes and other changes/metadata."
+    },
+    {
+      "text": "The 100 MB example is labeled as assumed payload rather than measured image/download savings, and captions match the supplied narration.",
+      "passed": true,
+      "evidence": "Persistent opening qualifier labels assumed 100 MB uncompressed/not measured. Captions are exact supplied text; original imported recording hashes and decoded paired audio match."
+    },
+    {
+      "text": "Scene code has meaningful state/action/consequence changes and can reconstruct persistent objects when entering later segments directly.",
+      "passed": true,
+      "evidence": "Source replaces state label and file visibility at same predicate. Actual frames321/322 show present -> absent; create/delete/endpoints develop in third segment. Three A-B-A samples pass."
+    },
+    {
+      "text": "The rendered sequence preserves readable result states and clear captions through consequential beats and segment boundaries.",
+      "passed": true,
+      "evidence": "PASS within reviewed scope: actual transition frames321/322/328/440/452/521/522/540 and boundary/result frames show no contradictory label overprint; 1280×720 held-result main labels and burned captions are legible. Dense small auxiliary text in 640px preview remains a separate limitation, not full audiovisual approval."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1
+  },
+  "method": "Coordinator unblinded source and actual-pixel review, with programmatic identity/layout/replay/media diagnostics",
+  "uncertainties": [
+    "No full author tool trace, exact model/timing/token data, human comprehension or auditory review"
+  ],
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "Original Git assertions do not measure narrow-screen argument continuity; record that diagnostic separately instead of silently changing frozen assertions."
+      },
+      {
+        "reason": "A video readability pass at native output dimensions does not establish legibility in a small embedded player; intended display size needs its own agreed acceptance scope."
+      }
+    ]
+  }
+}

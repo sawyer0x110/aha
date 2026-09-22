@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "status": "published-with-bounded-review",
+  "publishedAt": "2026-09-22T04:38:32.106Z",
+  "userAcceptance": "Approved promotion; no specific auditory or comprehension acceptance claimed",
+  "outputs": [
+    {
+      "topic": "git-merge",
+      "format": "html",
+      "file": "git-merge/index.html",
+      "bytes": 16413,
+      "sha256": "465e063102fddad6a0beb754c6460e03c9397fe280993bcff4c389f602003c7c",
+      "sourceProject": "git-merge/projects/html",
+      "sourceHash": "c51ba75aa63c892d3fee25ae69ce26439daa3097820224a5a54477623888d915",
+      "researchHash": "c38647d6d79318b96aa30e9c5f86f2babe042dec286ad390a56d22f908ee2019",
+      "report": "git-merge/research/report.md",
+      "receipt": "git-merge/index.html.receipt.json",
+      "language": "zh",
+      "receiptHash": "1a38525c8798f44b305393d31165ba2606992bab8d47ad6a782f3c3052976e67",
+      "observations": "git-merge/browser-observations.json",
+      "review": "git-merge/review.json"
+    },
+    {
+      "topic": "docker-layers",
+      "format": "video",
+      "file": "docker-layers/pilot.mp4",
+      "bytes": 628194,
+      "sha256": "94c7629843596a7a1f4c70d3edff0702e07d5df3a1847decf5a52a4f4a68c95d",
+      "sourceProject": "docker-layers/projects/video",
+      "sourceHash": "2219d6f667a1a7c0e99e7e25334edcb48458d3371ddb041035c28b9c716fbccb",
+      "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
+      "report": "docker-layers/research/report.md",
+      "receipt": "docker-layers/pilot.mp4.json",
+      "durationSeconds": 21.266666666666666,
+      "frames": 638,
+      "provider": "provided-audio",
+      "language": "en",
+      "receiptHash": "cbcac64ba05330f1df1a684cbf17943ff2f55bc8c219c5fe50ded1b5f8474dd8",
+      "observations": "docker-layers/media-observations.json",
+      "review": "docker-layers/review.json"
+    }
+  ],
+  "evidence": [
+    {
+      "file": "benchmark.json",
+      "sha256": "67f0ef200869b83a82317cbff0b0c2facf4b19ccd1bfebe0a675aecb561ee24c"
+    },
+    {
+      "file": "docker-layers/frames/frame-009.png",
+      "sha256": "f33910e0e67bc240bf1fc61c8d21b97e2c387eb6564b45cf957e9128d2b7eb87"
+    },
+    {
+      "file": "docker-layers/grading.json",
+      "sha256": "2a1501ee390e84e749b85a06300cbdfb4e2a021cc297952e46ecbd3b68b094c8"
+    },
+    {
+      "file": "docker-layers/media-observations.json",
+      "sha256": "5d84a5a26344ab832c228a4334c89990abc1cf24744b7815f345e64a1d0bdc32"
+    },
+    {
+      "file": "docker-layers/result-at-640.png",
+      "sha256": "4d75b9a9a8e2e45cdb9f1616be47e5d95258f35b7b34411f0ac4b9683065bc6a"
+    },
+    {
+      "file": "docker-layers/review.json",
+      "sha256": "0df57aa2c43f183a65fe59cbfc0bfa4a9877cf6bc2416af54ee49fe30f976828"
+    },
+    {
+      "file": "docker-layers/source-diagnostics.json",
+      "sha256": "46e8aa675691107d56a7faf4ddb70ee656f4981b5a21c9a53fab10dca65db9d2"
+    },
+    {
+      "file": "docker-layers/transition-contact-sheet.png",
+      "sha256": "1d0a57650807c23364152af7712ff987a6fdbcca655e0847851c0a7a40806ebb"
+    },
+    {
+      "file": "docker-layers/transitions/frame-002.png",
+      "sha256": "44e28c04c52916cd37513694304e2bd4e8a68c4bdb3d38eff06adb20b59ff8e1"
+    },
+    {
+      "file": "docker-layers/transitions/frame-003.png",
+      "sha256": "985887be8dedf2ddfbf3b26518523d8e705a8cbb1ca516a4f42f1ac966dcdc9c"
+    },
+    {
+      "file": "docker-layers/video-contact-sheet.png",
+      "sha256": "ff0d2847b1eaad855ef4d34ca371db6c857017b584178a165ed5e8aed13cc969"
+    },
+    {
+      "file": "execution-consent.json",
+      "sha256": "38386d9b606a979333271f0885ab7da59dbb580e8da7c95391198d3fee23b371"
+    },
+    {
+      "file": "git-merge/browser-observations.json",
+      "sha256": "8d9540e47c694f7fe6042558fdce6f4e4e53b5ae705ffdfc7941f6d9498f91e8"
+    },
+    {
+      "file": "git-merge/grading.json",
+      "sha256": "3e88e183dae5659eb9e5a190dee5b64c15c75fce84a4ff008308c6dce666f787"
+    },
+    {
+      "file": "git-merge/html-1280.png",
+      "sha256": "21f063dd2754ee524a883fe20afd1d55158d638415353ca90ed9d4b5ac6bd59b"
+    },
+    {
+      "file": "git-merge/html-320.png",
+      "sha256": "8e10362f4e2c83b77c7a00b2878827c537e564918fdcdd2d91685ae74b4284e7"
+    },
+    {
+      "file": "git-merge/html-390.png",
+      "sha256": "9fc1eea8c33b63741a30916f4effd96c3dfc113e2b5f0a76473370ff55ad151e"
+    },
+    {
+      "file": "git-merge/review.json",
+      "sha256": "b29d69fc89e5e178819c6f1bfb108f3a5219376432c76a0dd8738aa8013c79ff"
+    },
+    {
+      "file": "retention.json",
+      "sha256": "8b71341093c41d8419e524b826a16e3e157ecace2183b1821615151e68c07030"
+    },
+    {
+      "file": "skill-provenance.json",
+      "sha256": "72361be2cb71934cda9315fec2fac7bc70c7fba95874d85e606ca3dc7e09b6ca"
+    },
+    {
+      "file": "previous-round-benchmark.json",
+      "sha256": "e25fdcd439b9628839bdb99d4a95867e91835e66651e46d0dce817d9582975c9"
+    },
+    {
+      "file": "generation-result.json",
+      "sha256": "b30e276e5c552ab48a4d5c38bf03fb9a25245a1ce2b65a13107438bca6847f37"
+    },
+    {
+      "file": "published-browser-check.json",
+      "sha256": "80f38ef08e4f6361deabc0cfe1354c9932e4b74398795bdff987bdf9e374b3ce"
+    }
+  ],
+  "listening": "unperformed",
+  "humanComprehension": "unperformed",
+  "videoDensity": "partial-improvement"
+}

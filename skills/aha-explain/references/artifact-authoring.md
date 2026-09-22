@@ -43,6 +43,8 @@ Source identity covers included project files, including `artifact.json`; `resea
 
 ## Content plan
 
+For change explanations, plan reviews, mechanisms and project recaps, use only the matching [task-specific composition](task-composition.md) section to connect the research to the reader's question or decision. Its prompts are not a mandatory section list or additional metadata.
+
 Identify the question the work answers, required claims and mechanisms, concrete examples/data, essential conditions, and intentional omissions with reasons. Match depth to the audience's known background, not a job-title stereotype. Add definitions where needed. Use bounded analogies only when they help; do not substitute them for evidence.
 
 Before layout, use [explanation editing](explanation-writing.md) to review the direct answer and a representative mechanism passage. Preserve the reasoning between claims, not just their coverage IDs. Compress secondary detail rather than leaving disconnected outline fragments; review the complete authored copy again at final QA.

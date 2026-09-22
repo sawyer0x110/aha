@@ -1,0 +1,241 @@
+{
+  "metadata": {
+    "skill_name": "aha-explain / task and video pilot",
+    "executor_model": null,
+    "analyzer_model": "parent agent, unblinded",
+    "timestamp": "2026-09-21T10:13:48.450Z",
+    "evals_run": [
+      1,
+      2
+    ],
+    "runs_per_configuration": 1,
+    "baseline": "old_skill = frozen pre-edit bundle",
+    "aggregation": "Manual schema-compatible aggregation preserves missing metrics as null; stock aggregator substitutes zero/output_chars for missing values."
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "eval_name": "git-plan-review",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "pass_rate": 1,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "expectations": [
+        {
+          "text": "The proposal is explicitly reviewed: -Xours does not guarantee excluding the reverted change when the opposing change merges cleanly.",
+          "passed": true,
+          "evidence": "explanation.html #decision and #review: three proposal rows connect unsupported guarantee, source evidence and correction."
+        },
+        {
+          "text": "The explanation connects base=off, ours=off and theirs=on to the scoped result on; it does not describe commit replay.",
+          "passed": true,
+          "evidence": "#three-states: net-change comparison and path table derive off/off/on -> on, plus changed-base counterexample; not commit replay."
+        },
+        {
+          "text": "A useful correction preserves attention to other-side updates instead of recommending -s ours as an equivalent universal fix.",
+          "passed": true,
+          "evidence": "#revision: retains desired other-side updates and explicitly rejects -s ours as a universal alternative."
+        },
+        {
+          "text": "A conflict-free textual merge is distinguished from release readiness, and no unrun experiment or test is presented as observed.",
+          "passed": true,
+          "evidence": "#review row 3 and #revision: conflict-free merge is not release approval; actual repository and tests remain unverified."
+        },
+        {
+          "text": "The delivered Chinese explanation has a self-contained question/title and source context supporting its consequential assertions.",
+          "passed": true,
+          "evidence": "Document title names Git merge/revert/-Xours; #sources lists pinned source context. Desktop and full narrow page inspected; tables are separately scrollable."
+        }
+      ],
+      "notes": [
+        "Git: both satisfy all five content assertions. Candidate adds an explicit proposal/evidence/revision table and path-level comparison; baseline uses larger stacked state cards and collapsible references."
+      ]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "git-plan-review",
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "pass_rate": 1,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "expectations": [
+        {
+          "text": "The proposal is explicitly reviewed: -Xours does not guarantee excluding the reverted change when the opposing change merges cleanly.",
+          "passed": true,
+          "evidence": "explanation.html #verdict and #options: explicitly rejects the protection guarantee; opposing non-conflicting mode=on can enter."
+        },
+        {
+          "text": "The explanation connects base=off, ours=off and theirs=on to the scoped result on; it does not describe commit replay.",
+          "passed": true,
+          "evidence": "#three-states: base off, ours off after ordinary revert, theirs on, result on; history finds base, not commit replay. Actual desktop/mobile screenshots reviewed."
+        },
+        {
+          "text": "A useful correction preserves attention to other-side updates instead of recommending -s ours as an equivalent universal fix.",
+          "passed": true,
+          "evidence": "#options and #release-gate: distinguishes -s ours dropping desired opposing content; proposes expected-tree review preserving selected updates."
+        },
+        {
+          "text": "A conflict-free textual merge is distinguished from release readiness, and no unrun experiment or test is presented as observed.",
+          "passed": true,
+          "evidence": "#release-gate: clean merge is not business correctness; project tests and actual-repository review are proposed, not reported as run."
+        },
+        {
+          "text": "The delivered Chinese explanation has a self-contained question/title and source context supporting its consequential assertions.",
+          "passed": true,
+          "evidence": "Document title names Git merge/revert/-Xours; #sources retains pinned source and snapshot context. Keyboard-expanded details observed."
+        }
+      ],
+      "notes": [
+        "Git: both satisfy all five content assertions. Candidate adds an explicit proposal/evidence/revision table and path-level comparison; baseline uses larger stacked state cards and collapsible references."
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "docker-mechanism-video",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "passed": 4,
+        "failed": 1,
+        "total": 5,
+        "pass_rate": 0.8,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "expectations": [
+        {
+          "text": "The later-deletion scene keeps the original layer payload while the merged-view example path becomes absent; a whiteout is not depicted as an ordinary visible merged file.",
+          "passed": true,
+          "evidence": "frames/frame-006.png (frame 429): lower payload remains, merged path absent, whiteout stays in layer cutaway; same completed left-hand case persists through frame 637."
+        },
+        {
+          "text": "The same-RUN contrast concerns a NEW temporary file absent at both diff endpoints, not erasing a preexisting base-layer payload or an entirely empty image.",
+          "passed": true,
+          "evidence": "frames/frame-009.png: separate-RUN and same-RUN outcomes remain together; new path absent at endpoints, with base-layer and other-metadata caveat."
+        },
+        {
+          "text": "The 100 MB example is labeled as assumed payload rather than measured image/download savings, and captions match the supplied narration.",
+          "passed": true,
+          "evidence": "All inspected frame headers identify assumed uncompressed payload, not image/transfer size; output SRT matches supplied narration; paired audio is identical."
+        },
+        {
+          "text": "Scene code has meaningful state/action/consequence changes and can reconstruct persistent objects when entering later segments directly.",
+          "passed": true,
+          "evidence": "project/html/mechanism.html reconstructs both lanes from segment/progress; three A-B-A sample hashes match. Source and actual frames show continuous left-side context while right-side create/delete/result develops."
+        },
+        {
+          "text": "The rendered sequence preserves readable result states and clear captions through consequential beats and segment boundaries.",
+          "passed": false,
+          "evidence": "FAIL: transition-122.png (4.07s) visibly overlays File visible and Path absent in one label slot. Endpoint/result and captions are legible, but the transition is not. No claim of full listening review."
+        }
+      ],
+      "notes": [
+        "Docker: candidate preserves both alternatives as a continuous comparison across all three narration segments; baseline switches to a larger same-RUN diagram in the third segment. Candidate has denser, smaller supporting labels."
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "docker-mechanism-video",
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "passed": 4,
+        "failed": 1,
+        "total": 5,
+        "pass_rate": 0.8,
+        "time_seconds": null,
+        "tokens": null,
+        "tool_calls": null,
+        "errors": null
+      },
+      "expectations": [
+        {
+          "text": "The later-deletion scene keeps the original layer payload while the merged-view example path becomes absent; a whiteout is not depicted as an ordinary visible merged file.",
+          "passed": true,
+          "evidence": "frames/frame-006.png (frame 429): lower Layer 1 retains 100 MB payload, merged example path is absent; whiteout shown in labeled cutaway, with hidden-whiteout note."
+        },
+        {
+          "text": "The same-RUN contrast concerns a NEW temporary file absent at both diff endpoints, not erasing a preexisting base-layer payload or an entirely empty image.",
+          "passed": true,
+          "evidence": "frames/frame-009.png: absent-before/absent-after new-file model, other changes may remain, and no reclaim of preexisting base-layer payload."
+        },
+        {
+          "text": "The 100 MB example is labeled as assumed payload rather than measured image/download savings, and captions match the supplied narration.",
+          "passed": true,
+          "evidence": "All inspected frame headers label assumed uncompressed payload, not measured; output SRT equals supplied narration in three segments; paired audio is identical."
+        },
+        {
+          "text": "Scene code has meaningful state/action/consequence changes and can reconstruct persistent objects when entering later segments directly.",
+          "passed": true,
+          "evidence": "project/html/index.html assigns changed properties on every callback; replay-observations.json has matching hashes for segment 0/1/2 A-B-A samples. Frame sequence shows deposition, hiding, and temporary-file deletion."
+        },
+        {
+          "text": "The rendered sequence preserves readable result states and clear captions through consequential beats and segment boundaries.",
+          "passed": false,
+          "evidence": "FAIL: transition-318.png (10.60s) visibly overlays Visible and Absent labels in the merged-view state. Endpoint/result and captions are legible, but the transition is not. No claim of full listening review."
+        }
+      ],
+      "notes": [
+        "Docker: candidate preserves both alternatives as a continuous comparison across all three narration segments; baseline switches to a larger same-RUN diagram in the third segment. Candidate has denser, smaller supporting labels."
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.9,
+        "stddev": 0.1414213562373095,
+        "min": 0.8,
+        "max": 1
+      },
+      "time_seconds": null,
+      "tokens": null
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.9,
+        "stddev": 0.1414213562373095,
+        "min": 0.8,
+        "max": 1
+      },
+      "time_seconds": null,
+      "tokens": null
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": null,
+      "tokens": null
+    }
+  },
+  "notes": [
+    "One independent author run per case/condition, same frozen inputs and byte-identical runtime. This is a pilot, not evidence of stable improvement.",
+    "Grading is coordinator source/image review, not blinded independent grading or human comprehension. Exact author backend model, seed, token counts and elapsed author durations were not returned; all are unknown.",
+    "Git: both satisfy all five content assertions. Candidate adds an explicit proposal/evidence/revision table and path-level comparison; baseline uses larger stacked state cards and collapsible references.",
+    "Git: neither page overflows at 1280px or 390px. Candidate tables require horizontal scrolling at 390px (keyboard scrolling observed); baseline reflows cards into one column. More explicit review structure is not an unqualified mobile usability win.",
+    "Docker: candidate preserves both alternatives as a continuous comparison across all three narration segments; baseline switches to a larger same-RUN diagram in the third segment. Candidate has denser, smaller supporting labels.",
+    "Both videos are 638 frames / 21.2667 seconds with identical imported recordings and decoded audio hashes, and identical SRT. Both pass three source A-B-A replay samples and full MP4 decode. These are not semantic-motion or auditory certifications.",
+    "Both fail the transition-readability assertion: baseline Visible/Absent labels overlap around frame 318 (10.60s); candidate File visible/Path absent labels overlap around frame 122 (4.07s). Result holds and caption areas are legible in inspected frames, but static endpoint screenshots alone would miss these transitions.",
+    "Both plans required a coordinator-only c-base reference association for the visible base-file caveat. Spoken narration and original authored scene sources were unchanged; the initial rejected plan is retained. This common metadata intervention is not candidate benefit.",
+    "Full muted browser playback reached the end for both videos. Human listening, pronunciation, precise spoken-cue alignment and learner transfer remain unperformed.",
+    "Nine of ten content/visual assertions pass in both conditions; aggregate parity hides structural changes and shared transition defects. Across-case standard deviation is case spread, not repeated-run reliability.",
+    "Not covered: independent change-explanation and project-recap tasks, original narration writing, bilingual HTML, other media, broad task generalization. No authored outputs were repaired or promoted into examples."
+  ]
+}

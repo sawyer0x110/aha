@@ -79,13 +79,14 @@
       "topic": "git-merge",
       "format": "html",
       "file": "git-merge/index.html",
-      "bytes": 27801,
-      "sha256": "9ad3c623dac151fb59e9dda30f71fe13f07deb0d5ed245a9151f5c622fec9cbb",
+      "bytes": 16413,
+      "sha256": "465e063102fddad6a0beb754c6460e03c9397fe280993bcff4c389f602003c7c",
       "sourceProject": "git-merge/projects/html",
-      "sourceHash": "cf5f33958c14cae20a34bd4b19dec06c32b4807bd61fd1a841f892e8938aa1c7",
+      "sourceHash": "c51ba75aa63c892d3fee25ae69ce26439daa3097820224a5a54477623888d915",
       "researchHash": "c38647d6d79318b96aa30e9c5f86f2babe042dec286ad390a56d22f908ee2019",
       "report": "git-merge/research/report.md",
-      "receipt": "git-merge/index.html.receipt.json"
+      "receipt": "git-merge/index.html.receipt.json",
+      "language": "zh"
     },
     {
       "topic": "git-merge",
@@ -150,16 +151,17 @@
       "topic": "docker-layers",
       "format": "video",
       "file": "docker-layers/pilot.mp4",
-      "bytes": 642211,
-      "sha256": "accbbfbae7640500d7702a3bf9248c7af31812fdcf0a9f231b7b3f28a1dfdba4",
+      "bytes": 628194,
+      "sha256": "94c7629843596a7a1f4c70d3edff0702e07d5df3a1847decf5a52a4f4a68c95d",
       "sourceProject": "docker-layers/projects/video",
-      "sourceHash": "31ece11dc0442006fac2e176b8f173a3385db16b45670ded8e8bfb3408ead31e",
+      "sourceHash": "2219d6f667a1a7c0e99e7e25334edcb48458d3371ddb041035c28b9c716fbccb",
       "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
       "report": "docker-layers/research/report.md",
       "receipt": "docker-layers/pilot.mp4.json",
       "durationSeconds": 21.266666666666666,
       "frames": 638,
-      "provider": "edge-tts"
+      "provider": "provided-audio",
+      "language": "en"
     },
     {
       "topic": "aha-introduction",
@@ -237,11 +239,11 @@
   ],
   "qa": {
     "structuralSourceAndOutputIdentity": "Sixteen outputs across six topics; four Chinese native PPTX decks. Introduction HTML/PPTX/PNG have current bound sources and evidence. Retained output identities are unchanged by retiring the older project overview. Identity is not semantic proof.",
-    "html": "ANC and Git HTML retain their own evidence. The Aha introduction has eight fresh offline desktop/narrow, language/theme cases, pointer/keyboard and state-persistence observations, actual source/DOM editorial review and bounded visual observations. Retired-topic observations remain historical only.",
+    "html": "Current Git HTML is a Chinese plan review with new 1280/390/320px and pixel evidence; ANC and introduction retain their separate bilingual evidence.",
     "slides": "Thirty current slides exported by PowerPoint. Introduction text/table/chart-data copy edits persisted; the original deck stayed unchanged. Three earlier decks retain candidate provenance; the introduction has fresh current-skill authoring and final-page review, not a recovered-candidate comparison.",
     "images": "The primary introduction is an independently authored Chinese1080x1920 poster, with byte-identical offline source capture and an actually inspected390px reading-size preview. Other images retain their own existing evidence and limitations.",
-    "video": "Original full-video records remain bounded historical evidence. Both new code pilots decoded completely with exact approved subtitles and sampled source replay; their partial visual coverage and unconfirmed continuous listening/viewing are recorded separately.",
-    "pilotListeningAndViewing": "Retained ANC/Git/Greenland pilots and the introduction corrected representative pilot were accepted after playback. CPython/Docker standalone pilot playback remains unconfirmed.",
+    "video": "Docker now uses the second-round scene with exact offline-imported original recordings, fresh approved source-bound plan and encoded-frame evidence. Small-player auxiliary text remains dense; listening and comprehension unperformed.",
+    "pilotListeningAndViewing": "General approval to promote the revised Docker sample does not assert continuous auditory review. Other retained pilot acceptance records are unchanged.",
     "completeVideoListeningAndViewing": "Awaiting separate user acceptance; agent does not claim auditory perception.",
     "humanComprehensionStudy": "Not performed."
   },
@@ -250,9 +252,10 @@
   "previousExamplesPreserved": "Git history",
   "promotedAt": "2026-09-16T06:40:30.076Z",
   "codePilotEvaluation": "../evals/examples/code-pilots-20260917/publication.json",
-  "updatedAt": "2026-09-21T05:06:15.704Z",
+  "updatedAt": "2026-09-22T04:38:32.325Z",
   "ahaIntroductionEvaluation": "../evals/examples/aha-introduction-20260917/publication.json",
   "pptxPublication": "pptx-publication.json",
   "historicalVisualReview": "../evals/examples/refresh-20260916/final-visual-review.json",
-  "introductionPublication": "aha-introduction/publication.json"
+  "introductionPublication": "aha-introduction/publication.json",
+  "taskVideoEvaluation": "../evals/examples/task-video-20260922/publication.json"
 }

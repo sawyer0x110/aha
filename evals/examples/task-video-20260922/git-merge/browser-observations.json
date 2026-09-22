@@ -1,0 +1,48 @@
+{
+  "observations": [
+    {
+      "width": 1280,
+      "scrollWidth": 1280,
+      "title": "Git 合并方案审查：revert 加 -Xours 不能保证 mode=off",
+      "language": "zh-CN",
+      "overflowRegions": [],
+      "reviewColumns": [
+        "220px 772px",
+        "220px 772px",
+        "220px 772px"
+      ],
+      "bodyFontPx": "16px",
+      "keyboardAnchor": "#ref-revert"
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "title": "Git 合并方案审查：revert 加 -Xours 不能保证 mode=off",
+      "language": "zh-CN",
+      "overflowRegions": [],
+      "reviewColumns": [
+        "350px",
+        "350px",
+        "350px"
+      ],
+      "bodyFontPx": "16px",
+      "keyboardAnchor": "#ref-revert"
+    },
+    {
+      "width": 320,
+      "scrollWidth": 320,
+      "title": "Git 合并方案审查：revert 加 -Xours 不能保证 mode=off",
+      "language": "zh-CN",
+      "overflowRegions": [],
+      "reviewColumns": [
+        "280px",
+        "280px",
+        "280px"
+      ],
+      "bodyFontPx": "16px",
+      "keyboardAnchor": "#ref-revert"
+    }
+  ],
+  "errors": [],
+  "blocked": []
+}

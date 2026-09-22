@@ -1,0 +1,25 @@
+{
+  "topic": "docker-layers",
+  "format": "video",
+  "sourceHash": "2219d6f667a1a7c0e99e7e25334edcb48458d3371ddb041035c28b9c716fbccb",
+  "outputHash": "94c7629843596a7a1f4c70d3edff0702e07d5df3a1847decf5a52a4f4a68c95d",
+  "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
+  "method": "Agent source and actual-pixel review; not independent blinded assessment",
+  "status": "bounded-agent-review",
+  "observed": [
+    "Actual native result and key encoded transitions inspected",
+    "State labels switch without contradictory crossfade; captions and result states readable at 1280x720"
+  ],
+  "limitations": [
+    "Auxiliary text remains small at 640px playback width; density only partially improved",
+    "No actual listening, word-level synchronization or human comprehension assessment"
+  ],
+  "pixelsReviewed": [
+    "video-contact-sheet.png",
+    "transition-contact-sheet.png",
+    "result-at-640.png",
+    "frames/frame-009.png",
+    "transitions/frame-002.png",
+    "transitions/frame-003.png"
+  ]
+}

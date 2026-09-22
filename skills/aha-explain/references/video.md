@@ -8,6 +8,8 @@ Select metadata language under [language](language.md), then author scene text, 
 
 Plan the argument, complete narration, scene responsibilities, visual anchors, and research coverage independently of the report's paragraph structure. Narration explains causes and transitions; the screen shows the mechanism rather than repeating every spoken word. Choose a practical duration/resource budget with the user, not a universal clip-length limit.
 
+Before writing scene code, use [shots and beats](video-storyboarding.md) to separate audio/caption segments from continuous visual situations, plan the state changes and result holds, and inspect boundaries after measured audio is available. This adds authoring guidance, not VideoPlan fields or word-level timing.
+
 Author the source and the plan's `segments[].text` narration together, with stable segment identities. Load [the exact video contract](video-contract.md) when authoring plan or audio-list fields. There is no implicit narration file or slide-notes input. Use [visual design](visual-design.md) and optionally one [theme section](design-themes.md), such as the high-contrast kinetic mechanism recipe. Set an explicit root light/dark author preference for stable capture styling. Design topic-specific HTML/SVG/canvas motion: relationship movement, condition changes, state transitions, data progression, and local emphasis. Static reading pauses are legitimate; only adding whole-page fades is not sufficient dynamic explanation.
 
 The source must define:

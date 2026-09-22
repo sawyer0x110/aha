@@ -1,0 +1,22 @@
+{
+  "provider": "edge-tts",
+  "voice": "en-US-AriaNeural",
+  "rate": "+0%",
+  "recordings": [
+    {
+      "id": "layer-added",
+      "file": "../audio/segment-001.wav",
+      "sha256": "5ba0125852ac50fb1e20578291c556d559162b953f9ae6badd6789a70382c6ae"
+    },
+    {
+      "id": "later-delete",
+      "file": "../audio/segment-002.wav",
+      "sha256": "69534e14477ab4ed196273c78f6b6c1ad2f8d324e1fa6eb2591b063138af9e32"
+    },
+    {
+      "id": "same-run",
+      "file": "../audio/segment-003.wav",
+      "sha256": "84f7e347416a1e1222a7f47509212b1c58e4235e625e5aee4169186c6a50832a"
+    }
+  ]
+}
