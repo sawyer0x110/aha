@@ -2,7 +2,7 @@
 
 [English](README.md) | **简体中文**
 
-从唯一保留的 [Aha 项目介绍](aha-introduction/README.md)或[本地作品入口](index.html)开始，共**六组示例、十六份作品**。项目介绍的英中双语 HTML、中文 PNG 与 8 页中文原生 PPTX 使用当前 `aha-explain` 指导，绑定其 9 月 17 日研究快照；原有英文视频保持不变。四份当前 PPTX 均采用迭代后的指导。其他主题保留各自成品与研究快照。交互 HTML 默认英文，可切换中文；其他 PNG 与全部配音视频为英文，主题说明为中文，研究报告保留原语言。
+从唯一保留的 [Aha 项目介绍](aha-introduction/README.md)或[本地作品入口](index.html)开始，共**六组示例、十六份作品**。项目介绍的英中双语 HTML、中文 PNG 与 8 页中文原生 PPTX 使用当前 `aha-explain` 指导，绑定其 9 月 17 日研究快照；原有英文视频保持不变。四份当前 PPTX 均采用迭代后的指导。Git HTML 与 Docker 视频采用已认可的第二轮任务／分镜作品，研究快照及其他格式不变。Git HTML 为纯中文方案审查；ANC 与项目介绍 HTML 默认英文，可切换中文。其他 PNG 与全部配音视频为英文，主题说明为中文，研究报告保留原语言。
 
 GitHub 源码预览不会执行交互页面。请下载或克隆仓库后在浏览器中打开 `examples/index.html`；通过链接用本地查看器打开或下载 PNG、PPTX、MP4 和字幕。作品是面向读者的讲解；研究、收据、哈希、批准记录和验收记录是用于核查来源及制作过程的证据，不是另一组作品，也不代表尚未完成的验收已经通过。
 
@@ -10,7 +10,7 @@ GitHub 源码预览不会执行交互页面。请下载或克隆仓库后在浏�
 | --- | --- | --- | --- | --- |
 | [Aha 项目介绍 · 从这里开始](aha-introduction/README.md) | [英中双语讲解](aha-introduction/index.html) | [中文 · 1080×1920](aha-introduction/overview.png) | [8 页中文](aha-introduction/overview.pptx) | [119.4 秒](aha-introduction/overview-v5.mp4) |
 | [降噪耳机](anc/README.md) | [交互讲解](anc/index.html) | [1800×1200](anc/anc.png) | [7 页中文](anc/anc.pptx) | [127.1 秒](anc/anc.mp4) |
-| [Git merge](git-merge/README.md) | [交互讲解](git-merge/index.html) | [1800×1200](git-merge/git-merge.png) | [8 页中文](git-merge/git-merge.pptx) | [126.27 秒](git-merge/git-merge.mp4) |
+| [Git merge](git-merge/README.md) | [中文方案审查](git-merge/index.html) | [1800×1200](git-merge/git-merge.png) | [8 页中文](git-merge/git-merge.pptx) | [126.27 秒](git-merge/git-merge.mp4) |
 | [格陵兰与地图投影](greenland/README.md) | 未请求 | 未请求 | [7 页中文](greenland/greenland.pptx) | [115.73 秒](greenland/greenland.mp4) |
 | [CPython 字符串](cpython-string/README.md) | 未请求 | 未请求 | 未请求 | [21.47 秒试片](cpython-string/pilot.mp4) |
 | [Docker 镜像层](docker-layers/README.md) | 未请求 | 未请求 | 未请求 | [21.27 秒试片](docker-layers/pilot.mp4) |
@@ -24,7 +24,7 @@ ANC 和 Git 的横向信息图面向至少 1200px 宽的桌面／文档阅读，
 - 每组根目录只保留各格式最近收录的作品、配套收据、视频 SRT 和 `video-plan.json`；项目介绍、ANC、Git 各有四种格式，格陵兰包含 PPTX 与视频，CPython、Docker 只有视频。
 - `projects/{html,image,pptx,video}/` 保留对应作者源、元数据、项目内资源和研究副本；PPTX 的 `qa/` 保存当前 PowerPoint 观察与页面导出，不计入源码身份。
 - `research/` 是该主题封存的研究报告、证据与清单。历史描述保持封存原样，当前作品目录以交付清单为准。
-- `audio/` 保留当前音频清单和 WAV。ANC、Git 及项目介绍使用导入录音，`audio-origin/` 保留原配音计划、原清单或失败记录，以及原始录音到当前文件的字节身份映射；导入 WAV 与原始合成 WAV 完全相同，故只存一份。格陵兰、CPython、Docker 使用直接 Edge TTS 合成，不另造导入来源目录。Docker 当前录音来自获批的第二次合成，首次时长不足的失败记录单独封存。项目介绍在排版修正后离线导入原十三段录音，不伪装成再次联网合成。
+- `audio/` 保留当前音频清单和 WAV。ANC、Git、Docker 及项目介绍使用导入录音，`audio-origin/` 保留原配音计划、原清单或失败记录，以及原始录音到当前文件的字节身份映射；导入 WAV 与原始合成 WAV 完全相同，故只存一份。格陵兰和 CPython 保留直接 Edge TTS 合成。Docker 新场景离线导入获批第二次合成的原录音，原计划及唯一新增的画面限定关联明确记录；首次时长不足的失败记录仍作为历史证据。项目介绍同样离线导入原十三段录音，不伪装成再次联网合成。
 - Git 的 `public/` 保留阅读的固定版本上游文件、许可和访问记录。
 - [交付清单](delivery-manifest.json)索引十六份当前作品。[PPTX 收录记录](pptx-publication.json)绑定四份演示的源码、收据、技能来源、当前应用检查与明确的审阅限制。项目介绍的[收录记录](aha-introduction/publication.json)另行绑定其新 HTML 和 PNG 观察；较早的非 PPT 证据仍位于 `evals`，历史观察不用于证明更新后的作品已通过。
 
@@ -57,7 +57,7 @@ npm run build
 npm run examples:verify
 ```
 
-统一检查器验证十六份作品、研究副本、收据、当前音频及适用的原配音来源。当前 PPTX 观察和页面图片单独绑定哈希，不沿用历史幻灯片证据。代码试片与介绍视频另绑定批准计划、预览状态和编码记录；回归用例拒绝陈旧身份及重新封存的错误证据。既有[浏览器检查](../evals/examples/refresh-20260916/browser-recheck/runtime.json)覆盖未改动的 ANC 与 Git 网页，已移除主题的观察仅作历史记录；项目介绍有独立的当前收录证据。
+统一检查器验证十六份作品、研究副本、收据、当前音频及适用的原配音来源。当前 PPTX 观察和页面图片单独绑定哈希，不沿用历史幻灯片证据。代码试片与介绍视频另绑定批准计划、预览状态和编码记录；回归用例拒绝陈旧身份及重新封存的错误证据。既有[浏览器检查](../evals/examples/refresh-20260916/browser-recheck/runtime.json)仍适用于 ANC，不适用于被替换的 Git 网页。[任务／视频收录记录](../evals/examples/task-video-20260922/publication.json)绑定当前中文 Git 网页与新版 Docker 视频；项目介绍有独立证据。Docker 在 640px 播放宽度下辅助字仍偏小，实际听审与真人理解未验证。收录后已清理临时对照成品，保留紧凑证据及生成时身份。
 
 审阅 ANC 与 Git 页面并获得本地执行许可后，可将新浏览器结果另存到一个尚不存在的目录，不覆盖封存记录：
 

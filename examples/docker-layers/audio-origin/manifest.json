@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0.0",
+  "planHash": "e4c928b388b1f3274478a2d03d36890a8fc5850bd9ebe0303522ba2f363e4319",
+  "provider": "edge-tts",
+  "voice": "en-US-AriaNeural",
+  "segments": [
+    {
+      "id": "layer-added",
+      "filename": "segment-001.wav",
+      "frames": 250,
+      "sha256": "5ba0125852ac50fb1e20578291c556d559162b953f9ae6badd6789a70382c6ae"
+    },
+    {
+      "id": "later-delete",
+      "filename": "segment-002.wav",
+      "frames": 180,
+      "sha256": "69534e14477ab4ed196273c78f6b6c1ad2f8d324e1fa6eb2591b063138af9e32"
+    },
+    {
+      "id": "same-run",
+      "filename": "segment-003.wav",
+      "frames": 208,
+      "sha256": "84f7e347416a1e1222a7f47509212b1c58e4235e625e5aee4169186c6a50832a"
+    }
+  ]
+}

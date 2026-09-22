@@ -1,0 +1,34 @@
+{
+  "skill_name": "aha-explain",
+  "protocol": "task-video-pilot-v1",
+  "evals": [
+    {
+      "id": 1,
+      "name": "git-plan-review",
+      "prompt": "基于提供的 Git 合并研究，给知道分支与 revert 的工程师制作一份简洁的中文离线 HTML，审查这个假设方案：『先在本分支 revert 普通提交，再以默认 ort 策略合并对侧并加 -Xours。这样能保证已撤销的 mode=on 不会回来，同时保留对侧其它更新。合并没有冲突就可以发布。』说明你的审查结论和建议。只依据提供的封存研究，不将其当成今天重新核查的版本或实际实验。不要运行 Git 操作。结构与视觉表达由你决定；不要读取已有示例成品或作者源码。",
+      "expected_output": "A newly authored Chinese HTML explanation reviewing the proposal against the frozen research, with a scoped recommendation rather than a general Git article. Source, artifact metadata, packaged HTML and candid QA notes; browser execution remains a separate approval.",
+      "files": ["examples/git-merge/research"],
+      "assertions": [
+        "The proposal is explicitly reviewed: -Xours does not guarantee excluding the reverted change when the opposing change merges cleanly.",
+        "The explanation connects base=off, ours=off and theirs=on to the scoped result on; it does not describe commit replay.",
+        "A useful correction preserves attention to other-side updates instead of recommending -s ours as an equivalent universal fix.",
+        "A conflict-free textual merge is distinguished from release readiness, and no unrun experiment or test is presented as observed.",
+        "The delivered Chinese explanation has a self-contained question/title and source context supporting its consequential assertions."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "docker-mechanism-video",
+      "prompt": "Use the supplied Docker image-layer research and the exact three narration segments in narration.json to author a fresh English 20–30 second mechanism video pilot. Explain why a later RUN can hide a newly added file without reclaiming its earlier layer payload, and contrast creating/deleting that new file in the same RUN. Keep the supplied narration unchanged for later reuse of its existing recordings. The 100 MB value is an assumed uncompressed payload, not a measurement. Choose your own visual composition. Deliver authored source, coverage and any useful authoring notes; do not read an existing example video or scene source. Stop before audio import, speech synthesis or browser execution; the coordinator will obtain fresh approval for the newly bound provided-audio plan.",
+      "expected_output": "A fresh research-bound deterministic video scene source for the approved narration, with visible layer/merged-view distinctions, meaningful motion and readable conditions. No new speech or claim of completed playback during authoring.",
+      "files": ["examples/docker-layers/research", "examples/docker-layers/video-plan.json"],
+      "assertions": [
+        "The later-deletion scene keeps the original layer payload while the merged-view example path becomes absent; a whiteout is not depicted as an ordinary visible merged file.",
+        "The same-RUN contrast concerns a NEW temporary file absent at both diff endpoints, not erasing a preexisting base-layer payload or an entirely empty image.",
+        "The 100 MB example is labeled as assumed payload rather than measured image/download savings, and captions match the supplied narration.",
+        "Scene code has meaningful state/action/consequence changes and can reconstruct persistent objects when entering later segments directly.",
+        "The rendered sequence preserves readable result states and clear captions through consequential beats and segment boundaries."
+      ]
+    }
+  ]
+}

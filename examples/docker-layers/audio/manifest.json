@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0.0",
-  "planHash": "e4c928b388b1f3274478a2d03d36890a8fc5850bd9ebe0303522ba2f363e4319",
-  "provider": "edge-tts",
-  "voice": "en-US-AriaNeural",
+  "planHash": "b7bdeb2e3f8330979ba40a349b2a6175cb0c66cf705b7507ecf6dd2acb44e807",
+  "provider": "provided-audio",
+  "voice": "original-aria-recording",
   "segments": [
     {
       "id": "layer-added",

@@ -1,0 +1,31 @@
+{
+  "language": "en",
+  "duration": {
+    "minSeconds": 20,
+    "maxSeconds": 30
+  },
+  "segments": [
+    {
+      "id": "layer-added",
+      "text": "Suppose one RUN adds a hundred-megabyte file: its payload enters an immutable image layer, which later steps cannot rewrite.",
+      "claimIds": [
+        "c-layer",
+        "c-example"
+      ]
+    },
+    {
+      "id": "later-delete",
+      "text": "A later RUN hides the file with a whiteout, but the earlier layer still holds its bytes.",
+      "claimIds": [
+        "c-delete"
+      ]
+    },
+    {
+      "id": "same-run",
+      "text": "Create and delete that new file within the same RUN, and its payload never enters the resulting image diff.",
+      "claimIds": [
+        "c-same"
+      ]
+    }
+  ]
+}

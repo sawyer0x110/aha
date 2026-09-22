@@ -14,6 +14,8 @@ Apply [explanation editing](explanation-writing.md) to the actual reader-facing 
 
 Keep factual support, explanatory clarity, language quality, visual/native usability, and runtime/media integrity as separate observations in existing QA notes, not new required metadata. Passing byte comparisons, text-length checks, language switching or video decoding does not pass the editorial review. Agent editorial judgments are not human comprehension results.
 
+For the matching [task type](task-composition.md), review the delivered explanation against the reader's actual decision: before/after behavior for a change, proposal/evidence/correction for a plan, state/action/consequence for a mechanism, or current versus historical/planned status for a recap. A checklist of headings alone does not establish these relationships.
+
 When the user requests evidence of understanding, agree a small learner evaluation separately from production QA. Ask intended readers to explain an unseen case that changes a meaningful condition, justify a prediction and identify where the explanation no longer applies. Collect their reasoning before revealing answers; self-reported understanding and copied page answers are not transfer evidence. Record prior knowledge, exposure and assistance, anonymized responses with consent, the rubric and unperformed items. For version comparisons, use anonymous labels and balanced allocation or matched tasks to reduce order and practice effects. Do not test the same reader on the same question twice and attribute practice gains to the skill. This is not a mandatory quiz in the artifact or a substitute for actual human participation.
 
 ## Review the requested medium
@@ -26,6 +28,10 @@ When the user requests evidence of understanding, agree a small learner evaluati
 | Video | Watch and listen to a representative mechanism pilot and the final video; inspect scene changes, audio, subtitle timing/safe area, readability, continuity, and real mechanism animation. |
 
 Static checks, browser automation receipts, valid OOXML, and successful encoding are separate evidence, not a declaration of aesthetic quality or human acceptance. Do not fabricate human feedback, user sign-off, screenshots, playback, or interaction results.
+
+For HTML plan reviews, follow the [composition guidance](task-composition.md) at the intended narrow width: can a reader follow one assumption through evidence and recommendation without repeatedly scrolling sideways? A genuinely two-dimensional comparison may retain horizontal scrolling; check headers and keyboard access rather than treating all scrollable tables as failures.
+
+For video, apply [shot and beat review](video-storyboarding.md) to consequential transitions, intermediate frames, boundaries and result holds in the actual output. Check mutually exclusive labels for overprinting and agreement with the object's state, and persistent comparisons for readable labels at intended playback size with captions present. Check the interval and its neighbors after repair. Intentional static reading time is not a defect by itself; frame changes are not evidence that the intended mechanism is explained.
 
 For PPTX, review the [page intentions and object choices](pptx.md) against the final output, not only the author plan. Distinguish visible text from speaker notes: note-only facts do not prove visible-page coverage, and a material qualification belongs with the claim it limits. Check Chinese/mixed-script wrapping and reading-size legibility after repairs; preserve screenshot context and compare chart categories/values and table cells with their inputs. Record missing native content or awkward editing even if the package contains other native shapes. If no capacity defect occurred, record that observation rather than manufacturing a repair. These observations are separate from structural tests and do not assert automated layout or semantic validation.
 

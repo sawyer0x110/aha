@@ -207,6 +207,71 @@ test('PPTX guidance connects page intent, capacity repair, object choice and not
   assert.match(qa, /rather than manufacturing a repair/);
 });
 
+test('task composition is routed selectively and connects decisions to evidence without fixed pages', async () => {
+  const entrance = await fs.readFile(path.join(root, 'skills', 'aha-explain', 'SKILL.md'), 'utf8');
+  assert.ok(relativeLinks(entrance).includes('references/task-composition.md'));
+  const tasks = await reference('task-composition.md');
+  for (const heading of ['Explain a change', 'Review a proposed plan', 'Explain a mechanism', 'Recap a project']) {
+    assert.ok(tasks.includes(`## ${heading}`));
+  }
+  for (const concept of [
+    /not mandatory page sections/, /actual comparison endpoints/,
+    /proposal -> current evidence -> consequence -> recommendation/,
+    /unrun experiment/, /same identities/, /snapshot date\/version/,
+    /not permission to execute/, /Do not infer current release availability/,
+    /reasoning chain is not a fixed column layout/,
+    /group each assumption.*vertically/,
+    /genuinely depends on comparing rows and columns/,
+    /preserve headers and keyboard access/,
+  ]) assert.match(tasks, concept);
+  for (const file of ['artifact-authoring.md', 'artifact-qa.md']) {
+    assert.ok(relativeLinks(await reference(file)).includes('task-composition.md'));
+  }
+});
+
+test('video storyboarding respects measured timing, deliberate holds and source-bound approvals', async () => {
+  const video = await reference('video.md');
+  const shots = await reference('video-storyboarding.md');
+  assert.ok(relativeLinks(video).includes('video-storyboarding.md'));
+  assert.ok(relativeLinks(await reference('artifact-qa.md')).includes('video-storyboarding.md'));
+  for (const concept of [
+    /One shot can span several segments/, /not required fields/,
+    /measured frame counts/, /normalized progress/, /does not locate a spoken word/,
+    /universal frame minimum/, /deterministic A-B-A replay/,
+    /does not loosen source-bound audio manifests/, /provided-audio/,
+    /contact sheet.*not video playback/, /old frame cannot validate/,
+    /purposeful static reading intervals/,
+    /Continuity does not require every annotation/,
+    /Keep material qualifications visible/,
+    /before shrinking labels/,
+    /mutually exclusive state labels.*not an overlapping crossfade/,
+    /Tie the label switch to the depicted object's state/,
+    /separately identified regions/,
+    /intermediate frames while labels or objects are transitioning/,
+    /Clean endpoints do not establish transition readability/,
+  ]) assert.match(shots, concept);
+  assert.ok(relativeLinks(shots).includes('video-contract.md'));
+  assert.ok(relativeLinks(shots).includes('artifact-qa.md'));
+  const qa = await reference('artifact-qa.md');
+  assert.match(qa, /rather than treating all scrollable tables as failures/);
+  assert.match(qa, /mutually exclusive labels for overprinting and agreement/);
+  assert.match(qa, /intended playback size with captions present/);
+});
+
+test('task/video pilot uses existing example research without providing finished example scenes', async () => {
+  const corpus = JSON.parse(await fs.readFile(path.join(root, 'evals', 'task-video', 'evals.json'), 'utf8'));
+  assert.equal(corpus.skill_name, 'aha-explain');
+  assert.deepEqual(corpus.evals.map((item: { name: string }) => item.name), ['git-plan-review', 'docker-mechanism-video']);
+  for (const item of corpus.evals) {
+    assert.ok(item.prompt.length > 100);
+    assert.ok(item.assertions.length >= 4);
+    for (const file of item.files) {
+      assert.match(file, /^examples\/(?:git-merge|docker-layers)\/(?:research|video-plan\.json)$/);
+      await fs.access(path.join(root, file));
+    }
+  }
+});
+
 test('language guidance distinguishes bilingual HTML, English media defaults and translation review', async () => {
   const language = await reference('language.md');
   for (const concept of [/initially English/i, /data-aha-lang/, /data-aha-title/, /English\/中文/, /en-US-JennyNeural/, /zh-CN-XiaoxiaoNeural/, /legacy/i, /negation/i, /fresh approval/i]) {

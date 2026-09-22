@@ -1,0 +1,24 @@
+{
+  "sourceHash": "2219d6f667a1a7c0e99e7e25334edcb48458d3371ddb041035c28b9c716fbccb",
+  "outputHash": "94c7629843596a7a1f4c70d3edff0702e07d5df3a1847decf5a52a4f4a68c95d",
+  "frameCount": 638,
+  "replay": [
+    {
+      "frame": 200,
+      "matches": true
+    },
+    {
+      "frame": 380,
+      "matches": true
+    },
+    {
+      "frame": 600,
+      "matches": true
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "framesWithBoxOverlaps": 638,
+  "outOfBoundsFrames": 0,
+  "interpretation": "Adjacent file-label line boxes intersect but actual glyphs remain separate. These heuristic flags are not visible overlap failures."
+}

@@ -2,9 +2,9 @@
   "schemaVersion": "1.0.0",
   "status": "authored",
   "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
-  "sourceHash": "31ece11dc0442006fac2e176b8f173a3385db16b45670ded8e8bfb3408ead31e",
-  "provider": "edge-tts",
-  "voice": "en-US-AriaNeural",
+  "sourceHash": "2219d6f667a1a7c0e99e7e25334edcb48458d3371ddb041035c28b9c716fbccb",
+  "provider": "provided-audio",
+  "voice": "original-aria-recording",
   "rate": "+0%",
   "duration": {
     "minSeconds": 20,
@@ -30,7 +30,8 @@
       "id": "same-run",
       "text": "Create and delete that new file within the same RUN, and its payload never enters the resulting image diff.",
       "claimIds": [
-        "c-same"
+        "c-same",
+        "c-base"
       ]
     }
   ]
