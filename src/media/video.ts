@@ -34,7 +34,7 @@ export async function renderVideo(directory: string, input: VideoPlan, audioDire
   const durationSeconds = totalFrames / FPS;
   const output = path.resolve(destination);
   await assertOutsideSource(directory, output);
-  const sidecars = [`${output}.srt`, `${output}.json`];
+  const sidecars = [`${output}.srt`, `${output}.receipt.json`];
   const failureFile = `${output}.failure.json`;
   await fs.mkdir(path.dirname(output), { recursive: true });
   for (const file of [output, ...sidecars, failureFile]) {
@@ -123,7 +123,7 @@ export async function renderVideo(directory: string, input: VideoPlan, audioDire
     const videoBytes = await fs.readFile(path.join(work, 'movie.mp4'));
     const srt = subtitles(plan, audio);
     const receipt = {
-      status: 'delivered', format: 'mp4', rendererVersion: VERSION,
+      status: 'delivered', format: 'mp4', output: path.basename(output), rendererVersion: VERSION,
       researchHash: plan.researchHash, sourceHash: plan.sourceHash, planHash: await hashValue(plan),
       audioManifestHash: await hashValue(audio), durationSeconds, totalFrames,
       codec: 'h264', width: 1280, height: 720, fps: FPS,

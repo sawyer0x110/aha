@@ -1,1 +1,0 @@
-{"status":"failed","stage":"same-run","planHash":"8e00661dd82fa552f9ea33bcc656d2829678084d77a018a4159dd8ddfd48c7ab","provider":"edge-tts","message":"Audio incomplete. Existing segments are retained, but this directory is not renderable without a validated manifest."}

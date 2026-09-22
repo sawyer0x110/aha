@@ -68,6 +68,6 @@ Generate and review only the formats the user requested. A single-medium request
 
 ## Revise and deliver
 
-Record actual tools, files, observations, defects, revisions, and unperformed checks in project QA notes. Fix source, rebuild and inspect again. Use [artifact authoring's delivery lifecycle](artifact-authoring.md#working-history-and-current-delivery) for history, replacement, receipt pairing and the final handoff; do not repeat that checklist in each medium.
+Record actual tools, files, observations, defects, revisions, and unperformed checks in the run's `qa/<format>/`, outside the author project. Fix source, rebuild and inspect again. Use [artifact authoring's delivery lifecycle](artifact-authoring.md#working-history-and-current-delivery) for history, replacement, receipt pairing and the final handoff; do not repeat that checklist in each medium.
 
 Do not claim a video or presentation is complete when required files or actual QA are missing. Keep audit metadata out of reader-facing content except natural sources and meaningful limitations.

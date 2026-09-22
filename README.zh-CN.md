@@ -17,7 +17,7 @@ Aha 是两个可移植的 Agent Skill，面向公开问题、用户提供的材�
 
 ## 先看作品
 
-从 [Aha 项目介绍](examples/aha-introduction/README.md)开始：可选[英中双语 HTML](examples/aha-introduction/index.html)、[8 页中文原生 PPTX](examples/aha-introduction/overview.pptx)、[中文信息图](examples/aha-introduction/overview.png)，或已有的 [1 分 59 秒英文视频](examples/aha-introduction/overview-v5.mp4)。这里是项目介绍的主入口，事实基于 9 月 17 日研究快照。也可单独看[格陵兰](examples/greenland/README.md)、[CPython 字符串](examples/cpython-string/README.md)和 [Docker 镜像层](examples/docker-layers/README.md)示例。各主题说明保留来源、可编辑项目、产物和验收限制。
+从 [Aha 项目介绍](examples/aha-introduction/README.md)开始：可选[英中双语 HTML](examples/aha-introduction/aha-introduction.html)、[8 页中文原生 PPTX](examples/aha-introduction/aha-introduction.pptx)、[中文信息图](examples/aha-introduction/aha-introduction.png)，或已有的 [1 分 59 秒英文视频](examples/aha-introduction/aha-introduction.mp4)。这里是项目介绍的主入口，事实基于 9 月 17 日研究快照。也可单独看[格陵兰](examples/greenland/README.md)、[CPython 字符串](examples/cpython-string/README.md)和 [Docker 镜像层](examples/docker-layers/README.md)示例。各主题说明保留来源、可编辑项目、产物和验收限制。
 
 [完整作品集](examples/README.zh-CN.md)还包括降噪耳机和 Git merge；项目介绍只保留 aha-introduction。保留示例是当时的快照，不代表当前运行时承诺。渲染成功或短试片不能代替完整版视觉与连续听审。
 

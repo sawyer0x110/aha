@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFile, writeFile, access } from 'node:fs/promises';
+import { readFile, writeFile, access, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
@@ -8,29 +8,25 @@ import { SaxesParser } from 'saxes';
 import { readDossier } from '../../src/research/dossier.ts';
 import { checkArtifact, sourceHash } from '../../src/artifacts/project.ts';
 import { validatePptx } from '../../src/artifacts/pptx-validation.ts';
-import { checkPlan, validateVideoPlan, checkAudioTiming, subtitles } from '../../src/media/plan.ts';
+import { validateVideoPlan, checkAudioTiming, subtitles } from '../../src/media/plan.ts';
 import { audioTiming } from '../../src/media/duration.ts';
 import { hashValue } from '../../src/core/identity.ts';
 
 export const root = fileURLToPath(new URL('../../', import.meta.url));
 export const topics = {
-  anc: { basename: 'anc', width: 1800, height: 1200, slides: 7, frames: 3813 },
-  'git-merge': { basename: 'git-merge', htmlLanguage: 'zh', width: 1800, height: 1200, slides: 8, frames: 3788 },
-  greenland: { basename: 'greenland', formats: ['pptx', 'video'], slides: 7, frames: 3472, provider: 'edge-tts' },
-  'cpython-string': { basename: 'pilot', formats: ['video'], frames: 644, provider: 'edge-tts' },
-  'docker-layers': { basename: 'pilot', formats: ['video'], frames: 638, provider: 'provided-audio' },
-  'aha-introduction': { basename: 'overview', basenames: { video: 'overview-v5' }, width: 1080, height: 1920, slides: 8, frames: 3582, provider: 'provided-audio' },
+  anc: { width: 1800, height: 1200, slides: 7, frames: 3813 },
+  'git-merge': { htmlLanguage: 'zh', width: 1800, height: 1200, slides: 8, frames: 3788 },
+  greenland: { formats: ['pptx', 'video'], slides: 7, frames: 3472, provider: 'edge-tts' },
+  'cpython-string': { formats: ['video'], frames: 644, provider: 'edge-tts' },
+  'docker-layers': { formats: ['video'], frames: 638, provider: 'provided-audio' },
+  'aha-introduction': { width: 1080, height: 1920, slides: 8, frames: 3582, provider: 'provided-audio' },
 };
 export const formatsFor = topic => topics[topic].formats ?? ['html', 'image', 'pptx', 'video'];
-const historicalBrowserTopics = ['anc', 'git-merge'];
+const sharedVideoTopics = ['anc', 'git-merge'];
 const pptxTopics = Object.keys(topics).filter(topic => formatsFor(topic).includes('pptx'));
-const basenameFor = (topic, format) => topics[topic].basenames?.[format] ?? topics[topic].basename;
 export const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 // PowerShell 5.1 emits a UTF-8 BOM; strip it only for parsing, never for byte hashing.
 const json = async file => JSON.parse((await readFile(file, 'utf8')).replace(/^\uFEFF/, ''));
-const optionalJson = async file => json(file).catch(error => {
-  if (error.code !== 'ENOENT') throw error;
-});
 const equal = (actual, expected, label) => assert.equal(actual, expected, label);
 
 function wavFrames(bytes) {
@@ -65,11 +61,11 @@ export async function verifyOutput(base, entry) {
   assert(['html', 'image', 'pptx', 'video'].includes(format), `Unknown format: ${format}`);
   assert(formatsFor(topic).includes(format), `Unrequested format: ${topic}/${format}`);
   const spec = topics[topic];
-  const filename = format === 'html' ? 'index.html' : `${basenameFor(topic, format)}.${{ image: 'png', pptx: 'pptx', video: 'mp4' }[format]}`;
+  const filename = `${topic}.${{ html: 'html', image: 'png', pptx: 'pptx', video: 'mp4' }[format]}`;
   equal(entry.file, `${topic}/${filename}`, 'Canonical output path');
   equal(entry.sourceProject, `${topic}/projects/${format}`, 'Canonical source path');
   equal(entry.report, `${topic}/research/report.md`, 'Canonical report path');
-  equal(entry.receipt, `${entry.file}.${format === 'video' ? 'json' : 'receipt.json'}`, 'Canonical receipt path');
+  equal(entry.receipt, `${entry.file}.receipt.json`, 'Canonical receipt path');
   const directory = path.join(base, topic);
   const project = path.join(directory, 'projects', format);
   const dossier = await readDossier(path.join(directory, 'research'));
@@ -96,8 +92,7 @@ export async function verifyOutput(base, entry) {
   equal(receipt.sourceHash, source, `${entry.file}: receipt source hash`);
   equal(receipt.researchHash, research, `${entry.file}: receipt research hash`);
   equal(format === 'video' ? receipt.artifactHash : receipt.outputHash, output, `${entry.file}: receipt output hash`);
-  // Receipt output is the original render basename, not the subsequently published filename.
-  if (format !== 'video') assert(typeof receipt.output === 'string' && receipt.output.length > 0);
+  equal(receipt.output, filename, 'Receipt names the current output');
   if (format === 'html') {
     equal(receipt.selfContained, true, 'Packaged HTML is self-contained');
     const language = spec.htmlLanguage ?? 'bilingual';
@@ -145,7 +140,7 @@ export async function verifyOutput(base, entry) {
     assert(size, 'Presentation dimensions');
     assert(Math.abs(Number(size[1]) / Number(size[2]) - metadata.width / metadata.height) < 0.001, 'Presentation aspect ratio');
   }
-  let plan, originalPlanHash;
+  let plan, recordingPlanHash;
   if (format === 'video') {
     plan = await validateVideoPlan(project, await json(path.join(directory, 'video-plan.json')));
     const audio = checkAudioTiming(plan, await json(path.join(directory, 'audio', 'manifest.json')));
@@ -175,48 +170,21 @@ export async function verifyOutput(base, entry) {
     equal(receipt.height, 720, 'Video height');
     equal(receipt.codec, 'h264', 'Video codec');
     if (provider === 'provided-audio') {
-      const origin = path.join(directory, 'audio-origin');
-      const originalPlan = checkPlan(await json(path.join(origin, 'original-plan.json')), true);
-      originalPlanHash = await hashValue(originalPlan);
-      equal(originalPlan.provider, 'edge-tts', 'Recorded original provider');
-      equal(originalPlan.researchHash, research, 'Original narration research');
-      if (topic === 'docker-layers') {
-        const associations = await json(path.join(origin, 'claim-associations.json'));
-        equal(associations.originalPlanHash, originalPlanHash, 'Original claim-association plan');
-        equal(associations.importedPlanHash, receipt.planHash, 'Imported claim-association plan');
-        assert.deepEqual(associations.additions, [{ segmentId: 'same-run', claimId: 'c-base', scope: 'on-screen-only' }]);
-        const expected = structuredClone(originalPlan.segments);
-        const last = expected.find(segment => segment.id === 'same-run');
-        assert(last && !last.claimIds.includes('c-base'), 'Explicit new on-screen claim association');
-        last.claimIds.push('c-base');
-        assert.deepEqual(plan.segments, expected, 'Only the approved on-screen association may change; spoken narration is preserved');
-      } else {
-        assert.deepEqual(originalPlan.segments, plan.segments, 'Import preserves the complete approved narration');
-      }
-      // Provided-audio plans use a local recording label, not the original online voice ID.
-      equal(originalPlan.rate, plan.rate, 'Import preserves rate');
-      const recordings = await json(path.join(origin, 'recordings.json'));
-      equal(recordings.provider, originalPlan.provider, 'Original recording provider');
-      equal(recordings.voice, originalPlan.voice, 'Original recording voice');
-      equal(recordings.rate, originalPlan.rate, 'Original recording rate');
-      assert.deepEqual(recordings.recordings, audio.segments.map(segment => ({
-        id: segment.id, file: `../audio/${segment.filename}`, sha256: segment.sha256,
-      })), 'Original recording references bind the same already-verified WAV bytes');
-      const originalAudio = await optionalJson(path.join(origin, 'manifest.json'));
-      const failure = await optionalJson(path.join(origin, 'failure.json'));
-      assert(Boolean(originalAudio) !== Boolean(failure), 'Preserve either the original success manifest or failure record');
-      if (originalAudio) {
-        const checked = checkAudioTiming(originalPlan, originalAudio);
-        assert.deepEqual(checked.segments, audio.segments, 'Original and imported audio bytes and timing');
-      } else {
-        equal(failure.status, 'failed', 'Original failed synthesis remains a failure');
-        equal(failure.provider, originalPlan.provider, 'Failed synthesis provider');
-        equal(failure.planHash, originalPlanHash, 'Failed synthesis plan identity');
-        assert(frames / 30 > originalPlan.duration.maxSeconds, 'Original duration failure is not a successful render manifest');
-      }
+      const provenance = await json(path.join(directory, 'audio', 'provenance.json'));
+      equal(provenance.provider, 'edge-tts', 'Recording provider, not the current import provider');
+      equal(provenance.voice, 'en-US-AriaNeural', 'Recorded speech voice');
+      equal(provenance.rate, plan.rate, 'Recording rate');
+      hash(provenance.recordingPlanHash, 'Recording plan identity');
+      recordingPlanHash = provenance.recordingPlanHash;
+      assert.deepEqual(provenance.narration, plan.segments.map(({ id, text }) => ({ id, text })),
+        'Imported recordings preserve the approved spoken words and order');
+      assert.deepEqual(provenance.recordings, audio.segments.map(segment => ({
+        id: segment.id, file: segment.filename, sha256: segment.sha256,
+      })), 'Recording provenance binds the current WAV bytes');
     }
   }
-  return { topic, format, outputHash: output, sourceHash: source, researchHash: research, receiptHash: sha(receiptBytes), receipt, plan, originalPlanHash };
+  equal(entry.receiptHash, sha(receiptBytes), 'Manifest receipt hash');
+  return { topic, format, file: entry.file, outputHash: output, sourceHash: source, researchHash: research, receiptHash: sha(receiptBytes), receipt, plan, recordingPlanHash };
 }
 
 const compact = text => text.replace(/\s+/g, '');
@@ -261,7 +229,7 @@ function nonemptyStatements(values, label) {
 }
 
 async function verifyCurrentAgentReview(base, reference, current, reviewedFiles) {
-  const filename = `${current.topic}/projects/${current.format}/qa/agent-review.json`;
+  const filename = `${current.topic}/qa/${current.format}/agent-review.json`;
   equal(reference?.file, filename, 'Canonical current agent review');
   await verifySealedEvidence(base, [reference]);
   const review = await json(path.join(base, ...filename.split('/')));
@@ -293,21 +261,22 @@ async function verifyPngEvidence(base, reference, width, height) {
 export const introductionBrowserCases = [1280, 390].flatMap(width =>
   ['en', 'zh'].flatMap(language => ['light', 'dark'].map(theme => ({ width, language, theme }))));
 
-export async function verifyCurrentIntroductionEvidence(base, verified) {
-  const publication = await json(path.join(base, 'aha-introduction', 'publication.json'));
-  equal(publication.schemaVersion, 1, 'Current introduction publication schema');
-  equal(publication.status, 'published-current-introduction', 'Current introduction publication status');
-  assert.deepEqual(publication.outputs.map(item => item.format).sort(), ['html', 'image'], 'Exactly current introduction HTML and image evidence');
+export async function verifyCurrentIntroductionEvidence(base, verified, publication) {
+  publication ??= await json(path.join(base, 'delivery-manifest.json'));
+  verifyManifestHeader(publication);
+  const records = publication.requestedOutputs.filter(item => item.topic === 'aha-introduction' && ['html', 'image'].includes(item.format));
+  assert.deepEqual(records.map(item => item.format).sort(), ['html', 'image'], 'Exactly current introduction HTML and image evidence');
   const selected = verified.filter(item => item.topic === 'aha-introduction' && ['html', 'image'].includes(item.format));
   assert.deepEqual(selected.map(item => item.format).sort(), ['html', 'image'], 'Exactly verified introduction HTML and image');
-  for (const record of publication.outputs) {
-    const current = selected.find(item => item.format === record.format);
-    currentIdentity(record, current, 'Current introduction publication');
+  for (const entry of records) {
+    const record = entry.qa;
+    const current = selected.find(item => item.format === entry.format);
+    currentIdentity({ ...entry, outputHash: entry.sha256 }, current, 'Current introduction publication');
     const { format } = current;
     await verifySealedEvidence(base, [{
-      file: `aha-introduction/${format === 'html' ? 'index.html' : 'overview.png'}`, sha256: current.outputHash,
+      file: current.file, sha256: current.outputHash,
     }]);
-    const qa = `aha-introduction/projects/${format}/qa`;
+    const qa = `aha-introduction/qa/${format}`;
     equal(record.observations.file, `${qa}/${format === 'html' ? 'browser' : 'image'}-observations.json`, 'Canonical current introduction observations');
     await verifySealedEvidence(base, [record.observations]);
     const observations = await json(path.join(base, ...record.observations.file.split('/')));
@@ -353,7 +322,7 @@ export async function verifyCurrentIntroductionEvidence(base, verified) {
         [{ file: 'reading-390.png', width: 390, height: 694 }], 'Current introduction reading preview');
       const preview = localImage(observations.previews[0]);
       await verifyPngEvidence(base, preview, 390, 694);
-      const output = { file: 'aha-introduction/overview.png', sha256: current.outputHash };
+      const output = { file: current.file, sha256: current.outputHash };
       await verifyPngEvidence(base, output, 1080, 1920);
       reviewedFiles = [record.observations, preview, output];
     }
@@ -361,19 +330,22 @@ export async function verifyCurrentIntroductionEvidence(base, verified) {
   }
 }
 
-export async function verifyPptxEvidence(base, verified) {
-  const publication = await json(path.join(base, 'pptx-publication.json'));
-  equal(publication.schemaVersion, 1, 'Current PPTX publication schema');
-  equal(publication.status, 'published-current-pptx', 'Current PPTX publication status');
-  equal(publication.skill.name, 'aha-explain', 'PPTX skill provenance');
-  assert.match(publication.skill.sourceRevision, /^[a-f0-9]{40}$/, 'PPTX skill source revision');
-  assert(publication.skill.guideHashes && Object.keys(publication.skill.guideHashes).length > 0, 'Frozen guide hashes');
-  for (const value of Object.values(publication.skill.guideHashes)) hash(value, 'Frozen guide hash');
-  hash(publication.runtimeHash, 'Recorded runtime hash');
-  assert.deepEqual(publication.outputs.map(item => item.topic).sort(), [...pptxTopics].sort(), 'Exactly four unique current PPTX topics');
+export async function verifyPptxEvidence(base, verified, publication) {
+  publication ??= await json(path.join(base, 'delivery-manifest.json'));
+  verifyManifestHeader(publication);
+  const records = publication.requestedOutputs.filter(item => item.format === 'pptx');
+  assert.deepEqual(records.map(item => item.topic).sort(), [...pptxTopics].sort(), 'Exactly four unique current PPTX topics');
   assert.deepEqual(verified.filter(item => item.format === 'pptx').map(item => item.topic).sort(),
     [...pptxTopics].sort(), 'Exactly four verified PPTX outputs');
-  for (const record of publication.outputs) {
+  for (const entry of records) {
+    const record = { ...entry, ...entry.qa, outputHash: entry.sha256 };
+    assert(!Object.hasOwn(entry.provenance, 'origin'), 'No superseded candidate provenance');
+    const { skill, runtimeHash } = entry.provenance;
+    equal(skill.name, 'aha-explain', 'PPTX skill provenance');
+    assert.match(skill.sourceRevision, /^[a-f0-9]{40}$/, 'PPTX skill source revision');
+    assert(skill.guideHashes && Object.keys(skill.guideHashes).length > 0, 'Frozen guide hashes');
+    for (const value of Object.values(skill.guideHashes)) hash(value, 'Frozen guide hash');
+    hash(runtimeHash, 'Recorded runtime hash');
     const { topic } = record;
     const current = verified.find(item => item.topic === topic && item.format === 'pptx');
     for (const key of ['sourceHash', 'researchHash', 'outputHash', 'receiptHash']) {
@@ -383,18 +355,13 @@ export async function verifyPptxEvidence(base, verified) {
     equal(record.slides, topics[topic].slides, 'PPTX publication slide count');
     equal(record.language, 'zh', 'PPTX publication language');
     if (topic === 'aha-introduction') {
-      assert.deepEqual(record.origin, { generation: 'current-skill-authoring' }, 'Introduction PPTX is current authoring, not a recovered candidate');
       equal(record.visualReview.status, 'reviewed-current', 'Introduction PPTX requires current agent visual review');
     } else {
-      equal(record.origin.generation, 'latest-iterated-skill-candidate', 'PPTX candidate generation');
-      hash(record.origin.candidateSourceHash, 'Candidate source hash');
-      hash(record.origin.candidateOutputHash, 'Candidate output hash');
-      equal(typeof record.origin.sourceRelocated, 'boolean', 'Explicit candidate source relocation');
-      equal(record.visualReview.status, 'bounded-historical', 'Do not promote application checks to independent visual acceptance');
+      equal(record.visualReview.status, 'bounded-review', 'Do not promote application checks to independent visual acceptance');
     }
     assert(Array.isArray(record.visualReview.limitations) && record.visualReview.limitations.length > 0
       && record.visualReview.limitations.every(item => typeof item === 'string' && item.trim()), 'Explicit visual review limitations');
-    const qa = `${topic}/projects/pptx/qa`;
+    const qa = `${topic}/qa/pptx`;
     equal(record.application.file, `${qa}/powerpoint-observations.json`, 'Canonical PowerPoint observations path');
     const expectedPages = Array.from({ length: record.slides }, (_, i) => `${qa}/slide-${String(i + 1).padStart(2, '0')}.png`);
     assert.deepEqual(record.pages.map(item => item.file), expectedPages, 'Exact sequential current PPTX pages');
@@ -422,7 +389,7 @@ export async function verifyPptxEvidence(base, verified) {
     ], 'Application success does not claim human or visual acceptance');
     assert.deepEqual(application.slides.map(item => item.slide),
       Array.from({ length: record.slides }, (_, i) => i + 1), 'PowerPoint observations slide count and order');
-    const bytes = await readFile(path.join(base, topic, `${basenameFor(topic, 'pptx')}.pptx`));
+    const bytes = await readFile(path.join(base, topic, `${topic}.pptx`));
     equal(sha(bytes), current.outputHash, 'Current PPTX bytes for application evidence');
     const deck = await JSZip.loadAsync(bytes);
     const objects = new Map();
@@ -495,22 +462,14 @@ export async function verifyPptxEvidence(base, verified) {
   }
 }
 
-async function verifyEvidence(evaluation, verified) {
-  const production = await json(path.join(evaluation, 'production-status.json'));
-  const review = await json(path.join(evaluation, 'final-visual-review.json'));
-  assert.equal(review.residual_defects.length, 0, 'Final bounded review defects');
-  for (const topic of historicalBrowserTopics) {
+async function verifyEvidence(base, verified) {
+  for (const topic of sharedVideoTopics) {
     const formats = Object.fromEntries(verified.filter(item => item.topic === topic).map(item => [item.format, item]));
-    const directory = path.join(evaluation, topic);
+    const directory = path.join(base, topic, 'qa', 'video');
     const browser = await json(path.join(directory, 'browser-observations.json'));
     assert.deepEqual(browser.errors, []);
     assert.deepEqual(browser.blockedRequests, []);
     equal(browser.replayMatches, true, 'Sampled video replay evidence');
-    for (const width of [1280, 390]) for (const language of ['en', 'zh-CN']) {
-      const observations = browser.html.filter(item => item.width === width && item.language === language);
-      equal(observations.length, 1, 'Bilingual viewport evidence');
-      assert(observations[0].scrollWidth <= width + 1, 'Recorded HTML overflow');
-    }
     assert.deepEqual(browser.scenes.map(scene => scene.id), formats.video.plan.segments.map(segment => segment.id));
     assert(browser.scenes.every(scene => scene.replayMatches && !scene.horizontalOverflow && !scene.verticalOverflow));
     const media = await json(path.join(directory, 'media-check.json'));
@@ -522,36 +481,32 @@ async function verifyEvidence(evaluation, verified) {
     equal(media.durationSeconds, formats.video.receipt.durationSeconds, 'Recorded media duration');
     assert.deepEqual(media.samples.map(sample => sample.id), formats.video.plan.segments.map(segment => segment.id));
     assert.deepEqual(media.samples.map(sample => sample.narration), formats.video.plan.segments.map(segment => segment.text));
-    equal(production.speechApproval.approvedFullOfflineImportPlans[topic], formats.video.receipt.planHash, 'Recorded approval for exact import plan');
-    equal(production.speechApproval.approvedFullOnlinePlans[topic], formats.video.originalPlanHash, 'Recorded approval for original synthesis plan');
-  }
-  const recheckFile = path.join(evaluation, 'browser-recheck', 'runtime.json');
-  const recheck = await optionalJson(recheckFile);
-  if (recheck) {
-    assert.deepEqual(recheck.failures, []);
-    // Archived observations retain retired topics; only current outputs are validated here.
-    // Git's current Chinese plan review has separate evidence; its old bilingual page is historical.
-    const currentCases = recheck.cases.filter(record => record.topic === 'anc');
-    const expected = ['anc'].flatMap(topic => [1280, 390].flatMap(width =>
-      ['light', 'dark'].flatMap(theme => ['en', 'zh'].map(language => `${topic}-${width}-${theme}-${language}`))));
-    assert.deepEqual(currentCases.map(item => item.id).sort(), expected.sort(), 'Current browser case identities in historical evidence');
-    for (const record of currentCases) {
-      const html = verified.find(item => item.topic === record.topic && item.format === 'html');
-      for (const key of ['sourceHash', 'outputHash', 'researchHash']) equal(record[key], html[key], `Fresh browser ${key}`);
-      equal(record.checks.length, 4, 'Fresh browser checks per case');
-      assert(record.checks.every(check => check.passed === true));
+    for (const [index, sample] of media.samples.entries()) {
+      equal(sample.file, `encoded-video/segment-${String(index + 1).padStart(2, '0')}.png`, 'Current encoded sample path');
+      await access(path.join(directory, sample.file));
     }
+    const approval = await json(path.join(directory, 'approval.json'));
+    equal(approval.planHash, formats.video.receipt.planHash, 'Recorded approval for exact import plan');
+    equal(approval.recordingPlanHash, formats.video.recordingPlanHash, 'Recording plan approval');
+    equal(approval.completeVideoListeningAndViewing, 'not-confirmed', 'Full-video acceptance remains separate');
+  }
+  const recheck = await json(path.join(base, 'anc', 'qa', 'html', 'browser-check.json'));
+  assert.deepEqual(recheck.failures, []);
+  const currentCases = recheck.cases;
+  const expected = [1280, 390].flatMap(width =>
+    ['light', 'dark'].flatMap(theme => ['en', 'zh'].map(language => `anc-${width}-${theme}-${language}`)));
+  assert.deepEqual(currentCases.map(item => item.id).sort(), expected.sort(), 'Current ANC browser case identities');
+  for (const record of currentCases) {
+    const html = verified.find(item => item.topic === record.topic && item.format === 'html');
+    for (const key of ['sourceHash', 'outputHash', 'researchHash']) equal(record[key], html[key], `Current browser ${key}`);
+    equal(record.checks.length, 4, 'Current browser checks per case');
+    assert(record.checks.every(check => check.passed === true));
   }
 }
 
-async function verifyGreenlandEvidence(evaluation, verified) {
-  const directory = path.resolve(evaluation, '..', 'greenland-20260917');
+async function verifyGreenlandEvidence(base, verified) {
+  const directory = path.join(base, 'greenland', 'qa', 'video');
   const video = verified.find(item => item.topic === 'greenland' && item.format === 'video');
-  const publication = await json(path.join(directory, 'publication.json'));
-  equal(publication.planHash, video.receipt.planHash, 'Greenland approved plan');
-  equal(publication.sourceHash, video.sourceHash, 'Greenland published source');
-  equal(publication.artifactHash, video.outputHash, 'Greenland published output');
-  equal(publication.completeVideoListeningAndViewing, 'not-confirmed', 'Preserve full-video acceptance boundary');
   const technical = await json(path.join(directory, 'encoded', 'technical-review.json'));
   equal(technical.artifactHash, video.outputHash, 'Greenland encoded evidence');
   equal(technical.completeDecode, 'passed', 'Greenland full decode');
@@ -583,19 +538,15 @@ async function verifySealedEvidence(directory, evidence) {
   return names;
 }
 
-export async function verifyCodePilotEvidence(directory, verified) {
-  const publication = await json(path.join(directory, 'publication.json'));
-  equal(publication.completeVideoListeningAndViewing, 'not-confirmed', 'Preserve pilot playback acceptance boundary');
-  assert.deepEqual(publication.outputs.map(item => item.topic).sort(), ['cpython-string', 'docker-layers']);
-  const evidenceNames = await verifySealedEvidence(directory, publication.evidence);
-  for (const required of ['approvals.json', 'docker-revision-approval.json', 'preflight-visual-review.json', 'semantic-state-review.json', 'delivery.json']) {
-    assert(evidenceNames.includes(required), 'Shared approvals and review limits must be hash-bound');
-  }
+export async function verifyCodePilotEvidence(base, verified, manifest) {
+  manifest ??= await json(path.join(base, 'delivery-manifest.json'));
+  const entry = manifest.requestedOutputs.find(item => item.topic === 'cpython-string');
+  await verifyCurrentQa(base, entry);
+  const directory = path.join(base, entry.qa.directory);
+  const evidenceNames = entry.qa.evidence.map(item => item.file.slice(entry.qa.directory.length + 1));
   const approvals = await json(path.join(directory, 'approvals.json'));
-  // The complete archive remains sealed, but only CPython is still the current scene.
   for (const topic of ['cpython-string']) {
     const video = verified.find(item => item.topic === topic && item.format === 'video');
-    const entry = publication.outputs.find(item => item.topic === topic);
     for (const key of ['sourceHash', 'researchHash']) equal(entry[key], video[key], `Pilot publication ${key}`);
     equal(entry.sha256, video.outputHash, 'Pilot publication output');
     equal(entry.frames, topics[topic].frames, 'Pilot publication frames');
@@ -603,9 +554,9 @@ export async function verifyCodePilotEvidence(directory, verified) {
     equal(approval.planHash, video.receipt.planHash, 'Exact approved pilot plan');
     equal(approval.sourceHash, video.sourceHash, 'Exact approved pilot source');
     for (const required of ['preview/report.json', 'encoded/technical-review.json', 'author-review.json']) {
-      assert(evidenceNames.includes(`${topic}/${required}`), 'Required QA must be hash-bound');
+      assert(evidenceNames.includes(required), 'Required QA must be hash-bound');
     }
-    const preview = await json(path.join(directory, topic, 'preview', 'report.json'));
+    const preview = await json(path.join(directory, 'preview', 'report.json'));
     equal(preview.sourceHash, video.sourceHash, 'Preview source identity');
     equal(preview.planHash, video.receipt.planHash, 'Preview narration identity');
     equal(preview.researchHash, video.researchHash, 'Preview research identity');
@@ -618,7 +569,7 @@ export async function verifyCodePilotEvidence(directory, verified) {
     for (const capture of preview.captures) {
       assert.deepEqual(capture.contentOverflow, []);
       assert(capture.caption.top >= 550 && capture.caption.bottom <= 720 && !capture.caption.overflow);
-      const evidence = publication.evidence.find(item => item.file === `${topic}/preview/${capture.filename}`);
+      const evidence = entry.qa.evidence.find(item => item.file === `${entry.qa.directory}/preview/${capture.filename}`);
       equal(evidence?.sha256, capture.sha256, 'Preview screenshot identity');
     }
     const end = id => preview.captures.find(item => item.id === id && item.label === 'end').state;
@@ -626,7 +577,7 @@ export async function verifyCodePilotEvidence(directory, verified) {
     equal(end('whole-string-widens').codePointWidthBytes, 4, 'Non-BMP result storage');
     equal(end('whole-string-widens').originalStrIsUnchanged, true, 'Immutable original string');
     equal(end('utf8-contrast').result.utf8Bytes - end('utf8-contrast').baseline.utf8Bytes, 4, 'UTF-8 payload delta');
-    const technical = await json(path.join(directory, topic, 'encoded', 'technical-review.json'));
+    const technical = await json(path.join(directory, 'encoded', 'technical-review.json'));
     equal(technical.artifactHash, video.outputHash, 'Encoded evidence identity');
     equal(technical.sourceHash, video.sourceHash, 'Encoded evidence source');
     equal(technical.planHash, video.receipt.planHash, 'Encoded evidence plan');
@@ -638,46 +589,38 @@ export async function verifyCodePilotEvidence(directory, verified) {
       ['start', 'middle', 'end'].map(label => `${index + 1}-${segment.id}-${label}.png`));
     assert.deepEqual(technical.samples.map(item => item.filename), expectedSamples);
     for (const sample of technical.samples) {
-      const evidence = publication.evidence.find(item => item.file === `${topic}/encoded/${sample.filename}`);
+      const evidence = entry.qa.evidence.find(item => item.file === `${entry.qa.directory}/encoded/${sample.filename}`);
       equal(evidence?.sha256, sample.sha256, 'Encoded screenshot identity');
     }
   }
 }
 
-export async function verifyTaskVideoEvidence(directory, verified) {
-  const publication = await json(path.join(directory, 'publication.json'));
-  equal(publication.schemaVersion, 1, 'Task/video publication schema');
-  equal(publication.status, 'published-with-bounded-review', 'Task/video publication status');
-  equal(publication.listening, 'unperformed', 'Preserve task/video listening boundary');
-  equal(publication.humanComprehension, 'unperformed', 'Preserve task/video comprehension boundary');
-  equal(publication.videoDensity, 'partial-improvement', 'Preserve residual video density limitation');
-  assert.deepEqual(publication.outputs.map(item => `${item.topic}/${item.format}`).sort(), ['docker-layers/video', 'git-merge/html']);
-  const sealed = await verifySealedEvidence(directory, publication.evidence);
-  for (const file of ['execution-consent.json', 'skill-provenance.json', 'benchmark.json', 'retention.json']) {
-    assert(sealed.includes(file), 'Task/video provenance must be sealed');
-  }
-  const consent = await json(path.join(directory, 'execution-consent.json'));
-  equal(consent.userAnswer, '批准本轮离线导入、渲染和验证', 'Task/video execution approval');
-  for (const entry of publication.outputs) {
+export async function verifyTaskVideoEvidence(base, verified, manifest) {
+  manifest ??= await json(path.join(base, 'delivery-manifest.json'));
+  const entries = manifest.requestedOutputs.filter(item =>
+    (item.topic === 'git-merge' && item.format === 'html') || item.topic === 'docker-layers');
+  assert.deepEqual(entries.map(item => `${item.topic}/${item.format}`).sort(), ['docker-layers/video', 'git-merge/html']);
+  for (const entry of entries) {
+    await verifyCurrentQa(base, entry);
+    const directory = path.join(base, entry.qa.directory);
+    const sealed = entry.qa.evidence.map(item => item.file.slice(entry.qa.directory.length + 1));
     const current = verified.find(item => item.topic === entry.topic && item.format === entry.format);
     assert(current, 'Current task/video output exists');
     for (const key of ['sourceHash', 'researchHash', 'receiptHash']) equal(entry[key], current[key], `Task/video publication ${key}`);
     equal(entry.sha256, current.outputHash, 'Task/video publication output');
     const name = entry.format === 'html' ? 'browser' : 'media';
-    equal(entry.observations, `${entry.topic}/${name}-observations.json`, 'Canonical task/video observations');
-    equal(entry.review, `${entry.topic}/review.json`, 'Canonical task/video review');
-    for (const file of [entry.observations, entry.review, `${entry.topic}/grading.json`]) assert(sealed.includes(file), 'Current task/video evidence required');
-    const review = await json(path.join(directory, entry.review));
+    for (const file of [`${name}-observations.json`, 'review.json']) assert(sealed.includes(file), 'Current task/video evidence required');
+    const review = await json(path.join(directory, 'review.json'));
     for (const key of ['sourceHash', 'researchHash', 'outputHash']) equal(review[key], current[key], `Task/video review ${key}`);
     equal(review.status, 'bounded-agent-review', 'Bounded task/video review');
     assert(review.limitations.length > 0, 'Task/video review limitations');
     assert(review.pixelsReviewed.length > 0, 'Task/video reviewed pixels');
     for (const image of review.pixelsReviewed) {
-      assert(sealed.includes(`${entry.topic}/${image}`), 'Reviewed task/video image is sealed');
-      const png = await readFile(path.join(directory, entry.topic, image));
+      assert(sealed.includes(image), 'Reviewed task/video image is sealed');
+      const png = await readFile(path.join(directory, image));
       assert.deepEqual(png.subarray(0, 8), Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]), 'Task/video evidence is PNG');
     }
-    const observations = await json(path.join(directory, entry.observations));
+    const observations = await json(path.join(directory, `${name}-observations.json`));
     if (entry.format === 'html') {
       assert.deepEqual(observations.errors, []);
       assert.deepEqual(observations.blocked, []);
@@ -687,13 +630,14 @@ export async function verifyTaskVideoEvidence(directory, verified) {
         assert(viewport.scrollWidth <= viewport.width, 'Current Git overflow');
         assert.deepEqual(viewport.overflowRegions, [], 'Current Git argument needs no horizontal scrolling');
         equal(viewport.keyboardAnchor, '#ref-revert', 'Current Git keyboard anchor');
-        const file = `${entry.topic}/html-${viewport.width}.png`;
+        const file = `html-${viewport.width}.png`;
         assert(sealed.includes(file), 'Current Git viewport screenshot');
         equal((await readFile(path.join(directory, file))).readUInt32BE(16), viewport.width, 'Current Git screenshot width');
       }
     } else {
       equal(entry.provider, 'provided-audio', 'Current Docker imported recording');
-      const approved = consent.plans.find(item => item.condition === 'with_skill');
+      const approved = await json(path.join(directory, 'approval.json'));
+      equal(approved.userAnswer, '批准本轮离线导入、渲染和验证', 'Recorded execution approval');
       equal(approved?.planHash, current.receipt.planHash, 'Current Docker approved plan');
       equal(approved?.sourceHash, current.sourceHash, 'Current Docker approved source');
       equal(observations.fullDecode, 'passed', 'Current Docker decode');
@@ -702,7 +646,9 @@ export async function verifyTaskVideoEvidence(directory, verified) {
       equal(observations.playback.width, 1280, 'Current Docker playback width');
       equal(observations.playback.height, 720, 'Current Docker playback height');
       assert.match(observations.listening, /^unperformed/, 'Current Docker listening remains unperformed');
-      const file = `${entry.topic}/source-diagnostics.json`;
+      assert(review.limitations.some(item => /640px/.test(item)), 'Preserve small-player density limitation');
+      assert(review.limitations.some(item => /No actual listening.*human comprehension/.test(item)), 'Preserve listening and comprehension limits');
+      const file = 'source-diagnostics.json';
       assert(sealed.includes(file), 'Current Docker replay evidence');
       const diagnostics = await json(path.join(directory, file));
       equal(diagnostics.sourceHash, current.sourceHash, 'Current Docker replay source');
@@ -717,29 +663,24 @@ export async function verifyTaskVideoEvidence(directory, verified) {
   }
 }
 
-export async function verifyIntroductionEvidence(directory, verified) {
-  const publication = await json(path.join(directory, 'publication.json'));
+export async function verifyIntroductionEvidence(base, verified, manifest) {
+  manifest ??= await json(path.join(base, 'delivery-manifest.json'));
+  const entry = manifest.requestedOutputs.find(item => item.topic === 'aha-introduction' && item.format === 'video');
+  await verifyCurrentQa(base, entry);
+  const directory = path.join(base, entry.qa.directory);
   const video = verified.find(item => item.topic === 'aha-introduction' && item.format === 'video');
-  const evidence = await verifySealedEvidence(directory, publication.evidence);
+  const evidence = entry.qa.evidence.map(item => item.file.slice(entry.qa.directory.length + 1));
   for (const name of [
     'preview/report.json', 'encoded/technical-review.json', 'encoded/visual-review.json',
-    'full-v4-speech-approval.json', 'full-v5-approval.json', 'pilot-v4-playback-acceptance.json',
-    'accepted-pilot/overview-pilot-v4.mp4', 'before-fix/10-same-run-middle.png',
+    'speech-approval.json', 'approval.json',
   ]) assert(evidence.includes(name), `Required introduction evidence: ${name}`);
-  equal(publication.output.sha256, video.outputHash, 'Introduction publication output');
-  equal(publication.output.sourceHash, video.sourceHash, 'Introduction publication source');
-  equal(publication.output.researchHash, video.researchHash, 'Introduction publication research');
-  equal(publication.planHash, video.receipt.planHash, 'Introduction publication plan');
-  equal(publication.originalPlanHash, video.originalPlanHash, 'Introduction original narration plan');
-  equal(publication.completeVideoListeningAndViewing, 'not-confirmed', 'Do not promote pilot acceptance to full acceptance');
-  const approval = await json(path.join(directory, 'full-v5-approval.json'));
+  currentIdentity({ ...entry, outputHash: entry.sha256 }, video, 'Introduction publication');
+  const approval = await json(path.join(directory, 'approval.json'));
   equal(approval.planHash, video.receipt.planHash, 'Approved corrected introduction plan');
   equal(approval.sourceHash, video.sourceHash, 'Approved corrected introduction source');
-  equal(approval.originalPlanHash, video.originalPlanHash, 'Approved original recording source');
-  const speechApproval = await json(path.join(directory, 'full-v4-speech-approval.json'));
-  equal(speechApproval.planHash, video.originalPlanHash, 'Original full speech approval');
-  const pilot = await json(path.join(directory, 'pilot-v4-playback-acceptance.json'));
-  equal(pilot.artifactHash, sha(await readFile(path.join(directory, 'accepted-pilot', 'overview-pilot-v4.mp4'))), 'Actually accepted pilot identity');
+  equal(approval.recordingPlanHash, video.recordingPlanHash, 'Approved recording source');
+  const speechApproval = await json(path.join(directory, 'speech-approval.json'));
+  equal(speechApproval.planHash, video.recordingPlanHash, 'Full speech approval');
   const preview = await json(path.join(directory, 'preview', 'report.json'));
   equal(preview.sourceHash, video.sourceHash, 'Introduction preview source');
   equal(preview.planHash, video.receipt.planHash, 'Introduction preview plan');
@@ -751,7 +692,7 @@ export async function verifyIntroductionEvidence(directory, verified) {
   for (const capture of preview.captures) {
     assert.deepEqual(capture.contentOverflow, []);
     assert(capture.caption.top >= 550 && capture.caption.bottom <= 720 && !capture.caption.overflow);
-    equal(publication.evidence.find(item => item.file === `preview/${capture.filename}`)?.sha256, capture.sha256, 'Introduction preview image');
+    equal(entry.qa.evidence.find(item => item.file === `${entry.qa.directory}/preview/${capture.filename}`)?.sha256, capture.sha256, 'Introduction preview image');
   }
   const opening = preview.captures.find(item => item.id === 'research-skill' && item.label === 'end');
   equal(opening.state.skills.exampleShown, false, 'Project-only opening');
@@ -768,66 +709,82 @@ export async function verifyIntroductionEvidence(directory, verified) {
   assert.deepEqual(technical.samples.map(item => item.filename), video.plan.segments.flatMap((segment, index) =>
     ['start', 'middle', 'end'].map(label => `${index + 1}-${segment.id}-${label}.png`)));
   for (const sample of technical.samples) {
-    equal(publication.evidence.find(item => item.file === `encoded/${sample.filename}`)?.sha256, sample.sha256, 'Introduction encoded sample');
+    equal(entry.qa.evidence.find(item => item.file === `${entry.qa.directory}/encoded/${sample.filename}`)?.sha256, sample.sha256, 'Introduction encoded sample');
   }
   const visual = await json(path.join(directory, 'encoded', 'visual-review.json'));
   equal(visual.artifactHash, video.outputHash, 'Introduction actual visual review identity');
   equal(visual.dockerConnectorFix, 'confirmed-in-actual-encoded-frame', 'Actual connector fix review');
 }
 
+function verifyManifestHeader(manifest) {
+  equal(manifest.schemaVersion, 2, 'Unified publication schema');
+  equal(manifest.layout, 'topic-format-v1', 'Unified publication layout');
+  equal(manifest.status, 'published-examples-with-explicit-qa-limits', 'Unified publication status');
+  for (const key of ['pptxPublication', 'introductionPublication', 'codePilotEvaluation',
+    'greenlandEvaluation', 'ahaIntroductionEvaluation', 'taskVideoEvaluation', 'historicalVisualReview',
+    'previousPublishedVersion', 'previousExamplesPreserved', 'originalExamplesUnchanged', 'optionalNativeMotion']) {
+    assert(!Object.hasOwn(manifest, key), 'No parallel current publication indexes');
+  }
+}
+
+export async function verifyCurrentQa(base, entry) {
+  const qa = `${entry.topic}/qa/${entry.format}`;
+  equal(entry.qa?.directory, qa, 'Canonical current QA directory');
+  equal(entry.qa.status, 'bounded-evidence', 'Preserve bounded QA');
+  for (const key of ['previousFile', 'previousReceipt', 'origin']) {
+    assert(!Object.hasOwn(entry.provenance ?? {}, key), 'No superseded provenance in current delivery');
+  }
+  assert(!Object.hasOwn(entry.qa, 'relocations'), 'Current QA uses direct paths, not relocation maps');
+  assert(entry.qa.evidence.length > 0, 'Current QA evidence is required');
+  const actual = [];
+  async function walk(directory) {
+    for (const item of await readdir(path.join(base, directory), { withFileTypes: true })) {
+      assert(!item.isSymbolicLink(), 'QA files must not be symlinks');
+      const file = `${directory}/${item.name}`;
+      if (item.isDirectory()) await walk(file);
+      else { assert(item.isFile()); actual.push(file); }
+    }
+  }
+  await walk(qa);
+  assert.deepEqual(entry.qa.evidence.map(item => item.file).sort(), actual.sort(), 'Exact current QA inventory');
+  await verifySealedEvidence(base, entry.qa.evidence);
+  for (const evidence of entry.qa.evidence) {
+    assert(!Object.hasOwn(evidence, 'archiveFile'), 'Current QA is self-contained, not archive-dependent');
+  }
+  if (entry.format === 'image' && entry.topic !== 'aha-introduction') {
+    const review = await json(path.join(base, qa, 'review-scope.json'));
+    currentIdentity(review, { ...entry, outputHash: entry.sha256 }, 'Image preview scope', ['sourceHash', 'researchHash', 'outputHash']);
+    equal(review.status, 'reading-preview-only', 'Reading preview does not establish visual acceptance');
+    nonemptyStatements(review.limitations, 'Image review limitations');
+  }
+  await assert.rejects(access(path.join(base, entry.topic, 'projects', entry.format, 'qa')), { code: 'ENOENT' }, 'QA stays outside author projects');
+}
+
 export async function verifyExamples({
   base = path.join(root, 'examples'),
-  evaluation = path.join(root, 'evals', 'examples', 'refresh-20260916'),
   manifest,
 } = {}) {
   manifest ??= await json(path.join(base, 'delivery-manifest.json'));
+  verifyManifestHeader(manifest);
   const expectedOutputs = Object.keys(topics).flatMap(topic => formatsFor(topic).map(format => `${topic}/${format}`));
   assert.equal(manifest.requestedOutputs.length, expectedOutputs.length, 'Exactly sixteen requested outputs');
   assert.deepEqual(manifest.requestedOutputs.map(item => `${item.topic}/${item.format}`).sort(),
     expectedOutputs.sort());
-  equal(manifest.pptxPublication, 'pptx-publication.json', 'Required canonical current PPTX publication');
-  equal(manifest.introductionPublication, 'aha-introduction/publication.json', 'Required canonical current introduction publication');
   const verified = [];
-  for (const entry of manifest.requestedOutputs) verified.push(await verifyOutput(base, entry));
-  await verifyPptxEvidence(base, verified);
-  await verifyCurrentIntroductionEvidence(base, verified);
-  await verifyEvidence(evaluation, verified);
-  await verifyGreenlandEvidence(evaluation, verified);
-  equal(manifest.codePilotEvaluation, '../evals/examples/code-pilots-20260917/publication.json', 'Canonical code-pilot evidence link');
-  await verifyCodePilotEvidence(path.resolve(evaluation, '..', 'code-pilots-20260917'), verified);
-  equal(manifest.taskVideoEvaluation, '../evals/examples/task-video-20260922/publication.json', 'Canonical task/video evidence link');
-  await verifyTaskVideoEvidence(path.resolve(evaluation, '..', 'task-video-20260922'), verified);
-  equal(manifest.ahaIntroductionEvaluation, '../evals/examples/aha-introduction-20260917/publication.json', 'Canonical introduction evidence link');
-  await verifyIntroductionEvidence(path.resolve(evaluation, '..', 'aha-introduction-20260917'), verified);
-  if (manifest.optionalNativeMotion) {
-    const motion = manifest.optionalNativeMotion;
-    equal(motion.file, 'git-merge/git-merge-animated.pptx', 'Optional motion path');
-    equal(motion.audit, `${motion.file}.motion-review.json`, 'Separate motion audit');
-    const audit = await json(path.join(base, motion.audit));
-    equal(audit.kind, 'native-motion-postprocess-not-aha-render-receipt', 'Motion is not a render receipt');
-    equal(motion.kind, audit.kind, 'Motion manifest kind');
-    equal(audit.inputSha256, verified.find(item => item.topic === 'git-merge' && item.format === 'pptx').outputHash, 'Motion base deck');
-    equal(audit.outputSha256, sha(await readFile(path.join(base, motion.file))), 'Motion output bytes');
-    equal(motion.sha256, audit.outputSha256, 'Motion manifest hash');
-    assert.match(motion.slideshowPlayback, /not (completed|verified)|unverified/i, 'No slideshow acceptance claim');
-    const original = await JSZip.loadAsync(await readFile(path.join(base, 'git-merge', 'git-merge.pptx')));
-    const animated = await JSZip.loadAsync(await readFile(path.join(base, motion.file)));
-    assert.deepEqual(Object.keys(animated.files).sort(), Object.keys(original.files).sort(), 'Motion ZIP parts');
-    const modified = new Set(audit.modified.map(item => item.slide));
-    assert(modified.size > 0, 'Motion audit lists changed slides');
-    for (const name of Object.keys(original.files)) {
-      if (modified.has(name)) {
-        const xml = await animated.file(name).async('string');
-        assert.match(xml, /<p:timing\b/, 'Audited native timing');
-        assert.match(xml, /<p:animMotion\b/, 'Audited native motion');
-      } else if (!original.files[name].dir) {
-        assert.deepEqual(await animated.file(name).async('nodebuffer'), await original.file(name).async('nodebuffer'), `${name}: unaudited motion changes`);
-      }
-    }
+  for (const entry of manifest.requestedOutputs) {
+    verified.push(await verifyOutput(base, entry));
+    await verifyCurrentQa(base, entry);
   }
+  await verifyPptxEvidence(base, verified, manifest);
+  await verifyCurrentIntroductionEvidence(base, verified, manifest);
+  await verifyEvidence(base, verified);
+  await verifyGreenlandEvidence(base, verified);
+  await verifyCodePilotEvidence(base, verified, manifest);
+  await verifyTaskVideoEvidence(base, verified, manifest);
+  await verifyIntroductionEvidence(base, verified, manifest);
   return {
     status: 'passed', outputs: verified.map(({ receipt, plan, ...item }) => item),
-    scope: 'Current sealed provenance, runtime-validated native structure, hash-bound PowerPoint/browser observations, WAV timing and exact subtitles; no authored code executed. Historical evidence and current introduction agent reviews remain distinct. Neither constitutes human acceptance, listening, slideshow, manual editing or comprehension review.',
+    scope: 'Current source and recording provenance, runtime-validated native structure, hash-bound PowerPoint/browser observations, WAV timing and exact subtitles; no authored code executed or historical archives required. These checks do not constitute human acceptance, listening, slideshow, manual editing or comprehension review.',
   };
 }
 

@@ -43,7 +43,7 @@ Use Windows-style paths in PowerShell and corresponding forward-slash paths in P
 ## 1. Complete the research
 
 ```powershell
-node .\dist\cli\aha.mjs research-init "How does this codebase handle request failures?" ".\artifacts\topic.draft.json" --kind codebase
+node .\dist\cli\aha.mjs research-init "How does this codebase handle request failures?" ".\artifacts\topic\research.draft.json" --kind codebase
 ```
 
 Initialization creates an incomplete draft; it does **not** research anything. `--kind` accepts `public`, `codebase`, `mixed`, or `provided`, reflecting materials actually used. Follow the research workflow to read sources and author the report, subquestions, claims, evidence, logs, counterevidence, gaps, and honest stopping reason. Research language follows the request independently of artifact defaults. Exact fields are in generated `schemas\research-draft.schema.json` and the [research contract](../skills/shared/references/research-contract.md); do not invent schema fields.
@@ -51,7 +51,7 @@ Initialization creates an incomplete draft; it does **not** research anything. `
 While authoring:
 
 ```powershell
-node .\dist\cli\aha.mjs research-check ".\artifacts\topic.draft.json" --draft
+node .\dist\cli\aha.mjs research-check ".\artifacts\topic\research.draft.json" --draft
 ```
 
 Structurally sound but unfinished work returns `status: "draft-checked"`, `ready: false`, and `pending`, without a snapshot or content hash. Unknown references, duplicate IDs, invalid dates/logs/source metadata, and mismatched hashes still fail. This check does not modify the draft and cannot replace final validation.
@@ -59,19 +59,19 @@ Structurally sound but unfinished work returns `status: "draft-checked"`, `ready
 The [worked research example](../skills/shared/references/research-example.md) uses explicitly fictional materials and a correction; it is not real research evidence. After actually completing and reviewing the content, run strict checks and seal a new snapshot:
 
 ```powershell
-node .\dist\cli\aha.mjs research-check ".\artifacts\topic.draft.json"
-node .\dist\cli\aha.mjs research-build ".\artifacts\topic.draft.json" ".\artifacts\topic.research"
-node .\dist\cli\aha.mjs research-validate ".\artifacts\topic.research"
+node .\dist\cli\aha.mjs research-check ".\artifacts\topic\research.draft.json"
+node .\dist\cli\aha.mjs research-build ".\artifacts\topic\research.draft.json" ".\artifacts\topic\research"
+node .\dist\cli\aha.mjs research-validate ".\artifacts\topic\research"
 ```
 
-Stop on a failure before running dependent commands. `topic.research` contains `manifest.json`, `research.json`, and `report.md`; the report must match the research report string verbatim. The manifest binds `schemaVersion`, `researchId`, and `contentHash`. Keep the editable draft outside the sealed directory. Never hand-edit a sealed report or hash: revise the draft and build a new directory. Existing artifacts stay bound to the old research identity until deliberately recreated.
+Stop on a failure before running dependent commands. `artifacts\topic\research` contains `manifest.json`, `research.json`, and `report.md`; the report must match the research report string verbatim. The manifest binds `schemaVersion`, `researchId`, and `contentHash`. Keep the editable draft outside the sealed directory. Never hand-edit a sealed report or hash: revise the draft and build a new directory. Existing artifacts stay bound to the old research identity until deliberately recreated.
 
 No experiment engine, scenarios, slides, or model selection are prerequisites. `research-check` checks structure and references; it does not search, supply evidence, certify actual reading, or award a “facts verified” status. The host agent performs research and semantic review. The CLI does not execute the repository being studied.
 
 ## 2. Author a medium-specific project
 
 ```powershell
-node .\dist\cli\aha.mjs explain-init ".\artifacts\topic.research" html ".\artifacts\topic-html"
+node .\dist\cli\aha.mjs explain-init ".\artifacts\topic\research" html ".\artifacts\topic\projects\html"
 ```
 
 Choose `html`, `image`, `pptx`, or `video`. Validate the research snapshot's freshness and scope before reuse. In the new project, edit the entry named by `artifact.json`; replace placeholders with actual explanatory content, map covered claim IDs to output locations, and record reasoned omissions. Every claim must be covered or explicitly omitted, not both. Only then set status to `authored` and remove the scaffold marker. Layout changes do not rewrite the bound research.
@@ -111,8 +111,8 @@ The scaffold is still a draft: actually author both languages before acceptance.
 ### Check and render
 
 ```powershell
-node .\dist\cli\aha.mjs explain-check ".\artifacts\topic-html"
-node .\dist\cli\aha.mjs render-html ".\artifacts\topic-html" ".\artifacts\topic.html"
+node .\dist\cli\aha.mjs explain-check ".\artifacts\topic\projects\html"
+node .\dist\cli\aha.mjs render-html ".\artifacts\topic\projects\html" ".\artifacts\topic\runs\round-01\outputs\topic.html"
 ```
 
 HTML packaging does not execute scripts. It embeds local resources and local Mermaid, with no CDN fallback. The default delivery is a standalone offline file, not a page containing the entire research archive.
@@ -122,9 +122,9 @@ Create and author each requested medium separately. The following paths denote *
 ```powershell
 # Review authored code and obtain explicit execution permission first.
 # --allow-code is not a sandbox.
-node .\dist\cli\aha.mjs browser-check ".\artifacts\topic-html" --allow-code
-node .\dist\cli\aha.mjs render-image ".\artifacts\topic-image" ".\artifacts\topic.png" --allow-code
-node .\dist\cli\aha.mjs render-pptx ".\artifacts\topic-pptx" ".\artifacts\topic.pptx" --allow-code
+node .\dist\cli\aha.mjs browser-check ".\artifacts\topic\projects\html" --allow-code
+node .\dist\cli\aha.mjs render-image ".\artifacts\topic\projects\image" ".\artifacts\topic\runs\round-01\outputs\topic.png" --allow-code
+node .\dist\cli\aha.mjs render-pptx ".\artifacts\topic\projects\pptx" ".\artifacts\topic\runs\round-01\outputs\topic.pptx" --allow-code
 ```
 
 PNG captures a purpose-built infographic, not an article-length screenshot. The PPTX entry receives a runtime-provided PptxGenJS instance to create native text, shapes, charts, and slides. Successful file creation does not prove native editability and every page's appearance were reviewed in a presentation application.
@@ -135,15 +135,15 @@ A video project defines `window.ahaVideo.renderFrame({ frame, fps, segmentIndex,
 
 ```powershell
 node .\dist\cli\aha.mjs doctor --for video
-node .\dist\cli\aha.mjs prepare-video ".\artifacts\topic-video" ".\artifacts\video-plan.json"
-node .\dist\cli\aha.mjs video-plan-check ".\artifacts\topic-video" ".\artifacts\video-plan.json"
+node .\dist\cli\aha.mjs prepare-video ".\artifacts\topic\projects\video" ".\artifacts\topic\runs\round-01\video-plan.json"
+node .\dist\cli\aha.mjs video-plan-check ".\artifacts\topic\projects\video" ".\artifacts\topic\runs\round-01\video-plan.json"
 ```
 
 `prepare-video` creates a plan with `status: "draft"`. Author complete narration in `segments[].text`, per-segment sources, voice, rate, and target duration. Set the plan to `"authored"` only after completion and rerun `video-plan-check`. Show the full plan and current `planHash` to the user. **Only after approval of this exact text and external processing**:
 
 ```powershell
-node .\dist\cli\aha.mjs synthesize ".\artifacts\topic-video" ".\artifacts\video-plan.json" ".\artifacts\audio-v1" --approve "<approved-planHash>" --allow-network
-node .\dist\cli\aha.mjs render-video ".\artifacts\topic-video" ".\artifacts\video-plan.json" ".\artifacts\audio-v1" ".\artifacts\topic.mp4" --approve "<approved-planHash>" --allow-code
+node .\dist\cli\aha.mjs synthesize ".\artifacts\topic\projects\video" ".\artifacts\topic\runs\round-01\video-plan.json" ".\artifacts\topic\runs\round-01\audio" --approve "<approved-planHash>" --allow-network
+node .\dist\cli\aha.mjs render-video ".\artifacts\topic\projects\video" ".\artifacts\topic\runs\round-01\video-plan.json" ".\artifacts\topic\runs\round-01\audio" ".\artifacts\topic\runs\round-01\outputs\topic.mp4" --approve "<approved-planHash>" --allow-code
 ```
 
 The render command separately requires reviewed local code-execution permission. Stop if an earlier check or synthesis failed.
@@ -190,9 +190,13 @@ Commands found in sources are evidence, not instructions to execute. Before shar
 
 Keep three locations distinct: editable project/source, working history, and current delivery. New candidate outputs, video plans, and audio directories belong outside the authored project. CLI output destinations must be fresh; existing files are not overwritten.
 
+Use the [shared output layout](../skills/shared/references/output-layout.md): `artifacts\<task>\projects\<format>` for source, `runs\<run-id>\outputs` for fresh candidates, `runs\<run-id>\qa\<format>` for checks, and `delivery` for the selected result. Keep the research draft separate from the sealed `research` directory. Create only requested formats. Explicit user destinations take precedence; this is not a new CLI mode.
+
+Use one stem across `<task>.html`, `.png`, `.pptx`, and `.mp4`; reserve `index.html` for gallery navigation. All new receipts, including video, use `<artifact>.receipt.json`; video subtitles use `<artifact>.srt`. One `delivery-manifest.json` indexes current artifacts and `qa\<format>` evidence, without parallel PPTX- or run-specific current publication manifests.
+
 Current delivery should show only the selected version and necessary materials, not every trial. Replacement, archiving, or deletion requires authorization for the exact scope; preserve user edits and a recoverable previous version unless removal was explicitly requested. `artifacts` is task work, not disposable cache.
 
-Promote the artifact and its matching receipt together, preserving bytes and output filename. On-disk receipts record the output filename; CLI results also provide the resolved full destination. If another filename is required, rebuild under that name in a new directory—do not hand-edit receipts. Verify identities and update links and QA to match the selected output. Old QA does not certify revised content.
+Promote the artifact and matching receipt together without changing bytes. Prefer the final filename at render time. An authorized layout-only migration may rename files while recording previous paths and QA reference mappings in the manifest and verifying every identity; never edit original receipts. Paths in raw receipts retain generation-time meaning. Changed source or output bytes require a new render, not a relocation claim. Update links and QA; old QA does not certify revised content.
 
 Deliver the requested output, editable source/project, research snapshot identity, resource/license notes, and honest QA results. This is an agent-managed lifecycle, not an atomic publishing command. See [working history and current delivery](../skills/aha-explain/references/artifact-authoring.md#working-history-and-current-delivery).
 

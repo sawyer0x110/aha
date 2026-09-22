@@ -11,8 +11,8 @@
 | `scripts/` | 仓库级构建、发布、安装工具，不汇集领域专用脚本 |
 | `tests/` | 自动化测试、测试辅助代码和专用 fixtures；不嵌入宿主作者评估场景数据 |
 | `evals/skills/` | 技能评估准备工具、固定案例、宿主场景和评分判据；四个锁定案例与宿主场景分别管理 |
-| `evals/examples/` | 示例验收工具和保留的结果；`refresh-20260916/` 的共享记录用于 ANC/Git，旧概览独占目录已移除；`greenland-20260917/` 是格陵兰记录，`code-pilots-20260917/` 保存代码试片证据，`aha-introduction-20260917/` 保存介绍视频的授权、试片确认与修正后的编码证据；介绍 HTML/PNG 与当前 PPTX 的证据由 `examples/` 中对应收录记录绑定 |
-| `examples/` | 三个四格式例子、格陵兰 PPTX／视频及两组代码视频试片，共六组、十六份当前作品；项目介绍只保留 `aha-introduction/`。保存匹配的源码、收据、资源、研究与 QA；`delivery-manifest.json` 索引成品，`pptx-publication.json` 绑定当前幻灯片的技能来源与应用检查；生成版本与研究快照分开记录 |
+| `evals/examples/` | 可复用的示例身份、浏览器与媒体检查工具，不保存旧版出版或迁移档案 |
+| `examples/` | 六组、十六份当前作品及匹配源码、收据、资源与研究；当前 QA 放在各主题 `qa/<format>/`，仅由 `delivery-manifest.json` 索引成品身份、来源与格式特有检查 |
 | `docs/` | 中英文文档目录、完整安装／使用指南、双语许可范围，以及中文产品／架构／研究／评估说明；精确创作与权限契约链接到技能参考，不另建冲突副本 |
 | `docs/assets/` | README 专用的项目介绍图片、独立 HTML 构图与离线捕获工具，不复用示例作品；图像为 1600×1040，README 按 800px 宽展示 |
 | `.github/` | GitHub 可识别的中英文贡献／安全指南、issue／PR 模板与工作流 |
@@ -25,7 +25,7 @@
 
 README 配图只介绍项目，不包含案例。英文入口使用 `docs/assets/readme-intro.en.png`，中文入口使用 `docs/assets/readme-intro.zh-CN.png`。两图共用 `docs/assets/readme-intro.html` 构图源，通过 `lang=en` 或 `lang=zh-CN` 选择文案；中文图保留技能标识与格式名称。修改后，审阅源代码并取得本地执行批准，再用 `node docs\assets\render-readme-intro.mjs --allow-code <en|zh-CN> <new.png>` 离线捕获到新文件；该工具复用已安装的 Edge 或显式指定的浏览器，不安装或联网取资源。检查完整画面与 800px 阅读尺寸后再替换文档配图，不改动 `examples/`。
 
-正式作品不是全部任务工作目录的镜像。只有选定的交付及必要材料进入 `examples/`，最终验收记录进入 `evals/examples/`；未清理的试跑历史放在 `artifacts/`，经用户明确授权后可按范围删除。作品项目内的研究副本、原始音频和当前导入音频各有身份用途，不按文件相似度去重。封存材料及历史记录中的旧路径保留其审计含义，当前路径由示例文档说明。
+正式作品不是全部任务工作目录的镜像。选定交付与当前 QA 进入 `examples/`，可复用检查工具放在 `evals/examples/`。工作尝试放在 `artifacts/<task>/runs/<run-id>/`，经用户授权按范围清理。当前清单和 QA 使用直接有效的相对路径，不依赖旧清单或迁移映射。必要的研究、许可与录音来源仍保留；仅修改位置元数据不代表重新生成作品或完成新的验收。
 
 ## 1. 职责划分
 
@@ -72,8 +72,9 @@ topic-project/
     report.md
   html/index.html       # HTML / image / video
   pptx/main.mjs         # PPTX
-  qa/                  # 检查记录
 ```
+
+检查记录放在项目外：工作期间为 `runs/<run-id>/qa/<format>/`，当前交付为 `qa/<format>/`。完整目录规则见[统一输出布局](../skills/shared/references/output-layout.md)。
 
 每个项目只有一种格式，初始化只创建对应入口。可添加许可明确的本地资源；元数据不是统一布局或场景图。
 
