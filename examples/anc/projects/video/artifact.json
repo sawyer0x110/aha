@@ -3,10 +3,22 @@
   "format": "video",
   "language": "en",
   "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
-  "title": "Why ANC quiets aircraft rumble but leaves voices",
+  "title": "Why noise cancellation leaves some voices audible",
   "status": "authored",
   "entry": "html/index.html",
-  "coverage": [{"id":"scene-answer","claimIds":["c-speech"]},{"id":"scene-pressure","claimIds":["c-pressure"]},{"id":"scene-delay","claimIds":["c-delay"]},{"id":"scene-passive","claimIds":["c-passive"]},{"id":"scene-modes","claimIds":["c-modes"]},{"id":"scene-limits","claimIds":["c-measure"]}],
+  "coverage": [
+    {
+      "id": "video-central-mechanism",
+      "claimIds": [
+        "c-pressure",
+        "c-delay",
+        "c-passive",
+        "c-speech",
+        "c-modes",
+        "c-measure"
+      ]
+    }
+  ],
   "omissions": [],
   "width": 1280,
   "height": 720

@@ -1,13 +1,14 @@
 {
   "status": "delivered",
   "format": "mp4",
+  "output": "docker-layers.mp4",
   "rendererVersion": "0.3.3",
   "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
-  "sourceHash": "2219d6f667a1a7c0e99e7e25334edcb48458d3371ddb041035c28b9c716fbccb",
-  "planHash": "b7bdeb2e3f8330979ba40a349b2a6175cb0c66cf705b7507ecf6dd2acb44e807",
-  "audioManifestHash": "9da81ae5fd3cf100f7f031fddd7d6935722a6d5334932e3c173126fa85c29d44",
-  "durationSeconds": 21.266666666666666,
-  "totalFrames": 638,
+  "sourceHash": "14c4856d13ed3093c5665f175138fae5d9d6622645ba06ed8478045ac13594cd",
+  "planHash": "0bc9ada28ef592847fbd8d34adbd649eecfa68387198de08489aac6c5d000fcd",
+  "audioManifestHash": "7d78e2d224c2bcf0a3ea2d0388787be4788e0ad9aceb96e9141e253b9eecd35f",
+  "durationSeconds": 58.3,
+  "totalFrames": 1749,
   "codec": "h264",
   "width": 1280,
   "height": 720,
@@ -19,55 +20,85 @@
     {
       "frame": 0,
       "segmentIndex": 0,
-      "sha256": "084e047dbf1f8e1251eddd225bd304ef05183786934c94dd072fa39f6414ca8d"
+      "sha256": "9a4afc10d544d226f09f9812b3a18b692dde32af0c6fe7e2c193110c6a94c653"
     },
     {
-      "frame": 125,
+      "frame": 176,
       "segmentIndex": 0,
-      "sha256": "e18d2e11a66ab279f72c62587975c758067db5e4fabc37e786013ea88c784413"
+      "sha256": "a824c1f5548553834d2ecf578e4598ae522ef2a1ad69514ec4442197fa18cb2f"
     },
     {
-      "frame": 249,
+      "frame": 352,
       "segmentIndex": 0,
-      "sha256": "faca15439e8878ec48611259593d387fbe4b4f65c6c7b7cca612d85f7377eddf"
+      "sha256": "ed5704c6478507ba7930f5685411d2029b74d5496daaf944177ec0b5773f5e44"
     },
     {
-      "frame": 250,
+      "frame": 353,
       "segmentIndex": 1,
-      "sha256": "98b8c01024993430a7baa2c53377acf62c0d96afba966a03a139614abd41236a"
+      "sha256": "bf071f3370df3d4907864dc431c8b85a3b097f9dc913abbe09bed82500d8fc21"
     },
     {
-      "frame": 340,
+      "frame": 537,
       "segmentIndex": 1,
-      "sha256": "a6068e3a7131db21cf32e730d1902d4925a3e69aa7f67324be7a408d89cf95c2"
+      "sha256": "87e10cb942d07ebf36df6d200ed1669818a5de361bf8eb09b0cdaec587f6530c"
     },
     {
-      "frame": 429,
+      "frame": 720,
       "segmentIndex": 1,
-      "sha256": "a6068e3a7131db21cf32e730d1902d4925a3e69aa7f67324be7a408d89cf95c2"
+      "sha256": "50a82d9c86960eb398e2c72b2d7fbd49e122276fba8c9eddf9d92d1ddce52f43"
     },
     {
-      "frame": 430,
+      "frame": 721,
       "segmentIndex": 2,
-      "sha256": "2590b68bff62dbe57360966511d7e8736b5527af9c5ef14c84ca173a08d8e339"
+      "sha256": "2af9c96175c36be6500e992c05dfbf1c547aa6b8abfc0db301825e144f875af7"
     },
     {
-      "frame": 534,
+      "frame": 911,
       "segmentIndex": 2,
-      "sha256": "bb40783246a07d080e8dd9b8fb8ec3d9e42f4bf0f575159ad0128c702f99c927"
+      "sha256": "4bc37f132061f9aad71a5fdcca5089b99375df939116f7d1c4ac44788125f5db"
     },
     {
-      "frame": 637,
+      "frame": 1101,
       "segmentIndex": 2,
-      "sha256": "7785b7969c90bb435e9a770d194e217895f73d5864ff817768137d42fbe8af6c"
+      "sha256": "0b800de470f8dc658b68f032c97b9ab54a91ffb2362ded315eeb89d56696d7db"
+    },
+    {
+      "frame": 1102,
+      "segmentIndex": 3,
+      "sha256": "c385581863d149477d21094e4f90c377b3f736afd786b5ab7c2d4a40c5f22cd5"
+    },
+    {
+      "frame": 1236,
+      "segmentIndex": 3,
+      "sha256": "9cbf4d4094dca93c4a781282910751ade8d59d0dad707394197cadbb378fc286"
+    },
+    {
+      "frame": 1369,
+      "segmentIndex": 3,
+      "sha256": "5d3ea92436b32a96ca3916d2f7a2a9a8e08f5b7743d68a2af96b656ed7ed3a0d"
+    },
+    {
+      "frame": 1370,
+      "segmentIndex": 4,
+      "sha256": "09a3280a17c85f6e83992f6145bcf2b233cfa58c224f49ea3009c51de174f2db"
+    },
+    {
+      "frame": 1559,
+      "segmentIndex": 4,
+      "sha256": "5f5f49afc1db324a1141db05c4821cd25c26dc498e072a99056c606c01978052"
+    },
+    {
+      "frame": 1748,
+      "segmentIndex": 4,
+      "sha256": "71ded17f7518a471d42e260f9d1e3ce7230aa7df6efcec81e8799b5415b48ed2"
     }
   ],
   "sampledVisualChange": true,
   "determinism": "not-verified-author-must-avoid-time-random-and-uncontrolled-state",
   "audioReuse": "visual-source-edits-invalidate-plan-and-audio-reimport-or-resynthesis-requires-explicit-approval",
   "visualQuality": "requires-human-review-frame-capability-is-not-art-quality-assurance",
-  "artifactHash": "94c7629843596a7a1f4c70d3edff0702e07d5df3a1847decf5a52a4f4a68c95d",
-  "subtitleHash": "c4380caaede8009bb94b8130d07774620ce2cf35c545978266872ce019bf3296",
+  "artifactHash": "8d85a1666d8ee77c0e9975dcaf894e4138abbe6e713bf96e9fc5e82dd96fa577",
+  "subtitleHash": "8188a42f97093f2348a298bb5f0f4c02141b272528ac02955de2efd7a5b2036e",
   "checks": [
     "research-source-plan-identity",
     "audio-hashes-and-measured-timing",
@@ -75,6 +106,5 @@
     "ffprobe-codec-frames-and-audio"
   ],
   "narrationTruthReview": "requires-human-source-review",
-  "providerProvenance": "recorded-local-manifest-not-independent-service-attestation",
-  "output": "docker-layers.mp4"
+  "providerProvenance": "recorded-local-manifest-not-independent-service-attestation"
 }

@@ -10,7 +10,7 @@ const args = process.argv.slice(2).filter(arg => arg !== '--allow-code');
 if (args.length !== 2) throw new Error('Usage: node check-playback.mjs <video.mp4> <new-report.json> --allow-code');
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const file = path.resolve(root, args[0]);
-const receipt = JSON.parse(await readFile(`${file}.json`, 'utf8'));
+const receipt = JSON.parse(await readFile(`${file}.receipt.json`, 'utf8'));
 const artifactHash = createHash('sha256').update(await readFile(file)).digest('hex');
 assert.equal(artifactHash, receipt.artifactHash);
 const url = pathToFileURL(file).href;

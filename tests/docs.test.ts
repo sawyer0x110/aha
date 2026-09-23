@@ -70,16 +70,16 @@ test('entry guides describe the current gallery without advertising the retired 
   }
   const manifest = JSON.parse(await fs.readFile(path.join(root, 'examples', 'delivery-manifest.json'), 'utf8'));
   const decks = manifest.requestedOutputs.filter((entry: { format: string }) => entry.format === 'pptx');
-  assert.equal(new Set(manifest.requestedOutputs.map((entry: { topic: string }) => entry.topic)).size, 6);
-  assert.equal(manifest.requestedOutputs.length, 16);
-  assert.equal(decks.length, 4);
-  assert.equal(decks.reduce((total: number, deck: { slides: number }) => total + deck.slides, 0), 30);
+  assert.equal(new Set(manifest.requestedOutputs.map((entry: { topic: string }) => entry.topic)).size, 5);
+  assert.equal(manifest.requestedOutputs.length, 20);
+  assert.equal(decks.length, 5);
+  assert.equal(decks.reduce((total: number, deck: { slides: number }) => total + deck.slides, 0), 36);
   const english = await fs.readFile(path.join(root, 'examples', 'README.md'), 'utf8');
   const chinese = await fs.readFile(path.join(root, 'examples', 'README.zh-CN.md'), 'utf8');
-  assert.match(english, /six example groups and sixteen artifacts/);
-  assert.match(english, /All four PPTX decks are Chinese/);
-  assert.match(chinese, /六组示例、十六份作品/);
-  assert.match(chinese, /四份 PPTX 均为中文/);
+  assert.match(english, /five example groups and twenty artifacts/);
+  assert.match(english, /All five PPTX decks are Chinese/);
+  assert.match(chinese, /五组示例、二十份作品/);
+  assert.match(chinese, /五份 PPTX 均为中文/);
 });
 
 test('README illustration is a standalone project introduction, not a gallery example', async () => {

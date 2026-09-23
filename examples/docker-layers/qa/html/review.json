@@ -1,0 +1,21 @@
+{
+  "sourceHash": "7e800919c19841175d921e1447d7c060d6cd34e1086bf604e1df7709d674f629",
+  "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
+  "outputHash": "417482039e118c9a633e307ac06a53a79d8fd64c1ecb5f12ba9961e756cbfea7",
+  "receiptHash": "1a991ea70e249d944aba9c73f60e734934120da2d0e9483c734899f03bdbb8d1",
+  "status": "bounded-agent-review",
+  "findings": [
+    "Ordinary unsquashed image changesets; 100 MB assumed uncompressed payload. No Docker build was run.",
+    "Both languages, both themes and 1280/390/320px controls and page geometry checked offline.",
+    "Representative current full-page screenshots inspected: standalone titles, mechanism labels, explanatory paragraphs and source limitations remain visible."
+  ],
+  "limitations": [
+    "No human comprehension or acceptance study.",
+    "Host document skills and local tools also contributed; this is not an isolated skill-effect comparison.",
+    "No physical-phone or screen-reader acceptance; geometric and interaction checks are not a complete independent visual review."
+  ],
+  "unperformed": [
+    "Human comprehension",
+    "Human acceptance"
+  ]
+}

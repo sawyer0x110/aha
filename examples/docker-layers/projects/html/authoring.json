@@ -1,0 +1,55 @@
+{
+  "purpose": "Keep the layer cutaway separate from the merged view",
+  "researchReuse": "Read the sealed report and claim ledger for scope, version, evidence and limits; no fresh scientific or code experiment.",
+  "readingContext": "Offline desktop and 390/320px mobile; both languages and keyboard controls.",
+  "composition": [
+    {
+      "id": "add",
+      "question": "First RUN: the new payload becomes layer data",
+      "relationship": "Assume a newly created regular file contains 100 MB of uncompressed payload. If it remains when the RUN finishes successfully, that payload is recorded in an image layer in this ordinary unsquashed example.",
+      "claims": [
+        "c-layer",
+        "c-example"
+      ]
+    },
+    {
+      "id": "delete",
+      "question": "Later RUN: hide the path without rewriting the lower layer",
+      "relationship": "The newer changeset represents removal using a whiteout. Applying it hides the lower path in the merged view. The marker itself is not an ordinary visible file there, and the earlier payload remains in its immutable layer.",
+      "claims": [
+        "c-delete"
+      ]
+    },
+    {
+      "id": "same-run",
+      "question": "Same RUN: compare absent before with absent after",
+      "relationship": "For a NEW temporary file created and removed inside one RUN, neither endpoint contains that path. Its payload is therefore absent from that resulting diff. Other files or directory metadata can still change.",
+      "claims": [
+        "c-same"
+      ]
+    },
+    {
+      "id": "base",
+      "question": "The counterexample: a file already in the base",
+      "relationship": "Deleting a preexisting base-layer file in one RUN still cannot reclaim its lower-layer bytes. Unlike the new temporary file, this path exists in the before snapshot, so deletion must be represented.",
+      "claims": [
+        "c-base"
+      ]
+    },
+    {
+      "id": "scope",
+      "question": "Payload is not image size, and an image is not a running container",
+      "relationship": "100 MB is an assumed payload, not measured download savings. Compression, sharing, cache and image overhead are different quantities. A running container adds its own writable layer; this diagram describes image changesets.",
+      "claims": [
+        "c-size",
+        "c-writable"
+      ]
+    }
+  ],
+  "tools": [
+    "Repository aha-explain and shared latest guides",
+    "Host pptx guidance",
+    "Host web-artifacts-builder theme",
+    "Aha 0.3.3 runtime"
+  ]
+}

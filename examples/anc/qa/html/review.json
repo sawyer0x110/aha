@@ -1,0 +1,21 @@
+{
+  "sourceHash": "1100ddf70a44f2277e1bdc22c3c359bbfa9f4e603ddb55f4a99461a459fc413c",
+  "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
+  "outputHash": "34d1b2d642a88c5b1fa4015c72f059688611f112a1c93a1ce244b30ff50d2dac",
+  "receiptHash": "91e18b38a7492328fc45f72a6b701e341087624415d81234d0428ad4c490bd64",
+  "status": "bounded-agent-review",
+  "findings": [
+    "Ideal pressure model at one target position. Not measured decibels, perceived loudness, or a prediction for your headphones.",
+    "Both languages, both themes and 1280/390/320px controls and page geometry checked offline.",
+    "Representative current full-page screenshots inspected: standalone titles, mechanism labels, explanatory paragraphs and source limitations remain visible."
+  ],
+  "limitations": [
+    "No human comprehension or acceptance study.",
+    "Host document skills and local tools also contributed; this is not an isolated skill-effect comparison.",
+    "No physical-phone or screen-reader acceptance; geometric and interaction checks are not a complete independent visual review."
+  ],
+  "unperformed": [
+    "Human comprehension",
+    "Human acceptance"
+  ]
+}

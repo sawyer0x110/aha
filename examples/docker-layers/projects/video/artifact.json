@@ -3,25 +3,24 @@
   "format": "video",
   "language": "en",
   "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
-  "title": "Why a later Docker RUN hides a file but keeps its payload",
+  "title": "Why deleting a file does not erase an earlier Docker layer",
   "status": "authored",
   "entry": "html/index.html",
   "coverage": [
-    { "id": "layer-added", "claimIds": ["c-layer", "c-example"] },
-    { "id": "later-delete", "claimIds": ["c-delete"] },
-    { "id": "same-run", "claimIds": ["c-same"] },
-    { "id": "base-boundary", "claimIds": ["c-base"] }
-  ],
-  "omissions": [
     {
-      "claimId": "c-size",
-      "reason": "Pilot labels the assumed uncompressed payload and avoids total-size claims; the full taxonomy of compression, transfer, cache, and shared storage is outside this 20–30 second mechanism."
-    },
-    {
-      "claimId": "c-writable",
-      "reason": "The pilot depicts image changesets only, not a running container's separate writable layer or lifetime."
+      "id": "video-central-mechanism",
+      "claimIds": [
+        "c-layer",
+        "c-delete",
+        "c-same",
+        "c-example",
+        "c-base",
+        "c-size",
+        "c-writable"
+      ]
     }
   ],
+  "omissions": [],
   "width": 1280,
   "height": 720
 }

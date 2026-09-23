@@ -2,35 +2,49 @@
   "schemaVersion": "1.0.0",
   "status": "authored",
   "researchHash": "04cdf5f8906f1385f8575b9c99d46ae60bfe4c2c37e79982658a19d9d617daf8",
-  "sourceHash": "4500ece23a3fd2e282375d5f660c67631d0dd2b4a93cec66ff259fe30f2148c1",
-  "provider": "edge-tts",
-  "voice": "en-US-AriaNeural",
+  "sourceHash": "9b3326f91e9426b39ac0444eb3b767342ce98c832052239286b0f87faa3f75a5",
+  "provider": "provided-audio",
+  "voice": "approved-jenny-recordings",
   "rate": "+0%",
   "duration": {
     "minSeconds": 20,
-    "maxSeconds": 30
+    "maxSeconds": 180
   },
   "segments": [
     {
-      "id": "ascii-baseline",
-      "text": "In CPython, one grinning face can nearly quadruple a long ASCII string's object size.",
+      "id": "segment-1",
+      "text": "Start with one hundred thousand ASCII code points in a compact CPython string. Their internal character slots use one byte each.",
       "claimIds": [
-        "c-measure"
+        "c-width"
       ]
     },
     {
-      "id": "whole-string-widens",
-      "text": "The new string uses four bytes for every code point, because this face exceeds the two-byte range.",
+      "id": "segment-2",
+      "text": "Concatenate U plus one F six hundred. The new result needs four-byte slots for every code point, including the unchanged ASCII prefix. The original string is not modified.",
       "claimIds": [
         "c-width",
         "c-concat"
       ]
     },
     {
-      "id": "utf8-contrast",
-      "text": "UTF-eight is different: the ASCII stays one byte each, so encoding the added face costs only four extra bytes.",
+      "id": "segment-3",
+      "text": "A supplied CPython three point eleven point fifteen observation reports one hundred thousand forty-nine bytes before, and four hundred thousand eighty bytes after. Those totals include object overhead; this is not a new measurement.",
+      "claimIds": [
+        "c-measure"
+      ]
+    },
+    {
+      "id": "segment-4",
+      "text": "UTF-eight is different. Its ASCII prefix still uses one byte per code point, and the added code point contributes four bytes. The encoded payload grows by four, not fourfold.",
       "claimIds": [
         "c-utf8"
+      ]
+    },
+    {
+      "id": "segment-5",
+      "text": "Not every non-ASCII character forces four-byte slots. U plus zero zero E nine stays in the one-byte class, while U plus four E two D uses two. Code-point range is the key, not an emoji label.",
+      "claimIds": [
+        "c-boundaries"
       ]
     }
   ]

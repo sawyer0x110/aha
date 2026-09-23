@@ -1,0 +1,74 @@
+{
+  "provider": "edge-tts",
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "recordingPlanHash": "4778b9a35a5b04c8f872832bb4dbb61b54303cdafd41264a1d0b6b994b654d57",
+  "narration": [
+    {
+      "id": "segment-1",
+      "text": "Greenland looks enormous on many Mercator maps. But Africa has about fourteen times its reported land area. The map and the land are measuring different things."
+    },
+    {
+      "id": "segment-2",
+      "text": "On a sphere, meridians converge toward the poles. Mercator keeps them equally spaced on the page. The same longitude gap is therefore stretched more at high latitude."
+    },
+    {
+      "id": "segment-3",
+      "text": "To preserve local angles, Mercator stretches north-south distances by the same local factor. Near sixty degrees, a tiny patch is doubled in both directions, giving four times the area."
+    },
+    {
+      "id": "segment-4",
+      "text": "That is a local result, not one multiplier for all of Greenland. The country spans different latitudes, and each part is magnified differently."
+    },
+    {
+      "id": "segment-5",
+      "text": "Now rotate the actual generalized boundary on a sphere toward the equator. Its land area stays the same, but its footprint shrinks on this fixed-scale Mercator map. This is not a two-dimensional resize."
+    },
+    {
+      "id": "segment-6",
+      "text": "Mercator makes constant-heading routes straight, though they are usually not the shortest routes. Its poles project to infinity, so a finite map must cut them off."
+    },
+    {
+      "id": "segment-7",
+      "text": "For comparing areas, an equal-area map such as Equal Earth is useful. It preserves area proportions, not every shape or angle. The right projection depends on the question."
+    }
+  ],
+  "recordings": [
+    {
+      "id": "segment-1",
+      "file": "segment-001.wav",
+      "sha256": "29461fb30de6e3bad254d52771c619235d5947f9cf6da1c0a823de49b6c3892c"
+    },
+    {
+      "id": "segment-2",
+      "file": "segment-002.wav",
+      "sha256": "af8dce1c7548424fdcbb08994676fa05fa8a86a8d5d44603941c5cb7a3be81a2"
+    },
+    {
+      "id": "segment-3",
+      "file": "segment-003.wav",
+      "sha256": "601d1ef109b04bde7513578fed432777010f7661e821da70a5704ca2f23ac0ea"
+    },
+    {
+      "id": "segment-4",
+      "file": "segment-004.wav",
+      "sha256": "79ec322e5dd7b1a4e50f07c4ee0ac9387e5033aae64de97427bb5ed223991607"
+    },
+    {
+      "id": "segment-5",
+      "file": "segment-005.wav",
+      "sha256": "bdef42a48017cc38dcaee09bc226137782079c5e1a1cad013b4766a06cceb032"
+    },
+    {
+      "id": "segment-6",
+      "file": "segment-006.wav",
+      "sha256": "f556cddcf5f81076b1ea72be29a4b112c0d20103bac08ce7fd9eda34e40591aa"
+    },
+    {
+      "id": "segment-7",
+      "file": "segment-007.wav",
+      "sha256": "a1846582ea2e50723a593c390c5b778ac9891406acb8cc2fd9b2cccf6ba8ed1e"
+    }
+  ],
+  "method": "Offline import of authorized newly synthesized recordings; exact WAV bytes and frame timing retained. No second synthesis."
+}

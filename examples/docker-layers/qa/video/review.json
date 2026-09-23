@@ -1,25 +1,27 @@
 {
-  "topic": "docker-layers",
-  "format": "video",
-  "sourceHash": "2219d6f667a1a7c0e99e7e25334edcb48458d3371ddb041035c28b9c716fbccb",
-  "outputHash": "94c7629843596a7a1f4c70d3edff0702e07d5df3a1847decf5a52a4f4a68c95d",
+  "sourceHash": "14c4856d13ed3093c5665f175138fae5d9d6622645ba06ed8478045ac13594cd",
   "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
-  "method": "Agent source and actual-pixel review; not independent blinded assessment",
+  "outputHash": "8d85a1666d8ee77c0e9975dcaf894e4138abbe6e713bf96e9fc5e82dd96fa577",
+  "receiptHash": "b89c5cbf6ad1b17aec7c8d3aea2c91dad313c129eb0e5eef0de3592fb7530eef",
   "status": "bounded-agent-review",
-  "observed": [
-    "Actual native result and key encoded transitions inspected",
-    "State labels switch without contradictory crossfade; captions and result states readable at 1280x720"
+  "findings": [
+    "Ordinary unsquashed image changesets; 100 MB assumed uncompressed payload. No Docker build was run.",
+    "Inspected the encoded start/middle/end contact sheet for all five segments and a full-size same-RUN comparison frame.",
+    "The first committed layer remains while a later whiteout appears and the merged view changes from visible to absent.",
+    "The same-RUN NEW-file comparison remains visible alongside the separate-RUN case; the preexisting-base exception and assumed-payload limitation remain explicit.",
+    "No overlapping state labels, clipped diagram content or source/caption collision observed in the sampled encoded frames."
   ],
   "limitations": [
-    "Auxiliary text remains small at 640px playback width; density only partially improved",
-    "No actual listening, word-level synchronization or human comprehension assessment"
+    "No human comprehension or acceptance study.",
+    "Host document skills and local tools also contributed; this is not an isolated skill-effect comparison.",
+    "Most states are deliberate holds; deletion is a discrete change rather than a continuous layer animation.",
+    "The diagram is not a Docker build or a measured image-size result; auxiliary labels may require a player wider than 640px.",
+    "No actual audio listening or continuous human viewing was performed.",
+    "No actual listening or human comprehension review; full muted playback and sampled encoded frames do not establish auditory quality.",
+    "Source and auxiliary labels may require a larger player than 640px; no zoom-free phone playback claim."
   ],
-  "pixelsReviewed": [
-    "video-contact-sheet.png",
-    "transition-contact-sheet.png",
-    "result-at-640.png",
-    "frames/frame-009.png",
-    "transitions/frame-002.png",
-    "transitions/frame-003.png"
+  "unperformed": [
+    "Human comprehension",
+    "Human acceptance"
   ]
 }

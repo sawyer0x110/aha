@@ -1,11 +1,19 @@
 1
-00:00:00,000 --> 00:00:06,967
-In CPython, one grinning face can nearly quadruple a long ASCII string's object size.
+00:00:00,000 --> 00:00:08,900
+Start with one hundred thousand ASCII code points in a compact CPython string. Their internal character slots use one byte each.
 
 2
-00:00:06,967 --> 00:00:13,600
-The new string uses four bytes for every code point, because this face exceeds the two-byte range.
+00:00:08,900 --> 00:00:21,433
+Concatenate U plus one F six hundred. The new result needs four-byte slots for every code point, including the unchanged ASCII prefix. The original string is not modified.
 
 3
-00:00:13,600 --> 00:00:21,467
-UTF-eight is different: the ASCII stays one byte each, so encoding the added face costs only four extra bytes.
+00:00:21,433 --> 00:00:35,967
+A supplied CPython three point eleven point fifteen observation reports one hundred thousand forty-nine bytes before, and four hundred thousand eighty bytes after. Those totals include object overhead; this is not a new measurement.
+
+4
+00:00:35,967 --> 00:00:49,333
+UTF-eight is different. Its ASCII prefix still uses one byte per code point, and the added code point contributes four bytes. The encoded payload grows by four, not fourfold.
+
+5
+00:00:49,333 --> 00:01:03,233
+Not every non-ASCII character forces four-byte slots. U plus zero zero E nine stays in the one-byte class, while U plus four E two D uses two. Code-point range is the key, not an emoji label.

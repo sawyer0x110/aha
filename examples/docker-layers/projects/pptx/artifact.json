@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0.0",
+  "format": "pptx",
+  "language": "zh",
+  "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
+  "title": "文件删了，Docker 旧层的字节为什么还在？",
+  "status": "authored",
+  "entry": "pptx/main.mjs",
+  "coverage": [
+    {
+      "id": "pptx-central-mechanism",
+      "claimIds": [
+        "c-layer",
+        "c-delete",
+        "c-same",
+        "c-example",
+        "c-base",
+        "c-size",
+        "c-writable"
+      ]
+    }
+  ],
+  "omissions": [],
+  "width": 1280,
+  "height": 720
+}

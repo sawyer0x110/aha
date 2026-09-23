@@ -1,0 +1,278 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' data:; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; media-src data: blob:; connect-src 'none'; worker-src 'none'; child-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"><script>(() => {
+  const param = new URLSearchParams(window.location.search).get("scoutTheme");
+  const authored = document.documentElement.getAttribute("data-theme");
+  const theme =
+    param === "light" || param === "dark" ? param :
+    authored === "light" || authored === "dark" ? authored :
+    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  document.documentElement.setAttribute("data-theme", theme);
+})();</script><style>
+:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--cp-bg); color: var(--cp-text); font: 16px/1.6 "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif; }
+code, pre { font-family: Consolas, "Courier New", Courier, monospace; }
+a { color: var(--cp-link); }
+button { font: inherit; min-height: 44px; padding: 8px 12px; border: 1px solid var(--cp-border); border-radius: 0.625rem; color: var(--cp-text); background: var(--cp-surface); cursor: pointer; }
+button:hover { background: var(--cp-accent-soft); }
+:focus-visible { outline: 3px solid var(--cp-accent); outline-offset: 3px; }
+</style><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Why deleting a file does not erase an earlier Docker layer</title><script>(() => { const param = new URLSearchParams(window.location.search).get("scoutTheme"); const theme = param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); document.documentElement.setAttribute("data-theme", theme); })();</script><style>:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+
+*{box-sizing:border-box}body{margin:0;background:var(--cp-bg);color:var(--cp-text);font:18px/1.7 "Segoe UI",Aptos,Calibri,-apple-system,BlinkMacSystemFont,sans-serif}
+main{max-width:1120px;margin:auto;padding:56px 32px}h1{font-size:clamp(32px,5vw,58px);line-height:1.16;max-width:19ch;margin:16px 0 24px;letter-spacing:-.025em}
+h2{font-size:28px;line-height:1.3;margin:0 0 16px}h3{font-size:21px;line-height:1.35}p{margin:0 0 20px}.lead{font-size:22px;max-width:70ch}
+.eyebrow{font-weight:650;color:var(--cp-accent);letter-spacing:.1em;text-transform:uppercase;font-size:14px}
+.prose{max-width:72ch}.explanation{border-top:1px solid var(--cp-border);padding-top:28px;margin-top:36px}
+.controls{display:flex;gap:24px;flex-wrap:wrap;margin:24px 0;min-width:0}.controls label{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;min-width:0;max-width:100%}.controls select{width:100%;min-width:0}
+input,select,button{font:inherit;max-width:100%;color:var(--cp-text);accent-color:var(--cp-accent)}select{padding:8px;background:var(--cp-surface);border:1px solid var(--cp-border-strong);border-radius:10px}
+a{color:var(--cp-link);overflow-wrap:anywhere}a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--cp-accent);outline-offset:5px}
+.limit{border-left:4px solid var(--cp-accent);padding:12px 20px;margin:28px 0}.sources{font-size:15px}.sources li{margin:8px 0}.sources-note{color:var(--cp-text-muted)}
+[hidden]{display:none!important}@media(max-width:600px){main{padding:28px 20px}.lead{font-size:19px}h2{font-size:24px}.controls{display:grid}.controls label{min-width:0}}
+
+.mechanism { border:1px solid var(--cp-border-strong); padding:24px; background:var(--cp-surface); border-radius:16px; overflow:hidden }
+.mechanism strong,.mechanism b { display:block }.mechanism h3 { margin:0 0 16px }.mechanism p { margin:12px 0 0 }
+.mechanism-box { padding:16px; background:var(--cp-surface-soft) }.mechanism-box strong { margin-bottom:8px }
+.big-value { font-size:1.6em; font-weight:700; font-variant-numeric:tabular-nums }
+.pressure-legend { display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between }
+.pressure-legend span:nth-child(2) { border-bottom:2px dashed var(--cp-text-muted) }.pressure-legend strong { color:var(--cp-accent) }
+.waves,.map { display:block; width:100%; height:auto }.axis { stroke:var(--cp-border); fill:none }
+.incoming { stroke:var(--cp-text); fill:none; stroke-width:2 }.control { stroke:var(--cp-text-muted); stroke-dasharray:8 5; fill:none; stroke-width:2 }
+.wave-result { stroke:var(--cp-accent); fill:none; stroke-width:4 }.result { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px }
+.model-label { color:var(--cp-text-muted); font-size:.85em; line-height:1.5 }.land { fill:var(--cp-surface-soft); stroke:var(--cp-border-strong); stroke-width:.5 }
+.gridline { stroke:var(--cp-border); fill:none; stroke-width:.6 }.moving-land { fill:var(--cp-accent); stroke:var(--cp-text); stroke-width:1 }
+.ghost { fill:none; stroke:var(--cp-text-muted); stroke-dasharray:4 3 }.map-caption { display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px }
+.slots { display:flex; gap:8px; margin:12px 0 }.slots span { display:grid; place-items:center; width:calc(30px * var(--slot-width)); max-width:17%; height:38px; border:1px solid var(--cp-border-strong); background:var(--cp-surface-soft); font-family:Consolas,monospace }
+.accent-slots span { background:var(--cp-accent-soft); border-color:var(--cp-accent) }.slots .codepoint-slot { min-width:110px; font-size:16px; max-width:none }.string-original { margin-bottom:24px }
+.memory-pair { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:24px }
+.docker-comparison { display:grid; grid-template-columns:1fr 1fr; gap:32px }.layer { border:2px solid var(--cp-border-strong); padding:16px; min-height:92px }
+.layer-placeholder { height:104px }.layer + .layer { margin-top:12px }.payload-layer { border-color:var(--cp-accent); background:var(--cp-accent-soft) }.layer span { display:block; font-family:Consolas,monospace }
+.merged { border-top:2px solid var(--cp-text); padding-top:12px; margin-top:24px }.merged strong { color:var(--cp-accent) }.endpoint { display:grid; min-height:208px; gap:12px }
+.endpoint span { display:flex; align-items:center; padding:12px 16px; background:var(--cp-surface-soft) }.emphasis { border-left:4px solid var(--cp-accent); padding-left:16px }
+@media(max-width:600px) { .mechanism { padding:16px }.docker-comparison { grid-template-columns:1fr; gap:32px }.memory-pair { grid-template-columns:1fr }.pressure-legend { font-size:.85em }.slots { gap:4px }.model-label { font-size:.9em } }
+</style><style>
+[data-aha-lang][hidden] { display: none !important; }
+.aha-language-controls { display: flex; gap: .5rem; padding: .75rem 1rem; flex-wrap: wrap; }
+.aha-language-controls button[aria-pressed="true"] { border-color: var(--cp-accent); font-weight: bold; }
+</style></head><body><main><section data-aha-lang="en" lang="en" data-aha-title="Why deleting a file does not erase an earlier Docker layer"><div class="eyebrow">From observation to mechanism</div><h1>Why deleting a file does not erase an earlier Docker layer</h1><p class="lead">A later deletion changes the merged filesystem view, not an immutable earlier layer. Creating and deleting a new temporary file in the same RUN is different: that path is absent at both endpoints of the resulting diff.</p><h2>Keep the layer cutaway separate from the merged view</h2><div class="controls"><label>Inspect a state<select class="scenario"><option value="add">New file left in earlier layer</option><option value="delete">Deletion in a later RUN</option><option value="same">Create and delete in the same RUN</option><option value="base">Counterexample: preexisting base file</option></select></label></div><div class="mechanism"></div><p class="limit">Ordinary unsquashed image changesets; 100 MB assumed uncompressed payload. No Docker build was run.</p><article class="explanation prose" id="add-0"><h2>First RUN: the new payload becomes layer data</h2><p>Assume a newly created regular file contains 100 MB of uncompressed payload. If it remains when the RUN finishes successfully, that payload is recorded in an image layer in this ordinary unsquashed example.</p></article><article class="explanation prose" id="delete-0"><h2>Later RUN: hide the path without rewriting the lower layer</h2><p>The newer changeset represents removal using a whiteout. Applying it hides the lower path in the merged view. The marker itself is not an ordinary visible file there, and the earlier payload remains in its immutable layer.</p></article><article class="explanation prose" id="same-run-0"><h2>Same RUN: compare absent before with absent after</h2><p>For a NEW temporary file created and removed inside one RUN, neither endpoint contains that path. Its payload is therefore absent from that resulting diff. Other files or directory metadata can still change.</p></article><article class="explanation prose" id="base-0"><h2>The counterexample: a file already in the base</h2><p>Deleting a preexisting base-layer file in one RUN still cannot reclaim its lower-layer bytes. Unlike the new temporary file, this path exists in the before snapshot, so deletion must be represented.</p></article><article class="explanation prose" id="scope-0"><h2>Payload is not image size, and an image is not a running container</h2><p>100 MB is an assumed payload, not measured download savings. Compression, sharing, cache and image overhead are different quantities. A running container adds its own writable layer; this diagram describes image changesets.</p></article><footer class="explanation sources"><h2>Sources and scope</h2><ul><li><a href="https://docs.docker.com/get-started/docker-concepts/building-images/understanding-image-layers/" rel="noopener noreferrer">Docker · understanding image layers</a></li><li><a href="https://github.com/opencontainers/image-spec/blob/af26a05fba5ee648512f4ea3c9fda1fcc1b6d6dc/layer.md#whiteouts" rel="noopener noreferrer">OCI image-spec · layer whiteouts (pinned)</a></li><li><a href="https://github.com/moby/moby/blob/v27.5.1/pkg/archive/changes.go" rel="noopener noreferrer">Moby v27.5.1 · archive changes</a></li><li><a href="https://docs.docker.com/build/building/best-practices/#run" rel="noopener noreferrer">Docker · RUN best practices</a></li></ul><p class="sources-note">Based on sealed research from 16–17 September 2026. Source reading, cited results and inherited observations are not new experiments in this production run.</p></footer></section><section data-aha-lang="zh" lang="zh-CN" data-aha-title="文件删了，Docker 旧层的字节为什么还在？" hidden=""><div class="eyebrow">从现象到机制</div><h1>文件删了，Docker 旧层的字节为什么还在？</h1><p class="lead">后续删除改变的是合并文件系统视图，不是不可变的旧层。在同一个 RUN 中创建再删除新的临时文件则不同：生成差异时，这个路径在前后两个端点都不存在。</p><h2>把层的剖面与合并视图分开看</h2><div class="controls"><label>查看哪个状态<select class="scenario"><option value="add">新文件留在先前层</option><option value="delete">后续 RUN 删除</option><option value="same">同一 RUN 新建再删除</option><option value="base">反例：基础层已有文件</option></select></label></div><div class="mechanism"></div><p class="limit">普通、未压平的镜像差异层；100 MB 为假定未压缩载荷。没有执行 Docker 构建。</p><article class="explanation prose" id="add-1"><h2>第一次 RUN：新文件载荷成为层数据</h2><p>假设一个新建普通文件含 100 MB 未压缩载荷。在这个普通、未压平的示例中，如果成功结束 RUN 时它仍存在，载荷就会记录进镜像层。</p></article><article class="explanation prose" id="delete-1"><h2>后续 RUN：隐藏路径，不重写旧层</h2><p>新差异集用 whiteout 表示删除。应用后，合并视图不再显示下层路径；whiteout 本身也不是其中的普通可见文件。旧载荷仍保留在不可变的原层中。</p></article><article class="explanation prose" id="same-run-1"><h2>同一个 RUN：前后都不存在</h2><p>对于同一个 RUN 内新建再删除的临时文件，前后两个端点都没有这个路径，因此该差异不包含它的载荷。但其他文件或目录元数据仍可能发生变化。</p></article><article class="explanation prose" id="base-1"><h2>反例：基础层里原本就有的文件</h2><p>如果文件原本就存在于基础层，即使在一个 RUN 中删掉，也不能回收下层字节。它与新临时文件不同：前端点里有这个路径，因此需要记录删除。</p></article><article class="explanation prose" id="scope-1"><h2>载荷不等于镜像大小，镜像层也不等于容器写层</h2><p>100 MB 是假定载荷，不是实测下载节省量。压缩、共享、缓存和镜像额外开销是不同量。运行中的容器还有独立可写层；这里画的是镜像差异层。</p></article><footer class="explanation sources"><h2>依据与范围</h2><ul><li><a href="https://docs.docker.com/get-started/docker-concepts/building-images/understanding-image-layers/" rel="noopener noreferrer">Docker · understanding image layers</a></li><li><a href="https://github.com/opencontainers/image-spec/blob/af26a05fba5ee648512f4ea3c9fda1fcc1b6d6dc/layer.md#whiteouts" rel="noopener noreferrer">OCI image-spec · layer whiteouts (pinned)</a></li><li><a href="https://github.com/moby/moby/blob/v27.5.1/pkg/archive/changes.go" rel="noopener noreferrer">Moby v27.5.1 · archive changes</a></li><li><a href="https://docs.docker.com/build/building/best-practices/#run" rel="noopener noreferrer">Docker · RUN best practices</a></li></ul><p class="sources-note">基于 2026-09-16 / 17 的封存研究。没有把历史源码阅读、引用或已有观察当作本轮新实验。</p></footer></section></main><script>(function installVisuals(topic) {
+  const escape = value => String(value).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  const word = (en, zh, language) => language === "zh" ? zh : en;
+  const box = (heading, content, className = "") => `<div class="mechanism-box ${className}"><strong>${heading}</strong>${content}</div>`;
+  const value = (number, unit = "") => `<span class="big-value">${escape(number)}</span> ${escape(unit)}`;
+  let geography;
+  if (topic === "greenland") {
+    const { geoArea, geoCentroid, geoRotation, geoMercator, geoPath, geoGraticule10 } = window.Geo;
+    const features = window.MAP_DATA.features.map(feature => {
+      const g = structuredClone(feature.geometry);
+      const polygons = g.type === "Polygon" ? [g.coordinates] : g.coordinates;
+      for (const rings of polygons) {
+        if (geoArea({ type: "Polygon", coordinates: rings }) > 2 * Math.PI) rings.forEach(ring => ring.reverse());
+      }
+      return { ...feature, geometry: g };
+    });
+    const original = features.find(f => f.properties.name === "Greenland");
+    if (!original) throw new Error("Greenland boundary missing");
+    const center = geoCentroid(original), area = geoArea(original);
+    if (!(area > 0 && area < .1)) throw new Error("Invalid boundary winding");
+    const projection = geoMercator().scale(116).translate([440, 325]).clipExtent([[0, 0], [880, 380]]);
+    const path = geoPath(projection);
+    geography = progress => {
+      const rotation = geoRotation([0, -center[1] * progress, 0]);
+      const point = p => {
+        const q = rotation([p[0] - center[0], p[1]]);
+        return [((q[0] + center[0] + 540) % 360) - 180, q[1]];
+      };
+      const g = original.geometry;
+      const moved = { type: g.type, coordinates: g.type === "Polygon" ? g.coordinates.map(r => r.map(point)) : g.coordinates.map(poly => poly.map(r => r.map(point))) };
+      const areaError = Math.abs(geoArea(moved) / area - 1);
+      if (areaError > 1e-10) throw new Error("Rotation changed spherical area");
+      window.geographicState = { areaError, progress, scale: projection.scale(), originalArea: area, movedArea: geoArea(moved) };
+      return `<svg class="map" viewBox="0 0 880 380" aria-hidden="true"><path class="land" d="${path({ type: "FeatureCollection", features: features.filter(f => f !== original) })}"/><path class="gridline" d="${path(geoGraticule10())}"/><path class="ghost" d="${path(original)}"/><path class="moving-land" d="${path(moved)}"/></svg>`;
+    };
+  }
+  function draw(holder, state = 0, language = "en", options = {}) {
+    const t = (en, zh) => word(en, zh, language);
+    let html;
+    if (topic === "anc") {
+      const gain = options.gain ?? 1;
+      const phase = options.phase ?? state * 80;
+      const delta = phase * Math.PI / 180;
+      const residual = Math.sqrt(1 + gain * gain - 2 * gain * Math.cos(delta));
+      const curve = fn => Array.from({ length: 161 }, (_, i) => `${i ? "L" : "M"}${i * 5},${110 - fn(i / 160 * Math.PI * 6) * 46}`).join(" ");
+      html = `<div class="pressure-legend"><span>${t("Incoming pressure", "传入声压")}</span><span>${t("Speaker pressure", "控制声压")}</span><strong>${t("Residual sum", "相加后的残余")}</strong></div>
+        <svg viewBox="0 0 800 220" class="waves" role="img" aria-label="${t("Two pressure waves and their sum at the same ear position", "同一耳边位置两路声压与其总和")}"><path class="axis" d="M0 110H800"/><path class="incoming" d="${curve(x => Math.sin(x))}"/><path class="control" d="${curve(x => -gain * Math.sin(x + delta))}"/><path class="wave-result" d="${curve(x => Math.sin(x) - gain * Math.sin(x + delta))}"/></svg>
+        <div class="result">${t("Residual amplitude / incoming amplitude", "残余幅度 / 传入幅度")} ${value(residual.toFixed(2))}</div>
+        <p class="model-label">${t("One position · normalized pressure · not decibels or loudness", "同一位置 · 归一化声压 · 非分贝或响度")}</p>`;
+      holder.dataset.residual = residual.toFixed(6);
+    } else if (topic === "greenland") {
+      html = geography(state) + `<div class="map-caption"><strong>${t("Highlighted: Greenland", "高亮：格陵兰")}</strong><span>${t("Rigid rotation · constant spherical area", "球面刚体旋转 · 球面面积不变")}</span></div><p class="model-label">${t("Fixed spherical Mercator scale · poles cropped · dotted original outline", "固定球面墨卡托比例 · 两极裁切 · 虚线为原轮廓")}</p>`;
+    } else if (topic === "cpython-string") {
+      const cases = [
+        { cp: "U+00E9", kind: 1, bytes: "100,074", utf: "100,002" },
+        { cp: "U+4E2D", kind: 2, bytes: "200,076", utf: "100,003" },
+        { cp: "U+1F600", kind: 4, bytes: "400,080", utf: "100,004" },
+      ];
+      const selected = cases[options.caseIndex ?? 2];
+      const assembling = state > 0 && state < .8;
+      const width = state < .25 ? 1 : 1 + (selected.kind - 1) * Math.min(1, (state - .25) / .55);
+      const slots = (kind, last, cls = "") => `<div class="slots ${cls}" style="--slot-width:${kind}">${["a", "a", "a", "…", "a", last].map((s, i) => `<span${i === 5 && last !== "a" ? ' class="codepoint-slot"' : ""}>${escape(s)}</span>`).join("")}</div>`;
+      html = `<div class="string-original"><strong>${t("Original str: unchanged", "原 str：保持不变")}</strong>${slots(1, "a")}<small>${t("100,000 ASCII code points · 1 byte per slot", "100,000 个 ASCII 码点 · 每槽 1 字节")}</small></div>
+        <div class="string-result" style="visibility:${state > 0 ? "visible" : "hidden"}"><strong>${assembling ? t("Allocating the new result", "正在分配新结果") : t("New str after concatenation", "拼接后的新 str")} · ${escape(selected.cp)}</strong>${slots(width, selected.cp, "accent-slots")}<small>${t("Target: uniform slots in the new result", "目标：新结果中的码点槽统一宽度")} · ${selected.kind} ${t("bytes per code point", "字节 / 码点")}</small></div>
+        <div class="memory-pair">${box(t("str object", "str 对象"), value(state < .8 ? "100,049" : selected.bytes, t("bytes", "字节")))}${box(t("UTF-8 payload", "UTF-8 载荷"), value(state < .8 ? "100,000" : selected.utf, t("bytes", "字节")))}</div>
+        <p class="model-label">${t("Supplied CPython 3.11.15 observations; representative slots, not 100,000 drawn cells.", "既有 CPython 3.11.15 记录；仅绘制代表槽，并非十万个实际格子。")}</p>`;
+      holder.dataset.kind = selected.kind;
+    } else {
+      const stage = options.stage ?? (state < .33 ? "add" : state < .7 ? "delete" : "same");
+      const deletion = stage !== "add";
+      const base = stage === "base";
+      const layer = (label, text, cls = "") => `<div class="layer ${cls}"><b>${label}</b><span>${text}</span></div>`;
+      html = `<div class="docker-comparison">
+        <div><h3>${t("Separate RUNs", "分开的 RUN")}</h3><div class="layer-stack">${deletion ? layer(t("Later layer", "后加层"), ".wh.temp", "marker-layer") : '<div class="layer-placeholder"></div>'}${layer(deletion ? t("Earlier layer", "先前层") : t("First committed layer", "首个提交层"), "/temp · 100 MB", "payload-layer")}</div><div class="merged"><b>${t("Merged view", "合并视图")}</b><strong>${deletion ? t("/temp absent", "/temp 不存在") : t("/temp visible", "/temp 可见")}</strong></div></div>
+        <div><h3>${t("Same RUN · NEW file", "同一 RUN · 新文件")}</h3><div class="endpoint"><span>${t("Before: absent", "之前：不存在")}</span><span>${t("Create → delete", "创建 → 删除")}</span><span>${t("After: absent", "之后：不存在")}</span></div><div class="merged"><b>${t("Resulting diff", "生成的差异")}</b><strong>${t("No payload for this file", "没有此文件的载荷")}</strong></div></div></div>
+        <p class="model-label ${base ? "emphasis" : ""}">${base ? t("Base-file exception: deleting a file already in the base still leaves its lower-layer bytes.", "基础层反例：删除基础层已有文件，仍会保留下层字节。") : t("Layer cutaway ≠ merged view. 100 MB assumed; no build executed.", "层剖面 ≠ 合并视图。100 MB 为假设；未执行构建。")}</p>`;
+      holder.dataset.stage = stage;
+    }
+    holder.innerHTML = html;
+  }
+  window.drawMechanism = draw;
+  for (const section of document.querySelectorAll("[data-aha-lang]")) {
+    const holder = section.querySelector(".mechanism");
+    const language = section.dataset.ahaLang;
+    const update = () => {
+      if (topic === "anc") draw(holder, 0, language, { gain: Number(section.querySelector(".gain").value), phase: Number(section.querySelector(".phase").value) });
+      else if (topic === "greenland") draw(holder, Number(section.querySelector(".position").value), language);
+      else if (topic === "cpython-string") draw(holder, 1, language, { caseIndex: Number(section.querySelector(".codepoint").value) });
+      else draw(holder, 0, language, { stage: section.querySelector(".scenario").value });
+    };
+    section.querySelectorAll("input,select").forEach(input => input.addEventListener("input", update));
+    update();
+  }
+})("docker-layers");</script>
+<script>(() => {
+  const roots = Array.from(document.querySelectorAll("[data-aha-lang]"));
+  const controls = document.createElement("nav");
+  controls.className = "aha-language-controls";
+  controls.setAttribute("aria-label", "Language / 语言");
+  const buttons = [];
+  function select(language) {
+    for (const root of roots) {
+      root.hidden = root.dataset.ahaLang !== language;
+      if (!root.hidden) document.title = root.dataset.ahaTitle;
+    }
+    document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+    for (const button of buttons) button.setAttribute("aria-pressed", String(button.dataset.language === language));
+    window.dispatchEvent(new CustomEvent("aha:languagechange", { detail: { language } }));
+  }
+  for (const [language, label] of [["en", "English"], ["zh", "中文"]]) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.lang = language === "zh" ? "zh-CN" : "en";
+    button.textContent = label;
+    button.dataset.language = language;
+    button.addEventListener("click", () => select(language));
+    buttons.push(button);
+    controls.append(button);
+  }
+  document.body.prepend(controls);
+  select("en");
+})();</script></body></html>

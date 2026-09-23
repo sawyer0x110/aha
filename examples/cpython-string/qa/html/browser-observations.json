@@ -1,0 +1,105 @@
+{
+  "topic": "cpython-string",
+  "observedAt": "2026-09-22T09:47:37.463Z",
+  "htmlOutputHash": "9fa74d2485d79ba3d4191abc3b7679d6c9eb46f2cf8b04563eaf8796f66b154d",
+  "cases": [
+    {
+      "width": 1280,
+      "theme": "light",
+      "language": "en",
+      "pageWidth": 1280,
+      "viewport": 1280,
+      "overflow": []
+    },
+    {
+      "width": 1280,
+      "theme": "light",
+      "language": "zh",
+      "pageWidth": 1280,
+      "viewport": 1280,
+      "overflow": []
+    },
+    {
+      "width": 1280,
+      "theme": "dark",
+      "language": "en",
+      "pageWidth": 1280,
+      "viewport": 1280,
+      "overflow": []
+    },
+    {
+      "width": 1280,
+      "theme": "dark",
+      "language": "zh",
+      "pageWidth": 1280,
+      "viewport": 1280,
+      "overflow": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "language": "en",
+      "pageWidth": 390,
+      "viewport": 390,
+      "overflow": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "language": "zh",
+      "pageWidth": 390,
+      "viewport": 390,
+      "overflow": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "language": "en",
+      "pageWidth": 390,
+      "viewport": 390,
+      "overflow": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "language": "zh",
+      "pageWidth": 390,
+      "viewport": 390,
+      "overflow": []
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "language": "en",
+      "pageWidth": 320,
+      "viewport": 320,
+      "overflow": []
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "language": "zh",
+      "pageWidth": 320,
+      "viewport": 320,
+      "overflow": []
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "language": "en",
+      "pageWidth": 320,
+      "viewport": 320,
+      "overflow": []
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "language": "zh",
+      "pageWidth": 320,
+      "viewport": 320,
+      "overflow": []
+    }
+  ],
+  "errors": [],
+  "blocked": []
+}

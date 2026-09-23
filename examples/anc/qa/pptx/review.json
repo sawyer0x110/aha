@@ -1,0 +1,21 @@
+{
+  "sourceHash": "2e6a2a6c08670e9c96db7edb632c5b038a6ef5b7dff44cca1192bdb17239d9c9",
+  "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
+  "outputHash": "df413ff160faa3cb38c67ce2e1f7b7a4771bb16f2e7c3a17924c3319aca14791",
+  "receiptHash": "d629f155e0257bb8497ec72109c51c916f6c46d530ed32892e3ead2b2f6dbb7c",
+  "status": "bounded-agent-review",
+  "findings": [
+    "Ideal pressure model at one target position. Not measured decibels, perceived loudness, or a prediction for your headphones.",
+    "Native PowerPoint export and saved/reopened text/table edit probes passed; Greenland chart data edit also persisted. Reported relationship/label defects were repaired and re-inspected."
+  ],
+  "limitations": [
+    "No human comprehension or acceptance study.",
+    "Host document skills and local tools also contributed; this is not an isolated skill-effect comparison.",
+    "Agent inspected initial individual PowerPoint pages and affected revised pages; not human slideshow or manual-edit usability acceptance.",
+    "Slide 2 retains a leading comma at a wrapped line."
+  ],
+  "unperformed": [
+    "Human comprehension",
+    "Human acceptance"
+  ]
+}

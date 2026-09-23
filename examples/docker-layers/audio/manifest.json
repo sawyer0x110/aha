@@ -1,26 +1,38 @@
 {
   "schemaVersion": "1.0.0",
-  "planHash": "b7bdeb2e3f8330979ba40a349b2a6175cb0c66cf705b7507ecf6dd2acb44e807",
+  "planHash": "0bc9ada28ef592847fbd8d34adbd649eecfa68387198de08489aac6c5d000fcd",
   "provider": "provided-audio",
-  "voice": "original-aria-recording",
+  "voice": "approved-jenny-recordings",
   "segments": [
     {
-      "id": "layer-added",
+      "id": "segment-1",
       "filename": "segment-001.wav",
-      "frames": 250,
-      "sha256": "5ba0125852ac50fb1e20578291c556d559162b953f9ae6badd6789a70382c6ae"
+      "frames": 353,
+      "sha256": "447a28c5c55e8c9685fb032f5a8cf1886dd80da938c5d363ebc025a3424b25e4"
     },
     {
-      "id": "later-delete",
+      "id": "segment-2",
       "filename": "segment-002.wav",
-      "frames": 180,
-      "sha256": "69534e14477ab4ed196273c78f6b6c1ad2f8d324e1fa6eb2591b063138af9e32"
+      "frames": 368,
+      "sha256": "8eb54cd78b9d4c37ac43c573fca6470438c94aeadd150bcf354531d193db74fe"
     },
     {
-      "id": "same-run",
+      "id": "segment-3",
       "filename": "segment-003.wav",
-      "frames": 208,
-      "sha256": "84f7e347416a1e1222a7f47509212b1c58e4235e625e5aee4169186c6a50832a"
+      "frames": 381,
+      "sha256": "a71d059b984aa6e3af536bd7bf2b56a63a638d9ad8928b25c1096fea80f6f8af"
+    },
+    {
+      "id": "segment-4",
+      "filename": "segment-004.wav",
+      "frames": 268,
+      "sha256": "1f5076b9e2980236ce5a195ceef496b9922904803b867e46ba24426b85f024d1"
+    },
+    {
+      "id": "segment-5",
+      "filename": "segment-005.wav",
+      "frames": 379,
+      "sha256": "0e418bdd9f5c9d0cbd480c1fc459873147f158a4c92a07106cb750701dc2a161"
     }
   ]
 }

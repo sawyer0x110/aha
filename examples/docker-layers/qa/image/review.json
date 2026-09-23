@@ -1,0 +1,20 @@
+{
+  "sourceHash": "8fde31b0f4a91b52965f75787ebd99374f468a9e5020283cb78371d76e04267c",
+  "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
+  "outputHash": "67c08a443d8affa1f6cb9815d115bd1ee35a451825b7452a1226f6525fa50a8e",
+  "receiptHash": "171c54a03040ed5c68cda74c33b1c5d54d0d2de6e6e9a0611d5fe44fb8b7ca1a",
+  "status": "bounded-agent-review",
+  "findings": [
+    "Ordinary unsquashed image changesets; 100 MB assumed uncompressed payload. No Docker build was run.",
+    "Actual 1200px reading preview inspected: mechanism labels, explanatory columns and limitations are visible without clipping."
+  ],
+  "limitations": [
+    "No human comprehension or acceptance study.",
+    "Host document skills and local tools also contributed; this is not an isolated skill-effect comparison.",
+    "Desktop/document reading at 1200px or wider; zoom-free phone reading is not promised."
+  ],
+  "unperformed": [
+    "Human comprehension",
+    "Human acceptance"
+  ]
+}

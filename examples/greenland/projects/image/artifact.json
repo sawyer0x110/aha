@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0.0",
+  "format": "image",
+  "language": "en",
+  "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6",
+  "title": "Why Mercator makes Greenland look enormous",
+  "status": "authored",
+  "entry": "html/index.html",
+  "coverage": [
+    {
+      "id": "image-central-mechanism",
+      "claimIds": [
+        "c-cause",
+        "c-motion",
+        "c-resource",
+        "c-area",
+        "c-scale",
+        "c-navigation",
+        "c-poles",
+        "c-equal"
+      ]
+    }
+  ],
+  "omissions": [
+    {
+      "claimId": "c-bridge",
+      "reason": "Secondary branch omitted from this concise standalone infographic; see the full HTML and research report."
+    }
+  ],
+  "width": 1800,
+  "height": 1600
+}

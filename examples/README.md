@@ -2,31 +2,29 @@
 
 **English** | [简体中文](README.zh-CN.md)
 
-Start with the [Aha introduction](aha-introduction/README.md) or the [local gallery](index.html). There are **six example groups and sixteen artifacts**. The introduction has bilingual HTML, a Chinese PNG, an 8-slide Chinese native PPTX and an English video, all bound to its September 17 research snapshot. All four PPTX decks are Chinese. Git HTML is a Chinese-only plan review; ANC and introduction HTML open in English with a Chinese switch. Other PNGs and all narrated videos are English; topic notes are Chinese. Research reports retain their original languages.
+Start with the [Aha introduction](aha-introduction/README.md) or the [local gallery](index.html). There are **five example groups and twenty artifacts**. The introduction's four artifacts and accompanying files are unchanged. ANC, Greenland, CPython strings and Docker layers each have four freshly authored formats. All five PPTX decks are Chinese. HTML opens in English with a Chinese switch; the four new PNGs and videos are English. The introduction PNG and all topic notes are Chinese. Research reports retain their original languages.
 
 GitHub's source preview does not run interactive HTML. Download or clone the repository and open `examples/index.html` in a browser; use the links to view or download PNG, PPTX, MP4, and subtitle files with a suitable local viewer. **Artifacts** are the reader-facing explanations. Research, receipts, hashes, approvals, and review records are **evidence** for checking sources and production history—not additional artifacts or proof that pending reviews have passed.
 
 | Topic (notes in Chinese) | HTML | PNG | Native PPTX | Narrated video |
 | --- | --- | --- | --- | --- |
 | [Aha introduction · start here](aha-introduction/README.md) | [Bilingual explanation](aha-introduction/aha-introduction.html) | [Chinese · 1080×1920](aha-introduction/aha-introduction.png) | [8 slides · Chinese](aha-introduction/aha-introduction.pptx) | [119.4 seconds](aha-introduction/aha-introduction.mp4) |
-| [Noise-cancelling headphones](anc/README.md) | [Interactive explanation](anc/anc.html) | [1800×1200](anc/anc.png) | [7 slides · Chinese](anc/anc.pptx) | [127.1 seconds](anc/anc.mp4) |
-| [Git merge](git-merge/README.md) | [Chinese plan review](git-merge/git-merge.html) | [1800×1200](git-merge/git-merge.png) | [8 slides · Chinese](git-merge/git-merge.pptx) | [126.27 seconds](git-merge/git-merge.mp4) |
-| [Greenland and map projections](greenland/README.md) | Not requested | Not requested | [7 slides · Chinese](greenland/greenland.pptx) | [115.73 seconds](greenland/greenland.mp4) |
-| [CPython strings](cpython-string/README.md) | Not requested | Not requested | Not requested | [21.47-second pilot](cpython-string/cpython-string.mp4) |
-| [Docker image layers](docker-layers/README.md) | Not requested | Not requested | Not requested | [21.27-second pilot](docker-layers/docker-layers.mp4) |
+| [Noise-cancelling headphones](anc/README.md) | [Bilingual interactive explanation](anc/anc.html) | [1800×1600](anc/anc.png) | [7 slides · Chinese](anc/anc.pptx) | [78.53 seconds](anc/anc.mp4) |
+| [Greenland and map projections](greenland/README.md) | [Bilingual interactive explanation](greenland/greenland.html) | [1800×1600](greenland/greenland.png) | [7 slides · Chinese](greenland/greenland.pptx) | [80.80 seconds](greenland/greenland.mp4) |
+| [CPython strings](cpython-string/README.md) | [Bilingual interactive explanation](cpython-string/cpython-string.html) | [1800×1600](cpython-string/cpython-string.png) | [7 slides · Chinese](cpython-string/cpython-string.pptx) | [63.23 seconds](cpython-string/cpython-string.mp4) |
+| [Docker image layers](docker-layers/README.md) | [Bilingual interactive explanation](docker-layers/docker-layers.html) | [1800×1600](docker-layers/docker-layers.png) | [7 slides · Chinese](docker-layers/docker-layers.pptx) | [58.30 seconds](docker-layers/docker-layers.mp4) |
 
 The introduction's four formats share its research snapshot, not identical layouts or detail. HTML and PPTX develop the three case mechanisms; the independent portrait infographic summarizes the skills, media choices, and distinctions.
 
-The landscape ANC and Git infographics target desktop/document reading at least 1200px wide; they do not promise zoom-free phone reading. The introduction poster targets scrolling at approximately 390px display width; its current checks are bound in the [introduction publication record](delivery-manifest.json).
+The four new infographics target desktop/document reading at least 1200px wide; they do not promise zoom-free phone reading. The unchanged introduction poster targets scrolling at approximately 390px display width; its checks remain bound in the [delivery manifest](delivery-manifest.json).
 
 ## Current directory contract
 
-- Each topic root retains the latest included version of each format, accompanying receipts, video SRT subtitles, and `video-plan.json`. The introduction, ANC, and Git each have four formats; Greenland has PPTX and video; CPython and Docker are video-only.
+- Each topic root retains four current formats, accompanying receipts, video SRT subtitles, and `video-plan.json`.
 - `projects/{html,image,pptx,video}/` retains author source, metadata, project-local assets, and research copies. All current QA lives under the topic's `qa/<format>/`, outside author projects.
 - `research/` contains the topic's archived research report, evidence, and manifest. Historical descriptions remain sealed; use the delivery manifest for the current gallery inventory.
-- `audio/` retains the current audio manifest and WAV files. ANC, Git, Docker and the introduction use imported recordings; `audio/provenance.json` binds their speech provider, voice, rate, spoken text and recording hashes. Greenland and CPython use direct Edge TTS synthesis. Recording provenance is not a new synthesis claim.
-- Git's `public/` retains the pinned upstream files that were read, their licenses, and access records.
-- The single [delivery manifest](delivery-manifest.json), `schemaVersion: 2`, indexes all sixteen artifacts in `requestedOutputs[]`: paths, identity, provenance and QA. Format-specific properties belong to each artifact, not separate PPTX or topic-level current publication manifests.
+- `audio/` retains the current audio manifest and WAV files. Four new English scripts were approved and synthesized with Edge TTS / `en-US-JennyNeural`. After caption-layout repair, new approved `provided-audio` plans imported the exact recordings offline. `audio/provenance.json` binds original speech identity, voice, text and WAV hashes; import is not a second synthesis. The introduction retains its original recording provenance.
+- The single [delivery manifest](delivery-manifest.json), `schemaVersion: 2`, indexes all twenty artifacts in `requestedOutputs[]`: paths, identity, provenance and QA. Format-specific properties belong to each artifact, not separate PPTX or topic-level current publication manifests.
 
 Artifacts use `<topic>.html/.png/.pptx/.mp4`, receipts use `<artifact>.receipt.json`, and video subtitles use `<artifact>.srt`. Only `examples/index.html` is a gallery entry. Receipts and QA references name current files directly; metadata hashes are updated together. There are no migration maps, old publication manifests or archive dependencies. `evals/examples/` contains reusable checking tools. Metadata maintenance does not claim a new render or review. See the [shared output layout](../skills/shared/references/output-layout.md) for working tasks.
 
@@ -36,15 +34,13 @@ Artifacts use `<topic>.html/.png/.pptx/.mp4`, receipts use `<artifact>.receipt.j
 
 ANC illustrates ideal sound-pressure superposition at one location, not headphone measurements, decibels, or perceived loudness. Speech retaining recognizable cues does not imply that no headphones can attenuate speech.
 
-Git research reads the pinned v2.55.0 manual and `merge-ort.c`; no new Git experiment was run. Simplified interface states are not command results. Ordinary revert, merge revert, reset, `-s ours`, and `-Xours` are distinguished. A successful text merge does not prove correct program behavior.
-
 The Aha introduction reuses the September 17 synthesis; it is not a fresh investigation of today's code or a rerun of the inherited experiments. Host document skills, Clawpilot styling, and external media tools also contributed to production, so these are not controlled experiments isolating Aha's effects.
 
 The Greenland example explains high-latitude enlargement with spherical Mercator, using rigid rotation of real generalized boundaries on a sphere rather than two-dimensional scaling. The local fourfold area factor at 60° does not describe all of Greenland. Equal Earth's area preservation does not preserve every shape. See the topic's research report for detailed sources and the limitation that the body of the official statistics was not verified.
 
-The CPython pilot compares string-object sizes and UTF-8 payloads for the specific CPython 3.11.15 implementation. U+1F600 makes the new result use a four-byte code-point representation; it does not change the original string, and the result does not apply to every emoji or Python implementation. Docker's 100 MB is an assumed payload; no build was executed. The merged view after deletion must be distinguished from immutable layer data, and the same-RUN comparison applies only to newly created temporary files.
+The CPython example compares string-object sizes and UTF-8 payloads for the specific CPython 3.11.15 implementation. U+1F600 makes the new result use a four-byte code-point representation; it does not change the original string, and the result does not apply to every emoji or Python implementation. Docker's 100 MB is an assumed payload; no build was executed. The merged view after deletion must be distinguished from immutable layer data, and the same-RUN comparison applies only to newly created temporary files.
 
-Current PPTX records distinguish native structure and PowerPoint open/export/copy-edit checks from bounded visual observations. The updated guides do not guarantee that every latest deck is aesthetically better: inherited explanatory or spacing issues are recorded, not hidden. Other records cover bilingual page interactions and video decoding, subtitles, and sampled frames. **Continuous viewing/listening of the standalone CPython and Docker pilots and full videos remains unconfirmed.** Human understanding-transfer studies, independent human translation review, physical-phone testing, and screen-reader acceptance are incomplete.
+Current PPTX records distinguish native structure and PowerPoint export/copy-edit checks from bounded agent visual observations. Localized punctuation wrapping remains recorded. Video checks include complete decoding, exact subtitles, muted playback and sampled encoded frames; **actual listening and continuous human viewing remain unconfirmed**. Human understanding studies, independent human translation review, physical-phone testing and screen-reader acceptance are incomplete.
 
 ## License and third-party boundaries
 
@@ -59,9 +55,9 @@ npm run build
 npm run examples:verify
 ```
 
-The unified verifier checks all sixteen artifacts, research copies, current receipt names and hashes, audio, recording provenance, approved plans, native edits, browser observations and sampled frames. QA is self-contained under each topic's `qa/<format>/`; regression cases reject stale identities and incorrect evidence even after resealing. ANC/Git PNG reading previews do not establish standalone visual acceptance. Docker's auxiliary text remains small at 640px playback width; actual listening and human comprehension were not assessed.
+The unified verifier checks all twenty artifacts, research copies, current receipt names and hashes, audio, recording provenance, approved plans, native edits, browser observations and sampled frames. QA is self-contained under each topic's `qa/<format>/`; regression cases reject stale identities and incorrect evidence even after resealing. Reading previews and sampled frames do not establish human acceptance. Auxiliary video labels may require a larger player than 640px; actual listening and human comprehension were not assessed.
 
-After reviewing the ANC and Git pages and obtaining local execution approval, save new browser results to a directory that does not yet exist, without overwriting archived records:
+After reviewing the four regenerated pages and obtaining local execution approval, save new browser results to a directory that does not yet exist:
 
 ```powershell
 node .\evals\examples\check-html.mjs --allow-code --output artifacts\examples-browser-new --screenshots

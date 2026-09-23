@@ -1,0 +1,105 @@
+{
+  "topic": "docker-layers",
+  "observedAt": "2026-09-22T10:57:57.694Z",
+  "htmlOutputHash": "417482039e118c9a633e307ac06a53a79d8fd64c1ecb5f12ba9961e756cbfea7",
+  "cases": [
+    {
+      "width": 1280,
+      "theme": "light",
+      "language": "en",
+      "pageWidth": 1280,
+      "viewport": 1280,
+      "overflow": []
+    },
+    {
+      "width": 1280,
+      "theme": "light",
+      "language": "zh",
+      "pageWidth": 1280,
+      "viewport": 1280,
+      "overflow": []
+    },
+    {
+      "width": 1280,
+      "theme": "dark",
+      "language": "en",
+      "pageWidth": 1280,
+      "viewport": 1280,
+      "overflow": []
+    },
+    {
+      "width": 1280,
+      "theme": "dark",
+      "language": "zh",
+      "pageWidth": 1280,
+      "viewport": 1280,
+      "overflow": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "language": "en",
+      "pageWidth": 390,
+      "viewport": 390,
+      "overflow": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "language": "zh",
+      "pageWidth": 390,
+      "viewport": 390,
+      "overflow": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "language": "en",
+      "pageWidth": 390,
+      "viewport": 390,
+      "overflow": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "language": "zh",
+      "pageWidth": 390,
+      "viewport": 390,
+      "overflow": []
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "language": "en",
+      "pageWidth": 320,
+      "viewport": 320,
+      "overflow": []
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "language": "zh",
+      "pageWidth": 320,
+      "viewport": 320,
+      "overflow": []
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "language": "en",
+      "pageWidth": 320,
+      "viewport": 320,
+      "overflow": []
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "language": "zh",
+      "pageWidth": 320,
+      "viewport": 320,
+      "overflow": []
+    }
+  ],
+  "errors": [],
+  "blocked": []
+}

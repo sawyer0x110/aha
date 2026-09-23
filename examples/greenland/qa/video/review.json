@@ -1,0 +1,26 @@
+{
+  "sourceHash": "16bfa98aad39759699cafec1a627046ff52c93402fee7803a9bcdcf583d0226c",
+  "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6",
+  "outputHash": "e77c15c19063ebcfbecc051515c4cf7a9ddb02f53f64bc682e64a009273f34d5",
+  "receiptHash": "7e4946dedaa98348a19be6883b96fd58dc6de49950f80b8ca08980ceb1c1373d",
+  "status": "bounded-agent-review",
+  "findings": [
+    "Spherical Mercator; local scale is not a whole-country multiplier. Generalized boundaries are not statistical area measurements.",
+    "Inspected the encoded start/middle/end contact sheet for all seven segments and a full-size intermediate spherical-rotation frame.",
+    "The moving boundary retains the original dotted outline while its projected footprint shrinks toward the equator.",
+    "The source line and two-line limitation remain clear of the three-line caption in the detailed frame."
+  ],
+  "limitations": [
+    "No human comprehension or acceptance study.",
+    "Host document skills and local tools also contributed; this is not an isolated skill-effect comparison.",
+    "Only Mercator is drawn; meridian convergence, the local patch factor and Equal Earth tradeoffs are explained in text rather than separate visual models.",
+    "The map occupies a modest central area, and fine geographic detail is faint at small playback sizes.",
+    "No actual audio listening or continuous human viewing was performed.",
+    "No actual listening or human comprehension review; full muted playback and sampled encoded frames do not establish auditory quality.",
+    "Source and auxiliary labels may require a larger player than 640px; no zoom-free phone playback claim."
+  ],
+  "unperformed": [
+    "Human comprehension",
+    "Human acceptance"
+  ]
+}

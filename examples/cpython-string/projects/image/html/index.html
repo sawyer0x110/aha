@@ -1,0 +1,186 @@
+<!doctype html><html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Why one code point can widen a CPython string</title><script>(() => { const param = new URLSearchParams(window.location.search).get("scoutTheme"); const theme = param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); document.documentElement.setAttribute("data-theme", theme); })();</script><style>:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+
+*{box-sizing:border-box}body{margin:0;background:var(--cp-bg);color:var(--cp-text);font:18px/1.7 "Segoe UI",Aptos,Calibri,-apple-system,BlinkMacSystemFont,sans-serif}
+main{max-width:1120px;margin:auto;padding:56px 32px}h1{font-size:clamp(32px,5vw,58px);line-height:1.16;max-width:19ch;margin:16px 0 24px;letter-spacing:-.025em}
+h2{font-size:28px;line-height:1.3;margin:0 0 16px}h3{font-size:21px;line-height:1.35}p{margin:0 0 20px}.lead{font-size:22px;max-width:70ch}
+.eyebrow{font-weight:650;color:var(--cp-accent);letter-spacing:.1em;text-transform:uppercase;font-size:14px}
+.prose{max-width:72ch}.explanation{border-top:1px solid var(--cp-border);padding-top:28px;margin-top:36px}
+.controls{display:flex;gap:24px;flex-wrap:wrap;margin:24px 0;min-width:0}.controls label{display:grid;gap:8px;min-width:0;max-width:100%}
+input,select,button{font:inherit;max-width:100%;color:var(--cp-text);accent-color:var(--cp-accent)}select{padding:8px;background:var(--cp-surface);border:1px solid var(--cp-border-strong);border-radius:10px}
+a{color:var(--cp-link);overflow-wrap:anywhere}a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--cp-accent);outline-offset:5px}
+.limit{border-left:4px solid var(--cp-accent);padding:12px 20px;margin:28px 0}.sources{font-size:15px}.sources li{margin:8px 0}.sources-note{color:var(--cp-text-muted)}
+[hidden]{display:none!important}@media(max-width:600px){main{padding:28px 20px}.lead{font-size:19px}h2{font-size:24px}.controls{display:grid}.controls label{min-width:0}}
+
+.mechanism { border:1px solid var(--cp-border-strong); padding:24px; background:var(--cp-surface); border-radius:16px; overflow:hidden }
+.mechanism strong,.mechanism b { display:block }.mechanism h3 { margin:0 0 16px }.mechanism p { margin:12px 0 0 }
+.mechanism-box { padding:16px; background:var(--cp-surface-soft) }.mechanism-box strong { margin-bottom:8px }
+.big-value { font-size:1.6em; font-weight:700; font-variant-numeric:tabular-nums }
+.pressure-legend { display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between }
+.pressure-legend span:nth-child(2) { border-bottom:2px dashed var(--cp-text-muted) }.pressure-legend strong { color:var(--cp-accent) }
+.waves,.map { display:block; width:100%; height:auto }.axis { stroke:var(--cp-border); fill:none }
+.incoming { stroke:var(--cp-text); fill:none; stroke-width:2 }.control { stroke:var(--cp-text-muted); stroke-dasharray:8 5; fill:none; stroke-width:2 }
+.wave-result { stroke:var(--cp-accent); fill:none; stroke-width:4 }.result { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px }
+.model-label { color:var(--cp-text-muted); font-size:.85em; line-height:1.5 }.land { fill:var(--cp-surface-soft); stroke:var(--cp-border-strong); stroke-width:.5 }
+.gridline { stroke:var(--cp-border); fill:none; stroke-width:.6 }.moving-land { fill:var(--cp-accent); stroke:var(--cp-text); stroke-width:1 }
+.ghost { fill:none; stroke:var(--cp-text-muted); stroke-dasharray:4 3 }.map-caption { display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px }
+.slots { display:flex; gap:8px; margin:12px 0 }.slots span { display:grid; place-items:center; width:calc(30px * var(--slot-width)); max-width:17%; height:38px; border:1px solid var(--cp-border-strong); background:var(--cp-surface-soft); font-family:Consolas,monospace }
+.accent-slots span { background:var(--cp-accent-soft); border-color:var(--cp-accent) }.slots .codepoint-slot { min-width:110px; font-size:16px; max-width:none }.string-original { margin-bottom:24px }
+.memory-pair { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:24px }
+.docker-comparison { display:grid; grid-template-columns:1fr 1fr; gap:32px }.layer { border:2px solid var(--cp-border-strong); padding:16px; min-height:92px }
+.layer-placeholder { height:104px }.layer + .layer { margin-top:12px }.payload-layer { border-color:var(--cp-accent); background:var(--cp-accent-soft) }.layer span { display:block; font-family:Consolas,monospace }
+.merged { border-top:2px solid var(--cp-text); padding-top:12px; margin-top:24px }.merged strong { color:var(--cp-accent) }.endpoint { display:grid; min-height:208px; gap:12px }
+.endpoint span { display:flex; align-items:center; padding:12px 16px; background:var(--cp-surface-soft) }.emphasis { border-left:4px solid var(--cp-accent); padding-left:16px }
+@media(max-width:600px) { .mechanism { padding:16px }.docker-comparison { grid-template-columns:1fr; gap:32px }.memory-pair { grid-template-columns:1fr }.pressure-legend { font-size:.85em }.slots { gap:4px }.model-label { font-size:.9em } }
+
+body{width:1800px;height:1600px;overflow:hidden}main.poster{max-width:none;width:1800px;height:1600px;padding:64px;display:flex;flex-direction:column;gap:28px}
+.poster h1{font-size:66px;max-width:36ch;margin:12px 0 18px}.poster .lead{font-size:32px;line-height:1.45;max-width:95ch}
+.poster .eyebrow{font-size:22px}.poster .mechanism{font-size:28px;line-height:1.4;padding:24px;min-height:360px;flex-shrink:0}
+.poster .waves{max-height:200px}.poster .map{max-height:330px}.poster .model-label{font-size:24px}.poster .slots span{height:38px}
+.poster .mechanism-box{padding:10px 16px}.poster .memory-pair{margin-top:12px}.poster .string-original{margin-bottom:12px}
+.poster-notes{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}.poster-notes article{border-top:2px solid var(--cp-border-strong);padding-top:24px}
+.poster-notes h2{font-size:32px;margin-bottom:16px}.poster-notes p{font-size:26px;line-height:1.5;margin:0}.poster footer{margin-top:auto}.poster .limit{font-size:26px;margin:0 0 14px}.poster .sources{font-size:22px;line-height:1.45;margin:0}
+</style></head><body><main class="poster"><header><div class="eyebrow">A closer look · cpython-string</div><h1>Why one code point can widen a CPython string</h1><p class="lead">In this compact CPython example, one storage width applies to every code-point slot in the result. Adding U+1F600 requires four-byte slots, including the unchanged ASCII prefix. UTF-8 is a different representation.</p></header><div id="poster-mechanism" class="mechanism"></div><div class="poster-notes"><article><h2>Allocate a new result; do not mutate the original</h2><p>The pinned PyUnicode_Concat path combines operand lengths and representation ranges, allocates with PyUnicode_New, then copies both operands. This source trace does not prove the exact supplied expression dynamically called that function.</p></article><article><h2>UTF-8 keeps the ASCII prefix compact</h2><p>The UTF-8 payload grows from 100,000 to 100,004 bytes. Each ASCII code point still takes one byte; U+1F600 contributes four. Encoded payload length is neither str object size nor total process memory.</p></article><article><h2>Not every non-ASCII addition causes this jump</h2><p>A result already using four-byte slots does not undergo the same widening. Small strings have different overhead ratios. These totals describe one CPython build and object state, not every Python implementation or every emoji sequence.</p></article></div><footer><p class="limit">CPython 3.11.15, compact-string example. Recorded sizes were supplied, not rerun; slot diagrams are not to scale.</p><p class="sources">PEP 393 · flexible string representation · CPython v3.11.15 · unicodeobject.c · Python 3.11 · sys.getsizeof · Python 3.11 · Unicode HOWTO<br>Research snapshot: September 2026. Sources and scope: accompanying research/report.md.</p></footer></main><script>(function installVisuals(topic) {
+  const escape = value => String(value).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  const word = (en, zh, language) => language === "zh" ? zh : en;
+  const box = (heading, content, className = "") => `<div class="mechanism-box ${className}"><strong>${heading}</strong>${content}</div>`;
+  const value = (number, unit = "") => `<span class="big-value">${escape(number)}</span> ${escape(unit)}`;
+  let geography;
+  if (topic === "greenland") {
+    const { geoArea, geoCentroid, geoRotation, geoMercator, geoPath, geoGraticule10 } = window.Geo;
+    const features = window.MAP_DATA.features.map(feature => {
+      const g = structuredClone(feature.geometry);
+      const polygons = g.type === "Polygon" ? [g.coordinates] : g.coordinates;
+      for (const rings of polygons) {
+        if (geoArea({ type: "Polygon", coordinates: rings }) > 2 * Math.PI) rings.forEach(ring => ring.reverse());
+      }
+      return { ...feature, geometry: g };
+    });
+    const original = features.find(f => f.properties.name === "Greenland");
+    if (!original) throw new Error("Greenland boundary missing");
+    const center = geoCentroid(original), area = geoArea(original);
+    if (!(area > 0 && area < .1)) throw new Error("Invalid boundary winding");
+    const projection = geoMercator().scale(116).translate([440, 325]).clipExtent([[0, 0], [880, 380]]);
+    const path = geoPath(projection);
+    geography = progress => {
+      const rotation = geoRotation([0, -center[1] * progress, 0]);
+      const point = p => {
+        const q = rotation([p[0] - center[0], p[1]]);
+        return [((q[0] + center[0] + 540) % 360) - 180, q[1]];
+      };
+      const g = original.geometry;
+      const moved = { type: g.type, coordinates: g.type === "Polygon" ? g.coordinates.map(r => r.map(point)) : g.coordinates.map(poly => poly.map(r => r.map(point))) };
+      const areaError = Math.abs(geoArea(moved) / area - 1);
+      if (areaError > 1e-10) throw new Error("Rotation changed spherical area");
+      window.geographicState = { areaError, progress, scale: projection.scale(), originalArea: area, movedArea: geoArea(moved) };
+      return `<svg class="map" viewBox="0 0 880 380" aria-hidden="true"><path class="land" d="${path({ type: "FeatureCollection", features: features.filter(f => f !== original) })}"/><path class="gridline" d="${path(geoGraticule10())}"/><path class="ghost" d="${path(original)}"/><path class="moving-land" d="${path(moved)}"/></svg>`;
+    };
+  }
+  function draw(holder, state = 0, language = "en", options = {}) {
+    const t = (en, zh) => word(en, zh, language);
+    let html;
+    if (topic === "anc") {
+      const gain = options.gain ?? 1;
+      const phase = options.phase ?? state * 80;
+      const delta = phase * Math.PI / 180;
+      const residual = Math.sqrt(1 + gain * gain - 2 * gain * Math.cos(delta));
+      const curve = fn => Array.from({ length: 161 }, (_, i) => `${i ? "L" : "M"}${i * 5},${110 - fn(i / 160 * Math.PI * 6) * 46}`).join(" ");
+      html = `<div class="pressure-legend"><span>${t("Incoming pressure", "传入声压")}</span><span>${t("Speaker pressure", "控制声压")}</span><strong>${t("Residual sum", "相加后的残余")}</strong></div>
+        <svg viewBox="0 0 800 220" class="waves" role="img" aria-label="${t("Two pressure waves and their sum at the same ear position", "同一耳边位置两路声压与其总和")}"><path class="axis" d="M0 110H800"/><path class="incoming" d="${curve(x => Math.sin(x))}"/><path class="control" d="${curve(x => -gain * Math.sin(x + delta))}"/><path class="wave-result" d="${curve(x => Math.sin(x) - gain * Math.sin(x + delta))}"/></svg>
+        <div class="result">${t("Residual amplitude / incoming amplitude", "残余幅度 / 传入幅度")} ${value(residual.toFixed(2))}</div>
+        <p class="model-label">${t("One position · normalized pressure · not decibels or loudness", "同一位置 · 归一化声压 · 非分贝或响度")}</p>`;
+      holder.dataset.residual = residual.toFixed(6);
+    } else if (topic === "greenland") {
+      html = geography(state) + `<div class="map-caption"><strong>${t("Highlighted: Greenland", "高亮：格陵兰")}</strong><span>${t("Rigid rotation · constant spherical area", "球面刚体旋转 · 球面面积不变")}</span></div><p class="model-label">${t("Fixed spherical Mercator scale · poles cropped · dotted original outline", "固定球面墨卡托比例 · 两极裁切 · 虚线为原轮廓")}</p>`;
+    } else if (topic === "cpython-string") {
+      const cases = [
+        { cp: "U+00E9", kind: 1, bytes: "100,074", utf: "100,002" },
+        { cp: "U+4E2D", kind: 2, bytes: "200,076", utf: "100,003" },
+        { cp: "U+1F600", kind: 4, bytes: "400,080", utf: "100,004" },
+      ];
+      const selected = cases[options.caseIndex ?? 2];
+      const assembling = state > 0 && state < .8;
+      const width = state < .25 ? 1 : 1 + (selected.kind - 1) * Math.min(1, (state - .25) / .55);
+      const slots = (kind, last, cls = "") => `<div class="slots ${cls}" style="--slot-width:${kind}">${["a", "a", "a", "…", "a", last].map((s, i) => `<span${i === 5 && last !== "a" ? ' class="codepoint-slot"' : ""}>${escape(s)}</span>`).join("")}</div>`;
+      html = `<div class="string-original"><strong>${t("Original str: unchanged", "原 str：保持不变")}</strong>${slots(1, "a")}<small>${t("100,000 ASCII code points · 1 byte per slot", "100,000 个 ASCII 码点 · 每槽 1 字节")}</small></div>
+        <div class="string-result" style="visibility:${state > 0 ? "visible" : "hidden"}"><strong>${assembling ? t("Allocating the new result", "正在分配新结果") : t("New str after concatenation", "拼接后的新 str")} · ${escape(selected.cp)}</strong>${slots(width, selected.cp, "accent-slots")}<small>${t("Target: uniform slots in the new result", "目标：新结果中的码点槽统一宽度")} · ${selected.kind} ${t("bytes per code point", "字节 / 码点")}</small></div>
+        <div class="memory-pair">${box(t("str object", "str 对象"), value(state < .8 ? "100,049" : selected.bytes, t("bytes", "字节")))}${box(t("UTF-8 payload", "UTF-8 载荷"), value(state < .8 ? "100,000" : selected.utf, t("bytes", "字节")))}</div>
+        <p class="model-label">${t("Supplied CPython 3.11.15 observations; representative slots, not 100,000 drawn cells.", "既有 CPython 3.11.15 记录；仅绘制代表槽，并非十万个实际格子。")}</p>`;
+      holder.dataset.kind = selected.kind;
+    } else {
+      const stage = options.stage ?? (state < .33 ? "add" : state < .7 ? "delete" : "same");
+      const deletion = stage !== "add";
+      const base = stage === "base";
+      const layer = (label, text, cls = "") => `<div class="layer ${cls}"><b>${label}</b><span>${text}</span></div>`;
+      html = `<div class="docker-comparison">
+        <div><h3>${t("Separate RUNs", "分开的 RUN")}</h3><div class="layer-stack">${deletion ? layer(t("Later layer", "后加层"), ".wh.temp", "marker-layer") : '<div class="layer-placeholder"></div>'}${layer(deletion ? t("Earlier layer", "先前层") : t("First committed layer", "首个提交层"), "/temp · 100 MB", "payload-layer")}</div><div class="merged"><b>${t("Merged view", "合并视图")}</b><strong>${deletion ? t("/temp absent", "/temp 不存在") : t("/temp visible", "/temp 可见")}</strong></div></div>
+        <div><h3>${t("Same RUN · NEW file", "同一 RUN · 新文件")}</h3><div class="endpoint"><span>${t("Before: absent", "之前：不存在")}</span><span>${t("Create → delete", "创建 → 删除")}</span><span>${t("After: absent", "之后：不存在")}</span></div><div class="merged"><b>${t("Resulting diff", "生成的差异")}</b><strong>${t("No payload for this file", "没有此文件的载荷")}</strong></div></div></div>
+        <p class="model-label ${base ? "emphasis" : ""}">${base ? t("Base-file exception: deleting a file already in the base still leaves its lower-layer bytes.", "基础层反例：删除基础层已有文件，仍会保留下层字节。") : t("Layer cutaway ≠ merged view. 100 MB assumed; no build executed.", "层剖面 ≠ 合并视图。100 MB 为假设；未执行构建。")}</p>`;
+      holder.dataset.stage = stage;
+    }
+    holder.innerHTML = html;
+  }
+  window.drawMechanism = draw;
+  for (const section of document.querySelectorAll("[data-aha-lang]")) {
+    const holder = section.querySelector(".mechanism");
+    const language = section.dataset.ahaLang;
+    const update = () => {
+      if (topic === "anc") draw(holder, 0, language, { gain: Number(section.querySelector(".gain").value), phase: Number(section.querySelector(".phase").value) });
+      else if (topic === "greenland") draw(holder, Number(section.querySelector(".position").value), language);
+      else if (topic === "cpython-string") draw(holder, 1, language, { caseIndex: Number(section.querySelector(".codepoint").value) });
+      else draw(holder, 0, language, { stage: section.querySelector(".scenario").value });
+    };
+    section.querySelectorAll("input,select").forEach(input => input.addEventListener("input", update));
+    update();
+  }
+})("cpython-string");document.documentElement.dataset.theme = new URLSearchParams(location.search).get("scoutTheme") || "light"; window.drawMechanism(document.getElementById("poster-mechanism"), 1, "en", {});</script></body></html>

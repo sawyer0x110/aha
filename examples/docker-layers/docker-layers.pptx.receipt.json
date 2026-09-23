@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "delivered",
+  "format": "pptx",
+  "title": "文件删了，Docker 旧层的字节为什么还在？",
+  "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
+  "sourceHash": "94cf6ccde7e4b087e25975af1ea6b1a0d6b24721569fe3ace4e97160c753d0b8",
+  "outputHash": "6900a2831568d23fd772bdb5f9fb0952d294c2bacb0df7428deccace9fe0bd2e",
+  "output": "docker-layers.pptx",
+  "createdAt": "2026-09-22T10:57:05.418Z",
+  "codeExecuted": true,
+  "sandboxed": false,
+  "native": true,
+  "slides": 7,
+  "verification": "Source/output hashes and declared claim coverage, not semantic truth or visual quality. Receipts describe a specific source revision; recheck the source hash after edits."
+}

@@ -1,0 +1,21 @@
+{
+  "sourceHash": "a29d5fb6b8c1c07291999d7c2fc3ceace5f7f2ca2a52ff30d266bcea63ceeb6e",
+  "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6",
+  "outputHash": "012aed32afcffa5724530bcc8390dd9dd80d45c4d52bd8119d8ced4101f60524",
+  "receiptHash": "4de7e68a5ee4d10cb251c7a32323570785ce8e36210124f0330d252a12170435",
+  "status": "bounded-agent-review",
+  "findings": [
+    "Spherical Mercator; local scale is not a whole-country multiplier. Generalized boundaries are not statistical area measurements.",
+    "Both languages, both themes and 1280/390/320px controls and page geometry checked offline.",
+    "Representative current full-page screenshots inspected: standalone titles, mechanism labels, explanatory paragraphs and source limitations remain visible."
+  ],
+  "limitations": [
+    "No human comprehension or acceptance study.",
+    "Host document skills and local tools also contributed; this is not an isolated skill-effect comparison.",
+    "No physical-phone or screen-reader acceptance; geometric and interaction checks are not a complete independent visual review."
+  ],
+  "unperformed": [
+    "Human comprehension",
+    "Human acceptance"
+  ]
+}

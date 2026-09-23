@@ -1,0 +1,20 @@
+{
+  "sourceHash": "f11dbebe3f885df2d818ee469517032c65eb4cc3a3f1dd7490f2894341f4cb6a",
+  "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6",
+  "outputHash": "f39cfa97735a8e990dad2b9db140932bc4650a07033e9eba88b5d8395a750a0e",
+  "receiptHash": "b7b5b61611953c7c0d65beabd0e80bfec1e4d02003d8f3720a03c425b33050a5",
+  "status": "bounded-agent-review",
+  "findings": [
+    "Spherical Mercator; local scale is not a whole-country multiplier. Generalized boundaries are not statistical area measurements.",
+    "Actual 1200px reading preview inspected: mechanism labels, explanatory columns and limitations are visible without clipping."
+  ],
+  "limitations": [
+    "No human comprehension or acceptance study.",
+    "Host document skills and local tools also contributed; this is not an isolated skill-effect comparison.",
+    "Desktop/document reading at 1200px or wider; zoom-free phone reading is not promised."
+  ],
+  "unperformed": [
+    "Human comprehension",
+    "Human acceptance"
+  ]
+}

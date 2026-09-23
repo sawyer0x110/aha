@@ -3,28 +3,26 @@
   "format": "pptx",
   "language": "zh",
   "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6",
-  "title": "格陵兰为什么在某些世界地图上显得巨大？",
+  "title": "墨卡托地图为什么把格陵兰放大了？",
   "status": "authored",
   "entry": "pptx/main.mjs",
   "coverage": [
-    { "id": "slide-01-direct-answer", "claimIds": ["c-cause", "c-area"] },
-    { "id": "slide-02-area-chart", "claimIds": ["c-area"] },
-    { "id": "slide-03-projection-mechanism", "claimIds": ["c-bridge", "c-cause"] },
-    { "id": "slide-04-local-scale", "claimIds": ["c-scale"] },
-    { "id": "slide-05-mercator-purpose", "claimIds": ["c-navigation", "c-poles"] },
-    { "id": "slide-06-projection-table", "claimIds": ["c-equal", "c-navigation", "c-poles"] },
-    { "id": "slide-07-reading-map", "claimIds": ["c-area", "c-cause", "c-equal"] }
-  ],
-  "omissions": [
     {
-      "claimId": "c-resource",
-      "reason": "本作品不使用地理边界数据或地图图片；未下载 Natural Earth，因此省略资源许可与数据处理分支。"
-    },
-    {
-      "claimId": "c-motion",
-      "reason": "本轮交付静态演示文稿源项目，不实现球面旋转动画，也不把未执行的实现方案描述为实验结果。"
+      "id": "pptx-central-mechanism",
+      "claimIds": [
+        "c-area",
+        "c-cause",
+        "c-bridge",
+        "c-scale",
+        "c-navigation",
+        "c-poles",
+        "c-equal",
+        "c-resource",
+        "c-motion"
+      ]
     }
   ],
+  "omissions": [],
   "width": 1280,
   "height": 720
 }

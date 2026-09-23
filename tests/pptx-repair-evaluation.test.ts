@@ -14,7 +14,7 @@ const { prepareRepairEval, verifyRepairRun, discoverImageLiteral } = await impor
   pathToFileURL(path.join(harness, 'prepare.mjs')).href);
 const { inventory, sha256 } = await import(pathToFileURL(path.join(root, 'evals', 'pptx-first-round', 'prepare.mjs')).href);
 const { prepareRepairReview, receiptSourceHash } = await import(pathToFileURL(path.join(harness, 'prepare-review.mjs')).href);
-const ids = ['git-merge', 'anc', 'greenland', 'aha-introduction'];
+const ids = ['cpython-string', 'anc', 'greenland', 'aha-introduction'];
 const conditions = ['baseline', 'candidate'];
 const workspace = path.join(harness, `.fixtures-${randomUUID()}`);
 const baseline = path.join(workspace, 'baseline');
@@ -110,7 +110,7 @@ before(async () => {
     await write(path.join(rendered, 'contact-01.png'), png);
     await write(path.join(rendered, 'edit-table-cell-03.png'), png);
     await write(path.join(rendered, 'editing-probe.pptx'), 'Not the seed deck; excluded from author inputs.');
-    await write(path.join(rendered, 'powerpoint-observations.json'), (id === 'git-merge' ? '\uFEFF' : '') + JSON.stringify({
+    await write(path.join(rendered, 'powerpoint-observations.json'), (id === 'cpython-string' ? '\uFEFF' : '') + JSON.stringify({
       application: 'Microsoft PowerPoint', version: 'fixture-only', outputHash: sha256(deck), originalUnchanged: true, slides,
     }));
     await write(path.join(original, 'host-private-analysis.txt'), 'Do not leak old grading answers.');
@@ -194,12 +194,12 @@ test('all PPT evaluation entry points use the introduction corpus instead of the
 
 test('accepts PowerShell BOM observations while preserving original seed bytes and hashes', async () => {
   const relative = path.join('rendered', 'powerpoint-observations.json');
-  const original = await fs.readFile(path.join(seedRunRoot, 'git-merge', 'candidate', 'outputs',
+  const original = await fs.readFile(path.join(seedRunRoot, 'cpython-string', 'candidate', 'outputs',
     'rendered-repaired', 'powerpoint-observations.json'));
   assert.equal(original.subarray(0, 3).toString('hex'), 'efbbbf');
-  assert.equal(result.run.seeds['git-merge'].files['rendered/powerpoint-observations.json'].sha256, sha256(original));
-  for (const directory of [path.join(output, 'seeds', 'git-merge'),
-    ...conditions.map(condition => path.join(output, 'git-merge', condition, 'inputs'))]) {
+  assert.equal(result.run.seeds['cpython-string'].files['rendered/powerpoint-observations.json'].sha256, sha256(original));
+  for (const directory of [path.join(output, 'seeds', 'cpython-string'),
+    ...conditions.map(condition => path.join(output, 'cpython-string', condition, 'inputs'))]) {
     assert.deepEqual(await fs.readFile(path.join(directory, relative)), original);
   }
 });

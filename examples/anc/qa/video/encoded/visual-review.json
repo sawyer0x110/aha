@@ -1,0 +1,20 @@
+{
+  "sourceHash": "f20ffebddb23ef32b61a2891de7934a487c9fe4c81309f24335e27afd252d7c5",
+  "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
+  "outputHash": "6de9e0761e375ebf1e8ae996e2114210a51b1eb07f064cf952abc53e2511801e",
+  "receiptHash": "bd88621ce2d1d756f77506eaf18f5f7dcb5ba752e0ca8893f1c7f6528daa4add",
+  "reviewedFiles": [
+    "encoded/contact.png",
+    "encoded/2-middle.png"
+  ],
+  "findings": [
+    "Inspected the encoded start/middle/end contact sheet for all seven segments and the full-size three-line-caption example.",
+    "Residual visibly changes as phase alignment changes; the ideal complete-cancellation condition remains separate from partial reduction.",
+    "The repaired source line is above the caption overlay, and the progress bar is below it. No clipping or overlapping chapter labels observed in the sampled frames."
+  ],
+  "limitations": [
+    "Contact-sheet cells are reduced views, not individual full-resolution inspection of every frame.",
+    "Later fit, speech and passive-isolation explanations reuse the pressure model; those additional mechanisms are discussed rather than separately simulated.",
+    "No actual audio listening or continuous human viewing was performed."
+  ]
+}

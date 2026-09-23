@@ -1,92 +1,50 @@
 {
   "schemaVersion": "1.0.0",
-  "planHash": "0953231d9094642e782ab70a8b8910dac20377b3cd44f8c2adda8050270585b7",
-  "provider": "edge-tts",
-  "voice": "en-US-AriaNeural",
+  "planHash": "4d6ce157139a64bb9ccd8ccd471bc1c9757acdae1928ceb5e70248978eaee193",
+  "provider": "provided-audio",
+  "voice": "approved-jenny-recordings",
   "segments": [
     {
-      "id": "opening",
+      "id": "segment-1",
       "filename": "segment-001.wav",
-      "frames": 278,
-      "sha256": "1b24cec678cc726bba8176a0929248c746f76e20c329b51b734b1af1b9bda18f"
+      "frames": 331,
+      "sha256": "29461fb30de6e3bad254d52771c619235d5947f9cf6da1c0a823de49b6c3892c"
     },
     {
-      "id": "area-bars",
+      "id": "segment-2",
       "filename": "segment-002.wav",
-      "frames": 312,
-      "sha256": "647ba406e1bf6ed474eeb596862cdb31cf2023e7f600b123b7f81d1b7907ba78"
+      "frames": 348,
+      "sha256": "af8dce1c7548424fdcbb08994676fa05fa8a86a8d5d44603941c5cb7a3be81a2"
     },
     {
-      "id": "meridians-globe",
+      "id": "segment-3",
       "filename": "segment-003.wav",
-      "frames": 247,
-      "sha256": "56ac810a242ccee14f13b87ae805e0eabc5d97cadbf7cbe91fdaf6e255d22303"
+      "frames": 375,
+      "sha256": "601d1ef109b04bde7513578fed432777010f7661e821da70a5704ca2f23ac0ea"
     },
     {
-      "id": "meridians-map",
+      "id": "segment-4",
       "filename": "segment-004.wav",
-      "frames": 263,
-      "sha256": "1815f65224d20224196c15e3df15b571b4d0ff152c53b55cc4f42060f1354511"
+      "frames": 297,
+      "sha256": "79ec322e5dd7b1a4e50f07c4ee0ac9387e5033aae64de97427bb5ed223991607"
     },
     {
-      "id": "latitude-stretch",
+      "id": "segment-5",
       "filename": "segment-005.wav",
-      "frames": 253,
-      "sha256": "a74cda671a7a41e0eee83a6bfd6709f39d3c0be34e9485b22ebec06da235d20b"
+      "frames": 399,
+      "sha256": "bdef42a48017cc38dcaee09bc226137782079c5e1a1cad013b4766a06cceb032"
     },
     {
-      "id": "local-patch",
+      "id": "segment-6",
       "filename": "segment-006.wav",
-      "frames": 206,
-      "sha256": "3dc46445f7a6fbf1c2ecb4f700dd53f14a5b6edf5514e7725cc5b73b1193e1b4"
+      "frames": 307,
+      "sha256": "f556cddcf5f81076b1ea72be29a4b112c0d20103bac08ce7fd9eda34e40591aa"
     },
     {
-      "id": "local-area",
+      "id": "segment-7",
       "filename": "segment-007.wav",
-      "frames": 242,
-      "sha256": "f1246054eec51530de94d8c6f38629bd837daba0e988f6268f2a90a93bef4395"
-    },
-    {
-      "id": "moving-greenland",
-      "filename": "segment-008.wav",
-      "frames": 256,
-      "sha256": "3a66c84c6e4f5e73fb0016477222cc643682a7e3e57dd320a1e2095a0f28b50c"
-    },
-    {
-      "id": "unchanged-area",
-      "filename": "segment-009.wav",
-      "frames": 252,
-      "sha256": "87b72f0bb8bb5dd8484e68563a3669e3622f61ec6a0958173e50063217029b5a"
-    },
-    {
-      "id": "local-angles",
-      "filename": "segment-010.wav",
-      "frames": 225,
-      "sha256": "cdbb15da65455bccca3ad41723915a98e8a6ab33cbdb3cb0127dabff44d8f86f"
-    },
-    {
-      "id": "constant-heading",
-      "filename": "segment-011.wav",
-      "frames": 236,
-      "sha256": "54ca6f80eae4d7f8c8e1b3697b6e77cb4dc4d9e8fad6873a6e88161e81f9884b"
-    },
-    {
-      "id": "equal-earth",
-      "filename": "segment-012.wav",
-      "frames": 288,
-      "sha256": "09703fa9241bd99eb9b3a1523a4010af3f2d1ebedbb415f45b806d44f9ca88ea"
-    },
-    {
-      "id": "projection-tradeoff",
-      "filename": "segment-013.wav",
-      "frames": 206,
-      "sha256": "cb4c63d269575e80e3467c6c3da3b39b6fccb9be20a11624474efb1f67a8d3c0"
-    },
-    {
-      "id": "closing-choice",
-      "filename": "segment-014.wav",
-      "frames": 208,
-      "sha256": "b62b26a74e50e84f2e7aa477974f575c9a46730b60ba15ce531a6549690ae1aa"
+      "frames": 367,
+      "sha256": "a1846582ea2e50723a593c390c5b778ac9891406acb8cc2fd9b2cccf6ba8ed1e"
     }
   ]
 }

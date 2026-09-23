@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "round": "pptx-first-round",
-  "corpus_revision": "aha-introduction-20260917",
+  "corpus_revision": "current-topics-20260922",
   "common_prompt": "请仅使用提供的冻结 Research Dossier，创作 5–8 页中文原生可编辑 PPTX。读者可见的标题、正文、图表标签、说明和演讲者备注使用中文（必要的代码、产品名和术语可保留）。保留会影响结论的条件、不确定性和材料限制；提供有助于讲解的备注。页数是本轮资源预算，不是通用幻灯片规则。不要检索新资料或把材料里的历史记录称为本轮新观察。此次只交付作者源项目和静态检查结果，不执行作者模块、不渲染。",
   "common_rubric": [
     {
@@ -32,19 +32,19 @@
   ],
   "cases": [
     {
-      "id": "git-merge",
-      "research": "examples/git-merge/research",
-      "prompt": "给了解提交和分支的开发者解释：为什么 Git 合并有时会带回已撤销的修改？用材料中的具体状态帮助他们理解如何判断合并结果，并说明排查时应注意什么。",
+      "id": "cpython-string",
+      "research": "examples/cpython-string/research",
+      "prompt": "给了解 Python 字符串的开发者解释：为何在提供的 CPython 3.11.15 示例中，加入 U+1F600 能使新字符串对象接近四倍大？区分原对象、新对象和 UTF-8 载荷；只读材料，不运行代码。",
       "rubric": [
         {
-          "id": "git-mechanism",
-          "criterion": "基点与两侧当前状态之间的关系可见；普通 revert 示例推导为 off/off/on → on，解释不是重放提交或永久禁令；历史参与找基点。",
-          "evidence": "report.md 的“基点”“没有运行的推导例子”；核对原生状态图与读者可见推理。"
+          "id": "string-mechanism",
+          "criterion": "新结果中的码点槽使用统一宽度，U+1F600 需要四字节槽；原字符串不变，UTF-8 的 ASCII 前缀仍按一字节编码。",
+          "evidence": "report.md 的 PEP 393、PyUnicode_Concat 路径及 UTF-8 对照；核对原生图中改变与不变的对象。"
         },
         {
-          "id": "git-boundaries",
-          "criterion": "保留普通文件/通常三方合并的范围及可改变结果的条件；不把普通 revert、合并提交 revert、reset、-s ours 与 -Xours 混为一谈，不声称所有差异都冲突或干净合并必然业务正确。",
-          "evidence": "report.md 的反例、三种撤销、策略与限制；按作品实际选择的范围检查，不强制塞入所有细节。"
+          "id": "string-boundaries",
+          "criterion": "保留 CPython 3.11.15、compact 表示和所提供测量的范围；对象总字节不是纯载荷或进程内存，不把源码路径阅读说成表达式的动态追踪，不推广为所有 emoji 或 Python 实现。",
+          "evidence": "report.md 的版本、测量来源与反例；读者可见限定与演讲者备注分开检查。"
         }
       ]
     },

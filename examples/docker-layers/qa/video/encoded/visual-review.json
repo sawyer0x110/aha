@@ -1,0 +1,21 @@
+{
+  "sourceHash": "14c4856d13ed3093c5665f175138fae5d9d6622645ba06ed8478045ac13594cd",
+  "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
+  "outputHash": "8d85a1666d8ee77c0e9975dcaf894e4138abbe6e713bf96e9fc5e82dd96fa577",
+  "receiptHash": "b89c5cbf6ad1b17aec7c8d3aea2c91dad313c129eb0e5eef0de3592fb7530eef",
+  "reviewedFiles": [
+    "encoded/contact.png",
+    "encoded/3-middle.png"
+  ],
+  "findings": [
+    "Inspected the encoded start/middle/end contact sheet for all five segments and a full-size same-RUN comparison frame.",
+    "The first committed layer remains while a later whiteout appears and the merged view changes from visible to absent.",
+    "The same-RUN NEW-file comparison remains visible alongside the separate-RUN case; the preexisting-base exception and assumed-payload limitation remain explicit.",
+    "No overlapping state labels, clipped diagram content or source/caption collision observed in the sampled encoded frames."
+  ],
+  "limitations": [
+    "Most states are deliberate holds; deletion is a discrete change rather than a continuous layer animation.",
+    "The diagram is not a Docker build or a measured image-size result; auxiliary labels may require a player wider than 640px.",
+    "No actual audio listening or continuous human viewing was performed."
+  ]
+}

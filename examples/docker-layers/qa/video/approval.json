@@ -1,7 +1,55 @@
 {
-  "recordedAt": "2026-09-22T04:19:48.475Z",
-  "userAnswer": "批准本轮离线导入、渲染和验证",
-  "scope": "Four reviewed authored sources; local Edge/FFmpeg/ffprobe, exact existing audio import and source-bound plans, rendering, offline inspection and review viewer. No network/install/uploads/examples changes/publication.",
-  "planHash": "b7bdeb2e3f8330979ba40a349b2a6175cb0c66cf705b7507ecf6dd2acb44e807",
-  "sourceHash": "2219d6f667a1a7c0e99e7e25334edcb48458d3371ddb041035c28b9c716fbccb"
+  "sourceHash": "14c4856d13ed3093c5665f175138fae5d9d6622645ba06ed8478045ac13594cd",
+  "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
+  "outputHash": "8d85a1666d8ee77c0e9975dcaf894e4138abbe6e713bf96e9fc5e82dd96fa577",
+  "receiptHash": "b89c5cbf6ad1b17aec7c8d3aea2c91dad313c129eb0e5eef0de3592fb7530eef",
+  "planHash": "0bc9ada28ef592847fbd8d34adbd649eecfa68387198de08489aac6c5d000fcd",
+  "recordingPlanHash": "c36fed31e494dd851c7f2a6c802839ab897fbf78c6d021a3c33db2f62e4307d5",
+  "userAnswer": "批准四个新计划，离线复用已有录音并渲染",
+  "speechUserAnswer": "批准这四份完整旁白和上述联网配音范围",
+  "localExecutionAnswer": "批准本轮本地渲染、检查及同范围排版修复",
+  "provider": "provided-audio",
+  "voice": "approved-jenny-recordings",
+  "rate": "+0%",
+  "narration": [
+    {
+      "id": "segment-1",
+      "text": "Suppose a successful RUN leaves a new file with one hundred megabytes of uncompressed payload. In this ordinary unsquashed example, that payload becomes part of an immutable image layer.",
+      "claimIds": [
+        "c-layer",
+        "c-example"
+      ]
+    },
+    {
+      "id": "segment-2",
+      "text": "A later RUN deletes the path. A whiteout hides it in the merged view, but the earlier layer still contains the payload. The whiteout is not an ordinary visible file in that merged view.",
+      "claimIds": [
+        "c-delete"
+      ]
+    },
+    {
+      "id": "segment-3",
+      "text": "Now create and delete a NEW temporary file inside one RUN. The path is absent both before and after, so its payload is not added to that resulting diff. Other changes can still remain.",
+      "claimIds": [
+        "c-same"
+      ]
+    },
+    {
+      "id": "segment-4",
+      "text": "Do not apply that conclusion to a file already in the base layer. Deleting it still cannot rewrite the older layer or reclaim its bytes.",
+      "claimIds": [
+        "c-base"
+      ]
+    },
+    {
+      "id": "segment-5",
+      "text": "The one hundred megabytes is an assumption, not a measured image or download saving. Compression and cache use are different quantities. A running container also has a separate writable layer.",
+      "claimIds": [
+        "c-size",
+        "c-writable"
+      ]
+    }
+  ],
+  "disclosure": "Only complete narration and voice/rate parameters to Microsoft Edge online speech via edge-tts 7.2.8; no dossiers, source, screenshots.",
+  "currentImportUsesNetwork": false
 }

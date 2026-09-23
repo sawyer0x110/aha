@@ -1,0 +1,54 @@
+{
+  "sourceHash": "9b3326f91e9426b39ac0444eb3b767342ce98c832052239286b0f87faa3f75a5",
+  "researchHash": "04cdf5f8906f1385f8575b9c99d46ae60bfe4c2c37e79982658a19d9d617daf8",
+  "outputHash": "0db1e93f5ab340a961318f0452ad443808d9b051964c0bba827339d639a48c23",
+  "receiptHash": "560fd01171c7f055d2ef20097d5315aaa9332f1c0acffabaf10b84738ea50feb",
+  "planHash": "50dd8ab789890fd69c1299a22da6aaa921918c988cd5ca512e8c581ac3823400",
+  "recordingPlanHash": "0fe035535f68a92b100ab321188b6a840f4c0e6134487a48b36e4b192bfc3141",
+  "userAnswer": "批准四个新计划，离线复用已有录音并渲染",
+  "speechUserAnswer": "批准这四份完整旁白和上述联网配音范围",
+  "localExecutionAnswer": "批准本轮本地渲染、检查及同范围排版修复",
+  "provider": "provided-audio",
+  "voice": "approved-jenny-recordings",
+  "rate": "+0%",
+  "narration": [
+    {
+      "id": "segment-1",
+      "text": "Start with one hundred thousand ASCII code points in a compact CPython string. Their internal character slots use one byte each.",
+      "claimIds": [
+        "c-width"
+      ]
+    },
+    {
+      "id": "segment-2",
+      "text": "Concatenate U plus one F six hundred. The new result needs four-byte slots for every code point, including the unchanged ASCII prefix. The original string is not modified.",
+      "claimIds": [
+        "c-width",
+        "c-concat"
+      ]
+    },
+    {
+      "id": "segment-3",
+      "text": "A supplied CPython three point eleven point fifteen observation reports one hundred thousand forty-nine bytes before, and four hundred thousand eighty bytes after. Those totals include object overhead; this is not a new measurement.",
+      "claimIds": [
+        "c-measure"
+      ]
+    },
+    {
+      "id": "segment-4",
+      "text": "UTF-eight is different. Its ASCII prefix still uses one byte per code point, and the added code point contributes four bytes. The encoded payload grows by four, not fourfold.",
+      "claimIds": [
+        "c-utf8"
+      ]
+    },
+    {
+      "id": "segment-5",
+      "text": "Not every non-ASCII character forces four-byte slots. U plus zero zero E nine stays in the one-byte class, while U plus four E two D uses two. Code-point range is the key, not an emoji label.",
+      "claimIds": [
+        "c-boundaries"
+      ]
+    }
+  ],
+  "disclosure": "Only complete narration and voice/rate parameters to Microsoft Edge online speech via edge-tts 7.2.8; no dossiers, source, screenshots.",
+  "currentImportUsesNetwork": false
+}

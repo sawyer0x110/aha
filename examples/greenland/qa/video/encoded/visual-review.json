@@ -1,0 +1,20 @@
+{
+  "sourceHash": "16bfa98aad39759699cafec1a627046ff52c93402fee7803a9bcdcf583d0226c",
+  "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6",
+  "outputHash": "e77c15c19063ebcfbecc051515c4cf7a9ddb02f53f64bc682e64a009273f34d5",
+  "receiptHash": "7e4946dedaa98348a19be6883b96fd58dc6de49950f80b8ca08980ceb1c1373d",
+  "reviewedFiles": [
+    "encoded/contact.png",
+    "encoded/5-middle.png"
+  ],
+  "findings": [
+    "Inspected the encoded start/middle/end contact sheet for all seven segments and a full-size intermediate spherical-rotation frame.",
+    "The moving boundary retains the original dotted outline while its projected footprint shrinks toward the equator.",
+    "The source line and two-line limitation remain clear of the three-line caption in the detailed frame."
+  ],
+  "limitations": [
+    "Only Mercator is drawn; meridian convergence, the local patch factor and Equal Earth tradeoffs are explained in text rather than separate visual models.",
+    "The map occupies a modest central area, and fine geographic detail is faint at small playback sizes.",
+    "No actual audio listening or continuous human viewing was performed."
+  ]
+}

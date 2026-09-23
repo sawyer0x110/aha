@@ -1,0 +1,12 @@
+{
+  "artifactHash": "8d85a1666d8ee77c0e9975dcaf894e4138abbe6e713bf96e9fc5e82dd96fa577",
+  "ended": true,
+  "seconds": 58.3,
+  "width": 1280,
+  "height": 720,
+  "error": null,
+  "decodedFrames": 1753,
+  "droppedFrames": 21,
+  "observedAt": "2026-09-22T11:26:47.287Z",
+  "scope": "Actual complete muted playback in headless Edge; not audio listening or human visual acceptance."
+}
