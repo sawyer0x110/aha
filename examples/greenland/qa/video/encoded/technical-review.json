@@ -1,97 +1,255 @@
 {
-  "artifact": "greenland/greenland.mp4",
-  "artifactHash": "3cd9709076af808345f395ba7038088f2b6e394521b2218675e0cc93d0bad8a3",
-  "durationSeconds": 115.73333333333333,
-  "totalFrames": 3472,
-  "completeDecode": "passed",
-  "subtitlesMatchApprovedNarration": true,
-  "frameSamples": [
+  "artifactHash": "e77c15c19063ebcfbecc051515c4cf7a9ddb02f53f64bc682e64a009273f34d5",
+  "sourceHash": "16bfa98aad39759699cafec1a627046ff52c93402fee7803a9bcdcf583d0226c",
+  "planHash": "4d6ce157139a64bb9ccd8ccd471bc1c9757acdae1928ceb5e70248978eaee193",
+  "frames": 2424,
+  "seconds": 80.8,
+  "fullDecode": true,
+  "exactApprovedSubtitleTextAndTiming": true,
+  "streams": [
     {
-      "segment": "opening",
-      "frame": 139,
-      "timeSeconds": 4.633333333333334,
-      "file": "01-opening.png"
+      "index": 0,
+      "codec_name": "h264",
+      "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+      "profile": "High",
+      "codec_type": "video",
+      "codec_tag_string": "avc1",
+      "codec_tag": "0x31637661",
+      "mime_codec_string": "avc1.64001f",
+      "width": 1280,
+      "height": 720,
+      "coded_width": 1280,
+      "coded_height": 720,
+      "has_b_frames": 2,
+      "pix_fmt": "yuv420p",
+      "level": 31,
+      "chroma_location": "left",
+      "field_order": "progressive",
+      "refs": 4,
+      "is_avc": "true",
+      "nal_length_size": "4",
+      "id": "0x1",
+      "r_frame_rate": "30/1",
+      "avg_frame_rate": "30/1",
+      "time_base": "1/15360",
+      "start_pts": 0,
+      "start_time": "0.000000",
+      "duration_ts": 1241088,
+      "duration": "80.800000",
+      "bit_rate": "95488",
+      "bits_per_raw_sample": "8",
+      "nb_frames": "2424",
+      "nb_read_frames": "2424",
+      "extradata_size": 45,
+      "disposition": {
+        "default": 1,
+        "dub": 0,
+        "original": 0,
+        "comment": 0,
+        "lyrics": 0,
+        "karaoke": 0,
+        "forced": 0,
+        "hearing_impaired": 0,
+        "visual_impaired": 0,
+        "clean_effects": 0,
+        "attached_pic": 0,
+        "timed_thumbnails": 0,
+        "non_diegetic": 0,
+        "captions": 0,
+        "descriptions": 0,
+        "metadata": 0,
+        "dependent": 0,
+        "still_image": 0,
+        "multilayer": 0
+      },
+      "tags": {
+        "language": "und",
+        "handler_name": "VideoHandler",
+        "encoder": "Lavc62.28.102 libx264"
+      }
     },
     {
-      "segment": "area-bars",
-      "frame": 434,
-      "timeSeconds": 14.466666666666667,
-      "file": "02-area-bars.png"
-    },
-    {
-      "segment": "meridians-globe",
-      "frame": 713,
-      "timeSeconds": 23.766666666666666,
-      "file": "03-meridians-globe.png"
-    },
-    {
-      "segment": "meridians-map",
-      "frame": 968,
-      "timeSeconds": 32.266666666666666,
-      "file": "04-meridians-map.png"
-    },
-    {
-      "segment": "latitude-stretch",
-      "frame": 1226,
-      "timeSeconds": 40.86666666666667,
-      "file": "05-latitude-stretch.png"
-    },
-    {
-      "segment": "local-patch",
-      "frame": 1456,
-      "timeSeconds": 48.53333333333333,
-      "file": "06-local-patch.png"
-    },
-    {
-      "segment": "local-area",
-      "frame": 1680,
-      "timeSeconds": 56,
-      "file": "07-local-area.png"
-    },
-    {
-      "segment": "moving-greenland",
-      "frame": 1929,
-      "timeSeconds": 64.3,
-      "file": "08-moving-greenland.png"
-    },
-    {
-      "segment": "unchanged-area",
-      "frame": 2183,
-      "timeSeconds": 72.76666666666667,
-      "file": "09-unchanged-area.png"
-    },
-    {
-      "segment": "local-angles",
-      "frame": 2421,
-      "timeSeconds": 80.7,
-      "file": "10-local-angles.png"
-    },
-    {
-      "segment": "constant-heading",
-      "frame": 2652,
-      "timeSeconds": 88.4,
-      "file": "11-constant-heading.png"
-    },
-    {
-      "segment": "equal-earth",
-      "frame": 2914,
-      "timeSeconds": 97.13333333333334,
-      "file": "12-equal-earth.png"
-    },
-    {
-      "segment": "projection-tradeoff",
-      "frame": 3161,
-      "timeSeconds": 105.36666666666666,
-      "file": "13-projection-tradeoff.png"
-    },
-    {
-      "segment": "closing-choice",
-      "frame": 3368,
-      "timeSeconds": 112.26666666666667,
-      "file": "14-closing-choice.png"
+      "index": 1,
+      "codec_name": "aac",
+      "codec_long_name": "AAC (Advanced Audio Coding)",
+      "profile": "LC",
+      "codec_type": "audio",
+      "codec_tag_string": "mp4a",
+      "codec_tag": "0x6134706d",
+      "mime_codec_string": "mp4a.40.2",
+      "sample_fmt": "fltp",
+      "sample_rate": "48000",
+      "channels": 1,
+      "channel_layout": "mono",
+      "bits_per_sample": 0,
+      "initial_padding": 0,
+      "id": "0x2",
+      "r_frame_rate": "0/0",
+      "avg_frame_rate": "0/0",
+      "time_base": "1/48000",
+      "start_pts": 0,
+      "start_time": "0.000000",
+      "duration_ts": 3878400,
+      "duration": "80.800000",
+      "bit_rate": "113865",
+      "nb_frames": "3789",
+      "nb_read_frames": "3788",
+      "extradata_size": 5,
+      "disposition": {
+        "default": 1,
+        "dub": 0,
+        "original": 0,
+        "comment": 0,
+        "lyrics": 0,
+        "karaoke": 0,
+        "forced": 0,
+        "hearing_impaired": 0,
+        "visual_impaired": 0,
+        "clean_effects": 0,
+        "attached_pic": 0,
+        "timed_thumbnails": 0,
+        "non_diegetic": 0,
+        "captions": 0,
+        "descriptions": 0,
+        "metadata": 0,
+        "dependent": 0,
+        "still_image": 0,
+        "multilayer": 0
+      },
+      "tags": {
+        "language": "und",
+        "handler_name": "SoundHandler"
+      }
     }
   ],
-  "playbackListening": "not-performed",
-  "userFullVideoAcceptance": "not-recorded",
-  "boundary": "Encoded frame inspection is separate from continuous watching and listening."
+  "samples": [
+    {
+      "id": "segment-1",
+      "frame": 0,
+      "filename": "1-start.png",
+      "sha256": "993c702be386eb2d170acc02856c6558f40fc435c5ef33ad3d493b82ddf82a9b"
+    },
+    {
+      "id": "segment-1",
+      "frame": 165,
+      "filename": "1-middle.png",
+      "sha256": "e1ce5fd934496ebff943f0e4d75582bd2916823735a02a4c7254390969929ce7"
+    },
+    {
+      "id": "segment-1",
+      "frame": 330,
+      "filename": "1-end.png",
+      "sha256": "67ee80975bea141e557505f5eec70bce2ea38a3f35029cc9d5f51b4db26dd315"
+    },
+    {
+      "id": "segment-2",
+      "frame": 331,
+      "filename": "2-start.png",
+      "sha256": "d6e3bb7e1dd71514ea8635f01899e10386278af742d75844163a39e535a05cce"
+    },
+    {
+      "id": "segment-2",
+      "frame": 505,
+      "filename": "2-middle.png",
+      "sha256": "1f4272b54c2192fb049ea19517ce42afce558434181bfd6cfd161a4a1d20eaa1"
+    },
+    {
+      "id": "segment-2",
+      "frame": 678,
+      "filename": "2-end.png",
+      "sha256": "559eb0907be7bfa4476fd6301cca6193fbfbf9292337bfd57fede946dcee285d"
+    },
+    {
+      "id": "segment-3",
+      "frame": 679,
+      "filename": "3-start.png",
+      "sha256": "7b7afcc71aab3b213b801e45de62f4a844d8ed40808310b54cccbfbba8ca28d4"
+    },
+    {
+      "id": "segment-3",
+      "frame": 866,
+      "filename": "3-middle.png",
+      "sha256": "1d2870f5cb2f9a8c0018f5be350822da66ece08cec1479da00a34f3bdcdc6768"
+    },
+    {
+      "id": "segment-3",
+      "frame": 1053,
+      "filename": "3-end.png",
+      "sha256": "04573ed26eb3c2013228081a5c7e0df2aac34d00aeeadfe08df816d260754d34"
+    },
+    {
+      "id": "segment-4",
+      "frame": 1054,
+      "filename": "4-start.png",
+      "sha256": "bcba6bab04cc24d68cc2841ec8663b43e45cade475d23aaca1179f400604c0da"
+    },
+    {
+      "id": "segment-4",
+      "frame": 1202,
+      "filename": "4-middle.png",
+      "sha256": "1a4f40fae1c634e3a294010112b5729e9bffc0f0dc79c98222618e7e92a9766c"
+    },
+    {
+      "id": "segment-4",
+      "frame": 1350,
+      "filename": "4-end.png",
+      "sha256": "6fb363ab6e7ebf0de83dec692d6c63174e1263ee535116a3ac2007e822471e89"
+    },
+    {
+      "id": "segment-5",
+      "frame": 1351,
+      "filename": "5-start.png",
+      "sha256": "a6064106747d53aa01d7a036d152222244e9ce979c1bf11e54e2ccac8fe2473e"
+    },
+    {
+      "id": "segment-5",
+      "frame": 1550,
+      "filename": "5-middle.png",
+      "sha256": "5ee43ed75468b7a44f932e56518a3956590383bfc1b6d9c7d940df02df344f17"
+    },
+    {
+      "id": "segment-5",
+      "frame": 1749,
+      "filename": "5-end.png",
+      "sha256": "0e049cae2a7466eb951f3e52edee111cf8a4f1c6c527f921d0c01afd022af7bf"
+    },
+    {
+      "id": "segment-6",
+      "frame": 1750,
+      "filename": "6-start.png",
+      "sha256": "06c430ce5f93d14d17ea8bcf12bc2a4ea3d968b474a76631d53a3846b81f04fd"
+    },
+    {
+      "id": "segment-6",
+      "frame": 1903,
+      "filename": "6-middle.png",
+      "sha256": "00213d8de51f645cd14e1f52da158988274b664e22b98cec2407a1aefb91299f"
+    },
+    {
+      "id": "segment-6",
+      "frame": 2056,
+      "filename": "6-end.png",
+      "sha256": "33806e7b36c43db3f0ddf0598d27aa73c8ad00b02cbed3fa031cc313c9f4cbeb"
+    },
+    {
+      "id": "segment-7",
+      "frame": 2057,
+      "filename": "7-start.png",
+      "sha256": "59c5be9a2f168da42480945e784469ad4d3b712a9a286125cae8bd3b8f8b5f83"
+    },
+    {
+      "id": "segment-7",
+      "frame": 2240,
+      "filename": "7-middle.png",
+      "sha256": "f78717d8622276410c23ea33ec1392c185a24e9c404d4ae40104e75adfd55428"
+    },
+    {
+      "id": "segment-7",
+      "frame": 2423,
+      "filename": "7-end.png",
+      "sha256": "7287c2b4ba58b259a45d690be7fb0721af1a00940a3110c062994746a68e61e3"
+    }
+  ],
+  "listening": "unperformed: no audio-perception capability",
+  "observedAt": "2026-09-22T11:19:30.314Z"
 }

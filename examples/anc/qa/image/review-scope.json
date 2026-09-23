@@ -1,10 +1,12 @@
 {
-  "outputHash": "3151ec513a0e85fd5e1e6ea2abe3d5552dbef7f0f6bec271f899ce09cad56708",
-  "sourceHash": "078f515cec6fe5dbb9ad4506538c75de2d823ff7e1e0e2ea29eab0155032c063",
+  "sourceHash": "aa2d576a92b9f148db2c270b14ea6ec1508204f7b466a360253ad406a5d8a206",
   "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
+  "outputHash": "650ec94396483ce9f3c0d8614c178053103bb32c4559208f0763061fdb12ccec",
+  "receiptHash": "de0fd207d8adcda2543e1286961749975ee4c56d1ba454f11e1896eda475cb20",
   "status": "reading-preview-only",
   "limitations": [
-    "Available reading-size raster preview is not a standalone visual acceptance record for this image.",
-    "Designed for desktop/document reading at least 1200px wide; zoom-free phone reading is not established."
+    "No human comprehension or acceptance study.",
+    "Host document skills and local tools also contributed; this is not an isolated skill-effect comparison.",
+    "Desktop/document reading at 1200px or wider; zoom-free phone reading is not promised."
   ]
 }

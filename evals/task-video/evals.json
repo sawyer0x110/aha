@@ -1,25 +1,25 @@
 {
   "skill_name": "aha-explain",
-  "protocol": "task-video-pilot-v1",
+  "protocol": "task-video-v2",
   "evals": [
     {
       "id": 1,
-      "name": "git-plan-review",
-      "prompt": "基于提供的 Git 合并研究，给知道分支与 revert 的工程师制作一份简洁的中文离线 HTML，审查这个假设方案：『先在本分支 revert 普通提交，再以默认 ort 策略合并对侧并加 -Xours。这样能保证已撤销的 mode=on 不会回来，同时保留对侧其它更新。合并没有冲突就可以发布。』说明你的审查结论和建议。只依据提供的封存研究，不将其当成今天重新核查的版本或实际实验。不要运行 Git 操作。结构与视觉表达由你决定；不要读取已有示例成品或作者源码。",
+      "name": "docker-plan-review",
+      "prompt": "基于提供的 Docker 镜像层研究，制作简洁的中文离线 HTML 审查假设方案：『先用 RUN 下载 100 MB 临时文件，再用下一条 RUN 删除，就能减少镜像 100 MB。基础镜像已有的大文件也可以这样清理。』把假设、依据与修订建议对应起来，区分不可变层和合并视图，以及新临时文件与基础层文件。100 MB 是假定载荷；只依据封存研究，不执行 Docker、不读取现有成品或作者源码。",
       "expected_output": "A newly authored Chinese HTML explanation reviewing the proposal against the frozen research, with a scoped recommendation rather than a general Git article. Source, artifact metadata, packaged HTML and candid QA notes; browser execution remains a separate approval.",
-      "files": ["examples/git-merge/research"],
+      "files": ["examples/docker-layers/research"],
       "assertions": [
-        "The proposal is explicitly reviewed: -Xours does not guarantee excluding the reverted change when the opposing change merges cleanly.",
-        "The explanation connects base=off, ours=off and theirs=on to the scoped result on; it does not describe commit replay.",
-        "A useful correction preserves attention to other-side updates instead of recommending -s ours as an equivalent universal fix.",
-        "A conflict-free textual merge is distinguished from release readiness, and no unrun experiment or test is presented as observed.",
+        "The proposal is explicitly reviewed: a later deletion does not reclaim the immutable earlier payload.",
+        "A whiteout hides the path in the merged view rather than rewriting the old layer or appearing as an ordinary visible merged file.",
+        "The correction puts creation and deletion of a NEW temporary file in one RUN and does not claim this reclaims preexisting base-layer bytes.",
+        "Assumed payload is distinguished from measured compressed size or download savings; no unrun build is presented as observed.",
         "The delivered Chinese explanation has a self-contained question/title and source context supporting its consequential assertions."
       ]
     },
     {
       "id": 2,
       "name": "docker-mechanism-video",
-      "prompt": "Use the supplied Docker image-layer research and the exact three narration segments in narration.json to author a fresh English 20–30 second mechanism video pilot. Explain why a later RUN can hide a newly added file without reclaiming its earlier layer payload, and contrast creating/deleting that new file in the same RUN. Keep the supplied narration unchanged for later reuse of its existing recordings. The 100 MB value is an assumed uncompressed payload, not a measurement. Choose your own visual composition. Deliver authored source, coverage and any useful authoring notes; do not read an existing example video or scene source. Stop before audio import, speech synthesis or browser execution; the coordinator will obtain fresh approval for the newly bound provided-audio plan.",
+      "prompt": "Use the supplied Docker image-layer research and all five exact narration segments in the provided video-plan.json to author a fresh English mechanism video. Explain later deletion, the same-RUN contrast for a NEW temporary file, and the preexisting base-file counterexample. Keep narration unchanged for later reuse of approved recordings; use their measured timing, not a forced 20–30 second target. The 100 MB value is assumed uncompressed payload, not a measurement. Choose your own composition. Deliver source, coverage and useful authoring notes; do not read an existing video or scene source. Stop before import, synthesis or browser execution; the coordinator will obtain fresh approval for the newly bound provided-audio plan and separately review a representative pilot.",
       "expected_output": "A fresh research-bound deterministic video scene source for the approved narration, with visible layer/merged-view distinctions, meaningful motion and readable conditions. No new speech or claim of completed playback during authoring.",
       "files": ["examples/docker-layers/research", "examples/docker-layers/video-plan.json"],
       "assertions": [

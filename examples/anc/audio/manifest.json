@@ -1,92 +1,50 @@
 {
   "schemaVersion": "1.0.0",
-  "planHash": "63f09414cea430ad261de52f46822dc79ad2e8a78d10466fdf1e13e2ebea4179",
+  "planHash": "f99850cdb300d61e3ca9cad9100d8046d12615bd00ae99af7ab04290db14ed42",
   "provider": "provided-audio",
-  "voice": "aria-approved-recordings",
+  "voice": "approved-jenny-recordings",
   "segments": [
     {
-      "id": "opening",
+      "id": "segment-1",
       "filename": "segment-001.wav",
-      "frames": 285,
-      "sha256": "79caf38567accee507ec4294437ed6ffedab508c7baab90e87bc9849b691e53e"
+      "frames": 260,
+      "sha256": "34899b668815ba115fa0ce8935827366cea36a99cb419d630d3c7fa39f625bd0"
     },
     {
-      "id": "ear-sum",
+      "id": "segment-2",
       "filename": "segment-002.wav",
-      "frames": 292,
-      "sha256": "49956c9978fd7a8fc7dd2b1384afa923521d8abaaa7dee86cbd27e84a2c5e6c6"
+      "frames": 392,
+      "sha256": "762bbe32c90f9c9bc7b625928478c63e7933d47bc0ad9662cec0fcee45265b7f"
     },
     {
-      "id": "matched-pressure",
+      "id": "segment-3",
       "filename": "segment-003.wav",
-      "frames": 236,
-      "sha256": "7ec93a8f069adb06f328e2eaaeaa7230f67961f3f2847670ba0f21cb1c8936ed"
+      "frames": 365,
+      "sha256": "ac60121db40fcdf2ae6765d39c20314b96c0ed8fde2437399879e733e93b2bd2"
     },
     {
-      "id": "phase-slip",
+      "id": "segment-4",
       "filename": "segment-004.wav",
-      "frames": 251,
-      "sha256": "992236de936dc2d052c5bd6722a1d5273b575b3619855e82106334e88a79a9a2"
+      "frames": 314,
+      "sha256": "7d09ece75b1e749c71f1521a23f5370e0011e6a8fa5c72c401d52290c264597f"
     },
     {
-      "id": "same-delay",
+      "id": "segment-5",
       "filename": "segment-005.wav",
-      "frames": 253,
-      "sha256": "6b949256208685c27ba71e3402e06dbbb5cc7fdaba1ee62e4c8b05427fe04405"
+      "frames": 326,
+      "sha256": "6705de48ff7ab08c84e05a408177eb14c90668f17252741b6d6df2d2ff82b990"
     },
     {
-      "id": "no-wall",
+      "id": "segment-6",
       "filename": "segment-006.wav",
-      "frames": 327,
-      "sha256": "a06a31573f5f70fbaddcababdac61376b0e2f4eb0a5d3514daa9c26ee90d3139"
+      "frames": 323,
+      "sha256": "3987f15dc2943d486f683e6fa27ddd77acae765e5e6203d2ace038dd40e988a0"
     },
     {
-      "id": "two-layers",
+      "id": "segment-7",
       "filename": "segment-007.wav",
-      "frames": 315,
-      "sha256": "88c52b8be46c80801b7e932b52e7dc36fd92c569a9894d78364349268c9a307f"
-    },
-    {
-      "id": "residual-voice",
-      "filename": "segment-008.wav",
-      "frames": 272,
-      "sha256": "35db01016f75198d36bfefd640307fe986234183ad1291f18755280dd3bf55ee"
-    },
-    {
-      "id": "voice-counterexample",
-      "filename": "segment-009.wav",
-      "frames": 250,
-      "sha256": "5f695e46ab56eb2839cb004b7b41815ba1669860d37b929db16bc65eb55bb904"
-    },
-    {
-      "id": "counterexample-bound",
-      "filename": "segment-010.wav",
-      "frames": 257,
-      "sha256": "a2377ff0a6bba2b889df54d867881b5f171d49e4bd65a825f5578cde8d21ba2a"
-    },
-    {
-      "id": "check-mode",
-      "filename": "segment-011.wav",
-      "frames": 290,
-      "sha256": "1f45e6e19c77f8cdfc3c9865716776f992a91b4d0a88374452a608bfabee332f"
-    },
-    {
-      "id": "check-fit",
-      "filename": "segment-012.wav",
-      "frames": 258,
-      "sha256": "2c12df05a6f0a9d0e69cc4eb8dc04c1975d8a3d76041c3343c411398c8d9d8f3"
-    },
-    {
-      "id": "measurement-limit",
-      "filename": "segment-013.wav",
-      "frames": 284,
-      "sha256": "03b66dc27ce9d00f6997decc95d1594649224daecb12e7b5fcad49ce0c18c075"
-    },
-    {
-      "id": "closing",
-      "filename": "segment-014.wav",
-      "frames": 243,
-      "sha256": "762e0df6ce46dd4acc33a3111adca99d41d99c8c58a26c62992aeed70f00e495"
+      "frames": 376,
+      "sha256": "56ebcdb76fa0ead41d9e8b0304cfa4d38417f27ab59f5eddb01fc38379242595"
     }
   ]
 }

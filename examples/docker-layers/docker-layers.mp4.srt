@@ -1,11 +1,19 @@
 1
-00:00:00,000 --> 00:00:08,333
-Suppose one RUN adds a hundred-megabyte file: its payload enters an immutable image layer, which later steps cannot rewrite.
+00:00:00,000 --> 00:00:11,767
+Suppose a successful RUN leaves a new file with one hundred megabytes of uncompressed payload. In this ordinary unsquashed example, that payload becomes part of an immutable image layer.
 
 2
-00:00:08,333 --> 00:00:14,333
-A later RUN hides the file with a whiteout, but the earlier layer still holds its bytes.
+00:00:11,767 --> 00:00:24,033
+A later RUN deletes the path. A whiteout hides it in the merged view, but the earlier layer still contains the payload. The whiteout is not an ordinary visible file in that merged view.
 
 3
-00:00:14,333 --> 00:00:21,267
-Create and delete that new file within the same RUN, and its payload never enters the resulting image diff.
+00:00:24,033 --> 00:00:36,733
+Now create and delete a NEW temporary file inside one RUN. The path is absent both before and after, so its payload is not added to that resulting diff. Other changes can still remain.
+
+4
+00:00:36,733 --> 00:00:45,667
+Do not apply that conclusion to a file already in the base layer. Deleting it still cannot rewrite the older layer or reclaim its bytes.
+
+5
+00:00:45,667 --> 00:00:58,300
+The one hundred megabytes is an assumption, not a measured image or download saving. Compression and cache use are different quantities. A running container also has a separate writable layer.

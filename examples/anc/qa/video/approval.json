@@ -1,6 +1,69 @@
 {
-  "planHash": "63f09414cea430ad261de52f46822dc79ad2e8a78d10466fdf1e13e2ebea4179",
-  "recordingPlanHash": "a8dacf7f9be11c1a1f77ee2f3d51ef7f09459e1a91627ab48c2fa6114fc79b21",
-  "scope": "Only explicitly approved complete pilot/full narration and necessary voice/rate parameters sent to Edge online speech service. Later import-only plans reuse existing WAV files without another network speech call.",
-  "completeVideoListeningAndViewing": "not-confirmed"
+  "sourceHash": "f20ffebddb23ef32b61a2891de7934a487c9fe4c81309f24335e27afd252d7c5",
+  "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
+  "outputHash": "6de9e0761e375ebf1e8ae996e2114210a51b1eb07f064cf952abc53e2511801e",
+  "receiptHash": "bd88621ce2d1d756f77506eaf18f5f7dcb5ba752e0ca8893f1c7f6528daa4add",
+  "planHash": "f99850cdb300d61e3ca9cad9100d8046d12615bd00ae99af7ab04290db14ed42",
+  "recordingPlanHash": "b11045fabcd4441669d1dcffa4357db6dc0f48d8536cf4243b559032d43d9bd0",
+  "userAnswer": "批准四个新计划，离线复用已有录音并渲染",
+  "speechUserAnswer": "批准这四份完整旁白和上述联网配音范围",
+  "localExecutionAnswer": "批准本轮本地渲染、检查及同范围排版修复",
+  "provider": "provided-audio",
+  "voice": "approved-jenny-recordings",
+  "rate": "+0%",
+  "narration": [
+    {
+      "id": "segment-1",
+      "text": "Incoming noise and a headphone speaker can both change the pressure at your ear. Active noise cancellation tries to make their sum smaller.",
+      "claimIds": [
+        "c-pressure"
+      ]
+    },
+    {
+      "id": "segment-2",
+      "text": "Ideal complete cancellation needs equal amplitudes and opposite phase at the ear. Partial reduction does not require a perfect match. The microphone is elsewhere, so both acoustic paths matter.",
+      "claimIds": [
+        "c-pressure"
+      ]
+    },
+    {
+      "id": "segment-3",
+      "text": "Watch the residual as the timing slips. Even equal amplitudes no longer cancel perfectly. This moving diagram is an ideal single-tone model, not a headset measurement.",
+      "claimIds": [
+        "c-pressure",
+        "c-delay"
+      ]
+    },
+    {
+      "id": "segment-4",
+      "text": "With an assumed timing error of one tenth of a millisecond, the phase error is three point six degrees at one hundred hertz, but thirty-six degrees at one thousand hertz.",
+      "claimIds": [
+        "c-delay"
+      ]
+    },
+    {
+      "id": "segment-5",
+      "text": "The physical seal also changes how sound gets in. Passive isolation and active control work together; turning active cancellation off does not remove the seal.",
+      "claimIds": [
+        "c-passive"
+      ]
+    },
+    {
+      "id": "segment-6",
+      "text": "Speech contains many components. Some can be reduced while others remain audible. Still hearing a voice does not mean that speech is impossible to cancel.",
+      "claimIds": [
+        "c-speech"
+      ]
+    },
+    {
+      "id": "segment-7",
+      "text": "Fit, leaks and listening mode can change the result. Transparency intentionally lets outside sound in. No ideal diagram can tell us the attenuation of your particular headphones.",
+      "claimIds": [
+        "c-modes",
+        "c-measure"
+      ]
+    }
+  ],
+  "disclosure": "Only complete narration and voice/rate parameters to Microsoft Edge online speech via edge-tts 7.2.8; no dossiers, source, screenshots.",
+  "currentImportUsesNetwork": false
 }

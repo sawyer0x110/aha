@@ -1,238 +1,134 @@
 {
   "status": "delivered",
   "format": "mp4",
-  "rendererVersion": "0.3.0",
+  "output": "greenland.mp4",
+  "rendererVersion": "0.3.3",
   "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6",
-  "sourceHash": "3c61c71807f2a7fa610300e7b311371816d8f730242308b3d23a6471e8dde2ea",
-  "planHash": "0953231d9094642e782ab70a8b8910dac20377b3cd44f8c2adda8050270585b7",
-  "audioManifestHash": "c0ec435660e7951d780e22d3489d92d076a3a2b73775eabd76bb5f97ffab280e",
-  "durationSeconds": 115.73333333333333,
-  "totalFrames": 3472,
+  "sourceHash": "16bfa98aad39759699cafec1a627046ff52c93402fee7803a9bcdcf583d0226c",
+  "planHash": "4d6ce157139a64bb9ccd8ccd471bc1c9757acdae1928ceb5e70248978eaee193",
+  "audioManifestHash": "c9726fe17bd02b48343c1223ab7f2151fcfac50ea448314ced5b0bb6889d8b1f",
+  "durationSeconds": 80.8,
+  "totalFrames": 2424,
   "codec": "h264",
   "width": 1280,
   "height": 720,
   "fps": 30,
   "subtitles": "sentence-level-burned-and-srt",
-  "provider": "edge-tts",
+  "provider": "provided-audio",
   "renderer": "browser-authored-per-frame-ffmpeg",
   "sampledSourceFrames": [
     {
       "frame": 0,
       "segmentIndex": 0,
-      "sha256": "ed8490afa5a5b049514fb2901f0d43c8cc07095165713652dc54c06f597cde86"
+      "sha256": "758c5cbd0dc59d788868729dab314e4daf0c6223ca9ecbe87ae8f4a59e6bab7e"
     },
     {
-      "frame": 139,
+      "frame": 165,
       "segmentIndex": 0,
-      "sha256": "ed8490afa5a5b049514fb2901f0d43c8cc07095165713652dc54c06f597cde86"
+      "sha256": "44e3414d50f3d183c997d8e85bb07bb2cf0403479fddf1433e009da0daa47b06"
     },
     {
-      "frame": 277,
+      "frame": 330,
       "segmentIndex": 0,
-      "sha256": "ed8490afa5a5b049514fb2901f0d43c8cc07095165713652dc54c06f597cde86"
+      "sha256": "d0aa2837165730e54757761dee58576a952946375e2f1d3af0adf0994765d8ec"
     },
     {
-      "frame": 278,
+      "frame": 331,
       "segmentIndex": 1,
-      "sha256": "3debf93d52b808ff483488bf86790e7f45e745beea5e5d3f18313c229caabfe5"
+      "sha256": "5d9e66e0e95fe3e3c49ef6063f5cb0ee5144135edd338c80b3cbdcd4b6e6ab9d"
     },
     {
-      "frame": 434,
+      "frame": 505,
       "segmentIndex": 1,
-      "sha256": "a37ed6f5423dffd11c9a61bcc1d05726e8ff8c54a8f42bb680471f762d8c8f44"
+      "sha256": "998be24595f88042f4b1485568f4aa59978a2224b378589445f349e43a6e4b54"
     },
     {
-      "frame": 589,
+      "frame": 678,
       "segmentIndex": 1,
-      "sha256": "a92a3b8ea3a839396450e2d33913ccfc74ef99fc9cbb7942bdb0a8db7043a493"
+      "sha256": "ae50be38a70c069eca527101d831ab1579d7739f25b7b03b49b20bba8e39f19c"
     },
     {
-      "frame": 590,
+      "frame": 679,
       "segmentIndex": 2,
-      "sha256": "9904e8f651a118b16972b7d835968e9eaa81c2dd8234f876fb3f9f84b77cb323"
+      "sha256": "f2eb0a75dbe1ef66f984edb7a6bee1b103888b79586aa0c442caffc0663d22fd"
     },
     {
-      "frame": 713,
+      "frame": 866,
       "segmentIndex": 2,
-      "sha256": "401680dfc870b7e696bcf276ee50a49b939b8ff6e356d26bc60ffad09966f44f"
+      "sha256": "d02f3212decd757522db926e33abe88842ddfa7f822555a9da05d1ab5bf21993"
     },
     {
-      "frame": 836,
+      "frame": 1053,
       "segmentIndex": 2,
-      "sha256": "5ab5fb621db2e3ffdf3eb7aa9037f398967baf275fc8a417d33eaeea3ff4d135"
+      "sha256": "7e04918fb05544ef74c41210d631acfb385631fa2a8ec176d4d304cdd7f14f42"
     },
     {
-      "frame": 837,
+      "frame": 1054,
       "segmentIndex": 3,
-      "sha256": "b00e55b1788640bea21a454e5100adf639d9a035d140266f2d10fba150242fe9"
+      "sha256": "be88ec4fd2ee9896c8b7583dc5df9b77a939ef2b962323f170e692619a32a75e"
     },
     {
-      "frame": 968,
+      "frame": 1202,
       "segmentIndex": 3,
-      "sha256": "b00e55b1788640bea21a454e5100adf639d9a035d140266f2d10fba150242fe9"
+      "sha256": "6ec2e828d3ea8d4669e0eab7a63e4a3f60f294e95db00d18031021fc116d9e0b"
     },
     {
-      "frame": 1099,
+      "frame": 1350,
       "segmentIndex": 3,
-      "sha256": "b00e55b1788640bea21a454e5100adf639d9a035d140266f2d10fba150242fe9"
+      "sha256": "9771ef55d19f2f4c2ccd5f64d03be38b12e430faba2fab6b88a07f166a14e013"
     },
     {
-      "frame": 1100,
+      "frame": 1351,
       "segmentIndex": 4,
-      "sha256": "c1d4663dd66d505e61577135415a1fe9e65af981498cd62fe7b8c44cfaf4c225"
+      "sha256": "22a5a03028297f0626840ae31d7b56e3b439b45e5a5b4eb88f608ae34cf36408"
     },
     {
-      "frame": 1226,
+      "frame": 1550,
       "segmentIndex": 4,
-      "sha256": "c1d4663dd66d505e61577135415a1fe9e65af981498cd62fe7b8c44cfaf4c225"
+      "sha256": "679c82910ec57eb19310ebadaceca334d596e56d9cf5f1fa5dfcbb07b9ad4306"
     },
     {
-      "frame": 1352,
+      "frame": 1749,
       "segmentIndex": 4,
-      "sha256": "c1d4663dd66d505e61577135415a1fe9e65af981498cd62fe7b8c44cfaf4c225"
+      "sha256": "53cde5cc99ce03e56f42e6a712152fdd310b61457ed2d52891a586bd748d76b5"
     },
     {
-      "frame": 1353,
+      "frame": 1750,
       "segmentIndex": 5,
-      "sha256": "9ddd7417e82e75322bef1e3dc873efbdcc80ffdf14cd748d5ddf375915974325"
+      "sha256": "ed6fe3833be7f10aa3bbf20ae490b7dbb42d8a017789b170db82c0991ebdbcd4"
     },
     {
-      "frame": 1456,
+      "frame": 1903,
       "segmentIndex": 5,
-      "sha256": "9ddd7417e82e75322bef1e3dc873efbdcc80ffdf14cd748d5ddf375915974325"
-    },
-    {
-      "frame": 1558,
-      "segmentIndex": 5,
-      "sha256": "9ddd7417e82e75322bef1e3dc873efbdcc80ffdf14cd748d5ddf375915974325"
-    },
-    {
-      "frame": 1559,
-      "segmentIndex": 6,
-      "sha256": "2698f6deb3be9d80e0d5fc575655762a21ba556d887c242ec12467764511ef11"
-    },
-    {
-      "frame": 1680,
-      "segmentIndex": 6,
-      "sha256": "20be4f5d607801fb9d5eb152dd6e263385e7ef01517d89b84e46764402be97bf"
-    },
-    {
-      "frame": 1800,
-      "segmentIndex": 6,
-      "sha256": "920485c0348c440ebd4df3b02c8fb60f5ea5dcdb55f9f7fba49a7751f4370713"
-    },
-    {
-      "frame": 1801,
-      "segmentIndex": 7,
-      "sha256": "91ceebd77e27276083c5bb34744085d3fb9ffce3ad271e01a35367b009f77f90"
-    },
-    {
-      "frame": 1929,
-      "segmentIndex": 7,
-      "sha256": "9ef413a897ef2180d464ac70c27e636ddc5a323c76e9575292884404d079f6ad"
+      "sha256": "f70d180517b8121d0166459e3cc3586ad5adc8c2de1248086e190da1db29503b"
     },
     {
       "frame": 2056,
-      "segmentIndex": 7,
-      "sha256": "a31b048e877596464a50cf0f7b36ac4b26c396d644c8c6fccdb7847f5ea0eeb2"
+      "segmentIndex": 5,
+      "sha256": "4f2d9d19457a0eeb7b76eda860c6a0bf18edbf5c89a74dc4685aa2f4147b95ed"
     },
     {
       "frame": 2057,
-      "segmentIndex": 8,
-      "sha256": "0e08bbfaca84cf36be8f2ad95f28d425ed1b50224dfba47c30143202a03d0f85"
+      "segmentIndex": 6,
+      "sha256": "eb45f191e2b38d645b0663900d1381f0af094ccc4fc12f570915132a049746f2"
     },
     {
-      "frame": 2183,
-      "segmentIndex": 8,
-      "sha256": "0e08bbfaca84cf36be8f2ad95f28d425ed1b50224dfba47c30143202a03d0f85"
+      "frame": 2240,
+      "segmentIndex": 6,
+      "sha256": "5050460f6b9ac296adee2a14fbe0cc95cb751b429c23fd228f53e159f5cdbba6"
     },
     {
-      "frame": 2308,
-      "segmentIndex": 8,
-      "sha256": "0e08bbfaca84cf36be8f2ad95f28d425ed1b50224dfba47c30143202a03d0f85"
-    },
-    {
-      "frame": 2309,
-      "segmentIndex": 9,
-      "sha256": "1227e85af90e985e10807e5c8e471fe3d8f4ba117412ba387fccff5f2b7980f3"
-    },
-    {
-      "frame": 2421,
-      "segmentIndex": 9,
-      "sha256": "1227e85af90e985e10807e5c8e471fe3d8f4ba117412ba387fccff5f2b7980f3"
-    },
-    {
-      "frame": 2533,
-      "segmentIndex": 9,
-      "sha256": "1227e85af90e985e10807e5c8e471fe3d8f4ba117412ba387fccff5f2b7980f3"
-    },
-    {
-      "frame": 2534,
-      "segmentIndex": 10,
-      "sha256": "5e51f3885219baf1c486fa11dfd5ab7d59d4e37c88a6961058c9fb403b00be09"
-    },
-    {
-      "frame": 2652,
-      "segmentIndex": 10,
-      "sha256": "5e8c0d7061a2e260d34c6a05f48b5e6d2a7c4e9e3cc34ac8d042348d14d413a9"
-    },
-    {
-      "frame": 2769,
-      "segmentIndex": 10,
-      "sha256": "7e98e1e51c779f7aa032ee1eac75324b04d3b00cee542b62df14a72cc850b9be"
-    },
-    {
-      "frame": 2770,
-      "segmentIndex": 11,
-      "sha256": "bd1167f2927f8b14875bf761edd62f8eee75b2d315223bcdc11914c0f6c5ff7b"
-    },
-    {
-      "frame": 2914,
-      "segmentIndex": 11,
-      "sha256": "bd1167f2927f8b14875bf761edd62f8eee75b2d315223bcdc11914c0f6c5ff7b"
-    },
-    {
-      "frame": 3057,
-      "segmentIndex": 11,
-      "sha256": "bd1167f2927f8b14875bf761edd62f8eee75b2d315223bcdc11914c0f6c5ff7b"
-    },
-    {
-      "frame": 3058,
-      "segmentIndex": 12,
-      "sha256": "94d5dc2fe94ca23787897d9452b01af3c2ae2a818b70c86d674a04fa026f7b35"
-    },
-    {
-      "frame": 3161,
-      "segmentIndex": 12,
-      "sha256": "94d5dc2fe94ca23787897d9452b01af3c2ae2a818b70c86d674a04fa026f7b35"
-    },
-    {
-      "frame": 3263,
-      "segmentIndex": 12,
-      "sha256": "94d5dc2fe94ca23787897d9452b01af3c2ae2a818b70c86d674a04fa026f7b35"
-    },
-    {
-      "frame": 3264,
-      "segmentIndex": 13,
-      "sha256": "0d81ac7958e3fae51dfdd0eda9fb76285dd4716ed8909204ec384986a52d4fe1"
-    },
-    {
-      "frame": 3368,
-      "segmentIndex": 13,
-      "sha256": "1f36351a1e79da48f28bfbc276231782dc4cc7d4d26a8e40c965de80597e4ca7"
-    },
-    {
-      "frame": 3471,
-      "segmentIndex": 13,
-      "sha256": "f772f092bd05ccf4069ba97d5e0a58b6b40d9efe43a812842f4ec510a6ee4247"
+      "frame": 2423,
+      "segmentIndex": 6,
+      "sha256": "28553c0f2c39aa9bdf22e092f181b7793374269f4383a233078ed320f0fa1b7a"
     }
   ],
   "sampledVisualChange": true,
   "determinism": "not-verified-author-must-avoid-time-random-and-uncontrolled-state",
   "audioReuse": "visual-source-edits-invalidate-plan-and-audio-reimport-or-resynthesis-requires-explicit-approval",
   "visualQuality": "requires-human-review-frame-capability-is-not-art-quality-assurance",
-  "artifactHash": "3cd9709076af808345f395ba7038088f2b6e394521b2218675e0cc93d0bad8a3",
-  "subtitleHash": "19ee8cac70e5c376c749d212b453f3114d39cec2f6121871bbe85b12a3629f70",
+  "artifactHash": "e77c15c19063ebcfbecc051515c4cf7a9ddb02f53f64bc682e64a009273f34d5",
+  "subtitleHash": "d8e30086dee139f758b693ef5149dfe1a5836a0d2b88cb5fec898b96b3508e49",
   "checks": [
     "research-source-plan-identity",
     "audio-hashes-and-measured-timing",
@@ -240,6 +136,5 @@
     "ffprobe-codec-frames-and-audio"
   ],
   "narrationTruthReview": "requires-human-source-review",
-  "providerProvenance": "recorded-local-manifest-not-independent-service-attestation",
-  "output": "greenland.mp4"
+  "providerProvenance": "recorded-local-manifest-not-independent-service-attestation"
 }

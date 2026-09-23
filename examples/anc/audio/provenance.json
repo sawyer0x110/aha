@@ -1,138 +1,74 @@
 {
   "provider": "edge-tts",
-  "version": "7.2.8",
-  "voice": "en-US-AriaNeural",
+  "voice": "en-US-JennyNeural",
   "rate": "+0%",
-  "recordingPlanHash": "a8dacf7f9be11c1a1f77ee2f3d51ef7f09459e1a91627ab48c2fa6114fc79b21",
+  "recordingPlanHash": "b11045fabcd4441669d1dcffa4357db6dc0f48d8536cf4243b559032d43d9bd0",
   "narration": [
     {
-      "id": "opening",
-      "text": "Aircraft rumble fades, but someone is still talking. Active noise cancellation works on pressure at your ear, not sound categories."
+      "id": "segment-1",
+      "text": "Incoming noise and a headphone speaker can both change the pressure at your ear. Active noise cancellation tries to make their sum smaller."
     },
     {
-      "id": "ear-sum",
-      "text": "Outside noise reaches the ear through one path. The headphone speaker adds another pressure contribution. What remains is their sum."
+      "id": "segment-2",
+      "text": "Ideal complete cancellation needs equal amplitudes and opposite phase at the ear. Partial reduction does not require a perfect match. The microphone is elsewhere, so both acoustic paths matter."
     },
     {
-      "id": "matched-pressure",
-      "text": "In this ideal single-tone model, matching amplitude and opposite phase at the target makes the residual shrink to zero."
+      "id": "segment-3",
+      "text": "Watch the residual as the timing slips. Even equal amplitudes no longer cancel perfectly. This moving diagram is an ideal single-tone model, not a headset measurement."
     },
     {
-      "id": "phase-slip",
-      "text": "Now keep the amplitude and shift the control wave. The residual returns because the peaks and troughs no longer match."
+      "id": "segment-4",
+      "text": "With an assumed timing error of one tenth of a millisecond, the phase error is three point six degrees at one hundred hertz, but thirty-six degrees at one thousand hertz."
     },
     {
-      "id": "same-delay",
-      "text": "Assume a timing error of one tenth of a millisecond: three point six degrees at one hundred hertz, but thirty-six at one thousand."
+      "id": "segment-5",
+      "text": "The physical seal also changes how sound gets in. Passive isolation and active control work together; turning active cancellation off does not remove the seal."
     },
     {
-      "id": "no-wall",
-      "text": "This tightens timing tolerance, not a universal frequency wall. Reference preview, acoustic paths, bandwidth, and feedback stability also matter."
+      "id": "segment-6",
+      "text": "Speech contains many components. Some can be reduced while others remain audible. Still hearing a voice does not mean that speech is impossible to cancel."
     },
     {
-      "id": "two-layers",
-      "text": "Passive isolation changes transmission through the seal and ear cup. Active control adds pressure. Switching it off leaves the barrier in place."
-    },
-    {
-      "id": "residual-voice",
-      "text": "Speech is not one high-frequency tone. Some components can be reduced while enough residual survives for the voice to remain audible."
-    },
-    {
-      "id": "voice-counterexample",
-      "text": "Here is a counterexample: active control can reduce low-frequency amplification of your own voice caused by a closed ear canal."
-    },
-    {
-      "id": "counterexample-bound",
-      "text": "That does not promise to erase another person's whole voice. More noticeable speech does not prove its pressure was amplified."
-    },
-    {
-      "id": "check-mode",
-      "text": "Also check the mode. Transparency deliberately lets outside sound in, while adaptive modes can change the balance on supported devices."
-    },
-    {
-      "id": "check-fit",
-      "text": "Fit changes acoustic paths too. Compare cancellation on and off without moving the headphones or changing the source."
-    },
-    {
-      "id": "measurement-limit",
-      "text": "Published prototype measurements varied with wearer and fit. We ran no acoustic test, and this model cannot predict your personal reduction."
-    },
-    {
-      "id": "closing",
-      "text": "Ask what remains at the ear: path, timing, fit, and mode. Audible speech can still be attenuated."
+      "id": "segment-7",
+      "text": "Fit, leaks and listening mode can change the result. Transparency intentionally lets outside sound in. No ideal diagram can tell us the attenuation of your particular headphones."
     }
   ],
   "recordings": [
     {
-      "id": "opening",
+      "id": "segment-1",
       "file": "segment-001.wav",
-      "sha256": "79caf38567accee507ec4294437ed6ffedab508c7baab90e87bc9849b691e53e"
+      "sha256": "34899b668815ba115fa0ce8935827366cea36a99cb419d630d3c7fa39f625bd0"
     },
     {
-      "id": "ear-sum",
+      "id": "segment-2",
       "file": "segment-002.wav",
-      "sha256": "49956c9978fd7a8fc7dd2b1384afa923521d8abaaa7dee86cbd27e84a2c5e6c6"
+      "sha256": "762bbe32c90f9c9bc7b625928478c63e7933d47bc0ad9662cec0fcee45265b7f"
     },
     {
-      "id": "matched-pressure",
+      "id": "segment-3",
       "file": "segment-003.wav",
-      "sha256": "7ec93a8f069adb06f328e2eaaeaa7230f67961f3f2847670ba0f21cb1c8936ed"
+      "sha256": "ac60121db40fcdf2ae6765d39c20314b96c0ed8fde2437399879e733e93b2bd2"
     },
     {
-      "id": "phase-slip",
+      "id": "segment-4",
       "file": "segment-004.wav",
-      "sha256": "992236de936dc2d052c5bd6722a1d5273b575b3619855e82106334e88a79a9a2"
+      "sha256": "7d09ece75b1e749c71f1521a23f5370e0011e6a8fa5c72c401d52290c264597f"
     },
     {
-      "id": "same-delay",
+      "id": "segment-5",
       "file": "segment-005.wav",
-      "sha256": "6b949256208685c27ba71e3402e06dbbb5cc7fdaba1ee62e4c8b05427fe04405"
+      "sha256": "6705de48ff7ab08c84e05a408177eb14c90668f17252741b6d6df2d2ff82b990"
     },
     {
-      "id": "no-wall",
+      "id": "segment-6",
       "file": "segment-006.wav",
-      "sha256": "a06a31573f5f70fbaddcababdac61376b0e2f4eb0a5d3514daa9c26ee90d3139"
+      "sha256": "3987f15dc2943d486f683e6fa27ddd77acae765e5e6203d2ace038dd40e988a0"
     },
     {
-      "id": "two-layers",
+      "id": "segment-7",
       "file": "segment-007.wav",
-      "sha256": "88c52b8be46c80801b7e932b52e7dc36fd92c569a9894d78364349268c9a307f"
-    },
-    {
-      "id": "residual-voice",
-      "file": "segment-008.wav",
-      "sha256": "35db01016f75198d36bfefd640307fe986234183ad1291f18755280dd3bf55ee"
-    },
-    {
-      "id": "voice-counterexample",
-      "file": "segment-009.wav",
-      "sha256": "5f695e46ab56eb2839cb004b7b41815ba1669860d37b929db16bc65eb55bb904"
-    },
-    {
-      "id": "counterexample-bound",
-      "file": "segment-010.wav",
-      "sha256": "a2377ff0a6bba2b889df54d867881b5f171d49e4bd65a825f5578cde8d21ba2a"
-    },
-    {
-      "id": "check-mode",
-      "file": "segment-011.wav",
-      "sha256": "1f45e6e19c77f8cdfc3c9865716776f992a91b4d0a88374452a608bfabee332f"
-    },
-    {
-      "id": "check-fit",
-      "file": "segment-012.wav",
-      "sha256": "2c12df05a6f0a9d0e69cc4eb8dc04c1975d8a3d76041c3343c411398c8d9d8f3"
-    },
-    {
-      "id": "measurement-limit",
-      "file": "segment-013.wav",
-      "sha256": "03b66dc27ce9d00f6997decc95d1594649224daecb12e7b5fcad49ce0c18c075"
-    },
-    {
-      "id": "closing",
-      "file": "segment-014.wav",
-      "sha256": "762e0df6ce46dd4acc33a3111adca99d41d99c8c58a26c62992aeed70f00e495"
+      "sha256": "56ebcdb76fa0ead41d9e8b0304cfa4d38417f27ab59f5eddb01fc38379242595"
     }
   ],
-  "scope": "Existing Edge TTS recordings imported locally. This provenance does not claim another synthesis or current-source generation by the speech service."
+  "method": "Offline import of authorized newly synthesized recordings; exact WAV bytes and frame timing retained. No second synthesis."
 }

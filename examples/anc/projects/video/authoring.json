@@ -1,0 +1,110 @@
+{
+  "purpose": "Follow the pressure, not the sound label",
+  "researchReuse": "Read the sealed report and claim ledger for scope, version, evidence and limits; no fresh scientific or code experiment.",
+  "readingContext": "1280x720, inspect at 1280 and 640px playback; reserve lower 160px for captions.",
+  "composition": [
+    {
+      "id": "local-pressure",
+      "question": "Two paths, one listening position",
+      "relationship": "Incoming noise and the loudspeaker output travel different acoustic paths. The controller must account for what reaches the ear, not merely flip the sign of the outside microphone signal.",
+      "claims": [
+        "c-pressure"
+      ]
+    },
+    {
+      "id": "timing",
+      "question": "A small timing error matters more at higher frequency",
+      "relationship": "For an assumed uncompensated error of 0.10 ms, the phase error is 3.6° at 100 Hz and 36° at 1,000 Hz. This is a single-tone calculation, not a headphone measurement or universal frequency cutoff.",
+      "claims": [
+        "c-delay"
+      ]
+    },
+    {
+      "id": "two-mechanisms",
+      "question": "The seal blocks a path; ANC adds pressure",
+      "relationship": "Passive isolation changes how sound enters. Active control adds another pressure wave. Switching ANC off leaves the physical barrier in place; taking the headphones off changes both.",
+      "claims": [
+        "c-passive"
+      ]
+    },
+    {
+      "id": "speech",
+      "question": "Partly reduced can still mean audible",
+      "relationship": "Speech spans many frequency components. Some may be reduced while others remain. Recognizable residual speech does not prove that no speech was attenuated, or that its pressure was amplified.",
+      "claims": [
+        "c-speech"
+      ]
+    },
+    {
+      "id": "wearing",
+      "question": "Fit and mode can change the comparison",
+      "relationship": "A seal leak changes the acoustic path. Transparency deliberately admits outside sound; adaptive modes can change behavior. Keep fit and sound source fixed when comparing ANC on and off. That is a proposed comparison, not a test performed here.",
+      "claims": [
+        "c-modes",
+        "c-measure"
+      ]
+    }
+  ],
+  "video": {
+    "segments": [
+      {
+        "id": "segment-1",
+        "text": "Incoming noise and a headphone speaker can both change the pressure at your ear. Active noise cancellation tries to make their sum smaller.",
+        "claimIds": [
+          "c-pressure"
+        ]
+      },
+      {
+        "id": "segment-2",
+        "text": "Ideal complete cancellation needs equal amplitudes and opposite phase at the ear. Partial reduction does not require a perfect match. The microphone is elsewhere, so both acoustic paths matter.",
+        "claimIds": [
+          "c-pressure"
+        ]
+      },
+      {
+        "id": "segment-3",
+        "text": "Watch the residual as the timing slips. Even equal amplitudes no longer cancel perfectly. This moving diagram is an ideal single-tone model, not a headset measurement.",
+        "claimIds": [
+          "c-pressure",
+          "c-delay"
+        ]
+      },
+      {
+        "id": "segment-4",
+        "text": "With an assumed timing error of one tenth of a millisecond, the phase error is three point six degrees at one hundred hertz, but thirty-six degrees at one thousand hertz.",
+        "claimIds": [
+          "c-delay"
+        ]
+      },
+      {
+        "id": "segment-5",
+        "text": "The physical seal also changes how sound gets in. Passive isolation and active control work together; turning active cancellation off does not remove the seal.",
+        "claimIds": [
+          "c-passive"
+        ]
+      },
+      {
+        "id": "segment-6",
+        "text": "Speech contains many components. Some can be reduced while others remain audible. Still hearing a voice does not mean that speech is impossible to cancel.",
+        "claimIds": [
+          "c-speech"
+        ]
+      },
+      {
+        "id": "segment-7",
+        "text": "Fit, leaks and listening mode can change the result. Transparency intentionally lets outside sound in. No ideal diagram can tell us the attenuation of your particular headphones.",
+        "claimIds": [
+          "c-modes",
+          "c-measure"
+        ]
+      }
+    ],
+    "timing": "Segment-relative beats only; not word alignment. Preserve identities across segments, replace exclusive state labels."
+  },
+  "tools": [
+    "Repository aha-explain and shared latest guides",
+    "Host pptx guidance",
+    "Host web-artifacts-builder theme",
+    "Aha 0.3.3 runtime"
+  ]
+}

@@ -1,12 +1,4 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Why ANC quiets aircraft rumble but leaves voices</title><script>(() => {
-  const param = new URLSearchParams(window.location.search).get("scoutTheme");
-  const theme =
-    param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-  document.documentElement.setAttribute("data-theme", theme);
-})();</script><style>
-:root {
+<!doctype html><html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Why noise cancellation leaves some voices audible</title><script>(() => { const param = new URLSearchParams(window.location.search).get("scoutTheme"); const theme = param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); document.documentElement.setAttribute("data-theme", theme); })();</script><style>:root {
   color-scheme: light;
   --cp-bg: #f7f4ef;
   --cp-bg-elevated: #fcfbf8;
@@ -58,90 +50,129 @@ html[data-theme="dark"] {
   --cp-sheen: rgba(255, 255, 255, 0.04);
   --cp-highlight: rgba(253, 142, 161, 0.12);
 }
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--cp-bg); color: var(--cp-text); font: 16px/1.6 "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif; }
-code, pre { font-family: Consolas, "Courier New", Courier, monospace; }
-a { color: var(--cp-link); }
-button { font: inherit; min-height: 44px; padding: 8px 12px; border: 1px solid var(--cp-border); border-radius: 0.625rem; color: var(--cp-text); background: var(--cp-surface); cursor: pointer; }
-button:hover { background: var(--cp-accent-soft); }
-:focus-visible { outline: 3px solid var(--cp-accent); outline-offset: 3px; }
 
-:root { --cp-bookend: #292929; --cp-bookend-text: #dedede; --cp-paper: #fcfbf8; --cp-ink: #242424; }
-main { max-width: 1120px; margin: auto; padding: 24px; }
-h1 { font-size: clamp(36px,6vw,64px); line-height: 1.08; max-width: 850px; margin: 12px 0 24px; }
-h2 { font-size: 30px; line-height: 1.2; margin: 8px 0 20px; } h3 { font-size: 22px; }
-p { max-width: 74ch; } .lead { font-size: 22px; line-height: 1.5; }
-.bookend { background: var(--cp-bookend); color: var(--cp-bookend-text); padding: 48px; border-radius: 16px; }
-.bookend a { color: var(--cp-bookend-text); }
-.paper { background:var(--cp-paper); color:var(--cp-ink); padding:40px; margin:24px 0; border-radius:16px; --cp-text:#242424; --cp-text-muted:#5c5c5c; --cp-surface:#ffffff; --cp-border:#dedede; --cp-accent:#b11f4b; --cp-link:#0078d4; }
-.eyebrow { font-size:14px; letter-spacing:.12em; font-weight:700; text-transform:uppercase; }
-.two { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
-figure { margin:28px 0; } figcaption,.source { font-size:15px; line-height:1.6; }
-svg { width:100%; display:block; } svg text { font-family:inherit; fill:var(--cp-text); font-size:18px; }
-.source { margin-top:24px; } .equation { font-family:Consolas,"Courier New",monospace; font-size:21px; }
-label { display:block; margin:20px 0; font-weight:600; } input { width:100%; accent-color:var(--cp-accent); }
-output { display:block; padding:16px; border:2px solid var(--cp-accent); border-radius:.625rem; }
-.controls { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
-.note { border-left:4px solid var(--cp-accent); padding:8px 20px; }
-details { margin:24px 0; } summary { cursor:pointer; font-weight:700; }
-li { margin:12px 0; } [hidden] { display:none !important; }
-@media(max-width:700px) { main{padding:12px}.bookend,.paper{padding:24px}.two,.controls{grid-template-columns:1fr} h2{font-size:26px} }
+*{box-sizing:border-box}body{margin:0;background:var(--cp-bg);color:var(--cp-text);font:18px/1.7 "Segoe UI",Aptos,Calibri,-apple-system,BlinkMacSystemFont,sans-serif}
+main{max-width:1120px;margin:auto;padding:56px 32px}h1{font-size:clamp(32px,5vw,58px);line-height:1.16;max-width:19ch;margin:16px 0 24px;letter-spacing:-.025em}
+h2{font-size:28px;line-height:1.3;margin:0 0 16px}h3{font-size:21px;line-height:1.35}p{margin:0 0 20px}.lead{font-size:22px;max-width:70ch}
+.eyebrow{font-weight:650;color:var(--cp-accent);letter-spacing:.1em;text-transform:uppercase;font-size:14px}
+.prose{max-width:72ch}.explanation{border-top:1px solid var(--cp-border);padding-top:28px;margin-top:36px}
+.controls{display:flex;gap:24px;flex-wrap:wrap;margin:24px 0;min-width:0}.controls label{display:grid;gap:8px;min-width:0;max-width:100%}
+input,select,button{font:inherit;max-width:100%;color:var(--cp-text);accent-color:var(--cp-accent)}select{padding:8px;background:var(--cp-surface);border:1px solid var(--cp-border-strong);border-radius:10px}
+a{color:var(--cp-link);overflow-wrap:anywhere}a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--cp-accent);outline-offset:5px}
+.limit{border-left:4px solid var(--cp-accent);padding:12px 20px;margin:28px 0}.sources{font-size:15px}.sources li{margin:8px 0}.sources-note{color:var(--cp-text-muted)}
+[hidden]{display:none!important}@media(max-width:600px){main{padding:28px 20px}.lead{font-size:19px}h2{font-size:24px}.controls{display:grid}.controls label{min-width:0}}
 
-</style></head><body>
-<main>
-<section data-aha-lang="en" lang="en" data-aha-title="Why ANC quiets aircraft rumble but leaves voices">
-<header class="bookend"><div class="eyebrow">Sound at the ear / active noise cancellation</div><h1>Why aircraft rumble fades, but voices remain</h1><p class="lead">Noise cancellation does not mute a category of sound. It tries to make the pressure left at your ear smaller. Some parts of speech can shrink while other parts remain audible.</p></header>
-<article class="paper" id="ear-pressure-en"><h2>The meeting point is your ear</h2><p>A microphone senses sound; a controller drives the headphone speaker. But the speaker's sound and the outside noise travel along different paths. Their <strong>pressures must add correctly after arriving at the ear</strong>—not just look inverted in an electrical signal.</p>
-<figure><svg viewBox="0 0 900 290" role="img" aria-label="Outside noise passes through the physical barrier to an ear target. A controller drives a speaker whose pressure also arrives at that target.">
-<rect x="300" y="28" width="20" height="235" fill="var(--cp-border)"/><text x="220" y="20">Physical barrier</text>
-<text x="25" y="83">Outside noise</text><path d="M25 112 H660" stroke="var(--cp-text)" stroke-width="4"/><path d="M645 102 L665 112 L645 122" fill="var(--cp-text)"/>
-<text x="340" y="206">Speaker</text><path d="M430 180 Q560 180 665 127" fill="none" stroke="var(--cp-accent)" stroke-width="4" stroke-dasharray="8 6"/><path d="M648 127 L670 124 L656 142" fill="var(--cp-accent)"/>
-<circle cx="720" cy="116" r="44" fill="var(--cp-surface)" stroke="var(--cp-text)" stroke-width="3"/><text x="692" y="123">EAR</text><text x="608" y="245">Residual = noise + control</text>
-<text x="28" y="202">Reference → controller</text><text x="28" y="244">Solid: incoming pressure</text><text x="28" y="270">Dashed: control pressure</text>
-</svg><figcaption>Schematic, not anatomy or a measured sound field. The physical barrier changes transmission; the speaker adds another pressure contribution.</figcaption></figure>
-<p class="equation">residual pressure = incoming pressure + control pressure</p><p>In an ideal linear model, equal and opposite pressure at every instant gives zero residual at that point. In real headphones, the internal error microphone only approximates what reaches the eardrum under suitable conditions.</p><p class="source">Mechanism: <a href="https://www.iks.rwth-aachen.de/forschung/audio/active-noise-control/">RWTH IKS, Principle</a>; ear/microphone distinction: <a href="https://arxiv.org/html/2509.15864v1">Hilgemann et al., §2.1–2.2</a>.</p></article>
-<article class="paper lab" id="timing-lab-en"><h2>Equal amplitude is not enough</h2><p>Phase tells you where a vibration is in its cycle. If the control pressure arrives late, its peaks no longer line up with the noise's troughs. Change the two matching conditions below and inspect the residual.</p>
-<div class="controls"><label>Control amplitude / noise amplitude <input class="gain" type="range" min="0" max="1.2" step=".05" value="1" aria-label="Control amplitude ratio"></label><label>Error away from ideal opposite phase <input class="phase" type="range" min="0" max="180" step="5" value="0" aria-label="Phase error in degrees"></label></div>
-<output class="result" aria-live="polite">Amplitude ratio 1.00; phase error 0°; residual amplitude 0.00 × incoming.</output>
-<svg viewBox="0 0 900 220" role="img" aria-label="Single-tone incoming, control and residual pressure traces; normalized amplitude and one cycle of time"><path d="M20 110 H880" stroke="var(--cp-border)" stroke-width="2"/><path class="wave-in" fill="none" stroke="var(--cp-text)" stroke-width="3"/><path class="wave-control" fill="none" stroke="var(--cp-accent)" stroke-width="3" stroke-dasharray="9 7"/><path class="wave-result" fill="none" stroke="var(--cp-text)" stroke-width="6" stroke-dasharray="2 7"/></svg>
-<p>Solid: incoming. Dashed rose: control. Dotted: residual. Horizontal: one cycle of time; vertical: normalized pressure. These are <strong>analytical illustrations, not headphone measurements</strong>.</p>
-<div class="two"><div><h3>The same delay, a different phase error</h3><p>Assume an uncorrected timing error of <strong>0.10 ms</strong>. It corresponds to <strong>3.6° at 100 Hz</strong>, but <strong>36° at 1000 Hz</strong>. The faster cycle leaves less timing tolerance.</p></div><div><h3>No universal frequency wall</h3><p>That does not make all high-frequency sound uncancellable. Reference-microphone preview, acoustic paths, controller bandwidth and feedback stability also matter. Predictable signals can permit prediction.</p></div></div>
-<details><summary>What the model assumes</summary><p>One steady sinusoid, linear pressure addition, a single target position. For gain g and phase error δ away from ideal opposition, the residual amplitude ratio is √(1 + g² − 2g cos δ). Phase error from timing is 2πfτ, with f in hertz and τ in seconds. It is not a full controller simulation, a broadband prediction or a loudness score. Phase mismatch can even increase residual pressure.</p></details>
-<p class="source">Derived here from sinusoidal superposition; path/latency context: <a href="https://www.iks.rwth-aachen.de/forschung/audio/active-noise-control/">RWTH IKS</a>. “Faster phase change” does not mean sound travels faster at higher pitch.</p></article>
-<article class="paper" id="two-layers-en"><h2>Two layers work on the same sound</h2><div class="two"><div><h3>Passive isolation changes the path</h3><p>Ear tips, ear cups and their seal impede transmission. They still work with ANC off. They often help more at higher frequencies, but leaks and structure matter.</p></div><div><h3>Active control adds pressure</h3><p>The speaker adds anti-noise to the pressure that gets through. It often helps at lower-to-middle frequencies where a light physical barrier has limitations.</p></div></div><p class="note">Compare ANC on and off without changing fit or the sound source. Removing the headphones is a different baseline.</p><p class="source"><a href="https://arxiv.org/html/2509.15864v1">Hilgemann et al., §2.1 and §2.3</a>: total attenuation combines passive and active contributions; the frequency split is a tendency, not a law.</p></article>
-<article class="paper" id="remaining-voices-en"><h2>Still audible does not mean untouched</h2><p>A voice is not one high-frequency tone. Its components encounter different amounts of attenuation. If enough residual sound survives, you can still hear someone speaking even though parts of their voice have been reduced.</p><p><a href="https://helpguide.sony.net/mdr/wh1000xm5/v1/en/contents/TP1000534745.html">Sony's WH-1000XM5 guide</a> describes stronger cancellation of low-frequency transport noise than voices. It is a useful product-level observation—not a physical ban on cancelling speech.</p><h3>A counterexample worth keeping</h3><p><a href="https://www.iks.rwth-aachen.de/forschung/audio/active-noise-control/">RWTH's own-voice work</a> describes active reduction of low-frequency voice amplification caused by a closed ear canal. Speech pressure can be controlled. That does not prove complete cancellation of another person's voice.</p><p>When rumble falls more than speech does, speech may stand out in the remaining scene. This is not proof that its absolute pressure increased, and no intelligibility test was run here.</p></article>
-<article class="paper" id="reality-check-en"><h2>Before blaming “uncancellable voices”</h2><ol><li><strong>Check the mode.</strong> Transparency intentionally lets outside sound in; adaptive modes can change the balance. <a href="https://support.apple.com/en-us/108918">Apple's mode guide</a> and Sony's guide describe these distinctions for their devices.</li><li><strong>Check the seal and position.</strong> They change the sound paths the controller must handle.</li><li><strong>Separate a model from a measurement.</strong> <a href="https://arxiv.org/html/2509.15864v1">Published prototype results, §6.3</a>, vary with wearer and fit. They are not a fresh test or a guarantee for your headphones.</li></ol><p>Your model, fit, settings and sound field are unknown. No decibel reduction or speech-understanding score can be inferred for your flight from the diagram.</p></article>
-<footer class="bookend"><h2>Think “residual at the ear,” not “which sound gets muted.”</h2><p>Rumble and speech meet the same physical rule. How closely the headphone matches pressure in space and time—and what its passive structure and mode allow through—determines what remains.</p></footer>
-</section>
-<section data-aha-lang="zh" lang="zh-CN" data-aha-title="飞机轰鸣变轻了，为什么人声还在？" hidden>
-<header class="bookend"><div class="eyebrow">耳边的声音 / 主动降噪</div><h1>飞机轰鸣变轻了，为什么人声还在？</h1><p class="lead">降噪不是按“飞机”或“人声”分类静音，而是设法减小耳边剩下的声压波动。一段话的某些成分可能变弱，其他成分却仍然可听。</p></header>
-<article class="paper" id="ear-pressure-zh"><h2>两组声压，在耳边相遇</h2><p>麦克风采集声音，控制器驱动耳机扬声器。但外界噪声与扬声器的声音走过不同路径。两组声压必须<strong>到达耳边之后</strong>才能恰当相加，并不是把电信号翻个符号就够了。</p>
-<figure><svg viewBox="0 0 900 290" role="img" aria-label="外界噪声经过物理屏障到达耳边，控制器驱动扬声器，另一组控制声压也到达同一个位置。">
-<rect x="300" y="28" width="20" height="235" fill="var(--cp-border)"/><text x="240" y="20">物理屏障</text><text x="25" y="83">外界噪声</text><path d="M25 112 H660" stroke="var(--cp-text)" stroke-width="4"/><path d="M645 102 L665 112 L645 122" fill="var(--cp-text)"/><text x="340" y="206">扬声器</text><path d="M430 180 Q560 180 665 127" fill="none" stroke="var(--cp-accent)" stroke-width="4" stroke-dasharray="8 6"/><path d="M648 127 L670 124 L656 142" fill="var(--cp-accent)"/><circle cx="720" cy="116" r="44" fill="var(--cp-surface)" stroke="var(--cp-text)" stroke-width="3"/><text x="699" y="123">耳边</text><text x="590" y="245">残余 = 传入声压 + 控制声压</text><text x="28" y="202">参考信号 → 控制器</text><text x="28" y="244">实线：传入声压</text><text x="28" y="270">虚线：控制声压</text>
-</svg><figcaption>这是机制示意，不是解剖图或实测声场。物理屏障改变传声路径；扬声器再加入另一组声压。</figcaption></figure>
-<p class="equation">残余声压 = 传入声压 + 控制声压</p><p>理想线性模型中，同一位置每一时刻的压力都等大反向，残余才为零。真实耳机的内部误差麦克风，只在合适条件下近似代表鼓膜处的声音。</p><p class="source">机制依据：<a href="https://www.iks.rwth-aachen.de/forschung/audio/active-noise-control/">RWTH IKS，原理部分</a>；耳内麦克风与鼓膜的区别：<a href="https://arxiv.org/html/2509.15864v1">Hilgemann 等，§2.1–2.2</a>。</p></article>
-<article class="paper lab" id="timing-lab-zh"><h2>幅度相等，还不够</h2><p>相位表示振动走到一个周期的哪里。控制声压若来晚了，它的波峰就不再对准噪声的波谷。改变下面两项匹配条件，看看剩下的波动怎样变化。</p><div class="controls"><label>控制幅度 / 噪声幅度 <input class="gain" type="range" min="0" max="1.2" step=".05" value="1" aria-label="控制声压幅度比例"></label><label>偏离理想反相的误差 <input class="phase" type="range" min="0" max="180" step="5" value="0" aria-label="相位误差，单位度"></label></div><output class="result" aria-live="polite">幅度比 1.00；相位误差 0°；残余幅度为传入声的 0.00 倍。</output>
-<svg viewBox="0 0 900 220" role="img" aria-label="单频传入、控制和残余声压曲线；纵向为归一化幅度，横向为一个周期"><path d="M20 110 H880" stroke="var(--cp-border)" stroke-width="2"/><path class="wave-in" fill="none" stroke="var(--cp-text)" stroke-width="3"/><path class="wave-control" fill="none" stroke="var(--cp-accent)" stroke-width="3" stroke-dasharray="9 7"/><path class="wave-result" fill="none" stroke="var(--cp-text)" stroke-width="6" stroke-dasharray="2 7"/></svg>
-<p>实线是传入声压，玫红虚线是控制声压，点线是残余。横向为一个周期的时间，纵向为归一化声压。它们是<strong>解析示意，不是耳机测量</strong>。</p><div class="two"><div><h3>同样的时间误差，占不同大小的一圈</h3><p>假设未补偿时间误差为 <strong>0.10 ms</strong>，在 <strong>100 Hz</strong> 时对应 <strong>3.6°</strong>，在 <strong>1000 Hz</strong> 时对应 <strong>36°</strong>。振动越快，留给时间对齐的余地越小。</p></div><div><h3>没有适用于所有耳机的频率墙</h3><p>这不等于所有高频都无法消除。外部麦克风能提前多少时间采到参考、声音传播路径、控制带宽和反馈稳定性也会影响结果。规律性信号还可能被预测。</p></div></div><details><summary>模型的假设是什么？</summary><p>单一稳态正弦、线性声压相加、同一个目标位置。控制幅度比为 g，偏离理想反相的误差为 δ，残余幅度比为 √(1 + g² − 2g cos δ)。时间误差造成的相位误差为 2πfτ，f 用赫兹、τ 用秒。它不是完整控制器仿真、宽带预测或响度评分。相位偏差还可能使残余比原声更大。</p></details><p class="source">公式由正弦叠加推导；路径与延迟背景见 <a href="https://www.iks.rwth-aachen.de/forschung/audio/active-noise-control/">RWTH IKS</a>。“相位变化更快”不意味着音调越高声速越快。</p></article>
-<article class="paper" id="two-layers-zh"><h2>两层作用，面对同一个声音</h2><div class="two"><div><h3>被动隔音：改变传入路径</h3><p>耳塞、耳罩及其密封阻碍声音传入。关掉 ANC，它们仍在起作用。通常对较高频率更有帮助，但泄漏与结构会改变结果。</p></div><div><h3>主动降噪：加入控制声压</h3><p>扬声器对已经传入的声音加入反向补偿。它常用于低到中频，补充轻便物理屏障的不足。</p></div></div><p class="note">比较 ANC 开关时，保持佩戴和声源不变。摘下耳机，是另一种比较基准。</p><p class="source"><a href="https://arxiv.org/html/2509.15864v1">Hilgemann 等，§2.1、§2.3</a>：总衰减包含主动与被动贡献；频率分工只是常见倾向。</p></article>
-<article class="paper" id="remaining-voices-zh"><h2>仍然听见，不代表完全没变弱</h2><p>人声不是一个高频纯音。不同成分受到的衰减不同；只要仍有足够残余可听，就算部分成分已经变弱，你仍能听出有人在说话。</p><p><a href="https://helpguide.sony.net/mdr/wh1000xm5/v1/en/contents/TP1000534745.html">Sony WH-1000XM5 指南</a>说明低频交通噪声比人声更容易被该产品削弱。这是有用的产品体验概括，不是“语音禁止抵消”的物理定律。</p><h3>一个不能丢掉的反例</h3><p><a href="https://www.iks.rwth-aachen.de/forschung/audio/active-noise-control/">RWTH 自身语音研究</a>介绍了如何用主动控制减轻封闭耳道造成的低频语音增强。这说明语音声压可以被控制，但不能用来证明旁人的话能被完全消除。</p><p>如果轰鸣降得更多，人声在剩余场景里可能更突出；这不证明人声绝对声压变大。本次没有语音可懂度测试。</p></article>
-<article class="paper" id="reality-check-zh"><h2>别急着归因于“人声消不掉”</h2><ol><li><strong>先看模式。</strong>通透模式本来就让外界声进入，自适应模式会调整效果。<a href="https://support.apple.com/en-us/108918">Apple 模式说明</a>与 Sony 指南对各自产品有明确区分。</li><li><strong>再看密封和位置。</strong>它们改变控制器面对的声学路径。</li><li><strong>分清模型与测量。</strong><a href="https://arxiv.org/html/2509.15864v1">已发表原型测量的 §6.3</a>显示效果随佩戴者和松紧变化。这不是本次新测试，也不是你的耳机的性能保证。</li></ol><p>目前不知道你的型号、佩戴、设置和声场，不能从图中推算这次航班降低了多少分贝，或还能听懂多少词。</p></article>
-<footer class="bookend"><h2>关注“耳边还剩多少”，而不是“哪一类声音被静音”。</h2><p>轰鸣和人声服从同样的物理规律。耳机能否在空间和时间上准确匹配声压，以及屏障与模式让什么声音通过，共同决定你最后听到什么。</p></footer>
-</section></main>
-<script>
-document.querySelectorAll('.lab').forEach(lab => {
-  const update = () => {
-    const gain=Number(lab.querySelector('.gain').value), degrees=Number(lab.querySelector('.phase').value);
-    const delta=degrees*Math.PI/180, residual=Math.sqrt(Math.max(0,1+gain*gain-2*gain*Math.cos(delta)));
-    const zh=lab.closest('section').dataset.ahaLang==='zh';
-    lab.querySelector('.result').textContent=zh?`幅度比 ${gain.toFixed(2)}；相位误差 ${degrees}°；残余幅度为传入声的 ${residual.toFixed(2)} 倍。`:`Amplitude ratio ${gain.toFixed(2)}; phase error ${degrees}°; residual amplitude ${residual.toFixed(2)} × incoming.`;
-    const trace=fn=>Array.from({length:181},(_,i)=>`${i?'L':'M'}${20+i*860/180},${110-fn(i*2*Math.PI/180)*42}`).join(' ');
-    lab.querySelector('.wave-in').setAttribute('d',trace(t=>Math.sin(t)));
-    lab.querySelector('.wave-control').setAttribute('d',trace(t=>-gain*Math.sin(t-delta)));
-    lab.querySelector('.wave-result').setAttribute('d',trace(t=>Math.sin(t)-gain*Math.sin(t-delta)));
-  };
-  lab.querySelectorAll('input').forEach(input=>input.addEventListener('input',update));
-  update();
-});
-</script>
-</body></html>
+.mechanism { border:1px solid var(--cp-border-strong); padding:24px; background:var(--cp-surface); border-radius:16px; overflow:hidden }
+.mechanism strong,.mechanism b { display:block }.mechanism h3 { margin:0 0 16px }.mechanism p { margin:12px 0 0 }
+.mechanism-box { padding:16px; background:var(--cp-surface-soft) }.mechanism-box strong { margin-bottom:8px }
+.big-value { font-size:1.6em; font-weight:700; font-variant-numeric:tabular-nums }
+.pressure-legend { display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between }
+.pressure-legend span:nth-child(2) { border-bottom:2px dashed var(--cp-text-muted) }.pressure-legend strong { color:var(--cp-accent) }
+.waves,.map { display:block; width:100%; height:auto }.axis { stroke:var(--cp-border); fill:none }
+.incoming { stroke:var(--cp-text); fill:none; stroke-width:2 }.control { stroke:var(--cp-text-muted); stroke-dasharray:8 5; fill:none; stroke-width:2 }
+.wave-result { stroke:var(--cp-accent); fill:none; stroke-width:4 }.result { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px }
+.model-label { color:var(--cp-text-muted); font-size:.85em; line-height:1.5 }.land { fill:var(--cp-surface-soft); stroke:var(--cp-border-strong); stroke-width:.5 }
+.gridline { stroke:var(--cp-border); fill:none; stroke-width:.6 }.moving-land { fill:var(--cp-accent); stroke:var(--cp-text); stroke-width:1 }
+.ghost { fill:none; stroke:var(--cp-text-muted); stroke-dasharray:4 3 }.map-caption { display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px }
+.slots { display:flex; gap:8px; margin:12px 0 }.slots span { display:grid; place-items:center; width:calc(30px * var(--slot-width)); max-width:17%; height:38px; border:1px solid var(--cp-border-strong); background:var(--cp-surface-soft); font-family:Consolas,monospace }
+.accent-slots span { background:var(--cp-accent-soft); border-color:var(--cp-accent) }.slots .codepoint-slot { min-width:110px; font-size:16px; max-width:none }.string-original { margin-bottom:24px }
+.memory-pair { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:24px }
+.docker-comparison { display:grid; grid-template-columns:1fr 1fr; gap:32px }.layer { border:2px solid var(--cp-border-strong); padding:16px; min-height:92px }
+.layer-placeholder { height:104px }.layer + .layer { margin-top:12px }.payload-layer { border-color:var(--cp-accent); background:var(--cp-accent-soft) }.layer span { display:block; font-family:Consolas,monospace }
+.merged { border-top:2px solid var(--cp-text); padding-top:12px; margin-top:24px }.merged strong { color:var(--cp-accent) }.endpoint { display:grid; min-height:208px; gap:12px }
+.endpoint span { display:flex; align-items:center; padding:12px 16px; background:var(--cp-surface-soft) }.emphasis { border-left:4px solid var(--cp-accent); padding-left:16px }
+@media(max-width:600px) { .mechanism { padding:16px }.docker-comparison { grid-template-columns:1fr; gap:32px }.memory-pair { grid-template-columns:1fr }.pressure-legend { font-size:.85em }.slots { gap:4px }.model-label { font-size:.9em } }
+</style></head><body><main><section data-aha-lang="en" lang="en" data-aha-title="Why noise cancellation leaves some voices audible"><div class="eyebrow">From observation to mechanism</div><h1>Why noise cancellation leaves some voices audible</h1><p class="lead">ANC adds a second sound pressure at your ear. Opposing waves can reduce the residual; ideal complete cancellation needs equal amplitudes and opposite phase at that position. It does not classify sounds as aircraft or voices.</p><h2>Follow the pressure, not the sound label</h2><div class="controls"><label>Control / incoming amplitude<input class="gain" type="range" min="0" max="1.2" step=".05" value="1"></label><label>Error from ideal opposite phase / degrees<input class="phase" type="range" min="0" max="180" step="5" value="0"></label></div><div class="mechanism"></div><p class="limit">Ideal pressure model at one target position. Not measured decibels, perceived loudness, or a prediction for your headphones.</p><article class="explanation prose" id="local-pressure-0"><h2>Two paths, one listening position</h2><p>Incoming noise and the loudspeaker output travel different acoustic paths. The controller must account for what reaches the ear, not merely flip the sign of the outside microphone signal.</p></article><article class="explanation prose" id="timing-0"><h2>A small timing error matters more at higher frequency</h2><p>For an assumed uncompensated error of 0.10 ms, the phase error is 3.6° at 100 Hz and 36° at 1,000 Hz. This is a single-tone calculation, not a headphone measurement or universal frequency cutoff.</p></article><article class="explanation prose" id="two-mechanisms-0"><h2>The seal blocks a path; ANC adds pressure</h2><p>Passive isolation changes how sound enters. Active control adds another pressure wave. Switching ANC off leaves the physical barrier in place; taking the headphones off changes both.</p></article><article class="explanation prose" id="speech-0"><h2>Partly reduced can still mean audible</h2><p>Speech spans many frequency components. Some may be reduced while others remain. Recognizable residual speech does not prove that no speech was attenuated, or that its pressure was amplified.</p></article><article class="explanation prose" id="wearing-0"><h2>Fit and mode can change the comparison</h2><p>A seal leak changes the acoustic path. Transparency deliberately admits outside sound; adaptive modes can change behavior. Keep fit and sound source fixed when comparing ANC on and off. That is a proposed comparison, not a test performed here.</p></article><footer class="explanation sources"><h2>Sources and scope</h2><ul><li><a href="https://www.iks.rwth-aachen.de/forschung/audio/active-noise-control/">RWTH IKS · active noise control</a></li><li><a href="https://helpguide.sony.net/mdr/wh1000xm5/v1/en/contents/TP1000534745.html">Sony · noise-cancelling function</a></li><li><a href="https://arxiv.org/html/2509.15864v1">Hilgemann et al. · prototype and wearing conditions</a></li><li><a href="https://support.apple.com/en-us/108918">Apple · listening modes</a></li></ul><p class="sources-note">Based on sealed research from 16–17 September 2026. Source reading, cited results and inherited observations are not new experiments in this production run.</p></footer></section><section data-aha-lang="zh" lang="zh-CN" data-aha-title="降噪耳机为什么仍能听见人声？"><div class="eyebrow">从现象到机制</div><h1>降噪耳机为什么仍能听见人声？</h1><p class="lead">主动降噪在耳边加入控制声压，抵消部分传入波动。理想的完全抵消才要求目标位置等幅反相；部分减弱不要求幅度完全相等。它不是飞机与人声的分类器。</p><h2>沿着声压的路径看，而不是按声音类别判断</h2><div class="controls"><label>控制幅度 / 传入幅度<input class="gain" type="range" min="0" max="1.2" step=".05" value="1"></label><label>偏离理想反相的角度 / 度<input class="phase" type="range" min="0" max="180" step="5" value="0"></label></div><div class="mechanism"></div><p class="limit">同一目标位置的理想声压模型；不是实测分贝、感知响度，也不能预测具体耳机的表现。</p><article class="explanation prose" id="local-pressure-1"><h2>两条路径，在同一个位置相加</h2><p>外界噪声和扬声器发出的声音经过不同传播路径。控制器需要考虑最后到达耳边的声压，而不只是把外部麦克风读数翻转符号。</p></article><article class="explanation prose" id="timing-1"><h2>同样的时间误差，在高频中占更大一圈</h2><p>假定未补偿的时间误差为 0.10 ms，100 Hz 的相位误差为 3.6°，1,000 Hz 则为 36°。这是单频解析示例，不是耳机实测，更不是所有耳机的统一失效频率。</p></article><article class="explanation prose" id="two-mechanisms-1"><h2>密封改变传声，主动控制加入声压</h2><p>被动隔音改变声音传入的路径，主动控制则加入另一股声压。关闭 ANC 后，耳罩或耳塞的物理屏障仍在；摘下耳机则同时改变了两者。</p></article><article class="explanation prose" id="speech-1"><h2>部分减弱，并不等于听不见</h2><p>语音包含多个频率成分，一部分可能被削弱，另一部分仍然残留。还能辨认出说话，不代表语音完全未衰减，也不能据此认定语音声压被放大。</p></article><article class="explanation prose" id="wearing-1"><h2>佩戴与模式也会改变结果</h2><p>密封泄漏会改变声学路径。通透模式主动引入环境声，自适应模式也可能改变行为。比较 ANC 开关时，应尽量保持佩戴和声源一致；这是比较建议，并非此处执行的测试。</p></article><footer class="explanation sources"><h2>依据与范围</h2><ul><li><a href="https://www.iks.rwth-aachen.de/forschung/audio/active-noise-control/">RWTH IKS · active noise control</a></li><li><a href="https://helpguide.sony.net/mdr/wh1000xm5/v1/en/contents/TP1000534745.html">Sony · noise-cancelling function</a></li><li><a href="https://arxiv.org/html/2509.15864v1">Hilgemann et al. · prototype and wearing conditions</a></li><li><a href="https://support.apple.com/en-us/108918">Apple · listening modes</a></li></ul><p class="sources-note">基于 2026-09-16 / 17 的封存研究。没有把历史源码阅读、引用或已有观察当作本轮新实验。</p></footer></section></main><script>(function installVisuals(topic) {
+  const escape = value => String(value).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  const word = (en, zh, language) => language === "zh" ? zh : en;
+  const box = (heading, content, className = "") => `<div class="mechanism-box ${className}"><strong>${heading}</strong>${content}</div>`;
+  const value = (number, unit = "") => `<span class="big-value">${escape(number)}</span> ${escape(unit)}`;
+  let geography;
+  if (topic === "greenland") {
+    const { geoArea, geoCentroid, geoRotation, geoMercator, geoPath, geoGraticule10 } = window.Geo;
+    const features = window.MAP_DATA.features.map(feature => {
+      const g = structuredClone(feature.geometry);
+      const polygons = g.type === "Polygon" ? [g.coordinates] : g.coordinates;
+      for (const rings of polygons) {
+        if (geoArea({ type: "Polygon", coordinates: rings }) > 2 * Math.PI) rings.forEach(ring => ring.reverse());
+      }
+      return { ...feature, geometry: g };
+    });
+    const original = features.find(f => f.properties.name === "Greenland");
+    if (!original) throw new Error("Greenland boundary missing");
+    const center = geoCentroid(original), area = geoArea(original);
+    if (!(area > 0 && area < .1)) throw new Error("Invalid boundary winding");
+    const projection = geoMercator().scale(116).translate([440, 325]).clipExtent([[0, 0], [880, 380]]);
+    const path = geoPath(projection);
+    geography = progress => {
+      const rotation = geoRotation([0, -center[1] * progress, 0]);
+      const point = p => {
+        const q = rotation([p[0] - center[0], p[1]]);
+        return [((q[0] + center[0] + 540) % 360) - 180, q[1]];
+      };
+      const g = original.geometry;
+      const moved = { type: g.type, coordinates: g.type === "Polygon" ? g.coordinates.map(r => r.map(point)) : g.coordinates.map(poly => poly.map(r => r.map(point))) };
+      const areaError = Math.abs(geoArea(moved) / area - 1);
+      if (areaError > 1e-10) throw new Error("Rotation changed spherical area");
+      window.geographicState = { areaError, progress, scale: projection.scale(), originalArea: area, movedArea: geoArea(moved) };
+      return `<svg class="map" viewBox="0 0 880 380" aria-hidden="true"><path class="land" d="${path({ type: "FeatureCollection", features: features.filter(f => f !== original) })}"/><path class="gridline" d="${path(geoGraticule10())}"/><path class="ghost" d="${path(original)}"/><path class="moving-land" d="${path(moved)}"/></svg>`;
+    };
+  }
+  function draw(holder, state = 0, language = "en", options = {}) {
+    const t = (en, zh) => word(en, zh, language);
+    let html;
+    if (topic === "anc") {
+      const gain = options.gain ?? 1;
+      const phase = options.phase ?? state * 80;
+      const delta = phase * Math.PI / 180;
+      const residual = Math.sqrt(1 + gain * gain - 2 * gain * Math.cos(delta));
+      const curve = fn => Array.from({ length: 161 }, (_, i) => `${i ? "L" : "M"}${i * 5},${110 - fn(i / 160 * Math.PI * 6) * 46}`).join(" ");
+      html = `<div class="pressure-legend"><span>${t("Incoming pressure", "传入声压")}</span><span>${t("Speaker pressure", "控制声压")}</span><strong>${t("Residual sum", "相加后的残余")}</strong></div>
+        <svg viewBox="0 0 800 220" class="waves" role="img" aria-label="${t("Two pressure waves and their sum at the same ear position", "同一耳边位置两路声压与其总和")}"><path class="axis" d="M0 110H800"/><path class="incoming" d="${curve(x => Math.sin(x))}"/><path class="control" d="${curve(x => -gain * Math.sin(x + delta))}"/><path class="wave-result" d="${curve(x => Math.sin(x) - gain * Math.sin(x + delta))}"/></svg>
+        <div class="result">${t("Residual amplitude / incoming amplitude", "残余幅度 / 传入幅度")} ${value(residual.toFixed(2))}</div>
+        <p class="model-label">${t("One position · normalized pressure · not decibels or loudness", "同一位置 · 归一化声压 · 非分贝或响度")}</p>`;
+      holder.dataset.residual = residual.toFixed(6);
+    } else if (topic === "greenland") {
+      html = geography(state) + `<div class="map-caption"><strong>${t("Highlighted: Greenland", "高亮：格陵兰")}</strong><span>${t("Rigid rotation · constant spherical area", "球面刚体旋转 · 球面面积不变")}</span></div><p class="model-label">${t("Fixed spherical Mercator scale · poles cropped · dotted original outline", "固定球面墨卡托比例 · 两极裁切 · 虚线为原轮廓")}</p>`;
+    } else if (topic === "cpython-string") {
+      const cases = [
+        { cp: "U+00E9", kind: 1, bytes: "100,074", utf: "100,002" },
+        { cp: "U+4E2D", kind: 2, bytes: "200,076", utf: "100,003" },
+        { cp: "U+1F600", kind: 4, bytes: "400,080", utf: "100,004" },
+      ];
+      const selected = cases[options.caseIndex ?? 2];
+      const assembling = state > 0 && state < .8;
+      const width = state < .25 ? 1 : 1 + (selected.kind - 1) * Math.min(1, (state - .25) / .55);
+      const slots = (kind, last, cls = "") => `<div class="slots ${cls}" style="--slot-width:${kind}">${["a", "a", "a", "…", "a", last].map((s, i) => `<span${i === 5 && last !== "a" ? ' class="codepoint-slot"' : ""}>${escape(s)}</span>`).join("")}</div>`;
+      html = `<div class="string-original"><strong>${t("Original str: unchanged", "原 str：保持不变")}</strong>${slots(1, "a")}<small>${t("100,000 ASCII code points · 1 byte per slot", "100,000 个 ASCII 码点 · 每槽 1 字节")}</small></div>
+        <div class="string-result" style="visibility:${state > 0 ? "visible" : "hidden"}"><strong>${assembling ? t("Allocating the new result", "正在分配新结果") : t("New str after concatenation", "拼接后的新 str")} · ${escape(selected.cp)}</strong>${slots(width, selected.cp, "accent-slots")}<small>${t("Target: uniform slots in the new result", "目标：新结果中的码点槽统一宽度")} · ${selected.kind} ${t("bytes per code point", "字节 / 码点")}</small></div>
+        <div class="memory-pair">${box(t("str object", "str 对象"), value(state < .8 ? "100,049" : selected.bytes, t("bytes", "字节")))}${box(t("UTF-8 payload", "UTF-8 载荷"), value(state < .8 ? "100,000" : selected.utf, t("bytes", "字节")))}</div>
+        <p class="model-label">${t("Supplied CPython 3.11.15 observations; representative slots, not 100,000 drawn cells.", "既有 CPython 3.11.15 记录；仅绘制代表槽，并非十万个实际格子。")}</p>`;
+      holder.dataset.kind = selected.kind;
+    } else {
+      const stage = options.stage ?? (state < .33 ? "add" : state < .7 ? "delete" : "same");
+      const deletion = stage !== "add";
+      const base = stage === "base";
+      const layer = (label, text, cls = "") => `<div class="layer ${cls}"><b>${label}</b><span>${text}</span></div>`;
+      html = `<div class="docker-comparison">
+        <div><h3>${t("Separate RUNs", "分开的 RUN")}</h3><div class="layer-stack">${deletion ? layer(t("Later layer", "后加层"), ".wh.temp", "marker-layer") : '<div class="layer-placeholder"></div>'}${layer(deletion ? t("Earlier layer", "先前层") : t("First committed layer", "首个提交层"), "/temp · 100 MB", "payload-layer")}</div><div class="merged"><b>${t("Merged view", "合并视图")}</b><strong>${deletion ? t("/temp absent", "/temp 不存在") : t("/temp visible", "/temp 可见")}</strong></div></div>
+        <div><h3>${t("Same RUN · NEW file", "同一 RUN · 新文件")}</h3><div class="endpoint"><span>${t("Before: absent", "之前：不存在")}</span><span>${t("Create → delete", "创建 → 删除")}</span><span>${t("After: absent", "之后：不存在")}</span></div><div class="merged"><b>${t("Resulting diff", "生成的差异")}</b><strong>${t("No payload for this file", "没有此文件的载荷")}</strong></div></div></div>
+        <p class="model-label ${base ? "emphasis" : ""}">${base ? t("Base-file exception: deleting a file already in the base still leaves its lower-layer bytes.", "基础层反例：删除基础层已有文件，仍会保留下层字节。") : t("Layer cutaway ≠ merged view. 100 MB assumed; no build executed.", "层剖面 ≠ 合并视图。100 MB 为假设；未执行构建。")}</p>`;
+      holder.dataset.stage = stage;
+    }
+    holder.innerHTML = html;
+  }
+  window.drawMechanism = draw;
+  for (const section of document.querySelectorAll("[data-aha-lang]")) {
+    const holder = section.querySelector(".mechanism");
+    const language = section.dataset.ahaLang;
+    const update = () => {
+      if (topic === "anc") draw(holder, 0, language, { gain: Number(section.querySelector(".gain").value), phase: Number(section.querySelector(".phase").value) });
+      else if (topic === "greenland") draw(holder, Number(section.querySelector(".position").value), language);
+      else if (topic === "cpython-string") draw(holder, 1, language, { caseIndex: Number(section.querySelector(".codepoint").value) });
+      else draw(holder, 0, language, { stage: section.querySelector(".scenario").value });
+    };
+    section.querySelectorAll("input,select").forEach(input => input.addEventListener("input", update));
+    update();
+  }
+})("anc");</script></body></html>

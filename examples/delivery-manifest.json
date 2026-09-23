@@ -4,842 +4,6 @@
   "gallery": "index.html",
   "requestedOutputs": [
     {
-      "topic": "greenland",
-      "format": "video",
-      "file": "greenland/greenland.mp4",
-      "bytes": 3279333,
-      "sha256": "3cd9709076af808345f395ba7038088f2b6e394521b2218675e0cc93d0bad8a3",
-      "sourceProject": "greenland/projects/video",
-      "sourceHash": "3c61c71807f2a7fa610300e7b311371816d8f730242308b3d23a6471e8dde2ea",
-      "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6",
-      "report": "greenland/research/report.md",
-      "receipt": "greenland/greenland.mp4.receipt.json",
-      "durationSeconds": 115.73333333333333,
-      "frames": 3472,
-      "provider": "edge-tts",
-      "receiptHash": "4994e7454619f64df66b89054a9a57fc3c9793fddd15cccf1333138d04a5a2eb",
-      "qa": {
-        "directory": "greenland/qa/video",
-        "status": "bounded-evidence",
-        "evidence": [
-          {
-            "file": "greenland/qa/video/author/browser-observations.json",
-            "sha256": "b161f8cbb68f4425e392d193c7330f1e8827120ecf16f99b6a868d2b2206f376"
-          },
-          {
-            "file": "greenland/qa/video/author/source-plan-consistency.json",
-            "sha256": "f4408e6f558ee06ec38b7c08b0d0d2afc26e08d0db8ae75b8ac3308752573271"
-          },
-          {
-            "file": "greenland/qa/video/author/video-plan-check.json",
-            "sha256": "e152a37c997b8c08cb2805965e844827c89b27aa2ee2ef935973395465a9fb04"
-          },
-          {
-            "file": "greenland/qa/video/encoded/01-opening.png",
-            "sha256": "8c4f3170edace5d730fcc948283e01960f3c646c9bde5a52bff475006be81eb7"
-          },
-          {
-            "file": "greenland/qa/video/encoded/02-area-bars.png",
-            "sha256": "66725fffcac1fd96ceb6d8ea5bd69b0539b5285c833c9ebfdc9f5170336fe8cd"
-          },
-          {
-            "file": "greenland/qa/video/encoded/03-meridians-globe.png",
-            "sha256": "bfb3cb78d23b7269880d8ecd47de0c85e4b9060d980a550f6f3e6c566f216572"
-          },
-          {
-            "file": "greenland/qa/video/encoded/04-meridians-map.png",
-            "sha256": "850d24cc5ebbc0ab871ac794df1a56665dd7e4c457740ca358efd70695aa82af"
-          },
-          {
-            "file": "greenland/qa/video/encoded/05-latitude-stretch.png",
-            "sha256": "6b1f81077363fa1735e85f7529c6d0116cf7794811691d45eb0d52b600b23761"
-          },
-          {
-            "file": "greenland/qa/video/encoded/06-local-patch.png",
-            "sha256": "f08f7f59f433c9f2f7cd1f814abadc16c1516d97920e46a93067ee80ad91b286"
-          },
-          {
-            "file": "greenland/qa/video/encoded/07-local-area.png",
-            "sha256": "ac6fe2a7cd79a59241b71abef88cf84900b10b1f1826661019ece04efb1e7d89"
-          },
-          {
-            "file": "greenland/qa/video/encoded/08-moving-greenland.png",
-            "sha256": "6fb52c3010cd075ed9df3cb89aab97aa2169587789479c2618200d6b53b4ed39"
-          },
-          {
-            "file": "greenland/qa/video/encoded/09-unchanged-area.png",
-            "sha256": "0e60856f0f5b5c7542e244f10d8e577c54de5c2bdaf8475e7efea0d3de555912"
-          },
-          {
-            "file": "greenland/qa/video/encoded/10-local-angles.png",
-            "sha256": "05589765acb795d4462eb40f4c8a2e19e5cf6302e0a841f5b5cee745718cfc60"
-          },
-          {
-            "file": "greenland/qa/video/encoded/11-constant-heading.png",
-            "sha256": "b6a30488e9d241d0d9a960f1830380b88f78f5244a684c25f4ccadce7fb496e8"
-          },
-          {
-            "file": "greenland/qa/video/encoded/12-equal-earth.png",
-            "sha256": "254ffeb2f13083d349b8221991e0ddc349a3100afbb696466822768efe686f12"
-          },
-          {
-            "file": "greenland/qa/video/encoded/13-projection-tradeoff.png",
-            "sha256": "7de1631174a011d7424c5c6eddefb6cf657fc171e157159a6ce9b05533c6c25e"
-          },
-          {
-            "file": "greenland/qa/video/encoded/14-closing-choice.png",
-            "sha256": "63b5d0e55d9b667ab1f7e19269ee84bf89d4ff2a09229e444005f921b08949fa"
-          },
-          {
-            "file": "greenland/qa/video/encoded/encoded-visual-review.json",
-            "sha256": "6d18bac46079acb0365d6ed4a2af5c1d4cb0286e8bfd8d3562d07b9c0d80c23c"
-          },
-          {
-            "file": "greenland/qa/video/encoded/technical-review.json",
-            "sha256": "408af6d23051252b52ab8d8e5f6739d32b722ef4cbc6f59c0f3cc8973fd5d81e"
-          }
-        ]
-      }
-    },
-    {
-      "topic": "anc",
-      "format": "html",
-      "file": "anc/anc.html",
-      "bytes": 27490,
-      "sha256": "0116f3f80756bb04df4d4c45a42cbe09e30dafcfdfb85765b929dd3a6036dfe4",
-      "sourceProject": "anc/projects/html",
-      "sourceHash": "7cdad7fa9aff35dd70efee5ac9c663bc6bf4ae822ecaefcdf9e6289cbd621f7f",
-      "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
-      "report": "anc/research/report.md",
-      "receipt": "anc/anc.html.receipt.json",
-      "receiptHash": "95e3b8fb81c20fc70912c1f6f42e338bb59641f7205a42cab7557e4a88d73d02",
-      "qa": {
-        "directory": "anc/qa/html",
-        "status": "bounded-evidence",
-        "evidence": [
-          {
-            "file": "anc/qa/html/browser-check.json",
-            "sha256": "3a65dd5e09d281435a408012759a98fae0cc052fcc696462b6be3b7b5ea41d86"
-          },
-          {
-            "file": "anc/qa/html/browser-observations.json",
-            "sha256": "2bc62787040de836d9f4822b0722f450a93ff7bc85bcdaad376c5c2df4278e19"
-          },
-          {
-            "file": "anc/qa/html/html-en-1280.png",
-            "sha256": "7a0ed1e162b18aff432906e4bd6d5d5cbdc43bf3528e4125c4962d57cc937b9f"
-          },
-          {
-            "file": "anc/qa/html/html-en-390.png",
-            "sha256": "960c88b18030bafc17e2e7b7de621afde9b3bd06fe5d9973b32330f933d0a4a6"
-          },
-          {
-            "file": "anc/qa/html/html-zh-1280.png",
-            "sha256": "13563fe834b42f49be62f85e835f799685c97cf4bebe08de06016197cedaec39"
-          },
-          {
-            "file": "anc/qa/html/html-zh-390.png",
-            "sha256": "44d37210e8ee9148b7a30cc6111b2cba4a21843b9624e31e86ab5fbfa0ef6334"
-          }
-        ]
-      }
-    },
-    {
-      "topic": "anc",
-      "format": "image",
-      "file": "anc/anc.png",
-      "bytes": 208893,
-      "sha256": "3151ec513a0e85fd5e1e6ea2abe3d5552dbef7f0f6bec271f899ce09cad56708",
-      "sourceProject": "anc/projects/image",
-      "sourceHash": "078f515cec6fe5dbb9ad4506538c75de2d823ff7e1e0e2ea29eab0155032c063",
-      "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
-      "report": "anc/research/report.md",
-      "receipt": "anc/anc.png.receipt.json",
-      "width": 1800,
-      "height": 1200,
-      "receiptHash": "c8c05830ae528a65e15f90dca5bf82b4f3bd6b44981d2b0b03fffc12688e41f2",
-      "qa": {
-        "directory": "anc/qa/image",
-        "status": "bounded-evidence",
-        "evidence": [
-          {
-            "file": "anc/qa/image/review-scope.json",
-            "sha256": "5dfd493ff37eb4f356749cd8db2cdb1859714698c411c34ffe710906aacc763c"
-          }
-        ]
-      }
-    },
-    {
-      "topic": "anc",
-      "format": "pptx",
-      "file": "anc/anc.pptx",
-      "bytes": 204996,
-      "sha256": "12f943d5c6d7f35d05712055179c3db4a718fff230923a6e6a81e6ff85d3188d",
-      "sourceProject": "anc/projects/pptx",
-      "sourceHash": "7cd0aa7f95b5ba2f92d359c7f8a51939ee251c0f59a2d39e68523d449c574132",
-      "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
-      "report": "anc/research/report.md",
-      "receipt": "anc/anc.pptx.receipt.json",
-      "slides": 7,
-      "native": true,
-      "language": "zh",
-      "provenance": {
-        "skill": {
-          "name": "aha-explain",
-          "sourceRevision": "9f1a35359079531fe78eecf10b482f4d759c0356",
-          "guideHashes": {
-            "references/artifact-qa.md": "74e232dc26d9038500471aa28e6ed38f332c95bab2c4df47861c443ca9f67bc0",
-            "references/pptx.md": "b63f1baa02beca52b5ebc770655f75290258fce55b45a5d49c5d5231b9b62fca",
-            "SKILL.md": "61e0c752b286eb634d13bd883236396139599394f2667b165d361b12b7ad9ec2"
-          }
-        },
-        "runtimeHash": "4aa41f11c07e7ef1f622e7ed0787242ab520fff3e3fe7302ea82526bde86d4fe"
-      },
-      "receiptHash": "94ac27c2dd1799f86e3588fce5d6c24f7d992f3afa55682a50b5f522386a5721",
-      "qa": {
-        "directory": "anc/qa/pptx",
-        "status": "bounded-evidence",
-        "evidence": [
-          {
-            "file": "anc/qa/pptx/powerpoint-observations.json",
-            "sha256": "04bad63e857b158fa3f090c07e414603fb45b975d4b8e63150181dbe28238b33"
-          },
-          {
-            "file": "anc/qa/pptx/slide-01.png",
-            "sha256": "c1bc8649e2263a2d27893c964e4bb71340dbfce128bc5c08512a237f2e8c75f4"
-          },
-          {
-            "file": "anc/qa/pptx/slide-02.png",
-            "sha256": "12a4a5afefcd3d75b99c3c4370f833869fa507454ea6521d0f22c7d589802631"
-          },
-          {
-            "file": "anc/qa/pptx/slide-03.png",
-            "sha256": "54ee5f863610bc0731e36cc38266357d96151274b2db41a1c18ae4e787c89cfe"
-          },
-          {
-            "file": "anc/qa/pptx/slide-04.png",
-            "sha256": "bb00f59350d0d2c348dbc98799c4f545708392b5f8531ba4d5e8251b01785e94"
-          },
-          {
-            "file": "anc/qa/pptx/slide-05.png",
-            "sha256": "06362776acbfffe84229dba752e481480836d885803abcaea27af5c35b275573"
-          },
-          {
-            "file": "anc/qa/pptx/slide-06.png",
-            "sha256": "78723a8d2ae637bea3164fa441251f08b6b01b51d9c5bd942dbdca5b31c2be49"
-          },
-          {
-            "file": "anc/qa/pptx/slide-07.png",
-            "sha256": "c074f27bc46b6bb0a47b97faf20a9679c020faad341d4d2d7d71dda4bc45cce8"
-          }
-        ],
-        "application": {
-          "file": "anc/qa/pptx/powerpoint-observations.json",
-          "sha256": "04bad63e857b158fa3f090c07e414603fb45b975d4b8e63150181dbe28238b33"
-        },
-        "pages": [
-          {
-            "file": "anc/qa/pptx/slide-01.png",
-            "sha256": "c1bc8649e2263a2d27893c964e4bb71340dbfce128bc5c08512a237f2e8c75f4"
-          },
-          {
-            "file": "anc/qa/pptx/slide-02.png",
-            "sha256": "12a4a5afefcd3d75b99c3c4370f833869fa507454ea6521d0f22c7d589802631"
-          },
-          {
-            "file": "anc/qa/pptx/slide-03.png",
-            "sha256": "54ee5f863610bc0731e36cc38266357d96151274b2db41a1c18ae4e787c89cfe"
-          },
-          {
-            "file": "anc/qa/pptx/slide-04.png",
-            "sha256": "bb00f59350d0d2c348dbc98799c4f545708392b5f8531ba4d5e8251b01785e94"
-          },
-          {
-            "file": "anc/qa/pptx/slide-05.png",
-            "sha256": "06362776acbfffe84229dba752e481480836d885803abcaea27af5c35b275573"
-          },
-          {
-            "file": "anc/qa/pptx/slide-06.png",
-            "sha256": "78723a8d2ae637bea3164fa441251f08b6b01b51d9c5bd942dbdca5b31c2be49"
-          },
-          {
-            "file": "anc/qa/pptx/slide-07.png",
-            "sha256": "c074f27bc46b6bb0a47b97faf20a9679c020faad341d4d2d7d71dda4bc45cce8"
-          }
-        ],
-        "visualReview": {
-          "status": "bounded-review",
-          "limitations": [
-            "Current PowerPoint open/export and copy-edit checks are application observations, not a new independent visual or human-comprehension review.",
-            "Candidate visuals were reviewed with mixed full-resolution and scaled-history images. Complete original-resolution and presentation-distance readability remains unverified.",
-            "Inherited page 5 diagram connects only the residual branch to audibility; attenuation and residual speech need careful explanation."
-          ]
-        }
-      }
-    },
-    {
-      "topic": "anc",
-      "format": "video",
-      "file": "anc/anc.mp4",
-      "bytes": 3805481,
-      "sha256": "bfce8912e3dc373f9a73e2b3cc9c7f252f40900c7e256dc36a13ef7cc17c4d45",
-      "sourceProject": "anc/projects/video",
-      "sourceHash": "5b6732b7cbf5e101cdcab09492613bba12c856691954f42f04950e68c784ad25",
-      "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
-      "report": "anc/research/report.md",
-      "receipt": "anc/anc.mp4.receipt.json",
-      "durationSeconds": 127.1,
-      "frames": 3813,
-      "provider": "provided-audio",
-      "receiptHash": "362b9f4bebb3dc7113ef21dfb15e7904689012c9f72bfc4a102970e1b832bbc1",
-      "qa": {
-        "directory": "anc/qa/video",
-        "status": "bounded-evidence",
-        "evidence": [
-          {
-            "file": "anc/qa/video/approval.json",
-            "sha256": "94a198d3f56dc6e823620a8939dfb52511d7521412465cb62e1605ec0a5a40cf"
-          },
-          {
-            "file": "anc/qa/video/browser-observations.json",
-            "sha256": "540ba12f742b504681775f8b72e5cbabddede6d0ec2134d1433ef9b0647f8597"
-          },
-          {
-            "file": "anc/qa/video/encoded-video/contact-1.png",
-            "sha256": "8f55d34080e60ec5a054b86ed7be2d76d9bb9b2d90ac7634362544c5ecc14989"
-          },
-          {
-            "file": "anc/qa/video/encoded-video/contact-9.png",
-            "sha256": "866b5e2c3ca9fe2852b31bc063338e95cc17339050746daab4bbfe6f5d5c6448"
-          },
-          {
-            "file": "anc/qa/video/encoded-video/segment-01.png",
-            "sha256": "9015e2a16af4a6819da0e34c2ad6cef166b7266c4c344c325a376cf43fe59061"
-          },
-          {
-            "file": "anc/qa/video/encoded-video/segment-02.png",
-            "sha256": "18db550697c085c1331c8bef7eba63546c9f83cb331e3a2bd3ff81b07270071e"
-          },
-          {
-            "file": "anc/qa/video/encoded-video/segment-03.png",
-            "sha256": "e145f569913dd74ca1429ea344907e82c1d5b6f280479a3abb785a76dbfeadbc"
-          },
-          {
-            "file": "anc/qa/video/encoded-video/segment-04.png",
-            "sha256": "b482dc11bb6a15b88afe1bf7bac56da9a3f9a1641f7f18cdde9afb5777f103cb"
-          },
-          {
-            "file": "anc/qa/video/encoded-video/segment-05.png",
-            "sha256": "903c73d0b4f2988b5eb54212c16404181a8e1f29b1698924d1a04202dae5bbc4"
-          },
-          {
-            "file": "anc/qa/video/encoded-video/segment-06.png",
-            "sha256": "79e4ba8ef906d8ba65bb6fa1d2ee56ff65d5d509caaf3bd29b7b4e4b00551d06"
-          },
-          {
-            "file": "anc/qa/video/encoded-video/segment-07.png",
-            "sha256": "bdf819ec594cb5171b66e0c09bc2d7a67902708d9ebeabf038352dc20a2e7656"
-          },
-          {
-            "file": "anc/qa/video/encoded-video/segment-08.png",
-            "sha256": "a65472811024a707da91c672fb13d29b136afe4e1dfb1fed42b04f9b1e73025f"
-          },
-          {
-            "file": "anc/qa/video/encoded-video/segment-09.png",
-            "sha256": "75b55dd40e10a5b7ba0eb4b6bded4438434b40669b54019701523b607fc9a30b"
-          },
-          {
-            "file": "anc/qa/video/encoded-video/segment-10.png",
-            "sha256": "c595fea01fd1bebc6aa0c1d0c713bf74d179d1c084ef6a84ac222bd38e91ddc1"
-          },
-          {
-            "file": "anc/qa/video/encoded-video/segment-11.png",
-            "sha256": "afcc2b4ce7b71b619be59494bb483ceb00795e3448e504fa91f055a97a71b7e1"
-          },
-          {
-            "file": "anc/qa/video/encoded-video/segment-12.png",
-            "sha256": "bd9cfe5b83d24225eddcbed576e9d6c937b9c94fb03fe29cb5aa1674f053c02a"
-          },
-          {
-            "file": "anc/qa/video/encoded-video/segment-13.png",
-            "sha256": "cb5ba5a751e322536ee6089a66fcddcba46909e23ad079defa8349366ff23089"
-          },
-          {
-            "file": "anc/qa/video/encoded-video/segment-14.png",
-            "sha256": "0000083062f636e89cc8b5ef7e31b35c0d9bfef10f0878f64ae4b2feb1ff8732"
-          },
-          {
-            "file": "anc/qa/video/media-check.json",
-            "sha256": "5c58ada78dcfbab5774c7b3f7a01895c0c812ca19162b086f98b48f3081d5d59"
-          }
-        ]
-      }
-    },
-    {
-      "topic": "git-merge",
-      "format": "html",
-      "file": "git-merge/git-merge.html",
-      "bytes": 16413,
-      "sha256": "465e063102fddad6a0beb754c6460e03c9397fe280993bcff4c389f602003c7c",
-      "sourceProject": "git-merge/projects/html",
-      "sourceHash": "c51ba75aa63c892d3fee25ae69ce26439daa3097820224a5a54477623888d915",
-      "researchHash": "c38647d6d79318b96aa30e9c5f86f2babe042dec286ad390a56d22f908ee2019",
-      "report": "git-merge/research/report.md",
-      "receipt": "git-merge/git-merge.html.receipt.json",
-      "language": "zh",
-      "receiptHash": "55e2b904a7d3e23d53ff27bef0b8204b3e8bc95b75444919aa23baf8cb92e80b",
-      "qa": {
-        "directory": "git-merge/qa/html",
-        "status": "bounded-evidence",
-        "evidence": [
-          {
-            "file": "git-merge/qa/html/browser-observations.json",
-            "sha256": "8d9540e47c694f7fe6042558fdce6f4e4e53b5ae705ffdfc7941f6d9498f91e8"
-          },
-          {
-            "file": "git-merge/qa/html/html-1280.png",
-            "sha256": "21f063dd2754ee524a883fe20afd1d55158d638415353ca90ed9d4b5ac6bd59b"
-          },
-          {
-            "file": "git-merge/qa/html/html-320.png",
-            "sha256": "8e10362f4e2c83b77c7a00b2878827c537e564918fdcdd2d91685ae74b4284e7"
-          },
-          {
-            "file": "git-merge/qa/html/html-390.png",
-            "sha256": "9fc1eea8c33b63741a30916f4effd96c3dfc113e2b5f0a76473370ff55ad151e"
-          },
-          {
-            "file": "git-merge/qa/html/review.json",
-            "sha256": "b29d69fc89e5e178819c6f1bfb108f3a5219376432c76a0dd8738aa8013c79ff"
-          }
-        ]
-      }
-    },
-    {
-      "topic": "git-merge",
-      "format": "image",
-      "file": "git-merge/git-merge.png",
-      "bytes": 199608,
-      "sha256": "fd75839a8ae657d58e224c04bac2cbeb632c34a16a425028d9ce25b58c9ca64b",
-      "sourceProject": "git-merge/projects/image",
-      "sourceHash": "fb9712ae024d829f4e80f6d16d1bab3fd7e44b64e69618770ae65106a7af6c13",
-      "researchHash": "c38647d6d79318b96aa30e9c5f86f2babe042dec286ad390a56d22f908ee2019",
-      "report": "git-merge/research/report.md",
-      "receipt": "git-merge/git-merge.png.receipt.json",
-      "width": 1800,
-      "height": 1200,
-      "receiptHash": "068bca209f56c3a3702c77664899df248e5d45942c510f31c28c8a8005e1a696",
-      "qa": {
-        "directory": "git-merge/qa/image",
-        "status": "bounded-evidence",
-        "evidence": [
-          {
-            "file": "git-merge/qa/image/review-scope.json",
-            "sha256": "fbce94b3987a4b17f675502105bc65f21db194a2c5ec105b5ef4968e6509d488"
-          }
-        ]
-      }
-    },
-    {
-      "topic": "git-merge",
-      "format": "pptx",
-      "file": "git-merge/git-merge.pptx",
-      "bytes": 261975,
-      "sha256": "949b969a35c44fe6e9d66c6737cd103b5da26a479ecbbc257f64f9540d355d39",
-      "sourceProject": "git-merge/projects/pptx",
-      "sourceHash": "f51c3b1178e2bdd7746e045e6807386359da34f49d4b6a221a1c648ae19ada20",
-      "researchHash": "c38647d6d79318b96aa30e9c5f86f2babe042dec286ad390a56d22f908ee2019",
-      "report": "git-merge/research/report.md",
-      "receipt": "git-merge/git-merge.pptx.receipt.json",
-      "slides": 8,
-      "native": true,
-      "language": "zh",
-      "provenance": {
-        "skill": {
-          "name": "aha-explain",
-          "sourceRevision": "9f1a35359079531fe78eecf10b482f4d759c0356",
-          "guideHashes": {
-            "references/artifact-qa.md": "74e232dc26d9038500471aa28e6ed38f332c95bab2c4df47861c443ca9f67bc0",
-            "references/pptx.md": "b63f1baa02beca52b5ebc770655f75290258fce55b45a5d49c5d5231b9b62fca",
-            "SKILL.md": "61e0c752b286eb634d13bd883236396139599394f2667b165d361b12b7ad9ec2"
-          }
-        },
-        "runtimeHash": "4aa41f11c07e7ef1f622e7ed0787242ab520fff3e3fe7302ea82526bde86d4fe"
-      },
-      "receiptHash": "db440b6c4ad2a7d72bf7d455ce7b7c882aecf4350dbeea31137ba8f1ccbb6ae5",
-      "qa": {
-        "directory": "git-merge/qa/pptx",
-        "status": "bounded-evidence",
-        "evidence": [
-          {
-            "file": "git-merge/qa/pptx/powerpoint-observations.json",
-            "sha256": "9e3aa92536c695263f51ee8ad69506e574c9fe34998e4031bd7f7ad03866fcd1"
-          },
-          {
-            "file": "git-merge/qa/pptx/slide-01.png",
-            "sha256": "aae059cab9e0903b753d4d2a413b6c56652400fbbb4dd324039583224661f00d"
-          },
-          {
-            "file": "git-merge/qa/pptx/slide-02.png",
-            "sha256": "b0bae4979c93c26823446c2acc4d48f494f39baa598bfb0fb8419a167e5c8feb"
-          },
-          {
-            "file": "git-merge/qa/pptx/slide-03.png",
-            "sha256": "07ceb12b099fd50e19b8c6399486d62b89fd9e39bfe97ff0931218bff04da424"
-          },
-          {
-            "file": "git-merge/qa/pptx/slide-04.png",
-            "sha256": "6adea917ef57c438a4fe06881ae2530813cf9e040380d14e0d632f9357de6af5"
-          },
-          {
-            "file": "git-merge/qa/pptx/slide-05.png",
-            "sha256": "a862dd005019f2e13d0508be6f6051b2eb31ed4c1dbd9e289f26e10490204759"
-          },
-          {
-            "file": "git-merge/qa/pptx/slide-06.png",
-            "sha256": "ed7731a1cacfe854c52e930ead4942c2d16d49545011f69244fb90dd4d29f7c1"
-          },
-          {
-            "file": "git-merge/qa/pptx/slide-07.png",
-            "sha256": "57aa6c82411b2122ec08658320ecf9745cad602f50c4e30238eff3caf6de6e58"
-          },
-          {
-            "file": "git-merge/qa/pptx/slide-08.png",
-            "sha256": "5c639e335707196837b1b3b4c5dbefdc5a82176684d222a5bc41f7bf5b178de5"
-          }
-        ],
-        "application": {
-          "file": "git-merge/qa/pptx/powerpoint-observations.json",
-          "sha256": "9e3aa92536c695263f51ee8ad69506e574c9fe34998e4031bd7f7ad03866fcd1"
-        },
-        "pages": [
-          {
-            "file": "git-merge/qa/pptx/slide-01.png",
-            "sha256": "aae059cab9e0903b753d4d2a413b6c56652400fbbb4dd324039583224661f00d"
-          },
-          {
-            "file": "git-merge/qa/pptx/slide-02.png",
-            "sha256": "b0bae4979c93c26823446c2acc4d48f494f39baa598bfb0fb8419a167e5c8feb"
-          },
-          {
-            "file": "git-merge/qa/pptx/slide-03.png",
-            "sha256": "07ceb12b099fd50e19b8c6399486d62b89fd9e39bfe97ff0931218bff04da424"
-          },
-          {
-            "file": "git-merge/qa/pptx/slide-04.png",
-            "sha256": "6adea917ef57c438a4fe06881ae2530813cf9e040380d14e0d632f9357de6af5"
-          },
-          {
-            "file": "git-merge/qa/pptx/slide-05.png",
-            "sha256": "a862dd005019f2e13d0508be6f6051b2eb31ed4c1dbd9e289f26e10490204759"
-          },
-          {
-            "file": "git-merge/qa/pptx/slide-06.png",
-            "sha256": "ed7731a1cacfe854c52e930ead4942c2d16d49545011f69244fb90dd4d29f7c1"
-          },
-          {
-            "file": "git-merge/qa/pptx/slide-07.png",
-            "sha256": "57aa6c82411b2122ec08658320ecf9745cad602f50c4e30238eff3caf6de6e58"
-          },
-          {
-            "file": "git-merge/qa/pptx/slide-08.png",
-            "sha256": "5c639e335707196837b1b3b4c5dbefdc5a82176684d222a5bc41f7bf5b178de5"
-          }
-        ],
-        "visualReview": {
-          "status": "bounded-review",
-          "limitations": [
-            "Current PowerPoint open/export and copy-edit checks are application observations, not a new independent visual or human-comprehension review.",
-            "Candidate visuals were reviewed with mixed full-resolution and scaled-history images. Complete original-resolution and presentation-distance readability remains unverified.",
-            "Inherited page 1 card-top spacing is tight; small footers remain."
-          ]
-        }
-      }
-    },
-    {
-      "topic": "git-merge",
-      "format": "video",
-      "file": "git-merge/git-merge.mp4",
-      "bytes": 3208805,
-      "sha256": "e55f2c7e652f2b54a8e4508f44d238c59632862d7da1ae5351f8e8c35098ad7e",
-      "sourceProject": "git-merge/projects/video",
-      "sourceHash": "a69708ed4925798e697ed6e1011e42945bee1037b3065974022bdf415eb71b28",
-      "researchHash": "c38647d6d79318b96aa30e9c5f86f2babe042dec286ad390a56d22f908ee2019",
-      "report": "git-merge/research/report.md",
-      "receipt": "git-merge/git-merge.mp4.receipt.json",
-      "durationSeconds": 126.26666666666667,
-      "frames": 3788,
-      "provider": "provided-audio",
-      "receiptHash": "d6494463822917a5ef230eb641d4778ae477524154fc634735db9b4933f57868",
-      "qa": {
-        "directory": "git-merge/qa/video",
-        "status": "bounded-evidence",
-        "evidence": [
-          {
-            "file": "git-merge/qa/video/approval.json",
-            "sha256": "8af7e0e48dc8932fd16ad6d9f1c3a0c0d1a6f61951b1f0cd26fd00434113cd1f"
-          },
-          {
-            "file": "git-merge/qa/video/browser-observations.json",
-            "sha256": "985892e122602648957a386423747f72808ddf811c9449b4b18244943bb8f1e5"
-          },
-          {
-            "file": "git-merge/qa/video/encoded-video/contact-all.png",
-            "sha256": "7c3c95e090ff55553599a74e043f3ad96613fde1f7b8ad5aa7fb146f8c3ae1c1"
-          },
-          {
-            "file": "git-merge/qa/video/encoded-video/segment-01.png",
-            "sha256": "599817e168dcb40d40f1587c904e1522aeca47d26e5ee44beee23b0b47f7f68a"
-          },
-          {
-            "file": "git-merge/qa/video/encoded-video/segment-02.png",
-            "sha256": "b146e7a7fa2db47aad98526ff7a6a5625d4501eeb7ffe928f9ce23f8d3c886cf"
-          },
-          {
-            "file": "git-merge/qa/video/encoded-video/segment-03.png",
-            "sha256": "eed3020579da270e5ba5c144ecbd57ece3fd4aa4608f8ba662cb6d2bb38e0276"
-          },
-          {
-            "file": "git-merge/qa/video/encoded-video/segment-04.png",
-            "sha256": "74ace4e01c91e1c1e2c33d7e20540fc75587c86574cb1e7e4483e340166a38ac"
-          },
-          {
-            "file": "git-merge/qa/video/encoded-video/segment-05.png",
-            "sha256": "821df020fbbb6af668e12ae6c22e93de731d2602135d13081903661a4a6d73c3"
-          },
-          {
-            "file": "git-merge/qa/video/encoded-video/segment-06.png",
-            "sha256": "07b7a38520a505e506f51297ccbda8f7c7db6009120f164ca46e477975ed3888"
-          },
-          {
-            "file": "git-merge/qa/video/encoded-video/segment-07.png",
-            "sha256": "e9cbe46d824b8fc7cfc7748af28d1c47101a52ec5177db4ab48960ee1cdbc12a"
-          },
-          {
-            "file": "git-merge/qa/video/encoded-video/segment-08.png",
-            "sha256": "f5a828ef6e3fa1160e0aba317b53d4e9ec69649272cf92419938dc25870a5e61"
-          },
-          {
-            "file": "git-merge/qa/video/encoded-video/segment-09.png",
-            "sha256": "14fffeedb71d812256460a78ff9f9a3ae89c67d7648b58356c41e789a585d90d"
-          },
-          {
-            "file": "git-merge/qa/video/encoded-video/segment-10.png",
-            "sha256": "abc09fd4c68978c5e297623f4c64f50b8621c46c7aebd3f3ea8549e6fb985542"
-          },
-          {
-            "file": "git-merge/qa/video/media-check.json",
-            "sha256": "b5781f8668e9d13e95bbd83aca32dfe10be67d9a36a1d91fa6b9f51a3dae0a94"
-          }
-        ]
-      }
-    },
-    {
-      "topic": "cpython-string",
-      "format": "video",
-      "file": "cpython-string/cpython-string.mp4",
-      "bytes": 596720,
-      "sha256": "c0a9da2471a627a52a309b7afcc8905a46a112fb93b91384afe41dcd5d93c386",
-      "sourceProject": "cpython-string/projects/video",
-      "sourceHash": "4500ece23a3fd2e282375d5f660c67631d0dd2b4a93cec66ff259fe30f2148c1",
-      "researchHash": "04cdf5f8906f1385f8575b9c99d46ae60bfe4c2c37e79982658a19d9d617daf8",
-      "report": "cpython-string/research/report.md",
-      "receipt": "cpython-string/cpython-string.mp4.receipt.json",
-      "durationSeconds": 21.466666666666665,
-      "frames": 644,
-      "provider": "edge-tts",
-      "receiptHash": "6241f6c50d4b96e92a062437d17ec2f56493eb22cba9d6cb9e01d46696d3c07e",
-      "qa": {
-        "directory": "cpython-string/qa/video",
-        "status": "bounded-evidence",
-        "evidence": [
-          {
-            "file": "cpython-string/qa/video/approvals.json",
-            "sha256": "307260efaf00804579fb175e249495025b85c08751063563dc4ebad6152eaa50"
-          },
-          {
-            "file": "cpython-string/qa/video/author-review.json",
-            "sha256": "237795de78cb5f3b2c6995a53f0077c695bca3581580bcf01b3bd72a574dc311"
-          },
-          {
-            "file": "cpython-string/qa/video/encoded/1-ascii-baseline-end.png",
-            "sha256": "765eed2296e98d88e4f05efd1063e2f4b66c7909f28d39b1439daeb9d282b96e"
-          },
-          {
-            "file": "cpython-string/qa/video/encoded/1-ascii-baseline-middle.png",
-            "sha256": "29eb50bcd80b72ab3cb458e795adff40f5999e853ed6e13053a8030d29ef8f38"
-          },
-          {
-            "file": "cpython-string/qa/video/encoded/1-ascii-baseline-start.png",
-            "sha256": "8577834a06994a2fc1ad97675314ebb9798073065663bb6a04c4c0fcba493002"
-          },
-          {
-            "file": "cpython-string/qa/video/encoded/2-whole-string-widens-end.png",
-            "sha256": "972d449bc50de8895c53309411d82817d729e7e4d318e900bd07131205fc42e8"
-          },
-          {
-            "file": "cpython-string/qa/video/encoded/2-whole-string-widens-middle.png",
-            "sha256": "15bfe21ba33b10fda69b97600df7e2e08de78dbedf719d4d9bcaf061117182cd"
-          },
-          {
-            "file": "cpython-string/qa/video/encoded/2-whole-string-widens-start.png",
-            "sha256": "3b8f6503abd6ae62848e0a9a091872d115b3b3a0b17606056c92f0eec683dba6"
-          },
-          {
-            "file": "cpython-string/qa/video/encoded/3-utf8-contrast-end.png",
-            "sha256": "33ec1f246bb8e1f99db5933640bb46bcd14ebf02a195d0e2d586217068faeb31"
-          },
-          {
-            "file": "cpython-string/qa/video/encoded/3-utf8-contrast-middle.png",
-            "sha256": "76af9c46f97a5b5e740d03a4f2bb36fca7a2a816c0d408d68be4df59b2c6dcff"
-          },
-          {
-            "file": "cpython-string/qa/video/encoded/3-utf8-contrast-start.png",
-            "sha256": "84f1719d98dd7d9cbd21e425075505c6f2858f4f430982068e0a0c53b4c87541"
-          },
-          {
-            "file": "cpython-string/qa/video/encoded/technical-review.json",
-            "sha256": "ce2c5946ebb65b50c5578c7a05080ba7f6a64e1f05f0f705799e3bbd5877815c"
-          },
-          {
-            "file": "cpython-string/qa/video/preflight-visual-review.json",
-            "sha256": "05ac20def9ca6d11c3f2632092e6685320d6e452d2ef18d737fa68c62b350d6c"
-          },
-          {
-            "file": "cpython-string/qa/video/preview/1-ascii-baseline-a-replay.png",
-            "sha256": "0e30eb73c6dfd6b7569a1e49a637d152db8e50802ccf8fef422cab72e8ef350e"
-          },
-          {
-            "file": "cpython-string/qa/video/preview/1-ascii-baseline-a.png",
-            "sha256": "0e30eb73c6dfd6b7569a1e49a637d152db8e50802ccf8fef422cab72e8ef350e"
-          },
-          {
-            "file": "cpython-string/qa/video/preview/1-ascii-baseline-b.png",
-            "sha256": "6114a4f9d54b5d404a7276789e5aa8119377f782eb6cddb91fa3f0ce540df06c"
-          },
-          {
-            "file": "cpython-string/qa/video/preview/1-ascii-baseline-end.png",
-            "sha256": "3f777ba88f65ac09efe1cda4b94944cab4f12161f9db260933ee4e1b972785e9"
-          },
-          {
-            "file": "cpython-string/qa/video/preview/1-ascii-baseline-start.png",
-            "sha256": "1629825e1241a356bb84fea4557f5b6b792cd53f753c2381a81a238f144b927d"
-          },
-          {
-            "file": "cpython-string/qa/video/preview/2-whole-string-widens-a-replay.png",
-            "sha256": "cf9cc3dafd584fda0d58223d97f56f50d4649dcf7d1371027fe8c682ea5be8df"
-          },
-          {
-            "file": "cpython-string/qa/video/preview/2-whole-string-widens-a.png",
-            "sha256": "cf9cc3dafd584fda0d58223d97f56f50d4649dcf7d1371027fe8c682ea5be8df"
-          },
-          {
-            "file": "cpython-string/qa/video/preview/2-whole-string-widens-b.png",
-            "sha256": "b71433fd82bed50a3a54debae11a21f77128a3c03ade7342d09bde4c40311a81"
-          },
-          {
-            "file": "cpython-string/qa/video/preview/2-whole-string-widens-end.png",
-            "sha256": "b71433fd82bed50a3a54debae11a21f77128a3c03ade7342d09bde4c40311a81"
-          },
-          {
-            "file": "cpython-string/qa/video/preview/2-whole-string-widens-start.png",
-            "sha256": "fb6a053f9bd65e354a47e42505c1d9b6e212bb25abec2f84b1f6ab5ea18ea5df"
-          },
-          {
-            "file": "cpython-string/qa/video/preview/3-utf8-contrast-a-replay.png",
-            "sha256": "d053ef82a0b97d7d472cdb73c583776054d38a07263d4888d159d83a0f316862"
-          },
-          {
-            "file": "cpython-string/qa/video/preview/3-utf8-contrast-a.png",
-            "sha256": "d053ef82a0b97d7d472cdb73c583776054d38a07263d4888d159d83a0f316862"
-          },
-          {
-            "file": "cpython-string/qa/video/preview/3-utf8-contrast-b.png",
-            "sha256": "d179a29f1c05f75f72aa2614d796524b9ef7c9b58e78bd0686a493779f730167"
-          },
-          {
-            "file": "cpython-string/qa/video/preview/3-utf8-contrast-end.png",
-            "sha256": "e526c0160704d60a6cd278c4b9735a17911f68f20205b143de79cbc65b4cde53"
-          },
-          {
-            "file": "cpython-string/qa/video/preview/3-utf8-contrast-start.png",
-            "sha256": "b25894b201d82dfe1e0838c21905108592068015e8703a829314b0111e96990a"
-          },
-          {
-            "file": "cpython-string/qa/video/preview/report.json",
-            "sha256": "289721f77a73f34ddcca8d08480c07236de7f7dd578b1011f455404021eb1288"
-          },
-          {
-            "file": "cpython-string/qa/video/semantic-state-review.json",
-            "sha256": "daab5ad570392b777a6cb8a8b84fb90d51bd2b892fb2daeac7d911a2df072726"
-          }
-        ]
-      }
-    },
-    {
-      "topic": "docker-layers",
-      "format": "video",
-      "file": "docker-layers/docker-layers.mp4",
-      "bytes": 628194,
-      "sha256": "94c7629843596a7a1f4c70d3edff0702e07d5df3a1847decf5a52a4f4a68c95d",
-      "sourceProject": "docker-layers/projects/video",
-      "sourceHash": "2219d6f667a1a7c0e99e7e25334edcb48458d3371ddb041035c28b9c716fbccb",
-      "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
-      "report": "docker-layers/research/report.md",
-      "receipt": "docker-layers/docker-layers.mp4.receipt.json",
-      "durationSeconds": 21.266666666666666,
-      "frames": 638,
-      "provider": "provided-audio",
-      "language": "en",
-      "receiptHash": "56909ba51e8a9cf047d88812903b5a2e1b018c0765d835bb8ff09a7ea92acb3e",
-      "qa": {
-        "directory": "docker-layers/qa/video",
-        "status": "bounded-evidence",
-        "evidence": [
-          {
-            "file": "docker-layers/qa/video/approval.json",
-            "sha256": "9eed8dc8a910a5be14c646713b4d0030b596fe80e96e82fdd27c137cc802d421"
-          },
-          {
-            "file": "docker-layers/qa/video/frames/frame-009.png",
-            "sha256": "f33910e0e67bc240bf1fc61c8d21b97e2c387eb6564b45cf957e9128d2b7eb87"
-          },
-          {
-            "file": "docker-layers/qa/video/media-observations.json",
-            "sha256": "8c37c3bc31960e78ca418b10440ba8c468a7b0fa4d8fcbbd50985734237a3d8a"
-          },
-          {
-            "file": "docker-layers/qa/video/result-at-640.png",
-            "sha256": "4d75b9a9a8e2e45cdb9f1616be47e5d95258f35b7b34411f0ac4b9683065bc6a"
-          },
-          {
-            "file": "docker-layers/qa/video/review.json",
-            "sha256": "0df57aa2c43f183a65fe59cbfc0bfa4a9877cf6bc2416af54ee49fe30f976828"
-          },
-          {
-            "file": "docker-layers/qa/video/source-diagnostics.json",
-            "sha256": "46e8aa675691107d56a7faf4ddb70ee656f4981b5a21c9a53fab10dca65db9d2"
-          },
-          {
-            "file": "docker-layers/qa/video/transition-contact-sheet.png",
-            "sha256": "1d0a57650807c23364152af7712ff987a6fdbcca655e0847851c0a7a40806ebb"
-          },
-          {
-            "file": "docker-layers/qa/video/transitions/frame-002.png",
-            "sha256": "44e28c04c52916cd37513694304e2bd4e8a68c4bdb3d38eff06adb20b59ff8e1"
-          },
-          {
-            "file": "docker-layers/qa/video/transitions/frame-003.png",
-            "sha256": "985887be8dedf2ddfbf3b26518523d8e705a8cbb1ca516a4f42f1ac966dcdc9c"
-          },
-          {
-            "file": "docker-layers/qa/video/video-contact-sheet.png",
-            "sha256": "ff0d2847b1eaad855ef4d34ca371db6c857017b584178a165ed5e8aed13cc969"
-          }
-        ]
-      }
-    },
-    {
       "topic": "aha-introduction",
       "format": "video",
       "file": "aha-introduction/aha-introduction.mp4",
@@ -1298,114 +462,6 @@
       }
     },
     {
-      "topic": "greenland",
-      "format": "pptx",
-      "file": "greenland/greenland.pptx",
-      "bytes": 211070,
-      "sha256": "8d93efad74d19a6367be59861df739325246089af3ae8c7efeb0dd9c239e1c6c",
-      "sourceProject": "greenland/projects/pptx",
-      "sourceHash": "835f8f63fb44edc68d6d0e0361edf60a2556463ce582d3bb829e5adf785d5bf1",
-      "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6",
-      "report": "greenland/research/report.md",
-      "receipt": "greenland/greenland.pptx.receipt.json",
-      "slides": 7,
-      "native": true,
-      "language": "zh",
-      "provenance": {
-        "skill": {
-          "name": "aha-explain",
-          "sourceRevision": "9f1a35359079531fe78eecf10b482f4d759c0356",
-          "guideHashes": {
-            "references/artifact-qa.md": "74e232dc26d9038500471aa28e6ed38f332c95bab2c4df47861c443ca9f67bc0",
-            "references/pptx.md": "b63f1baa02beca52b5ebc770655f75290258fce55b45a5d49c5d5231b9b62fca",
-            "SKILL.md": "61e0c752b286eb634d13bd883236396139599394f2667b165d361b12b7ad9ec2"
-          }
-        },
-        "runtimeHash": "4aa41f11c07e7ef1f622e7ed0787242ab520fff3e3fe7302ea82526bde86d4fe"
-      },
-      "receiptHash": "cfe207a4d14606d439047e4c8614ba02a8ff9ef42c2195a1554c7637cc2667c7",
-      "qa": {
-        "directory": "greenland/qa/pptx",
-        "status": "bounded-evidence",
-        "evidence": [
-          {
-            "file": "greenland/qa/pptx/powerpoint-observations.json",
-            "sha256": "9ac058a838bb6b871152ca31b0920bd6b177c016c2f5457cbad4a5bc9efcf2e1"
-          },
-          {
-            "file": "greenland/qa/pptx/slide-01.png",
-            "sha256": "c5d00fb420e2e8d6e5de31d95067db10f7fa4b1b27712842a01c005324d69df6"
-          },
-          {
-            "file": "greenland/qa/pptx/slide-02.png",
-            "sha256": "2749999a80e1513250dce4c9e7b9845493ad1834bfe7dc48221cfe1559b8fd18"
-          },
-          {
-            "file": "greenland/qa/pptx/slide-03.png",
-            "sha256": "ec15cc665101df1dbd2fca0105aa00d92d8074e0590128372132fa16042f7c84"
-          },
-          {
-            "file": "greenland/qa/pptx/slide-04.png",
-            "sha256": "379918ac26cb9f957e2216b4bdbdb5c8be002b88e92b1ad1738b8aa61cc7109c"
-          },
-          {
-            "file": "greenland/qa/pptx/slide-05.png",
-            "sha256": "76b61dbd0c7488f18c5a35d6116277cdddbf723e1745d38f35cca77e54fd1c8d"
-          },
-          {
-            "file": "greenland/qa/pptx/slide-06.png",
-            "sha256": "67f67bd9c974a1377c50f6dee06c905e0505884280c09e9893b8d62b07df2724"
-          },
-          {
-            "file": "greenland/qa/pptx/slide-07.png",
-            "sha256": "07ee5103ebc1fc4f4f8eba219dbe66eaaecca5ed726c3b0db7732de123b5821f"
-          }
-        ],
-        "application": {
-          "file": "greenland/qa/pptx/powerpoint-observations.json",
-          "sha256": "9ac058a838bb6b871152ca31b0920bd6b177c016c2f5457cbad4a5bc9efcf2e1"
-        },
-        "pages": [
-          {
-            "file": "greenland/qa/pptx/slide-01.png",
-            "sha256": "c5d00fb420e2e8d6e5de31d95067db10f7fa4b1b27712842a01c005324d69df6"
-          },
-          {
-            "file": "greenland/qa/pptx/slide-02.png",
-            "sha256": "2749999a80e1513250dce4c9e7b9845493ad1834bfe7dc48221cfe1559b8fd18"
-          },
-          {
-            "file": "greenland/qa/pptx/slide-03.png",
-            "sha256": "ec15cc665101df1dbd2fca0105aa00d92d8074e0590128372132fa16042f7c84"
-          },
-          {
-            "file": "greenland/qa/pptx/slide-04.png",
-            "sha256": "379918ac26cb9f957e2216b4bdbdb5c8be002b88e92b1ad1738b8aa61cc7109c"
-          },
-          {
-            "file": "greenland/qa/pptx/slide-05.png",
-            "sha256": "76b61dbd0c7488f18c5a35d6116277cdddbf723e1745d38f35cca77e54fd1c8d"
-          },
-          {
-            "file": "greenland/qa/pptx/slide-06.png",
-            "sha256": "67f67bd9c974a1377c50f6dee06c905e0505884280c09e9893b8d62b07df2724"
-          },
-          {
-            "file": "greenland/qa/pptx/slide-07.png",
-            "sha256": "07ee5103ebc1fc4f4f8eba219dbe66eaaecca5ed726c3b0db7732de123b5821f"
-          }
-        ],
-        "visualReview": {
-          "status": "bounded-review",
-          "limitations": [
-            "Current PowerPoint open/export and copy-edit checks are application observations, not a new independent visual or human-comprehension review.",
-            "Candidate visuals were reviewed with mixed full-resolution and scaled-history images. Complete original-resolution and presentation-distance readability remains unverified.",
-            "Inherited hemisphere scope label is small and muted."
-          ]
-        }
-      }
-    },
-    {
       "topic": "aha-introduction",
       "format": "html",
       "file": "aha-introduction/aha-introduction.html",
@@ -1638,19 +694,1678 @@
           }
         }
       }
+    },
+    {
+      "topic": "anc",
+      "format": "html",
+      "file": "anc/anc.html",
+      "bytes": 26960,
+      "sha256": "34d1b2d642a88c5b1fa4015c72f059688611f112a1c93a1ce244b30ff50d2dac",
+      "sourceProject": "anc/projects/html",
+      "sourceHash": "1100ddf70a44f2277e1bdc22c3c359bbfa9f4e603ddb55f4a99461a459fc413c",
+      "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
+      "report": "anc/research/report.md",
+      "receipt": "anc/anc.html.receipt.json",
+      "receiptHash": "91e18b38a7492328fc45f72a6b701e341087624415d81234d0428ad4c490bd64",
+      "language": "bilingual",
+      "qa": {
+        "directory": "anc/qa/html",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "anc/qa/html/1280-en.png",
+            "sha256": "68c0858b09ddc3b7f17bf3a26af79c509b2c56ecba7af4937796ccd4a4a3eb2e"
+          },
+          {
+            "file": "anc/qa/html/1280-zh.png",
+            "sha256": "24cefa021567f74d7b4b54315a3490458d1128d7e6ba056c5634ffcd61e12607"
+          },
+          {
+            "file": "anc/qa/html/320-en.png",
+            "sha256": "8962dd9e8eecc04ef305eb59510c38e03188250d1235f2072e5dff547b11da3a"
+          },
+          {
+            "file": "anc/qa/html/320-zh.png",
+            "sha256": "8e0ebfd7d1e3f6ea511f93722be1a54eff5ca3e71e7ef8e3880d15f8e8184771"
+          },
+          {
+            "file": "anc/qa/html/390-en.png",
+            "sha256": "141b80f76da0f590f58529b8a66095c301a4c07d733324f8cbbae40411ed65a0"
+          },
+          {
+            "file": "anc/qa/html/390-zh.png",
+            "sha256": "9fbe5f72ee737dad7ff3e994bbf461d69c8669182e3c6d1083dedd8f418d6734"
+          },
+          {
+            "file": "anc/qa/html/browser-observations.json",
+            "sha256": "0d2ef627b6c8d0e6546349a57a781f33333356a63b88c5421128e69ff4c0cc9c"
+          },
+          {
+            "file": "anc/qa/html/review.json",
+            "sha256": "6e39a9310ef426c2381633c48b4754807fb88c01ab575660ff21f2006f1d616e"
+          }
+        ]
+      }
+    },
+    {
+      "topic": "anc",
+      "format": "image",
+      "file": "anc/anc.png",
+      "bytes": 222115,
+      "sha256": "650ec94396483ce9f3c0d8614c178053103bb32c4559208f0763061fdb12ccec",
+      "sourceProject": "anc/projects/image",
+      "sourceHash": "aa2d576a92b9f148db2c270b14ea6ec1508204f7b466a360253ad406a5d8a206",
+      "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
+      "report": "anc/research/report.md",
+      "receipt": "anc/anc.png.receipt.json",
+      "receiptHash": "de0fd207d8adcda2543e1286961749975ee4c56d1ba454f11e1896eda475cb20",
+      "language": "en",
+      "qa": {
+        "directory": "anc/qa/image",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "anc/qa/image/reading-1200.png",
+            "sha256": "a5c03fc7d723154e2e82fb30bee2e048822fc40a5b9e15893578e317b94809d4"
+          },
+          {
+            "file": "anc/qa/image/review-scope.json",
+            "sha256": "b2152debccd6cb06085515a01eb3ddc2cebd0b5453cca94279febea76235ddec"
+          },
+          {
+            "file": "anc/qa/image/review.json",
+            "sha256": "2fd52fcdc0809bd3dc94e15af9958c1f290797a049544291fa1d1bfc377984e0"
+          }
+        ]
+      },
+      "width": 1800,
+      "height": 1600
+    },
+    {
+      "topic": "anc",
+      "format": "pptx",
+      "file": "anc/anc.pptx",
+      "bytes": 164780,
+      "sha256": "df413ff160faa3cb38c67ce2e1f7b7a4771bb16f2e7c3a17924c3319aca14791",
+      "sourceProject": "anc/projects/pptx",
+      "sourceHash": "2e6a2a6c08670e9c96db7edb632c5b038a6ef5b7dff44cca1192bdb17239d9c9",
+      "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
+      "report": "anc/research/report.md",
+      "receipt": "anc/anc.pptx.receipt.json",
+      "receiptHash": "d629f155e0257bb8497ec72109c51c916f6c46d530ed32892e3ead2b2f6dbb7c",
+      "language": "zh",
+      "qa": {
+        "directory": "anc/qa/pptx",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "anc/qa/pptx/contact-01.png",
+            "sha256": "3c465c90678ba37ee79a604d7812d756c89c805aa437fee7537fdcfc6b69b26d"
+          },
+          {
+            "file": "anc/qa/pptx/contact-02.png",
+            "sha256": "e4e059e3c8655d899c8734abad0305e2ee4264332223d93fa1f75566237b56be"
+          },
+          {
+            "file": "anc/qa/pptx/edit-table-cell-05.png",
+            "sha256": "fc9689d11964d3be6b4fd6dba2861b9f07e18d3106d491dc70ff14bf9043047d"
+          },
+          {
+            "file": "anc/qa/pptx/edit-text-01.png",
+            "sha256": "f2f6979bcb634b76e689d30134113f435c5b035719de8421736372dd5698da11"
+          },
+          {
+            "file": "anc/qa/pptx/editing-probe.pptx",
+            "sha256": "23effaf28e469e7faf984c7935cb881fec808ca7018c3709d82ba6434a94278f"
+          },
+          {
+            "file": "anc/qa/pptx/powerpoint-observations.json",
+            "sha256": "d71104734e405a564d1d894f5484a80576626d55d08b7d46d9e187c5ed011b54"
+          },
+          {
+            "file": "anc/qa/pptx/review.json",
+            "sha256": "f8f14d3a1b725a464fcf9d41bb33339d03905801a56af7001ba5eea0b767fd4e"
+          },
+          {
+            "file": "anc/qa/pptx/slide-01.png",
+            "sha256": "3efd6dbcf44acf6e41ef8355e447ec3370e2e2e72007ba25c3b399e3b753b974"
+          },
+          {
+            "file": "anc/qa/pptx/slide-02.png",
+            "sha256": "7791f9e1caf7bf75215b3b079a7ff37a2f4554b4cad6581ab3efe201b500dafa"
+          },
+          {
+            "file": "anc/qa/pptx/slide-03.png",
+            "sha256": "3ec22760f86b870ed87649fe9b53c4010a540de46b99441f372ebbd9938021e8"
+          },
+          {
+            "file": "anc/qa/pptx/slide-04.png",
+            "sha256": "9cbdbdbf9bab76dcaa674ef05ef89871de7ff455784d50675dc50fe8a54e04b9"
+          },
+          {
+            "file": "anc/qa/pptx/slide-05.png",
+            "sha256": "282a22b43f2e33e5928d25899edfb6759235b28950d468a0e38a73ea4aee35f5"
+          },
+          {
+            "file": "anc/qa/pptx/slide-06.png",
+            "sha256": "987daca89dff8182ace966a4628ff4c9bc25c66cbbb2258378722872b4cd8e35"
+          },
+          {
+            "file": "anc/qa/pptx/slide-07.png",
+            "sha256": "d02aa5120d67775b77cca5d83cf05e191da4b980451b32620a999482f71fd430"
+          }
+        ],
+        "application": {
+          "file": "anc/qa/pptx/powerpoint-observations.json",
+          "sha256": "d71104734e405a564d1d894f5484a80576626d55d08b7d46d9e187c5ed011b54"
+        },
+        "pages": [
+          {
+            "file": "anc/qa/pptx/slide-01.png",
+            "sha256": "3efd6dbcf44acf6e41ef8355e447ec3370e2e2e72007ba25c3b399e3b753b974"
+          },
+          {
+            "file": "anc/qa/pptx/slide-02.png",
+            "sha256": "7791f9e1caf7bf75215b3b079a7ff37a2f4554b4cad6581ab3efe201b500dafa"
+          },
+          {
+            "file": "anc/qa/pptx/slide-03.png",
+            "sha256": "3ec22760f86b870ed87649fe9b53c4010a540de46b99441f372ebbd9938021e8"
+          },
+          {
+            "file": "anc/qa/pptx/slide-04.png",
+            "sha256": "9cbdbdbf9bab76dcaa674ef05ef89871de7ff455784d50675dc50fe8a54e04b9"
+          },
+          {
+            "file": "anc/qa/pptx/slide-05.png",
+            "sha256": "282a22b43f2e33e5928d25899edfb6759235b28950d468a0e38a73ea4aee35f5"
+          },
+          {
+            "file": "anc/qa/pptx/slide-06.png",
+            "sha256": "987daca89dff8182ace966a4628ff4c9bc25c66cbbb2258378722872b4cd8e35"
+          },
+          {
+            "file": "anc/qa/pptx/slide-07.png",
+            "sha256": "d02aa5120d67775b77cca5d83cf05e191da4b980451b32620a999482f71fd430"
+          }
+        ],
+        "visualReview": {
+          "status": "bounded-review",
+          "limitations": [
+            "No human comprehension or acceptance study.",
+            "Host document skills and local tools also contributed; this is not an isolated skill-effect comparison.",
+            "Agent inspected initial individual PowerPoint pages and affected revised pages; not human slideshow or manual-edit usability acceptance.",
+            "Slide 2 retains a leading comma at a wrapped line."
+          ]
+        }
+      },
+      "slides": 7,
+      "native": true,
+      "provenance": {
+        "skill": {
+          "name": "aha-explain",
+          "sourceRevision": "699bb385a880f2d11b243fc9d9f26073e6ae17e7",
+          "guideHashes": {
+            "SKILL.md": "295388515983e4727a4e9f4c8ceb70573942b7d03a57702abbe3e8bf53104961",
+            "references/pptx.md": "b63f1baa02beca52b5ebc770655f75290258fce55b45a5d49c5d5231b9b62fca",
+            "references/artifact-qa.md": "c8bb14a9b04f4366e6f86312fbf268448f894679fb9f29b8f460c9537f0baa42"
+          }
+        },
+        "runtimeHash": "32ce5372e0cd422f6562824c8f5f36f34b7c77c35e767fb71f4f974afafe9a92"
+      }
+    },
+    {
+      "topic": "anc",
+      "format": "video",
+      "file": "anc/anc.mp4",
+      "bytes": 2490517,
+      "sha256": "6de9e0761e375ebf1e8ae996e2114210a51b1eb07f064cf952abc53e2511801e",
+      "sourceProject": "anc/projects/video",
+      "sourceHash": "f20ffebddb23ef32b61a2891de7934a487c9fe4c81309f24335e27afd252d7c5",
+      "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4",
+      "report": "anc/research/report.md",
+      "receipt": "anc/anc.mp4.receipt.json",
+      "receiptHash": "bd88621ce2d1d756f77506eaf18f5f7dcb5ba752e0ca8893f1c7f6528daa4add",
+      "language": "en",
+      "qa": {
+        "directory": "anc/qa/video",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "anc/qa/video/approval.json",
+            "sha256": "dce83985c32d796a81fdf8bb96fec6988231f70e6655e8039b3e7970d72a5f2e"
+          },
+          {
+            "file": "anc/qa/video/encoded/1-end.png",
+            "sha256": "d7bcdcc8f92d8cb8f37d27be1617a52ce14c4093e9e59340b4d4f0b281cd2206"
+          },
+          {
+            "file": "anc/qa/video/encoded/1-middle.png",
+            "sha256": "be796e250271f62d320515dced753699f74b3df12ba3ef49d4c4e8c9aac24a6d"
+          },
+          {
+            "file": "anc/qa/video/encoded/1-start.png",
+            "sha256": "a5bc9d861b75ff10a8876e688211f038d301c4fcb762eefae7d6f822d0d23b1a"
+          },
+          {
+            "file": "anc/qa/video/encoded/2-end.png",
+            "sha256": "e08e0d4b55078f6d3a3bd6e30c0541a4f3056af2a8c2a2bae410ec07fd52d742"
+          },
+          {
+            "file": "anc/qa/video/encoded/2-middle.png",
+            "sha256": "58966033b434ff8d6fe3b3a1a8685c60752927e6c79065f29124f0dfee706a88"
+          },
+          {
+            "file": "anc/qa/video/encoded/2-start.png",
+            "sha256": "5fc6b73abe34b48444ff5b98b18418bf1921fe4d25fbf531ce388671862e435f"
+          },
+          {
+            "file": "anc/qa/video/encoded/3-end.png",
+            "sha256": "58bb9f9ada0dfefc1a5f0f832179a88874c9a361c48090543facee5d9a52ae36"
+          },
+          {
+            "file": "anc/qa/video/encoded/3-middle.png",
+            "sha256": "ee2262e02a1df1351beb5920704526da7acc5f00cc3f2f6959c016311b4b37d9"
+          },
+          {
+            "file": "anc/qa/video/encoded/3-start.png",
+            "sha256": "6ef843bf36b1920d52fe8a16b5900c2b8f9afcfc5b20b2464d6e484dedc9e913"
+          },
+          {
+            "file": "anc/qa/video/encoded/4-end.png",
+            "sha256": "64e434184460ac7121201fe5217c466222db3b43ea0aa7ac1e6b003ba7e8623b"
+          },
+          {
+            "file": "anc/qa/video/encoded/4-middle.png",
+            "sha256": "77b429606f65eec5c0232abe2a2f3e41489ab5bb11f8a21c74f9e6fcbf887e19"
+          },
+          {
+            "file": "anc/qa/video/encoded/4-start.png",
+            "sha256": "709c5f7382ee84754f03ee133e7d2abe2f53d72e26f7bed70e825b9ea58b3742"
+          },
+          {
+            "file": "anc/qa/video/encoded/5-end.png",
+            "sha256": "b1acdeb620f2c908bf8e6a0113fd07bc6a8acd130507cc29a83f14d414e56534"
+          },
+          {
+            "file": "anc/qa/video/encoded/5-middle.png",
+            "sha256": "034f7e754cd238d88c07692f43bc143f2eba4b2327ac536f6de02c23c8722d0f"
+          },
+          {
+            "file": "anc/qa/video/encoded/5-start.png",
+            "sha256": "ba153ec02576e9c4007771ac15e47a76def7eb0713689ba6f9f00b0acf33a5b1"
+          },
+          {
+            "file": "anc/qa/video/encoded/6-end.png",
+            "sha256": "63d021d61cc787061da0b56682025dd805edcd95e94a4960d8e158223c99e700"
+          },
+          {
+            "file": "anc/qa/video/encoded/6-middle.png",
+            "sha256": "bde8699adc8a2918dbffc54d8ba87dbdafd6d8cac919adcdc1b17cdd7302296b"
+          },
+          {
+            "file": "anc/qa/video/encoded/6-start.png",
+            "sha256": "ee1fcbf62ce1c9877ea628d2d3b86692805c6dc7d305fa5101130090d957df03"
+          },
+          {
+            "file": "anc/qa/video/encoded/7-end.png",
+            "sha256": "4563c9be669eec0aa2d8100ee5c60cabf32bbaf6f997b3eec73d1aa780aa190d"
+          },
+          {
+            "file": "anc/qa/video/encoded/7-middle.png",
+            "sha256": "6311b97f848fc7ae50f886793739281138622d2f85f68943e8b6f3f6f083a9fb"
+          },
+          {
+            "file": "anc/qa/video/encoded/7-start.png",
+            "sha256": "45525e1d4fb42b403d3f3503e646ba58a4b59cf5191651478a73ab2cbd1b9a99"
+          },
+          {
+            "file": "anc/qa/video/encoded/contact.png",
+            "sha256": "e3e8b146b04d8e8b59be994ffc3fdac511a74a9f5db40b4d742f3c34d80b453e"
+          },
+          {
+            "file": "anc/qa/video/encoded/playback.json",
+            "sha256": "bcca36e8f9d3c9a26535410a95fbc29e7804d5e43ef6a439b655fefe32539c01"
+          },
+          {
+            "file": "anc/qa/video/encoded/technical-review.json",
+            "sha256": "b369ab057dd3e63516116816788da70e437abf731dde4bc2909415713b0e6466"
+          },
+          {
+            "file": "anc/qa/video/encoded/visual-review.json",
+            "sha256": "3c6f7d5aeebc9dac46fcac21e32ebc1c5e68e870fbe845c31e64ab97a4c5f8a4"
+          },
+          {
+            "file": "anc/qa/video/review.json",
+            "sha256": "5d2a54ea9e6b9179113dcb1c2ca7fab95d693e71197982c7859b6e3647fae2cd"
+          },
+          {
+            "file": "anc/qa/video/segment-1-0.png",
+            "sha256": "5fd02c080d99f4b798fbbca9573414c4295282dedf27897a3b70b15f5efd90df"
+          },
+          {
+            "file": "anc/qa/video/segment-1-100.png",
+            "sha256": "713fa2e6b309893d411ecd304e825c4a9c00efcaa7c96a1441bb32165b68cb53"
+          },
+          {
+            "file": "anc/qa/video/segment-1-50.png",
+            "sha256": "ce67c260c2108e10fb077fcf629f5208c0bbc72f18d4a840d5f70cd535b58771"
+          },
+          {
+            "file": "anc/qa/video/segment-2-0.png",
+            "sha256": "8f84d51f843d83a324e387a85cd81272b575f6430540d4ad8e0bbe639865653b"
+          },
+          {
+            "file": "anc/qa/video/segment-2-100.png",
+            "sha256": "4a0975870dc42ab1b82fa1784c7de52a21cbf364f1ab8df1127685517597b502"
+          },
+          {
+            "file": "anc/qa/video/segment-2-50.png",
+            "sha256": "6f665889387335348d779825e276c05de2d196380d8eaeb1c84fbc702e100d30"
+          },
+          {
+            "file": "anc/qa/video/segment-3-0.png",
+            "sha256": "43d9d79ca5942dcefe46fe852f85847363550dddffccc4857ac7fbe816190217"
+          },
+          {
+            "file": "anc/qa/video/segment-3-100.png",
+            "sha256": "d07592ca7c3afd82b4e9dc0ccc5606c3c2ce2c20a3cf7946c48c75a20937b3ce"
+          },
+          {
+            "file": "anc/qa/video/segment-3-50.png",
+            "sha256": "ee9a78ae3d432a7070b367dd9567b35f0526207dea8ee39a3165afade70a5a1e"
+          },
+          {
+            "file": "anc/qa/video/segment-4-0.png",
+            "sha256": "641be2935e5e1d1e6e59be16a36f10d2567a00189659513c639e18577ea537d3"
+          },
+          {
+            "file": "anc/qa/video/segment-4-100.png",
+            "sha256": "fb8d638d33e98e9a69c501af430096545e7bf35fa03216f4997d897eb0def256"
+          },
+          {
+            "file": "anc/qa/video/segment-4-50.png",
+            "sha256": "5fdd6e71b5337298c5f0b3e5bb321d24401b79f6fafb13b73afbac118b84f54b"
+          },
+          {
+            "file": "anc/qa/video/segment-5-0.png",
+            "sha256": "a59124cd7dabe9f1226c4bca0025c86ee183a8b1185422f816bd0dd2d842829c"
+          },
+          {
+            "file": "anc/qa/video/segment-5-100.png",
+            "sha256": "2f10c10e7a30c3791e90ac361fbc5927f4e204290917530eac0bcac12c3f1f6d"
+          },
+          {
+            "file": "anc/qa/video/segment-5-50.png",
+            "sha256": "600088474286e1d4010e09b32f115dd16f6aaf59bc640839fe2d58f0aa9ab451"
+          },
+          {
+            "file": "anc/qa/video/segment-6-0.png",
+            "sha256": "e2cf4fc9eee3bbb45f3eb719a953dda215503c2567fe2405cad7395393fdb5cc"
+          },
+          {
+            "file": "anc/qa/video/segment-6-100.png",
+            "sha256": "8020b880619057ce13e82d5a3479b595eb61626d7944b75fd980ddf7c5979182"
+          },
+          {
+            "file": "anc/qa/video/segment-6-50.png",
+            "sha256": "85e54dd9f5bb4ab2153571bb23dcffca9547c379c5c5f3181c223bd7fc442e3f"
+          },
+          {
+            "file": "anc/qa/video/segment-7-0.png",
+            "sha256": "21c57994665a468b4ad9a6b0fb05dba8268bf599ec896409c6bfe77a838aa775"
+          },
+          {
+            "file": "anc/qa/video/segment-7-100.png",
+            "sha256": "0eb4e93b5af6018168ee1f4e4cb5abc25536ea7f8a446e9ac2552bb0bfdc2cea"
+          },
+          {
+            "file": "anc/qa/video/segment-7-50.png",
+            "sha256": "8f386714d7be272025a0b49f382381a8f47c399e2c5159b4e3af8f9f3baeccc3"
+          },
+          {
+            "file": "anc/qa/video/source-diagnostics.json",
+            "sha256": "574c111858e10bd375b5bb8fef8727c1503f7f58e2c3261e02a44e7c7be50ba8"
+          }
+        ]
+      },
+      "durationSeconds": 78.53333333333333,
+      "frames": 2356,
+      "provider": "provided-audio"
+    },
+    {
+      "topic": "greenland",
+      "format": "html",
+      "file": "greenland/greenland.html",
+      "bytes": 346933,
+      "sha256": "012aed32afcffa5724530bcc8390dd9dd80d45c4d52bd8119d8ced4101f60524",
+      "sourceProject": "greenland/projects/html",
+      "sourceHash": "a29d5fb6b8c1c07291999d7c2fc3ceace5f7f2ca2a52ff30d266bcea63ceeb6e",
+      "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6",
+      "report": "greenland/research/report.md",
+      "receipt": "greenland/greenland.html.receipt.json",
+      "receiptHash": "4de7e68a5ee4d10cb251c7a32323570785ce8e36210124f0330d252a12170435",
+      "language": "bilingual",
+      "qa": {
+        "directory": "greenland/qa/html",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "greenland/qa/html/1280-en.png",
+            "sha256": "fddf2b08c318fc35ccebc242bfd19dbb59441f4b78dcb8acc818102e4dd4fa08"
+          },
+          {
+            "file": "greenland/qa/html/1280-zh.png",
+            "sha256": "f6a77e8bcc2e96a602fd7e62c824ddd10c1112efdd4f0b87c1eb9a1441511764"
+          },
+          {
+            "file": "greenland/qa/html/320-en.png",
+            "sha256": "265546930dc80247f74facc2c9e33077e7bcc81f7a3867ee06e3ab51e35b7b20"
+          },
+          {
+            "file": "greenland/qa/html/320-zh.png",
+            "sha256": "81c16eaa08c41f130754e0d04d5b7db4f3673e15873de106b7c12b8959f57ee9"
+          },
+          {
+            "file": "greenland/qa/html/390-en.png",
+            "sha256": "d8283a07194e4196ab62f47dda6900782cc3b11ea05a762275ff8c6737dcd109"
+          },
+          {
+            "file": "greenland/qa/html/390-zh.png",
+            "sha256": "d5513bb2089511e6f9a23e3d03b73d440c2ea5d0f2c2fb184d8feeaa45ac0242"
+          },
+          {
+            "file": "greenland/qa/html/browser-observations.json",
+            "sha256": "4f3ba5949b6c7326908f9adc25ca34625885399d3c226166a5732eea290ae2a1"
+          },
+          {
+            "file": "greenland/qa/html/review.json",
+            "sha256": "469805779de8af7781ac96cf0ae0e17e9c4952e95cab66c44eb921a26178cc95"
+          }
+        ]
+      }
+    },
+    {
+      "topic": "greenland",
+      "format": "image",
+      "file": "greenland/greenland.png",
+      "bytes": 293766,
+      "sha256": "f39cfa97735a8e990dad2b9db140932bc4650a07033e9eba88b5d8395a750a0e",
+      "sourceProject": "greenland/projects/image",
+      "sourceHash": "f11dbebe3f885df2d818ee469517032c65eb4cc3a3f1dd7490f2894341f4cb6a",
+      "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6",
+      "report": "greenland/research/report.md",
+      "receipt": "greenland/greenland.png.receipt.json",
+      "receiptHash": "b7b5b61611953c7c0d65beabd0e80bfec1e4d02003d8f3720a03c425b33050a5",
+      "language": "en",
+      "qa": {
+        "directory": "greenland/qa/image",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "greenland/qa/image/reading-1200.png",
+            "sha256": "457520e50ddcb73ccf6d3422da959763196577b3ab9c60b0eb39aa36f934b0aa"
+          },
+          {
+            "file": "greenland/qa/image/review-scope.json",
+            "sha256": "4b1fff2a5f8983ef1ca4cfdb5ad4f47750ba5cce0465bed4c10e0df5c072c713"
+          },
+          {
+            "file": "greenland/qa/image/review.json",
+            "sha256": "9448e13826187edbf10886514de86918ffabc09dae083a1a5fb98c99b5d7af2c"
+          }
+        ]
+      },
+      "width": 1800,
+      "height": 1600
+    },
+    {
+      "topic": "greenland",
+      "format": "pptx",
+      "file": "greenland/greenland.pptx",
+      "bytes": 198321,
+      "sha256": "bff3c6dc55527f2b8a92d16f758547bac83148819c9f5fd72b826ce945d9c0e3",
+      "sourceProject": "greenland/projects/pptx",
+      "sourceHash": "a2e2287b51138442af6403b308bf5c57aebd7df464db36298cdc60b9d501099e",
+      "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6",
+      "report": "greenland/research/report.md",
+      "receipt": "greenland/greenland.pptx.receipt.json",
+      "receiptHash": "8261ea5c1a9c2a188074444146e41d4d196ea1fcc55dffab2cb93df87fbb472f",
+      "language": "zh",
+      "qa": {
+        "directory": "greenland/qa/pptx",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "greenland/qa/pptx/contact-01.png",
+            "sha256": "11c615f35bf19a549e91d1124fb6244624783a0e80e2780e4bfe152a2ae8062f"
+          },
+          {
+            "file": "greenland/qa/pptx/contact-02.png",
+            "sha256": "c0d43161c714712e6d64a84e6973d4cb566512780fcd2ed0e5ca37eb3b7ab046"
+          },
+          {
+            "file": "greenland/qa/pptx/edit-chart-data-01.png",
+            "sha256": "0fe06e68add278f3cf26a4a1290b3a1d6bb882ce9ebf82b2cceda64b09df7835"
+          },
+          {
+            "file": "greenland/qa/pptx/edit-table-cell-05.png",
+            "sha256": "c36ebe659ccd1a608a2ced1c99df9a0ba7ccad9a6a8ae97da4d99d55b8d4342f"
+          },
+          {
+            "file": "greenland/qa/pptx/edit-text-01.png",
+            "sha256": "0fe06e68add278f3cf26a4a1290b3a1d6bb882ce9ebf82b2cceda64b09df7835"
+          },
+          {
+            "file": "greenland/qa/pptx/editing-probe.pptx",
+            "sha256": "087c050c79085a2897aaa4d90d615a741fdf28901f18ba7b16fa775c64e24d4d"
+          },
+          {
+            "file": "greenland/qa/pptx/powerpoint-observations.json",
+            "sha256": "940338ae93fac53a7a8a21bf0679359c7cdc5d7190f011ccabc1e4a744fe5bec"
+          },
+          {
+            "file": "greenland/qa/pptx/review.json",
+            "sha256": "0f2e21dea52ad700c77a1380b649b4211bf979809b80000eb5a2066c5719086b"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-01.png",
+            "sha256": "85ddfddce9974263df7612d179a9998e41317d949a64af4365df1443259f765b"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-02.png",
+            "sha256": "f83eb390a9940a509dad6ee07ba1a996402ec02a2f1ba919866315c3a7a523f9"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-03.png",
+            "sha256": "a0677579e7949f8020f893c48bb27961b28a0db1c2c72a9ce43248ddd52b15aa"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-04.png",
+            "sha256": "7b69420b6b31d2ab6b81d55c7833c7f2289d2138be72e77e9bb6b440df3d73c4"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-05.png",
+            "sha256": "69041463a589a8f8fa4943a0f56f188e2d475fceef3fafdcc58c3f3f0b6f9452"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-06.png",
+            "sha256": "a50eb7d07c682148e7c3e6db0e39fa2d49277a31d369a8a90b5291157eb883a7"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-07.png",
+            "sha256": "3340fe8eeedbac04adaad7cd75009ef28fa1658cac7a9f20fc170a14a1c55dff"
+          }
+        ],
+        "application": {
+          "file": "greenland/qa/pptx/powerpoint-observations.json",
+          "sha256": "940338ae93fac53a7a8a21bf0679359c7cdc5d7190f011ccabc1e4a744fe5bec"
+        },
+        "pages": [
+          {
+            "file": "greenland/qa/pptx/slide-01.png",
+            "sha256": "85ddfddce9974263df7612d179a9998e41317d949a64af4365df1443259f765b"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-02.png",
+            "sha256": "f83eb390a9940a509dad6ee07ba1a996402ec02a2f1ba919866315c3a7a523f9"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-03.png",
+            "sha256": "a0677579e7949f8020f893c48bb27961b28a0db1c2c72a9ce43248ddd52b15aa"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-04.png",
+            "sha256": "7b69420b6b31d2ab6b81d55c7833c7f2289d2138be72e77e9bb6b440df3d73c4"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-05.png",
+            "sha256": "69041463a589a8f8fa4943a0f56f188e2d475fceef3fafdcc58c3f3f0b6f9452"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-06.png",
+            "sha256": "a50eb7d07c682148e7c3e6db0e39fa2d49277a31d369a8a90b5291157eb883a7"
+          },
+          {
+            "file": "greenland/qa/pptx/slide-07.png",
+            "sha256": "3340fe8eeedbac04adaad7cd75009ef28fa1658cac7a9f20fc170a14a1c55dff"
+          }
+        ],
+        "visualReview": {
+          "status": "bounded-review",
+          "limitations": [
+            "No human comprehension or acceptance study.",
+            "Host document skills and local tools also contributed; this is not an isolated skill-effect comparison.",
+            "Agent inspected initial individual PowerPoint pages and affected revised pages; not human slideshow or manual-edit usability acceptance."
+          ]
+        }
+      },
+      "slides": 7,
+      "native": true,
+      "provenance": {
+        "skill": {
+          "name": "aha-explain",
+          "sourceRevision": "699bb385a880f2d11b243fc9d9f26073e6ae17e7",
+          "guideHashes": {
+            "SKILL.md": "295388515983e4727a4e9f4c8ceb70573942b7d03a57702abbe3e8bf53104961",
+            "references/pptx.md": "b63f1baa02beca52b5ebc770655f75290258fce55b45a5d49c5d5231b9b62fca",
+            "references/artifact-qa.md": "c8bb14a9b04f4366e6f86312fbf268448f894679fb9f29b8f460c9537f0baa42"
+          }
+        },
+        "runtimeHash": "32ce5372e0cd422f6562824c8f5f36f34b7c77c35e767fb71f4f974afafe9a92"
+      }
+    },
+    {
+      "topic": "greenland",
+      "format": "video",
+      "file": "greenland/greenland.mp4",
+      "bytes": 2205252,
+      "sha256": "e77c15c19063ebcfbecc051515c4cf7a9ddb02f53f64bc682e64a009273f34d5",
+      "sourceProject": "greenland/projects/video",
+      "sourceHash": "16bfa98aad39759699cafec1a627046ff52c93402fee7803a9bcdcf583d0226c",
+      "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6",
+      "report": "greenland/research/report.md",
+      "receipt": "greenland/greenland.mp4.receipt.json",
+      "receiptHash": "7e4946dedaa98348a19be6883b96fd58dc6de49950f80b8ca08980ceb1c1373d",
+      "language": "en",
+      "qa": {
+        "directory": "greenland/qa/video",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "greenland/qa/video/approval.json",
+            "sha256": "afaba70731d2fa2af186f419791c3052d953ebef026f8844d171de27e04dd251"
+          },
+          {
+            "file": "greenland/qa/video/encoded/1-end.png",
+            "sha256": "67ee80975bea141e557505f5eec70bce2ea38a3f35029cc9d5f51b4db26dd315"
+          },
+          {
+            "file": "greenland/qa/video/encoded/1-middle.png",
+            "sha256": "e1ce5fd934496ebff943f0e4d75582bd2916823735a02a4c7254390969929ce7"
+          },
+          {
+            "file": "greenland/qa/video/encoded/1-start.png",
+            "sha256": "993c702be386eb2d170acc02856c6558f40fc435c5ef33ad3d493b82ddf82a9b"
+          },
+          {
+            "file": "greenland/qa/video/encoded/2-end.png",
+            "sha256": "559eb0907be7bfa4476fd6301cca6193fbfbf9292337bfd57fede946dcee285d"
+          },
+          {
+            "file": "greenland/qa/video/encoded/2-middle.png",
+            "sha256": "1f4272b54c2192fb049ea19517ce42afce558434181bfd6cfd161a4a1d20eaa1"
+          },
+          {
+            "file": "greenland/qa/video/encoded/2-start.png",
+            "sha256": "d6e3bb7e1dd71514ea8635f01899e10386278af742d75844163a39e535a05cce"
+          },
+          {
+            "file": "greenland/qa/video/encoded/3-end.png",
+            "sha256": "04573ed26eb3c2013228081a5c7e0df2aac34d00aeeadfe08df816d260754d34"
+          },
+          {
+            "file": "greenland/qa/video/encoded/3-middle.png",
+            "sha256": "1d2870f5cb2f9a8c0018f5be350822da66ece08cec1479da00a34f3bdcdc6768"
+          },
+          {
+            "file": "greenland/qa/video/encoded/3-start.png",
+            "sha256": "7b7afcc71aab3b213b801e45de62f4a844d8ed40808310b54cccbfbba8ca28d4"
+          },
+          {
+            "file": "greenland/qa/video/encoded/4-end.png",
+            "sha256": "6fb363ab6e7ebf0de83dec692d6c63174e1263ee535116a3ac2007e822471e89"
+          },
+          {
+            "file": "greenland/qa/video/encoded/4-middle.png",
+            "sha256": "1a4f40fae1c634e3a294010112b5729e9bffc0f0dc79c98222618e7e92a9766c"
+          },
+          {
+            "file": "greenland/qa/video/encoded/4-start.png",
+            "sha256": "bcba6bab04cc24d68cc2841ec8663b43e45cade475d23aaca1179f400604c0da"
+          },
+          {
+            "file": "greenland/qa/video/encoded/5-end.png",
+            "sha256": "0e049cae2a7466eb951f3e52edee111cf8a4f1c6c527f921d0c01afd022af7bf"
+          },
+          {
+            "file": "greenland/qa/video/encoded/5-middle.png",
+            "sha256": "5ee43ed75468b7a44f932e56518a3956590383bfc1b6d9c7d940df02df344f17"
+          },
+          {
+            "file": "greenland/qa/video/encoded/5-start.png",
+            "sha256": "a6064106747d53aa01d7a036d152222244e9ce979c1bf11e54e2ccac8fe2473e"
+          },
+          {
+            "file": "greenland/qa/video/encoded/6-end.png",
+            "sha256": "33806e7b36c43db3f0ddf0598d27aa73c8ad00b02cbed3fa031cc313c9f4cbeb"
+          },
+          {
+            "file": "greenland/qa/video/encoded/6-middle.png",
+            "sha256": "00213d8de51f645cd14e1f52da158988274b664e22b98cec2407a1aefb91299f"
+          },
+          {
+            "file": "greenland/qa/video/encoded/6-start.png",
+            "sha256": "06c430ce5f93d14d17ea8bcf12bc2a4ea3d968b474a76631d53a3846b81f04fd"
+          },
+          {
+            "file": "greenland/qa/video/encoded/7-end.png",
+            "sha256": "7287c2b4ba58b259a45d690be7fb0721af1a00940a3110c062994746a68e61e3"
+          },
+          {
+            "file": "greenland/qa/video/encoded/7-middle.png",
+            "sha256": "f78717d8622276410c23ea33ec1392c185a24e9c404d4ae40104e75adfd55428"
+          },
+          {
+            "file": "greenland/qa/video/encoded/7-start.png",
+            "sha256": "59c5be9a2f168da42480945e784469ad4d3b712a9a286125cae8bd3b8f8b5f83"
+          },
+          {
+            "file": "greenland/qa/video/encoded/contact.png",
+            "sha256": "c380885b341a2964195dd01ca976a355fedc64b4465702587e2006a82a8438c4"
+          },
+          {
+            "file": "greenland/qa/video/encoded/playback.json",
+            "sha256": "4c70d7b642d453667fe1c51f4f16aa2abf4bed7acb60b4f76fee1edb8a295e74"
+          },
+          {
+            "file": "greenland/qa/video/encoded/technical-review.json",
+            "sha256": "82a0a66a30e2cf052fd1f901fec552775d09bbc1515706daad1a19f62f8368ca"
+          },
+          {
+            "file": "greenland/qa/video/encoded/visual-review.json",
+            "sha256": "131bdffc8224d0692aa2ac6480c0122a5295950456eae248ec67107603913eea"
+          },
+          {
+            "file": "greenland/qa/video/review.json",
+            "sha256": "5d4dd81e357568559b44bff478e27ff956b367d7abd3d8f63bf386e1d06930e7"
+          },
+          {
+            "file": "greenland/qa/video/segment-1-0.png",
+            "sha256": "5e64be251db019a9231b95140903b533d251a93e948653c7e66f2185cbf9433b"
+          },
+          {
+            "file": "greenland/qa/video/segment-1-100.png",
+            "sha256": "11449aabace40ec479b82a96691c832520998c98cebf0bbf80c95cf4f730bff0"
+          },
+          {
+            "file": "greenland/qa/video/segment-1-50.png",
+            "sha256": "7e683115c1af2e1fd1716d4e5fec0927fa35d17bda7e0519b2ba3de12209f956"
+          },
+          {
+            "file": "greenland/qa/video/segment-2-0.png",
+            "sha256": "13bbf669d78284ca036bf14b494ffb2f47c5cc09f240671368047b2c601e7f37"
+          },
+          {
+            "file": "greenland/qa/video/segment-2-100.png",
+            "sha256": "4da1c975081a32ef67694e6009539ebcd91de20f993c0a51a05d07211213c734"
+          },
+          {
+            "file": "greenland/qa/video/segment-2-50.png",
+            "sha256": "3b5cd3064207bbb4e1025b1c250a9851bb1557b2286a3a7b4ef0164153a9d5f5"
+          },
+          {
+            "file": "greenland/qa/video/segment-3-0.png",
+            "sha256": "a9b8891646c9045cb6e77b24a4f5ca58a0be494fc864241c176a21fef9a39a44"
+          },
+          {
+            "file": "greenland/qa/video/segment-3-100.png",
+            "sha256": "577d4d01622dedf1de4094c0665953f248daf4c2d0a1431fec552558c01d8285"
+          },
+          {
+            "file": "greenland/qa/video/segment-3-50.png",
+            "sha256": "0369fbf890e28009d862df9f0567879c53fb340dee9f38d1f13d242b028a3018"
+          },
+          {
+            "file": "greenland/qa/video/segment-4-0.png",
+            "sha256": "3c2ecf8c78643915f13cd0d3f6d2f36ac12200c24f5dc87036dfa80425e9a7f9"
+          },
+          {
+            "file": "greenland/qa/video/segment-4-100.png",
+            "sha256": "d194e1cd9c2409891d21f71dfdf4d861fc69d26dda528614c6a9cc2d139dd38b"
+          },
+          {
+            "file": "greenland/qa/video/segment-4-50.png",
+            "sha256": "3d484e305111d160a1aee95e24d432e61cdde98a8b8400496de75d49169a02da"
+          },
+          {
+            "file": "greenland/qa/video/segment-5-0.png",
+            "sha256": "de3b9d33d3b17428366dd7889bdb6bdff9471aa01917546ff13e429a378cda01"
+          },
+          {
+            "file": "greenland/qa/video/segment-5-100.png",
+            "sha256": "0d91729e802a52fcfedf98374d7ea66794b8e4543f3f8780f962b0427abea142"
+          },
+          {
+            "file": "greenland/qa/video/segment-5-50.png",
+            "sha256": "cbc6f45edca3b446210c72db89769aa5b653d77f2818aabda14272bfddbdc192"
+          },
+          {
+            "file": "greenland/qa/video/segment-6-0.png",
+            "sha256": "daec95233efbaca5dfa9e8dd124cf2b0021b70824b2b43f4f7f02e48e0527344"
+          },
+          {
+            "file": "greenland/qa/video/segment-6-100.png",
+            "sha256": "f29e9793cc2e65989476678201b829cd8ad1dff3db5ef593ff522fb48b313c77"
+          },
+          {
+            "file": "greenland/qa/video/segment-6-50.png",
+            "sha256": "6ac1d3cda3161ae6f65080191549f7db2c8c111d1b18fcc6f88f4a3383917062"
+          },
+          {
+            "file": "greenland/qa/video/segment-7-0.png",
+            "sha256": "227d5e70746cdf0e11394af82f86d2685089db5f930bf3ec18da121e0ea9f4f3"
+          },
+          {
+            "file": "greenland/qa/video/segment-7-100.png",
+            "sha256": "678d31588f26c06499c23caa45cfaca1c475343ee0b8256b3b7939adf01982e8"
+          },
+          {
+            "file": "greenland/qa/video/segment-7-50.png",
+            "sha256": "1ec26e3b98fb0282c34d62b2adaf7331199eac66e01976ac9998e7e70c46d9a8"
+          },
+          {
+            "file": "greenland/qa/video/source-diagnostics.json",
+            "sha256": "1aa7828529ba1dcee73a6422a2bdfd99ea877705f0dde80d577d34a3b6d36f72"
+          }
+        ]
+      },
+      "durationSeconds": 80.8,
+      "frames": 2424,
+      "provider": "provided-audio"
+    },
+    {
+      "topic": "cpython-string",
+      "format": "html",
+      "file": "cpython-string/cpython-string.html",
+      "bytes": 27105,
+      "sha256": "9fa74d2485d79ba3d4191abc3b7679d6c9eb46f2cf8b04563eaf8796f66b154d",
+      "sourceProject": "cpython-string/projects/html",
+      "sourceHash": "26a6dbc3dabf964168a60f0570a7ebed7ec20402de5f31e0709003fbf12c140e",
+      "researchHash": "04cdf5f8906f1385f8575b9c99d46ae60bfe4c2c37e79982658a19d9d617daf8",
+      "report": "cpython-string/research/report.md",
+      "receipt": "cpython-string/cpython-string.html.receipt.json",
+      "receiptHash": "b1e5b39a1b1563cb6791a9f04cfa8a7290c854be49e28417b325cfcc5322b8df",
+      "language": "bilingual",
+      "qa": {
+        "directory": "cpython-string/qa/html",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "cpython-string/qa/html/1280-en.png",
+            "sha256": "6eeb4a1a86690faace366f64f09b50eca4918844e823b6a09e932dca279fd69c"
+          },
+          {
+            "file": "cpython-string/qa/html/1280-zh.png",
+            "sha256": "9d9fa4eb80dd00a466c5e63f5c12bb3afb4eb9242e105e9991e3dca0871c4d58"
+          },
+          {
+            "file": "cpython-string/qa/html/320-en.png",
+            "sha256": "91c3ffcc6e1c6dc094a101fd495fc775a7d64cb4df488f4d6303a875a66ec82a"
+          },
+          {
+            "file": "cpython-string/qa/html/320-zh.png",
+            "sha256": "5b954bdbf6734a3eda1a2d881211cf19643b5b2c80a23231e6fc3193a8fd181e"
+          },
+          {
+            "file": "cpython-string/qa/html/390-en.png",
+            "sha256": "acbe7873a574546860ac86a800145827fbea60424a3ebd3ea0e5cd63f1da5a59"
+          },
+          {
+            "file": "cpython-string/qa/html/390-zh.png",
+            "sha256": "d7e2121ba152250c4b3b1fab8279f662e63ff39724efbd42de371d5e67c52359"
+          },
+          {
+            "file": "cpython-string/qa/html/browser-observations.json",
+            "sha256": "ad617892dd4bc33fca9f1b9b60eed566b238657a8ba59c73ed4c31839d0cf1ee"
+          },
+          {
+            "file": "cpython-string/qa/html/review.json",
+            "sha256": "e71dcaa98acb225eb25fb0cc01ee8483095016b19e419a705744d49b6db29c44"
+          }
+        ]
+      }
+    },
+    {
+      "topic": "cpython-string",
+      "format": "image",
+      "file": "cpython-string/cpython-string.png",
+      "bytes": 249395,
+      "sha256": "2453dfe5c3146dd19cc3a888eca21a50035d60acc7d2eb9ecdb98adb9b0179e5",
+      "sourceProject": "cpython-string/projects/image",
+      "sourceHash": "b4bb299bccfe039c96c8f44590c78119901c1273129adfeea43a8c8550585eb1",
+      "researchHash": "04cdf5f8906f1385f8575b9c99d46ae60bfe4c2c37e79982658a19d9d617daf8",
+      "report": "cpython-string/research/report.md",
+      "receipt": "cpython-string/cpython-string.png.receipt.json",
+      "receiptHash": "906f98036b8755c161debaf924f312bddfb51ca4b8e03a19db055de9c4b15ba2",
+      "language": "en",
+      "qa": {
+        "directory": "cpython-string/qa/image",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "cpython-string/qa/image/reading-1200.png",
+            "sha256": "15b1ce229a73b9605990ead5bd83edf89a21096bd62b25960a0e43600fad777b"
+          },
+          {
+            "file": "cpython-string/qa/image/review-scope.json",
+            "sha256": "74d1e438c709dd23f05652f84ee11716372ac9f8e44a34e3ccc1cc7e3d68ee74"
+          },
+          {
+            "file": "cpython-string/qa/image/review.json",
+            "sha256": "1eec8799ea039937c514588e9ea258fb5af841d0aab73ed406dccd00ef824d61"
+          }
+        ]
+      },
+      "width": 1800,
+      "height": 1600
+    },
+    {
+      "topic": "cpython-string",
+      "format": "pptx",
+      "file": "cpython-string/cpython-string.pptx",
+      "bytes": 263343,
+      "sha256": "33086e27f38f98540fa4bb86259e52c49c6126a0ed82b457dcdeb7e6bbd6df94",
+      "sourceProject": "cpython-string/projects/pptx",
+      "sourceHash": "9e3e1816e16b504b92fddb7daab92d50a7fcd4f6dada2b8c71c2e2be5954ecc5",
+      "researchHash": "04cdf5f8906f1385f8575b9c99d46ae60bfe4c2c37e79982658a19d9d617daf8",
+      "report": "cpython-string/research/report.md",
+      "receipt": "cpython-string/cpython-string.pptx.receipt.json",
+      "receiptHash": "8904338e31807f4ff22068807cd235ab5a3c358113ffeb2244e8087b23f8c686",
+      "language": "zh",
+      "qa": {
+        "directory": "cpython-string/qa/pptx",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "cpython-string/qa/pptx/contact-01.png",
+            "sha256": "d8bce8c9de0c1b5577870fdb60f970f5394c26971351927b698b4b8b2577004e"
+          },
+          {
+            "file": "cpython-string/qa/pptx/contact-02.png",
+            "sha256": "c4c7f0f1a687c6e449b00ff2f9f5a5951e96b12c4e56b42d7b4d3bcc0aaca489"
+          },
+          {
+            "file": "cpython-string/qa/pptx/edit-table-cell-04.png",
+            "sha256": "278aaea2e7652d08dbc7d9708583cf9a39d07f5a3df28877c725344fd59b4353"
+          },
+          {
+            "file": "cpython-string/qa/pptx/edit-text-01.png",
+            "sha256": "42b335f190595dcb52da68d5ce21fdca66d8bc7ff0c53cc8c54128a38ae78632"
+          },
+          {
+            "file": "cpython-string/qa/pptx/editing-probe.pptx",
+            "sha256": "7956acd967cc53afa2fbc42665ccc321416d932cd929481aa0e09d0b5c9ab03a"
+          },
+          {
+            "file": "cpython-string/qa/pptx/powerpoint-observations.json",
+            "sha256": "0cdce99878be3cf4f016ba832e061ba6c121afd7d816ce8e904b41c307e10d1d"
+          },
+          {
+            "file": "cpython-string/qa/pptx/review.json",
+            "sha256": "0196fc519dd6cdd2597163fce54807f196c5926284c157cdabdfbcb0b81bd4ac"
+          },
+          {
+            "file": "cpython-string/qa/pptx/slide-01.png",
+            "sha256": "f4387110e6f0f1ff4c8c51689c0ef29d8fc3a334c4841005bf1bdaf4be83787b"
+          },
+          {
+            "file": "cpython-string/qa/pptx/slide-02.png",
+            "sha256": "bfed5b60ba413140eedb755ce8f9866b08b935b6797b2579037e5895436b4b91"
+          },
+          {
+            "file": "cpython-string/qa/pptx/slide-03.png",
+            "sha256": "40452b8a0ef8e3c9e2ae7a4fe19117c0b905d9eccff6e4b98d158b76f5d1aaa9"
+          },
+          {
+            "file": "cpython-string/qa/pptx/slide-04.png",
+            "sha256": "a5d72277a8796b28f2aa36750ee646ead9ba07235fd4b3590dedd20b44f2442b"
+          },
+          {
+            "file": "cpython-string/qa/pptx/slide-05.png",
+            "sha256": "cf0a8e19a965522eb6b22a243ec9168e32555d2a026ca8bace5450e058916b38"
+          },
+          {
+            "file": "cpython-string/qa/pptx/slide-06.png",
+            "sha256": "1173120c8cd597476532032621bdb9df3a3ba0eb480ebfff8d2e45ba1f19fdf4"
+          },
+          {
+            "file": "cpython-string/qa/pptx/slide-07.png",
+            "sha256": "e16da0911803b0a9ba2075f7d126d683a9b65c142561fedc242d9293b491dd51"
+          }
+        ],
+        "application": {
+          "file": "cpython-string/qa/pptx/powerpoint-observations.json",
+          "sha256": "0cdce99878be3cf4f016ba832e061ba6c121afd7d816ce8e904b41c307e10d1d"
+        },
+        "pages": [
+          {
+            "file": "cpython-string/qa/pptx/slide-01.png",
+            "sha256": "f4387110e6f0f1ff4c8c51689c0ef29d8fc3a334c4841005bf1bdaf4be83787b"
+          },
+          {
+            "file": "cpython-string/qa/pptx/slide-02.png",
+            "sha256": "bfed5b60ba413140eedb755ce8f9866b08b935b6797b2579037e5895436b4b91"
+          },
+          {
+            "file": "cpython-string/qa/pptx/slide-03.png",
+            "sha256": "40452b8a0ef8e3c9e2ae7a4fe19117c0b905d9eccff6e4b98d158b76f5d1aaa9"
+          },
+          {
+            "file": "cpython-string/qa/pptx/slide-04.png",
+            "sha256": "a5d72277a8796b28f2aa36750ee646ead9ba07235fd4b3590dedd20b44f2442b"
+          },
+          {
+            "file": "cpython-string/qa/pptx/slide-05.png",
+            "sha256": "cf0a8e19a965522eb6b22a243ec9168e32555d2a026ca8bace5450e058916b38"
+          },
+          {
+            "file": "cpython-string/qa/pptx/slide-06.png",
+            "sha256": "1173120c8cd597476532032621bdb9df3a3ba0eb480ebfff8d2e45ba1f19fdf4"
+          },
+          {
+            "file": "cpython-string/qa/pptx/slide-07.png",
+            "sha256": "e16da0911803b0a9ba2075f7d126d683a9b65c142561fedc242d9293b491dd51"
+          }
+        ],
+        "visualReview": {
+          "status": "bounded-review",
+          "limitations": [
+            "No human comprehension or acceptance study.",
+            "Host document skills and local tools also contributed; this is not an isolated skill-effect comparison.",
+            "Agent inspected initial individual PowerPoint pages and affected revised pages; not human slideshow or manual-edit usability acceptance.",
+            "Minor isolated final punctuation remains on one reviewed slide."
+          ]
+        }
+      },
+      "slides": 7,
+      "native": true,
+      "provenance": {
+        "skill": {
+          "name": "aha-explain",
+          "sourceRevision": "699bb385a880f2d11b243fc9d9f26073e6ae17e7",
+          "guideHashes": {
+            "SKILL.md": "295388515983e4727a4e9f4c8ceb70573942b7d03a57702abbe3e8bf53104961",
+            "references/pptx.md": "b63f1baa02beca52b5ebc770655f75290258fce55b45a5d49c5d5231b9b62fca",
+            "references/artifact-qa.md": "c8bb14a9b04f4366e6f86312fbf268448f894679fb9f29b8f460c9537f0baa42"
+          }
+        },
+        "runtimeHash": "32ce5372e0cd422f6562824c8f5f36f34b7c77c35e767fb71f4f974afafe9a92"
+      }
+    },
+    {
+      "topic": "cpython-string",
+      "format": "video",
+      "file": "cpython-string/cpython-string.mp4",
+      "bytes": 1720534,
+      "sha256": "0db1e93f5ab340a961318f0452ad443808d9b051964c0bba827339d639a48c23",
+      "sourceProject": "cpython-string/projects/video",
+      "sourceHash": "9b3326f91e9426b39ac0444eb3b767342ce98c832052239286b0f87faa3f75a5",
+      "researchHash": "04cdf5f8906f1385f8575b9c99d46ae60bfe4c2c37e79982658a19d9d617daf8",
+      "report": "cpython-string/research/report.md",
+      "receipt": "cpython-string/cpython-string.mp4.receipt.json",
+      "receiptHash": "560fd01171c7f055d2ef20097d5315aaa9332f1c0acffabaf10b84738ea50feb",
+      "language": "en",
+      "qa": {
+        "directory": "cpython-string/qa/video",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "cpython-string/qa/video/approval.json",
+            "sha256": "3e533674b8aee17243112d8bc4cfa13197bf72090488ed0f53165a9c938de1e9"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/1-end.png",
+            "sha256": "2d8dfb966e790a65b00ff3d5c50b44894a084d0397180ea9cc941705c1c86c69"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/1-middle.png",
+            "sha256": "61777cb7a6659ccf68ebc66ae312fdb56d6a2542e1728063f1a5c43b1341222d"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/1-start.png",
+            "sha256": "1f9ec4b80eeaf08d36eba17440fef5281c9a5790bda15dc20ae66ee5ba50c67a"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/2-end.png",
+            "sha256": "ae6dbc66ec25b8347d89ccc14366df2f5ecf59ea0b1790c6596f814eaa2bb926"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/2-middle.png",
+            "sha256": "fbbd0570b56b44109d4e06270433420b4e0101b7749ea87e17681859c7c82267"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/2-start.png",
+            "sha256": "41ec8b4f5bf0a70148164fa98de7db8d2ac16feb7c05485de8066b66aa5d6a61"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/3-end.png",
+            "sha256": "c8544d5f3a39d877e455e592d724d78cf32a0803c4e34a3a39438f66d0c92110"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/3-middle.png",
+            "sha256": "5564171fa2211526dd4b7b4fb370628cd2c3feb955ac34f4776d05d1e214b651"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/3-start.png",
+            "sha256": "5f71c8bfeaec1108007589e06474cdf0ff42cca3eaa9a1bcd1aa322977c6c167"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/4-end.png",
+            "sha256": "82792a8034a4bb891a7f92742e619cf31a671516a2930b5e6eab9e07784c7fe2"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/4-middle.png",
+            "sha256": "891c739a4cd16165f5514e072072f4acd51473bf2bbe3ac4a2ebb85ccd367a52"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/4-start.png",
+            "sha256": "e76fcdfe38089692fc930b3d9a0b6bd9eb6b2920d82187f31f1c1522a19be443"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/5-end.png",
+            "sha256": "2100fefca1bc0bba79befa9165d2cc2aabd04155b5ba14ddfdef427035fde51b"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/5-middle.png",
+            "sha256": "4404a90e6d5b63b31d6668d0b509513c08fb5bd127dcc74affab5e92f551a4db"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/5-start.png",
+            "sha256": "fa90a01a5b4835a86b4abb4b4d15f341470bb38f93e7058ad50968b06b5c2581"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/contact.png",
+            "sha256": "e4188029418fad84f34a9cd20b27a2cbc5a806c4b3da4dd730b8386e2e962e55"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/playback.json",
+            "sha256": "0053926a4bffeda3bcba6a99d9c5454670302238b33a43edff42a8061f22ea9a"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/technical-review.json",
+            "sha256": "61183353330e581c782fa21d197fe804cafeb3cefe5b5bca2b35c7f2cf698d81"
+          },
+          {
+            "file": "cpython-string/qa/video/encoded/visual-review.json",
+            "sha256": "098e26eb8f9daeec5ff8e01a56177673c4f763e32bb10b98da0c288c5c6211d7"
+          },
+          {
+            "file": "cpython-string/qa/video/review.json",
+            "sha256": "75e08ac9c16102af9fa47abc02088b9f50a9a412bb88e70d2308b28189569c80"
+          },
+          {
+            "file": "cpython-string/qa/video/segment-1-0.png",
+            "sha256": "444905b72603cee9373e004a24314dbf55ea8921158defb075a9ef7725e94c17"
+          },
+          {
+            "file": "cpython-string/qa/video/segment-1-100.png",
+            "sha256": "5e8a5d8c502212886f21b226dfafb9010fcc84aee4a78ed54547ab0c11c06610"
+          },
+          {
+            "file": "cpython-string/qa/video/segment-1-50.png",
+            "sha256": "47ac111c10703c5d266ab572d799d150a2362ccdcc05dbe2a6adca55c07311fe"
+          },
+          {
+            "file": "cpython-string/qa/video/segment-2-0.png",
+            "sha256": "52b6903d0f5768943827d33d76b68f74880dcb26db00d2070fcb62cf638247be"
+          },
+          {
+            "file": "cpython-string/qa/video/segment-2-100.png",
+            "sha256": "36781cd6f7dd941317b6b9c4933203054509c277a25b8deb0cfec0f4fd44f7d6"
+          },
+          {
+            "file": "cpython-string/qa/video/segment-2-50.png",
+            "sha256": "502af3d1b19ced027547b8f397d1b981355a3abc4e034b8afabdf73836b77ea9"
+          },
+          {
+            "file": "cpython-string/qa/video/segment-3-0.png",
+            "sha256": "b4536a0fa1defdd8a38841f1367b6a750c595e4c49426fe017b9b1341e145ded"
+          },
+          {
+            "file": "cpython-string/qa/video/segment-3-100.png",
+            "sha256": "1559112a5009797f3828942f9a1eeacb6c08e59a5546736fecad35167d9543a6"
+          },
+          {
+            "file": "cpython-string/qa/video/segment-3-50.png",
+            "sha256": "86597dc245a9fe9b1c3053ad7e53d8beb49f40c0a5621ad97446d5083753e4b7"
+          },
+          {
+            "file": "cpython-string/qa/video/segment-4-0.png",
+            "sha256": "7bc3f366b66a79430121e14a297058f82ad28ca84d86c99ad87b931d9473e0f7"
+          },
+          {
+            "file": "cpython-string/qa/video/segment-4-100.png",
+            "sha256": "d25cce6f1b9a6d55816d329caf76dece8c7e2d361ee665a9d69e4bc657fd6954"
+          },
+          {
+            "file": "cpython-string/qa/video/segment-4-50.png",
+            "sha256": "3bd83985bf4b47186f4ff498e06fcd1e0b1eaa1aed05191e2a51849676c2e66b"
+          },
+          {
+            "file": "cpython-string/qa/video/segment-5-0.png",
+            "sha256": "3d90c6e6b51b934d4acc299a2232e8625e5ede02c2b80f17c9937ad5a4bc2007"
+          },
+          {
+            "file": "cpython-string/qa/video/segment-5-100.png",
+            "sha256": "c5e7eba18c210b22877b8a344d67704bc4221fe199066b1df801e47b9043a0a2"
+          },
+          {
+            "file": "cpython-string/qa/video/segment-5-50.png",
+            "sha256": "45aca6d889c82a3edeeeffd69c28d2e844864458c2bf6ffd9530a98dab9af344"
+          },
+          {
+            "file": "cpython-string/qa/video/source-diagnostics.json",
+            "sha256": "1726ded3472ae20f6b9f1fdd0ee4030751480bd17583a95da96483287b7b7a70"
+          }
+        ]
+      },
+      "durationSeconds": 63.233333333333334,
+      "frames": 1897,
+      "provider": "provided-audio"
+    },
+    {
+      "topic": "docker-layers",
+      "format": "html",
+      "file": "docker-layers/docker-layers.html",
+      "bytes": 27472,
+      "sha256": "417482039e118c9a633e307ac06a53a79d8fd64c1ecb5f12ba9961e756cbfea7",
+      "sourceProject": "docker-layers/projects/html",
+      "sourceHash": "7e800919c19841175d921e1447d7c060d6cd34e1086bf604e1df7709d674f629",
+      "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
+      "report": "docker-layers/research/report.md",
+      "receipt": "docker-layers/docker-layers.html.receipt.json",
+      "receiptHash": "1a991ea70e249d944aba9c73f60e734934120da2d0e9483c734899f03bdbb8d1",
+      "language": "bilingual",
+      "qa": {
+        "directory": "docker-layers/qa/html",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "docker-layers/qa/html/1280-en.png",
+            "sha256": "dd1905f5c5207874b3bc6ba5a9d52dfbafbf72d3924b978454b0885893cb9387"
+          },
+          {
+            "file": "docker-layers/qa/html/1280-zh.png",
+            "sha256": "e04209159ba25efc98aee8d8dc74cb85f2d0bf3eb9fdfe8f2f8e380b6ca6438c"
+          },
+          {
+            "file": "docker-layers/qa/html/320-en.png",
+            "sha256": "f33d79ca72414148f596046e2fa1b05d6526367d94d25ead23769ad65dfa710b"
+          },
+          {
+            "file": "docker-layers/qa/html/320-zh.png",
+            "sha256": "34e8878b687465a8f5bcf89573857dd3faf93a8e5747e6de519daab52603efb2"
+          },
+          {
+            "file": "docker-layers/qa/html/390-en.png",
+            "sha256": "58d4e7ef79422a2fd1389dc182189fa6aaf3029285ec9c0e0d6d11bdf4cd1a40"
+          },
+          {
+            "file": "docker-layers/qa/html/390-zh.png",
+            "sha256": "9e9b34ac643147ac47a6d5150d2d2b7a845a82afc32cf19d76e8fd8af3796459"
+          },
+          {
+            "file": "docker-layers/qa/html/browser-observations.json",
+            "sha256": "e06f69dcbd6dab1c42964cb08219f402c4103292940c46e5b692dc6d2b5d664d"
+          },
+          {
+            "file": "docker-layers/qa/html/review.json",
+            "sha256": "22ae6b8beccdf12c3204fec35cbe8ded5e38bcbe8c0ac129fc66dcbec813e1b6"
+          }
+        ]
+      }
+    },
+    {
+      "topic": "docker-layers",
+      "format": "image",
+      "file": "docker-layers/docker-layers.png",
+      "bytes": 232307,
+      "sha256": "67c08a443d8affa1f6cb9815d115bd1ee35a451825b7452a1226f6525fa50a8e",
+      "sourceProject": "docker-layers/projects/image",
+      "sourceHash": "8fde31b0f4a91b52965f75787ebd99374f468a9e5020283cb78371d76e04267c",
+      "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
+      "report": "docker-layers/research/report.md",
+      "receipt": "docker-layers/docker-layers.png.receipt.json",
+      "receiptHash": "171c54a03040ed5c68cda74c33b1c5d54d0d2de6e6e9a0611d5fe44fb8b7ca1a",
+      "language": "en",
+      "qa": {
+        "directory": "docker-layers/qa/image",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "docker-layers/qa/image/reading-1200.png",
+            "sha256": "03b3d445669c9d1b26085aaa53fd7ca27867512e2a4c526efb39eaf4442ce55b"
+          },
+          {
+            "file": "docker-layers/qa/image/review-scope.json",
+            "sha256": "32b04fda527d6ed7a2a709ae7f1236a0266c64852cfe64fc32ae4c877db72242"
+          },
+          {
+            "file": "docker-layers/qa/image/review.json",
+            "sha256": "0618c9e4bb25085ed8e440924877a1cc5bb7cb232fdc16fcdc302c0857d26520"
+          }
+        ]
+      },
+      "width": 1800,
+      "height": 1600
+    },
+    {
+      "topic": "docker-layers",
+      "format": "pptx",
+      "file": "docker-layers/docker-layers.pptx",
+      "bytes": 150679,
+      "sha256": "6900a2831568d23fd772bdb5f9fb0952d294c2bacb0df7428deccace9fe0bd2e",
+      "sourceProject": "docker-layers/projects/pptx",
+      "sourceHash": "94cf6ccde7e4b087e25975af1ea6b1a0d6b24721569fe3ace4e97160c753d0b8",
+      "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
+      "report": "docker-layers/research/report.md",
+      "receipt": "docker-layers/docker-layers.pptx.receipt.json",
+      "receiptHash": "e086f611a4c7630fc648970c13084d084485a58fc43c31696172109e1cf51bdc",
+      "language": "zh",
+      "qa": {
+        "directory": "docker-layers/qa/pptx",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "docker-layers/qa/pptx/contact-01.png",
+            "sha256": "440243d69c9af50f0dc227a9cb58df54cff8dbdd8c3ebd4944078d114e99431c"
+          },
+          {
+            "file": "docker-layers/qa/pptx/contact-02.png",
+            "sha256": "52de5a0d64e0e5d386739b722d7806e39a67b91ca4f65f80b3f49214aee6a60e"
+          },
+          {
+            "file": "docker-layers/qa/pptx/edit-table-cell-06.png",
+            "sha256": "9d58418eda214bb8013bdda617991fffff2e7ebd478f5071ace05477e27bd174"
+          },
+          {
+            "file": "docker-layers/qa/pptx/edit-text-01.png",
+            "sha256": "8507057d4976965fc8ed0c6d8b3c7a459886e976ac76f89c5e57f8f3a82d8c27"
+          },
+          {
+            "file": "docker-layers/qa/pptx/editing-probe.pptx",
+            "sha256": "981f3babef8b67c32ea0ae257a64d4a414dcb37fd99fe0b8594ef46c23021f8e"
+          },
+          {
+            "file": "docker-layers/qa/pptx/powerpoint-observations.json",
+            "sha256": "fae0f227e258841d3d59c0645e46fa36005dab4aef9ea8e253884886e1a5881e"
+          },
+          {
+            "file": "docker-layers/qa/pptx/review.json",
+            "sha256": "7936b7b344dadb9a802f0243f61dd0962b3ee4a41147e61b5cdbe4af55c434fa"
+          },
+          {
+            "file": "docker-layers/qa/pptx/slide-01.png",
+            "sha256": "b8900717d3e8aed2412fd057ba75b100a4baa4e7405c38dca2b1e1ad750fda7d"
+          },
+          {
+            "file": "docker-layers/qa/pptx/slide-02.png",
+            "sha256": "a103800f7cbaa55191ad73086c93aa54f1227a3138e0af6400063c67bb7d6bf9"
+          },
+          {
+            "file": "docker-layers/qa/pptx/slide-03.png",
+            "sha256": "e1ed57f8f5336acdc04ae8c0715c70b27aa091fbf687bb135b80684f3370f2cd"
+          },
+          {
+            "file": "docker-layers/qa/pptx/slide-04.png",
+            "sha256": "d1ab158122559d63bd05559d896cfec68cbaddba02a82c69b7168c73ffe2c266"
+          },
+          {
+            "file": "docker-layers/qa/pptx/slide-05.png",
+            "sha256": "7f4acf494910f8d2a460a003939d708c533d48ff062334d847ade496c31f5f25"
+          },
+          {
+            "file": "docker-layers/qa/pptx/slide-06.png",
+            "sha256": "263399f781a3a96a2f36b61a69b0eee127a68e404b1c0d3a7fed18e83db426ce"
+          },
+          {
+            "file": "docker-layers/qa/pptx/slide-07.png",
+            "sha256": "9aeaa819c20b596ad4d6d30519a32709856b780d5cec0a489516892a836ded52"
+          }
+        ],
+        "application": {
+          "file": "docker-layers/qa/pptx/powerpoint-observations.json",
+          "sha256": "fae0f227e258841d3d59c0645e46fa36005dab4aef9ea8e253884886e1a5881e"
+        },
+        "pages": [
+          {
+            "file": "docker-layers/qa/pptx/slide-01.png",
+            "sha256": "b8900717d3e8aed2412fd057ba75b100a4baa4e7405c38dca2b1e1ad750fda7d"
+          },
+          {
+            "file": "docker-layers/qa/pptx/slide-02.png",
+            "sha256": "a103800f7cbaa55191ad73086c93aa54f1227a3138e0af6400063c67bb7d6bf9"
+          },
+          {
+            "file": "docker-layers/qa/pptx/slide-03.png",
+            "sha256": "e1ed57f8f5336acdc04ae8c0715c70b27aa091fbf687bb135b80684f3370f2cd"
+          },
+          {
+            "file": "docker-layers/qa/pptx/slide-04.png",
+            "sha256": "d1ab158122559d63bd05559d896cfec68cbaddba02a82c69b7168c73ffe2c266"
+          },
+          {
+            "file": "docker-layers/qa/pptx/slide-05.png",
+            "sha256": "7f4acf494910f8d2a460a003939d708c533d48ff062334d847ade496c31f5f25"
+          },
+          {
+            "file": "docker-layers/qa/pptx/slide-06.png",
+            "sha256": "263399f781a3a96a2f36b61a69b0eee127a68e404b1c0d3a7fed18e83db426ce"
+          },
+          {
+            "file": "docker-layers/qa/pptx/slide-07.png",
+            "sha256": "9aeaa819c20b596ad4d6d30519a32709856b780d5cec0a489516892a836ded52"
+          }
+        ],
+        "visualReview": {
+          "status": "bounded-review",
+          "limitations": [
+            "No human comprehension or acceptance study.",
+            "Host document skills and local tools also contributed; this is not an isolated skill-effect comparison.",
+            "Agent inspected initial individual PowerPoint pages and affected revised pages; not human slideshow or manual-edit usability acceptance.",
+            "Minor isolated final punctuation remains on one reviewed slide."
+          ]
+        }
+      },
+      "slides": 7,
+      "native": true,
+      "provenance": {
+        "skill": {
+          "name": "aha-explain",
+          "sourceRevision": "699bb385a880f2d11b243fc9d9f26073e6ae17e7",
+          "guideHashes": {
+            "SKILL.md": "295388515983e4727a4e9f4c8ceb70573942b7d03a57702abbe3e8bf53104961",
+            "references/pptx.md": "b63f1baa02beca52b5ebc770655f75290258fce55b45a5d49c5d5231b9b62fca",
+            "references/artifact-qa.md": "c8bb14a9b04f4366e6f86312fbf268448f894679fb9f29b8f460c9537f0baa42"
+          }
+        },
+        "runtimeHash": "32ce5372e0cd422f6562824c8f5f36f34b7c77c35e767fb71f4f974afafe9a92"
+      }
+    },
+    {
+      "topic": "docker-layers",
+      "format": "video",
+      "file": "docker-layers/docker-layers.mp4",
+      "bytes": 1571250,
+      "sha256": "8d85a1666d8ee77c0e9975dcaf894e4138abbe6e713bf96e9fc5e82dd96fa577",
+      "sourceProject": "docker-layers/projects/video",
+      "sourceHash": "14c4856d13ed3093c5665f175138fae5d9d6622645ba06ed8478045ac13594cd",
+      "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
+      "report": "docker-layers/research/report.md",
+      "receipt": "docker-layers/docker-layers.mp4.receipt.json",
+      "receiptHash": "b89c5cbf6ad1b17aec7c8d3aea2c91dad313c129eb0e5eef0de3592fb7530eef",
+      "language": "en",
+      "qa": {
+        "directory": "docker-layers/qa/video",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "docker-layers/qa/video/approval.json",
+            "sha256": "55a9996c16ec88d9e07e32eabfac6d3a05792681c2b6b11a6e16c0ba79ed04fc"
+          },
+          {
+            "file": "docker-layers/qa/video/encoded/1-end.png",
+            "sha256": "06620e5942b47007b042d4a8e8c42a0f9807b35950c837f38cd09b3a6486fc02"
+          },
+          {
+            "file": "docker-layers/qa/video/encoded/1-middle.png",
+            "sha256": "21eb0c439a5c10680ba7d052b4ff8c9fa9e6e1084b7bb92c7e2b02b98cff32bc"
+          },
+          {
+            "file": "docker-layers/qa/video/encoded/1-start.png",
+            "sha256": "15c1aefde604d266fb3cacee8ef411ea06c3a16591371431c52d984bfd18dc5f"
+          },
+          {
+            "file": "docker-layers/qa/video/encoded/2-end.png",
+            "sha256": "e29581246c1d4f1ea6a2bb4b1ef8173aa3b244123e259ce6207cf8f54b4366bf"
+          },
+          {
+            "file": "docker-layers/qa/video/encoded/2-middle.png",
+            "sha256": "1d68d365760018d59605ee6dac8850f2cc6dcfff1c1f22bf29d1e560af04e7cb"
+          },
+          {
+            "file": "docker-layers/qa/video/encoded/2-start.png",
+            "sha256": "793a5a5da685bac9c8bda30e4d4cdb2396fc06191830b19b42fb357731b47442"
+          },
+          {
+            "file": "docker-layers/qa/video/encoded/3-end.png",
+            "sha256": "62db6b3c3c2edac975b2624443fb62f894cb801b994198a42bfd57f6dae49eea"
+          },
+          {
+            "file": "docker-layers/qa/video/encoded/3-middle.png",
+            "sha256": "ca73559e621550bcf588f9afff85f148d81959482f17f7488425b602145a1a82"
+          },
+          {
+            "file": "docker-layers/qa/video/encoded/3-start.png",
+            "sha256": "8ba6333caa841ba9b303cd531f28f5a0f7197146a7fcc8653a962422493b8dcf"
+          },
+          {
+            "file": "docker-layers/qa/video/encoded/4-end.png",
+            "sha256": "4be4a45e1cda5136a2f47cae85d222152a4975c5dd6babd71b4d236586304536"
+          },
+          {
+            "file": "docker-layers/qa/video/encoded/4-middle.png",
+            "sha256": "524334813a9a7fdd0d01bf13afcfda4f4acc5f7504094dd942856e3b66c5fd42"
+          },
+          {
+            "file": "docker-layers/qa/video/encoded/4-start.png",
+            "sha256": "0d06280226ae51897af80bb8a4e634da07988800f38025a3fa6febf9db1eb1c4"
+          },
+          {
+            "file": "docker-layers/qa/video/encoded/5-end.png",
+            "sha256": "9c59d72bdbf496cbe6206e331c9386b241173287da96a344735bb93b87562f2c"
+          },
+          {
+            "file": "docker-layers/qa/video/encoded/5-middle.png",
+            "sha256": "9a3e310be514570d1325ebec020c93bd2fcba3eda00e3553dbc9739ee6469d87"
+          },
+          {
+            "file": "docker-layers/qa/video/encoded/5-start.png",
+            "sha256": "7939273198f634502465dc82d93183e37a76449dd81b0e4de1406ce70604b066"
+          },
+          {
+            "file": "docker-layers/qa/video/encoded/contact.png",
+            "sha256": "a419efe231f56af59879885b8591aac2da0ebe2a8b0af46b18894a4195fbdf88"
+          },
+          {
+            "file": "docker-layers/qa/video/encoded/playback.json",
+            "sha256": "fe36837266bc6274a9587bbed233596c7379b1f252333184815133978f8c9920"
+          },
+          {
+            "file": "docker-layers/qa/video/encoded/technical-review.json",
+            "sha256": "42a0bbe763eb9a79a9bad0ebacb8d831a5156f79c59cd58af6dc58750cd81c4c"
+          },
+          {
+            "file": "docker-layers/qa/video/encoded/visual-review.json",
+            "sha256": "a1ab82bab96fb454f0b53fa3280ce2d4b5d0b4a069a58287013b42f6cbbb85cc"
+          },
+          {
+            "file": "docker-layers/qa/video/review.json",
+            "sha256": "6c893f6dee4605c61cda5a1d7a7039e44365a4dec2c8d30bc382f22c3497ad0b"
+          },
+          {
+            "file": "docker-layers/qa/video/segment-1-0.png",
+            "sha256": "a46c72bbf47cbded40b38dd6344c1a949127fc1548d0ca0422fcb2134671bd82"
+          },
+          {
+            "file": "docker-layers/qa/video/segment-1-100.png",
+            "sha256": "f42d2c9273b99b08fb0d5d92da67620fea7e6052d08d92ced8b467851d560ffa"
+          },
+          {
+            "file": "docker-layers/qa/video/segment-1-50.png",
+            "sha256": "e8db2f802d22ccf4c4608d46d12294f558c07d5047e8791f02ed5b2d3f31d2b0"
+          },
+          {
+            "file": "docker-layers/qa/video/segment-2-0.png",
+            "sha256": "b2ee51241998559fafbd3d22e30261febe99f6f8f5ad147000e490ce52b20edc"
+          },
+          {
+            "file": "docker-layers/qa/video/segment-2-100.png",
+            "sha256": "8e1a73341e0f19c20152672e5e8049e084b4de197b76db88fa5e3b36298d6b5a"
+          },
+          {
+            "file": "docker-layers/qa/video/segment-2-50.png",
+            "sha256": "0e719a97b56ac407744f19ffc95b92b350da7c08dd9bac95a7a1b04c19f5d61a"
+          },
+          {
+            "file": "docker-layers/qa/video/segment-3-0.png",
+            "sha256": "c8e7f5d72b7081393997ca0ed4edf2c3f432aad2c551cf6c47cb9bd564b334af"
+          },
+          {
+            "file": "docker-layers/qa/video/segment-3-100.png",
+            "sha256": "781c53630009b6b7edea1ac7dc40a03f015b7eef737d4b71a776fc78b9f5c5fa"
+          },
+          {
+            "file": "docker-layers/qa/video/segment-3-50.png",
+            "sha256": "89e66ed3fad61bd98359959a863f1b3933e2761a76b352cfb621a8c1bdc57dde"
+          },
+          {
+            "file": "docker-layers/qa/video/segment-4-0.png",
+            "sha256": "557dfb365b9e64264ce3aa66c5d596867d52c7c29c0632ed85141c530aff0ddd"
+          },
+          {
+            "file": "docker-layers/qa/video/segment-4-100.png",
+            "sha256": "858fe5624880f34529a367bcd8d4ee8350045e600efd6c2365af48a4b990c946"
+          },
+          {
+            "file": "docker-layers/qa/video/segment-4-50.png",
+            "sha256": "51fda2dd546d32d1c4d7afaf05951e1a670ea44d73a6630a0bf5896fb5b779a5"
+          },
+          {
+            "file": "docker-layers/qa/video/segment-5-0.png",
+            "sha256": "76062909145aba6cc6975e4ba41b676ab562a087fd959a34a95c5c4e47f42646"
+          },
+          {
+            "file": "docker-layers/qa/video/segment-5-100.png",
+            "sha256": "b4554da04ce26082ffbcd571ae94891159ad7061898b6e6bb34c0d2be6b129bd"
+          },
+          {
+            "file": "docker-layers/qa/video/segment-5-50.png",
+            "sha256": "45a172001f051d3919251e4537e477c56d7d55d8d4a094b0ec5a2fdb316e788c"
+          },
+          {
+            "file": "docker-layers/qa/video/source-diagnostics.json",
+            "sha256": "2af51a89e9ce431f3d1a68401c28b3309f375b9b0781af0c0857ead052b22ff4"
+          }
+        ]
+      },
+      "durationSeconds": 58.3,
+      "frames": 1749,
+      "provider": "provided-audio"
     }
   ],
   "qa": {
-    "structuralSourceAndOutputIdentity": "Sixteen outputs across six topics; current source, research, receipts and QA identities. Identity is not semantic proof.",
-    "html": "Chinese Git plan review at 1280/390/320px; ANC and introduction have bilingual browser observations.",
-    "slides": "Thirty PowerPoint-exported slides with native copy-edit observations and explicit visual-review limitations.",
-    "images": "Chinese 1080x1920 introduction poster has a reviewed 390px preview. ANC/Git reading previews do not establish phone readability or standalone visual acceptance.",
-    "video": "Decode, approved subtitles, source replay and sampled-frame observations. Docker auxiliary text remains small at 640px display width.",
-    "completeVideoListeningAndViewing": "Not confirmed; no agent auditory acceptance claim.",
+    "structuralSourceAndOutputIdentity": "Twenty outputs across five topics; sixteen newly authored artifacts and four unchanged introduction artifacts. Identity is not semantic proof.",
+    "html": "Four regenerated bilingual pages at 1280/390/320px in both themes, plus unchanged introduction evidence.",
+    "slides": "Thirty-six native slides; PowerPoint export and saved/reopened copy-edit observations, with bounded agent reviews.",
+    "images": "Four independent 1800x1600 infographics inspected at 1200px; unchanged introduction portrait and 390px evidence.",
+    "video": "Fresh authorized Jenny recordings for four topics; exact WAVs imported offline after caption-layout repair. Decode, measured subtitles, muted playback and sampled frames.",
+    "completeVideoListeningAndViewing": "Actual listening and continuous human viewing not confirmed.",
     "humanComprehensionStudy": "Not performed.",
-    "layout": "One current manifest; topic-named artifacts and receipts; self-contained QA under <topic>/qa/<format>. Paths are current and relative; no archive or relocation dependency."
+    "layout": "One current manifest; topic-named artifacts and self-contained QA. No prior-version or relocation dependency."
   },
-  "updatedAt": "2026-09-22T07:18:50.512Z",
+  "updatedAt": "2026-09-22T11:30:00.375Z",
   "schemaVersion": 2,
   "layout": "topic-format-v1"
 }

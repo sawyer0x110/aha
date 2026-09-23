@@ -1,324 +1,155 @@
-export default async function ({ pptx, research }) {
-  /*
-   * 设计简报：面向一般读者，用七页回答“看起来大”与“实际面积”的区别。
-   * 屏幕宽幅；原生文字、图表、表格和少量几何示意承担全部论证。
-   * 深海绿代表投影，赭色代表面积比较；不以颜色作为唯一分类标识。
-   * 先给答案，再给面积证据、几何桥梁、局部例子、用途和选择标准。
-   * 页面保留重要条件；备注提供讲述顺序和冻结材料中的来源，不增加事实。
-   * 无外部图片、字体文件或资源。Microsoft YaHei 仅为字体请求，未检查可用性。
-   * 本轮只做源项目静态检查；未执行、未渲染、未验证字体或原生编辑行为。
-   * 必需的宿主 pptx 技能已加载，作为共同干预披露；实际作者规范为固定 Aha 技能。
-   */
-  pptx.layout = 'LAYOUT_WIDE';
-  pptx.author = 'Aha';
-  pptx.subject = research.question;
-  pptx.title = '格陵兰为什么在某些世界地图上显得巨大？';
-  pptx.company = '冻结研究材料的中文解释';
-  pptx.lang = 'zh-CN';
-  pptx.theme = {
-    headFontFace: 'Microsoft YaHei',
-    bodyFontFace: 'Microsoft YaHei',
-    lang: 'zh-CN',
+const data={"title":["Why Mercator makes Greenland look enormous","墨卡托地图为什么把格陵兰放大了？"],"lead":["Africa has about fourteen times Greenland's reported area. A Mercator map can obscure that comparison because its magnification increases toward the poles.","按引用的面积统计，非洲约为格陵兰的 14 倍。墨卡托地图越靠近两极放大越严重，因此看轮廓容易误判面积比例。"],"question":["Separate land area from projected area","把土地面积与地图上的面积分开"],"claims":["c-area","c-cause","c-bridge","c-scale","c-navigation","c-poles","c-equal","c-resource","c-motion"],"sources":[["PROJ · spherical Mercator equations","https://raw.githubusercontent.com/OSGeo/PROJ/9.9/docs/source/operations/projections/merc.rst"],["Britannica · Africa","https://www.britannica.com/place/Africa"],["IndexMundi · Greenland area (2021 source page)","https://www.indexmundi.com/greenland/area.html"],["Esri · Mercator properties","https://pro.arcgis.com/en/pro-app/3.6/help/mapping/properties/mercator.htm"],["Natural Earth · public-domain boundaries","https://www.naturalearthdata.com/about/terms-of-use/"],["Esri · Equal Earth","https://doc.esri.com/en/arcgis-pro/latest/help/mapping/properties/equal-earth.html"]],"parts":[{"id":"area","claims":["c-area"],"title":["About fourteen times, not fourteen packed outlines","约 14 倍，不是装进 14 个轮廓"],"text":["The cited areas are 2,166,086 km² for Greenland and about 30,365,000 km² for Africa. They support a rounded ratio, not a claim that fourteen Greenland outlines fit inside Africa. The official Greenland PDF body was not verified.","引用资料给出格陵兰 2,166,086 km²、非洲约 30,365,000 km²。它们支持约 14 倍的比较，而非轮廓装箱；本次研究未核验格陵兰官方 PDF 的正文。"]},{"id":"spacing","claims":["c-bridge","c-cause"],"title":["Equal longitude gaps are not equal ground distances","同样的经度间隔，不是同样的地面距离"],"text":["Meridians converge on a sphere but stay equally spaced on a Mercator map. The map therefore stretches east-west distances more at high latitude. To preserve local angles, it stretches north-south distances by the same local factor.","球面上的经线向两极汇聚，墨卡托图上的经线却始终等距，因此高纬地区东西方向被放大。为了保持局部角度，南北方向也要按相同的局部倍率拉伸。"]},{"id":"local-scale","claims":["c-scale"],"title":["At 60°: twice in each direction, four times in area","60° 附近：两方向各两倍，面积四倍"],"text":["For a tiny patch in spherical Mercator with equatorial scale one, linear scale is sec(latitude) and area scale is its square. Greenland spans many latitudes: a local fourfold factor is not a whole-country multiplier.","以赤道比例为 1 的球面墨卡托为例，微小区域的线性倍率是纬度余弦的倒数，面积倍率是其平方。格陵兰跨越多个纬度，不能把局部四倍当成整国倍率。"]},{"id":"motion","claims":["c-motion","c-resource"],"title":["Move the land on a sphere, not by shrinking a picture","在球面上移动土地，而不是缩小图片"],"text":["Apply the same three-dimensional rotation to every boundary vertex. Spherical area stays unchanged while its outline on a fixed Mercator map changes. Natural Earth 1:110 million boundaries are generalized public-domain data, not precise survey measurements.","对边界的所有顶点施加同一个三维旋转：球面面积保持不变，固定墨卡托图上的轮廓却会改变。Natural Earth 1:1.1 亿边界是公共领域概化数据，不是精密测量。"]},{"id":"tradeoffs","claims":["c-navigation","c-poles","c-equal"],"title":["Choose the property your question needs","先问地图要保留什么"],"text":["Mercator preserves local angles and draws constant-heading rhumb lines straight; they are usually not shortest routes. Its poles lie at infinity and must be cropped. Equal Earth preserves area proportions, but not every shape, angle or distance.","墨卡托保留局部角度，把恒定罗盘航向的恒向线画成直线，但它通常不是最短路线；两极在无穷远，有限地图必须裁切。Equal Earth 保面积比例，却不保所有形状、角度和距离。"]}],"limit":["Spherical Mercator; local scale is not a whole-country multiplier. Generalized boundaries are not statistical area measurements.","球面墨卡托；局部倍率不是整国倍率。概化边界的计算面积不替代统计面积。"],"narration":[["Greenland looks enormous on many Mercator maps. But Africa has about fourteen times its reported land area. The map and the land are measuring different things.",["c-area","c-cause"]],["On a sphere, meridians converge toward the poles. Mercator keeps them equally spaced on the page. The same longitude gap is therefore stretched more at high latitude.",["c-bridge","c-cause"]],["To preserve local angles, Mercator stretches north-south distances by the same local factor. Near sixty degrees, a tiny patch is doubled in both directions, giving four times the area.",["c-bridge","c-scale"]],["That is a local result, not one multiplier for all of Greenland. The country spans different latitudes, and each part is magnified differently.",["c-scale"]],["Now rotate the actual generalized boundary on a sphere toward the equator. Its land area stays the same, but its footprint shrinks on this fixed-scale Mercator map. This is not a two-dimensional resize.",["c-motion","c-resource"]],["Mercator makes constant-heading routes straight, though they are usually not the shortest routes. Its poles project to infinity, so a finite map must cut them off.",["c-navigation","c-poles"]],["For comparing areas, an equal-area map such as Equal Earth is useful. It preserves area proportions, not every shape or angle. The right projection depends on the question.",["c-equal"]]]};
+export default async function (context) { return (async function authorSlides({ pptx }, topic, data) {
+  const C = { bg: "F7F4EF", ink: "242424", muted: "5C5C5C", rose: "B11F4B", soft: "F4E3E8", border: "919191", white: "FFFFFF" };
+  pptx.layout = "LAYOUT_WIDE";
+  pptx.author = "Aha";
+  pptx.subject = data.title[1];
+  pptx.title = data.title[1];
+  pptx.lang = "zh-CN";
+  pptx.theme = { headFontFace: "Microsoft YaHei", bodyFontFace: "Microsoft YaHei", lang: "zh-CN" };
+  const text = (s, value, x, y, w, h, size = 22, extra = {}) => s.addText(value, {
+    x, y, w, h, fontFace: "Microsoft YaHei", fontSize: size, color: C.ink,
+    margin: 0, breakLine: false, valign: "mid", ...extra,
+  });
+  const rect = (s, x, y, w, h, fill = C.white) => s.addShape(pptx.ShapeType.rect, {
+    x, y, w, h, fill: { color: fill }, line: { color: C.border, width: 1 },
+  });
+  const tile = (s, label, x, y, w = 3.5, h = .85, accent = false) => {
+    rect(s, x, y, w, h, accent ? C.soft : C.white);
+    text(s, label, x + .16, y + .08, w - .32, h - .16, 21, { align: "center", bold: accent });
   };
-  const C = {
-    paper: 'F6F4EE', ink: '183D43', muted: '52696B',
-    teal: '176C70', pale: 'DCECE6', warm: 'A04C2B',
-    sand: 'F0E0D0', white: 'FFFFFF', border: '92A7A2',
+  const arrow = (s, x, y, w) => s.addShape(pptx.ShapeType.line, {
+    x, y, w, h: 0, line: { color: C.rose, width: 2.5, endArrowType: "triangle" },
+  });
+  const base = (title, index, source = "") => {
+    const s = pptx.addSlide();
+    s.background = { color: C.bg };
+    text(s, title, .65, .48, 12.0, .9, 30, { bold: true });
+    text(s, source, .65, 6.88, 11.4, .35, 11, { color: C.muted });
+    text(s, String(index).padStart(2, "0"), 12.05, 6.84, .55, .4, 13, { align: "right", color: C.muted });
+    return s;
   };
-  const S = pptx.ShapeType;
-  const sources = {
-    area: 'IndexMundi《格陵兰面积》（页面更新于2021年）；Britannica《非洲》',
-    mechanism: 'PROJ 9.9 墨卡托公式；Esri ArcGIS Pro 3.6《墨卡托》',
-    tradeoff: 'Britannica《地图投影》；Esri《Equal Earth》及《墨卡托》',
-  };
-  function text(slide, value, x, y, w, h, options = {}) {
-    slide.addText(value, {
-      x, y, w, h, fontFace: 'Microsoft YaHei', fontSize: 21,
-      color: C.ink, margin: 0, breakLine: false, valign: 'mid',
-      lang: 'zh-CN', ...options,
-    });
+  const caveat = (s, value) => text(s, value, .7, 5.98, 11.9, .62, 17, { color: C.muted });
+  const table = (s, rows, x = .8, y = 3.25, w = 11.7, widths) => s.addTable(rows, {
+    x, y, w, colW: widths, fontFace: "Microsoft YaHei", fontSize: 19,
+    color: C.ink, fill: C.white, border: { type: "solid", color: C.border, pt: 1 },
+    margin: [.12, .16, .12, .16], valign: "middle", rowH: .55,
+  });
+  function mechanism(s, part) {
+    if (topic === "anc") {
+      if (part === "timing") {
+        tile(s, "假定误差：0.10 ms", .9, 3.15, 4, .85, true);
+        tile(s, "100 Hz → 3.6°", 6.4, 3.15, 5.8);
+        tile(s, "1,000 Hz → 36°", 6.4, 4.3, 5.8);
+        arrow(s, 5.1, 3.58, 1.05);
+        s.addShape(pptx.ShapeType.line, { x: 5.6, y: 3.58, w: 0, h: 1.14, line: { color: C.rose, width: 2.5 } });
+        arrow(s, 5.6, 4.72, .55);
+        text(s, "频率越高\n误差占周期的比例越大", .9, 4.35, 4.5, 1.0, 21);
+      } else if (part === "two-mechanisms") {
+        tile(s, "外界声音", .85, 3.3, 2.1);
+        arrow(s, 3.05, 3.72, .65);
+        tile(s, "密封／屏障", 3.8, 3.3, 3);
+        arrow(s, 6.9, 3.72, .65);
+        tile(s, "到达耳边的声压", 7.65, 3.3, 4.7, .85, true);
+        tile(s, "扬声器控制声压", 3.8, 4.55, 3);
+        s.addShape(pptx.ShapeType.line, { x: 7.3, y: 3.72, w: 0, h: 1.26, line: { color: C.rose, width: 2.5 } });
+        arrow(s, 6.9, 4.98, .4);
+        text(s, "两路声压在目标位置叠加", 7.65, 4.55, 4.7, .85, 21);
+      } else if (part === "speech") {
+        table(s, [["不能推出", "可以支持的解释"], ["仍能听见 → 完全未衰减", "部分成分减弱，残余仍可听"], ["人声更突出 → 声压被放大", "其他声音减弱得更多"], ["人声 → 天生不可抵消", "控制效果取决于成分与路径"]]);
+      } else if (part === "wearing") {
+        table(s, [["比较变量", "为什么要注意"], ["佩戴与密封", "改变传入与受控声学路径"], ["ANC／通透／自适应", "模式目标和实际行为不同"], ["型号与声场", "理想模型不提供个人衰减量"]]);
+      } else {
+        tile(s, "传入声压 d", .9, 3.35, 3.4);
+        text(s, "+", 4.5, 3.35, .55, .85, 34, { align: "center" });
+        tile(s, "控制声压 a", 5.2, 3.35, 3.4);
+        text(s, "=", 8.8, 3.35, .55, .85, 34, { align: "center" });
+        tile(s, "残余 e", 9.5, 3.35, 2.8, .85, true);
+        text(s, "同一时刻、同一耳边目标位置；不是让整个空间静音", 1, 4.65, 11.4, .65, 22, { align: "center" });
+      }
+    } else if (topic === "greenland") {
+      if (part === "area" || part === "cover") {
+        text(s, "面积／百万平方千米", .95, 2.85, 6.0, .4, 18, { color: C.muted });
+        s.addChart(pptx.ChartType.bar, [{ name: "面积", labels: ["格陵兰", "非洲"], values: [2.166086, 30.365] }], {
+          x: .85, y: 3.0, w: 8.0, h: 2.6, catAxisLabelFontFace: "Microsoft YaHei", catAxisLabelFontSize: 18,
+          valAxisLabelFontSize: 14, valAxisTitle: "百万平方公里", showValue: true, showLegend: false,
+          showCatName: false, chartColors: [C.rose], showTitle: false, showBorder: false,
+          valAxisMinVal: 0, valAxisMaxVal: 35, valAxisMajorUnit: 10,
+          dataLabelPosition: "outEnd", dataLabelFormatCode: "0.00",
+        });
+        text(s, "约 14 倍", 9.25, 3.4, 3.1, .9, 34, { bold: true, color: C.rose });
+        text(s, "统计面积比较\n不是轮廓装箱", 9.25, 4.45, 3.1, .8, 21);
+      } else if (part === "spacing") {
+        tile(s, "球面：经线汇聚", .9, 3.2, 4.8);
+        tile(s, "墨卡托：经线等距", 7.1, 3.2, 5.1, .85, true);
+        arrow(s, 5.9, 3.62, .95);
+        text(s, "同样经度差\n高纬地面距离更短", 1.1, 4.4, 4.5, 1.0, 23);
+        text(s, "东西拉伸更多\n南北同倍率以保局部角度", 7.3, 4.4, 4.8, 1.0, 23);
+      } else if (part === "local-scale") {
+        rect(s, 1.4, 3.65, 1.05, 1.05, C.soft);
+        text(s, "赤道：1 × 1", .9, 4.95, 3, .55, 22);
+        arrow(s, 3.7, 4.18, 1.3);
+        rect(s, 6.0, 3.1, 2.1, 2.1, C.soft);
+        text(s, "60°：2 × 2", 5.7, 5.35, 3.1, .5, 22);
+        text(s, "局部面积 4 倍", 9.0, 3.7, 3.5, 1, 30, { bold: true, color: C.rose });
+      } else if (part === "motion") {
+        tile(s, "同一个球面区域", .9, 3.25, 4.6);
+        arrow(s, 5.7, 3.67, 1);
+        tile(s, "统一三维旋转", 6.9, 3.25, 5.3, .85, true);
+        table(s, [["保持不变", "重新投影后改变"], ["球面土地面积", "固定墨卡托图上的面积与轮廓"]], .9, 4.45, 11.3);
+      } else {
+        table(s, [["投影", "保留的性质", "不能据此保证"], ["普通墨卡托", "局部角度；恒向线为直线", "面积；最短路线"], ["Equal Earth", "区域面积比例", "所有形状、角度、距离"]], .85, 3.25, 11.7, [2.6, 4.6, 4.5]);
+      }
+    } else if (topic === "cpython-string") {
+      if (part === "observation" || part === "encoding" || part === "boundaries") {
+        table(s, [["100,000 个 ASCII 加上", "槽宽 / 字节", "str / 字节", "UTF-8 / 字节"],
+          ["无新增", "1", "100,049", "100,000"], ["U+00E9", "1", "100,074", "100,002"],
+          ["U+4E2D", "2", "200,076", "100,003"], ["U+1F600", "4", "400,080", "100,004"]], .8, 3.03, 11.7, [4.1, 2.0, 2.8, 2.8]);
+      } else {
+        text(s, "原 str：不变", .9, 3.12, 3.2, .5, 22, { bold: true });
+        text(s, "新结果：每个码点槽都扩宽", 6.5, 3.12, 5.5, .5, 22, { bold: true });
+        for (let i = 0; i < 5; i++) {
+          tile(s, i === 3 ? "…" : "a", .9 + i * .57, 3.92, .48, .65);
+          tile(s, i === 4 ? "码点" : i === 3 ? "…" : "a", 6.5 + i * 1.08, 3.92, .95, .65, true);
+        }
+        arrow(s, 4.45, 4.24, 1.55);
+        text(s, "一字节槽", .9, 4.92, 3.6, .55, 22);
+        text(s, "含 U+1F600 → 四字节槽", 6.5, 4.92, 5.4, .55, 22);
+      }
+    } else {
+      if (part === "same-run") {
+        tile(s, "前端点：无 /temp", .9, 3.3, 3.4);
+        tile(s, "创建 → 删除", 5, 3.3, 3.2, .85, true);
+        tile(s, "后端点：无 /temp", 8.9, 3.3, 3.5);
+        arrow(s, 4.4, 3.72, .45); arrow(s, 8.3, 3.72, .45);
+        text(s, "只对新临时文件成立：该路径的载荷不进入此次差异", 1, 4.8, 11.2, .8, 24, { align: "center" });
+      } else if (part === "scope") {
+        table(s, [["此图展示", "不能混为一谈"], ["假定文件载荷 100 MB", "压缩大小、下载量、共享磁盘占用"], ["不可变镜像层", "运行中容器的独立可写层"], ["普通未压平差异", "压平、多阶段选择与缓存清理"]]);
+      } else {
+        if (part !== "add") tile(s, "后加层：whiteout", .9, 3.15, 5.0);
+        tile(s, part === "add" ? "首个提交层：/temp · 100 MB" : "旧层：/temp · 100 MB", .9, 4.35, 5.0, .85, true);
+        arrow(s, 6.2, 3.58, 1.0);
+        tile(s, part === "add" ? "合并视图：/temp 可见" : "合并视图：/temp 不存在", 7.6, 3.15, 4.75, .85, true);
+        text(s, part === "base" ? "基础层已有的文件\n也不能被后层改写" : "视图中的删除\n不等于抹除旧层字节", 7.8, 4.5, 4.4, .9, 23);
+      }
+    }
   }
-  function rect(slide, x, y, w, h, fill, line = fill) {
-    slide.addShape(S.rect, {
-      x, y, w, h, fill: { color: fill }, line: { color: line, width: 1 },
-    });
+  let s = base(data.title[1], 1, "研究快照：2026-09-16 / 17；本作品不冒充新实测");
+  text(s, data.lead[1], .75, 1.62, 11.8, 1.2, 24);
+  mechanism(s, "cover");
+  caveat(s, data.limit[1]);
+  s.addNotes(data.lead[1] + "\n讲解重点：先区分对象与表示，再沿图中的关系解释变化。研究日期与版本沿用封存档案。");
+  for (const [index, part] of data.parts.entries()) {
+    s = base(part.title[1], index + 2, data.sources.map(source => source[0].split(" · ")[0]).join(" / "));
+    text(s, part.text[1], .75, 1.6, 11.8, 1.26, 22);
+    mechanism(s, part.id);
+    caveat(s, data.limit[1]);
+    s.addNotes(part.text[1] + "\n材料支持：" + part.claims.join(", ") + "\n" + data.sources.map(([label, url]) => `${label}: ${url}`).join("\n"));
   }
-  function line(slide, x1, y1, x2, y2, color = C.teal, width = 2) {
-    slide.addShape(S.line, {
-      x: x1, y: y1, w: x2 - x1, h: y2 - y1,
-      line: { color, width },
-    });
-  }
-  function page(number, eyebrow, title, source) {
-    const slide = pptx.addSlide();
-    slide.background = { color: C.paper };
-    text(slide, eyebrow, 0.65, 0.36, 11.9, 0.34, {
-      fontSize: 13, color: C.muted, charSpacing: 1.1,
-    });
-    text(slide, title, 0.65, 0.94, 12.0, 0.95, {
-      fontSize: 32, bold: true, valign: 'top',
-    });
-    text(slide, source, 0.65, 6.94, 11.5, 0.25, {
-      fontSize: 10.5, color: C.muted,
-    });
-    text(slide, `${number} / 7`, 12.0, 6.93, 0.7, 0.28, {
-      fontSize: 11, align: 'right', color: C.muted,
-    });
-    return slide;
-  }
-  function notes(slide, body, ids) {
-    const refs = ids.map(id => {
-      const evidence = research.evidence.find(item => item.id === id);
-      return evidence ? `${evidence.title}\n${evidence.url}` : id;
-    }).join('\n\n');
-    slide.addNotes(`${body}\n\n来源（研究材料所列）：\n${refs}`);
-  }
-
-  // 第1页：直接回答，区分真实面积与投影面积；备注引出证据页。
-  {
-    const slide = page(1, '读懂世界地图 · 先把“看起来”与“实际”分开',
-      '格陵兰为什么在某些世界地图上显得巨大？', sources.mechanism);
-    text(slide, '因为墨卡托投影越靠近两极，\n放大越严重。', 0.7, 2.25, 7.25, 1.45, {
-      fontSize: 31, bold: true,
-    });
-    text(slide, '格陵兰位于高纬度，所以纸上的面积\n会显得不成比例；这不是所有地图的共同问题。',
-      0.7, 4.05, 7.3, 1.1, { fontSize: 22 });
-    rect(slide, 8.65, 2.2, 3.95, 3.75, C.ink);
-    text(slide, '真实面积相比', 9.0, 2.57, 3.25, 0.5, {
-      color: C.white, fontSize: 20,
-    });
-    text(slide, '约14倍', 9.0, 3.31, 3.25, 1.03, {
-      color: C.white, fontSize: 47, bold: true,
-    });
-    text(slide, '非洲 ÷ 格陵兰', 9.0, 4.66, 3.25, 0.6, {
-      color: C.white, fontSize: 22,
-    });
-    text(slide, '面积来源：IndexMundi、Britannica；使用约数。', 0.7, 6.03, 11.8, 0.45, {
-      fontSize: 15, color: C.muted,
-    });
-    notes(slide,
-      '先问听众：图上占据的面积，是否就是地球上的真实面积？直接回答不是。' +
-      '本作品针对普通墨卡托的高纬放大，不把现象推广到所有世界地图。' +
-      '下一页用共同坐标轴比较公布面积。不要把“14倍”解释成14个轮廓可以无重叠装进非洲。',
-      ['e-mercator', 'e-greenland', 'e-africa']);
-  }
-
-  // 第2页：原生条形图比较面积；数量级和统计口径都在可见页面。
-  {
-    const slide = page(2, '真实面积 · 同一尺度才可比较',
-      '非洲的真实面积约为格陵兰的14倍', sources.area);
-    text(slide, '面积（百万平方公里，约数）', 0.7, 2.03, 7.8, 0.43, {
-      fontSize: 18, color: C.muted,
-    });
-    slide.addChart(pptx.ChartType.bar, [
-      { name: '面积（百万平方公里）', labels: ['格陵兰', '非洲'], values: [2.17, 30.4] },
-    ], {
-      x: 0.7, y: 2.68, w: 8.05, h: 3.55,
-      barDir: 'bar', catAxisLabelFontFace: 'Microsoft YaHei',
-      catAxisLabelFontSize: 18, catAxisLabelColor: C.ink,
-      valAxisLabelFontFace: 'Microsoft YaHei', valAxisLabelFontSize: 13,
-      valAxisLabelColor: C.muted, valAxisMinVal: 0, valAxisMaxVal: 35,
-      valAxisMajorUnit: 5, showLegend: false, showTitle: false,
-      showValue: true, dataLabelFormatCode: '0.##',
-      dataLabelPosition: 'outEnd', dataLabelColor: C.ink,
-      dataLabelBkgrdColor: C.paper, dataLabelFormatCodeSourceLinked: false,
-      dataLabelFontSize: 18,
-      chartColors: [C.teal], showCatName: false, showBorder: false,
-      showShadow: false,
-      catAxisLineColor: C.border, valAxisLineColor: C.border,
-      catAxisMajorGridLine: { style: 'none' },
-      valGridLine: { color: 'D5DEDA', width: 1 },
-      showSerName: false,
-    });
-    rect(slide, 9.12, 2.46, 3.5, 3.92, C.sand);
-    text(slide, '读数的边界', 9.42, 2.8, 2.9, 0.48, {
-      fontSize: 23, bold: true, color: C.warm,
-    });
-    text(slide, '格陵兰总面积包括冰盖，\n不是只算无冰区。\n\n两地数字并非出自\n统一的测量流程。',
-      9.42, 3.53, 2.9, 1.91, { fontSize: 19 });
-    text(slide, '“约14倍”是面积比，\n不是轮廓装箱结论。', 9.42, 5.56, 2.9, 0.61, {
-      fontSize: 17, color: C.warm, bold: true,
-    });
-    notes(slide,
-      '先指共同的零点，再比较两条柱的长度；不能用图上轮廓的大小代替真实面积。' +
-      '图中约数为2.17与30.4百万平方公里。冻结材料原值分别为2,166,086和约30,365,000平方公里，' +
-      '比值约14.018，因此只讲约14倍。两者均在同一条从零开始的线性坐标轴上比较。' +
-      '材料中的官方格陵兰2026 PDF正文提取失败，不能声称官方正文已核验；详见第7页。',
-      ['e-greenland', 'e-africa']);
-  }
-
-  // 第3页：示意图连接经线汇聚与两个方向的拉伸，不伪装成地理底图。
-  {
-    const slide = page(3, '投影机制 · 从球面到平面',
-      '经线在球面汇聚，在墨卡托图上却保持等距', sources.mechanism);
-    text(slide, '球面：同一经度差，越往高纬越窄', 0.7, 2.07, 5.65, 0.5, {
-      fontSize: 21, bold: true,
-    });
-    text(slide, '图上：经线等距，高纬就被拉宽', 7.1, 2.07, 5.55, 0.5, {
-      fontSize: 21, bold: true,
-    });
-    slide.addShape(S.ellipse, {
-      x: 1.23, y: 2.89, w: 3.4, h: 3.0,
-      fill: { color: C.pale }, line: { color: C.teal, width: 2 },
-    });
-    slide.addShape(S.ellipse, {
-      x: 2.04, y: 2.89, w: 1.78, h: 3.0,
-      fill: { color: C.pale, transparency: 100 }, line: { color: C.teal, width: 2 },
-    });
-    line(slide, 2.93, 2.89, 2.93, 5.89);
-    line(slide, 1.58, 3.49, 4.28, 3.49, C.warm, 3);
-    line(slide, 1.23, 4.39, 4.63, 4.39, C.warm, 3);
-    text(slide, '高纬', 4.73, 3.24, 1.1, 0.48, { fontSize: 17, color: C.warm });
-    text(slide, '赤道', 4.73, 4.15, 1.1, 0.48, { fontSize: 17, color: C.warm });
-    slide.addShape(S.chevron, {
-      x: 6.02, y: 3.78, w: 0.58, h: 0.69,
-      fill: { color: C.teal }, line: { color: C.teal },
-    });
-    rect(slide, 7.6, 2.9, 3.3, 2.99, C.pale, C.teal);
-    [7.6, 8.7, 9.8, 10.9].forEach(x => line(slide, x, 2.9, x, 5.89));
-    [3.3, 4.46, 5.06, 5.57].forEach(y => line(slide, 7.6, y, 10.9, y, C.warm, 2));
-    text(slide, '高纬', 11.13, 3.08, 1.2, 0.46, { fontSize: 17, color: C.warm });
-    text(slide, '赤道', 11.13, 5.34, 1.2, 0.46, { fontSize: 17, color: C.warm });
-    text(slide, '为保留局部角度，南北方向也要同步拉伸；高纬的纬线间距因此增大。',
-      0.7, 6.09, 11.9, 0.48, { fontSize: 19, bold: true });
-    notes(slide,
-      '从左侧球面讲起：经线向极点汇聚，因此相同经度差对应的东西距离变短。' +
-      '右图把经线仍画为等距直线，相对于地球上的距离，高纬的东西方向就放大更多。' +
-      '墨卡托为保持局部角度，南北方向必须匹配这一放大。' +
-      '两幅图均为原生形状的定性关系示意，不是真实地理底图，不可读取纬度数值或测量面积。' +
-      '右图仅示意北半球一段；纬线位置未按实际投影坐标计算。',
-      ['e-proj', 'e-mercator']);
-    text(slide, '关系示意，非真实地图；右图仅示意北半球一段，线条位置不可用于测量。', 0.7, 6.64, 11.8, 0.24, {
-      fontSize: 11, color: C.muted,
-    });
-  }
-
-  // 第4页：同一个微小区域的局部倍率，避免把整国当作一个纬度。
-  {
-    const slide = page(4, '局部例子 · 球面墨卡托，赤道比例设为1',
-      '纬度60°附近：宽约2倍，高约2倍，面积约4倍', sources.mechanism);
-    text(slide, '相对于赤道的局部尺度', 0.7, 2.09, 10.9, 0.46, {
-      fontSize: 20, color: C.muted,
-    });
-    rect(slide, 1.19, 3.21, 1.23, 1.23, C.pale, C.teal);
-    text(slide, '1份', 1.19, 3.59, 1.23, 0.44, { align: 'center', bold: true });
-    text(slide, '赤道基准', 0.9, 4.82, 1.85, 0.48, { fontSize: 19, align: 'center' });
-    slide.addShape(S.chevron, {
-      x: 3.12, y: 3.52, w: 0.65, h: 0.8,
-      fill: { color: C.teal }, line: { color: C.teal },
-    });
-    rect(slide, 4.43, 2.94, 2.46, 2.46, C.pale, C.teal);
-    line(slide, 5.66, 2.94, 5.66, 5.4, C.teal, 1.3);
-    line(slide, 4.43, 4.17, 6.89, 4.17, C.teal, 1.3);
-    text(slide, '宽约2倍', 4.43, 5.62, 2.46, 0.41, { fontSize: 18, align: 'center' });
-    text(slide, '高约\n2倍', 7.07, 3.57, 0.8, 1.1, { fontSize: 18 });
-    rect(slide, 8.45, 2.86, 4.13, 3.26, C.ink);
-    text(slide, '这是微小区域的例子', 8.77, 3.18, 3.49, 0.73, {
-      color: C.white, fontSize: 23, bold: true,
-    });
-    text(slide, '格陵兰跨越不同纬度，\n不能给整个轮廓套用\n一个统一倍率。', 8.77, 4.13, 3.49, 1.48, {
-      color: C.white, fontSize: 21,
-    });
-    text(slide, '示意正方形表示局部尺度，不表示格陵兰或非洲的轮廓。',
-      0.7, 6.36, 11.8, 0.4, { fontSize: 16, color: C.muted });
-    notes(slide,
-      '先指赤道基准的1份，再指右侧2乘2的四格。这里比较的是同样大小的微小地表区域投影后的局部尺度。' +
-      '球面墨卡托的局部线性倍率为纬度余弦的倒数，局部面积倍率为其平方；60度的余弦为二分之一。' +
-      '这是从冻结材料中的PROJ公式推导的数学例子，不是实测整个国家的倍率。' +
-      '非洲同样跨越不同纬度，也不能用单个纬度代表整个大陆。',
-      ['e-proj']);
-  }
-
-  // 第5页：用途与代价并置，说明墨卡托不是“画错了”。
-  {
-    const slide = page(5, '用途与代价 · 墨卡托保留了什么？',
-      '它擅长表达局部角度与恒定航向，不擅长比较面积', sources.mechanism);
-    rect(slide, 0.7, 2.22, 5.8, 3.92, C.pale);
-    text(slide, '保留下来的便利', 1.03, 2.56, 5.1, 0.53, {
-      fontSize: 25, bold: true,
-    });
-    text(slide, '局部保角：\n保留非常小范围内的角度关系。\n\n恒向线为直线：\n恒定罗盘航向的路线更易表达。',
-      1.03, 3.4, 5.05, 2.31, { fontSize: 22 });
-    rect(slide, 6.85, 2.22, 5.77, 3.92, C.sand);
-    text(slide, '不能由此推断', 7.18, 2.56, 5.08, 0.53, {
-      fontSize: 25, bold: true, color: C.warm,
-    });
-    text(slide, '局部保角 ≠ 大陆整体形状不变\n恒向线直线 ≠ 通常的最短路线\n\n两极投影到无穷远，\n有限地图必须裁切纬度范围。',
-      7.18, 3.4, 5.05, 2.31, { fontSize: 21 });
-    text(slide, '本篇机制例子采用球面墨卡托；Web Mercator 的严格性质另有条件。',
-      0.7, 6.39, 11.9, 0.41, { fontSize: 17, color: C.muted });
-    notes(slide,
-      '不要把投影描述为画错了，而应询问它优先保留了什么。局部保角只针对无穷小范围，' +
-      '并不是整个大陆的形状和面积都不变。恒向线是保持罗盘航向的路线，但通常不是最短路线，' +
-      '本页不是实际航海指导。两极在墨卡托公式中对应无穷远，因此实际有限画面需要裁切；' +
-      '本作品不指定通用的裁切纬度。冻结材料还指出Web Mercator把椭球纬度代入球面公式，' +
-      '严格性质不同于普通椭球墨卡托，不能直接混用其保角结论。',
-      ['e-mercator', 'e-proj']);
-  }
-
-  // 第6页：真正的原生表格，以任务而不是“正确/错误”比较投影。
-  {
-    const slide = page(6, '选图标准 · 原生可编辑比较表',
-      '没有全能的平面地图：先问你要比较什么', sources.tradeoff);
-    slide.addTable([
-      [
-        { text: '比较维度', options: { bold: true, color: C.white, fill: C.ink } },
-        { text: '普通墨卡托', options: { bold: true, color: C.white, fill: C.ink } },
-        { text: 'Equal Earth（等面积）', options: { bold: true, color: C.white, fill: C.ink } },
-      ],
-      ['面积比例', '不保留；高纬放大严重', '保留面积比例'],
-      ['角度与形状', '局部保角；不保留\n大陆整体形状', '不保角；形状仍会变形'],
-      ['用途取向', '表达恒定航向；\n恒向线为直线', '比较地区的面积大小'],
-      ['不能承诺', '恒向线通常不是最短路；\n有限地图需裁切两极', '不能同时保全形状、\n角度、方向和距离'],
-    ], {
-      x: 0.7, y: 2.0, w: 11.92, h: 3.86,
-      colW: [2.02, 4.65, 5.25],
-      rowH: 0.77, fontFace: 'Microsoft YaHei',
-      fontSize: 19, color: C.ink, fill: C.white,
-      border: { type: 'solid', color: C.border, pt: 1 },
-      margin: [0.12, 0.17, 0.12, 0.17],
-      valign: 'middle', autoPage: false,
-      bold: false, lang: 'zh-CN',
-    });
-    text(slide, '比较“谁更大”时，等面积投影更合适；这不意味着它是唯一正确的地图。',
-      0.7, 6.48, 11.92, 0.36, { fontSize: 20, bold: true });
-    notes(slide,
-      '按行讲，不逐格朗读：面积行回答本次问题，角度行解释墨卡托为何仍有用途，最后一行提醒所有平面投影都要取舍。' +
-      'Equal Earth的等面积属性保留面积比例，但不能推导出形状、角度、方向或距离也准确。' +
-      '最后回到格陵兰与非洲：比较谁的真实面积更大，应读面积数据或使用等面积投影，而不是用墨卡托图上的面积判断。',
-      ['e-flat', 'e-equalearth', 'e-mercator']);
-  }
-
-  // 第7页：形成可迁移的读图步骤，并让关键来源缺口可见。
-  {
-    const slide = page(7, '回到问题 · 下次看到“大格陵兰”时',
-      '先辨认投影，再判断图上的“大”意味着什么', '来源：IndexMundi、Britannica、PROJ、Esri；研究材料访问记录截至2026-09-16。');
-    const steps = [
-      ['01', '识别投影', '如果是墨卡托，\n先警惕高纬地区的面积放大。'],
-      ['02', '换成同一面积尺度', '非洲约3040万平方公里；\n格陵兰约217万，非洲约为其14倍。'],
-      ['03', '按目的选择地图', '比较面积可用等面积投影；\n不要期待一张平面图保留一切。'],
-    ];
-    steps.forEach((step, index) => {
-      const y = 2.25 + index * 1.03;
-      text(slide, step[0], 0.7, y, 0.75, 0.66, {
-        fontSize: 28, bold: true, color: C.teal,
-      });
-      text(slide, step[1], 1.75, y, 3.18, 0.69, {
-        fontSize: 23, bold: true,
-      });
-      text(slide, step[2], 5.12, y - 0.02, 7.4, 0.82, { fontSize: 20 });
-    });
-    rect(slide, 0.7, 5.56, 11.92, 1.05, C.sand);
-    text(slide, '材料限制', 0.96, 5.8, 1.68, 0.5, {
-      fontSize: 19, bold: true, color: C.warm,
-    });
-    text(slide, '格陵兰官方2026年PDF正文未能提取；面积比较采用公开二手数字。\n约数用于数量级比较，不代表统一口径下的精确测量。',
-      2.76, 5.76, 9.48, 0.66, { fontSize: 16, color: C.ink });
-    notes(slide,
-      '结尾请听众完整说出两个结论：一是格陵兰在普通墨卡托上被高纬放大；二是非洲的真实面积约为格陵兰的14倍。' +
-      '接着用任务选择地图：若关注面积比例，等面积投影比墨卡托合适，但并非全能。' +
-      '官方PDF正文缺口以及来源测量口径差异决定了这里应使用约数。' +
-      '若听众把“14倍”理解为轮廓装箱，回到第2页的同尺度条形图，强调比较的是公布面积之比。',
-      ['e-greenland', 'e-africa', 'e-proj', 'e-mercator', 'e-flat', 'e-equalearth']);
-  }
-}
+  s = base("回到最初的问题", 7, "完整依据与来源范围见同目录 research/report.md");
+  text(s, data.lead[1], .85, 1.7, 11.6, 1.25, 26, { bold: true });
+  tile(s, data.question[1], .85, 3.3, 11.6, .85, true);
+  text(s, data.limit[1], .95, 4.55, 11.3, .95, 22);
+  text(s, "来源：" + data.sources.map(source => source[0].split(" · ")[0]).join("；"), .95, 5.8, 11.3, .6, 16, { color: C.muted });
+  s.addNotes("用一个条件不同的新情形检查自己的解释，但本作品没有执行真人理解测试。\n" + data.sources.map(([label, url]) => `${label}: ${url}`).join("\n"));
+})(context, "greenland", data); }

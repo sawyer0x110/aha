@@ -2,36 +2,50 @@
   "schemaVersion": "1.0.0",
   "status": "authored",
   "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
-  "sourceHash": "2219d6f667a1a7c0e99e7e25334edcb48458d3371ddb041035c28b9c716fbccb",
+  "sourceHash": "14c4856d13ed3093c5665f175138fae5d9d6622645ba06ed8478045ac13594cd",
   "provider": "provided-audio",
-  "voice": "original-aria-recording",
+  "voice": "approved-jenny-recordings",
   "rate": "+0%",
   "duration": {
     "minSeconds": 20,
-    "maxSeconds": 30
+    "maxSeconds": 180
   },
   "segments": [
     {
-      "id": "layer-added",
-      "text": "Suppose one RUN adds a hundred-megabyte file: its payload enters an immutable image layer, which later steps cannot rewrite.",
+      "id": "segment-1",
+      "text": "Suppose a successful RUN leaves a new file with one hundred megabytes of uncompressed payload. In this ordinary unsquashed example, that payload becomes part of an immutable image layer.",
       "claimIds": [
         "c-layer",
         "c-example"
       ]
     },
     {
-      "id": "later-delete",
-      "text": "A later RUN hides the file with a whiteout, but the earlier layer still holds its bytes.",
+      "id": "segment-2",
+      "text": "A later RUN deletes the path. A whiteout hides it in the merged view, but the earlier layer still contains the payload. The whiteout is not an ordinary visible file in that merged view.",
       "claimIds": [
         "c-delete"
       ]
     },
     {
-      "id": "same-run",
-      "text": "Create and delete that new file within the same RUN, and its payload never enters the resulting image diff.",
+      "id": "segment-3",
+      "text": "Now create and delete a NEW temporary file inside one RUN. The path is absent both before and after, so its payload is not added to that resulting diff. Other changes can still remain.",
       "claimIds": [
-        "c-same",
+        "c-same"
+      ]
+    },
+    {
+      "id": "segment-4",
+      "text": "Do not apply that conclusion to a file already in the base layer. Deleting it still cannot rewrite the older layer or reclaim its bytes.",
+      "claimIds": [
         "c-base"
+      ]
+    },
+    {
+      "id": "segment-5",
+      "text": "The one hundred megabytes is an assumption, not a measured image or download saving. Compression and cache use are different quantities. A running container also has a separate writable layer.",
+      "claimIds": [
+        "c-size",
+        "c-writable"
       ]
     }
   ]

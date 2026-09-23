@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "delivered",
+  "format": "html",
+  "title": "Why one code point can widen a CPython string",
+  "researchHash": "04cdf5f8906f1385f8575b9c99d46ae60bfe4c2c37e79982658a19d9d617daf8",
+  "sourceHash": "26a6dbc3dabf964168a60f0570a7ebed7ec20402de5f31e0709003fbf12c140e",
+  "outputHash": "9fa74d2485d79ba3d4191abc3b7679d6c9eb46f2cf8b04563eaf8796f66b154d",
+  "output": "cpython-string.html",
+  "createdAt": "2026-09-22T09:47:03.459Z",
+  "codeExecuted": false,
+  "selfContained": true,
+  "verification": "Source/output hashes and declared claim coverage, not semantic truth or visual quality. Receipts describe a specific source revision; recheck the source hash after edits."
+}

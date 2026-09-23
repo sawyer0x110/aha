@@ -1,0 +1,53 @@
+{
+  "purpose": "Compare the new str with its encoded bytes",
+  "researchReuse": "Read the sealed report and claim ledger for scope, version, evidence and limits; no fresh scientific or code experiment.",
+  "readingContext": "Chinese native editable 16:9 slides; inspect all pages in PowerPoint.",
+  "composition": [
+    {
+      "id": "width",
+      "question": "One width for all code-point slots",
+      "relationship": "ASCII needs one-byte slots. U+00E9 still fits in the one-byte class; U+4E2D needs two; U+1F600 needs four. The representation range, not an emoji category, determines the width.",
+      "claims": [
+        "c-width"
+      ]
+    },
+    {
+      "id": "allocation",
+      "question": "Allocate a new result; do not mutate the original",
+      "relationship": "The pinned PyUnicode_Concat path combines operand lengths and representation ranges, allocates with PyUnicode_New, then copies both operands. This source trace does not prove the exact supplied expression dynamically called that function.",
+      "claims": [
+        "c-concat"
+      ]
+    },
+    {
+      "id": "observation",
+      "question": "Object size includes more than character slots",
+      "relationship": "A supplied CPython 3.11.15 observation reports 100,049 bytes for 100,000 ASCII code points and 400,080 bytes after adding U+1F600. Headers, the terminator and applicable caches affect object size. These are inherited observations, not new measurements.",
+      "claims": [
+        "c-measure"
+      ]
+    },
+    {
+      "id": "encoding",
+      "question": "UTF-8 keeps the ASCII prefix compact",
+      "relationship": "The UTF-8 payload grows from 100,000 to 100,004 bytes. Each ASCII code point still takes one byte; U+1F600 contributes four. Encoded payload length is neither str object size nor total process memory.",
+      "claims": [
+        "c-utf8"
+      ]
+    },
+    {
+      "id": "boundaries",
+      "question": "Not every non-ASCII addition causes this jump",
+      "relationship": "A result already using four-byte slots does not undergo the same widening. Small strings have different overhead ratios. These totals describe one CPython build and object state, not every Python implementation or every emoji sequence.",
+      "claims": [
+        "c-boundaries"
+      ]
+    }
+  ],
+  "tools": [
+    "Repository aha-explain and shared latest guides",
+    "Host pptx guidance",
+    "Host web-artifacts-builder theme",
+    "Aha 0.3.3 runtime"
+  ]
+}

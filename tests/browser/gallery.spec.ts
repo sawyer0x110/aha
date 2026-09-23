@@ -5,13 +5,8 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const examples = fileURLToPath(new URL('../../examples/', import.meta.url));
 const gallery = pathToFileURL(path.join(examples, 'index.html')).href;
-const outputs = [
-  'anc/anc.html', 'anc/anc.png', 'anc/anc.pptx', 'anc/anc.mp4',
-  'git-merge/git-merge.html', 'git-merge/git-merge.png', 'git-merge/git-merge.pptx', 'git-merge/git-merge.mp4',
-  'aha-introduction/aha-introduction.html', 'aha-introduction/aha-introduction.png', 'aha-introduction/aha-introduction.pptx',
-  'greenland/greenland.pptx', 'greenland/greenland.mp4', 'cpython-string/cpython-string.mp4',
-  'docker-layers/docker-layers.mp4', 'aha-introduction/aha-introduction.mp4',
-].sort();
+const outputs = ['anc', 'greenland', 'cpython-string', 'docker-layers', 'aha-introduction']
+  .flatMap(topic => ['html', 'png', 'pptx', 'mp4'].map(extension => `${topic}/${topic}.${extension}`)).sort();
 
 for (const width of [1280, 390]) {
   for (const theme of ['light', 'dark']) {
@@ -35,7 +30,7 @@ for (const width of [1280, 390]) {
       await expect(page.locator('html')).toHaveAttribute('lang', 'en');
       await expect(page).toHaveTitle('Aha — From concrete questions to explanations across media');
       await expect(page.getByRole('navigation')).toHaveAttribute('aria-label', 'Gallery language');
-      await expect(page.getByRole('article')).toHaveCount(6);
+      await expect(page.getByRole('article')).toHaveCount(5);
       await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
 
       const english = page.locator('[data-gallery-lang="en"]');
@@ -61,7 +56,7 @@ for (const width of [1280, 390]) {
       await expect(chinese).toBeVisible();
       await expect(english).toBeHidden();
       await expect(english).toHaveAttribute('inert', '');
-      await expect(page.getByRole('article')).toHaveCount(6);
+      await expect(page.getByRole('article')).toHaveCount(5);
       await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
 
       // Even a programmatic focus attempt cannot enter the inactive language.
@@ -88,21 +83,22 @@ for (const width of [1280, 390]) {
   }
 }
 
-test('both gallery languages retain all sixteen local outputs and Chinese topic notes', async ({ page }) => {
+test('both gallery languages retain all twenty local outputs and Chinese topic notes', async ({ page }) => {
   await page.goto(gallery);
   for (const language of ['en', 'zh-CN']) {
     const section = page.locator(`[data-gallery-lang="${language}"]`);
     const links = await section.locator('a').evaluateAll(anchors =>
       anchors.map(anchor => anchor.getAttribute('href')!));
     expect(links.some(link => link.startsWith('project-overview/'))).toBe(false);
-    expect(await section.locator('.number').allTextContents()).toEqual(['01', '02', '03', '04', '05', '06']);
+    expect(links.some(link => link.startsWith('git-merge/'))).toBe(false);
+    expect(await section.locator('.number').allTextContents()).toEqual(['01', '02', '03', '04', '05']);
     for (const link of links) {
       expect(link).not.toMatch(/^(?:[a-z]+:|\/\/|#)/i);
       await access(path.join(examples, link));
     }
     expect([...new Set(links.filter(link => /\.(html|png|pptx|mp4)$/.test(link)))].sort()).toEqual(outputs);
     const notes = section.locator('article a[href$="/README.md"]');
-    await expect(notes).toHaveCount(6);
+    await expect(notes).toHaveCount(5);
     for (const text of await notes.allTextContents()) {
       expect(text).toContain(language === 'en' ? 'Chinese notes' : '中文说明');
     }

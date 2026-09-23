@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "delivered",
+  "format": "image",
+  "title": "Why Mercator makes Greenland look enormous",
+  "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6",
+  "sourceHash": "f11dbebe3f885df2d818ee469517032c65eb4cc3a3f1dd7490f2894341f4cb6a",
+  "outputHash": "f39cfa97735a8e990dad2b9db140932bc4650a07033e9eba88b5d8395a750a0e",
+  "output": "greenland.png",
+  "createdAt": "2026-09-22T09:46:59.402Z",
+  "codeExecuted": true,
+  "browser": {
+    "width": 1800,
+    "height": 1600,
+    "scrollWidth": 1800,
+    "scrollHeight": 1600,
+    "clipped": 0,
+    "missingImages": 0
+  },
+  "verification": "Source/output hashes and declared claim coverage, not semantic truth or visual quality. Receipts describe a specific source revision; recheck the source hash after edits."
+}

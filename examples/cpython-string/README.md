@@ -1,32 +1,17 @@
-# Why can one emoji nearly quadruple a CPython string?
+# 一个码点为什么会让 CPython 字符串变宽？
 
-[观看 21.47 秒机制试片](cpython-string.mp4) · [英文字幕](cpython-string.mp4.srt) · [英文研究报告](research/report.md) · [返回作品入口](../index.html)
+在这个紧凑 CPython 字符串示例中，新结果的所有码点槽使用同一存储宽度。加入 U+1F600 后，连原有 ASCII 前缀也使用四字节槽；UTF-8 则是另一种表示方式。
 
-本例仅提供英文配音视频试片：1280×720、30 fps、H.264/AAC，644 帧。六个示意字符槽代表十万个 ASCII 码点；加入 U+1F600 后，新字符串的全部码点使用四字节存储，再与 UTF-8 编码只增加四字节对照。
+## 当前作品
 
-## 机制与边界
+[双语 HTML](cpython-string.html) · [英文 PNG · 1800×1600](cpython-string.png) · [中文原生 PPTX · 7 页](cpython-string.pptx) · [英文配音视频 · 63.23 秒](cpython-string.mp4) · [字幕](cpython-string.mp4.srt)
 
-研究固定 CPython v3.11.15（`2340a037f7450e70fccfe411e6531afb4d57a312`），阅读 PEP 393、`PyUnicode_Concat`、`PyUnicode_New` 和相关头文件。已有本地 CPython 3.11.15 观察使用 `sys.getsizeof(str)`：十万个 `a` 占 100,049 字节，追加 U+1F600 的新字符串占 400,080 字节；对应 UTF-8 载荷为 100,000 和 100,004 字节。
+四种格式本轮重新创作；封存[研究报告](research/report.md)沿用原来源、版本与缺口，不冒充重新研究或实测。CPython 3.11.15 紧凑字符串示例；大小来自既有记录，未重新测量；槽位示意不按实际数量绘制。
 
-这是特定 CPython 字符串对象的大小，不是进程内存、文件大小或所有 Python 实现的保证，也不是任何 emoji 都会触发的四倍规律。动画示意新结果的存储表示，**不是原不可变字符串被原地扩容，也不是实际分配器轨迹**。小字符串、已有宽字符和其他构建的比例可能不同。
+## 源码与证据
 
-## 当前文件与来源
+[HTML 源码](projects/html/) · [PNG 源码](projects/image/) · [PPTX 源码](projects/pptx/) · [视频源码](projects/video/)
 
-- `cpython-string.mp4`、`.mp4.receipt.json`、`.mp4.srt`：试片、匹配收据和字幕，由[交付清单](../delivery-manifest.json)索引。
-- `projects/video/`：可编辑 HTML/SVG 场景及绑定研究副本；不是独立 HTML 成品。
-- `research/`、`video-plan.json`、`audio/`：封存研究、当前完整旁白计划和直接 Edge TTS 配音。没有虚构的音频导入来源。
-- [当前 QA](qa/video/)：授权、预览、编码帧及明确的审阅缺口，全部使用当前路径。
+[当前 QA](qa/)按格式分开保存。唯一收录索引是[统一交付清单](../delivery-manifest.json)。新英文旁白经批准由 Edge TTS / Jenny 合成；字幕布局修正后，以新的已批准计划离线导入相同 WAV，不是再次合成。[录音来源](audio/provenance.json)保留对应身份。
 
-配音使用 `en-US-AriaNeural`、`+0%`；只外发了批准的旁白及必要声音参数。图形为自行绘制的 SVG，无下载字体或外部视觉库。
-
-## 验收与复现
-
-完整解码、批准字幕文字及时间、抽样状态与 A→B→A 重放、文字边界已检查。部分静帧读取失败，视觉覆盖不完整；**用户要求收录不等于连续听看或理解验收**。所有未完成项保留在验收记录中。
-
-`npm run examples:verify` 检查当前作品身份，不执行场景代码。审阅源码并获得本地执行许可后，可使用已有录音离线输出到新目录：
-
-```powershell
-node .\dist\skills\aha-explain\scripts\aha.mjs render-video .\examples\cpython-string\projects\video .\examples\cpython-string\video-plan.json .\examples\cpython-string\audio .\artifacts\cpython-string\runs\rebuild-01\outputs\cpython-string.mp4 --approve 9a87e23140f1144e06a4258a34d35aa595dcdf84441181bf074b8c7255962289 --allow-code
-```
-
-参数不替代权限；修改源码或旁白后须重新准备计划并取得相应批准，不能手改身份复用音频。
+PNG 按至少 1200px 宽阅读。已检查双语交互、图片阅读尺寸、PowerPoint 导出与副本编辑，以及视频解码、静音播放和抽样画面；没有实际听审或真人理解验收。PPTX 仍有局部标点换行等小问题，详见各格式 QA。第三方资料、配音和字体权利不由仓库 MIT 许可替代。

@@ -1,55 +1,27 @@
 1
-00:00:00,000 --> 00:00:09,267
-Why does Greenland look enormous beside Africa on Mercator maps? The projection magnifies high latitudes, not actual land.
+00:00:00,000 --> 00:00:11,033
+Greenland looks enormous on many Mercator maps. But Africa has about fourteen times its reported land area. The map and the land are measuring different things.
 
 2
-00:00:09,267 --> 00:00:19,667
-Greenland covers about two point one seven million square kilometers. Africa covers thirty point four million: roughly fourteen times as much area.
+00:00:11,033 --> 00:00:22,633
+On a sphere, meridians converge toward the poles. Mercator keeps them equally spaced on the page. The same longitude gap is therefore stretched more at high latitude.
 
 3
-00:00:19,667 --> 00:00:27,900
-On a globe, meridians converge toward the poles. Distances between neighboring lines of longitude get smaller.
+00:00:22,633 --> 00:00:35,133
+To preserve local angles, Mercator stretches north-south distances by the same local factor. Near sixty degrees, a tiny patch is doubled in both directions, giving four times the area.
 
 4
-00:00:27,900 --> 00:00:36,667
-Mercator draws meridians as equally spaced parallel lines. This stretches east-west distances more at high latitudes.
+00:00:35,133 --> 00:00:45,033
+That is a local result, not one multiplier for all of Greenland. The country spans different latitudes, and each part is magnified differently.
 
 5
-00:00:36,667 --> 00:00:45,100
-To preserve local angles, north-south distances must stretch equally. That is why latitude lines spread apart.
+00:00:45,033 --> 00:00:58,333
+Now rotate the actual generalized boundary on a sphere toward the equator. Its land area stays the same, but its footprint shrinks on this fixed-scale Mercator map. This is not a two-dimensional resize.
 
 6
-00:00:45,100 --> 00:00:51,967
-Consider a tiny patch at sixty degrees latitude, in a spherical model with scale one at the equator.
+00:00:58,333 --> 00:01:08,567
+Mercator makes constant-heading routes straight, though they are usually not the shortest routes. Its poles project to infinity, so a finite map must cut them off.
 
 7
-00:00:51,967 --> 00:01:00,033
-Locally, width doubles and height doubles: four times the area. This is not one factor for all Greenland.
-
-8
-00:01:00,033 --> 00:01:08,567
-Watch Greenland move south. We rotate its boundary rigidly on a sphere, then redraw it on this fixed Mercator map.
-
-9
-00:01:08,567 --> 00:01:16,967
-Its spherical area stays unchanged. The outline looks smaller near the equator because the map magnifies it less.
-
-10
-00:01:16,967 --> 00:01:24,467
-Mercator is not simply wrong. It preserves local angles, useful for expressing compass headings.
-
-11
-00:01:24,467 --> 00:01:32,333
-A constant-heading route becomes a straight line on Mercator. It is usually not the shortest path across the globe.
-
-12
-00:01:32,333 --> 00:01:41,933
-For comparing areas, choose an equal-area projection such as Equal Earth. Greenland and Africa now have their correct relative areas.
-
-13
-00:01:41,933 --> 00:01:48,800
-Equal Earth changes shapes and angles. No flat map avoids every kind of distortion.
-
-14
-00:01:48,800 --> 00:01:55,733
-Need to compare land area, or follow a compass heading? Choose the projection for that purpose.
+00:01:08,567 --> 00:01:20,800
+For comparing areas, an equal-area map such as Equal Earth is useful. It preserves area proportions, not every shape or angle. The right projection depends on the question.

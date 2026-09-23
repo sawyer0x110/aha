@@ -1,38 +1,56 @@
 {
   "provider": "edge-tts",
-  "voice": "en-US-AriaNeural",
+  "voice": "en-US-JennyNeural",
   "rate": "+0%",
-  "recordingPlanHash": "e4c928b388b1f3274478a2d03d36890a8fc5850bd9ebe0303522ba2f363e4319",
+  "recordingPlanHash": "c36fed31e494dd851c7f2a6c802839ab897fbf78c6d021a3c33db2f62e4307d5",
   "narration": [
     {
-      "id": "layer-added",
-      "text": "Suppose one RUN adds a hundred-megabyte file: its payload enters an immutable image layer, which later steps cannot rewrite."
+      "id": "segment-1",
+      "text": "Suppose a successful RUN leaves a new file with one hundred megabytes of uncompressed payload. In this ordinary unsquashed example, that payload becomes part of an immutable image layer."
     },
     {
-      "id": "later-delete",
-      "text": "A later RUN hides the file with a whiteout, but the earlier layer still holds its bytes."
+      "id": "segment-2",
+      "text": "A later RUN deletes the path. A whiteout hides it in the merged view, but the earlier layer still contains the payload. The whiteout is not an ordinary visible file in that merged view."
     },
     {
-      "id": "same-run",
-      "text": "Create and delete that new file within the same RUN, and its payload never enters the resulting image diff."
+      "id": "segment-3",
+      "text": "Now create and delete a NEW temporary file inside one RUN. The path is absent both before and after, so its payload is not added to that resulting diff. Other changes can still remain."
+    },
+    {
+      "id": "segment-4",
+      "text": "Do not apply that conclusion to a file already in the base layer. Deleting it still cannot rewrite the older layer or reclaim its bytes."
+    },
+    {
+      "id": "segment-5",
+      "text": "The one hundred megabytes is an assumption, not a measured image or download saving. Compression and cache use are different quantities. A running container also has a separate writable layer."
     }
   ],
   "recordings": [
     {
-      "id": "layer-added",
+      "id": "segment-1",
       "file": "segment-001.wav",
-      "sha256": "5ba0125852ac50fb1e20578291c556d559162b953f9ae6badd6789a70382c6ae"
+      "sha256": "447a28c5c55e8c9685fb032f5a8cf1886dd80da938c5d363ebc025a3424b25e4"
     },
     {
-      "id": "later-delete",
+      "id": "segment-2",
       "file": "segment-002.wav",
-      "sha256": "69534e14477ab4ed196273c78f6b6c1ad2f8d324e1fa6eb2591b063138af9e32"
+      "sha256": "8eb54cd78b9d4c37ac43c573fca6470438c94aeadd150bcf354531d193db74fe"
     },
     {
-      "id": "same-run",
+      "id": "segment-3",
       "file": "segment-003.wav",
-      "sha256": "84f7e347416a1e1222a7f47509212b1c58e4235e625e5aee4169186c6a50832a"
+      "sha256": "a71d059b984aa6e3af536bd7bf2b56a63a638d9ad8928b25c1096fea80f6f8af"
+    },
+    {
+      "id": "segment-4",
+      "file": "segment-004.wav",
+      "sha256": "1f5076b9e2980236ce5a195ceef496b9922904803b867e46ba24426b85f024d1"
+    },
+    {
+      "id": "segment-5",
+      "file": "segment-005.wav",
+      "sha256": "0e418bdd9f5c9d0cbd480c1fc459873147f158a4c92a07106cb750701dc2a161"
     }
   ],
-  "scope": "Existing Edge TTS recordings imported locally. This provenance does not claim another synthesis or current-source generation by the speech service."
+  "method": "Offline import of authorized newly synthesized recordings; exact WAV bytes and frame timing retained. No second synthesis."
 }

@@ -1,0 +1,20 @@
+{
+  "sourceHash": "9b3326f91e9426b39ac0444eb3b767342ce98c832052239286b0f87faa3f75a5",
+  "researchHash": "04cdf5f8906f1385f8575b9c99d46ae60bfe4c2c37e79982658a19d9d617daf8",
+  "outputHash": "0db1e93f5ab340a961318f0452ad443808d9b051964c0bba827339d639a48c23",
+  "receiptHash": "560fd01171c7f055d2ef20097d5315aaa9332f1c0acffabaf10b84738ea50feb",
+  "reviewedFiles": [
+    "encoded/contact.png",
+    "encoded/2-middle.png"
+  ],
+  "findings": [
+    "Inspected the encoded start/middle/end contact sheet for all five segments and a full-size allocation frame.",
+    "The original slots remain separate and unchanged while the new result appears and widens; completed object-size and UTF-8 totals differ as described.",
+    "The final segment visibly distinguishes one-byte and two-byte representation examples. Captions, source line and result labels do not overlap in sampled frames."
+  ],
+  "limitations": [
+    "Allocation is a staged conceptual transition; intermediate frame timing and displayed baseline totals are not observations of actual CPython execution.",
+    "Code-point labels and source citations are small at reduced player sizes.",
+    "No actual audio listening or continuous human viewing was performed; code-point pronunciation has not received auditory review."
+  ]
+}

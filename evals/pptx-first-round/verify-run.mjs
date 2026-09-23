@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { inventory, readRegular, safePath, safeRelative, sha256 } from './prepare.mjs';
 
 const conditions = ['baseline', 'candidate'];
-const caseIds = ['git-merge', 'anc', 'greenland', 'aha-introduction'];
+const caseIds = ['cpython-string', 'anc', 'greenland', 'aha-introduction'];
 const sourceNames = ['cases.json', 'prepare.mjs', 'inspect.mjs', 'verify-run.mjs'];
 const json = value => `${JSON.stringify(value, null, 2)}\n`;
 const stable = value => JSON.stringify(value, (_, item) => item && typeof item === 'object' && !Array.isArray(item)

@@ -12,7 +12,7 @@ const base = path.join(root, 'examples');
 const evaluation = path.join(root, 'evals', 'examples');
 const {
   verifyExamples, verifyOutput, verifyPptxEvidence, verifyCurrentIntroductionEvidence,
-  verifyCodePilotEvidence, verifyIntroductionEvidence, verifyTaskVideoEvidence, verifyCurrentQa, formatsFor, topics, sha,
+  verifyRegeneratedEvidence, verifyIntroductionEvidence, verifyCurrentQa, formatsFor, topics, sha,
 } = await import(pathToFileURL(path.join(evaluation, 'verify.mjs')).href);
 const manifest = JSON.parse(await fs.readFile(path.join(base, 'delivery-manifest.json'), 'utf8'));
 const pptxRecords = (value: typeof manifest) => value.requestedOutputs.filter((entry: { format: string }) => entry.format === 'pptx');
@@ -21,9 +21,11 @@ const introductionRecords = (value: typeof manifest) => value.requestedOutputs.f
 
 test('format inventory retains only the current introduction and its canonical video path', async () => {
   const outputs = Object.keys(topics).flatMap(topic => formatsFor(topic).map((format: string) => ({ topic, format })));
-  assert.equal(outputs.length, 16);
-  assert.equal(Object.keys(topics).length, 6);
-  assert.equal(outputs.filter(entry => entry.format === 'pptx').length, 4);
+  assert.equal(outputs.length, 20);
+  assert.equal(Object.keys(topics).length, 5);
+  assert.equal(outputs.filter(entry => entry.format === 'pptx').length, 5);
+  assert.equal(Object.hasOwn(topics, 'git-merge'), false);
+  await assert.rejects(fs.access(path.join(base, 'git-merge')), { code: 'ENOENT' });
   assert.deepEqual(formatsFor('aha-introduction'), ['html', 'image', 'pptx', 'video']);
   assert.equal(Object.hasOwn(topics, 'project-overview'), false);
   await assert.rejects(verifyOutput(base, { topic: 'project-overview', format: 'html' }), /Unknown topic/);
@@ -43,17 +45,11 @@ test('format inventory retains only the current introduction and its canonical v
   }
 });
 
-test('all sixteen requested outputs bind canonical research, source, receipts, approved audio and bounded QA', async () => {
+test('all twenty requested outputs bind canonical research, source, receipts, approved audio and bounded QA', async () => {
   const result = await verifyExamples();
   assert.equal(result.status, 'passed');
-  assert.equal(result.outputs.length, 16);
-  assert.deepEqual(result.outputs.filter((entry: { topic: string }) => entry.topic === 'greenland')
-    .map((entry: { format: string }) => entry.format).sort(), ['pptx', 'video']);
-  for (const topic of ['cpython-string', 'docker-layers']) {
-    assert.deepEqual(result.outputs.filter((entry: { topic: string }) => entry.topic === topic)
-      .map((entry: { format: string }) => entry.format), ['video']);
-  }
-  for (const topic of ['anc', 'git-merge', 'aha-introduction']) {
+  assert.equal(result.outputs.length, 20);
+  for (const topic of Object.keys(topics)) {
     assert.deepEqual(result.outputs.filter((entry: { topic: string }) => entry.topic === topic)
       .map((entry: { format: string }) => entry.format).sort(), ['html', 'image', 'pptx', 'video']);
   }
@@ -72,7 +68,7 @@ test('each current output rejects stale publication source, research and output 
 });
 
 test('publication manifest requires exactly one of every topic and format', async () => {
-  await assert.rejects(verifyExamples({ manifest: { ...manifest, requestedOutputs: manifest.requestedOutputs.slice(1) } }), /sixteen/);
+  await assert.rejects(verifyExamples({ manifest: { ...manifest, requestedOutputs: manifest.requestedOutputs.slice(1) } }), /twenty/);
   const entries = [...manifest.requestedOutputs];
   entries[1] = entries[0];
   await assert.rejects(verifyExamples({ manifest: { ...manifest, requestedOutputs: entries } }));
@@ -102,7 +98,7 @@ test('unified layout has current receipt names and one self-contained QA index',
       if (link && !/^[a-z]+:/i.test(link)) await fs.access(path.resolve(directory, link));
     }
   }
-  const original = manifest.requestedOutputs.find((entry: { topic: string; format: string }) => entry.topic === 'git-merge' && entry.format === 'html');
+  const original = manifest.requestedOutputs.find((entry: { topic: string; format: string }) => entry.topic === 'anc' && entry.format === 'html');
   const workspace = await fs.mkdtemp(path.join(evaluation, '.layout-qa-'));
   const fixture = path.join(workspace, 'examples');
   try {
@@ -136,7 +132,7 @@ test('unified layout has current receipt names and one self-contained QA index',
 
 test('current PPTX publication rejects stale, missing, resealed and misidentified application/page evidence', async t => {
   const entries = manifest.requestedOutputs.filter((entry: { format: string }) => entry.format === 'pptx');
-  assert.deepEqual(entries.map((entry: { topic: string }) => entry.topic).sort(), ['aha-introduction', 'anc', 'git-merge', 'greenland']);
+  assert.deepEqual(entries.map((entry: { topic: string }) => entry.topic).sort(), ['aha-introduction', 'anc', 'cpython-string', 'docker-layers', 'greenland']);
   const verified = await Promise.all(entries.map((entry: object) => verifyOutput(base, entry)));
   const publicationFile = 'delivery-manifest.json';
   const originalPublication = JSON.parse(await fs.readFile(path.join(base, publicationFile), 'utf8'));
@@ -191,9 +187,9 @@ test('current PPTX publication rejects stale, missing, resealed and misidentifie
     });
     await publicationMutation('stale publication generation', value => { value.status = 'historical'; }, /publication status/);
     await publicationMutation('wrong publication schema', value => { value.schemaVersion = 3; }, /publication schema/);
-    await publicationMutation('missing current topic', value => { value.requestedOutputs = value.requestedOutputs.filter((item: { topic: string; format: string }) => !(item.topic === 'anc' && item.format === 'pptx')); }, /four unique/);
-    await publicationMutation('duplicated current topic', value => { value.requestedOutputs[value.requestedOutputs.indexOf(pptxRecords(value)[1])] = pptxRecords(value)[0]; }, /four unique/);
-    await publicationMutation('retired topic cannot replace a current deck', value => { pptxRecords(value)[0].topic = 'project-overview'; }, /four unique/);
+    await publicationMutation('missing current topic', value => { value.requestedOutputs = value.requestedOutputs.filter((item: { topic: string; format: string }) => !(item.topic === 'anc' && item.format === 'pptx')); }, /five unique/);
+    await publicationMutation('duplicated current topic', value => { value.requestedOutputs[value.requestedOutputs.indexOf(pptxRecords(value)[1])] = pptxRecords(value)[0]; }, /five unique/);
+    await publicationMutation('retired topic cannot replace a current deck', value => { pptxRecords(value)[0].topic = 'project-overview'; }, /five unique/);
     for (const field of ['sourceHash', 'researchHash', 'outputHash', 'receiptHash']) {
       await publicationMutation(`stale publication ${field}`, value => { pptxRecords(value)[0][field === 'outputHash' ? 'sha256' : field] = '0'.repeat(64); }, new RegExp(field));
     }
@@ -539,7 +535,7 @@ test('current introduction HTML and image require fresh sealed browser and separ
   } finally { await fs.rm(workspace, { recursive: true, force: true }); }
 });
 
-test('gallery links resolve and list only requested formats, including video-only pilots', async () => {
+test('gallery links resolve and list four formats for each current topic', async () => {
   const gallery = await fs.readFile(path.join(base, 'index.html'), 'utf8');
   const links = [...gallery.matchAll(/href="([^"]+)"/g)].map(match => match[1]!);
   for (const link of links) await fs.access(path.join(base, link));
@@ -547,7 +543,8 @@ test('gallery links resolve and list only requested formats, including video-onl
   assert(links.includes('greenland/README.md'));
   assert(!links.includes('greenland/index.html'));
   assert(links.includes('greenland/greenland.pptx'));
-  assert(!links.includes('greenland/greenland.png'));
+  assert(links.includes('greenland/greenland.png'));
+  assert(!links.some(link => link.startsWith('git-merge/')));
   assert(!links.some(link => /git-merge-animated|motion-review|ppt-first-round-20260920|ppt-second-round-20260920/.test(link)));
   assert.equal(manifest.optionalNativeMotion, undefined, 'Retired optional Git animation is not a current gallery output');
   for (const filename of ['git-merge-animated.pptx', 'git-merge-animated.pptx.motion-review.json']) {
@@ -559,7 +556,7 @@ test('gallery links resolve and list only requested formats, including video-onl
   assert(!links.some(link => link.startsWith('project-overview/')), 'Retired project overview is absent from the gallery');
   for (const topic of ['cpython-string', 'docker-layers']) {
     assert(links.includes(`${topic}/README.md`));
-    assert(!links.some(link => link.startsWith(`${topic}/`) && /\.(html|png|pptx)$/.test(link)));
+    for (const extension of ['html', 'png', 'pptx', 'mp4']) assert(links.includes(`${topic}/${topic}.${extension}`));
   }
 });
 
@@ -580,112 +577,65 @@ test('example checks have no retained publication archives or migration maps', a
   await fs.access(path.join(evaluation, 'check-playback.mjs'));
 });
 
-test('Greenland adds native PPTX while keeping its direct speech provider and no imported-audio origin', async () => {
+test('regenerated videos preserve new Jenny speech through explicit offline imports', async () => {
+  for (const topic of ['anc', 'greenland', 'cpython-string', 'docker-layers']) {
+    const video = manifest.requestedOutputs.find((item: { topic: string; format: string }) => item.topic === topic && item.format === 'video');
+    const result = await verifyOutput(base, video);
+    assert.equal(result.plan.provider, 'provided-audio');
+    assert.equal(typeof result.recordingPlanHash, 'string');
+    const provenance = JSON.parse(await fs.readFile(path.join(base, topic, 'audio', 'provenance.json'), 'utf8'));
+    assert.equal(provenance.voice, 'en-US-JennyNeural');
+    await assert.rejects(verifyOutput(base, { ...video, provider: 'edge-tts' }), /provider/i);
+  }
   const entry = manifest.requestedOutputs.find((item: { topic: string; format: string }) => item.topic === 'greenland' && item.format === 'video');
-  const result = await verifyOutput(base, entry);
-  assert.equal(result.plan.provider, 'edge-tts');
-  assert.equal(result.recordingPlanHash, undefined);
-  await assert.rejects(verifyOutput(base, { ...entry, provider: 'provided-audio' }), /provider/i);
-  await assert.rejects(verifyOutput(base, { ...entry, format: 'html' }), /Unrequested format/);
-  await assert.rejects(verifyOutput(base, { ...entry, format: 'image' }), /Unrequested format/);
+  await assert.rejects(verifyOutput(base, { ...entry, format: 'html' }), /Canonical output path/);
+  await assert.rejects(verifyOutput(base, { ...entry, format: 'image' }), /Canonical output path/);
   const pptx = manifest.requestedOutputs.find((item: { topic: string; format: string }) => item.topic === 'greenland' && item.format === 'pptx');
   assert.equal(pptx.slides, 7);
   assert.equal(pptx.language, 'zh');
   assert.equal((await verifyOutput(base, pptx)).receipt.native, true);
 });
 
-test('code pilots retain video-only scope, CPython direct speech and Docker imported speech', async () => {
-  const verified = [];
-  for (const topic of ['cpython-string', 'docker-layers']) {
-    const entry = manifest.requestedOutputs.find((item: { topic: string }) => item.topic === topic);
-    const result = await verifyOutput(base, entry);
-    verified.push(result);
-    const imported = topic === 'docker-layers';
-    assert.equal(result.plan.provider, imported ? 'provided-audio' : 'edge-tts');
-    assert.equal(typeof result.recordingPlanHash, imported ? 'string' : 'undefined');
-    await assert.rejects(verifyOutput(base, { ...entry, provider: imported ? 'edge-tts' : 'provided-audio' }), /provider/i);
-    await assert.rejects(verifyOutput(base, { ...entry, format: 'html' }), /Unrequested format/);
-  }
-  const workspace = await fs.mkdtemp(path.join(evaluation, '.pilot-evidence-'));
-  try {
-    const directory = 'cpython-string/qa/video';
-    await fs.cp(path.join(base, directory), path.join(workspace, directory), { recursive: true });
-    await verifyCodePilotEvidence(workspace, verified, manifest);
-    const filename = path.join(workspace, directory, 'encoded', 'technical-review.json');
-    const report = JSON.parse(await fs.readFile(filename, 'utf8'));
-    report.artifactHash = '0'.repeat(64);
-    await fs.writeFile(filename, JSON.stringify(report));
-    await assert.rejects(verifyCodePilotEvidence(workspace, verified, manifest), /evidence hash/i);
-  } finally { await fs.rm(workspace, { recursive: true, force: true }); }
-});
-
-test('task/video promotion binds current evidence and preserves review limitations after resealing', async t => {
-  const entries = manifest.requestedOutputs.filter((entry: { topic: string; format: string }) =>
-    (entry.topic === 'git-merge' && entry.format === 'html') || entry.topic === 'docker-layers');
+test('regenerated evidence rejects resealed stale observations, missing coverage and invented acceptance', async t => {
+  const entries = manifest.requestedOutputs.filter((item: { topic: string; format: string }) =>
+    (item.topic === 'anc' && item.format === 'html') || (item.topic === 'docker-layers' && item.format === 'video'));
   const verified = await Promise.all(entries.map((entry: object) => verifyOutput(base, entry)));
-  const workspace = await fs.mkdtemp(path.join(evaluation, '.task-video-evidence-'));
+  const workspace = await fs.mkdtemp(path.join(evaluation, '.regenerated-evidence-'));
   try {
     for (const entry of entries) {
       await fs.cp(path.join(base, entry.qa.directory), path.join(workspace, entry.qa.directory), { recursive: true });
+      if (entry.format === 'video') {
+        await fs.mkdir(path.join(workspace, entry.topic, 'audio'), { recursive: true });
+        await fs.copyFile(path.join(base, entry.topic, 'audio', 'manifest.json'), path.join(workspace, entry.topic, 'audio', 'manifest.json'));
+      }
     }
-    const publicationFile = path.join(workspace, 'delivery-manifest.json');
-    await fs.writeFile(publicationFile, JSON.stringify(manifest));
-    await verifyTaskVideoEvidence(workspace, verified);
-    const publicationBytes = await fs.readFile(publicationFile);
-    const mutate = async <T>(name: string, relative: string, change: (value: T) => void, reseal = true) => {
+    await verifyRegeneratedEvidence(workspace, verified, manifest);
+    const mutate = async <T>(name: string, relative: string, change: (value: T) => void) => {
       await t.test(name, async () => {
         const file = path.join(workspace, relative), original = await fs.readFile(file);
         try {
           const value = JSON.parse(original.toString());
           change(value);
           await fs.writeFile(file, JSON.stringify(value));
-          if (reseal && relative !== 'delivery-manifest.json') {
-            const publication = JSON.parse(publicationBytes.toString());
-            publication.requestedOutputs.flatMap((entry: { qa: { evidence: { file: string; sha256: string }[] } }) =>
-              entry.qa.evidence).find((item: { file: string }) => item.file === relative).sha256 = sha(await fs.readFile(file));
-            await fs.writeFile(publicationFile, JSON.stringify(publication));
-          }
-          await assert.rejects(verifyTaskVideoEvidence(workspace, verified));
-        } finally {
-          await fs.writeFile(file, original);
-          await fs.writeFile(publicationFile, publicationBytes);
-        }
+          const publication = structuredClone(manifest);
+          publication.requestedOutputs.flatMap((entry: { qa: { evidence: { file: string; sha256: string }[] } }) =>
+            entry.qa.evidence).find((item: { file: string }) => item.file === relative).sha256 = sha(await fs.readFile(file));
+          await assert.rejects(verifyRegeneratedEvidence(workspace, verified, publication));
+        } finally { await fs.writeFile(file, original); }
       });
     };
-    await mutate('stale current output', 'delivery-manifest.json', (value: typeof manifest) => {
-      value.requestedOutputs.find((entry: { topic: string }) => entry.topic === 'docker-layers').sha256 = '0'.repeat(64);
-    });
-    await mutate('missing current evidence seal', 'delivery-manifest.json', (value: typeof manifest) => {
-      value.requestedOutputs.find((entry: { topic: string }) => entry.topic === 'docker-layers').qa.evidence.pop();
-    });
-    await mutate('density limitation cannot disappear', 'docker-layers/qa/video/review.json', (value: { limitations: string[] }) => {
-      value.limitations = value.limitations.filter(item => !item.includes('640px'));
-    });
-    await mutate('listening cannot become accepted', 'docker-layers/qa/video/media-observations.json', (value: { listening: string }) => { value.listening = 'passed'; });
-    await mutate('resealed stale HTML review', 'git-merge/qa/html/review.json', (value: { outputHash: string }) => { value.outputHash = '0'.repeat(64); });
-    await mutate('resealed mobile overflow', 'git-merge/qa/html/browser-observations.json', (value: { observations: { scrollWidth: number }[] }) => { value.observations[2]!.scrollWidth = 660; });
-    await mutate('resealed wrong source approval', 'docker-layers/qa/video/approval.json', (value: { sourceHash: string }) => { value.sourceHash = '0'.repeat(64); });
-    await mutate('resealed failed replay', 'docker-layers/qa/video/source-diagnostics.json', (value: { replay: { matches: boolean }[] }) => { value.replay[0]!.matches = false; });
-    await mutate('resealed failed decode', 'docker-layers/qa/video/media-observations.json', (value: { fullDecode: string }) => { value.fullDecode = 'failed'; });
-    await mutate('unsealed review change', 'docker-layers/qa/video/review.json', (value: { status: string }) => { value.status = 'accepted'; }, false);
-  } finally { await fs.rm(workspace, { recursive: true, force: true }); }
-});
-
-test('Docker recording provenance binds spoken words without retaining old plans', async () => {
-  const entry = manifest.requestedOutputs.find((item: { topic: string }) => item.topic === 'docker-layers');
-  const workspace = await fs.mkdtemp(path.join(evaluation, '.docker-origin-'));
-  try {
-    await fs.cp(path.join(base, 'docker-layers'), path.join(workspace, 'docker-layers'), { recursive: true });
-    await verifyOutput(workspace, entry);
-    const file = path.join(workspace, 'docker-layers', 'audio', 'provenance.json');
-    const provenance = JSON.parse(await fs.readFile(file, 'utf8'));
-    provenance.narration[0].text = 'Different recording';
-    await fs.writeFile(file, JSON.stringify(provenance));
-    await assert.rejects(verifyOutput(workspace, entry), /spoken words/);
-    await fs.rm(file);
-    await assert.rejects(verifyOutput(workspace, entry), /ENOENT/);
-    const html = manifest.requestedOutputs.find((item: { topic: string; format: string }) => item.topic === 'git-merge' && item.format === 'html');
-    await assert.rejects(verifyOutput(base, { ...html, language: 'bilingual' }), /Chinese HTML manifest language/);
+    await mutate('stale browser output', 'anc/qa/html/browser-observations.json', (value: { htmlOutputHash: string }) => { value.htmlOutputHash = '0'.repeat(64); });
+    await mutate('missing language/theme/viewport', 'anc/qa/html/browser-observations.json', (value: { cases: unknown[] }) => { value.cases.pop(); });
+    await mutate('mobile overflow', 'anc/qa/html/browser-observations.json', (value: { cases: { pageWidth: number }[] }) => { value.cases[0]!.pageWidth = 2000; });
+    await mutate('wrong approved source', 'docker-layers/qa/video/approval.json', (value: { sourceHash: string }) => { value.sourceHash = '0'.repeat(64); });
+    await mutate('different approved words', 'docker-layers/qa/video/approval.json', (value: { narration: { text: string }[] }) => { value.narration[0]!.text += ' Changed.'; });
+    await mutate('source replay failed', 'docker-layers/qa/video/source-diagnostics.json', (value: { replay: { matches: boolean }[] }) => { value.replay[0]!.matches = false; });
+    await mutate('caption hides source', 'docker-layers/qa/video/source-diagnostics.json', (value: { video: { captionTop: number }[] }) => { value.video[0]!.captionTop = 400; });
+    await mutate('incomplete decode', 'docker-layers/qa/video/encoded/technical-review.json', (value: { fullDecode: boolean }) => { value.fullDecode = false; });
+    await mutate('wrong measured frame', 'docker-layers/qa/video/encoded/technical-review.json', (value: { samples: { frame: number }[] }) => { value.samples[0]!.frame++; });
+    await mutate('invented listening', 'docker-layers/qa/video/encoded/technical-review.json', (value: { listening: string }) => { value.listening = 'passed'; });
+    await mutate('playback did not end', 'docker-layers/qa/video/encoded/playback.json', (value: { ended: boolean }) => { value.ended = false; });
+    await mutate('invented human acceptance', 'docker-layers/qa/video/review.json', (value: { status: string }) => { value.status = 'accepted'; });
   } finally { await fs.rm(workspace, { recursive: true, force: true }); }
 });
 
@@ -773,7 +723,7 @@ test('browser and generic media playback tools require approval independently of
   }
 });
 
-test('Git autocrlf preserves all sixteen outputs, source trees, audio and current QA', async () => {
+test('Git autocrlf preserves all twenty outputs, source trees, audio and current QA', async () => {
   const workspace = await fs.mkdtemp(path.join(evaluation, '.identity-git-'));
   const git = (...args: string[]) => execFileSync('git', args, {
     cwd: workspace, timeout: 60000, maxBuffer: 4 * 1024 * 1024,

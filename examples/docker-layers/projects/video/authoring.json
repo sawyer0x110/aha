@@ -1,0 +1,97 @@
+{
+  "purpose": "Keep the layer cutaway separate from the merged view",
+  "researchReuse": "Read the sealed report and claim ledger for scope, version, evidence and limits; no fresh scientific or code experiment.",
+  "readingContext": "1280x720, inspect at 1280 and 640px playback; reserve lower 160px for captions.",
+  "composition": [
+    {
+      "id": "add",
+      "question": "First RUN: the new payload becomes layer data",
+      "relationship": "Assume a newly created regular file contains 100 MB of uncompressed payload. If it remains when the RUN finishes successfully, that payload is recorded in an image layer in this ordinary unsquashed example.",
+      "claims": [
+        "c-layer",
+        "c-example"
+      ]
+    },
+    {
+      "id": "delete",
+      "question": "Later RUN: hide the path without rewriting the lower layer",
+      "relationship": "The newer changeset represents removal using a whiteout. Applying it hides the lower path in the merged view. The marker itself is not an ordinary visible file there, and the earlier payload remains in its immutable layer.",
+      "claims": [
+        "c-delete"
+      ]
+    },
+    {
+      "id": "same-run",
+      "question": "Same RUN: compare absent before with absent after",
+      "relationship": "For a NEW temporary file created and removed inside one RUN, neither endpoint contains that path. Its payload is therefore absent from that resulting diff. Other files or directory metadata can still change.",
+      "claims": [
+        "c-same"
+      ]
+    },
+    {
+      "id": "base",
+      "question": "The counterexample: a file already in the base",
+      "relationship": "Deleting a preexisting base-layer file in one RUN still cannot reclaim its lower-layer bytes. Unlike the new temporary file, this path exists in the before snapshot, so deletion must be represented.",
+      "claims": [
+        "c-base"
+      ]
+    },
+    {
+      "id": "scope",
+      "question": "Payload is not image size, and an image is not a running container",
+      "relationship": "100 MB is an assumed payload, not measured download savings. Compression, sharing, cache and image overhead are different quantities. A running container adds its own writable layer; this diagram describes image changesets.",
+      "claims": [
+        "c-size",
+        "c-writable"
+      ]
+    }
+  ],
+  "video": {
+    "segments": [
+      {
+        "id": "segment-1",
+        "text": "Suppose a successful RUN leaves a new file with one hundred megabytes of uncompressed payload. In this ordinary unsquashed example, that payload becomes part of an immutable image layer.",
+        "claimIds": [
+          "c-layer",
+          "c-example"
+        ]
+      },
+      {
+        "id": "segment-2",
+        "text": "A later RUN deletes the path. A whiteout hides it in the merged view, but the earlier layer still contains the payload. The whiteout is not an ordinary visible file in that merged view.",
+        "claimIds": [
+          "c-delete"
+        ]
+      },
+      {
+        "id": "segment-3",
+        "text": "Now create and delete a NEW temporary file inside one RUN. The path is absent both before and after, so its payload is not added to that resulting diff. Other changes can still remain.",
+        "claimIds": [
+          "c-same"
+        ]
+      },
+      {
+        "id": "segment-4",
+        "text": "Do not apply that conclusion to a file already in the base layer. Deleting it still cannot rewrite the older layer or reclaim its bytes.",
+        "claimIds": [
+          "c-base"
+        ]
+      },
+      {
+        "id": "segment-5",
+        "text": "The one hundred megabytes is an assumption, not a measured image or download saving. Compression and cache use are different quantities. A running container also has a separate writable layer.",
+        "claimIds": [
+          "c-size",
+          "c-writable"
+        ]
+      }
+    ],
+    "timing": "Segment-relative beats only; not word alignment. Preserve identities across segments, replace exclusive state labels."
+  },
+  "tools": [
+    "Repository aha-explain and shared latest guides",
+    "Host pptx guidance",
+    "Host web-artifacts-builder theme",
+    "Aha 0.3.3 runtime"
+  ]
+}

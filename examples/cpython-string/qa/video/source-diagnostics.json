@@ -1,0 +1,273 @@
+{
+  "sourceHash": "9b3326f91e9426b39ac0444eb3b767342ce98c832052239286b0f87faa3f75a5",
+  "errors": [],
+  "blocked": [],
+  "video": [
+    {
+      "segmentIndex": 0,
+      "segmentFrame": 0,
+      "captionTop": 593.625,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 0,
+      "segmentFrame": 67,
+      "captionTop": 593.625,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 0,
+      "segmentFrame": 133,
+      "captionTop": 593.625,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 0,
+      "segmentFrame": 213,
+      "captionTop": 593.625,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 0,
+      "segmentFrame": 266,
+      "captionTop": 593.625,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 1,
+      "segmentFrame": 0,
+      "captionTop": 593.625,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 1,
+      "segmentFrame": 94,
+      "captionTop": 593.625,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 1,
+      "segmentFrame": 188,
+      "captionTop": 593.625,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 1,
+      "segmentFrame": 300,
+      "captionTop": 593.625,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 1,
+      "segmentFrame": 375,
+      "captionTop": 593.625,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 2,
+      "segmentFrame": 0,
+      "captionTop": 554.4375,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 2,
+      "segmentFrame": 109,
+      "captionTop": 554.4375,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 2,
+      "segmentFrame": 218,
+      "captionTop": 554.4375,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 2,
+      "segmentFrame": 348,
+      "captionTop": 554.4375,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 2,
+      "segmentFrame": 435,
+      "captionTop": 554.4375,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 3,
+      "segmentFrame": 0,
+      "captionTop": 593.625,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 3,
+      "segmentFrame": 100,
+      "captionTop": 593.625,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 3,
+      "segmentFrame": 200,
+      "captionTop": 593.625,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 3,
+      "segmentFrame": 320,
+      "captionTop": 593.625,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 3,
+      "segmentFrame": 400,
+      "captionTop": 593.625,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 4,
+      "segmentFrame": 0,
+      "captionTop": 554.4375,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 4,
+      "segmentFrame": 104,
+      "captionTop": 554.4375,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 4,
+      "segmentFrame": 208,
+      "captionTop": 554.4375,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 4,
+      "segmentFrame": 333,
+      "captionTop": 554.4375,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    },
+    {
+      "segmentIndex": 4,
+      "segmentFrame": 416,
+      "captionTop": 554.4375,
+      "figureScroll": 338,
+      "figureHeight": 338,
+      "noteBottom": 482.390625,
+      "sourceTop": 523.25,
+      "sourceBottom": 542
+    }
+  ],
+  "replay": [
+    {
+      "index": 0,
+      "matches": true
+    },
+    {
+      "index": 2,
+      "matches": true
+    },
+    {
+      "index": 4,
+      "matches": true
+    }
+  ],
+  "observedAt": "2026-09-22T11:09:29.113Z",
+  "timing": "Measured authorized recordings; actual runtime caption overlay"
+}

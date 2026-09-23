@@ -1,6 +1,0 @@
-{
-  "planHash": "b16387e7c9f297f54f6bde3b915e147e67d1cc0f91427dda77f30ebf1ec1945c",
-  "recordingPlanHash": "358763357b4fa8984c94322456666fbfe3f310f215827e6dc43aa1977af0e60b",
-  "scope": "Only explicitly approved complete pilot/full narration and necessary voice/rate parameters sent to Edge online speech service. Later import-only plans reuse existing WAV files without another network speech call.",
-  "completeVideoListeningAndViewing": "not-confirmed"
-}

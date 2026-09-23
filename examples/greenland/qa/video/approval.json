@@ -1,0 +1,72 @@
+{
+  "sourceHash": "16bfa98aad39759699cafec1a627046ff52c93402fee7803a9bcdcf583d0226c",
+  "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6",
+  "outputHash": "e77c15c19063ebcfbecc051515c4cf7a9ddb02f53f64bc682e64a009273f34d5",
+  "receiptHash": "7e4946dedaa98348a19be6883b96fd58dc6de49950f80b8ca08980ceb1c1373d",
+  "planHash": "4d6ce157139a64bb9ccd8ccd471bc1c9757acdae1928ceb5e70248978eaee193",
+  "recordingPlanHash": "4778b9a35a5b04c8f872832bb4dbb61b54303cdafd41264a1d0b6b994b654d57",
+  "userAnswer": "批准四个新计划，离线复用已有录音并渲染",
+  "speechUserAnswer": "批准这四份完整旁白和上述联网配音范围",
+  "localExecutionAnswer": "批准本轮本地渲染、检查及同范围排版修复",
+  "provider": "provided-audio",
+  "voice": "approved-jenny-recordings",
+  "rate": "+0%",
+  "narration": [
+    {
+      "id": "segment-1",
+      "text": "Greenland looks enormous on many Mercator maps. But Africa has about fourteen times its reported land area. The map and the land are measuring different things.",
+      "claimIds": [
+        "c-area",
+        "c-cause"
+      ]
+    },
+    {
+      "id": "segment-2",
+      "text": "On a sphere, meridians converge toward the poles. Mercator keeps them equally spaced on the page. The same longitude gap is therefore stretched more at high latitude.",
+      "claimIds": [
+        "c-bridge",
+        "c-cause"
+      ]
+    },
+    {
+      "id": "segment-3",
+      "text": "To preserve local angles, Mercator stretches north-south distances by the same local factor. Near sixty degrees, a tiny patch is doubled in both directions, giving four times the area.",
+      "claimIds": [
+        "c-bridge",
+        "c-scale"
+      ]
+    },
+    {
+      "id": "segment-4",
+      "text": "That is a local result, not one multiplier for all of Greenland. The country spans different latitudes, and each part is magnified differently.",
+      "claimIds": [
+        "c-scale"
+      ]
+    },
+    {
+      "id": "segment-5",
+      "text": "Now rotate the actual generalized boundary on a sphere toward the equator. Its land area stays the same, but its footprint shrinks on this fixed-scale Mercator map. This is not a two-dimensional resize.",
+      "claimIds": [
+        "c-motion",
+        "c-resource"
+      ]
+    },
+    {
+      "id": "segment-6",
+      "text": "Mercator makes constant-heading routes straight, though they are usually not the shortest routes. Its poles project to infinity, so a finite map must cut them off.",
+      "claimIds": [
+        "c-navigation",
+        "c-poles"
+      ]
+    },
+    {
+      "id": "segment-7",
+      "text": "For comparing areas, an equal-area map such as Equal Earth is useful. It preserves area proportions, not every shape or angle. The right projection depends on the question.",
+      "claimIds": [
+        "c-equal"
+      ]
+    }
+  ],
+  "disclosure": "Only complete narration and voice/rate parameters to Microsoft Edge online speech via edge-tts 7.2.8; no dossiers, source, screenshots.",
+  "currentImportUsesNetwork": false
+}

@@ -1,0 +1,21 @@
+{
+  "sourceHash": "94cf6ccde7e4b087e25975af1ea6b1a0d6b24721569fe3ace4e97160c753d0b8",
+  "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
+  "outputHash": "6900a2831568d23fd772bdb5f9fb0952d294c2bacb0df7428deccace9fe0bd2e",
+  "receiptHash": "e086f611a4c7630fc648970c13084d084485a58fc43c31696172109e1cf51bdc",
+  "status": "bounded-agent-review",
+  "findings": [
+    "Ordinary unsquashed image changesets; 100 MB assumed uncompressed payload. No Docker build was run.",
+    "Native PowerPoint export and saved/reopened text/table edit probes passed; Greenland chart data edit also persisted. Reported relationship/label defects were repaired and re-inspected."
+  ],
+  "limitations": [
+    "No human comprehension or acceptance study.",
+    "Host document skills and local tools also contributed; this is not an isolated skill-effect comparison.",
+    "Agent inspected initial individual PowerPoint pages and affected revised pages; not human slideshow or manual-edit usability acceptance.",
+    "Minor isolated final punctuation remains on one reviewed slide."
+  ],
+  "unperformed": [
+    "Human comprehension",
+    "Human acceptance"
+  ]
+}

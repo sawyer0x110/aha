@@ -281,12 +281,12 @@ test('video storyboarding respects measured timing, deliberate holds and source-
 test('task/video pilot uses existing example research without providing finished example scenes', async () => {
   const corpus = JSON.parse(await fs.readFile(path.join(root, 'evals', 'task-video', 'evals.json'), 'utf8'));
   assert.equal(corpus.skill_name, 'aha-explain');
-  assert.deepEqual(corpus.evals.map((item: { name: string }) => item.name), ['git-plan-review', 'docker-mechanism-video']);
+  assert.deepEqual(corpus.evals.map((item: { name: string }) => item.name), ['docker-plan-review', 'docker-mechanism-video']);
   for (const item of corpus.evals) {
     assert.ok(item.prompt.length > 100);
     assert.ok(item.assertions.length >= 4);
     for (const file of item.files) {
-      assert.match(file, /^examples\/(?:git-merge|docker-layers)\/(?:research|video-plan\.json)$/);
+      assert.match(file, /^examples\/docker-layers\/(?:research|video-plan\.json)$/);
       await fs.access(path.join(root, file));
     }
   }

@@ -16,7 +16,7 @@ const screenshots = process.argv.includes('--screenshots');
 const { chromium } = await import('playwright-core');
 const report = {
   observedAt: new Date().toISOString(), cases: [], failures: [],
-  scope: 'Fresh offline packaged-HTML behavior at 1280/390px, both themes; ANC is bilingual, Git is a Chinese plan review. Not new Git experiments, headset measurements, visual, screen-reader or comprehension acceptance.',
+  scope: 'Fresh offline behavior for four bilingual explanations at 1280/390/320px in both themes. Not new subject experiments, listening, screen-reader or comprehension acceptance.',
 };
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 async function check(record, name, action) {
@@ -51,15 +51,24 @@ async function ancControls(branch) {
   await phase.press('Home');
   assert.equal(await wave.getAttribute('d'), cancelled);
 }
-async function gitControls(branch) {
-  assert.equal(await branch.locator('article.review').count(), 3);
-  const link = branch.locator('a[href="#ref-revert"]').first();
-  await link.focus(); await link.press('Enter');
-  assert.equal(await branch.evaluate(() => location.hash), '#ref-revert');
-  await branch.locator('a[href="#ref-strategy"]').first().click();
-  assert.equal(await branch.evaluate(() => location.hash), '#ref-strategy');
-  assert(await branch.evaluate(element => [...element.querySelectorAll('.review')]
-    .every(row => row.scrollWidth <= row.clientWidth + 1)));
+async function mechanismControls(topic, branch, page) {
+  if (topic === 'anc') return ancControls(branch);
+  if (topic === 'greenland') {
+    await branch.locator('.position').focus();
+    await branch.locator('.position').press('End');
+    assert((await page.evaluate(() => window.geographicState.areaError)) < 1e-10);
+    assert.equal(await page.evaluate(() => window.geographicState.progress), 1);
+  } else if (topic === 'cpython-string') {
+    for (const [value, kind] of [['0', '1'], ['1', '2'], ['2', '4']]) {
+      await branch.locator('.codepoint').selectOption(value);
+      assert.equal(await branch.locator('.mechanism').getAttribute('data-kind'), kind);
+    }
+  } else {
+    for (const stage of ['add', 'delete', 'same', 'base']) {
+      await branch.locator('.scenario').selectOption(stage);
+      assert.equal(await branch.locator('.mechanism').getAttribute('data-stage'), stage);
+    }
+  }
 }
 let browser;
 try {
@@ -68,11 +77,11 @@ try {
     ...(process.env.AHA_BROWSER_EXECUTABLE ? { executablePath: process.env.AHA_BROWSER_EXECUTABLE }
       : { channel: process.env.AHA_BROWSER_CHANNEL || 'msedge' }),
   });
-  for (const topic of ['anc', 'git-merge']) {
+  for (const topic of ['anc', 'greenland', 'cpython-string', 'docker-layers']) {
     const file = path.join(root, 'examples', topic, `${topic}.html`);
     const receipt = JSON.parse(await readFile(`${file}.receipt.json`, 'utf8'));
     assert.equal(sha(await readFile(file)), receipt.outputHash, `${topic}: packaged output hash`);
-    for (const width of [1280, 390]) for (const theme of ['light', 'dark']) {
+    for (const width of [1280, 390, 320]) for (const theme of ['light', 'dark']) {
       const context = await browser.newContext({
         viewport: { width, height: 960 }, colorScheme: theme, reducedMotion: 'reduce',
         offline: true, serviceWorkers: 'block',
@@ -89,21 +98,15 @@ try {
         page.on('pageerror', error => errors.push(error.message));
         page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
         await page.goto(url);
-        for (const language of topic === 'git-merge' ? ['zh'] : ['en', 'zh']) {
+        for (const language of ['en', 'zh']) {
           const record = {
             id: `${topic}-${width}-${theme}-${language}`, topic, width, theme, language,
             outputHash: receipt.outputHash, sourceHash: receipt.sourceHash, researchHash: receipt.researchHash,
             checks: [], screenshots: [],
           };
           report.cases.push(record);
-          const branch = page.locator(topic === 'git-merge' ? 'main' : `section[data-aha-lang="${language}"]`);
+          const branch = page.locator(`section[data-aha-lang="${language}"]`);
           await check(record, 'Language switch and title', async () => {
-            if (topic === 'git-merge') {
-              assert.equal(await page.locator('html').getAttribute('lang'), 'zh-CN');
-              assert.match(await page.title(), /Git.*revert.*-Xours/);
-              assert.equal(await page.locator('.aha-language-controls').count(), 0);
-              return;
-            }
             const button = page.locator(`.aha-language-controls [data-language="${language}"]`);
             await activate(button, language === 'en');
             assert.equal(await page.locator('html').getAttribute('lang'), language === 'en' ? 'en' : 'zh-CN');
@@ -112,8 +115,7 @@ try {
             assert.equal(await page.locator(`section[data-aha-lang="${language === 'en' ? 'zh' : 'en'}"]`).isVisible(), false);
           });
           await check(record, 'Keyboard and pointer controls', async () => {
-            if (topic === 'anc') await ancControls(branch);
-            else await gitControls(branch);
+            await mechanismControls(topic, branch, page);
           });
           await check(record, 'Viewport, theme and local anchors', async () => {
             assert.equal(await page.locator('html').getAttribute('data-theme'), theme);

@@ -1,238 +1,105 @@
 {
-  "html": [
+  "topic": "anc",
+  "observedAt": "2026-09-22T09:47:21.330Z",
+  "htmlOutputHash": "34d1b2d642a88c5b1fa4015c72f059688611f112a1c93a1ce244b30ff50d2dac",
+  "cases": [
     {
       "width": 1280,
+      "theme": "light",
       "language": "en",
-      "title": "Why ANC quiets aircraft rumble but leaves voices",
-      "scrollWidth": 1280,
-      "buttons": [
-        {
-          "text": "English",
-          "label": null,
-          "language": null
-        },
-        {
-          "text": "中文",
-          "label": null,
-          "language": null
-        }
-      ],
-      "inputs": [
-        {
-          "type": "range",
-          "id": "",
-          "min": "0",
-          "max": "1.2",
-          "value": "1"
-        },
-        {
-          "type": "range",
-          "id": "",
-          "min": "0",
-          "max": "180",
-          "value": "0"
-        },
-        {
-          "type": "range",
-          "id": "",
-          "min": "0",
-          "max": "1.2",
-          "value": "1"
-        },
-        {
-          "type": "range",
-          "id": "",
-          "min": "0",
-          "max": "180",
-          "value": "0"
-        }
-      ]
+      "pageWidth": 1280,
+      "viewport": 1280,
+      "overflow": []
     },
     {
       "width": 1280,
-      "language": "zh-CN",
-      "title": "飞机轰鸣变轻了，为什么人声还在？",
-      "scrollWidth": 1280,
-      "visibleInputs": [
-        {
-          "type": "range",
-          "id": "",
-          "value": "1"
-        },
-        {
-          "type": "range",
-          "id": "",
-          "value": "0"
-        }
-      ]
-    },
-    {
-      "width": 390,
-      "language": "en",
-      "title": "Why ANC quiets aircraft rumble but leaves voices",
-      "scrollWidth": 390,
-      "buttons": [
-        {
-          "text": "English",
-          "label": null,
-          "language": null
-        },
-        {
-          "text": "中文",
-          "label": null,
-          "language": null
-        }
-      ],
-      "inputs": [
-        {
-          "type": "range",
-          "id": "",
-          "min": "0",
-          "max": "1.2",
-          "value": "1"
-        },
-        {
-          "type": "range",
-          "id": "",
-          "min": "0",
-          "max": "180",
-          "value": "0"
-        },
-        {
-          "type": "range",
-          "id": "",
-          "min": "0",
-          "max": "1.2",
-          "value": "1"
-        },
-        {
-          "type": "range",
-          "id": "",
-          "min": "0",
-          "max": "180",
-          "value": "0"
-        }
-      ]
-    },
-    {
-      "width": 390,
-      "language": "zh-CN",
-      "title": "飞机轰鸣变轻了，为什么人声还在？",
-      "scrollWidth": 390,
-      "visibleInputs": [
-        {
-          "type": "range",
-          "id": "",
-          "value": "1"
-        },
-        {
-          "type": "range",
-          "id": "",
-          "value": "0"
-        }
-      ]
-    }
-  ],
-  "interactions": [
-    {
-      "width": 1280,
-      "language": "en",
-      "slider": 0,
-      "action": "keyboard End",
-      "value": "1.2",
-      "visibleTextChanged": true,
-      "changedLines": [
-        "Amplitude ratio 1.20; phase error 0°; residual amplitude 0.20 × incoming."
-      ]
-    },
-    {
-      "width": 1280,
-      "language": "en",
-      "slider": 1,
-      "action": "keyboard End",
-      "value": "180",
-      "visibleTextChanged": true,
-      "changedLines": [
-        "Amplitude ratio 1.20; phase error 180°; residual amplitude 2.20 × incoming."
-      ]
-    },
-    {
-      "width": 1280,
+      "theme": "light",
       "language": "zh",
-      "slider": 0,
-      "action": "keyboard End",
-      "value": "1.2",
-      "visibleTextChanged": true,
-      "changedLines": [
-        "幅度比 1.20；相位误差 0°；残余幅度为传入声的 0.20 倍。"
-      ]
+      "pageWidth": 1280,
+      "viewport": 1280,
+      "overflow": []
     },
     {
       "width": 1280,
-      "language": "zh",
-      "slider": 1,
-      "action": "keyboard End",
-      "value": "180",
-      "visibleTextChanged": true,
-      "changedLines": [
-        "幅度比 1.20；相位误差 180°；残余幅度为传入声的 2.20 倍。"
-      ]
+      "theme": "dark",
+      "language": "en",
+      "pageWidth": 1280,
+      "viewport": 1280,
+      "overflow": []
     },
     {
       "width": 1280,
-      "action": "keyboard English selection",
-      "language": "en"
-    },
-    {
-      "width": 390,
-      "language": "en",
-      "slider": 0,
-      "action": "keyboard End",
-      "value": "1.2",
-      "visibleTextChanged": true,
-      "changedLines": [
-        "Amplitude ratio 1.20; phase error 0°; residual amplitude 0.20 × incoming."
-      ]
-    },
-    {
-      "width": 390,
-      "language": "en",
-      "slider": 1,
-      "action": "keyboard End",
-      "value": "180",
-      "visibleTextChanged": true,
-      "changedLines": [
-        "Amplitude ratio 1.20; phase error 180°; residual amplitude 2.20 × incoming."
-      ]
-    },
-    {
-      "width": 390,
+      "theme": "dark",
       "language": "zh",
-      "slider": 0,
-      "action": "keyboard End",
-      "value": "1.2",
-      "visibleTextChanged": true,
-      "changedLines": [
-        "幅度比 1.20；相位误差 0°；残余幅度为传入声的 0.20 倍。"
-      ]
+      "pageWidth": 1280,
+      "viewport": 1280,
+      "overflow": []
     },
     {
       "width": 390,
+      "theme": "light",
+      "language": "en",
+      "pageWidth": 390,
+      "viewport": 390,
+      "overflow": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
       "language": "zh",
-      "slider": 1,
-      "action": "keyboard End",
-      "value": "180",
-      "visibleTextChanged": true,
-      "changedLines": [
-        "幅度比 1.20；相位误差 180°；残余幅度为传入声的 2.20 倍。"
-      ]
+      "pageWidth": 390,
+      "viewport": 390,
+      "overflow": []
     },
     {
       "width": 390,
-      "action": "keyboard English selection",
-      "language": "en"
+      "theme": "dark",
+      "language": "en",
+      "pageWidth": 390,
+      "viewport": 390,
+      "overflow": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "language": "zh",
+      "pageWidth": 390,
+      "viewport": 390,
+      "overflow": []
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "language": "en",
+      "pageWidth": 320,
+      "viewport": 320,
+      "overflow": []
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "language": "zh",
+      "pageWidth": 320,
+      "viewport": 320,
+      "overflow": []
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "language": "en",
+      "pageWidth": 320,
+      "viewport": 320,
+      "overflow": []
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "language": "zh",
+      "pageWidth": 320,
+      "viewport": 320,
+      "overflow": []
     }
   ],
   "errors": [],
-  "blockedRequests": []
+  "blocked": []
 }

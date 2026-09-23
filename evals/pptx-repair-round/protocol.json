@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "round": "pptx-second-round-repair-only",
-  "corpus_revision": "aha-introduction-20260917",
+  "corpus_revision": "current-topics-20260922",
   "design": "Paired repair-only comparison of old-current and new guides on identical previously generated candidate seeds, using one common runtime. Not fresh generation, not a first-pass skill-effect test.",
-  "case_ids": ["git-merge", "anc", "greenland", "aha-introduction"],
+  "case_ids": ["cpython-string", "anc", "greenland", "aha-introduction"],
   "conditions": ["baseline", "candidate"],
   "budget": { "language": "zh", "slides_min": 5, "slides_max": 8, "source_submissions": 1 },
   "prompt": "请审阅提供的实际 PowerPoint 渲染画面和已有源项目，修复可具体指出的布局、解释或演讲者备注问题；不得添加无材料支持的新事实。保持原问题范围、有意义的原生图表/表格/图片和数据。交付仍为 5–8 页中文幻灯片（这是本轮相同资源预算，不是通用规则），只提交一次源代码修订。按页记录改动与理由，并另列尚未执行的 QA；没有发现具体问题时可保留原内容，但不可把既有成功称为本轮改进。只做静态检查，不执行作者模块或渲染。",

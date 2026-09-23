@@ -1,0 +1,178 @@
+<!doctype html><html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Why Mercator makes Greenland look enormous</title><script>(() => { const param = new URLSearchParams(window.location.search).get("scoutTheme"); const theme = param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); document.documentElement.setAttribute("data-theme", theme); })();</script><style>:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+
+*{box-sizing:border-box}body{margin:0;background:var(--cp-bg);color:var(--cp-text);font:18px/1.7 "Segoe UI",Aptos,Calibri,-apple-system,BlinkMacSystemFont,sans-serif}
+main{max-width:1120px;margin:auto;padding:56px 32px}h1{font-size:clamp(32px,5vw,58px);line-height:1.16;max-width:19ch;margin:16px 0 24px;letter-spacing:-.025em}
+h2{font-size:28px;line-height:1.3;margin:0 0 16px}h3{font-size:21px;line-height:1.35}p{margin:0 0 20px}.lead{font-size:22px;max-width:70ch}
+.eyebrow{font-weight:650;color:var(--cp-accent);letter-spacing:.1em;text-transform:uppercase;font-size:14px}
+.prose{max-width:72ch}.explanation{border-top:1px solid var(--cp-border);padding-top:28px;margin-top:36px}
+.controls{display:flex;gap:24px;flex-wrap:wrap;margin:24px 0;min-width:0}.controls label{display:grid;gap:8px;min-width:0;max-width:100%}
+input,select,button{font:inherit;max-width:100%;color:var(--cp-text);accent-color:var(--cp-accent)}select{padding:8px;background:var(--cp-surface);border:1px solid var(--cp-border-strong);border-radius:10px}
+a{color:var(--cp-link);overflow-wrap:anywhere}a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--cp-accent);outline-offset:5px}
+.limit{border-left:4px solid var(--cp-accent);padding:12px 20px;margin:28px 0}.sources{font-size:15px}.sources li{margin:8px 0}.sources-note{color:var(--cp-text-muted)}
+[hidden]{display:none!important}@media(max-width:600px){main{padding:28px 20px}.lead{font-size:19px}h2{font-size:24px}.controls{display:grid}.controls label{min-width:0}}
+
+.mechanism { border:1px solid var(--cp-border-strong); padding:24px; background:var(--cp-surface); border-radius:16px; overflow:hidden }
+.mechanism strong,.mechanism b { display:block }.mechanism h3 { margin:0 0 16px }.mechanism p { margin:12px 0 0 }
+.mechanism-box { padding:16px; background:var(--cp-surface-soft) }.mechanism-box strong { margin-bottom:8px }
+.big-value { font-size:1.6em; font-weight:700; font-variant-numeric:tabular-nums }
+.pressure-legend { display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between }
+.pressure-legend span:nth-child(2) { border-bottom:2px dashed var(--cp-text-muted) }.pressure-legend strong { color:var(--cp-accent) }
+.waves,.map { display:block; width:100%; height:auto }.axis { stroke:var(--cp-border); fill:none }
+.incoming { stroke:var(--cp-text); fill:none; stroke-width:2 }.control { stroke:var(--cp-text-muted); stroke-dasharray:8 5; fill:none; stroke-width:2 }
+.wave-result { stroke:var(--cp-accent); fill:none; stroke-width:4 }.result { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px }
+.model-label { color:var(--cp-text-muted); font-size:.85em; line-height:1.5 }.land { fill:var(--cp-surface-soft); stroke:var(--cp-border-strong); stroke-width:.5 }
+.gridline { stroke:var(--cp-border); fill:none; stroke-width:.6 }.moving-land { fill:var(--cp-accent); stroke:var(--cp-text); stroke-width:1 }
+.ghost { fill:none; stroke:var(--cp-text-muted); stroke-dasharray:4 3 }.map-caption { display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px }
+.slots { display:flex; gap:8px; margin:12px 0 }.slots span { display:grid; place-items:center; width:calc(30px * var(--slot-width)); max-width:17%; height:38px; border:1px solid var(--cp-border-strong); background:var(--cp-surface-soft); font-family:Consolas,monospace }
+.accent-slots span { background:var(--cp-accent-soft); border-color:var(--cp-accent) }.slots .codepoint-slot { min-width:110px; font-size:16px; max-width:none }.string-original { margin-bottom:24px }
+.memory-pair { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:24px }
+.docker-comparison { display:grid; grid-template-columns:1fr 1fr; gap:32px }.layer { border:2px solid var(--cp-border-strong); padding:16px; min-height:92px }
+.layer-placeholder { height:104px }.layer + .layer { margin-top:12px }.payload-layer { border-color:var(--cp-accent); background:var(--cp-accent-soft) }.layer span { display:block; font-family:Consolas,monospace }
+.merged { border-top:2px solid var(--cp-text); padding-top:12px; margin-top:24px }.merged strong { color:var(--cp-accent) }.endpoint { display:grid; min-height:208px; gap:12px }
+.endpoint span { display:flex; align-items:center; padding:12px 16px; background:var(--cp-surface-soft) }.emphasis { border-left:4px solid var(--cp-accent); padding-left:16px }
+@media(max-width:600px) { .mechanism { padding:16px }.docker-comparison { grid-template-columns:1fr; gap:32px }.memory-pair { grid-template-columns:1fr }.pressure-legend { font-size:.85em }.slots { gap:4px }.model-label { font-size:.9em } }
+</style></head><body><main><section data-aha-lang="en" lang="en" data-aha-title="Why Mercator makes Greenland look enormous"><div class="eyebrow">From observation to mechanism</div><h1>Why Mercator makes Greenland look enormous</h1><p class="lead">Africa has about fourteen times Greenland&#39;s reported area. A Mercator map can obscure that comparison because its magnification increases toward the poles.</p><h2>Separate land area from projected area</h2><div class="controls"><label>Rotate on sphere: original → near equator<input class="position" type="range" min="0" max="1" step=".01" value="0"></label></div><div class="mechanism"></div><p class="limit">Spherical Mercator; local scale is not a whole-country multiplier. Generalized boundaries are not statistical area measurements.</p><article class="explanation prose" id="area-0"><h2>About fourteen times, not fourteen packed outlines</h2><p>The cited areas are 2,166,086 km² for Greenland and about 30,365,000 km² for Africa. They support a rounded ratio, not a claim that fourteen Greenland outlines fit inside Africa. The official Greenland PDF body was not verified.</p></article><article class="explanation prose" id="spacing-0"><h2>Equal longitude gaps are not equal ground distances</h2><p>Meridians converge on a sphere but stay equally spaced on a Mercator map. The map therefore stretches east-west distances more at high latitude. To preserve local angles, it stretches north-south distances by the same local factor.</p></article><article class="explanation prose" id="local-scale-0"><h2>At 60°: twice in each direction, four times in area</h2><p>For a tiny patch in spherical Mercator with equatorial scale one, linear scale is sec(latitude) and area scale is its square. Greenland spans many latitudes: a local fourfold factor is not a whole-country multiplier.</p></article><article class="explanation prose" id="motion-0"><h2>Move the land on a sphere, not by shrinking a picture</h2><p>Apply the same three-dimensional rotation to every boundary vertex. Spherical area stays unchanged while its outline on a fixed Mercator map changes. Natural Earth 1:110 million boundaries are generalized public-domain data, not precise survey measurements.</p></article><article class="explanation prose" id="tradeoffs-0"><h2>Choose the property your question needs</h2><p>Mercator preserves local angles and draws constant-heading rhumb lines straight; they are usually not shortest routes. Its poles lie at infinity and must be cropped. Equal Earth preserves area proportions, but not every shape, angle or distance.</p></article><footer class="explanation sources"><h2>Sources and scope</h2><ul><li><a href="https://raw.githubusercontent.com/OSGeo/PROJ/9.9/docs/source/operations/projections/merc.rst">PROJ · spherical Mercator equations</a></li><li><a href="https://www.britannica.com/place/Africa">Britannica · Africa</a></li><li><a href="https://www.indexmundi.com/greenland/area.html">IndexMundi · Greenland area (2021 source page)</a></li><li><a href="https://pro.arcgis.com/en/pro-app/3.6/help/mapping/properties/mercator.htm">Esri · Mercator properties</a></li><li><a href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth · public-domain boundaries</a></li><li><a href="https://doc.esri.com/en/arcgis-pro/latest/help/mapping/properties/equal-earth.html">Esri · Equal Earth</a></li></ul><p class="sources-note">Based on sealed research from 16–17 September 2026. Source reading, cited results and inherited observations are not new experiments in this production run.</p></footer></section><section data-aha-lang="zh" lang="zh-CN" data-aha-title="墨卡托地图为什么把格陵兰放大了？"><div class="eyebrow">从现象到机制</div><h1>墨卡托地图为什么把格陵兰放大了？</h1><p class="lead">按引用的面积统计，非洲约为格陵兰的 14 倍。墨卡托地图越靠近两极放大越严重，因此看轮廓容易误判面积比例。</p><h2>把土地面积与地图上的面积分开</h2><div class="controls"><label>球面旋转：原位 → 赤道附近<input class="position" type="range" min="0" max="1" step=".01" value="0"></label></div><div class="mechanism"></div><p class="limit">球面墨卡托；局部倍率不是整国倍率。概化边界的计算面积不替代统计面积。</p><article class="explanation prose" id="area-1"><h2>约 14 倍，不是装进 14 个轮廓</h2><p>引用资料给出格陵兰 2,166,086 km²、非洲约 30,365,000 km²。它们支持约 14 倍的比较，而非轮廓装箱；本次研究未核验格陵兰官方 PDF 的正文。</p></article><article class="explanation prose" id="spacing-1"><h2>同样的经度间隔，不是同样的地面距离</h2><p>球面上的经线向两极汇聚，墨卡托图上的经线却始终等距，因此高纬地区东西方向被放大。为了保持局部角度，南北方向也要按相同的局部倍率拉伸。</p></article><article class="explanation prose" id="local-scale-1"><h2>60° 附近：两方向各两倍，面积四倍</h2><p>以赤道比例为 1 的球面墨卡托为例，微小区域的线性倍率是纬度余弦的倒数，面积倍率是其平方。格陵兰跨越多个纬度，不能把局部四倍当成整国倍率。</p></article><article class="explanation prose" id="motion-1"><h2>在球面上移动土地，而不是缩小图片</h2><p>对边界的所有顶点施加同一个三维旋转：球面面积保持不变，固定墨卡托图上的轮廓却会改变。Natural Earth 1:1.1 亿边界是公共领域概化数据，不是精密测量。</p></article><article class="explanation prose" id="tradeoffs-1"><h2>先问地图要保留什么</h2><p>墨卡托保留局部角度，把恒定罗盘航向的恒向线画成直线，但它通常不是最短路线；两极在无穷远，有限地图必须裁切。Equal Earth 保面积比例，却不保所有形状、角度和距离。</p></article><footer class="explanation sources"><h2>依据与范围</h2><ul><li><a href="https://raw.githubusercontent.com/OSGeo/PROJ/9.9/docs/source/operations/projections/merc.rst">PROJ · spherical Mercator equations</a></li><li><a href="https://www.britannica.com/place/Africa">Britannica · Africa</a></li><li><a href="https://www.indexmundi.com/greenland/area.html">IndexMundi · Greenland area (2021 source page)</a></li><li><a href="https://pro.arcgis.com/en/pro-app/3.6/help/mapping/properties/mercator.htm">Esri · Mercator properties</a></li><li><a href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth · public-domain boundaries</a></li><li><a href="https://doc.esri.com/en/arcgis-pro/latest/help/mapping/properties/equal-earth.html">Esri · Equal Earth</a></li></ul><p class="sources-note">基于 2026-09-16 / 17 的封存研究。没有把历史源码阅读、引用或已有观察当作本轮新实验。</p></footer></section></main><script src="../assets/geo.js"></script><script src="../assets/map-data.js"></script><script>(function installVisuals(topic) {
+  const escape = value => String(value).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  const word = (en, zh, language) => language === "zh" ? zh : en;
+  const box = (heading, content, className = "") => `<div class="mechanism-box ${className}"><strong>${heading}</strong>${content}</div>`;
+  const value = (number, unit = "") => `<span class="big-value">${escape(number)}</span> ${escape(unit)}`;
+  let geography;
+  if (topic === "greenland") {
+    const { geoArea, geoCentroid, geoRotation, geoMercator, geoPath, geoGraticule10 } = window.Geo;
+    const features = window.MAP_DATA.features.map(feature => {
+      const g = structuredClone(feature.geometry);
+      const polygons = g.type === "Polygon" ? [g.coordinates] : g.coordinates;
+      for (const rings of polygons) {
+        if (geoArea({ type: "Polygon", coordinates: rings }) > 2 * Math.PI) rings.forEach(ring => ring.reverse());
+      }
+      return { ...feature, geometry: g };
+    });
+    const original = features.find(f => f.properties.name === "Greenland");
+    if (!original) throw new Error("Greenland boundary missing");
+    const center = geoCentroid(original), area = geoArea(original);
+    if (!(area > 0 && area < .1)) throw new Error("Invalid boundary winding");
+    const projection = geoMercator().scale(116).translate([440, 325]).clipExtent([[0, 0], [880, 380]]);
+    const path = geoPath(projection);
+    geography = progress => {
+      const rotation = geoRotation([0, -center[1] * progress, 0]);
+      const point = p => {
+        const q = rotation([p[0] - center[0], p[1]]);
+        return [((q[0] + center[0] + 540) % 360) - 180, q[1]];
+      };
+      const g = original.geometry;
+      const moved = { type: g.type, coordinates: g.type === "Polygon" ? g.coordinates.map(r => r.map(point)) : g.coordinates.map(poly => poly.map(r => r.map(point))) };
+      const areaError = Math.abs(geoArea(moved) / area - 1);
+      if (areaError > 1e-10) throw new Error("Rotation changed spherical area");
+      window.geographicState = { areaError, progress, scale: projection.scale(), originalArea: area, movedArea: geoArea(moved) };
+      return `<svg class="map" viewBox="0 0 880 380" aria-hidden="true"><path class="land" d="${path({ type: "FeatureCollection", features: features.filter(f => f !== original) })}"/><path class="gridline" d="${path(geoGraticule10())}"/><path class="ghost" d="${path(original)}"/><path class="moving-land" d="${path(moved)}"/></svg>`;
+    };
+  }
+  function draw(holder, state = 0, language = "en", options = {}) {
+    const t = (en, zh) => word(en, zh, language);
+    let html;
+    if (topic === "anc") {
+      const gain = options.gain ?? 1;
+      const phase = options.phase ?? state * 80;
+      const delta = phase * Math.PI / 180;
+      const residual = Math.sqrt(1 + gain * gain - 2 * gain * Math.cos(delta));
+      const curve = fn => Array.from({ length: 161 }, (_, i) => `${i ? "L" : "M"}${i * 5},${110 - fn(i / 160 * Math.PI * 6) * 46}`).join(" ");
+      html = `<div class="pressure-legend"><span>${t("Incoming pressure", "传入声压")}</span><span>${t("Speaker pressure", "控制声压")}</span><strong>${t("Residual sum", "相加后的残余")}</strong></div>
+        <svg viewBox="0 0 800 220" class="waves" role="img" aria-label="${t("Two pressure waves and their sum at the same ear position", "同一耳边位置两路声压与其总和")}"><path class="axis" d="M0 110H800"/><path class="incoming" d="${curve(x => Math.sin(x))}"/><path class="control" d="${curve(x => -gain * Math.sin(x + delta))}"/><path class="wave-result" d="${curve(x => Math.sin(x) - gain * Math.sin(x + delta))}"/></svg>
+        <div class="result">${t("Residual amplitude / incoming amplitude", "残余幅度 / 传入幅度")} ${value(residual.toFixed(2))}</div>
+        <p class="model-label">${t("One position · normalized pressure · not decibels or loudness", "同一位置 · 归一化声压 · 非分贝或响度")}</p>`;
+      holder.dataset.residual = residual.toFixed(6);
+    } else if (topic === "greenland") {
+      html = geography(state) + `<div class="map-caption"><strong>${t("Highlighted: Greenland", "高亮：格陵兰")}</strong><span>${t("Rigid rotation · constant spherical area", "球面刚体旋转 · 球面面积不变")}</span></div><p class="model-label">${t("Fixed spherical Mercator scale · poles cropped · dotted original outline", "固定球面墨卡托比例 · 两极裁切 · 虚线为原轮廓")}</p>`;
+    } else if (topic === "cpython-string") {
+      const cases = [
+        { cp: "U+00E9", kind: 1, bytes: "100,074", utf: "100,002" },
+        { cp: "U+4E2D", kind: 2, bytes: "200,076", utf: "100,003" },
+        { cp: "U+1F600", kind: 4, bytes: "400,080", utf: "100,004" },
+      ];
+      const selected = cases[options.caseIndex ?? 2];
+      const assembling = state > 0 && state < .8;
+      const width = state < .25 ? 1 : 1 + (selected.kind - 1) * Math.min(1, (state - .25) / .55);
+      const slots = (kind, last, cls = "") => `<div class="slots ${cls}" style="--slot-width:${kind}">${["a", "a", "a", "…", "a", last].map((s, i) => `<span${i === 5 && last !== "a" ? ' class="codepoint-slot"' : ""}>${escape(s)}</span>`).join("")}</div>`;
+      html = `<div class="string-original"><strong>${t("Original str: unchanged", "原 str：保持不变")}</strong>${slots(1, "a")}<small>${t("100,000 ASCII code points · 1 byte per slot", "100,000 个 ASCII 码点 · 每槽 1 字节")}</small></div>
+        <div class="string-result" style="visibility:${state > 0 ? "visible" : "hidden"}"><strong>${assembling ? t("Allocating the new result", "正在分配新结果") : t("New str after concatenation", "拼接后的新 str")} · ${escape(selected.cp)}</strong>${slots(width, selected.cp, "accent-slots")}<small>${t("Target: uniform slots in the new result", "目标：新结果中的码点槽统一宽度")} · ${selected.kind} ${t("bytes per code point", "字节 / 码点")}</small></div>
+        <div class="memory-pair">${box(t("str object", "str 对象"), value(state < .8 ? "100,049" : selected.bytes, t("bytes", "字节")))}${box(t("UTF-8 payload", "UTF-8 载荷"), value(state < .8 ? "100,000" : selected.utf, t("bytes", "字节")))}</div>
+        <p class="model-label">${t("Supplied CPython 3.11.15 observations; representative slots, not 100,000 drawn cells.", "既有 CPython 3.11.15 记录；仅绘制代表槽，并非十万个实际格子。")}</p>`;
+      holder.dataset.kind = selected.kind;
+    } else {
+      const stage = options.stage ?? (state < .33 ? "add" : state < .7 ? "delete" : "same");
+      const deletion = stage !== "add";
+      const base = stage === "base";
+      const layer = (label, text, cls = "") => `<div class="layer ${cls}"><b>${label}</b><span>${text}</span></div>`;
+      html = `<div class="docker-comparison">
+        <div><h3>${t("Separate RUNs", "分开的 RUN")}</h3><div class="layer-stack">${deletion ? layer(t("Later layer", "后加层"), ".wh.temp", "marker-layer") : '<div class="layer-placeholder"></div>'}${layer(deletion ? t("Earlier layer", "先前层") : t("First committed layer", "首个提交层"), "/temp · 100 MB", "payload-layer")}</div><div class="merged"><b>${t("Merged view", "合并视图")}</b><strong>${deletion ? t("/temp absent", "/temp 不存在") : t("/temp visible", "/temp 可见")}</strong></div></div>
+        <div><h3>${t("Same RUN · NEW file", "同一 RUN · 新文件")}</h3><div class="endpoint"><span>${t("Before: absent", "之前：不存在")}</span><span>${t("Create → delete", "创建 → 删除")}</span><span>${t("After: absent", "之后：不存在")}</span></div><div class="merged"><b>${t("Resulting diff", "生成的差异")}</b><strong>${t("No payload for this file", "没有此文件的载荷")}</strong></div></div></div>
+        <p class="model-label ${base ? "emphasis" : ""}">${base ? t("Base-file exception: deleting a file already in the base still leaves its lower-layer bytes.", "基础层反例：删除基础层已有文件，仍会保留下层字节。") : t("Layer cutaway ≠ merged view. 100 MB assumed; no build executed.", "层剖面 ≠ 合并视图。100 MB 为假设；未执行构建。")}</p>`;
+      holder.dataset.stage = stage;
+    }
+    holder.innerHTML = html;
+  }
+  window.drawMechanism = draw;
+  for (const section of document.querySelectorAll("[data-aha-lang]")) {
+    const holder = section.querySelector(".mechanism");
+    const language = section.dataset.ahaLang;
+    const update = () => {
+      if (topic === "anc") draw(holder, 0, language, { gain: Number(section.querySelector(".gain").value), phase: Number(section.querySelector(".phase").value) });
+      else if (topic === "greenland") draw(holder, Number(section.querySelector(".position").value), language);
+      else if (topic === "cpython-string") draw(holder, 1, language, { caseIndex: Number(section.querySelector(".codepoint").value) });
+      else draw(holder, 0, language, { stage: section.querySelector(".scenario").value });
+    };
+    section.querySelectorAll("input,select").forEach(input => input.addEventListener("input", update));
+    update();
+  }
+})("greenland");</script></body></html>

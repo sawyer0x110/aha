@@ -1,0 +1,57 @@
+{
+  "purpose": "Separate land area from projected area",
+  "researchReuse": "Read the sealed report and claim ledger for scope, version, evidence and limits; no fresh scientific or code experiment.",
+  "readingContext": "Chinese native editable 16:9 slides; inspect all pages in PowerPoint.",
+  "composition": [
+    {
+      "id": "area",
+      "question": "About fourteen times, not fourteen packed outlines",
+      "relationship": "The cited areas are 2,166,086 km² for Greenland and about 30,365,000 km² for Africa. They support a rounded ratio, not a claim that fourteen Greenland outlines fit inside Africa. The official Greenland PDF body was not verified.",
+      "claims": [
+        "c-area"
+      ]
+    },
+    {
+      "id": "spacing",
+      "question": "Equal longitude gaps are not equal ground distances",
+      "relationship": "Meridians converge on a sphere but stay equally spaced on a Mercator map. The map therefore stretches east-west distances more at high latitude. To preserve local angles, it stretches north-south distances by the same local factor.",
+      "claims": [
+        "c-bridge",
+        "c-cause"
+      ]
+    },
+    {
+      "id": "local-scale",
+      "question": "At 60°: twice in each direction, four times in area",
+      "relationship": "For a tiny patch in spherical Mercator with equatorial scale one, linear scale is sec(latitude) and area scale is its square. Greenland spans many latitudes: a local fourfold factor is not a whole-country multiplier.",
+      "claims": [
+        "c-scale"
+      ]
+    },
+    {
+      "id": "motion",
+      "question": "Move the land on a sphere, not by shrinking a picture",
+      "relationship": "Apply the same three-dimensional rotation to every boundary vertex. Spherical area stays unchanged while its outline on a fixed Mercator map changes. Natural Earth 1:110 million boundaries are generalized public-domain data, not precise survey measurements.",
+      "claims": [
+        "c-motion",
+        "c-resource"
+      ]
+    },
+    {
+      "id": "tradeoffs",
+      "question": "Choose the property your question needs",
+      "relationship": "Mercator preserves local angles and draws constant-heading rhumb lines straight; they are usually not shortest routes. Its poles lie at infinity and must be cropped. Equal Earth preserves area proportions, but not every shape, angle or distance.",
+      "claims": [
+        "c-navigation",
+        "c-poles",
+        "c-equal"
+      ]
+    }
+  ],
+  "tools": [
+    "Repository aha-explain and shared latest guides",
+    "Host pptx guidance",
+    "Host web-artifacts-builder theme",
+    "Aha 0.3.3 runtime"
+  ]
+}

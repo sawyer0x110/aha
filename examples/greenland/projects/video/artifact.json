@@ -3,29 +3,26 @@
   "format": "video",
   "language": "en",
   "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6",
-  "title": "Why does Greenland look so big?",
+  "title": "Why Mercator makes Greenland look enormous",
   "status": "authored",
   "entry": "html/index.html",
   "coverage": [
-    {"id":"opening","claimIds":["c-cause"]},
-    {"id":"area-bars","claimIds":["c-area"]},
-    {"id":"meridians-globe","claimIds":["c-bridge"]},
-    {"id":"meridians-map","claimIds":["c-bridge","c-cause"]},
-    {"id":"latitude-stretch","claimIds":["c-bridge"]},
-    {"id":"local-patch","claimIds":["c-scale"]},
-    {"id":"local-area","claimIds":["c-scale"]},
-    {"id":"moving-greenland","claimIds":["c-motion"]},
-    {"id":"unchanged-area","claimIds":["c-motion"]},
-    {"id":"local-angles","claimIds":["c-navigation"]},
-    {"id":"constant-heading","claimIds":["c-navigation"]},
-    {"id":"equal-earth","claimIds":["c-equal"]},
-    {"id":"projection-tradeoff","claimIds":["c-equal"]},
-    {"id":"closing-choice","claimIds":["c-navigation","c-equal"]}
+    {
+      "id": "video-central-mechanism",
+      "claimIds": [
+        "c-area",
+        "c-cause",
+        "c-bridge",
+        "c-scale",
+        "c-navigation",
+        "c-poles",
+        "c-equal",
+        "c-resource",
+        "c-motion"
+      ]
+    }
   ],
-  "omissions": [
-    {"claimId":"c-poles","reason":"A polar-crop note is displayed on Mercator views; the infinite-pole derivation is omitted from narration to keep the core causal explanation within the requested 90–120 second measured duration range."},
-    {"claimId":"c-resource","reason":"Natural Earth is credited on screen and its public-domain provenance and library licenses are included locally; resource licensing is not spoken in the short explanation."}
-  ],
+  "omissions": [],
   "width": 1280,
   "height": 720
 }

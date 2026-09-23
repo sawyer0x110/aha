@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "delivered",
+  "format": "pptx",
+  "title": "一个码点为什么会让 CPython 字符串变宽？",
+  "researchHash": "04cdf5f8906f1385f8575b9c99d46ae60bfe4c2c37e79982658a19d9d617daf8",
+  "sourceHash": "9e3e1816e16b504b92fddb7daab92d50a7fcd4f6dada2b8c71c2e2be5954ecc5",
+  "outputHash": "33086e27f38f98540fa4bb86259e52c49c6126a0ed82b457dcdeb7e6bbd6df94",
+  "output": "cpython-string.pptx",
+  "createdAt": "2026-09-22T09:47:07.223Z",
+  "codeExecuted": true,
+  "sandboxed": false,
+  "native": true,
+  "slides": 7,
+  "verification": "Source/output hashes and declared claim coverage, not semantic truth or visual quality. Receipts describe a specific source revision; recheck the source hash after edits."
+}

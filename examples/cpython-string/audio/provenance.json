@@ -1,0 +1,56 @@
+{
+  "provider": "edge-tts",
+  "voice": "en-US-JennyNeural",
+  "rate": "+0%",
+  "recordingPlanHash": "0fe035535f68a92b100ab321188b6a840f4c0e6134487a48b36e4b192bfc3141",
+  "narration": [
+    {
+      "id": "segment-1",
+      "text": "Start with one hundred thousand ASCII code points in a compact CPython string. Their internal character slots use one byte each."
+    },
+    {
+      "id": "segment-2",
+      "text": "Concatenate U plus one F six hundred. The new result needs four-byte slots for every code point, including the unchanged ASCII prefix. The original string is not modified."
+    },
+    {
+      "id": "segment-3",
+      "text": "A supplied CPython three point eleven point fifteen observation reports one hundred thousand forty-nine bytes before, and four hundred thousand eighty bytes after. Those totals include object overhead; this is not a new measurement."
+    },
+    {
+      "id": "segment-4",
+      "text": "UTF-eight is different. Its ASCII prefix still uses one byte per code point, and the added code point contributes four bytes. The encoded payload grows by four, not fourfold."
+    },
+    {
+      "id": "segment-5",
+      "text": "Not every non-ASCII character forces four-byte slots. U plus zero zero E nine stays in the one-byte class, while U plus four E two D uses two. Code-point range is the key, not an emoji label."
+    }
+  ],
+  "recordings": [
+    {
+      "id": "segment-1",
+      "file": "segment-001.wav",
+      "sha256": "84aabf2c1afd230f3ef6c9b30a9eb894cc709623431fa07e65a29d716f9d9973"
+    },
+    {
+      "id": "segment-2",
+      "file": "segment-002.wav",
+      "sha256": "c2da430bb67fdbd93eaa968326284eafe0238d582b74a4646d218055b4aef1a8"
+    },
+    {
+      "id": "segment-3",
+      "file": "segment-003.wav",
+      "sha256": "60f916c39c97c3a302848b35f4529affd6ff0fba75bb7acba7f2bf35db9c0413"
+    },
+    {
+      "id": "segment-4",
+      "file": "segment-004.wav",
+      "sha256": "9a03315c4b23672a1acff3e151955fe275f558bffca4773c6ad6d38c19947681"
+    },
+    {
+      "id": "segment-5",
+      "file": "segment-005.wav",
+      "sha256": "6b73ebbbd190eec290cb2a414a42fd31db995cd11c78baaa416a304d6424d4dd"
+    }
+  ],
+  "method": "Offline import of authorized newly synthesized recordings; exact WAV bytes and frame timing retained. No second synthesis."
+}

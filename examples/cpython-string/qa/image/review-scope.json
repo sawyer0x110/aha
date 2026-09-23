@@ -1,0 +1,12 @@
+{
+  "sourceHash": "b4bb299bccfe039c96c8f44590c78119901c1273129adfeea43a8c8550585eb1",
+  "researchHash": "04cdf5f8906f1385f8575b9c99d46ae60bfe4c2c37e79982658a19d9d617daf8",
+  "outputHash": "2453dfe5c3146dd19cc3a888eca21a50035d60acc7d2eb9ecdb98adb9b0179e5",
+  "receiptHash": "906f98036b8755c161debaf924f312bddfb51ca4b8e03a19db055de9c4b15ba2",
+  "status": "reading-preview-only",
+  "limitations": [
+    "No human comprehension or acceptance study.",
+    "Host document skills and local tools also contributed; this is not an isolated skill-effect comparison.",
+    "Desktop/document reading at 1200px or wider; zoom-free phone reading is not promised."
+  ]
+}

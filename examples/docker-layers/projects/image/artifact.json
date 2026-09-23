@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0.0",
+  "format": "image",
+  "language": "en",
+  "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
+  "title": "Why deleting a file does not erase an earlier Docker layer",
+  "status": "authored",
+  "entry": "html/index.html",
+  "coverage": [
+    {
+      "id": "image-central-mechanism",
+      "claimIds": [
+        "c-layer",
+        "c-example",
+        "c-delete",
+        "c-same",
+        "c-base"
+      ]
+    }
+  ],
+  "omissions": [
+    {
+      "claimId": "c-size",
+      "reason": "Secondary branch omitted from this concise standalone infographic; see the full HTML and research report."
+    },
+    {
+      "claimId": "c-writable",
+      "reason": "Secondary branch omitted from this concise standalone infographic; see the full HTML and research report."
+    }
+  ],
+  "width": 1800,
+  "height": 1600
+}

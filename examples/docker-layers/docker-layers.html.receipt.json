@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "delivered",
+  "format": "html",
+  "title": "Why deleting a file does not erase an earlier Docker layer",
+  "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723",
+  "sourceHash": "7e800919c19841175d921e1447d7c060d6cd34e1086bf604e1df7709d674f629",
+  "outputHash": "417482039e118c9a633e307ac06a53a79d8fd64c1ecb5f12ba9961e756cbfea7",
+  "output": "docker-layers.html",
+  "createdAt": "2026-09-22T09:51:34.055Z",
+  "codeExecuted": false,
+  "selfContained": true,
+  "verification": "Source/output hashes and declared claim coverage, not semantic truth or visual quality. Receipts describe a specific source revision; recheck the source hash after edits."
+}

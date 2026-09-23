@@ -1,0 +1,21 @@
+{
+  "sourceHash": "26a6dbc3dabf964168a60f0570a7ebed7ec20402de5f31e0709003fbf12c140e",
+  "researchHash": "04cdf5f8906f1385f8575b9c99d46ae60bfe4c2c37e79982658a19d9d617daf8",
+  "outputHash": "9fa74d2485d79ba3d4191abc3b7679d6c9eb46f2cf8b04563eaf8796f66b154d",
+  "receiptHash": "b1e5b39a1b1563cb6791a9f04cfa8a7290c854be49e28417b325cfcc5322b8df",
+  "status": "bounded-agent-review",
+  "findings": [
+    "CPython 3.11.15, compact-string example. Recorded sizes were supplied, not rerun; slot diagrams are not to scale.",
+    "Both languages, both themes and 1280/390/320px controls and page geometry checked offline.",
+    "Representative current full-page screenshots inspected: standalone titles, mechanism labels, explanatory paragraphs and source limitations remain visible."
+  ],
+  "limitations": [
+    "No human comprehension or acceptance study.",
+    "Host document skills and local tools also contributed; this is not an isolated skill-effect comparison.",
+    "No physical-phone or screen-reader acceptance; geometric and interaction checks are not a complete independent visual review."
+  ],
+  "unperformed": [
+    "Human comprehension",
+    "Human acceptance"
+  ]
+}

@@ -369,7 +369,7 @@ export async function verifyRepairRun(output, expectedManifestSha256) {
   equal(run.schema_version, 1, 'manifest schema');
   equal(run.round, 'pptx-second-round-repair-only', 'round');
   equal(run.root, root, 'run root');
-  const caseIds = ['git-merge', 'anc', 'greenland', 'aha-introduction'];
+  const caseIds = ['cpython-string', 'anc', 'greenland', 'aha-introduction'];
   const conditions = ['baseline', 'candidate'];
   const evaluator = path.join(root, 'evaluator');
   const mutable = new Set(['run.json', 'review-mapping.json', ...caseIds.map(id => `${id}/eval_metadata.json`)]);

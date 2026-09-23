@@ -1,26 +1,38 @@
 {
   "schemaVersion": "1.0.0",
-  "planHash": "9a87e23140f1144e06a4258a34d35aa595dcdf84441181bf074b8c7255962289",
-  "provider": "edge-tts",
-  "voice": "en-US-AriaNeural",
+  "planHash": "50dd8ab789890fd69c1299a22da6aaa921918c988cd5ca512e8c581ac3823400",
+  "provider": "provided-audio",
+  "voice": "approved-jenny-recordings",
   "segments": [
     {
-      "id": "ascii-baseline",
+      "id": "segment-1",
       "filename": "segment-001.wav",
-      "frames": 209,
-      "sha256": "a271ec3e9e98eea18f46df4b4fd82b90625a14b8869932cbbae72245af5aa3c5"
+      "frames": 267,
+      "sha256": "84aabf2c1afd230f3ef6c9b30a9eb894cc709623431fa07e65a29d716f9d9973"
     },
     {
-      "id": "whole-string-widens",
+      "id": "segment-2",
       "filename": "segment-002.wav",
-      "frames": 199,
-      "sha256": "97fb668c1ee0cb22a65ce183ee3b5ff308638dbfb486fa2e0c154000c56590b8"
+      "frames": 376,
+      "sha256": "c2da430bb67fdbd93eaa968326284eafe0238d582b74a4646d218055b4aef1a8"
     },
     {
-      "id": "utf8-contrast",
+      "id": "segment-3",
       "filename": "segment-003.wav",
-      "frames": 236,
-      "sha256": "cca5529f145cf074b0e6b589adb1394823cbe62a8ee98669589bf3d19448808f"
+      "frames": 436,
+      "sha256": "60f916c39c97c3a302848b35f4529affd6ff0fba75bb7acba7f2bf35db9c0413"
+    },
+    {
+      "id": "segment-4",
+      "filename": "segment-004.wav",
+      "frames": 401,
+      "sha256": "9a03315c4b23672a1acff3e151955fe275f558bffca4773c6ad6d38c19947681"
+    },
+    {
+      "id": "segment-5",
+      "filename": "segment-005.wav",
+      "frames": 417,
+      "sha256": "6b73ebbbd190eec290cb2a414a42fd31db995cd11c78baaa416a304d6424d4dd"
     }
   ]
 }

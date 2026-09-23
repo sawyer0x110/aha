@@ -1,12 +1,4 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Why ANC quiets aircraft rumble but leaves voices</title><script>(() => {
-  const param = new URLSearchParams(window.location.search).get("scoutTheme");
-  const theme =
-    param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-  document.documentElement.setAttribute("data-theme", theme);
-})();</script><style>
-:root {
+<!doctype html><html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Why noise cancellation leaves some voices audible</title><script>(() => { const param = new URLSearchParams(window.location.search).get("scoutTheme"); const theme = param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); document.documentElement.setAttribute("data-theme", theme); })();</script><style>:root {
   color-scheme: light;
   --cp-bg: #f7f4ef;
   --cp-bg-elevated: #fcfbf8;
@@ -58,84 +50,183 @@ html[data-theme="dark"] {
   --cp-sheen: rgba(255, 255, 255, 0.04);
   --cp-highlight: rgba(253, 142, 161, 0.12);
 }
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--cp-bg); color: var(--cp-text); font: 16px/1.6 "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif; }
-code, pre { font-family: Consolas, "Courier New", Courier, monospace; }
-a { color: var(--cp-link); }
-button { font: inherit; min-height: 44px; padding: 8px 12px; border: 1px solid var(--cp-border); border-radius: 0.625rem; color: var(--cp-text); background: var(--cp-surface); cursor: pointer; }
-button:hover { background: var(--cp-accent-soft); }
-:focus-visible { outline: 3px solid var(--cp-accent); outline-offset: 3px; }
 
-:root { --cp-bookend:#292929; --cp-bookend-text:#dedede; --cp-paper:#fcfbf8; --cp-ink:#242424; --cp-rose:#b11f4b; }
-main { padding:36px 64px; width:1280px; height:720px; background:var(--cp-paper); color:var(--cp-ink); }
-main.dark {background:var(--cp-bookend);color:var(--cp-bookend-text);}
-h1 {line-height:1.1; font-size:43px; max-width:1130px; margin:0; height:100px;}
-#kicker {font-size:17px;letter-spacing:.1em;margin:0 0 14px}
-#visual {position:absolute;left:64px;top:188px;width:1152px;height:300px;}
-svg {width:100%;height:100%;} svg text{font:22px "Segoe UI",sans-serif;fill:var(--cp-ink)}
-#meaning {position:absolute;top:475px;left:64px;width:1152px;font-size:25px;line-height:1.2;margin:0;}
-#source {position:absolute;top:524px;left:64px;width:1152px;font-size:16px;line-height:1;margin:0;}
-.dark #source,.dark #meaning{color:var(--cp-bookend-text)}
-.dark svg text{fill:var(--cp-bookend-text)}
-#bookend {font-size:38px;line-height:1.3;max-width:1000px;padding-top:28px;}
-.row {display:grid;grid-template-columns:1fr 1fr;gap:44px;font-size:29px;line-height:1.35;padding:24px 0;}
-.label {font-size:21px;letter-spacing:.05em;color:var(--cp-rose);font-weight:bold;margin-bottom:20px}
-.card {padding:24px;border:2px solid var(--cp-border);border-radius:16px;}
-.big {font-size:52px;font-weight:700}.quiet {font-size:22px}
-[hidden]{display:none !important}
-html, body { width: 1280px; height: 720px; overflow: hidden; }
-</style></head><body>
-<main id="stage"><p id="kicker">ACTIVE NOISE CANCELLATION / PRESSURE AT THE EAR</p><h1 id="title">Why aircraft rumble fades, but voices remain</h1>
-<div id="visual">
-<div id="bookend">ANC works on pressure at your ear.<br>It does not mute a category called “noise”.</div>
-<svg id="waves" viewBox="0 0 1152 300" role="img" aria-label="Deterministic single-tone pressure traces at the ear, not measured headphone performance" hidden>
-<text x="0" y="27">Incoming</text><text x="0" y="119">Control</text><text x="0" y="211">Residual</text>
-<path d="M155 48 H920 M155 140 H920 M155 232 H920" stroke="var(--cp-border)" stroke-width="2"/>
-<path id="incoming" fill="none" stroke="var(--cp-ink)" stroke-width="4"/>
-<path id="control" fill="none" stroke="var(--cp-rose)" stroke-width="4" stroke-dasharray="10 6"/>
-<path id="residual" fill="none" stroke="var(--cp-ink)" stroke-width="5"/>
-<text x="947" y="48">Same ear</text><text id="condition" x="947" y="145">Matched</text><text id="residual-value" x="947" y="238">0.00 ×</text>
-<text x="155" y="291">Time → one cycle · normalized pressure · ideal model</text>
-</svg>
-<div id="comparison" class="row" hidden><div class="card"><div id="left-label" class="label"></div><div id="left-text"></div></div><div class="card"><div id="right-label" class="label"></div><div id="right-text"></div></div></div>
-</div><p id="meaning">Some voice components can shrink while others remain audible.</p><p id="source">Sony WH-1000XM5 Help Guide · helpguide.sony.net</p>
-</main><script>
-const scenes=[
- {type:'book',title:'Why aircraft rumble fades, but voices remain',body:'ANC works on pressure at your ear.\nIt does not mute a category called “noise”.',meaning:'Some voice components can shrink while others remain audible.',source:'Sony WH-1000XM5 Help Guide · helpguide.sony.net'},
- {type:'wave',title:'The ear receives a sum of pressures',kind:'arrive',meaning:'Incoming pressure + speaker pressure = residual at this target.',source:'RWTH IKS, Principle · iks.rwth-aachen.de'},
- {type:'wave',title:'Match the pressure after both acoustic paths',kind:'match',meaning:'Equal amplitude, opposite phase: the ideal residual shrinks to zero.',source:'Hilgemann et al., §2.1–2.2 · arxiv.org/html/2509.15864v1'},
- {type:'wave',title:'Change the phase. Watch the residual return.',kind:'slip',meaning:'Equal amplitude is not enough if arrival timing is wrong.',source:'Analytical single-tone illustration · RWTH IKS path/latency context'},
- {type:'compare',title:'The same delay takes more of a faster cycle',leftLabel:'100 Hz',left:'3.6° phase error',rightLabel:'1000 Hz',right:'36° phase error',meaning:'Illustrative uncorrected error: 0.10 ms. Not a measured earbud delay.',source:'Derived from phase error = 2π × frequency × delay'},
- {type:'compare',title:'Not a universal frequency wall',leftLabel:'TIMING AND PATHS',left:'Reference preview\nAcoustic propagation',rightLabel:'CONTROL LIMITS',right:'Bandwidth\nFeedback stability',meaning:'Frequency tightens conditions; it does not classify speech as impossible.',source:'RWTH IKS · Hilgemann et al., §2'},
- {type:'compare',title:'Passive and active do different jobs',leftLabel:'PASSIVE',left:'Seal and ear cup\nchange transmission',rightLabel:'ACTIVE',right:'Speaker adds\ncontrol pressure',meaning:'ANC off still leaves the physical barrier in place.',source:'Hilgemann et al., §2.1 and §2.3 · arxiv.org/html/2509.15864v1'},
- {type:'compare',title:'Speech can be reduced and still heard',leftLabel:'ATTENUATED COMPONENTS',left:'Some parts\nbecome weaker',rightLabel:'RESIDUAL COMPONENTS',right:'Enough remains\nto be audible',meaning:'A voice is not one high-frequency tone.',source:'Sony WH-1000XM5 Help Guide · RWTH IKS own-voice discussion'},
- {type:'compare',title:'Speech is not immune to active control',leftLabel:'CLOSED EAR CANAL',left:'Own-voice low frequencies\ncan be enhanced',rightLabel:'ACTIVE OCCLUSION CONTROL',right:'Can reduce that\nvoice enhancement',meaning:'A counterexample to “voice pressure cannot be cancelled”.',source:'RWTH IKS, Applications: Occlusion Effect Reduction'},
- {type:'compare',title:'Do not turn that counterexample into a promise',leftLabel:'WHAT IT SHOWS',left:'Voice pressure\ncan be controlled',rightLabel:'WHAT IT DOES NOT SHOW',right:'Another person’s\nwhole voice erased',meaning:'More noticeable speech does not prove its pressure was amplified.',source:'Scope distinction from RWTH IKS and Sony guidance'},
- {type:'compare',title:'Mode can change what gets through',leftLabel:'ANC',left:'Adds anti-noise',rightLabel:'TRANSPARENCY',right:'Intentionally lets\noutside sound in',meaning:'Adaptive modes may change the balance. Check your actual setting.',source:'Apple Support · support.apple.com/en-us/108918'},
- {type:'compare',title:'Fit changes the sound paths',leftLabel:'KEEP CONSTANT',left:'Seal and position',rightLabel:'COMPARE',right:'ANC on / off\nwith the same source',meaning:'Removing the headphones is a different baseline.',source:'Sony Help Guide · Hilgemann et al., §2.2'},
- {type:'compare',title:'A model is not your measured ear',leftLabel:'PUBLISHED PROTOTYPE',left:'Response varied\nwith wearer and fit',rightLabel:'THIS EXPLANATION',right:'No new acoustic test\nNo personal decibel claim',meaning:'The original authors’ results do not predict your flight.',source:'Hilgemann et al., §6.3 · arxiv.org/html/2509.15864v1'},
- {type:'book',title:'Ask what remains at the ear',body:'Path. Timing. Fit. Mode.\nNot “engine” versus “voice”.',meaning:'Audible speech can still be attenuated. No universal frequency wall.',source:'RWTH IKS · Sony Help Guide · Apple Support · Hilgemann et al.'}
-];
-const byId=id=>document.getElementById(id);
-function trace(fn,center,shift){
-  return Array.from({length:181},(_,i)=>`${i?'L':'M'}${155+i*765/180},${center-32*fn(i*2*Math.PI/180-shift)}`).join(' ');
-}
-window.ahaVideo={async renderFrame({frame,fps,segmentIndex,segmentFrame,segmentFrames,text}){
-  const index=Math.max(0,Math.min(scenes.length-1,segmentIndex));
-  const s=scenes[index],p=segmentFrames>1?segmentFrame/(segmentFrames-1):1;
-  byId('stage').className=s.type==='book'?'dark':'';
-  byId('title').textContent=s.title;byId('meaning').textContent=s.meaning;byId('source').textContent=s.source;
-  byId('bookend').hidden=s.type!=='book';byId('waves').toggleAttribute('hidden',s.type!=='wave');byId('comparison').hidden=s.type!=='compare';
-  byId('bookend').textContent=s.body||'';byId('bookend').style.whiteSpace='pre-line';
-  for(const side of ['left','right']){byId(side+'-label').textContent=s[side+'Label']||'';byId(side+'-text').textContent=s[side]||'';byId(side+'-text').style.whiteSpace='pre-line';}
-  const gain=s.kind==='arrive'?0:s.kind==='match'?Math.min(1,p*1.5):1;
-  const delta=s.kind==='slip'?Math.min(1,p*1.5)*Math.PI/3:0;
-  const shift=2*Math.PI*p;
-  byId('incoming').setAttribute('d',trace(t=>Math.sin(t),48,shift));
-  byId('control').setAttribute('d',trace(t=>-gain*Math.sin(t-delta),140,shift));
-  byId('residual').setAttribute('d',trace(t=>Math.sin(t)-gain*Math.sin(t-delta),232,shift));
-  byId('condition').textContent=s.kind==='slip'?`${Math.round(delta*180/Math.PI)}° error`:`gain ${gain.toFixed(2)}`;
-  byId('residual-value').textContent=`${Math.sqrt(Math.max(0,1+gain*gain-2*gain*Math.cos(delta))).toFixed(2)} ×`;
+*{box-sizing:border-box}body{margin:0;background:var(--cp-bg);color:var(--cp-text);font:18px/1.7 "Segoe UI",Aptos,Calibri,-apple-system,BlinkMacSystemFont,sans-serif}
+main{max-width:1120px;margin:auto;padding:56px 32px}h1{font-size:clamp(32px,5vw,58px);line-height:1.16;max-width:19ch;margin:16px 0 24px;letter-spacing:-.025em}
+h2{font-size:28px;line-height:1.3;margin:0 0 16px}h3{font-size:21px;line-height:1.35}p{margin:0 0 20px}.lead{font-size:22px;max-width:70ch}
+.eyebrow{font-weight:650;color:var(--cp-accent);letter-spacing:.1em;text-transform:uppercase;font-size:14px}
+.prose{max-width:72ch}.explanation{border-top:1px solid var(--cp-border);padding-top:28px;margin-top:36px}
+.controls{display:flex;gap:24px;flex-wrap:wrap;margin:24px 0;min-width:0}.controls label{display:grid;gap:8px;min-width:0;max-width:100%}
+input,select,button{font:inherit;max-width:100%;color:var(--cp-text);accent-color:var(--cp-accent)}select{padding:8px;background:var(--cp-surface);border:1px solid var(--cp-border-strong);border-radius:10px}
+a{color:var(--cp-link);overflow-wrap:anywhere}a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--cp-accent);outline-offset:5px}
+.limit{border-left:4px solid var(--cp-accent);padding:12px 20px;margin:28px 0}.sources{font-size:15px}.sources li{margin:8px 0}.sources-note{color:var(--cp-text-muted)}
+[hidden]{display:none!important}@media(max-width:600px){main{padding:28px 20px}.lead{font-size:19px}h2{font-size:24px}.controls{display:grid}.controls label{min-width:0}}
+
+.mechanism { border:1px solid var(--cp-border-strong); padding:24px; background:var(--cp-surface); border-radius:16px; overflow:hidden }
+.mechanism strong,.mechanism b { display:block }.mechanism h3 { margin:0 0 16px }.mechanism p { margin:12px 0 0 }
+.mechanism-box { padding:16px; background:var(--cp-surface-soft) }.mechanism-box strong { margin-bottom:8px }
+.big-value { font-size:1.6em; font-weight:700; font-variant-numeric:tabular-nums }
+.pressure-legend { display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between }
+.pressure-legend span:nth-child(2) { border-bottom:2px dashed var(--cp-text-muted) }.pressure-legend strong { color:var(--cp-accent) }
+.waves,.map { display:block; width:100%; height:auto }.axis { stroke:var(--cp-border); fill:none }
+.incoming { stroke:var(--cp-text); fill:none; stroke-width:2 }.control { stroke:var(--cp-text-muted); stroke-dasharray:8 5; fill:none; stroke-width:2 }
+.wave-result { stroke:var(--cp-accent); fill:none; stroke-width:4 }.result { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px }
+.model-label { color:var(--cp-text-muted); font-size:.85em; line-height:1.5 }.land { fill:var(--cp-surface-soft); stroke:var(--cp-border-strong); stroke-width:.5 }
+.gridline { stroke:var(--cp-border); fill:none; stroke-width:.6 }.moving-land { fill:var(--cp-accent); stroke:var(--cp-text); stroke-width:1 }
+.ghost { fill:none; stroke:var(--cp-text-muted); stroke-dasharray:4 3 }.map-caption { display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px }
+.slots { display:flex; gap:8px; margin:12px 0 }.slots span { display:grid; place-items:center; width:calc(30px * var(--slot-width)); max-width:17%; height:38px; border:1px solid var(--cp-border-strong); background:var(--cp-surface-soft); font-family:Consolas,monospace }
+.accent-slots span { background:var(--cp-accent-soft); border-color:var(--cp-accent) }.slots .codepoint-slot { min-width:110px; font-size:16px; max-width:none }.string-original { margin-bottom:24px }
+.memory-pair { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:24px }
+.docker-comparison { display:grid; grid-template-columns:1fr 1fr; gap:32px }.layer { border:2px solid var(--cp-border-strong); padding:16px; min-height:92px }
+.layer-placeholder { height:104px }.layer + .layer { margin-top:12px }.payload-layer { border-color:var(--cp-accent); background:var(--cp-accent-soft) }.layer span { display:block; font-family:Consolas,monospace }
+.merged { border-top:2px solid var(--cp-text); padding-top:12px; margin-top:24px }.merged strong { color:var(--cp-accent) }.endpoint { display:grid; min-height:208px; gap:12px }
+.endpoint span { display:flex; align-items:center; padding:12px 16px; background:var(--cp-surface-soft) }.emphasis { border-left:4px solid var(--cp-accent); padding-left:16px }
+@media(max-width:600px) { .mechanism { padding:16px }.docker-comparison { grid-template-columns:1fr; gap:32px }.memory-pair { grid-template-columns:1fr }.pressure-legend { font-size:.85em }.slots { gap:4px }.model-label { font-size:.9em } }
+
+body{width:1280px;height:720px;overflow:hidden}.film{width:1280px;height:720px;max-width:none;padding:18px 48px;position:relative;line-height:1.25}
+.film .eyebrow{font-size:16px}.film h1{font-size:36px;max-width:none;line-height:1.2;margin:8px 0 8px;min-height:44px}
+.film .mechanism{height:340px;padding:18px 24px;font-size:23px}.film .waves{height:190px}.film .map{height:252px}
+.film .model-label{display:none}.film .big-value{font-size:1.25em}.film .slots{margin:7px 0}.film .slots span{height:27px}
+.film .string-original{margin-bottom:12px}.film .memory-pair{margin-top:12px;gap:18px}.film .mechanism-box{padding:8px 16px}.film .mechanism-box strong{margin-bottom:0}
+.film .layer{padding:10px 14px;min-height:65px}.film .layer-placeholder{height:77px}.film .endpoint{min-height:142px;gap:8px}.film .endpoint span{padding:5px 12px}.film .merged{margin-top:14px;padding-top:10px}
+.film .docker-comparison{gap:40px}.film h3{font-size:23px;margin-bottom:12px}.film-note{font-size:24px;line-height:1.35;margin:12px 0 0;max-width:1120px}
+.film-source{position:absolute;bottom:178px;left:48px;font-size:15px;color:var(--cp-text-muted);margin:0}
+.film-progress{position:absolute;left:48px;right:48px;bottom:8px;height:4px;background:var(--cp-border)}.film-progress span{display:block;height:100%;background:var(--cp-accent)}
+</style></head><body><main class="film"><header><div class="eyebrow">anc · mechanism explained</div><h1 id="shot-title"></h1></header><div id="film-mechanism" class="mechanism"></div><p class="film-note" id="film-note"></p><div class="film-progress"><span id="progress"></span></div><p class="film-source">RWTH IKS · active noise control / Sony · noise-cancelling function · September 2026 research</p></main><script>(function installVisuals(topic) {
+  const escape = value => String(value).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  const word = (en, zh, language) => language === "zh" ? zh : en;
+  const box = (heading, content, className = "") => `<div class="mechanism-box ${className}"><strong>${heading}</strong>${content}</div>`;
+  const value = (number, unit = "") => `<span class="big-value">${escape(number)}</span> ${escape(unit)}`;
+  let geography;
+  if (topic === "greenland") {
+    const { geoArea, geoCentroid, geoRotation, geoMercator, geoPath, geoGraticule10 } = window.Geo;
+    const features = window.MAP_DATA.features.map(feature => {
+      const g = structuredClone(feature.geometry);
+      const polygons = g.type === "Polygon" ? [g.coordinates] : g.coordinates;
+      for (const rings of polygons) {
+        if (geoArea({ type: "Polygon", coordinates: rings }) > 2 * Math.PI) rings.forEach(ring => ring.reverse());
+      }
+      return { ...feature, geometry: g };
+    });
+    const original = features.find(f => f.properties.name === "Greenland");
+    if (!original) throw new Error("Greenland boundary missing");
+    const center = geoCentroid(original), area = geoArea(original);
+    if (!(area > 0 && area < .1)) throw new Error("Invalid boundary winding");
+    const projection = geoMercator().scale(116).translate([440, 325]).clipExtent([[0, 0], [880, 380]]);
+    const path = geoPath(projection);
+    geography = progress => {
+      const rotation = geoRotation([0, -center[1] * progress, 0]);
+      const point = p => {
+        const q = rotation([p[0] - center[0], p[1]]);
+        return [((q[0] + center[0] + 540) % 360) - 180, q[1]];
+      };
+      const g = original.geometry;
+      const moved = { type: g.type, coordinates: g.type === "Polygon" ? g.coordinates.map(r => r.map(point)) : g.coordinates.map(poly => poly.map(r => r.map(point))) };
+      const areaError = Math.abs(geoArea(moved) / area - 1);
+      if (areaError > 1e-10) throw new Error("Rotation changed spherical area");
+      window.geographicState = { areaError, progress, scale: projection.scale(), originalArea: area, movedArea: geoArea(moved) };
+      return `<svg class="map" viewBox="0 0 880 380" aria-hidden="true"><path class="land" d="${path({ type: "FeatureCollection", features: features.filter(f => f !== original) })}"/><path class="gridline" d="${path(geoGraticule10())}"/><path class="ghost" d="${path(original)}"/><path class="moving-land" d="${path(moved)}"/></svg>`;
+    };
+  }
+  function draw(holder, state = 0, language = "en", options = {}) {
+    const t = (en, zh) => word(en, zh, language);
+    let html;
+    if (topic === "anc") {
+      const gain = options.gain ?? 1;
+      const phase = options.phase ?? state * 80;
+      const delta = phase * Math.PI / 180;
+      const residual = Math.sqrt(1 + gain * gain - 2 * gain * Math.cos(delta));
+      const curve = fn => Array.from({ length: 161 }, (_, i) => `${i ? "L" : "M"}${i * 5},${110 - fn(i / 160 * Math.PI * 6) * 46}`).join(" ");
+      html = `<div class="pressure-legend"><span>${t("Incoming pressure", "传入声压")}</span><span>${t("Speaker pressure", "控制声压")}</span><strong>${t("Residual sum", "相加后的残余")}</strong></div>
+        <svg viewBox="0 0 800 220" class="waves" role="img" aria-label="${t("Two pressure waves and their sum at the same ear position", "同一耳边位置两路声压与其总和")}"><path class="axis" d="M0 110H800"/><path class="incoming" d="${curve(x => Math.sin(x))}"/><path class="control" d="${curve(x => -gain * Math.sin(x + delta))}"/><path class="wave-result" d="${curve(x => Math.sin(x) - gain * Math.sin(x + delta))}"/></svg>
+        <div class="result">${t("Residual amplitude / incoming amplitude", "残余幅度 / 传入幅度")} ${value(residual.toFixed(2))}</div>
+        <p class="model-label">${t("One position · normalized pressure · not decibels or loudness", "同一位置 · 归一化声压 · 非分贝或响度")}</p>`;
+      holder.dataset.residual = residual.toFixed(6);
+    } else if (topic === "greenland") {
+      html = geography(state) + `<div class="map-caption"><strong>${t("Highlighted: Greenland", "高亮：格陵兰")}</strong><span>${t("Rigid rotation · constant spherical area", "球面刚体旋转 · 球面面积不变")}</span></div><p class="model-label">${t("Fixed spherical Mercator scale · poles cropped · dotted original outline", "固定球面墨卡托比例 · 两极裁切 · 虚线为原轮廓")}</p>`;
+    } else if (topic === "cpython-string") {
+      const cases = [
+        { cp: "U+00E9", kind: 1, bytes: "100,074", utf: "100,002" },
+        { cp: "U+4E2D", kind: 2, bytes: "200,076", utf: "100,003" },
+        { cp: "U+1F600", kind: 4, bytes: "400,080", utf: "100,004" },
+      ];
+      const selected = cases[options.caseIndex ?? 2];
+      const assembling = state > 0 && state < .8;
+      const width = state < .25 ? 1 : 1 + (selected.kind - 1) * Math.min(1, (state - .25) / .55);
+      const slots = (kind, last, cls = "") => `<div class="slots ${cls}" style="--slot-width:${kind}">${["a", "a", "a", "…", "a", last].map((s, i) => `<span${i === 5 && last !== "a" ? ' class="codepoint-slot"' : ""}>${escape(s)}</span>`).join("")}</div>`;
+      html = `<div class="string-original"><strong>${t("Original str: unchanged", "原 str：保持不变")}</strong>${slots(1, "a")}<small>${t("100,000 ASCII code points · 1 byte per slot", "100,000 个 ASCII 码点 · 每槽 1 字节")}</small></div>
+        <div class="string-result" style="visibility:${state > 0 ? "visible" : "hidden"}"><strong>${assembling ? t("Allocating the new result", "正在分配新结果") : t("New str after concatenation", "拼接后的新 str")} · ${escape(selected.cp)}</strong>${slots(width, selected.cp, "accent-slots")}<small>${t("Target: uniform slots in the new result", "目标：新结果中的码点槽统一宽度")} · ${selected.kind} ${t("bytes per code point", "字节 / 码点")}</small></div>
+        <div class="memory-pair">${box(t("str object", "str 对象"), value(state < .8 ? "100,049" : selected.bytes, t("bytes", "字节")))}${box(t("UTF-8 payload", "UTF-8 载荷"), value(state < .8 ? "100,000" : selected.utf, t("bytes", "字节")))}</div>
+        <p class="model-label">${t("Supplied CPython 3.11.15 observations; representative slots, not 100,000 drawn cells.", "既有 CPython 3.11.15 记录；仅绘制代表槽，并非十万个实际格子。")}</p>`;
+      holder.dataset.kind = selected.kind;
+    } else {
+      const stage = options.stage ?? (state < .33 ? "add" : state < .7 ? "delete" : "same");
+      const deletion = stage !== "add";
+      const base = stage === "base";
+      const layer = (label, text, cls = "") => `<div class="layer ${cls}"><b>${label}</b><span>${text}</span></div>`;
+      html = `<div class="docker-comparison">
+        <div><h3>${t("Separate RUNs", "分开的 RUN")}</h3><div class="layer-stack">${deletion ? layer(t("Later layer", "后加层"), ".wh.temp", "marker-layer") : '<div class="layer-placeholder"></div>'}${layer(deletion ? t("Earlier layer", "先前层") : t("First committed layer", "首个提交层"), "/temp · 100 MB", "payload-layer")}</div><div class="merged"><b>${t("Merged view", "合并视图")}</b><strong>${deletion ? t("/temp absent", "/temp 不存在") : t("/temp visible", "/temp 可见")}</strong></div></div>
+        <div><h3>${t("Same RUN · NEW file", "同一 RUN · 新文件")}</h3><div class="endpoint"><span>${t("Before: absent", "之前：不存在")}</span><span>${t("Create → delete", "创建 → 删除")}</span><span>${t("After: absent", "之后：不存在")}</span></div><div class="merged"><b>${t("Resulting diff", "生成的差异")}</b><strong>${t("No payload for this file", "没有此文件的载荷")}</strong></div></div></div>
+        <p class="model-label ${base ? "emphasis" : ""}">${base ? t("Base-file exception: deleting a file already in the base still leaves its lower-layer bytes.", "基础层反例：删除基础层已有文件，仍会保留下层字节。") : t("Layer cutaway ≠ merged view. 100 MB assumed; no build executed.", "层剖面 ≠ 合并视图。100 MB 为假设；未执行构建。")}</p>`;
+      holder.dataset.stage = stage;
+    }
+    holder.innerHTML = html;
+  }
+  window.drawMechanism = draw;
+  for (const section of document.querySelectorAll("[data-aha-lang]")) {
+    const holder = section.querySelector(".mechanism");
+    const language = section.dataset.ahaLang;
+    const update = () => {
+      if (topic === "anc") draw(holder, 0, language, { gain: Number(section.querySelector(".gain").value), phase: Number(section.querySelector(".phase").value) });
+      else if (topic === "greenland") draw(holder, Number(section.querySelector(".position").value), language);
+      else if (topic === "cpython-string") draw(holder, 1, language, { caseIndex: Number(section.querySelector(".codepoint").value) });
+      else draw(holder, 0, language, { stage: section.querySelector(".scenario").value });
+    };
+    section.querySelectorAll("input,select").forEach(input => input.addEventListener("input", update));
+    update();
+  }
+})("anc");
+document.documentElement.dataset.theme = new URLSearchParams(location.search).get("scoutTheme") || "light";
+const titles=["Two pressures meet at your ear","Matching at the ear, not at the microphone","Timing changes the residual","The same error takes more of a faster cycle","Passive isolation still matters","Reduced does not mean inaudible","Fit and mode change the result"], topic="anc";
+const holder=document.getElementById("film-mechanism");
+window.ahaVideo={async renderFrame({segmentIndex,segmentFrame,segmentFrames}){
+  const p=segmentFrames>1?segmentFrame/(segmentFrames-1):1;
+  const ease=Math.min(1,Math.max(0,(p-.12)/.64));
+  document.getElementById("shot-title").textContent=titles[segmentIndex];
+  document.getElementById("progress").style.width=((segmentIndex+p)/titles.length*100)+"%";
+  let state=1,options={},note="Ideal pressure model at one target position. Not measured decibels, perceived loudness, or a prediction for your headphones.";
+  if(topic==="anc"){
+    options={gain:1,phase:segmentIndex===0?90*(1-ease):segmentIndex===2?70*ease:segmentIndex>=3?36:0};
+    if(segmentIndex===3) note="Assumed 0.10 ms error: 100 Hz → 3.6°; 1,000 Hz → 36°. Not a measured cutoff.";
+    if(segmentIndex===4) note="Seal: changes transmission. Speaker: adds control pressure. ANC off ≠ headphones off.";
+    if(segmentIndex===5) note="Speech has many components. Some can be reduced while audible residuals remain.";
+    if(segmentIndex===6) note="Fit, leaks, ANC / Transparency / Adaptive modes: compare like with like.";
+  }else if(topic==="greenland"){
+    state=segmentIndex===4?ease:segmentIndex>4?1:0;
+    if(segmentIndex===0) note="Reported areas: Greenland ≈ 2.17 million km²; Africa ≈ 30.4 million km².";
+    if(segmentIndex===1) note="Meridians converge on a sphere, but are equally spaced on this map.";
+    if(segmentIndex===2) note="Tiny patch near 60°: 2× width × 2× height = 4× area.";
+    if(segmentIndex===3) note="Greenland spans multiple latitudes. The local 4× factor is not its total magnification.";
+    if(segmentIndex===5) note="Constant-heading rhumb lines are straight, but usually not shortest. Poles are cropped.";
+    if(segmentIndex===6) note="Equal Earth preserves area proportions, not every shape, angle or distance.";
+  }else if(topic==="cpython-string"){
+    state=segmentIndex===0?0:segmentIndex===1?ease:1;
+    options={caseIndex:segmentIndex===4?(p<.45?0:1):2};
+    if(segmentIndex===0) note="Six representative slots stand for 100,000 code points. Original str: 100,049 bytes.";
+    if(segmentIndex===1) note="The wider slots belong to a NEW result. The original immutable str does not change.";
+    if(segmentIndex===2) note="Inherited observation, not a new measurement; object size includes overhead.";
+    if(segmentIndex===3) note="UTF-8: 100,000 → 100,004 bytes. ASCII prefix unchanged; only four added bytes.";
+    if(segmentIndex===4) note="U+00E9: 1-byte class. U+4E2D: 2-byte class. Already-wide strings behave differently.";
+  }else{
+    options={stage:segmentIndex===0?"add":segmentIndex===1?(p<.28?"add":"delete"):segmentIndex===2?"same":segmentIndex===3?"base":"delete"};
+    if(segmentIndex===0) note="Assumed new-file payload: 100 MB. Ordinary unsquashed image changesets.";
+    if(segmentIndex===1) note="Whiteout appears in the layer representation, not as an ordinary merged-view file.";
+    if(segmentIndex===2) note="Absent before + absent after → no payload for THIS new file. Other changes may remain.";
+    if(segmentIndex===3) note="A file already in the base exists in the before snapshot: deletion still leaves lower bytes.";
+    if(segmentIndex===4) note="Compression, transfer, cache and shared disk use differ. Container writable layer is separate.";
+  }
+  window.drawMechanism(holder,state,"en",options);
+  document.getElementById("film-note").textContent=note;
 }};
-</script>
-</body></html>
+window.ahaVideo.renderFrame({segmentIndex:0,segmentFrame:0,segmentFrames:90});
+</script></body></html>

@@ -53,8 +53,8 @@ test('preparation freezes four paired cases, actual bytes, bundles and evaluator
   assert.match(run.isolation, /no OS isolation/);
   assert.deepEqual(Object.values(run.metrics), [null, null, null, null, null]);
   const corpus = await readJson(path.join(harness, 'cases.json'));
-  assert.equal(corpus.corpus_revision, 'aha-introduction-20260917');
-  assert.deepEqual(corpus.cases.map((item: { id: string }) => item.id), ['git-merge', 'anc', 'greenland', 'aha-introduction']);
+  assert.equal(corpus.corpus_revision, 'current-topics-20260922');
+  assert.deepEqual(corpus.cases.map((item: { id: string }) => item.id), ['cpython-string', 'anc', 'greenland', 'aha-introduction']);
   const introduction = corpus.cases.find((item: { id: string }) => item.id === 'aha-introduction');
   assert.equal(introduction.research, 'examples/aha-introduction/research');
   const dossier = await readJson(path.join(root, introduction.research, 'manifest.json'));
@@ -267,7 +267,7 @@ test('run verifier checks frozen bytes and paired prompts without reading output
   const manifest = path.join(output, 'evaluator', 'run.json');
   const original = await fs.readFile(manifest);
   const reportPath = path.join(workspace, 'verified.json');
-  const unreadOutput = path.join(output, 'git-merge', 'baseline', 'outputs', 'unread-junction');
+  const unreadOutput = path.join(output, 'cpython-string', 'baseline', 'outputs', 'unread-junction');
   await fs.symlink(workspace, unreadOutput, process.platform === 'win32' ? 'junction' : 'dir');
   try {
     const report = await verifier.verifyRun(output, reportPath);
@@ -286,7 +286,7 @@ test('run verifier checks frozen bytes and paired prompts without reading output
     assert.deepEqual(await fs.readFile(manifest), original);
     await assert.rejects(verifier.verifyRun(output, reportPath), /already exists/);
     await assert.rejects(verifier.verifyRun(output, path.join(workspace, 'bad-report.txt')), /\.json/);
-    await assert.rejects(verifier.verifyRun(output, path.join(output, 'git-merge', 'baseline', 'outputs', 'report.json')), /cannot be written/);
+    await assert.rejects(verifier.verifyRun(output, path.join(output, 'cpython-string', 'baseline', 'outputs', 'report.json')), /cannot be written/);
   } finally {
     await fs.unlink(unreadOutput);
   }
@@ -295,13 +295,13 @@ test('run verifier checks frozen bytes and paired prompts without reading output
 test('run verifier reports actual mismatches/counts, extra inputs and unequal prompts with CLI failure', async () => {
   const files = [
     path.join(output, 'bundles', 'baseline', 'aha-explain', 'SKILL.md'),
-    path.join(output, 'git-merge', 'baseline', 'inputs', 'research', 'report.md'),
-    path.join(output, 'git-merge', 'baseline', 'task.json'),
+    path.join(output, 'cpython-string', 'baseline', 'inputs', 'research', 'report.md'),
+    path.join(output, 'cpython-string', 'baseline', 'task.json'),
     path.join(output, 'evaluator', 'source', 'prepare.mjs'),
   ];
   const originals = await Promise.all(files.map(file => fs.readFile(file)));
   const modes = await Promise.all(files.map(async file => (await fs.stat(file)).mode & 0o777));
-  const extra = path.join(output, 'git-merge', 'baseline', 'inputs', 'unexpected.txt');
+  const extra = path.join(output, 'cpython-string', 'baseline', 'inputs', 'unexpected.txt');
   const manifest = path.join(output, 'evaluator', 'run.json');
   const manifestBefore = await fs.readFile(manifest);
   try {
@@ -375,7 +375,7 @@ async function reviewFixture(name: string) {
   const image = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=', 'base64');
   const records = [];
   for (const condition of ['baseline', 'candidate']) {
-    const author = path.join(directory, 'git-merge', condition);
+    const author = path.join(directory, 'cpython-string', condition);
     const rendered = path.join(author, 'outputs', 'rendered');
     const research = path.join(author, 'inputs', 'research');
     await fs.mkdir(rendered, { recursive: true });
@@ -390,12 +390,12 @@ async function reviewFixture(name: string) {
       application: 'Synthetic fixture; no PowerPoint execution',
       slides: [{ image: 'slide-01.png' }, { image: 'slide-02.png' }],
     }));
-    records.push({ id: 'git-merge', condition, author_directory: author });
+    records.push({ id: 'cpython-string', condition, author_directory: author });
   }
-  await fs.mkdir(path.join(directory, 'evaluator', 'git-merge'), { recursive: true });
+  await fs.mkdir(path.join(directory, 'evaluator', 'cpython-string'), { recursive: true });
   await fs.writeFile(path.join(directory, 'evaluator', 'run.json'), JSON.stringify({ cases: records }));
-  await fs.writeFile(path.join(directory, 'evaluator', 'git-merge', 'eval_metadata.json'), JSON.stringify({
-    eval_id: 'git-merge', prompt: '解释冻结材料中的合并机制。',
+  await fs.writeFile(path.join(directory, 'evaluator', 'cpython-string', 'eval_metadata.json'), JSON.stringify({
+    eval_id: 'cpython-string', prompt: '解释冻结材料中的合并机制。',
     assertions: ['用材料支撑关系。'], observation_policy: '观察与判断分开。',
     conditions: { baseline: { private: 'baseline-secret' }, candidate: { private: 'candidate-secret' } },
     private_author_directory: records[0]!.author_directory,
@@ -416,7 +416,7 @@ test('neutral review copies keep mapping outside, project metadata without condi
   assert.deepEqual(mapping.map((item: any) => item.label).sort(), ['A', 'B']);
   assert.deepEqual(mapping.map((item: any) => item.condition).sort(), ['baseline', 'candidate']);
   assert.ok(mapping.every((item: any) => item.outputHash === prepare.sha256(fixture.bytes)));
-  const caseRoot = path.join(destination, 'git-merge');
+  const caseRoot = path.join(destination, 'cpython-string');
   const metadata = await readJson(path.join(caseRoot, 'eval_metadata.json'));
   assert.equal(metadata.eval_id, 1);
   assert.equal(metadata.prompt, '解释冻结材料中的合并机制。');
@@ -471,8 +471,8 @@ test('technical-repair review selects explicit derivatives and retains a separat
   }
   const destination = path.join(workspace, 'technical-review');
   await reviewer.prepareReview(fixture.directory, destination, 'technical-repair');
-  assert.equal((await readJson(path.join(destination, 'git-merge', 'eval_metadata.json'))).stage, 'technical-repair');
-  assert.deepEqual(await fs.readFile(path.join(destination, 'git-merge', 'A', 'outputs', 'deck.pptx')), fixture.bytes);
+  assert.equal((await readJson(path.join(destination, 'cpython-string', 'eval_metadata.json'))).stage, 'technical-repair');
+  assert.deepEqual(await fs.readFile(path.join(destination, 'cpython-string', 'A', 'outputs', 'deck.pptx')), fixture.bytes);
   await fs.stat(path.join(fixture.directory, 'evaluator', 'review-mapping-repaired.json'));
   await assert.rejects(fs.stat(path.join(fixture.directory, 'evaluator', 'review-mapping.json')), /ENOENT/);
   await assert.rejects(reviewer.prepareReview(fixture.directory, path.join(workspace, 'unknown-stage'), 'unknown'), /Unknown review stage/);
@@ -490,7 +490,7 @@ test('neutral review accepts PowerShell BOM observations without rewriting origi
   const destination = path.join(workspace, 'bom-review');
   await reviewer.prepareReview(fixture.directory, destination);
   for (const label of ['A', 'B']) {
-    assert.equal((await readJson(path.join(destination, 'git-merge', label, 'application-observations.json'))).outputHash,
+    assert.equal((await readJson(path.join(destination, 'cpython-string', label, 'application-observations.json'))).outputHash,
       prepare.sha256(fixture.bytes));
   }
   for (const { file, bytes } of originals) assert.deepEqual(await fs.readFile(file), bytes);
