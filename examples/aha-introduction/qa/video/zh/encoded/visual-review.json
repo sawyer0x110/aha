@@ -1,0 +1,25 @@
+{
+  "artifactHash": "9d2972cecdfdd45e32fa0e84644aedc5ad6d5d57706375219b1f25c2a32825eb",
+  "sourceHash": "e03c96ff51213748aeb733884f0216d50a09e34b8fd307a004e4f0912d196877",
+  "planHash": "e527234980d65cbbc168522753125da7ff2db33c99c6f7f93906270fc8838d3a",
+  "scope": "Current-only publication review of actual encoded opening, research loop, format/language summary and concise complete closing card.",
+  "inspectedFiles": [
+    "frame-001.png",
+    "frame-011.png",
+    "frame-026.png",
+    "frame-061.png"
+  ],
+  "observations": [
+    "The opening introduces Aha and the two skills without repeating the earlier mechanism case studies.",
+    "Research uses connected support/counterevidence and targeted-follow-up states; captions and source notes remain separate.",
+    "The language overview distinguishes bilingual HTML from individually generated English or Chinese media.",
+    "The closing has a clear invitation, prominent repository URL and short Agent installation prompt, without numbered steps or technical prerequisites."
+  ],
+  "blockingIssues": 0,
+  "limitations": [
+    "Sampled agent visual review, not continuous human viewing or an every-frame visual acceptance.",
+    "No audio listening, pronunciation review or verified word-level alignment.",
+    "Embedded original artwork fine print is not all readable at video scale.",
+    "No claim of pixel equivalence to earlier renders or learner comprehension."
+  ]
+}

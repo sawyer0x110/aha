@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0.0",
+  "planHash": "e527234980d65cbbc168522753125da7ff2db33c99c6f7f93906270fc8838d3a",
+  "provider": "provided-audio",
+  "voice": "xiaoxiao-closing-full",
+  "segments": [
+    {
+      "id": "purpose",
+      "filename": "segment-001.wav",
+      "frames": 295,
+      "sha256": "a6dd8f6bb237a37fb4af83972cd93ef5bf3e426552077d3451ca5b848c919867"
+    },
+    {
+      "id": "research-scope",
+      "filename": "segment-002.wav",
+      "frames": 413,
+      "sha256": "0f789140c5fa39923749953fdaed1e4b247766baa6544c7c456d868dbfe40979"
+    },
+    {
+      "id": "research-loop",
+      "filename": "segment-003.wav",
+      "frames": 426,
+      "sha256": "9c94e3454ce0610659449d3fa0a32db67ea33fd50f3fc6f9c15561d5d951697f"
+    },
+    {
+      "id": "research-boundaries",
+      "filename": "segment-004.wav",
+      "frames": 452,
+      "sha256": "4ec01d7a1079b649be3c5ab12b263492fd48234e5a15e2cbc77f6b3a6820d816"
+    },
+    {
+      "id": "research-delivery",
+      "filename": "segment-005.wav",
+      "frames": 372,
+      "sha256": "862f0b39b2a8c8cdc3d5c08b019f58e831a880234fae22fd8186d6d92da1b89b"
+    },
+    {
+      "id": "explain-purpose",
+      "filename": "segment-006.wav",
+      "frames": 434,
+      "sha256": "714b305540356507d3b3da240bf518f77e544f25fab016b8a3e95313a42fb1cb"
+    },
+    {
+      "id": "explain-language",
+      "filename": "segment-007.wav",
+      "frames": 461,
+      "sha256": "9c9e06b70f83a73f5548520356bc851fb215df5e43ab93787d4726dedf222247"
+    },
+    {
+      "id": "format-html",
+      "filename": "segment-008.wav",
+      "frames": 297,
+      "sha256": "eb29a20d057d28912a20a1a775d3eb9e00c390eb5ea174419f730943437628cb"
+    },
+    {
+      "id": "format-image",
+      "filename": "segment-009.wav",
+      "frames": 305,
+      "sha256": "001d9e4faaf043ed900d962549993058edd6bc75ed970f6ee789fb94bb363360"
+    },
+    {
+      "id": "format-slides",
+      "filename": "segment-010.wav",
+      "frames": 211,
+      "sha256": "99ff189bbde8002cb76985df69a7cc80e8fff1db2f498da3fcbf58313b5624b0"
+    },
+    {
+      "id": "format-video",
+      "filename": "segment-011.wav",
+      "frames": 301,
+      "sha256": "d2459e69ee011d5566f7347d66f3e1d25467787f9700baa229aa9e5d62aac5f3"
+    },
+    {
+      "id": "summary",
+      "filename": "segment-012.wav",
+      "frames": 371,
+      "sha256": "0f9c8284676c1dce4b708b948ded63b5ab0bf346c55b561774a87a8e406437be"
+    },
+    {
+      "id": "install",
+      "filename": "segment-013.wav",
+      "frames": 194,
+      "sha256": "4e0c72b0a62104d5d55efba028b0c455247e2346de70926f6b0e4f71a4008d5a"
+    }
+  ]
+}

@@ -2,31 +2,31 @@
 
 **English** | [简体中文](README.zh-CN.md)
 
-Start with the [Aha introduction](aha-introduction/README.md) or the [local gallery](index.html). There are **five example groups and twenty artifacts**. The introduction's four artifacts and accompanying files are unchanged. ANC, Greenland, CPython strings and Docker layers each have four freshly authored formats. All five PPTX decks are Chinese. HTML opens in English with a Chinese switch; the four new PNGs and videos are English. The introduction PNG and all topic notes are Chinese. Research reports retain their original languages.
+Start with the [Aha introduction](aha-introduction/README.md) or the [local gallery](index.html). There are **five example groups and twenty-one artifacts**. The introduction has restructured English and Chinese videos; its HTML, PNG and PPTX are unchanged. ANC, Greenland, CPython strings and Docker layers each have four formats. All five PPTX decks are Chinese. HTML opens in English with a Chinese switch; the other four topics' PNGs and videos are English. The introduction PNG and all topic notes are Chinese. Research reports retain their original languages.
 
 GitHub's source preview does not run interactive HTML. Download or clone the repository and open `examples/index.html` in a browser; use the links to view or download PNG, PPTX, MP4, and subtitle files with a suitable local viewer. **Artifacts** are the reader-facing explanations. Research, receipts, hashes, approvals, and review records are **evidence** for checking sources and production history—not additional artifacts or proof that pending reviews have passed.
 
 | Topic (notes in Chinese) | HTML | PNG | Native PPTX | Narrated video |
 | --- | --- | --- | --- | --- |
-| [Aha introduction · start here](aha-introduction/README.md) | [Bilingual explanation](aha-introduction/aha-introduction.html) | [Chinese · 1080×1920](aha-introduction/aha-introduction.png) | [8 slides · Chinese](aha-introduction/aha-introduction.pptx) | [119.4 seconds](aha-introduction/aha-introduction.mp4) |
+| [Aha introduction · start here](aha-introduction/README.md) | [Bilingual explanation](aha-introduction/aha-introduction.html) | [Chinese · 1080×1920](aha-introduction/aha-introduction.png) | [8 slides · Chinese](aha-introduction/aha-introduction.pptx) | [English · 154.53s](aha-introduction/aha-introduction.en.mp4) / [中文 · 151.07s](aha-introduction/aha-introduction.zh.mp4) |
 | [Noise-cancelling headphones](anc/README.md) | [Bilingual interactive explanation](anc/anc.html) | [1800×1600](anc/anc.png) | [7 slides · Chinese](anc/anc.pptx) | [78.53 seconds](anc/anc.mp4) |
 | [Greenland and map projections](greenland/README.md) | [Bilingual interactive explanation](greenland/greenland.html) | [1800×1600](greenland/greenland.png) | [7 slides · Chinese](greenland/greenland.pptx) | [80.80 seconds](greenland/greenland.mp4) |
 | [CPython strings](cpython-string/README.md) | [Bilingual interactive explanation](cpython-string/cpython-string.html) | [1800×1600](cpython-string/cpython-string.png) | [7 slides · Chinese](cpython-string/cpython-string.pptx) | [63.23 seconds](cpython-string/cpython-string.mp4) |
 | [Docker image layers](docker-layers/README.md) | [Bilingual interactive explanation](docker-layers/docker-layers.html) | [1800×1600](docker-layers/docker-layers.png) | [7 slides · Chinese](docker-layers/docker-layers.pptx) | [58.30 seconds](docker-layers/docker-layers.mp4) |
 
-The introduction's four formats share its research snapshot, not identical layouts or detail. HTML and PPTX develop the three case mechanisms; the independent portrait infographic summarizes the skills, media choices, and distinctions.
+The introduction videos explain the project, research methods and boundaries, Explain's formats and languages, then four real medium-specific examples and a concise installation invitation. They share updated research; unchanged HTML, PPTX and PNG retain their earlier snapshot. HTML and PPTX develop three case mechanisms; the independent portrait infographic summarizes the skills, media choices, and distinctions.
 
 The four new infographics target desktop/document reading at least 1200px wide; they do not promise zoom-free phone reading. The unchanged introduction poster targets scrolling at approximately 390px display width; its checks remain bound in the [delivery manifest](delivery-manifest.json).
 
 ## Current directory contract
 
-- Each topic root retains four current formats, accompanying receipts, video SRT subtitles, and `video-plan.json`.
-- `projects/{html,image,pptx,video}/` retains author source, metadata, project-local assets, and research copies. All current QA lives under the topic's `qa/<format>/`, outside author projects.
-- `research/` contains the topic's archived research report, evidence, and manifest. Historical descriptions remain sealed; use the delivery manifest for the current gallery inventory.
-- `audio/` retains the current audio manifest and WAV files. Four new English scripts were approved and synthesized with Edge TTS / `en-US-JennyNeural`. After caption-layout repair, new approved `provided-audio` plans imported the exact recordings offline. `audio/provenance.json` binds original speech identity, voice, text and WAV hashes; import is not a second synthesis. The introduction retains its original recording provenance.
-- The single [delivery manifest](delivery-manifest.json), `schemaVersion: 2`, indexes all twenty artifacts in `requestedOutputs[]`: paths, identity, provenance and QA. Format-specific properties belong to each artifact, not separate PPTX or topic-level current publication manifests.
+- Each topic root retains its current formats, receipts and video SRT subtitles. Single-version video uses `video-plan.json`; the introduction uses `video-plans/en.json` and `video-plans/zh.json`.
+- `projects/<format>/` retains author source, metadata, local assets and research copies; QA lives under `qa/<format>/`, outside source. Language variants add `/en/` or `/zh/` to both paths.
+- `research/` contains the sealed common dossier. The introduction videos use the sibling `research-video/`; unchanged formats retain their original dossier. Research scope is not a current production inventory.
+- `audio/` retains the audio manifest, WAV files and provenance; introduction variants use `audio/en/` and `audio/zh/`. Original voices are Edge TTS Jenny for the four case videos, Aria for the English introduction, and Xiaoxiao for Chinese. Current `provided-audio` plans import approved recordings offline. Per-segment original synthesis plans distinguish new speech from reused recordings; import is not another synthesis.
+- The single [delivery manifest](delivery-manifest.json), `schemaVersion: 2`, `layout: "topic-format-language-v1"`, indexes all twenty-one artifacts in `requestedOutputs[]`: paths, language variants, identity, provenance and QA. Format-specific properties belong to each artifact, not separate PPTX, video or language publication manifests.
 
-Artifacts use `<topic>.html/.png/.pptx/.mp4`, receipts use `<artifact>.receipt.json`, and video subtitles use `<artifact>.srt`. Only `examples/index.html` is a gallery entry. Receipts and QA references name current files directly; metadata hashes are updated together. There are no migration maps, old publication manifests or archive dependencies. `evals/examples/` contains reusable checking tools. Metadata maintenance does not claim a new render or review. See the [shared output layout](../skills/shared/references/output-layout.md) for working tasks.
+Artifacts use `<topic>.html/.png/.pptx/.mp4`; multiple language versions use `<topic>.<language>.<ext>`. Receipts use `<artifact>.receipt.json`, and video subtitles use `<artifact>.srt`. Only `examples/index.html` is a gallery entry. Receipts and QA references name current files directly; metadata hashes are updated together. There are no migration maps, old publication manifests or archive dependencies. `evals/examples/` contains reusable checking tools. Metadata maintenance does not claim a new render or review. See the [shared output layout](../skills/shared/references/output-layout.md) for working tasks.
 
 `examples` is the current gallery, not a collection of baseline/candidate variants. Replace an artifact together with its matching source, resources, receipt and applicable QA. Do not carry superseded comparisons, failure logs or copies of old versions into the delivery. New generation does not refresh the underlying research automatically.
 
@@ -34,7 +34,7 @@ Artifacts use `<topic>.html/.png/.pptx/.mp4`, receipts use `<artifact>.receipt.j
 
 ANC illustrates ideal sound-pressure superposition at one location, not headphone measurements, decibels, or perceived loudness. Speech retaining recognizable cues does not imply that no headphones can attenuate speech.
 
-The Aha introduction reuses the September 17 synthesis; it is not a fresh investigation of today's code or a rerun of the inherited experiments. Host document skills, Clawpilot styling, and external media tools also contributed to production, so these are not controlled experiments isolating Aha's effects.
+The Aha introduction's unchanged HTML, PNG and PPTX retain the September 17 synthesis. Its two videos add a current local-document investigation of skills, research methods, language and execution boundaries, while reusing existing mechanism evidence and real example captures rather than rerunning experiments. Host document skills, Clawpilot styling, and external media tools also contributed to production, so these are not controlled experiments isolating Aha's effects.
 
 The Greenland example explains high-latitude enlargement with spherical Mercator, using rigid rotation of real generalized boundaries on a sphere rather than two-dimensional scaling. The local fourfold area factor at 60° does not describe all of Greenland. Equal Earth's area preservation does not preserve every shape. See the topic's research report for detailed sources and the limitation that the body of the official statistics was not verified.
 
@@ -55,7 +55,7 @@ npm run build
 npm run examples:verify
 ```
 
-The unified verifier checks all twenty artifacts, research copies, current receipt names and hashes, audio, recording provenance, approved plans, native edits, browser observations and sampled frames. QA is self-contained under each topic's `qa/<format>/`; regression cases reject stale identities and incorrect evidence even after resealing. Reading previews and sampled frames do not establish human acceptance. Auxiliary video labels may require a larger player than 640px; actual listening and human comprehension were not assessed.
+The unified verifier checks all twenty-one artifacts, language-specific paths, scoped research copies, current receipt names and hashes, audio, recording provenance, approved plans, native edits, browser observations and sampled frames. QA is self-contained under each topic's `qa/<format>/`; regression cases reject stale identities and incorrect evidence even after resealing. Reading previews and sampled frames do not establish human acceptance. Auxiliary video labels may require a larger player than 640px; actual listening and human comprehension were not assessed.
 
 After reviewing the four regenerated pages and obtaining local execution approval, save new browser results to a directory that does not yet exist:
 

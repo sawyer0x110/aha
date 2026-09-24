@@ -1,0 +1,1682 @@
+{
+  "observedAt": "2026-09-24T05:44:39.664Z",
+  "timing": "measured-approved-audio",
+  "sourceHash": "e03c96ff51213748aeb733884f0216d50a09e34b8fd307a004e4f0912d196877",
+  "planHash": "e527234980d65cbbc168522753125da7ff2db33c99c6f7f93906270fc8838d3a",
+  "samples": [
+    {
+      "id": "purpose",
+      "file": "01-purpose-0.png",
+      "sha256": "a1274a6cf2e807fb271f2d9f2dc27eda00f762da74c0403c5fa685f12ec7dc3e",
+      "fraction": 0,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "purpose",
+        "segmentIndex": 0,
+        "fullSegmentIndex": 0,
+        "segmentFrame": 0,
+        "segmentFrames": 295,
+        "progress": 0,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "purpose",
+      "file": "01-purpose-240.png",
+      "sha256": "d3265b039d194694f0ecf771dd7e0b3ef2c27fe4adda7fcae7bccc1a4542ddf6",
+      "fraction": 0.24,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "purpose",
+        "segmentIndex": 0,
+        "fullSegmentIndex": 0,
+        "segmentFrame": 71,
+        "segmentFrames": 295,
+        "progress": 0.24149659863945577,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "purpose",
+      "file": "01-purpose-500.png",
+      "sha256": "98dd4baf63690e4335e015627bf8179ff615f6645868497e53c3a67b0ac84cf5",
+      "fraction": 0.5,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "purpose",
+        "segmentIndex": 0,
+        "fullSegmentIndex": 0,
+        "segmentFrame": 147,
+        "segmentFrames": 295,
+        "progress": 0.5,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "purpose",
+      "file": "01-purpose-750.png",
+      "sha256": "98dd4baf63690e4335e015627bf8179ff615f6645868497e53c3a67b0ac84cf5",
+      "fraction": 0.75,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "purpose",
+        "segmentIndex": 0,
+        "fullSegmentIndex": 0,
+        "segmentFrame": 221,
+        "segmentFrames": 295,
+        "progress": 0.7517006802721088,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "purpose",
+      "file": "01-purpose-1000.png",
+      "sha256": "98dd4baf63690e4335e015627bf8179ff615f6645868497e53c3a67b0ac84cf5",
+      "fraction": 1,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "purpose",
+        "segmentIndex": 0,
+        "fullSegmentIndex": 0,
+        "segmentFrame": 294,
+        "segmentFrames": 295,
+        "progress": 1,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "research-scope",
+      "file": "02-research-scope-0.png",
+      "sha256": "a471402ef5ef130e5b033d41c74b5810fc8943942169b28b24b1591c8d7b06db",
+      "fraction": 0,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-scope",
+        "segmentIndex": 1,
+        "fullSegmentIndex": 1,
+        "segmentFrame": 0,
+        "segmentFrames": 413,
+        "progress": 0,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "research-scope",
+      "file": "02-research-scope-240.png",
+      "sha256": "e2fb1d797eef1d11efb203fd0c062a36c698cf5e583e096059385bf1f27b76ed",
+      "fraction": 0.24,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-scope",
+        "segmentIndex": 1,
+        "fullSegmentIndex": 1,
+        "segmentFrame": 99,
+        "segmentFrames": 413,
+        "progress": 0.24029126213592233,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "research-scope",
+      "file": "02-research-scope-500.png",
+      "sha256": "3081e76138b08418b28f5d39df8b33b75eec4693cc57778fc70526db1afe86e4",
+      "fraction": 0.5,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-scope",
+        "segmentIndex": 1,
+        "fullSegmentIndex": 1,
+        "segmentFrame": 206,
+        "segmentFrames": 413,
+        "progress": 0.5,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "research-scope",
+      "file": "02-research-scope-750.png",
+      "sha256": "3081e76138b08418b28f5d39df8b33b75eec4693cc57778fc70526db1afe86e4",
+      "fraction": 0.75,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-scope",
+        "segmentIndex": 1,
+        "fullSegmentIndex": 1,
+        "segmentFrame": 309,
+        "segmentFrames": 413,
+        "progress": 0.75,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "research-scope",
+      "file": "02-research-scope-1000.png",
+      "sha256": "3081e76138b08418b28f5d39df8b33b75eec4693cc57778fc70526db1afe86e4",
+      "fraction": 1,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-scope",
+        "segmentIndex": 1,
+        "fullSegmentIndex": 1,
+        "segmentFrame": 412,
+        "segmentFrames": 413,
+        "progress": 1,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "research-loop",
+      "file": "03-research-loop-0.png",
+      "sha256": "41a383f3b660a0d03c5089f61691c11d4e192674efcb548b5c53b61d01c63f27",
+      "fraction": 0,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-loop",
+        "segmentIndex": 2,
+        "fullSegmentIndex": 2,
+        "segmentFrame": 0,
+        "segmentFrames": 426,
+        "progress": 0,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "researchPhase": "frame-question"
+      }
+    },
+    {
+      "id": "research-loop",
+      "file": "03-research-loop-239.png",
+      "sha256": "2829a7fc5e52878e83b4ebc5651fa1557492e8af51ee9634743e329701f044f9",
+      "fraction": 0.239,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-loop",
+        "segmentIndex": 2,
+        "fullSegmentIndex": 2,
+        "segmentFrame": 102,
+        "segmentFrames": 426,
+        "progress": 0.24,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "researchPhase": "check-support-and-counterevidence"
+      }
+    },
+    {
+      "id": "research-loop",
+      "file": "03-research-loop-240.png",
+      "sha256": "2829a7fc5e52878e83b4ebc5651fa1557492e8af51ee9634743e329701f044f9",
+      "fraction": 0.24,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-loop",
+        "segmentIndex": 2,
+        "fullSegmentIndex": 2,
+        "segmentFrame": 102,
+        "segmentFrames": 426,
+        "progress": 0.24,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "researchPhase": "check-support-and-counterevidence"
+      }
+    },
+    {
+      "id": "research-loop",
+      "file": "03-research-loop-241.png",
+      "sha256": "2829a7fc5e52878e83b4ebc5651fa1557492e8af51ee9634743e329701f044f9",
+      "fraction": 0.241,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-loop",
+        "segmentIndex": 2,
+        "fullSegmentIndex": 2,
+        "segmentFrame": 102,
+        "segmentFrames": 426,
+        "progress": 0.24,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "researchPhase": "check-support-and-counterevidence"
+      }
+    },
+    {
+      "id": "research-loop",
+      "file": "03-research-loop-439.png",
+      "sha256": "470d0edc962f43e92ac2a6de68538f4a0622a4ea88b2fed86f2124b6b257a4da",
+      "fraction": 0.439,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-loop",
+        "segmentIndex": 2,
+        "fullSegmentIndex": 2,
+        "segmentFrame": 187,
+        "segmentFrames": 426,
+        "progress": 0.44,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "researchPhase": "targeted-follow-up"
+      }
+    },
+    {
+      "id": "research-loop",
+      "file": "03-research-loop-441.png",
+      "sha256": "470d0edc962f43e92ac2a6de68538f4a0622a4ea88b2fed86f2124b6b257a4da",
+      "fraction": 0.441,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-loop",
+        "segmentIndex": 2,
+        "fullSegmentIndex": 2,
+        "segmentFrame": 187,
+        "segmentFrames": 426,
+        "progress": 0.44,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "researchPhase": "targeted-follow-up"
+      }
+    },
+    {
+      "id": "research-loop",
+      "file": "03-research-loop-500.png",
+      "sha256": "85f6eee188dc6ea1bca4311893c68a9f1948f571ec6cb617759764d79991ecfb",
+      "fraction": 0.5,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-loop",
+        "segmentIndex": 2,
+        "fullSegmentIndex": 2,
+        "segmentFrame": 213,
+        "segmentFrames": 426,
+        "progress": 0.5011764705882353,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "researchPhase": "targeted-follow-up"
+      }
+    },
+    {
+      "id": "research-loop",
+      "file": "03-research-loop-699.png",
+      "sha256": "c92e4bc3cc74bb5d03698ba835a247b7379aa8182ebf1554e5c770f9ba7743f6",
+      "fraction": 0.699,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-loop",
+        "segmentIndex": 2,
+        "fullSegmentIndex": 2,
+        "segmentFrame": 297,
+        "segmentFrames": 426,
+        "progress": 0.6988235294117647,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "researchPhase": "targeted-follow-up"
+      }
+    },
+    {
+      "id": "research-loop",
+      "file": "03-research-loop-701.png",
+      "sha256": "9d9f3a16ab4206f5ba60e393a682087c08eb3fd90c5a32ac0b0027573e00cedf",
+      "fraction": 0.701,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-loop",
+        "segmentIndex": 2,
+        "fullSegmentIndex": 2,
+        "segmentFrame": 298,
+        "segmentFrames": 426,
+        "progress": 0.7011764705882353,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "researchPhase": "narrow-or-revise"
+      }
+    },
+    {
+      "id": "research-loop",
+      "file": "03-research-loop-750.png",
+      "sha256": "9d9f3a16ab4206f5ba60e393a682087c08eb3fd90c5a32ac0b0027573e00cedf",
+      "fraction": 0.75,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-loop",
+        "segmentIndex": 2,
+        "fullSegmentIndex": 2,
+        "segmentFrame": 319,
+        "segmentFrames": 426,
+        "progress": 0.7505882352941177,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "researchPhase": "narrow-or-revise"
+      }
+    },
+    {
+      "id": "research-loop",
+      "file": "03-research-loop-1000.png",
+      "sha256": "9d9f3a16ab4206f5ba60e393a682087c08eb3fd90c5a32ac0b0027573e00cedf",
+      "fraction": 1,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-loop",
+        "segmentIndex": 2,
+        "fullSegmentIndex": 2,
+        "segmentFrame": 425,
+        "segmentFrames": 426,
+        "progress": 1,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "researchPhase": "narrow-or-revise"
+      }
+    },
+    {
+      "id": "research-boundaries",
+      "file": "04-research-boundaries-0.png",
+      "sha256": "33fb14f032ced9746be33a27fe85aca125bd82fce8143d1fa3843733a6fe3f60",
+      "fraction": 0,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-boundaries",
+        "segmentIndex": 3,
+        "fullSegmentIndex": 3,
+        "segmentFrame": 0,
+        "segmentFrames": 452,
+        "progress": 0,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "research-boundaries",
+      "file": "04-research-boundaries-240.png",
+      "sha256": "6daace849256de58a07d97203c78f854dbf89ec2398196cd575c5f595dcd0f1a",
+      "fraction": 0.24,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-boundaries",
+        "segmentIndex": 3,
+        "fullSegmentIndex": 3,
+        "segmentFrame": 108,
+        "segmentFrames": 452,
+        "progress": 0.2394678492239468,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "research-boundaries",
+      "file": "04-research-boundaries-500.png",
+      "sha256": "b703127d3385a3c8a730e2a2025b8fde23bafa495e5842afdf7a16510f515a88",
+      "fraction": 0.5,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-boundaries",
+        "segmentIndex": 3,
+        "fullSegmentIndex": 3,
+        "segmentFrame": 226,
+        "segmentFrames": 452,
+        "progress": 0.5011086474501109,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "research-boundaries",
+      "file": "04-research-boundaries-750.png",
+      "sha256": "b703127d3385a3c8a730e2a2025b8fde23bafa495e5842afdf7a16510f515a88",
+      "fraction": 0.75,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-boundaries",
+        "segmentIndex": 3,
+        "fullSegmentIndex": 3,
+        "segmentFrame": 338,
+        "segmentFrames": 452,
+        "progress": 0.7494456762749445,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "research-boundaries",
+      "file": "04-research-boundaries-1000.png",
+      "sha256": "b703127d3385a3c8a730e2a2025b8fde23bafa495e5842afdf7a16510f515a88",
+      "fraction": 1,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-boundaries",
+        "segmentIndex": 3,
+        "fullSegmentIndex": 3,
+        "segmentFrame": 451,
+        "segmentFrames": 452,
+        "progress": 1,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "research-delivery",
+      "file": "05-research-delivery-0.png",
+      "sha256": "648a4b7b516aa6edc85a6ebc4ba6ba1b86a0566e0b6836d9c878ea19048a3b8f",
+      "fraction": 0,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-delivery",
+        "segmentIndex": 4,
+        "fullSegmentIndex": 4,
+        "segmentFrame": 0,
+        "segmentFrames": 372,
+        "progress": 0,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "research-delivery",
+      "file": "05-research-delivery-240.png",
+      "sha256": "5807f8c3b127b851f4f43da02684615ee6b8c117092e531ec091c9a885b622f2",
+      "fraction": 0.24,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-delivery",
+        "segmentIndex": 4,
+        "fullSegmentIndex": 4,
+        "segmentFrame": 89,
+        "segmentFrames": 372,
+        "progress": 0.2398921832884097,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "research-delivery",
+      "file": "05-research-delivery-500.png",
+      "sha256": "b973662f5e7c61e8e9d6a16fc61b319bd02ed0892f4d92a32a8ffc79342b4267",
+      "fraction": 0.5,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-delivery",
+        "segmentIndex": 4,
+        "fullSegmentIndex": 4,
+        "segmentFrame": 186,
+        "segmentFrames": 372,
+        "progress": 0.5013477088948787,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "research-delivery",
+      "file": "05-research-delivery-750.png",
+      "sha256": "b973662f5e7c61e8e9d6a16fc61b319bd02ed0892f4d92a32a8ffc79342b4267",
+      "fraction": 0.75,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-delivery",
+        "segmentIndex": 4,
+        "fullSegmentIndex": 4,
+        "segmentFrame": 278,
+        "segmentFrames": 372,
+        "progress": 0.7493261455525606,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "research-delivery",
+      "file": "05-research-delivery-1000.png",
+      "sha256": "b973662f5e7c61e8e9d6a16fc61b319bd02ed0892f4d92a32a8ffc79342b4267",
+      "fraction": 1,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "research-delivery",
+        "segmentIndex": 4,
+        "fullSegmentIndex": 4,
+        "segmentFrame": 371,
+        "segmentFrames": 372,
+        "progress": 1,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "explain-purpose",
+      "file": "06-explain-purpose-0.png",
+      "sha256": "5db111188b5437a49500bf0c8a3b654f0d90f439d5b94d4c89bd7eb7895fa975",
+      "fraction": 0,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "explain-purpose",
+        "segmentIndex": 5,
+        "fullSegmentIndex": 5,
+        "segmentFrame": 0,
+        "segmentFrames": 434,
+        "progress": 0,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "selectedMedium": 0
+      }
+    },
+    {
+      "id": "explain-purpose",
+      "file": "06-explain-purpose-240.png",
+      "sha256": "5db111188b5437a49500bf0c8a3b654f0d90f439d5b94d4c89bd7eb7895fa975",
+      "fraction": 0.24,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "explain-purpose",
+        "segmentIndex": 5,
+        "fullSegmentIndex": 5,
+        "segmentFrame": 104,
+        "segmentFrames": 434,
+        "progress": 0.24018475750577367,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "selectedMedium": 0
+      }
+    },
+    {
+      "id": "explain-purpose",
+      "file": "06-explain-purpose-500.png",
+      "sha256": "1d6e72a24dc801d54276fa6825d0fbc12ef23571477f8fd28be461eb6f4e45ed",
+      "fraction": 0.5,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "explain-purpose",
+        "segmentIndex": 5,
+        "fullSegmentIndex": 5,
+        "segmentFrame": 217,
+        "segmentFrames": 434,
+        "progress": 0.5011547344110855,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "selectedMedium": 2
+      }
+    },
+    {
+      "id": "explain-purpose",
+      "file": "06-explain-purpose-750.png",
+      "sha256": "17af6a1fd2fa8f5b852667349e0b6ebc4c1706399098e5ebca59b404f902e0e1",
+      "fraction": 0.75,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "explain-purpose",
+        "segmentIndex": 5,
+        "fullSegmentIndex": 5,
+        "segmentFrame": 325,
+        "segmentFrames": 434,
+        "progress": 0.7505773672055427,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "selectedMedium": 3
+      }
+    },
+    {
+      "id": "explain-purpose",
+      "file": "06-explain-purpose-1000.png",
+      "sha256": "17af6a1fd2fa8f5b852667349e0b6ebc4c1706399098e5ebca59b404f902e0e1",
+      "fraction": 1,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "explain-purpose",
+        "segmentIndex": 5,
+        "fullSegmentIndex": 5,
+        "segmentFrame": 433,
+        "segmentFrames": 434,
+        "progress": 1,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "selectedMedium": 3
+      }
+    },
+    {
+      "id": "explain-language",
+      "file": "07-explain-language-0.png",
+      "sha256": "6bc3a1073117c7086fa847c4577a04428fe69d41b32d471a42278ea693e1c4b1",
+      "fraction": 0,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "explain-language",
+        "segmentIndex": 6,
+        "fullSegmentIndex": 6,
+        "segmentFrame": 0,
+        "segmentFrames": 461,
+        "progress": 0,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "explain-language",
+      "file": "07-explain-language-240.png",
+      "sha256": "c4992b3010ed20935edd5f276b4429049f0134ac0c3bd0dd8987cc8850528c4e",
+      "fraction": 0.24,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "explain-language",
+        "segmentIndex": 6,
+        "fullSegmentIndex": 6,
+        "segmentFrame": 110,
+        "segmentFrames": 461,
+        "progress": 0.2391304347826087,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "explain-language",
+      "file": "07-explain-language-500.png",
+      "sha256": "c4992b3010ed20935edd5f276b4429049f0134ac0c3bd0dd8987cc8850528c4e",
+      "fraction": 0.5,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "explain-language",
+        "segmentIndex": 6,
+        "fullSegmentIndex": 6,
+        "segmentFrame": 230,
+        "segmentFrames": 461,
+        "progress": 0.5,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "explain-language",
+      "file": "07-explain-language-750.png",
+      "sha256": "c4992b3010ed20935edd5f276b4429049f0134ac0c3bd0dd8987cc8850528c4e",
+      "fraction": 0.75,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "explain-language",
+        "segmentIndex": 6,
+        "fullSegmentIndex": 6,
+        "segmentFrame": 345,
+        "segmentFrames": 461,
+        "progress": 0.75,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "explain-language",
+      "file": "07-explain-language-1000.png",
+      "sha256": "c4992b3010ed20935edd5f276b4429049f0134ac0c3bd0dd8987cc8850528c4e",
+      "fraction": 1,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "explain-language",
+        "segmentIndex": 6,
+        "fullSegmentIndex": 6,
+        "segmentFrame": 460,
+        "segmentFrames": 461,
+        "progress": 1,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "format-html",
+      "file": "08-format-html-0.png",
+      "sha256": "bdd5b8af429674742751f69d6217db21903c30ef0ab841bce378148eb4131079",
+      "fraction": 0,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-html",
+        "segmentIndex": 7,
+        "fullSegmentIndex": 7,
+        "segmentFrame": 0,
+        "segmentFrames": 297,
+        "progress": 0,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "capture": {
+          "name": "greenland",
+          "frame": 0,
+          "fps": 15,
+          "artifactHash": "012aed32afcffa5724530bcc8390dd9dd80d45c4d52bd8119d8ced4101f60524",
+          "sourceFrame": null
+        }
+      }
+    },
+    {
+      "id": "format-html",
+      "file": "08-format-html-240.png",
+      "sha256": "0026de0e4df4fb387ccf5891fbcbdd22dd6f2819e7b07835bc3f4a8325e5f8db",
+      "fraction": 0.24,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-html",
+        "segmentIndex": 7,
+        "fullSegmentIndex": 7,
+        "segmentFrame": 71,
+        "segmentFrames": 297,
+        "progress": 0.23986486486486486,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "capture": {
+          "name": "greenland",
+          "frame": 29,
+          "fps": 15,
+          "artifactHash": "012aed32afcffa5724530bcc8390dd9dd80d45c4d52bd8119d8ced4101f60524",
+          "sourceFrame": null
+        }
+      }
+    },
+    {
+      "id": "format-html",
+      "file": "08-format-html-500.png",
+      "sha256": "8531841fc8111655c18ad1dbab552ef667e2a076109d203752da1c4bf3a9089b",
+      "fraction": 0.5,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-html",
+        "segmentIndex": 7,
+        "fullSegmentIndex": 7,
+        "segmentFrame": 148,
+        "segmentFrames": 297,
+        "progress": 0.5,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "capture": {
+          "name": "greenland",
+          "frame": 68,
+          "fps": 15,
+          "artifactHash": "012aed32afcffa5724530bcc8390dd9dd80d45c4d52bd8119d8ced4101f60524",
+          "sourceFrame": null
+        }
+      }
+    },
+    {
+      "id": "format-html",
+      "file": "08-format-html-750.png",
+      "sha256": "70a13e2a658c36cff1994078b64b09ededd91b4ec07dd3d3faa5fc7b62f2378e",
+      "fraction": 0.75,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-html",
+        "segmentIndex": 7,
+        "fullSegmentIndex": 7,
+        "segmentFrame": 222,
+        "segmentFrames": 297,
+        "progress": 0.75,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "capture": {
+          "name": "greenland",
+          "frame": 100,
+          "fps": 15,
+          "artifactHash": "012aed32afcffa5724530bcc8390dd9dd80d45c4d52bd8119d8ced4101f60524",
+          "sourceFrame": null
+        }
+      }
+    },
+    {
+      "id": "format-html",
+      "file": "08-format-html-1000.png",
+      "sha256": "70a13e2a658c36cff1994078b64b09ededd91b4ec07dd3d3faa5fc7b62f2378e",
+      "fraction": 1,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-html",
+        "segmentIndex": 7,
+        "fullSegmentIndex": 7,
+        "segmentFrame": 296,
+        "segmentFrames": 297,
+        "progress": 1,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "capture": {
+          "name": "greenland",
+          "frame": 100,
+          "fps": 15,
+          "artifactHash": "012aed32afcffa5724530bcc8390dd9dd80d45c4d52bd8119d8ced4101f60524",
+          "sourceFrame": null
+        }
+      }
+    },
+    {
+      "id": "format-image",
+      "file": "09-format-image-0.png",
+      "sha256": "ce471a314d99d7fa55e6d5e40851aeaf945f4a2f93935e2c89f5cb709f51b739",
+      "fraction": 0,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-image",
+        "segmentIndex": 8,
+        "fullSegmentIndex": 8,
+        "segmentFrame": 0,
+        "segmentFrames": 305,
+        "progress": 0,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "image": {
+          "detailCrop": [
+            0,
+            0,
+            1800,
+            1600
+          ],
+          "originalUnchanged": true
+        }
+      }
+    },
+    {
+      "id": "format-image",
+      "file": "09-format-image-240.png",
+      "sha256": "6b27cc93ee4208348bbfb93ce8eab99ecddf553d10d08df34f176dae2d00f374",
+      "fraction": 0.24,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-image",
+        "segmentIndex": 8,
+        "fullSegmentIndex": 8,
+        "segmentFrame": 73,
+        "segmentFrames": 305,
+        "progress": 0.24013157894736842,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "image": {
+          "detailCrop": [
+            30.13147158244642,
+            200.09180347718325,
+            1739.737056835107,
+            1097.1810679679254
+          ],
+          "originalUnchanged": true
+        }
+      }
+    },
+    {
+      "id": "format-image",
+      "file": "09-format-image-500.png",
+      "sha256": "90238c9d09967fd0e17bba527c55a56ca44b41517e728c413b1d46a7c2ecee0b",
+      "fraction": 0.5,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-image",
+        "segmentIndex": 8,
+        "fullSegmentIndex": 8,
+        "segmentFrame": 152,
+        "segmentFrames": 305,
+        "progress": 0.5,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "image": {
+          "detailCrop": [
+            64,
+            425,
+            1672,
+            532
+          ],
+          "originalUnchanged": true
+        }
+      }
+    },
+    {
+      "id": "format-image",
+      "file": "09-format-image-750.png",
+      "sha256": "90238c9d09967fd0e17bba527c55a56ca44b41517e728c413b1d46a7c2ecee0b",
+      "fraction": 0.75,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-image",
+        "segmentIndex": 8,
+        "fullSegmentIndex": 8,
+        "segmentFrame": 228,
+        "segmentFrames": 305,
+        "progress": 0.75,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "image": {
+          "detailCrop": [
+            64,
+            425,
+            1672,
+            532
+          ],
+          "originalUnchanged": true
+        }
+      }
+    },
+    {
+      "id": "format-image",
+      "file": "09-format-image-1000.png",
+      "sha256": "90238c9d09967fd0e17bba527c55a56ca44b41517e728c413b1d46a7c2ecee0b",
+      "fraction": 1,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-image",
+        "segmentIndex": 8,
+        "fullSegmentIndex": 8,
+        "segmentFrame": 304,
+        "segmentFrames": 305,
+        "progress": 1,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "image": {
+          "detailCrop": [
+            64,
+            425,
+            1672,
+            532
+          ],
+          "originalUnchanged": true
+        }
+      }
+    },
+    {
+      "id": "format-slides",
+      "file": "10-format-slides-0.png",
+      "sha256": "613e0abe88da29babd7c2871ce91443b1e74ff298c33555489dbcf2d565327b3",
+      "fraction": 0,
+      "captionTop": 632.8125,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-slides",
+        "segmentIndex": 9,
+        "fullSegmentIndex": 9,
+        "segmentFrame": 0,
+        "segmentFrames": 211,
+        "progress": 0,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "slides": {
+          "page": 2,
+          "savedPageExport": true
+        }
+      }
+    },
+    {
+      "id": "format-slides",
+      "file": "10-format-slides-240.png",
+      "sha256": "613e0abe88da29babd7c2871ce91443b1e74ff298c33555489dbcf2d565327b3",
+      "fraction": 0.24,
+      "captionTop": 632.8125,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-slides",
+        "segmentIndex": 9,
+        "fullSegmentIndex": 9,
+        "segmentFrame": 50,
+        "segmentFrames": 211,
+        "progress": 0.23809523809523808,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "slides": {
+          "page": 2,
+          "savedPageExport": true
+        }
+      }
+    },
+    {
+      "id": "format-slides",
+      "file": "10-format-slides-500.png",
+      "sha256": "613e0abe88da29babd7c2871ce91443b1e74ff298c33555489dbcf2d565327b3",
+      "fraction": 0.5,
+      "captionTop": 632.8125,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-slides",
+        "segmentIndex": 9,
+        "fullSegmentIndex": 9,
+        "segmentFrame": 105,
+        "segmentFrames": 211,
+        "progress": 0.5,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "slides": {
+          "page": 2,
+          "savedPageExport": true
+        }
+      }
+    },
+    {
+      "id": "format-slides",
+      "file": "10-format-slides-519.png",
+      "sha256": "613e0abe88da29babd7c2871ce91443b1e74ff298c33555489dbcf2d565327b3",
+      "fraction": 0.519,
+      "captionTop": 632.8125,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-slides",
+        "segmentIndex": 9,
+        "fullSegmentIndex": 9,
+        "segmentFrame": 109,
+        "segmentFrames": 211,
+        "progress": 0.5190476190476191,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "slides": {
+          "page": 2,
+          "savedPageExport": true
+        }
+      }
+    },
+    {
+      "id": "format-slides",
+      "file": "10-format-slides-521.png",
+      "sha256": "613e0abe88da29babd7c2871ce91443b1e74ff298c33555489dbcf2d565327b3",
+      "fraction": 0.521,
+      "captionTop": 632.8125,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-slides",
+        "segmentIndex": 9,
+        "fullSegmentIndex": 9,
+        "segmentFrame": 109,
+        "segmentFrames": 211,
+        "progress": 0.5190476190476191,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "slides": {
+          "page": 2,
+          "savedPageExport": true
+        }
+      }
+    },
+    {
+      "id": "format-slides",
+      "file": "10-format-slides-750.png",
+      "sha256": "01485824390f8717810f149a355adce57164849a519a3d4db34fae42f06238e3",
+      "fraction": 0.75,
+      "captionTop": 632.8125,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-slides",
+        "segmentIndex": 9,
+        "fullSegmentIndex": 9,
+        "segmentFrame": 158,
+        "segmentFrames": 211,
+        "progress": 0.7523809523809524,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "slides": {
+          "page": 3,
+          "savedPageExport": true
+        }
+      }
+    },
+    {
+      "id": "format-slides",
+      "file": "10-format-slides-1000.png",
+      "sha256": "01485824390f8717810f149a355adce57164849a519a3d4db34fae42f06238e3",
+      "fraction": 1,
+      "captionTop": 632.8125,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-slides",
+        "segmentIndex": 9,
+        "fullSegmentIndex": 9,
+        "segmentFrame": 210,
+        "segmentFrames": 211,
+        "progress": 1,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "slides": {
+          "page": 3,
+          "savedPageExport": true
+        }
+      }
+    },
+    {
+      "id": "format-video",
+      "file": "11-format-video-0.png",
+      "sha256": "368f0dc3f39169af128713c8827deaee90b023d4cd3d78b709d8e91507c5fed6",
+      "fraction": 0,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-video",
+        "segmentIndex": 10,
+        "fullSegmentIndex": 10,
+        "segmentFrame": 0,
+        "segmentFrames": 301,
+        "progress": 0,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "capture": {
+          "name": "docker",
+          "frame": 0,
+          "fps": 30,
+          "artifactHash": "8d85a1666d8ee77c0e9975dcaf894e4138abbe6e713bf96e9fc5e82dd96fa577",
+          "sourceFrame": 353
+        }
+      }
+    },
+    {
+      "id": "format-video",
+      "file": "11-format-video-240.png",
+      "sha256": "d762605404b919bda6422b17c6fb38859d1e0ef9db683d752ac8f28f4c3ad868",
+      "fraction": 0.24,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-video",
+        "segmentIndex": 10,
+        "fullSegmentIndex": 10,
+        "segmentFrame": 72,
+        "segmentFrames": 301,
+        "progress": 0.24,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "capture": {
+          "name": "docker",
+          "frame": 72,
+          "fps": 30,
+          "artifactHash": "8d85a1666d8ee77c0e9975dcaf894e4138abbe6e713bf96e9fc5e82dd96fa577",
+          "sourceFrame": 425
+        }
+      }
+    },
+    {
+      "id": "format-video",
+      "file": "11-format-video-500.png",
+      "sha256": "15557de84ec7376d5d1dbe071e0c592c27a7731acbd41ef2b3c8ae3a38acb22d",
+      "fraction": 0.5,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-video",
+        "segmentIndex": 10,
+        "fullSegmentIndex": 10,
+        "segmentFrame": 150,
+        "segmentFrames": 301,
+        "progress": 0.5,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "capture": {
+          "name": "docker",
+          "frame": 150,
+          "fps": 30,
+          "artifactHash": "8d85a1666d8ee77c0e9975dcaf894e4138abbe6e713bf96e9fc5e82dd96fa577",
+          "sourceFrame": 503
+        }
+      }
+    },
+    {
+      "id": "format-video",
+      "file": "11-format-video-750.png",
+      "sha256": "85952f3eb57b25e872e88e7553981666bf730ed8d4be59d95683859941b2e4e8",
+      "fraction": 0.75,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-video",
+        "segmentIndex": 10,
+        "fullSegmentIndex": 10,
+        "segmentFrame": 225,
+        "segmentFrames": 301,
+        "progress": 0.75,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "capture": {
+          "name": "docker",
+          "frame": 179,
+          "fps": 30,
+          "artifactHash": "8d85a1666d8ee77c0e9975dcaf894e4138abbe6e713bf96e9fc5e82dd96fa577",
+          "sourceFrame": 532
+        }
+      }
+    },
+    {
+      "id": "format-video",
+      "file": "11-format-video-1000.png",
+      "sha256": "85952f3eb57b25e872e88e7553981666bf730ed8d4be59d95683859941b2e4e8",
+      "fraction": 1,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "format-video",
+        "segmentIndex": 10,
+        "fullSegmentIndex": 10,
+        "segmentFrame": 300,
+        "segmentFrames": 301,
+        "progress": 1,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false,
+        "capture": {
+          "name": "docker",
+          "frame": 179,
+          "fps": 30,
+          "artifactHash": "8d85a1666d8ee77c0e9975dcaf894e4138abbe6e713bf96e9fc5e82dd96fa577",
+          "sourceFrame": 532
+        }
+      }
+    },
+    {
+      "id": "summary",
+      "file": "12-summary-0.png",
+      "sha256": "62ca5f381f5d7421907497b552648d349d2c3450a6dbc5b24a249d0e10c07818",
+      "fraction": 0,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "summary",
+        "segmentIndex": 11,
+        "fullSegmentIndex": 11,
+        "segmentFrame": 0,
+        "segmentFrames": 371,
+        "progress": 0,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "summary",
+      "file": "12-summary-240.png",
+      "sha256": "62ca5f381f5d7421907497b552648d349d2c3450a6dbc5b24a249d0e10c07818",
+      "fraction": 0.24,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "summary",
+        "segmentIndex": 11,
+        "fullSegmentIndex": 11,
+        "segmentFrame": 89,
+        "segmentFrames": 371,
+        "progress": 0.24054054054054055,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "summary",
+      "file": "12-summary-500.png",
+      "sha256": "b26fc8f4a92b2bd07e13aa25c79dd6f5295da7887500d5de3901a6d2a1482f74",
+      "fraction": 0.5,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "summary",
+        "segmentIndex": 11,
+        "fullSegmentIndex": 11,
+        "segmentFrame": 185,
+        "segmentFrames": 371,
+        "progress": 0.5,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "summary",
+      "file": "12-summary-750.png",
+      "sha256": "b26fc8f4a92b2bd07e13aa25c79dd6f5295da7887500d5de3901a6d2a1482f74",
+      "fraction": 0.75,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "summary",
+        "segmentIndex": 11,
+        "fullSegmentIndex": 11,
+        "segmentFrame": 278,
+        "segmentFrames": 371,
+        "progress": 0.7513513513513513,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "summary",
+      "file": "12-summary-1000.png",
+      "sha256": "b26fc8f4a92b2bd07e13aa25c79dd6f5295da7887500d5de3901a6d2a1482f74",
+      "fraction": 1,
+      "captionTop": 593.625,
+      "outside": [],
+      "sourceBottom": 548,
+      "state": {
+        "sceneId": "summary",
+        "segmentIndex": 11,
+        "fullSegmentIndex": 11,
+        "segmentFrame": 370,
+        "segmentFrames": 371,
+        "progress": 1,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "install",
+      "file": "13-install-0.png",
+      "sha256": "784bcb8975d306ff6e488338f1f2f2e440b46938fd32332bd41e9b6706964e77",
+      "fraction": 0,
+      "captionTop": 632.8125,
+      "outside": [],
+      "sourceBottom": 526,
+      "state": {
+        "sceneId": "install",
+        "segmentIndex": 12,
+        "fullSegmentIndex": 12,
+        "segmentFrame": 0,
+        "segmentFrames": 194,
+        "progress": 0,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "install",
+      "file": "13-install-240.png",
+      "sha256": "784bcb8975d306ff6e488338f1f2f2e440b46938fd32332bd41e9b6706964e77",
+      "fraction": 0.24,
+      "captionTop": 632.8125,
+      "outside": [],
+      "sourceBottom": 526,
+      "state": {
+        "sceneId": "install",
+        "segmentIndex": 12,
+        "fullSegmentIndex": 12,
+        "segmentFrame": 46,
+        "segmentFrames": 194,
+        "progress": 0.23834196891191708,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "install",
+      "file": "13-install-500.png",
+      "sha256": "784bcb8975d306ff6e488338f1f2f2e440b46938fd32332bd41e9b6706964e77",
+      "fraction": 0.5,
+      "captionTop": 632.8125,
+      "outside": [],
+      "sourceBottom": 526,
+      "state": {
+        "sceneId": "install",
+        "segmentIndex": 12,
+        "fullSegmentIndex": 12,
+        "segmentFrame": 97,
+        "segmentFrames": 194,
+        "progress": 0.5025906735751295,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "install",
+      "file": "13-install-750.png",
+      "sha256": "784bcb8975d306ff6e488338f1f2f2e440b46938fd32332bd41e9b6706964e77",
+      "fraction": 0.75,
+      "captionTop": 632.8125,
+      "outside": [],
+      "sourceBottom": 526,
+      "state": {
+        "sceneId": "install",
+        "segmentIndex": 12,
+        "fullSegmentIndex": 12,
+        "segmentFrame": 145,
+        "segmentFrames": 194,
+        "progress": 0.7512953367875648,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    },
+    {
+      "id": "install",
+      "file": "13-install-1000.png",
+      "sha256": "784bcb8975d306ff6e488338f1f2f2e440b46938fd32332bd41e9b6706964e77",
+      "fraction": 1,
+      "captionTop": 632.8125,
+      "outside": [],
+      "sourceBottom": 526,
+      "state": {
+        "sceneId": "install",
+        "segmentIndex": 12,
+        "fullSegmentIndex": 12,
+        "segmentFrame": 193,
+        "segmentFrames": 194,
+        "progress": 1,
+        "language": "zh",
+        "timing": "frame-indexed-not-word-aligned",
+        "editingDemonstrated": false
+      }
+    }
+  ],
+  "replay": [
+    {
+      "id": "purpose",
+      "matches": true
+    },
+    {
+      "id": "research-scope",
+      "matches": true
+    },
+    {
+      "id": "research-loop",
+      "matches": true
+    },
+    {
+      "id": "research-boundaries",
+      "matches": true
+    },
+    {
+      "id": "research-delivery",
+      "matches": true
+    },
+    {
+      "id": "explain-purpose",
+      "matches": true
+    },
+    {
+      "id": "explain-language",
+      "matches": true
+    },
+    {
+      "id": "format-html",
+      "matches": true
+    },
+    {
+      "id": "format-image",
+      "matches": true
+    },
+    {
+      "id": "format-slides",
+      "matches": true
+    },
+    {
+      "id": "format-video",
+      "matches": true
+    },
+    {
+      "id": "summary",
+      "matches": true
+    },
+    {
+      "id": "install",
+      "matches": true
+    }
+  ],
+  "overflow": []
+}

@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "1.0.0",
+  "format": "video",
+  "language": "en",
+  "researchHash": "1abf999481ab65abe18ac4dd88f015c9562b1737c7abebf38d2dae91381aeda1",
+  "title": "Aha: research, boundaries and purpose-built visual explanations",
+  "status": "authored",
+  "entry": "html/index.html",
+  "coverage": [
+    {
+      "id": "purpose",
+      "claimIds": [
+        "c-skills"
+      ]
+    },
+    {
+      "id": "research-scope",
+      "claimIds": [
+        "c-research-method"
+      ]
+    },
+    {
+      "id": "research-loop",
+      "claimIds": [
+        "c-research-method"
+      ]
+    },
+    {
+      "id": "research-boundaries",
+      "claimIds": [
+        "c-boundaries"
+      ]
+    },
+    {
+      "id": "research-delivery",
+      "claimIds": [
+        "c-research-delivery"
+      ]
+    },
+    {
+      "id": "explain-purpose",
+      "claimIds": [
+        "c-output"
+      ]
+    },
+    {
+      "id": "explain-language",
+      "claimIds": [
+        "c-output",
+        "c-language"
+      ]
+    },
+    {
+      "id": "format-html",
+      "claimIds": [
+        "c-formats",
+        "c-map"
+      ]
+    },
+    {
+      "id": "format-image",
+      "claimIds": [
+        "c-formats",
+        "c-python",
+        "c-utf8"
+      ]
+    },
+    {
+      "id": "format-slides",
+      "claimIds": [
+        "c-formats"
+      ]
+    },
+    {
+      "id": "format-video",
+      "claimIds": [
+        "c-formats",
+        "c-delete"
+      ]
+    },
+    {
+      "id": "summary",
+      "claimIds": [
+        "c-skills",
+        "c-research-delivery",
+        "c-output"
+      ]
+    },
+    {
+      "id": "install",
+      "claimIds": [
+        "c-skills"
+      ]
+    }
+  ],
+  "omissions": [
+    {
+      "claimId": "c-layer",
+      "reason": "This introduction focuses on the skills and media. Detailed mechanism and installation claims remain in the underlying works and research."
+    },
+    {
+      "claimId": "c-same",
+      "reason": "This introduction focuses on the skills and media. Detailed mechanism and installation claims remain in the underlying works and research."
+    },
+    {
+      "claimId": "c-synthesis",
+      "reason": "This introduction focuses on the skills and media. Detailed mechanism and installation claims remain in the underlying works and research."
+    },
+    {
+      "claimId": "c-intermediate",
+      "reason": "This introduction focuses on the skills and media. Detailed mechanism and installation claims remain in the underlying works and research."
+    },
+    {
+      "claimId": "c-container",
+      "reason": "This introduction focuses on the skills and media. Detailed mechanism and installation claims remain in the underlying works and research."
+    },
+    {
+      "claimId": "c-install",
+      "reason": "This introduction focuses on the skills and media. Detailed mechanism and installation claims remain in the underlying works and research."
+    }
+  ],
+  "width": 1280,
+  "height": 720
+}

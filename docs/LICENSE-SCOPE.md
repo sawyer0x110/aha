@@ -7,7 +7,7 @@ Aha's original source code, skill instructions, documentation, evaluation fixtur
 | Material | Applicable notices |
 | --- | --- |
 | Bundled runtime dependencies | Each installed skill includes `THIRD-PARTY-NOTICES.txt`; retained dependency licenses also apply. Aha's MIT license does not replace them. |
-| Map resources and D3 modules | Natural Earth data is identified as public domain in the example resource records. D3 modules retain their own licenses. Keep the `resources.json` and `*-LICENSE.txt` files with the [Greenland](https://github.com/sawyer0x110/aha/tree/main/examples/greenland/projects/video/assets) and [introduction](https://github.com/sawyer0x110/aha/tree/main/examples/aha-introduction/projects/video/assets) sources. |
+| Map resources and D3 modules | Natural Earth data is identified as public domain in the example resource records. D3 modules retain their own licenses. Keep `resources.json` and `*-LICENSE.txt` with the [Greenland sources](https://github.com/sawyer0x110/aha/tree/main/examples/greenland/projects/video/assets). The introduction reuses recorded map images, not D3 executable modules; its language-specific source assets retain resource records, and the capture's [D3 notices](https://github.com/sawyer0x110/aha/tree/main/examples/aha-introduction/third-party-notices) remain alongside the delivery. |
 | Speech, fonts, and separately installed tools | Approval to synthesize narration is not a blanket redistribution license. Applicable speech-service terms, font rights, and the licenses of Edge TTS, FFmpeg, browsers, and presentation tools remain separate. Aha does not distribute these tools or system fonts in its skill ZIP. |
 | Quoted research and user-provided material | Citations and public availability do not grant additional reproduction rights. Check the original source and the relevant example's provenance before reuse. |
 
@@ -22,7 +22,7 @@ Licensing is not a quality certificate or a grant of rights over someone else's 
 | 材料 | 适用声明 |
 | --- | --- |
 | 随包运行时依赖 | 每个安装后的技能都含 `THIRD-PARTY-NOTICES.txt`，依赖自带的许可同样适用；Aha 的 MIT 不能替代它们。 |
-| 地图资源与 D3 模块 | 示例资源记录将 Natural Earth 数据标为公共领域，D3 模块保留各自许可证。[格陵兰](https://github.com/sawyer0x110/aha/tree/main/examples/greenland/projects/video/assets)与[项目介绍](https://github.com/sawyer0x110/aha/tree/main/examples/aha-introduction/projects/video/assets)源码中的 `resources.json`、`*-LICENSE.txt` 应随资源保留。 |
+| 地图资源与 D3 模块 | 示例资源记录将 Natural Earth 数据标为公共领域，D3 模块保留各自许可证。[格陵兰源码](https://github.com/sawyer0x110/aha/tree/main/examples/greenland/projects/video/assets)中的 `resources.json`、`*-LICENSE.txt` 应随资源保留。项目介绍复用地图录制图像，不再包含 D3 可执行模块；各语言源码资源保留来源记录，录制所用的 [D3 许可声明](https://github.com/sawyer0x110/aha/tree/main/examples/aha-introduction/third-party-notices)随交付保留。 |
 | 语音、字体和独立安装的工具 | 配音审批不是无限制再分发授权。语音服务条款、字体权利及 Edge TTS、FFmpeg、浏览器、演示工具的许可需分别遵循；技能 ZIP 不分发这些工具或系统字体。 |
 | 引用研究与用户提供材料 | 有引用或可公开阅读不等于获得额外复制许可；复用前检查原始来源与对应示例记录。 |
 

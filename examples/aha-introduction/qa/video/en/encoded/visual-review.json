@@ -1,0 +1,36 @@
+{
+  "artifactHash": "de1de44fcbd672290fb1d88e9944d3566dfe2437575cb050aa73fa3d7759a5f8",
+  "sourceHash": "04cc5d0b8adf27b0b15b52f5db5c33e02e57c79ee3157f186cdf9531b74758a2",
+  "planHash": "44c538dad3508375c390bc4f2c16374cf59ff871755df5cf4f481cca24108cb3",
+  "scope": "Agent inspection of actual encoded representative frames from all thirteen scenes, including the ANC second page and Docker post-deletion state.",
+  "inspectedFiles": [
+    "frame-001.png",
+    "frame-004.png",
+    "frame-011.png",
+    "frame-017.png",
+    "frame-020.png",
+    "frame-023.png",
+    "frame-026.png",
+    "frame-032.png",
+    "frame-040.png",
+    "frame-045.png",
+    "frame-051.png",
+    "frame-058.png",
+    "frame-061.png"
+  ],
+  "observations": [
+    "The opening identifies Aha and the two host-coordinated skills, without repeating three introductory mechanism cases.",
+    "Research question selection, evidence and follow-up, permission boundaries and independent report/dossier delivery are legible with separated captions and source notes.",
+    "Explain distinguishes purpose-specific formats and accurate language defaults, without suggesting automatic production of all formats.",
+    "Four genuine examples illustrate interaction, visual comparison, presenting editable slides and following changes over time; original slide language and recorded rather than live interactions are explicitly labeled.",
+    "The closing retains a clear invitation, prominent repository URL and concise Agent installation prompt, with no numbered installation steps.",
+    "Complete muted playback ended at 154.533333 seconds without a media error. The browser reported three display drops; independent full decode counted all 4636 encoded frames."
+  ],
+  "blockingIssues": 0,
+  "limitations": [
+    "No actual audio listening, pronunciation review or verified word-level alignment.",
+    "Sampled agent inspection and muted automated playback are not continuous human viewing or every-frame visual acceptance.",
+    "Embedded original artwork fine print is not all readable at video scale.",
+    "No learner-comprehension study; browser playback counters are not encoded frame counts."
+  ]
+}

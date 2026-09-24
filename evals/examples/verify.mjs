@@ -18,9 +18,27 @@ export const topics = {
   greenland: { width: 1800, height: 1600, slides: 7, frames: 2424, provider: 'provided-audio' },
   'cpython-string': { width: 1800, height: 1600, slides: 7, frames: 1897, provider: 'provided-audio' },
   'docker-layers': { width: 1800, height: 1600, slides: 7, frames: 1749, provider: 'provided-audio' },
-  'aha-introduction': { width: 1080, height: 1920, slides: 8, frames: 3582, provider: 'provided-audio' },
+  'aha-introduction': { width: 1080, height: 1920, slides: 8, videoFrames: { en: 4636, zh: 4532 }, provider: 'provided-audio' },
 };
 export const formatsFor = topic => topics[topic].formats ?? ['html', 'image', 'pptx', 'video'];
+export const outputVariantsFor = topic => formatsFor(topic).flatMap(format =>
+  topic === 'aha-introduction' && format === 'video'
+    ? ['en', 'zh'].map(language => ({ topic, format, language }))
+    : [{ topic, format }]);
+const outputKey = entry => `${entry.topic}/${entry.format}${entry.topic === 'aha-introduction' && entry.format === 'video' ? `/${entry.language}` : ''}`;
+export function layoutFor({ topic, format, language }) {
+  const variant = topic === 'aha-introduction' && format === 'video';
+  if (variant) assert(['en', 'zh'].includes(language), 'Introduction video language must be en or zh');
+  const suffix = variant ? `/${language}` : '';
+  return {
+    file: `${topic}/${topic}${variant ? `.${language}` : ''}.${{ html: 'html', image: 'png', pptx: 'pptx', video: 'mp4' }[format]}`,
+    project: `${topic}/projects/${format}${suffix}`,
+    qa: `${topic}/qa/${format}${suffix}`,
+    research: `${topic}/research${variant ? '-video' : ''}`,
+    plan: variant ? `${topic}/video-plans/${language}.json` : `${topic}/video-plan.json`,
+    audio: `${topic}/audio${suffix}`,
+  };
+}
 const pptxTopics = Object.keys(topics).filter(topic => formatsFor(topic).includes('pptx'));
 export const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 // PowerShell 5.1 emits a UTF-8 BOM; strip it only for parsing, never for byte hashing.
@@ -59,18 +77,19 @@ export async function verifyOutput(base, entry) {
   assert(['html', 'image', 'pptx', 'video'].includes(format), `Unknown format: ${format}`);
   assert(formatsFor(topic).includes(format), `Unrequested format: ${topic}/${format}`);
   const spec = topics[topic];
-  const filename = `${topic}.${{ html: 'html', image: 'png', pptx: 'pptx', video: 'mp4' }[format]}`;
-  equal(entry.file, `${topic}/${filename}`, 'Canonical output path');
-  equal(entry.sourceProject, `${topic}/projects/${format}`, 'Canonical source path');
-  equal(entry.report, `${topic}/research/report.md`, 'Canonical report path');
+  const layout = layoutFor(entry);
+  const filename = path.posix.basename(layout.file);
+  equal(entry.file, layout.file, 'Canonical output path');
+  equal(entry.sourceProject, layout.project, 'Canonical source path');
+  equal(entry.report, `${layout.research}/report.md`, 'Canonical report path');
   equal(entry.receipt, `${entry.file}.receipt.json`, 'Canonical receipt path');
   const directory = path.join(base, topic);
-  const project = path.join(directory, 'projects', format);
-  const dossier = await readDossier(path.join(directory, 'research'));
+  const project = path.join(base, layout.project);
+  const dossier = await readDossier(path.join(base, layout.research));
   assert.deepEqual(await readDossier(path.join(project, 'research')), dossier, 'Mirrored dossier must match canonical research');
   // Compare the sealed dossier files as bytes too: equal JSON values alone would permit conversion.
   for (const name of ['manifest.json', 'research.json', 'report.md']) {
-    assert.deepEqual(await readFile(path.join(project, 'research', name)), await readFile(path.join(directory, 'research', name)));
+    assert.deepEqual(await readFile(path.join(project, 'research', name)), await readFile(path.join(base, layout.research, name)));
   }
   await checkArtifact(project);
   const metadata = await json(path.join(project, 'artifact.json'));
@@ -138,15 +157,20 @@ export async function verifyOutput(base, entry) {
     assert(size, 'Presentation dimensions');
     assert(Math.abs(Number(size[1]) / Number(size[2]) - metadata.width / metadata.height) < 0.001, 'Presentation aspect ratio');
   }
-  let plan, recordingPlanHash;
+  let plan, recordingPlanHash, recordingPlanHashes, recordings;
   if (format === 'video') {
-    plan = await validateVideoPlan(project, await json(path.join(directory, 'video-plan.json')));
-    const audio = checkAudioTiming(plan, await json(path.join(directory, 'audio', 'manifest.json')));
+    if (topic === 'aha-introduction') {
+      equal(metadata.language, entry.language, 'Video source language');
+      equal(entry.videoPlan, layout.plan, 'Canonical video plan path');
+      equal(entry.audioDirectory, layout.audio, 'Canonical audio directory');
+    }
+    plan = await validateVideoPlan(project, await json(path.join(base, layout.plan)));
+    const audio = checkAudioTiming(plan, await json(path.join(base, layout.audio, 'manifest.json')));
     const provider = spec.provider ?? 'provided-audio';
     equal(plan.provider, provider, 'Expected approved speech provider');
     equal(audio.provider, provider, 'Audio provider');
     for (const segment of audio.segments) {
-      const wav = await readFile(path.join(directory, 'audio', segment.filename));
+      const wav = await readFile(path.join(base, layout.audio, segment.filename));
       equal(sha(wav), segment.sha256, `${segment.id}: audio hash`);
       equal(wavFrames(wav), segment.frames, `${segment.id}: measured WAV frames`);
     }
@@ -156,7 +180,7 @@ export async function verifyOutput(base, entry) {
     equal(receipt.subtitleHash, sha(srt), 'Subtitle hash');
     equal(srt.toString('utf8'), subtitles(plan, audio), 'Exact approved SRT text and timing');
     const frames = audio.segments.reduce((sum, segment) => sum + segment.frames, 0);
-    equal(frames, spec.frames, 'Current recording frame count');
+    equal(frames, spec.videoFrames?.[entry.language] ?? spec.frames, 'Current recording frame count');
     equal(receipt.totalFrames, frames, 'Video frames');
     equal(entry.frames, frames, 'Manifest video frames');
     equal(receipt.durationSeconds, frames / 30, 'Video duration');
@@ -168,21 +192,39 @@ export async function verifyOutput(base, entry) {
     equal(receipt.height, 720, 'Video height');
     equal(receipt.codec, 'h264', 'Video codec');
     if (provider === 'provided-audio') {
-      const provenance = await json(path.join(directory, 'audio', 'provenance.json'));
+      const provenance = await json(path.join(base, layout.audio, 'provenance.json'));
       equal(provenance.provider, 'edge-tts', 'Recording provider, not the current import provider');
-      equal(provenance.voice, topic === 'aha-introduction' ? 'en-US-AriaNeural' : 'en-US-JennyNeural', 'Recorded speech voice');
+      equal(provenance.voice, topic === 'aha-introduction'
+        ? entry.language === 'zh' ? 'zh-CN-XiaoxiaoNeural' : 'en-US-AriaNeural'
+        : 'en-US-JennyNeural', 'Recorded speech voice');
       equal(provenance.rate, plan.rate, 'Recording rate');
-      hash(provenance.recordingPlanHash, 'Recording plan identity');
-      recordingPlanHash = provenance.recordingPlanHash;
       assert.deepEqual(provenance.narration, plan.segments.map(({ id, text }) => ({ id, text })),
         'Imported recordings preserve the approved spoken words and order');
-      assert.deepEqual(provenance.recordings, audio.segments.map(segment => ({
-        id: segment.id, file: segment.filename, sha256: segment.sha256,
-      })), 'Recording provenance binds the current WAV bytes');
+      if (topic === 'aha-introduction') {
+        equal(provenance.schemaVersion, 2, 'Per-segment recording provenance schema');
+        equal(provenance.importedPlanHash, receipt.planHash, 'Current import provenance');
+        equal(provenance.recordings.length, audio.segments.length, 'Complete recording provenance');
+        for (const [index, segment] of audio.segments.entries()) {
+          const recording = provenance.recordings[index];
+          hash(recording.recordingPlanHash, 'Original recording plan identity');
+          assert.deepEqual(recording, { id: segment.id, file: segment.filename, sha256: segment.sha256,
+            frames: segment.frames, recordingPlanHash: recording.recordingPlanHash }, 'Current recording identity');
+        }
+        recordingPlanHashes = [...new Set(provenance.recordings.map(item => item.recordingPlanHash))].sort();
+        assert.deepEqual(provenance.recordingPlanHashes, recordingPlanHashes, 'Exact original recording plans');
+        recordings = provenance.recordings;
+      } else {
+        hash(provenance.recordingPlanHash, 'Recording plan identity');
+        recordingPlanHash = provenance.recordingPlanHash;
+        assert.deepEqual(provenance.recordings, audio.segments.map(segment => ({
+          id: segment.id, file: segment.filename, sha256: segment.sha256,
+        })), 'Recording provenance binds the current WAV bytes');
+      }
     }
   }
   equal(entry.receiptHash, sha(receiptBytes), 'Manifest receipt hash');
-  return { topic, format, file: entry.file, outputHash: output, sourceHash: source, researchHash: research, receiptHash: sha(receiptBytes), receipt, plan, recordingPlanHash };
+  return { topic, format, language: entry.language, file: entry.file, outputHash: output, sourceHash: source, researchHash: research,
+    receiptHash: sha(receiptBytes), receipt, plan, recordingPlanHash, recordingPlanHashes, recordings };
 }
 
 const compact = text => text.replace(/\s+/g, '');
@@ -571,60 +613,124 @@ export async function verifyRegeneratedEvidence(base, verified, manifest) {
 
 export async function verifyIntroductionEvidence(base, verified, manifest) {
   manifest ??= await json(path.join(base, 'delivery-manifest.json'));
-  const entry = manifest.requestedOutputs.find(item => item.topic === 'aha-introduction' && item.format === 'video');
-  await verifyCurrentQa(base, entry);
-  const directory = path.join(base, entry.qa.directory);
-  const video = verified.find(item => item.topic === 'aha-introduction' && item.format === 'video');
-  const evidence = entry.qa.evidence.map(item => item.file.slice(entry.qa.directory.length + 1));
-  for (const name of [
-    'preview/report.json', 'encoded/technical-review.json', 'encoded/visual-review.json',
-    'speech-approval.json', 'approval.json',
-  ]) assert(evidence.includes(name), `Required introduction evidence: ${name}`);
-  currentIdentity({ ...entry, outputHash: entry.sha256 }, video, 'Introduction publication');
-  const approval = await json(path.join(directory, 'approval.json'));
-  equal(approval.planHash, video.receipt.planHash, 'Approved corrected introduction plan');
-  equal(approval.sourceHash, video.sourceHash, 'Approved corrected introduction source');
-  equal(approval.recordingPlanHash, video.recordingPlanHash, 'Approved recording source');
-  const speechApproval = await json(path.join(directory, 'speech-approval.json'));
-  equal(speechApproval.planHash, video.recordingPlanHash, 'Full speech approval');
-  const preview = await json(path.join(directory, 'preview', 'report.json'));
-  equal(preview.sourceHash, video.sourceHash, 'Introduction preview source');
-  equal(preview.planHash, video.receipt.planHash, 'Introduction preview plan');
-  equal(preview.passed, true, 'Introduction source checks');
-  assert.deepEqual(preview.errors, []);
-  assert.deepEqual(preview.replay.map(item => item.id), video.plan.segments.map(item => item.id));
-  assert(preview.replay.every(item => item.identical), 'Introduction sampled A/B/A replay');
-  equal(preview.captures.length, video.plan.segments.length * 5, 'Introduction preview coverage');
-  for (const capture of preview.captures) {
-    assert.deepEqual(capture.contentOverflow, []);
-    assert(capture.caption.top >= 550 && capture.caption.bottom <= 720 && !capture.caption.overflow);
-    equal(entry.qa.evidence.find(item => item.file === `${entry.qa.directory}/preview/${capture.filename}`)?.sha256, capture.sha256, 'Introduction preview image');
+  const entries = manifest.requestedOutputs.filter(item => item.topic === 'aha-introduction' && item.format === 'video');
+  assert.deepEqual(entries.map(entry => entry.language).sort(), ['en', 'zh'], 'Both introduction video languages');
+  for (const entry of entries) {
+    await verifyCurrentQa(base, entry);
+    const directory = path.join(base, entry.qa.directory);
+    const video = verified.find(item => item.topic === entry.topic && item.format === 'video' && item.language === entry.language);
+    assert(video, 'Verified language-specific video');
+    const sealed = file => entry.qa.evidence.find(item => item.file === `${entry.qa.directory}/${file}`);
+    for (const name of ['preview/observations.json', 'encoded/technical-review.json', 'encoded/visual-review.json',
+      'encoded/playback.json', 'speech-approval.json', 'approval.json', 'asset-provenance.json']) {
+      assert(sealed(name), `Required introduction evidence: ${name}`);
+    }
+    currentIdentity({ ...entry, outputHash: entry.sha256 }, video, 'Introduction publication');
+    const approval = await json(path.join(directory, 'approval.json'));
+    equal(approval.planHash, video.receipt.planHash, 'Approved introduction plan');
+    equal(approval.sourceHash, video.sourceHash, 'Approved introduction source');
+    equal(approval.language, entry.language, 'Approved introduction language');
+    assert.deepEqual(approval.narration, video.plan.segments.map(({ id, text }) => ({ id, text })));
+    assert.deepEqual(approval.recordingPlanHashes, video.recordingPlanHashes, 'Approved original recordings');
+    nonemptyStatements([approval.userAnswer, approval.publicationAuthorization], 'Explicit production and publication approval');
+    const speech = await json(path.join(directory, 'speech-approval.json'));
+    equal(speech.voice, entry.language === 'en' ? 'en-US-AriaNeural' : 'zh-CN-XiaoxiaoNeural', 'Approved speech language');
+    assert.deepEqual(speech.origins.map(item => item.planHash).sort(), video.recordingPlanHashes, 'Exact speech approval origins');
+    for (const origin of speech.origins) {
+      equal(await hashValue(origin.plan), origin.planHash, 'Original synthesis plan hash');
+      equal(origin.plan.provider, 'edge-tts', 'Synthesis rather than intermediate import plan');
+      equal(origin.plan.voice, speech.voice, 'Original speech voice');
+      equal(origin.plan.rate, '+0%', 'Original speech rate');
+      nonemptyStatements([origin.userAnswer, origin.externalScope], 'Original speech permission');
+    }
+    for (const recording of video.recordings) {
+      const origin = speech.origins.find(item => item.planHash === recording.recordingPlanHash);
+      const segment = video.plan.segments.find(item => item.id === recording.id);
+      equal(origin.plan.segments.find(item => item.id === recording.id)?.text, segment.text, 'Originally approved recording text');
+    }
+    const preview = await json(path.join(directory, 'preview', 'observations.json'));
+    equal(preview.sourceHash, video.sourceHash, 'Introduction preview source');
+    equal(preview.planHash, video.receipt.planHash, 'Introduction preview plan');
+    equal(preview.timing, 'measured-approved-audio', 'Preview uses actual recording timing');
+    assert.deepEqual(preview.overflow, []);
+    assert.deepEqual(preview.replay.map(item => item.id), video.plan.segments.map(item => item.id));
+    assert(preview.replay.every(item => item.matches === true), 'Introduction sampled A/B/A replay');
+    equal(preview.samples.length, 73, 'Introduction preview coverage');
+    for (const segment of video.plan.segments) {
+      const samples = preview.samples.filter(item => item.id === segment.id);
+      assert([0, .24, .5, .75, 1].every(fraction => samples.some(item => item.fraction === fraction)), 'Every scene sampled');
+    }
+    for (const sample of preview.samples) {
+      const recording = video.recordings.find(item => item.id === sample.id);
+      assert(recording, 'Known preview segment');
+      assert.deepEqual(sample.outside, []);
+      assert(sample.captionTop >= 550 && sample.captionTop < 720 && sample.sourceBottom + 8 <= sample.captionTop);
+      equal(sample.state.language, entry.language, 'Preview language');
+      equal(sample.state.sceneId, sample.id, 'Preview scene');
+      equal(sample.state.segmentFrames, recording.frames, 'Measured preview segment duration');
+      equal(sealed(`preview/${sample.file}`)?.sha256, sample.sha256, 'Introduction preview image');
+    }
+    const technical = await json(path.join(directory, 'encoded', 'technical-review.json'));
+    equal(technical.artifactHash, video.outputHash, 'Introduction encoded identity');
+    equal(technical.sourceHash, video.sourceHash, 'Introduction encoded source');
+    equal(technical.planHash, video.receipt.planHash, 'Introduction encoded plan');
+    equal(technical.frames, topics['aha-introduction'].videoFrames[entry.language], 'Introduction encoded frames');
+    equal(technical.fullDecode, true, 'Introduction full decode');
+    equal(technical.exactApprovedSubtitleTextAndTiming, true, 'Introduction exact approved captions');
+    equal(technical.listening, 'not-performed', 'No invented listening');
+    const stream = technical.streams.find(item => item.codec_type === 'video');
+    equal(stream?.codec_name, 'h264', 'Encoded video codec');
+    equal(stream.width, 1280, 'Encoded video width');
+    equal(stream.height, 720, 'Encoded video height');
+    equal(stream.r_frame_rate, '30/1', 'Encoded frame rate');
+    equal(Number(stream.nb_read_frames), technical.frames, 'Full measured frame count');
+    equal(technical.streams.find(item => item.codec_type === 'audio')?.codec_name, 'aac', 'Encoded audio codec');
+    let offset = 0;
+    for (const recording of video.recordings) {
+      const samples = technical.samples.filter(item => item.id === recording.id);
+      assert([0, Math.floor(recording.frames / 2), recording.frames - 1].every(local => samples.some(item => item.local === local)), 'Encoded scene coverage');
+      for (const sample of samples) {
+        assert(Number.isInteger(sample.local) && sample.local >= 0 && sample.local < recording.frames);
+        equal(sample.frame, offset + sample.local, 'Exact encoded sample frame');
+        equal(sealed(`encoded/${sample.file}`)?.sha256, sample.sha256, 'Introduction encoded sample');
+      }
+      offset += recording.frames;
+    }
+    assert(technical.samples.every(sample => video.recordings.some(item => item.id === sample.id)));
+    equal(new Set(technical.samples.map(sample => sample.frame)).size, technical.samples.length, 'Unique encoded samples');
+    const playback = await json(path.join(directory, 'encoded', 'playback.json'));
+    equal(playback.artifactHash, video.outputHash, 'Playback video identity');
+    equal(playback.ended, true, 'Complete muted playback');
+    equal(playback.error, null, 'Playback error');
+    assert(Math.abs(playback.seconds - technical.frames / 30) < .01);
+    const visual = await json(path.join(directory, 'encoded', 'visual-review.json'));
+    equal(visual.artifactHash, video.outputHash, 'Introduction actual visual review identity');
+    equal(visual.sourceHash, video.sourceHash, 'Introduction actual visual review source');
+    equal(visual.planHash, video.receipt.planHash, 'Introduction actual visual review plan');
+    equal(visual.blockingIssues, 0, 'No unresolved visual blocker');
+    nonemptyStatements(visual.observations, 'Actual visual findings');
+    nonemptyStatements(visual.limitations, 'Bounded visual review');
+    assert(visual.inspectedFiles.length > 0);
+    for (const file of visual.inspectedFiles) assert(technical.samples.some(sample => sample.file === file), 'Reviewed current encoded frame');
+    const assets = await json(path.join(directory, 'asset-provenance.json'));
+    const resources = (await readdir(path.join(base, entry.sourceProject, 'assets'))).filter(name => name !== 'resources.json');
+    assert.deepEqual(assets.files.map(asset => asset.file).sort(), resources.map(name => `assets/${name}`).sort(), 'Exact current visual resource inventory');
+    for (const asset of assets.sourceArtifacts) {
+      const current = manifest.requestedOutputs.find(item => `examples/${item.file}` === asset.artifact);
+      assert(current, 'Showcase uses a current example');
+      equal(current.sha256, asset.sha256, 'Showcase original artifact identity');
+      equal(current.sourceHash, asset.sourceHash, 'Showcase original source identity');
+    }
+    for (const asset of assets.files) {
+      assert(/^assets\/[^/]+$/.test(asset.file), 'Local showcase resource');
+      equal(sha(await readFile(path.join(base, entry.sourceProject, asset.file))), asset.sha256, 'Captured visual resource identity');
+    }
   }
-  const opening = preview.captures.find(item => item.id === 'research-skill' && item.label === 'end');
-  equal(opening.state.skills.exampleShown, false, 'Project-only opening');
-  equal(opening.visibleText.filter(text => text === 'Two portable skills, coordinated by your AI host.').length, 1, 'No duplicated opening sentence');
-  for (const id of ['mercator-question', 'new-string', 'layer-created']) {
-    equal(preview.captures.find(item => item.id === id && item.label === 'start').state.chapterTransition.progress, 0, 'Explicit case entry');
-  }
-  const technical = await json(path.join(directory, 'encoded', 'technical-review.json'));
-  equal(technical.artifactHash, video.outputHash, 'Introduction encoded identity');
-  equal(technical.planHash, video.receipt.planHash, 'Introduction encoded plan');
-  equal(technical.frames, 3582, 'Introduction encoded frames');
-  equal(technical.fullDecode, true, 'Introduction full decode');
-  equal(technical.exactApprovedSubtitleTextAndTiming, true, 'Introduction exact approved captions');
-  assert.deepEqual(technical.samples.map(item => item.filename), video.plan.segments.flatMap((segment, index) =>
-    ['start', 'middle', 'end'].map(label => `${index + 1}-${segment.id}-${label}.png`)));
-  for (const sample of technical.samples) {
-    equal(entry.qa.evidence.find(item => item.file === `${entry.qa.directory}/encoded/${sample.filename}`)?.sha256, sample.sha256, 'Introduction encoded sample');
-  }
-  const visual = await json(path.join(directory, 'encoded', 'visual-review.json'));
-  equal(visual.artifactHash, video.outputHash, 'Introduction actual visual review identity');
-  equal(visual.dockerConnectorFix, 'confirmed-in-actual-encoded-frame', 'Actual connector fix review');
 }
 
 function verifyManifestHeader(manifest) {
   equal(manifest.schemaVersion, 2, 'Unified publication schema');
-  equal(manifest.layout, 'topic-format-v1', 'Unified publication layout');
+  equal(manifest.layout, 'topic-format-language-v1', 'Unified publication layout');
   equal(manifest.status, 'published-examples-with-explicit-qa-limits', 'Unified publication status');
   for (const key of ['pptxPublication', 'introductionPublication', 'codePilotEvaluation',
     'greenlandEvaluation', 'ahaIntroductionEvaluation', 'taskVideoEvaluation', 'historicalVisualReview',
@@ -634,7 +740,7 @@ function verifyManifestHeader(manifest) {
 }
 
 export async function verifyCurrentQa(base, entry) {
-  const qa = `${entry.topic}/qa/${entry.format}`;
+  const qa = layoutFor(entry).qa;
   equal(entry.qa?.directory, qa, 'Canonical current QA directory');
   equal(entry.qa.status, 'bounded-evidence', 'Preserve bounded QA');
   for (const key of ['previousFile', 'previousReceipt', 'origin']) {
@@ -663,7 +769,7 @@ export async function verifyCurrentQa(base, entry) {
     equal(review.status, 'reading-preview-only', 'Reading preview does not establish visual acceptance');
     nonemptyStatements(review.limitations, 'Image review limitations');
   }
-  await assert.rejects(access(path.join(base, entry.topic, 'projects', entry.format, 'qa')), { code: 'ENOENT' }, 'QA stays outside author projects');
+  await assert.rejects(access(path.join(base, layoutFor(entry).project, 'qa')), { code: 'ENOENT' }, 'QA stays outside author projects');
 }
 
 export async function verifyExamples({
@@ -672,9 +778,9 @@ export async function verifyExamples({
 } = {}) {
   manifest ??= await json(path.join(base, 'delivery-manifest.json'));
   verifyManifestHeader(manifest);
-  const expectedOutputs = Object.keys(topics).flatMap(topic => formatsFor(topic).map(format => `${topic}/${format}`));
-  assert.equal(manifest.requestedOutputs.length, expectedOutputs.length, 'Exactly twenty requested outputs');
-  assert.deepEqual(manifest.requestedOutputs.map(item => `${item.topic}/${item.format}`).sort(),
+  const expectedOutputs = Object.keys(topics).flatMap(outputVariantsFor).map(outputKey);
+  assert.equal(manifest.requestedOutputs.length, expectedOutputs.length, 'Exactly twenty-one requested outputs');
+  assert.deepEqual(manifest.requestedOutputs.map(outputKey).sort(),
     expectedOutputs.sort());
   const verified = [];
   for (const entry of manifest.requestedOutputs) {
@@ -686,7 +792,7 @@ export async function verifyExamples({
   await verifyRegeneratedEvidence(base, verified, manifest);
   await verifyIntroductionEvidence(base, verified, manifest);
   return {
-    status: 'passed', outputs: verified.map(({ receipt, plan, ...item }) => item),
+    status: 'passed', outputs: verified.map(({ receipt, plan, recordings, ...item }) => item),
     scope: 'Current source and recording provenance, runtime-validated native structure, hash-bound PowerPoint/browser observations, WAV timing and exact subtitles; no authored code executed or historical archives required. These checks do not constitute human acceptance, listening, slideshow, manual editing or comprehension review.',
   };
 }

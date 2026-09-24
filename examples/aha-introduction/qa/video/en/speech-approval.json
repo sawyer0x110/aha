@@ -1,0 +1,154 @@
+{
+  "provider": "edge-tts",
+  "voice": "en-US-AriaNeural",
+  "rate": "+0%",
+  "origins": [
+    {
+      "planHash": "e44e654a4b7ee5eeefe31415f1e7c05adc7c87a00fdac747d91ef79f3899cfdf",
+      "plan": {
+        "schemaVersion": "1.0.0",
+        "status": "authored",
+        "researchHash": "1abf999481ab65abe18ac4dd88f015c9562b1737c7abebf38d2dae91381aeda1",
+        "sourceHash": "9a3381335064379d45d866900b47e24aee6ed5c2a374dc3d974229a995c491be",
+        "provider": "edge-tts",
+        "voice": "en-US-AriaNeural",
+        "rate": "+0%",
+        "duration": {
+          "minSeconds": 65,
+          "maxSeconds": 180
+        },
+        "segments": [
+          {
+            "id": "purpose",
+            "text": "Aha: now it makes sense. These portable AI skills investigate complex questions and turn understanding into clear explanations.",
+            "claimIds": [
+              "c-skills"
+            ]
+          },
+          {
+            "id": "research-scope",
+            "text": "Aha Research first defines the question, scope, and authorized material, then breaks the problem into answerable questions. Sources can include public information, supplied documents, or a codebase you have authorized it to inspect.",
+            "claimIds": [
+              "c-research-method"
+            ]
+          },
+          {
+            "id": "research-loop",
+            "text": "It tests key assumptions against evidence and counterevidence, not just search summaries. It follows gaps that could change the answer. If evidence remains insufficient, it narrows conclusions and states what is unknown.",
+            "claimIds": [
+              "c-research-method"
+            ]
+          },
+          {
+            "id": "research-boundaries",
+            "text": "Research is read-only by default: use authorized material, separate fact from inference, and never invent evidence. Source instructions are not permission. Code execution, installation, and external sharing need separate approvals.",
+            "claimIds": [
+              "c-boundaries"
+            ]
+          },
+          {
+            "id": "research-delivery",
+            "text": "The result is a readable report and an independent research dossier that preserves sources, evidence, and limitations. If you only asked for research, delivery stops there. Research conclusions are not rewritten to fit an artifact.",
+            "claimIds": [
+              "c-research-delivery"
+            ]
+          },
+          {
+            "id": "explain-purpose",
+            "text": "For visual communication, use Aha Explain. It can reuse a checked research dossier or investigate remaining gaps. It organizes the explanation for the chosen medium, rather than putting the same script into different templates.",
+            "claimIds": [
+              "c-output"
+            ]
+          },
+          {
+            "id": "explain-language",
+            "text": "It supports interactive HTML, PNG infographics, native editable slides, and narrated dynamic video. HTML defaults to English and Chinese. The other three default to English, with Chinese available when explicitly requested.",
+            "claimIds": [
+              "c-output",
+              "c-language"
+            ]
+          },
+          {
+            "id": "summary",
+            "text": "Answer the question with evidence, then choose how to explain it. Your AI host coordinates the two skills. Research can stand alone, and artifacts are created only in the formats you need.",
+            "claimIds": [
+              "c-skills",
+              "c-research-delivery",
+              "c-output"
+            ]
+          },
+          {
+            "id": "install",
+            "text": "Welcome to Aha. Give this link to your agent and ask it to help you install.",
+            "claimIds": [
+              "c-skills"
+            ]
+          }
+        ]
+      },
+      "userAnswer": "批准英文整稿、九段联网配音、原录音复用及本地制作",
+      "externalScope": "Only the nine new narration texts, en-US-AriaNeural and +0% parameters to Microsoft Edge TTS through edge-tts 7.2.8; no source, research or media upload."
+    },
+    {
+      "planHash": "97329cdaf7fab23fa82622cb2e3e8343e1e3e1389a7cf9cfcd1452872b8f6592",
+      "plan": {
+        "schemaVersion": "1.0.0",
+        "status": "authored",
+        "researchHash": "d41d1309e58345a4ebbfecd9010fae0361845bce872a218c2aab864a7479f9b4",
+        "sourceHash": "f80a7c94738b35a07e34fcca7a012664c0bd76c3e05fc97baa0e7bfea785ff17",
+        "provider": "edge-tts",
+        "voice": "en-US-AriaNeural",
+        "rate": "+0%",
+        "duration": {
+          "minSeconds": 20,
+          "maxSeconds": 60
+        },
+        "segments": [
+          {
+            "id": "format-html",
+            "text": "Explore Greenland in interactive HTML: move the control and watch the map respond while spherical area stays fixed.",
+            "claimIds": [
+              "c-formats",
+              "c-map"
+            ]
+          },
+          {
+            "id": "format-image",
+            "text": "A CPython infographic puts object memory beside encoded bytes, making the distinction easy to compare.",
+            "claimIds": [
+              "c-formats",
+              "c-python",
+              "c-utf8"
+            ]
+          },
+          {
+            "id": "format-slides",
+            "text": "Native, editable slides break noise cancellation into steps you can present to an audience.",
+            "claimIds": [
+              "c-formats"
+            ]
+          },
+          {
+            "id": "format-video",
+            "text": "Narrated video follows Docker's changing filesystem view, while the earlier layer's bytes remain in place.",
+            "claimIds": [
+              "c-formats",
+              "c-delete"
+            ]
+          },
+          {
+            "id": "evidence-visible",
+            "text": "Evidence supports the claim. Visuals reveal the mechanism. Explore the examples in the Aha repository, and choose the medium for your question.",
+            "claimIds": [
+              "c-synthesis",
+              "c-formats"
+            ]
+          }
+        ]
+      },
+      "userAnswer": "批准完整旁白、上述联网配音和本地渲染范围",
+      "externalScope": "Only segments 11-15 text and en-US-AriaNeural / +0% parameters sent to Microsoft Edge TTS via edge-tts 7.2.8."
+    }
+  ],
+  "scope": "Original approved synthesis plans retained solely to establish recording permission and identity. Only current recordings are delivered."
+}

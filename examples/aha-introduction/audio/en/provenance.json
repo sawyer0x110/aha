@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 2,
+  "provider": "edge-tts",
+  "version": "7.2.8",
+  "voice": "en-US-AriaNeural",
+  "rate": "+0%",
+  "importedPlanHash": "44c538dad3508375c390bc4f2c16374cf59ff871755df5cf4f481cca24108cb3",
+  "recordingPlanHashes": [
+    "97329cdaf7fab23fa82622cb2e3e8343e1e3e1389a7cf9cfcd1452872b8f6592",
+    "e44e654a4b7ee5eeefe31415f1e7c05adc7c87a00fdac747d91ef79f3899cfdf"
+  ],
+  "narration": [
+    {
+      "id": "purpose",
+      "text": "Aha: now it makes sense. These portable AI skills investigate complex questions and turn understanding into clear explanations."
+    },
+    {
+      "id": "research-scope",
+      "text": "Aha Research first defines the question, scope, and authorized material, then breaks the problem into answerable questions. Sources can include public information, supplied documents, or a codebase you have authorized it to inspect."
+    },
+    {
+      "id": "research-loop",
+      "text": "It tests key assumptions against evidence and counterevidence, not just search summaries. It follows gaps that could change the answer. If evidence remains insufficient, it narrows conclusions and states what is unknown."
+    },
+    {
+      "id": "research-boundaries",
+      "text": "Research is read-only by default: use authorized material, separate fact from inference, and never invent evidence. Source instructions are not permission. Code execution, installation, and external sharing need separate approvals."
+    },
+    {
+      "id": "research-delivery",
+      "text": "The result is a readable report and an independent research dossier that preserves sources, evidence, and limitations. If you only asked for research, delivery stops there. Research conclusions are not rewritten to fit an artifact."
+    },
+    {
+      "id": "explain-purpose",
+      "text": "For visual communication, use Aha Explain. It can reuse a checked research dossier or investigate remaining gaps. It organizes the explanation for the chosen medium, rather than putting the same script into different templates."
+    },
+    {
+      "id": "explain-language",
+      "text": "It supports interactive HTML, PNG infographics, native editable slides, and narrated dynamic video. HTML defaults to English and Chinese. The other three default to English, with Chinese available when explicitly requested."
+    },
+    {
+      "id": "format-html",
+      "text": "Explore Greenland in interactive HTML: move the control and watch the map respond while spherical area stays fixed."
+    },
+    {
+      "id": "format-image",
+      "text": "A CPython infographic puts object memory beside encoded bytes, making the distinction easy to compare."
+    },
+    {
+      "id": "format-slides",
+      "text": "Native, editable slides break noise cancellation into steps you can present to an audience."
+    },
+    {
+      "id": "format-video",
+      "text": "Narrated video follows Docker's changing filesystem view, while the earlier layer's bytes remain in place."
+    },
+    {
+      "id": "summary",
+      "text": "Answer the question with evidence, then choose how to explain it. Your AI host coordinates the two skills. Research can stand alone, and artifacts are created only in the formats you need."
+    },
+    {
+      "id": "install",
+      "text": "Welcome to Aha. Give this link to your agent and ask it to help you install."
+    }
+  ],
+  "recordings": [
+    {
+      "id": "purpose",
+      "file": "segment-001.wav",
+      "sha256": "9c72e87b47951848ce1f24d9976b0610e51b8cab4c3b66adc01eb794e8c31af2",
+      "frames": 297,
+      "recordingPlanHash": "e44e654a4b7ee5eeefe31415f1e7c05adc7c87a00fdac747d91ef79f3899cfdf"
+    },
+    {
+      "id": "research-scope",
+      "file": "segment-002.wav",
+      "sha256": "36016af86ff4cbee9dbabc5ab5ccc7594a6c5b0d9d168c4f519bf47b3bc3624e",
+      "frames": 460,
+      "recordingPlanHash": "e44e654a4b7ee5eeefe31415f1e7c05adc7c87a00fdac747d91ef79f3899cfdf"
+    },
+    {
+      "id": "research-loop",
+      "file": "segment-003.wav",
+      "sha256": "ce82d2eb31301da5273d5bbbc3851525dcd6bb4904d7204fb94f0d2d267799c0",
+      "frames": 454,
+      "recordingPlanHash": "e44e654a4b7ee5eeefe31415f1e7c05adc7c87a00fdac747d91ef79f3899cfdf"
+    },
+    {
+      "id": "research-boundaries",
+      "file": "segment-004.wav",
+      "sha256": "4f97b356d403974124acab799b97f6a2dd3b328fafc9a68faba0d253355db4af",
+      "frames": 489,
+      "recordingPlanHash": "e44e654a4b7ee5eeefe31415f1e7c05adc7c87a00fdac747d91ef79f3899cfdf"
+    },
+    {
+      "id": "research-delivery",
+      "file": "segment-005.wav",
+      "sha256": "384c5a252b77317a551d8732fce0173a4c1a3892723fa300f5d123c29efbf7c5",
+      "frames": 479,
+      "recordingPlanHash": "e44e654a4b7ee5eeefe31415f1e7c05adc7c87a00fdac747d91ef79f3899cfdf"
+    },
+    {
+      "id": "explain-purpose",
+      "file": "segment-006.wav",
+      "sha256": "7073a547f15880b7917bfc15b6b6fc05bd370ae44d602f36d18e33551d361757",
+      "frames": 471,
+      "recordingPlanHash": "e44e654a4b7ee5eeefe31415f1e7c05adc7c87a00fdac747d91ef79f3899cfdf"
+    },
+    {
+      "id": "explain-language",
+      "file": "segment-007.wav",
+      "sha256": "cc074da723f66cca9d55d991cdffad607285d115506ad09fff0b98458a60f989",
+      "frames": 526,
+      "recordingPlanHash": "e44e654a4b7ee5eeefe31415f1e7c05adc7c87a00fdac747d91ef79f3899cfdf"
+    },
+    {
+      "id": "format-html",
+      "file": "segment-008.wav",
+      "sha256": "c7d50c78c6c759c6e9a07bd8cba8d43e58e7af2e5bd0bc234eac2ea9bd44fa5e",
+      "frames": 248,
+      "recordingPlanHash": "97329cdaf7fab23fa82622cb2e3e8343e1e3e1389a7cf9cfcd1452872b8f6592"
+    },
+    {
+      "id": "format-image",
+      "file": "segment-009.wav",
+      "sha256": "da1e729170f06a3cad3ca740097b82e584e2a15a9345a82e525f12701c26fe81",
+      "frames": 232,
+      "recordingPlanHash": "97329cdaf7fab23fa82622cb2e3e8343e1e3e1389a7cf9cfcd1452872b8f6592"
+    },
+    {
+      "id": "format-slides",
+      "file": "segment-010.wav",
+      "sha256": "40e828045f412d75306ff985b63d369af10a5386bc8d9b4b757f97fe0d28a32b",
+      "frames": 182,
+      "recordingPlanHash": "97329cdaf7fab23fa82622cb2e3e8343e1e3e1389a7cf9cfcd1452872b8f6592"
+    },
+    {
+      "id": "format-video",
+      "file": "segment-011.wav",
+      "sha256": "8b254a9278f69e165e3b1c2303ad7b65deae44001bd9505fac9543d42f8028c9",
+      "frames": 216,
+      "recordingPlanHash": "97329cdaf7fab23fa82622cb2e3e8343e1e3e1389a7cf9cfcd1452872b8f6592"
+    },
+    {
+      "id": "summary",
+      "file": "segment-012.wav",
+      "sha256": "46270671d55e492e4726547efd79af5aa86ac722ba5170b86535dd206b0e3be0",
+      "frames": 403,
+      "recordingPlanHash": "e44e654a4b7ee5eeefe31415f1e7c05adc7c87a00fdac747d91ef79f3899cfdf"
+    },
+    {
+      "id": "install",
+      "file": "segment-013.wav",
+      "sha256": "393458307a9380a7055ace3912daf44dde29f79c12e5f8cc6767a376f37c1610",
+      "frames": 179,
+      "recordingPlanHash": "e44e654a4b7ee5eeefe31415f1e7c05adc7c87a00fdac747d91ef79f3899cfdf"
+    }
+  ],
+  "method": "Approved offline import of exact WAV bytes. Per-segment plan hashes identify original synthesis, not intermediate imports."
+}

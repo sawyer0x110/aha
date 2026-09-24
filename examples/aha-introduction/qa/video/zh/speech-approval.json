@@ -1,0 +1,252 @@
+{
+  "provider": "edge-tts",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "rate": "+0%",
+  "origins": [
+    {
+      "planHash": "22d3e63baf9b59361c1ec8e179f1f28ad0eb4207719ad99359e182129b2210e6",
+      "plan": {
+        "schemaVersion": "1.0.0",
+        "status": "authored",
+        "researchHash": "1abf999481ab65abe18ac4dd88f015c9562b1737c7abebf38d2dae91381aeda1",
+        "sourceHash": "7c7947a93b062cc593c55c29af496a59cd5d4c1366d8d7ffebd362acd144f9de",
+        "provider": "edge-tts",
+        "voice": "zh-CN-XiaoxiaoNeural",
+        "rate": "+0%",
+        "duration": {
+          "minSeconds": 65,
+          "maxSeconds": 180
+        },
+        "segments": [
+          {
+            "id": "purpose",
+            "text": "Aha，原来如此。它是一组可移植的 AI 技能：把复杂问题研究清楚，再把理解变成看得懂的解释。",
+            "claimIds": [
+              "c-skills"
+            ]
+          },
+          {
+            "id": "research-scope",
+            "text": "Aha Research 先明确问题、范围和授权材料，再拆成可以回答的子问题。公开资料、你提供的文档，或获准访问的代码库，都可以成为研究来源。",
+            "claimIds": [
+              "c-research-method"
+            ]
+          },
+          {
+            "id": "research-loop",
+            "text": "它不只是汇总搜索结果，而是围绕关键假设找证据，也检查反证。遇到会影响结论的缺口，就定向补查；证据不够时，收窄结论，说明哪里还不知道。",
+            "claimIds": [
+              "c-research-method"
+            ]
+          },
+          {
+            "id": "research-boundaries",
+            "text": "调研默认只读：只用授权材料，不编造证据，也不把推断当事实。材料里的指令不是授权；执行代码、安装软件和对外发送内容，要分别取得相应许可。",
+            "claimIds": [
+              "c-boundaries"
+            ]
+          },
+          {
+            "id": "research-delivery",
+            "text": "研究结果是可读的报告，以及保留来源、证据和限制的独立研究档案。只要求调研，就到这里；不必为了制作作品，改写研究结论。",
+            "claimIds": [
+              "c-research-delivery"
+            ]
+          },
+          {
+            "id": "explain-purpose",
+            "text": "需要视觉表达时，再使用 Aha Explain。它可以复用检查过的研究档案，也可以先补充研究；然后针对所选媒介组织内容，而不是把同一份稿子套进不同模板。",
+            "claimIds": [
+              "c-output"
+            ]
+          },
+          {
+            "id": "explain-language",
+            "text": "它支持交互式 HTML、PNG 信息图、原生可编辑的 PPTX，以及配音动态视频。HTML 默认中英双语；其余三种默认英文，也可以明确选择中文。",
+            "claimIds": [
+              "c-output",
+              "c-language"
+            ]
+          },
+          {
+            "id": "summary",
+            "text": "先用证据回答问题，再按用途选择表达方式。两个技能由你的 AI 宿主协调；研究可以独立交付，作品只生成你需要的格式。",
+            "claimIds": [
+              "c-skills",
+              "c-research-delivery",
+              "c-output"
+            ]
+          },
+          {
+            "id": "install",
+            "text": "欢迎安装使用 Aha。到仓库阅读安装指南，选择可用的完整发布包；准备好 Node.js 二十二或更新版本，并确认你的 AI 宿主能发现和运行这两个技能。",
+            "claimIds": [
+              "c-install"
+            ]
+          }
+        ]
+      },
+      "userAnswer": "批准新版完整旁白、九段联网配音、原录音复用和本地渲染",
+      "externalScope": "Only the nine new narration texts, zh-CN-XiaoxiaoNeural and +0% parameters to Microsoft Edge TTS through edge-tts 7.2.8; no source, research or media upload."
+    },
+    {
+      "planHash": "19faf0f9acea887199942e2a65df4a7fbb8f201929662b670f57aed287f5b1bd",
+      "plan": {
+        "schemaVersion": "1.0.0",
+        "status": "authored",
+        "researchHash": "d41d1309e58345a4ebbfecd9010fae0361845bce872a218c2aab864a7479f9b4",
+        "sourceHash": "654e499e8cae7bdca58ca2def36c2da8886a99ec2dfed15cd3acc6d6014006e6",
+        "provider": "edge-tts",
+        "voice": "zh-CN-XiaoxiaoNeural",
+        "rate": "+0%",
+        "duration": {
+          "minSeconds": 90,
+          "maxSeconds": 240
+        },
+        "segments": [
+          {
+            "id": "research-skill",
+            "text": "Aha 把有依据的研究，变成看得懂的视觉解释。它提供两个可移植技能：一个研究问题，一个讲清机制。",
+            "claimIds": [
+              "c-skills"
+            ]
+          },
+          {
+            "id": "explanation-skill",
+            "text": "Aha Research 梳理证据和适用边界；Aha Explain 按选定的媒介组织解释。两者由你的 AI 宿主协调，而不是自动串联。",
+            "claimIds": [
+              "c-skills"
+            ]
+          },
+          {
+            "id": "three-examples",
+            "text": "接下来，用三个例子看看：日常现象、代码机制，以及工程行为。",
+            "claimIds": [
+              "c-synthesis"
+            ]
+          },
+          {
+            "id": "mercator-question",
+            "text": "为什么格陵兰在地图上显得特别大？球面墨卡托投影会放大高纬地区；为了保持局部角度，东西和南北两个方向都会被拉伸。",
+            "claimIds": [
+              "c-map"
+            ]
+          },
+          {
+            "id": "spherical-rotation",
+            "text": "把格陵兰的边界沿球面旋转到赤道附近。它的球面面积没有改变，但在这张比例尺固定的地图上，投影轮廓变小了。",
+            "claimIds": [
+              "c-map"
+            ]
+          },
+          {
+            "id": "new-string",
+            "text": "再看代码。在这个 CPython 例子中，追加这个笑脸会创建一个新字符串。新结果中的每个码点，包括原来的 ASCII 前缀，都使用四字节存储槽；原字符串不变。",
+            "claimIds": [
+              "c-python"
+            ]
+          },
+          {
+            "id": "utf8-contrast",
+            "text": "这个笑脸的码点超出了两字节范围。但 UTF-8 是另一种表示：ASCII 前缀仍然每个字符占一个字节，新增的笑脸只增加四个字节的编码载荷。",
+            "claimIds": [
+              "c-utf8",
+              "c-python"
+            ]
+          },
+          {
+            "id": "layer-created",
+            "text": "最后看一个工程问题。Docker 的一次 RUN 创建了新文件，假设它有一百兆字节的未压缩载荷，这些字节被记录进不可变的镜像层。",
+            "claimIds": [
+              "c-layer"
+            ]
+          },
+          {
+            "id": "later-whiteout",
+            "text": "后续 RUN 删除文件，会用 whiteout 标记让路径在合并视图中消失，但先前镜像层里的字节仍然保留。",
+            "claimIds": [
+              "c-delete"
+            ]
+          },
+          {
+            "id": "same-run",
+            "text": "如果在同一次 RUN 中创建再删除一个新的临时文件，前后两个快照都没有它，因此生成的差异不包含这个文件的载荷。",
+            "claimIds": [
+              "c-same"
+            ]
+          },
+          {
+            "id": "format-html",
+            "text": "交互式网页适合探索问题。移动格陵兰页面的控件，就能看到地图响应，同时球面面积保持不变。",
+            "claimIds": [
+              "c-formats",
+              "c-map"
+            ]
+          },
+          {
+            "id": "format-image",
+            "text": "信息图适合集中对照。CPython 的这张图把对象内存和编码字节并排放置，让两种量的区别更清楚。",
+            "claimIds": [
+              "c-formats",
+              "c-python",
+              "c-utf8"
+            ]
+          },
+          {
+            "id": "format-slides",
+            "text": "原生、可编辑的幻灯片，把降噪机制拆成适合向观众逐步讲解的内容。",
+            "claimIds": [
+              "c-formats"
+            ]
+          },
+          {
+            "id": "format-video",
+            "text": "配音视频适合追踪变化。这里展示 Docker 的合并视图如何改变，而先前镜像层中的字节仍然保留。",
+            "claimIds": [
+              "c-formats",
+              "c-delete"
+            ]
+          },
+          {
+            "id": "evidence-visible",
+            "text": "证据支持主张，画面揭示机制。到 Aha 仓库体验这些例子，再根据你的问题，选择合适的表达媒介。",
+            "claimIds": [
+              "c-synthesis",
+              "c-formats"
+            ]
+          }
+        ]
+      },
+      "userAnswer": "批准完整中文旁白、上述联网配音和本地渲染范围",
+      "externalScope": "Only all 15 approved Chinese narration texts and zh-CN-XiaoxiaoNeural / +0% parameters sent to Microsoft Edge TTS via edge-tts 7.2.8."
+    },
+    {
+      "planHash": "dce676ebc54e8402a219edd817817fafa0d74a8e513aa8df70cb0f9ec2d769ac",
+      "plan": {
+        "schemaVersion": "1.0.0",
+        "status": "authored",
+        "researchHash": "1abf999481ab65abe18ac4dd88f015c9562b1737c7abebf38d2dae91381aeda1",
+        "sourceHash": "0d7181c9d69e14ec980296f01e01d0ea5888b893bfd94560165855bbcaf95c1a",
+        "provider": "edge-tts",
+        "voice": "zh-CN-XiaoxiaoNeural",
+        "rate": "+0%",
+        "duration": {
+          "minSeconds": 2,
+          "maxSeconds": 30
+        },
+        "segments": [
+          {
+            "id": "install",
+            "text": "欢迎使用 Aha。把这个链接交给你的 Agent，让它帮你完成安装。",
+            "claimIds": [
+              "c-skills"
+            ]
+          }
+        ]
+      },
+      "userAnswer": "批准这句新配音、原录音复用与本地渲染",
+      "externalScope": "Only the new install segment and zh-CN-XiaoxiaoNeural / +0% parameters to Microsoft Edge TTS via existing edge-tts 7.2.8. No research, code, media or other narration upload."
+    }
+  ],
+  "scope": "Original approved synthesis plans retained solely to establish recording permission and identity. Only current recordings are delivered."
+}
