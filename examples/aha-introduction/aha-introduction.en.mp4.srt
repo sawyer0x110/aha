@@ -1,0 +1,51 @@
+1
+00:00:00,000 --> 00:00:09,900
+Aha: now it makes sense. These portable AI skills investigate complex questions and turn understanding into clear explanations.
+
+2
+00:00:09,900 --> 00:00:25,233
+Aha Research first defines the question, scope, and authorized material, then breaks the problem into answerable questions. Sources can include public information, supplied documents, or a codebase you have authorized it to inspect.
+
+3
+00:00:25,233 --> 00:00:40,367
+It tests key assumptions against evidence and counterevidence, not just search summaries. It follows gaps that could change the answer. If evidence remains insufficient, it narrows conclusions and states what is unknown.
+
+4
+00:00:40,367 --> 00:00:56,667
+Research is read-only by default: use authorized material, separate fact from inference, and never invent evidence. Source instructions are not permission. Code execution, installation, and external sharing need separate approvals.
+
+5
+00:00:56,667 --> 00:01:12,633
+The result is a readable report and an independent research dossier that preserves sources, evidence, and limitations. If you only asked for research, delivery stops there. Research conclusions are not rewritten to fit an artifact.
+
+6
+00:01:12,633 --> 00:01:28,333
+For visual communication, use Aha Explain. It can reuse a checked research dossier or investigate remaining gaps. It organizes the explanation for the chosen medium, rather than putting the same script into different templates.
+
+7
+00:01:28,333 --> 00:01:45,867
+It supports interactive HTML, PNG infographics, native editable slides, and narrated dynamic video. HTML defaults to English and Chinese. The other three default to English, with Chinese available when explicitly requested.
+
+8
+00:01:45,867 --> 00:01:54,133
+Explore Greenland in interactive HTML: move the control and watch the map respond while spherical area stays fixed.
+
+9
+00:01:54,133 --> 00:02:01,867
+A CPython infographic puts object memory beside encoded bytes, making the distinction easy to compare.
+
+10
+00:02:01,867 --> 00:02:07,933
+Native, editable slides break noise cancellation into steps you can present to an audience.
+
+11
+00:02:07,933 --> 00:02:15,133
+Narrated video follows Docker's changing filesystem view, while the earlier layer's bytes remain in place.
+
+12
+00:02:15,133 --> 00:02:28,567
+Answer the question with evidence, then choose how to explain it. Your AI host coordinates the two skills. Research can stand alone, and artifacts are created only in the formats you need.
+
+13
+00:02:28,567 --> 00:02:34,533
+Welcome to Aha. Give this link to your agent and ask it to help you install.

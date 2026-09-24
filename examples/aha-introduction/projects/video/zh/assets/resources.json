@@ -1,0 +1,116 @@
+{
+  "method": "Exact reuse of previously captured local example resources; no new capture or redistribution license claim.",
+  "assets": [
+    {
+      "file": "assets/anc-slide-02.png",
+      "sha256": "7791f9e1caf7bf75215b3b079a7ff37a2f4554b4cad6581ab3efe201b500dafa",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/anc-slide-02.png"
+    },
+    {
+      "file": "assets/anc-slide-03.png",
+      "sha256": "3ec22760f86b870ed87649fe9b53c4010a540de46b99441f372ebbd9938021e8",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/anc-slide-03.png"
+    },
+    {
+      "file": "assets/cpython-infographic.png",
+      "sha256": "2453dfe5c3146dd19cc3a888eca21a50035d60acc7d2eb9ecdb98adb9b0179e5",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/cpython-infographic.png"
+    },
+    {
+      "file": "assets/docker-00.jpg",
+      "sha256": "abd9724366a9a7abfc96988c81580aeafa73e20800a96776ad050942d2eb4d6f",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/docker-00.jpg"
+    },
+    {
+      "file": "assets/docker-01.jpg",
+      "sha256": "2c35e77ef5377a4b52d2e63889d9eee27aaef49c049d6fe917bd9075f1f97237",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/docker-01.jpg"
+    },
+    {
+      "file": "assets/docker-02.jpg",
+      "sha256": "2c35e77ef5377a4b52d2e63889d9eee27aaef49c049d6fe917bd9075f1f97237",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/docker-02.jpg"
+    },
+    {
+      "file": "assets/docker-03.jpg",
+      "sha256": "2c35e77ef5377a4b52d2e63889d9eee27aaef49c049d6fe917bd9075f1f97237",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/docker-03.jpg"
+    },
+    {
+      "file": "assets/docker-04.jpg",
+      "sha256": "2c35e77ef5377a4b52d2e63889d9eee27aaef49c049d6fe917bd9075f1f97237",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/docker-04.jpg"
+    },
+    {
+      "file": "assets/docker-05.jpg",
+      "sha256": "7e3b2312d481679aada65a583c5cf608de107c7bb34e37937e70cdf61ac687ce",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/docker-05.jpg"
+    },
+    {
+      "file": "assets/docker-06.jpg",
+      "sha256": "30735cb3dc3e93532b311b11eeab8015d6729e82f0226370a95f65d4b40f6682",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/docker-06.jpg"
+    },
+    {
+      "file": "assets/docker-07.jpg",
+      "sha256": "f6914b94bc77996d5a0c2aa75074fc7d4f214009b568a6d726312ba04b8982fe",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/docker-07.jpg"
+    },
+    {
+      "file": "assets/docker-08.jpg",
+      "sha256": "f6914b94bc77996d5a0c2aa75074fc7d4f214009b568a6d726312ba04b8982fe",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/docker-08.jpg"
+    },
+    {
+      "file": "assets/docker-09.jpg",
+      "sha256": "f6914b94bc77996d5a0c2aa75074fc7d4f214009b568a6d726312ba04b8982fe",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/docker-09.jpg"
+    },
+    {
+      "file": "assets/docker-10.jpg",
+      "sha256": "f6914b94bc77996d5a0c2aa75074fc7d4f214009b568a6d726312ba04b8982fe",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/docker-10.jpg"
+    },
+    {
+      "file": "assets/docker-11.jpg",
+      "sha256": "5f7c9c1b1bba309858d4e32f328628da6f803e0d951c7849b9f1f7e0f7e234e4",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/docker-11.jpg"
+    },
+    {
+      "file": "assets/greenland-00.jpg",
+      "sha256": "1be13a3ebb08f01f68e119aed7b86edff8c0048049eb7d20ff1f0e67248bd907",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/greenland-00.jpg"
+    },
+    {
+      "file": "assets/greenland-01.jpg",
+      "sha256": "2163594f6c5895564976ba86b2e55e6f28f8992e8562186949d4d0455b53733a",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/greenland-01.jpg"
+    },
+    {
+      "file": "assets/greenland-02.jpg",
+      "sha256": "930caf7f44d891835f0dcb99441e4a5b2278fee60ba72bc891148f63f466913e",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/greenland-02.jpg"
+    },
+    {
+      "file": "assets/greenland-03.jpg",
+      "sha256": "af9b5b11599a59801bc5e14e35fc08ce0894c9552f57e134c3575522f9312826",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/greenland-03.jpg"
+    },
+    {
+      "file": "assets/greenland-04.jpg",
+      "sha256": "c09e87c657f83636c284c6c606737ad3e7d034eee85a4ad82e2b4c25c6fbba9c",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/greenland-04.jpg"
+    },
+    {
+      "file": "assets/greenland-05.jpg",
+      "sha256": "f90884b798e068a1c2d0c39a3085247e07abb94488e3363ab2fedcfd385a4470",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/greenland-05.jpg"
+    },
+    {
+      "file": "assets/greenland-06.jpg",
+      "sha256": "4344ae8ab1d5800acae4e0d86e72401cb37fb8455fbddda3466ac3bba05242ae",
+      "source": "artifacts/aha-introduction-refresh/projects/video-zh/assets/greenland-06.jpg"
+    }
+  ],
+  "provenance": "Previous Chinese capture and selected-artifacts records retained in prior working package."
+}

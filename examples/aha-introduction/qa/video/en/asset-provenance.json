@@ -1,0 +1,183 @@
+{
+  "observedAt": "2026-09-23T10:58:44.142Z",
+  "sourceArtifacts": [
+    {
+      "topic": "greenland",
+      "artifact": "examples/greenland/greenland.html",
+      "sha256": "012aed32afcffa5724530bcc8390dd9dd80d45c4d52bd8119d8ced4101f60524",
+      "sourceHash": "a29d5fb6b8c1c07291999d7c2fc3ceace5f7f2ca2a52ff30d266bcea63ceeb6e",
+      "researchHash": "8e9e0223136baf3cdbda0811c58bceb201e5098ec28745c2fa808d3f617a30a6"
+    },
+    {
+      "topic": "cpython-string",
+      "artifact": "examples/cpython-string/cpython-string.png",
+      "sha256": "2453dfe5c3146dd19cc3a888eca21a50035d60acc7d2eb9ecdb98adb9b0179e5",
+      "sourceHash": "b4bb299bccfe039c96c8f44590c78119901c1273129adfeea43a8c8550585eb1",
+      "researchHash": "04cdf5f8906f1385f8575b9c99d46ae60bfe4c2c37e79982658a19d9d617daf8"
+    },
+    {
+      "topic": "anc",
+      "artifact": "examples/anc/anc.pptx",
+      "sha256": "df413ff160faa3cb38c67ce2e1f7b7a4771bb16f2e7c3a17924c3319aca14791",
+      "sourceHash": "2e6a2a6c08670e9c96db7edb632c5b038a6ef5b7dff44cca1192bdb17239d9c9",
+      "researchHash": "23ab6b9a7f74db17e581077a0a497e9dde67f6c9adafddae775d490378793ab4"
+    },
+    {
+      "topic": "docker-layers",
+      "artifact": "examples/docker-layers/docker-layers.mp4",
+      "sha256": "8d85a1666d8ee77c0e9975dcaf894e4138abbe6e713bf96e9fc5e82dd96fa577",
+      "sourceHash": "14c4856d13ed3093c5665f175138fae5d9d6622645ba06ed8478045ac13594cd",
+      "researchHash": "92fcc99f10de57cfbb6a4753ebebb78a3c0055fe4504b25d8098b76c2057a723"
+    }
+  ],
+  "captures": {
+    "greenland": {
+      "frames": 101,
+      "fps": 15,
+      "width": 1024,
+      "height": 614,
+      "sheets": 7,
+      "firstSourceFrame": null,
+      "artifactHash": "012aed32afcffa5724530bcc8390dd9dd80d45c4d52bd8119d8ced4101f60524",
+      "originalClip": {
+        "x": 112,
+        "y": 12,
+        "width": 1056,
+        "height": 633
+      },
+      "action": "Native Home then 100 ArrowRight key presses on the actual delivered HTML range control."
+    },
+    "docker": {
+      "frames": 180,
+      "fps": 30,
+      "width": 1152,
+      "height": 330,
+      "sheets": 12,
+      "firstSourceFrame": 353,
+      "artifactHash": "8d85a1666d8ee77c0e9975dcaf894e4138abbe6e713bf96e9fc5e82dd96fa577",
+      "originalClip": {
+        "x": 48,
+        "y": 99,
+        "width": 1184,
+        "height": 338
+      },
+      "action": "Actual encoded consecutive frames 353-532. Original audio, title and captions excluded; layer comparison retained."
+    }
+  },
+  "files": [
+    {
+      "file": "assets/greenland-00.jpg",
+      "sha256": "807627f3157651d566fa434378b6cc7e23a27aa8592dc3a32c5a1bf6e496f4ec",
+      "bytes": 1722708
+    },
+    {
+      "file": "assets/greenland-01.jpg",
+      "sha256": "dfc13fee4e409faeb39365db4cda25b4b81b71b9343e07dfcc6f15bb3f301c84",
+      "bytes": 1712647
+    },
+    {
+      "file": "assets/greenland-02.jpg",
+      "sha256": "6b63e0de0e570d581cc8128ee3db9dbf141bb79c3b2caeff3dc15bdd23c05f57",
+      "bytes": 1711050
+    },
+    {
+      "file": "assets/greenland-03.jpg",
+      "sha256": "23e576d76ac9f62530f48c11c39f362dc453c8e2e4a8d63358aeac2c2c40f225",
+      "bytes": 1708967
+    },
+    {
+      "file": "assets/greenland-04.jpg",
+      "sha256": "e63cfd1738fa7f311549e1f5eb57eb78d6c171ed41e3268b5ef4ae3901de171a",
+      "bytes": 1707517
+    },
+    {
+      "file": "assets/greenland-05.jpg",
+      "sha256": "96be41dffe138ccfed4efda2da69d3d61684af7bc8d7168a98ae3721582a8656",
+      "bytes": 1707072
+    },
+    {
+      "file": "assets/greenland-06.jpg",
+      "sha256": "af6b0b2945532cac8751e0ab2aa2e7f124d1247ed34e0afc017fe6eef7261241",
+      "bytes": 633928
+    },
+    {
+      "file": "assets/docker-00.jpg",
+      "sha256": "abd9724366a9a7abfc96988c81580aeafa73e20800a96776ad050942d2eb4d6f",
+      "bytes": 698936
+    },
+    {
+      "file": "assets/docker-01.jpg",
+      "sha256": "2c35e77ef5377a4b52d2e63889d9eee27aaef49c049d6fe917bd9075f1f97237",
+      "bytes": 698988
+    },
+    {
+      "file": "assets/docker-02.jpg",
+      "sha256": "2c35e77ef5377a4b52d2e63889d9eee27aaef49c049d6fe917bd9075f1f97237",
+      "bytes": 698988
+    },
+    {
+      "file": "assets/docker-03.jpg",
+      "sha256": "2c35e77ef5377a4b52d2e63889d9eee27aaef49c049d6fe917bd9075f1f97237",
+      "bytes": 698988
+    },
+    {
+      "file": "assets/docker-04.jpg",
+      "sha256": "2c35e77ef5377a4b52d2e63889d9eee27aaef49c049d6fe917bd9075f1f97237",
+      "bytes": 698988
+    },
+    {
+      "file": "assets/docker-05.jpg",
+      "sha256": "7e3b2312d481679aada65a583c5cf608de107c7bb34e37937e70cdf61ac687ce",
+      "bytes": 698993
+    },
+    {
+      "file": "assets/docker-06.jpg",
+      "sha256": "30735cb3dc3e93532b311b11eeab8015d6729e82f0226370a95f65d4b40f6682",
+      "bytes": 729927
+    },
+    {
+      "file": "assets/docker-07.jpg",
+      "sha256": "f6914b94bc77996d5a0c2aa75074fc7d4f214009b568a6d726312ba04b8982fe",
+      "bytes": 750179
+    },
+    {
+      "file": "assets/docker-08.jpg",
+      "sha256": "f6914b94bc77996d5a0c2aa75074fc7d4f214009b568a6d726312ba04b8982fe",
+      "bytes": 750179
+    },
+    {
+      "file": "assets/docker-09.jpg",
+      "sha256": "f6914b94bc77996d5a0c2aa75074fc7d4f214009b568a6d726312ba04b8982fe",
+      "bytes": 750179
+    },
+    {
+      "file": "assets/docker-10.jpg",
+      "sha256": "f6914b94bc77996d5a0c2aa75074fc7d4f214009b568a6d726312ba04b8982fe",
+      "bytes": 750179
+    },
+    {
+      "file": "assets/docker-11.jpg",
+      "sha256": "5f7c9c1b1bba309858d4e32f328628da6f803e0d951c7849b9f1f7e0f7e234e4",
+      "bytes": 235128
+    },
+    {
+      "file": "assets/cpython-infographic.png",
+      "sha256": "2453dfe5c3146dd19cc3a888eca21a50035d60acc7d2eb9ecdb98adb9b0179e5",
+      "bytes": 249395
+    },
+    {
+      "file": "assets/anc-slide-02.png",
+      "sha256": "7791f9e1caf7bf75215b3b079a7ff37a2f4554b4cad6581ab3efe201b500dafa",
+      "bytes": 42234
+    },
+    {
+      "file": "assets/anc-slide-03.png",
+      "sha256": "3ec22760f86b870ed87649fe9b53c4010a540de46b99441f372ebbd9938021e8",
+      "bytes": 45197
+    }
+  ],
+  "previewScope": "Actual recorded keyboard input; actual PNG; saved native PowerPoint exports; actual encoded video frames. No live PPTX editing or original video audio is presented.",
+  "rights": "Repository-authored examples reused for the requested introduction. Existing third-party notices retained. No new upstream download or font redistribution.",
+  "networkAtCapture": false,
+  "networkAtPlayback": false
+}

@@ -17,9 +17,9 @@ Aha 是两个可移植的 Agent Skill，面向公开问题、用户提供的材�
 
 ## 先看作品
 
-从 [Aha 项目介绍](examples/aha-introduction/README.md)开始：可选[英中双语 HTML](examples/aha-introduction/aha-introduction.html)、[8 页中文原生 PPTX](examples/aha-introduction/aha-introduction.pptx)、[中文信息图](examples/aha-introduction/aha-introduction.png)，或已有的 [1 分 59 秒英文视频](examples/aha-introduction/aha-introduction.mp4)。这里是项目介绍的主入口，事实基于 9 月 17 日研究快照。也可单独看[格陵兰](examples/greenland/README.md)、[CPython 字符串](examples/cpython-string/README.md)和 [Docker 镜像层](examples/docker-layers/README.md)示例。各主题说明保留来源、可编辑项目、产物和验收限制。
+从 [Aha 项目介绍](examples/aha-introduction/README.md)开始：可选 [2 分 35 秒英文视频](examples/aha-introduction/aha-introduction.en.mp4)、[2 分 31 秒中文视频](examples/aha-introduction/aha-introduction.zh.mp4)、[英中双语 HTML](examples/aha-introduction/aha-introduction.html)、[8 页中文原生 PPTX](examples/aha-introduction/aha-introduction.pptx)或[中文信息图](examples/aha-introduction/aha-introduction.png)。新版视频说明研究方法与边界、格式与语言选择，以及四个真实作品，采用更新后的本地文档研究快照；未改动的 HTML、PPTX 和 PNG 保留 9 月 17 日快照。也可单独看[格陵兰](examples/greenland/README.md)、[CPython 字符串](examples/cpython-string/README.md)和 [Docker 镜像层](examples/docker-layers/README.md)示例。各主题说明保留来源、可编辑项目、产物和验收限制。
 
-[完整作品集](examples/README.zh-CN.md)还包括降噪耳机和 Git merge；项目介绍只保留 aha-introduction。保留示例是当时的快照，不代表当前运行时承诺。渲染成功或短试片不能代替完整版视觉与连续听审。
+[完整作品集](examples/README.zh-CN.md)还包括降噪耳机，共五组主题、二十一份作品；项目介绍只保留 aha-introduction。示例是当时的快照，不代表当前运行时承诺。渲染成功或短试片不能代替完整版视觉与连续听审。
 
 ## 安装，然后自然地提问
 

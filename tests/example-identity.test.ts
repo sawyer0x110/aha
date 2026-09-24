@@ -12,18 +12,18 @@ const base = path.join(root, 'examples');
 const evaluation = path.join(root, 'evals', 'examples');
 const {
   verifyExamples, verifyOutput, verifyPptxEvidence, verifyCurrentIntroductionEvidence,
-  verifyRegeneratedEvidence, verifyIntroductionEvidence, verifyCurrentQa, formatsFor, topics, sha,
+  verifyRegeneratedEvidence, verifyIntroductionEvidence, verifyCurrentQa, formatsFor, outputVariantsFor, layoutFor, topics, sha,
 } = await import(pathToFileURL(path.join(evaluation, 'verify.mjs')).href);
 const manifest = JSON.parse(await fs.readFile(path.join(base, 'delivery-manifest.json'), 'utf8'));
 const pptxRecords = (value: typeof manifest) => value.requestedOutputs.filter((entry: { format: string }) => entry.format === 'pptx');
 const introductionRecords = (value: typeof manifest) => value.requestedOutputs.filter((entry: { topic: string; format: string }) =>
   entry.topic === 'aha-introduction' && ['html', 'image'].includes(entry.format));
 
-test('format inventory retains only the current introduction and its canonical video path', async () => {
-  const outputs = Object.keys(topics).flatMap(topic => formatsFor(topic).map((format: string) => ({ topic, format })));
-  assert.equal(outputs.length, 20);
+test('format inventory retains both current introduction languages with canonical paths', async () => {
+  const outputs = Object.keys(topics).flatMap((topic): { topic: string; format: string; language?: string }[] => outputVariantsFor(topic));
+  assert.equal(outputs.length, 21);
   assert.equal(Object.keys(topics).length, 5);
-  assert.equal(outputs.filter(entry => entry.format === 'pptx').length, 5);
+  assert.equal(outputs.filter((entry: { format: string }) => entry.format === 'pptx').length, 5);
   assert.equal(Object.hasOwn(topics, 'git-merge'), false);
   await assert.rejects(fs.access(path.join(base, 'git-merge')), { code: 'ENOENT' });
   assert.deepEqual(formatsFor('aha-introduction'), ['html', 'image', 'pptx', 'video']);
@@ -36,7 +36,7 @@ test('format inventory retains only the current introduction and its canonical v
   for (const [format, file] of [
     ['video', 'overview.mp4'], ['pptx', 'overview-v5.pptx'], ['image', 'overview-v5.png'], ['html', 'overview.html'],
   ]) {
-    await assert.rejects(verifyOutput(base, { topic: 'aha-introduction', format, file: `aha-introduction/${file}` }), /Canonical output path/);
+    await assert.rejects(verifyOutput(base, { topic: 'aha-introduction', format, language: 'en', file: `aha-introduction/${file}` }), /Canonical output path/);
   }
   for (const introductionPublication of [undefined, '../evals/examples/aha-introduction-20260917/publication.json']) {
     await assert.rejects(verifyExamples({ manifest: {
@@ -45,16 +45,19 @@ test('format inventory retains only the current introduction and its canonical v
   }
 });
 
-test('all twenty requested outputs bind canonical research, source, receipts, approved audio and bounded QA', async () => {
+test('all twenty-one outputs bind scoped research, source, receipts, approved audio and bounded QA', async () => {
   const result = await verifyExamples();
   assert.equal(result.status, 'passed');
-  assert.equal(result.outputs.length, 20);
+  assert.equal(result.outputs.length, 21);
   for (const topic of Object.keys(topics)) {
     assert.deepEqual(result.outputs.filter((entry: { topic: string }) => entry.topic === topic)
-      .map((entry: { format: string }) => entry.format).sort(), ['html', 'image', 'pptx', 'video']);
+      .map((entry: { format: string }) => entry.format).sort(),
+    topic === 'aha-introduction' ? ['html', 'image', 'pptx', 'video', 'video'] : ['html', 'image', 'pptx', 'video']);
   }
   assert.equal(new Set(result.outputs.filter((entry: { topic: string }) => entry.topic === 'aha-introduction')
-    .map((entry: { researchHash: string }) => entry.researchHash)).size, 1, 'All introduction formats retain the video dossier');
+    .map((entry: { researchHash: string }) => entry.researchHash)).size, 2, 'Unchanged formats retain their dossier; restructured videos use fresh research');
+  assert.equal(new Set(result.outputs.filter((entry: { topic: string; format: string }) => entry.topic === 'aha-introduction' && entry.format === 'video')
+    .map((entry: { researchHash: string }) => entry.researchHash)).size, 1, 'English translation preserves Chinese research identity');
 });
 
 test('each current output rejects stale publication source, research and output hashes', async t => {
@@ -82,9 +85,9 @@ test('unified layout has current receipt names and one self-contained QA index',
     const receipt = JSON.parse(await fs.readFile(path.join(base, entry.receipt), 'utf8'));
     assert.equal(receipt.output, path.basename(entry.file));
     assert.equal(entry.receiptHash, sha(await fs.readFile(path.join(base, entry.receipt))));
-    assert.equal(entry.file, `${entry.topic}/${entry.topic}.${{ html: 'html', image: 'png', pptx: 'pptx', video: 'mp4' }[entry.format as 'html' | 'image' | 'pptx' | 'video']}`);
+    assert.equal(entry.file, layoutFor(entry).file);
     assert.equal(entry.receipt, `${entry.file}.receipt.json`);
-    assert.equal(entry.qa.directory, `${entry.topic}/qa/${entry.format}`);
+    assert.equal(entry.qa.directory, layoutFor(entry).qa);
     assert(entry.qa.evidence.length > 0);
   }
   for (const file of ['pptx-publication.json', 'aha-introduction/publication.json']) {
@@ -535,7 +538,7 @@ test('current introduction HTML and image require fresh sealed browser and separ
   } finally { await fs.rm(workspace, { recursive: true, force: true }); }
 });
 
-test('gallery links resolve and list four formats for each current topic', async () => {
+test('gallery links resolve and list four formats plus both introduction video languages', async () => {
   const gallery = await fs.readFile(path.join(base, 'index.html'), 'utf8');
   const links = [...gallery.matchAll(/href="([^"]+)"/g)].map(match => match[1]!);
   for (const link of links) await fs.access(path.join(base, link));
@@ -550,9 +553,12 @@ test('gallery links resolve and list four formats for each current topic', async
   for (const filename of ['git-merge-animated.pptx', 'git-merge-animated.pptx.motion-review.json']) {
     await assert.rejects(fs.access(path.join(base, 'git-merge', filename)), { code: 'ENOENT' });
   }
-  for (const filename of ['aha-introduction.html', 'aha-introduction.png', 'aha-introduction.pptx', 'aha-introduction.mp4', 'README.md']) {
+  for (const filename of ['aha-introduction.html', 'aha-introduction.png', 'aha-introduction.pptx',
+    'aha-introduction.en.mp4', 'aha-introduction.zh.mp4', 'aha-introduction.en.mp4.srt', 'aha-introduction.zh.mp4.srt', 'README.md']) {
     assert(links.includes(`aha-introduction/${filename}`));
   }
+  assert(!links.includes('aha-introduction/aha-introduction.mp4'));
+  await assert.rejects(fs.access(path.join(base, 'aha-introduction', 'aha-introduction.mp4')), { code: 'ENOENT' });
   assert(!links.some(link => link.startsWith('project-overview/')), 'Retired project overview is absent from the gallery');
   for (const topic of ['cpython-string', 'docker-layers']) {
     assert(links.includes(`${topic}/README.md`));
@@ -639,24 +645,55 @@ test('regenerated evidence rejects resealed stale observations, missing coverage
   } finally { await fs.rm(workspace, { recursive: true, force: true }); }
 });
 
-test('introduction video preserves original speech source and rejects resealed wrong encoded evidence', async () => {
-  const entry = manifest.requestedOutputs.find((item: { topic: string; format: string }) => item.topic === 'aha-introduction' && item.format === 'video');
-  assert.equal(entry.file, 'aha-introduction/aha-introduction.mp4');
-  const result = await verifyOutput(base, entry);
-  assert.equal(result.plan.provider, 'provided-audio');
-  await assert.rejects(verifyOutput(base, { ...entry, provider: 'edge-tts' }), /provider/i);
+test('introduction variants reject missing language, swapped identity and resealed incorrect evidence', async t => {
+  const entries = manifest.requestedOutputs.filter((item: { topic: string; format: string }) => item.topic === 'aha-introduction' && item.format === 'video');
+  const results = await Promise.all(entries.map((entry: object) => verifyOutput(base, entry)));
+  for (const entry of entries) {
+    assert.equal(entry.file, `aha-introduction/aha-introduction.${entry.language}.mp4`);
+    await assert.rejects(verifyOutput(base, { ...entry, language: undefined }), /language/);
+    await assert.rejects(verifyOutput(base, { ...entry, language: entry.language === 'en' ? 'zh' : 'en' }), /Canonical output/);
+    await assert.rejects(verifyOutput(base, { ...entry, provider: 'edge-tts' }), /provider/i);
+    await assert.rejects(verifyOutput(base, { ...entry, report: 'aha-introduction/research/report.md' }), /Canonical report/);
+  }
   const workspace = await fs.mkdtemp(path.join(evaluation, '.introduction-identity-'));
   try {
-    await fs.cp(path.join(base, entry.qa.directory), path.join(workspace, entry.qa.directory), { recursive: true });
-    await verifyIntroductionEvidence(workspace, [result], manifest);
-    const reportFile = path.join(workspace, entry.qa.directory, 'encoded', 'technical-review.json');
-    const report = JSON.parse(await fs.readFile(reportFile, 'utf8'));
-    report.artifactHash = '0'.repeat(64);
-    await fs.writeFile(reportFile, JSON.stringify(report));
-    const publication = structuredClone(manifest);
-    publication.requestedOutputs.find((item: { topic: string; format: string }) => item.topic === 'aha-introduction' && item.format === 'video')
-      .qa.evidence.find((item: { file: string }) => item.file.endsWith('encoded/technical-review.json')).sha256 = sha(await fs.readFile(reportFile));
-    await assert.rejects(verifyIntroductionEvidence(workspace, [result], publication), /encoded identity/i);
+    for (const entry of entries) {
+      await fs.cp(path.join(base, entry.qa.directory), path.join(workspace, entry.qa.directory), { recursive: true });
+      await fs.cp(path.join(base, entry.sourceProject, 'assets'), path.join(workspace, entry.sourceProject, 'assets'), { recursive: true });
+    }
+    await verifyIntroductionEvidence(workspace, results, manifest);
+    for (const entry of entries) {
+      type EvidenceFixture = {
+        artifactHash: string; listening: string; ended: boolean; recordingPlanHashes: string[];
+        samples: { id: string; frame: number; captionTop: number; state: { language: string } }[];
+        origins: { plan: { segments: { text: string }[] } }[];
+      };
+      const mutate = async (name: string, relative: string, change: (value: EvidenceFixture) => void) => {
+        await t.test(`${entry.language}: ${name}`, async () => {
+          const file = `${entry.qa.directory}/${relative}`;
+          const filename = path.join(workspace, file);
+          const original = await fs.readFile(filename);
+          const value = JSON.parse(original.toString());
+          change(value);
+          try {
+            await fs.writeFile(filename, JSON.stringify(value));
+            const publication = structuredClone(manifest);
+            publication.requestedOutputs.find((item: { file: string }) => item.file === entry.file)
+              .qa.evidence.find((item: { file: string }) => item.file === file).sha256 = sha(await fs.readFile(filename));
+            await assert.rejects(verifyIntroductionEvidence(workspace, results, publication));
+          } finally { await fs.writeFile(filename, original); }
+        });
+      };
+      await mutate('encoded identity', 'encoded/technical-review.json', value => { value.artifactHash = '0'.repeat(64); });
+      await mutate('missing scene samples', 'encoded/technical-review.json', value => { value.samples = value.samples.filter((item: { id: string }) => item.id !== 'install'); });
+      await mutate('wrong frame', 'encoded/technical-review.json', value => { value.samples[0]!.frame++; });
+      await mutate('invented listening', 'encoded/technical-review.json', value => { value.listening = 'passed'; });
+      await mutate('unfinished playback', 'encoded/playback.json', value => { value.ended = false; });
+      await mutate('wrong preview language', 'preview/observations.json', value => { value.samples[0]!.state.language = 'fr'; });
+      await mutate('caption collision', 'preview/observations.json', value => { value.samples[0]!.captionTop = 500; });
+      await mutate('wrong synthesis words', 'speech-approval.json', value => { value.origins[0]!.plan.segments[0]!.text += ' changed'; });
+      await mutate('wrong recording approval', 'approval.json', value => { value.recordingPlanHashes[0] = '0'.repeat(64); });
+    }
   } finally { await fs.rm(workspace, { recursive: true, force: true }); }
 });
 
@@ -711,6 +748,43 @@ test('actual stale receipt, source, dossier, audio, plan and subtitle bytes fail
   } finally { await fs.rm(workspace, { recursive: true, force: true }); }
 });
 
+test('introduction recording provenance rejects wrong voice, import identity and segment bytes', async t => {
+  const entry = manifest.requestedOutputs.find((item: { topic: string; format: string; language: string }) =>
+    item.topic === 'aha-introduction' && item.format === 'video' && item.language === 'zh');
+  const workspace = await fs.mkdtemp(path.join(evaluation, '.introduction-audio-'));
+  try {
+    for (const relative of [entry.sourceProject, layoutFor(entry).research, entry.audioDirectory,
+      entry.videoPlan, entry.file, entry.receipt, `${entry.file}.srt`]) {
+      await fs.mkdir(path.dirname(path.join(workspace, relative)), { recursive: true });
+      await fs.cp(path.join(base, relative), path.join(workspace, relative), { recursive: true });
+    }
+    await verifyOutput(workspace, entry);
+    const filename = path.join(workspace, entry.audioDirectory, 'provenance.json');
+    const original = await fs.readFile(filename);
+    type RecordingFixture = {
+      voice: string; importedPlanHash: string; recordingPlanHashes: string[];
+      narration: { text: string }[]; recordings: { sha256: string; frames: number }[];
+    };
+    for (const [name, change] of [
+      ['wrong voice', (value: RecordingFixture) => { value.voice = 'en-US-AriaNeural'; }],
+      ['stale import', (value: RecordingFixture) => { value.importedPlanHash = '0'.repeat(64); }],
+      ['missing origin', (value: RecordingFixture) => { value.recordingPlanHashes.pop(); }],
+      ['changed words', (value: RecordingFixture) => { value.narration[0]!.text += ' Changed.'; }],
+      ['changed waveform identity', (value: RecordingFixture) => { value.recordings[0]!.sha256 = '0'.repeat(64); }],
+      ['wrong duration', (value: RecordingFixture) => { value.recordings[0]!.frames++; }],
+    ] as const) {
+      await t.test(name, async () => {
+        const value = JSON.parse(original.toString());
+        change(value);
+        try {
+          await fs.writeFile(filename, JSON.stringify(value));
+          await assert.rejects(verifyOutput(workspace, entry));
+        } finally { await fs.writeFile(filename, original); }
+      });
+    }
+  } finally { await fs.rm(workspace, { recursive: true, force: true }); }
+});
+
 test('browser and generic media playback tools require approval independently of cwd', () => {
   for (const script of ['check-html.mjs', 'check-playback.mjs']) {
     const result = spawnSync(process.execPath, [path.join(evaluation, script)], {
@@ -723,7 +797,7 @@ test('browser and generic media playback tools require approval independently of
   }
 });
 
-test('Git autocrlf preserves all twenty outputs, source trees, audio and current QA', async () => {
+test('Git autocrlf preserves all twenty-one outputs, source trees, audio and current QA', async () => {
   const workspace = await fs.mkdtemp(path.join(evaluation, '.identity-git-'));
   const git = (...args: string[]) => execFileSync('git', args, {
     cwd: workspace, timeout: 60000, maxBuffer: 4 * 1024 * 1024,
@@ -763,8 +837,7 @@ test('Git autocrlf preserves all twenty outputs, source trees, audio and current
       assert.deepEqual(await fs.readFile(path.join(workspace, file)), await fs.readFile(path.join(root, file)), `${file}: checkout must retain sealed bytes`);
     }
     for (const entry of manifest.requestedOutputs) {
-      const { topic, format } = entry;
-      const project = path.join('examples', topic, 'projects', format);
+      const project = path.join('examples', entry.sourceProject);
       assert.equal(await sourceHash(path.join(workspace, project)), entry.sourceHash);
     }
   } finally { await fs.rm(workspace, { recursive: true, force: true }); }

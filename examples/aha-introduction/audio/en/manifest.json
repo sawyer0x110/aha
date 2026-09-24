@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0.0",
+  "planHash": "44c538dad3508375c390bc4f2c16374cf59ff871755df5cf4f481cca24108cb3",
+  "provider": "provided-audio",
+  "voice": "aria-restructured-import",
+  "segments": [
+    {
+      "id": "purpose",
+      "filename": "segment-001.wav",
+      "frames": 297,
+      "sha256": "9c72e87b47951848ce1f24d9976b0610e51b8cab4c3b66adc01eb794e8c31af2"
+    },
+    {
+      "id": "research-scope",
+      "filename": "segment-002.wav",
+      "frames": 460,
+      "sha256": "36016af86ff4cbee9dbabc5ab5ccc7594a6c5b0d9d168c4f519bf47b3bc3624e"
+    },
+    {
+      "id": "research-loop",
+      "filename": "segment-003.wav",
+      "frames": 454,
+      "sha256": "ce82d2eb31301da5273d5bbbc3851525dcd6bb4904d7204fb94f0d2d267799c0"
+    },
+    {
+      "id": "research-boundaries",
+      "filename": "segment-004.wav",
+      "frames": 489,
+      "sha256": "4f97b356d403974124acab799b97f6a2dd3b328fafc9a68faba0d253355db4af"
+    },
+    {
+      "id": "research-delivery",
+      "filename": "segment-005.wav",
+      "frames": 479,
+      "sha256": "384c5a252b77317a551d8732fce0173a4c1a3892723fa300f5d123c29efbf7c5"
+    },
+    {
+      "id": "explain-purpose",
+      "filename": "segment-006.wav",
+      "frames": 471,
+      "sha256": "7073a547f15880b7917bfc15b6b6fc05bd370ae44d602f36d18e33551d361757"
+    },
+    {
+      "id": "explain-language",
+      "filename": "segment-007.wav",
+      "frames": 526,
+      "sha256": "cc074da723f66cca9d55d991cdffad607285d115506ad09fff0b98458a60f989"
+    },
+    {
+      "id": "format-html",
+      "filename": "segment-008.wav",
+      "frames": 248,
+      "sha256": "c7d50c78c6c759c6e9a07bd8cba8d43e58e7af2e5bd0bc234eac2ea9bd44fa5e"
+    },
+    {
+      "id": "format-image",
+      "filename": "segment-009.wav",
+      "frames": 232,
+      "sha256": "da1e729170f06a3cad3ca740097b82e584e2a15a9345a82e525f12701c26fe81"
+    },
+    {
+      "id": "format-slides",
+      "filename": "segment-010.wav",
+      "frames": 182,
+      "sha256": "40e828045f412d75306ff985b63d369af10a5386bc8d9b4b757f97fe0d28a32b"
+    },
+    {
+      "id": "format-video",
+      "filename": "segment-011.wav",
+      "frames": 216,
+      "sha256": "8b254a9278f69e165e3b1c2303ad7b65deae44001bd9505fac9543d42f8028c9"
+    },
+    {
+      "id": "summary",
+      "filename": "segment-012.wav",
+      "frames": 403,
+      "sha256": "46270671d55e492e4726547efd79af5aa86ac722ba5170b86535dd206b0e3be0"
+    },
+    {
+      "id": "install",
+      "filename": "segment-013.wav",
+      "frames": 179,
+      "sha256": "393458307a9380a7055ace3912daf44dde29f79c12e5f8cc6767a376f37c1610"
+    }
+  ]
+}

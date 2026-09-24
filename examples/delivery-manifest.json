@@ -6,457 +6,1193 @@
     {
       "topic": "aha-introduction",
       "format": "video",
-      "file": "aha-introduction/aha-introduction.mp4",
-      "bytes": 4025806,
-      "sha256": "7cfa0cacc6e6e6f03b684c4fccbf653dee9603a1a5f8dba5391aae6db9177deb",
-      "sourceProject": "aha-introduction/projects/video",
-      "sourceHash": "9f6cb9b7d6b99821b4b181822a5b5f2ca877c42e98aea6d7cd90371cc123554c",
-      "researchHash": "6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d",
-      "report": "aha-introduction/research/report.md",
-      "receipt": "aha-introduction/aha-introduction.mp4.receipt.json",
-      "durationSeconds": 119.4,
-      "frames": 3582,
+      "language": "en",
+      "file": "aha-introduction/aha-introduction.en.mp4",
+      "bytes": 4430512,
+      "sha256": "de1de44fcbd672290fb1d88e9944d3566dfe2437575cb050aa73fa3d7759a5f8",
+      "sourceProject": "aha-introduction/projects/video/en",
+      "sourceHash": "04cc5d0b8adf27b0b15b52f5db5c33e02e57c79ee3157f186cdf9531b74758a2",
+      "researchHash": "1abf999481ab65abe18ac4dd88f015c9562b1737c7abebf38d2dae91381aeda1",
+      "report": "aha-introduction/research-video/report.md",
+      "receipt": "aha-introduction/aha-introduction.en.mp4.receipt.json",
+      "receiptHash": "2b1a4274aad3d3ef386374d129d953aa270250ad115ed3627632dcf072076ace",
+      "videoPlan": "aha-introduction/video-plans/en.json",
+      "audioDirectory": "aha-introduction/audio/en",
+      "durationSeconds": 154.53333333333333,
+      "frames": 4636,
       "provider": "provided-audio",
-      "receiptHash": "6b1a0184ae1bc56efd5c389a7f03a6413452de5cdeb58de6847f547cb24e415b",
       "qa": {
-        "directory": "aha-introduction/qa/video",
+        "directory": "aha-introduction/qa/video/en",
         "status": "bounded-evidence",
         "evidence": [
           {
-            "file": "aha-introduction/qa/video/approval.json",
-            "sha256": "355b15f3b07d72aae992cb9ac9bbae02605e239ca0c8be290e198dddfe0f9733"
+            "file": "aha-introduction/qa/video/en/approval.json",
+            "sha256": "639ac0fad690b99e559632f0e09388f66c12b299c260f176fbfd6a3c37a42343"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/1-research-skill-end.png",
-            "sha256": "d2909eded79d7b768fa2b613b2e0dbd216804dc06b9ef01b02fd2e91eeb5a40a"
+            "file": "aha-introduction/qa/video/en/asset-provenance.json",
+            "sha256": "dbc3f7ffc3c58ecc9b12df1050818e0969d25e255760beaf0b0bb4ab99059d0f"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/1-research-skill-middle.png",
-            "sha256": "967fe249a362813d4e3ba6c31cbae98314400a507f7b5db0dc5b6ac5116503c7"
+            "file": "aha-introduction/qa/video/en/encoded/frame-000.png",
+            "sha256": "57b3754af92f56d0836fbf28401ecd76d1d34ad01506b0e1d7af639786188175"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/1-research-skill-start.png",
-            "sha256": "8432e5218dbc0a02214bdb0a803faea8d64c94738485ac59dc91b87c45b7079e"
+            "file": "aha-introduction/qa/video/en/encoded/frame-001.png",
+            "sha256": "9dbe8fc820ce7a0e421684129801a3c120cfa720e4cfce4ae503aa280a23c04f"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/10-same-run-end.png",
-            "sha256": "08c490704059de9402fffd39abe341b170515f21a03e956deab0f146410276ad"
+            "file": "aha-introduction/qa/video/en/encoded/frame-002.png",
+            "sha256": "b1f334f6991ec9bdb6ac7eed7b8bdd3b3f50723291a66853ec4cf77644d6dd78"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/10-same-run-middle.png",
-            "sha256": "0d5331bcc774d0820a796a8f18e3c854aa769ad5147f94df80e95cb06c35db3d"
+            "file": "aha-introduction/qa/video/en/encoded/frame-003.png",
+            "sha256": "e21387660238107f13ed23b81340e655bfb931137396b59054382776f86e8305"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/10-same-run-start.png",
-            "sha256": "a2833eb2fc13944a7acd93da17375bb54f8172e2315c3d6d0b15422ee7db2c88"
+            "file": "aha-introduction/qa/video/en/encoded/frame-004.png",
+            "sha256": "bac69f7129b6923944655cc8ab3f5da9a00859a8adb8325c3033057941646b25"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/11-saved-html-image-end.png",
-            "sha256": "c30bb4dad7edb37cd814e8de8af9de8749ccac08208acafb65711f236a43b5cf"
+            "file": "aha-introduction/qa/video/en/encoded/frame-005.png",
+            "sha256": "4f821ef07585be4748af30580efd6e26a69582a4a17370a0a1f0661a5315eea4"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/11-saved-html-image-middle.png",
-            "sha256": "8501bdcfc0eba674150875a9267e0c906329bd5ea88b3651f9ae2288483b4ccd"
+            "file": "aha-introduction/qa/video/en/encoded/frame-006.png",
+            "sha256": "9664fc984f32663060ff55959ec82a26c64dd94a6788ae71c2a157a40a7aa69b"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/11-saved-html-image-start.png",
-            "sha256": "5fa9ab856f2149936f2ce5525ee031df18d3b30cee2619e337fe4b9fe2bd6847"
+            "file": "aha-introduction/qa/video/en/encoded/frame-007.png",
+            "sha256": "db60238d2de82aaa7b0e980eb131acaeed0aa974e82f56ebb08f90c25cf7576c"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/12-saved-slides-video-end.png",
-            "sha256": "d6e5ad9c0a94d61f6b7c91e3a60eccc3299ee95f3aa42ae96198823266f4ba81"
+            "file": "aha-introduction/qa/video/en/encoded/frame-008.png",
+            "sha256": "610ee4a0d74e20b889cdb6f2589422b76cbd35a9d6850480e0e60d57536cf4fd"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/12-saved-slides-video-middle.png",
-            "sha256": "2f5159ceff52abcec8639b70cea150d71fd7bb7480cf36c25af4a6994656aa96"
+            "file": "aha-introduction/qa/video/en/encoded/frame-009.png",
+            "sha256": "7fe4c721f7fd111136238a49eeeb6a57e75c1601e979940149ab01cbffa0a9ef"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/12-saved-slides-video-start.png",
-            "sha256": "b74d68f0a97701f9df86060465be6a877c370dac3bfc8abdbde3de8d58f952f8"
+            "file": "aha-introduction/qa/video/en/encoded/frame-010.png",
+            "sha256": "5f25b175fc0e2e1e407f94e897690442f8e697a8348fac507fd2d62682f295d6"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/13-evidence-visible-end.png",
-            "sha256": "309aa0f25e7ace34014fedfbe924ebd403e32202db85e4c5c795cf0223a383a6"
+            "file": "aha-introduction/qa/video/en/encoded/frame-011.png",
+            "sha256": "d1d72adec095a8b36a278c09278e21e01acd41e5f88540d33f5d17ef3d4915a1"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/13-evidence-visible-middle.png",
-            "sha256": "39f304dbfbb61ec45494cf55dff0651cc8457acbf3d8a234ca1132a11ea777ad"
+            "file": "aha-introduction/qa/video/en/encoded/frame-012.png",
+            "sha256": "e78225c6468a1fcf6e070b0a56c3b6e0535ba865531742697b2ac449c9981d16"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/13-evidence-visible-start.png",
-            "sha256": "8f81571cfe1d1a6d11fa1b1ce9e2615248cbfd69d3881bea7331324b27fcb702"
+            "file": "aha-introduction/qa/video/en/encoded/frame-013.png",
+            "sha256": "2253d3e7fbc523abaccd316b917847625f362f84bf08f5da67854322c687c493"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/2-explanation-skill-end.png",
-            "sha256": "1d1821d0d3116a0ca1bb02a1db301d4a76c195617a946570cba6baf15b1ac184"
+            "file": "aha-introduction/qa/video/en/encoded/frame-014.png",
+            "sha256": "06918d9157a2596310145115a9540de91d3749c85a88721e222edf36df1d54ff"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/2-explanation-skill-middle.png",
-            "sha256": "659bfe9eec34995a4c71045020a8c19bd9da194d32d5219fe1a52952e6bfc43e"
+            "file": "aha-introduction/qa/video/en/encoded/frame-015.png",
+            "sha256": "3a12c314d2d8d202c65a8e98e19463c5acac8f50ab3c2fe473523aeff1c4db2b"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/2-explanation-skill-start.png",
-            "sha256": "59dad9374b2564c8676684e4d0845cdfe5e2bd1361db2e2130c0c243b56879ca"
+            "file": "aha-introduction/qa/video/en/encoded/frame-016.png",
+            "sha256": "a465fdbc00062d77468ae3d76e04c46402cda4a942dc57e3758579b4ad40ff15"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/3-three-examples-end.png",
-            "sha256": "6f4617de4a288595a608c197ad49a54f8e029cbc4505a663e4055039473131d1"
+            "file": "aha-introduction/qa/video/en/encoded/frame-017.png",
+            "sha256": "ccd8e1d36d6a90c3f31944d5fac3df64b46bc8fa50367d11423c9de2c3fa8611"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/3-three-examples-middle.png",
-            "sha256": "eac31affac18237a4b7d7ec71bd2d5e5b78bf760afb47ce9adf60958de6943ea"
+            "file": "aha-introduction/qa/video/en/encoded/frame-018.png",
+            "sha256": "29a6dac4dfb72993683a401166fe6b317b9a8e2a5760c01e51ab184fef738fa2"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/3-three-examples-start.png",
-            "sha256": "c70e0fc8980fd1710b7140912aa458bcdc838805daba558df97591f8249e9839"
+            "file": "aha-introduction/qa/video/en/encoded/frame-019.png",
+            "sha256": "b441e241e820f0cac811c52e989a18b3aa16c3cd0d93af437e419d7d46a1ba68"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/4-mercator-question-end.png",
-            "sha256": "511c5c91b84ebbab64955df5029ed48eb952b9ad44d17a8ec2e041f29d2d8831"
+            "file": "aha-introduction/qa/video/en/encoded/frame-020.png",
+            "sha256": "2d670fd631c6518a91fbbb4f39336562f3b572531b7ad97bb70230a644ab6c63"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/4-mercator-question-middle.png",
-            "sha256": "c92312632700704f1d20a69eb740c4d340eea767287860330920d1968e610800"
+            "file": "aha-introduction/qa/video/en/encoded/frame-021.png",
+            "sha256": "3a4019c9cbacaa14826c1b0360bdf30b1e9bd1fbed9525012c9c1bf41a0f5c27"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/4-mercator-question-start.png",
-            "sha256": "e515ff799a49e70d0fb67ae9834052a2b506cb07ec994953dda1f13b3fa1026c"
+            "file": "aha-introduction/qa/video/en/encoded/frame-022.png",
+            "sha256": "cf72fdfb0388ff1c4b1c0aa03cad790010bebd458625dd7920114699fd7f7f5b"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/5-spherical-rotation-end.png",
-            "sha256": "e6003a1fc50e022d594598a13e6aa8870ad6d75abd750e4c6ebd90f01bd9a182"
+            "file": "aha-introduction/qa/video/en/encoded/frame-023.png",
+            "sha256": "5b416719a66b79d979466964d984bcac442dce87e9c5c0f87c969d731f4357ba"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/5-spherical-rotation-middle.png",
-            "sha256": "a69f089b8d32305177e2810b9c0aee001f96610ed44f6085942dc2278dae1187"
+            "file": "aha-introduction/qa/video/en/encoded/frame-024.png",
+            "sha256": "bea1a722395490bff5927bbbd711e432cf6826f244e0f0333edc9c79327187bb"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/5-spherical-rotation-start.png",
-            "sha256": "ae99881a44549402d57513c0c1b14a8aab19fe0f919b937c98f6833dc6d51be9"
+            "file": "aha-introduction/qa/video/en/encoded/frame-025.png",
+            "sha256": "80d9901bff539d5adb803b72ed724ea094fb0ecf875b7cf97684847d5ce17dd1"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/6-new-string-end.png",
-            "sha256": "2be06d21a21a0dd370460598b93d5b0b9f5cb9c2278c15c909d41471ba13b65f"
+            "file": "aha-introduction/qa/video/en/encoded/frame-026.png",
+            "sha256": "a6da39d7a6ee8c93a5a9538b6ae8f1e84a4958b6dd47d77244a3bac55642d326"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/6-new-string-middle.png",
-            "sha256": "05305bc728e9e454a5667624df10a59e358bb69bcce50670c2914779ea009c0e"
+            "file": "aha-introduction/qa/video/en/encoded/frame-027.png",
+            "sha256": "a6da39d7a6ee8c93a5a9538b6ae8f1e84a4958b6dd47d77244a3bac55642d326"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/6-new-string-start.png",
-            "sha256": "06a372cd2d1d83fcea5a0236d3bc3b4f3f7b02a2f0b4843d4e09243ecd536f71"
+            "file": "aha-introduction/qa/video/en/encoded/frame-028.png",
+            "sha256": "467ead9ec5668e00089365e5c8e6634619105426b241bc3eef8589fa2184d469"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/7-utf8-contrast-end.png",
-            "sha256": "d100a88b9f66ee374ee9e1c09105dd3e341634c56c401e3f8bc04f73c385f70b"
+            "file": "aha-introduction/qa/video/en/encoded/frame-029.png",
+            "sha256": "795b8b391b29cc6e193867e4fa680c212439113bb4883668b0d17124bcef03b3"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/7-utf8-contrast-middle.png",
-            "sha256": "3d3ba43c0544a5dd433618b70039747b6baeaf53c7b1166b51ab46639b0653a6"
+            "file": "aha-introduction/qa/video/en/encoded/frame-030.png",
+            "sha256": "6867e90df87d4fdb23c157445b546a697670ffec625d9ba78705639b6da54746"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/7-utf8-contrast-start.png",
-            "sha256": "671f41b06c2b3f740349759d08d1699a515eccaeed18583ccdf19882b992ea30"
+            "file": "aha-introduction/qa/video/en/encoded/frame-031.png",
+            "sha256": "1a727e1830c48f3b3de08ff842afb91aab938c1037e05121300d196b6c0f7443"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/8-layer-created-end.png",
-            "sha256": "79dac23cbca0fdb8082078fe89a2034acacc9a9984dee4526cce5df44a12cc12"
+            "file": "aha-introduction/qa/video/en/encoded/frame-032.png",
+            "sha256": "d9250d951251d878fdf9ee787fde91c8225e9eb975f4797ac8a74c09e63ace27"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/8-layer-created-middle.png",
-            "sha256": "7446378c987e8db16a612424cc9956eebab0e37d559d1f90a46438deecb0b44f"
+            "file": "aha-introduction/qa/video/en/encoded/frame-033.png",
+            "sha256": "dae83ef5a4cfa96c50eed5bfc02837d7f05dafab8a10c7ad68c723ff4d7bb529"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/8-layer-created-start.png",
-            "sha256": "d8663bf8b58300e25e578c4308763e97e815d754c61483bf5c9f8d925a9a9f81"
+            "file": "aha-introduction/qa/video/en/encoded/frame-034.png",
+            "sha256": "b3774ca5ff678ffedc5d7e4b1992f16f50dfb4df93bea30ed311bcd4277617e5"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/9-later-whiteout-end.png",
-            "sha256": "697d2d55ef0188576c153d170ff667833523fb7fd1f66d3dd9a41d78ba959a39"
+            "file": "aha-introduction/qa/video/en/encoded/frame-035.png",
+            "sha256": "b3774ca5ff678ffedc5d7e4b1992f16f50dfb4df93bea30ed311bcd4277617e5"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/9-later-whiteout-middle.png",
-            "sha256": "697d2d55ef0188576c153d170ff667833523fb7fd1f66d3dd9a41d78ba959a39"
+            "file": "aha-introduction/qa/video/en/encoded/frame-036.png",
+            "sha256": "e83cb480307a77511d58614daba549b2ba5e58150da904afca61420460f8040a"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/9-later-whiteout-start.png",
-            "sha256": "23d596caef1b21d92c8906253bdfafe00f7d7f5a5f4b9e2d0d21d914fb18d721"
+            "file": "aha-introduction/qa/video/en/encoded/frame-037.png",
+            "sha256": "728954ec7868fb3f54222f43c2d4cac8e329e3a0ef6f4cbeb0c7c4f39596127d"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/technical-review.json",
-            "sha256": "ce0d80c22b438126873587056d630d3842ad6abd08d692ea9869a89d2d479538"
+            "file": "aha-introduction/qa/video/en/encoded/frame-038.png",
+            "sha256": "69a1f99ba525f3e67c08a1227ec219f17594a3215498dc4addca53cd173d3188"
           },
           {
-            "file": "aha-introduction/qa/video/encoded/visual-review.json",
-            "sha256": "12a51b52b2735c6978fea200bf42d9b04037d5988dce8d7025ebb18675732031"
+            "file": "aha-introduction/qa/video/en/encoded/frame-039.png",
+            "sha256": "ef4ad653d36d6cc7de86984e2839edc7084e3a4fea15cc5709758c90623b3489"
           },
           {
-            "file": "aha-introduction/qa/video/preview/1-research-skill-a-replay.png",
-            "sha256": "60d8a1bcb4be4fc9a9a7d141380071f0f77f020153180537854bd275613228f8"
+            "file": "aha-introduction/qa/video/en/encoded/frame-040.png",
+            "sha256": "4f581923b32a943513e74c8e5a37b84b819299d3a2965a2872d16df4b73da4c5"
           },
           {
-            "file": "aha-introduction/qa/video/preview/1-research-skill-a.png",
-            "sha256": "60d8a1bcb4be4fc9a9a7d141380071f0f77f020153180537854bd275613228f8"
+            "file": "aha-introduction/qa/video/en/encoded/frame-041.png",
+            "sha256": "4f581923b32a943513e74c8e5a37b84b819299d3a2965a2872d16df4b73da4c5"
           },
           {
-            "file": "aha-introduction/qa/video/preview/1-research-skill-b.png",
-            "sha256": "f756c95cbb9383745fef7127fbb3de4b62ccff1242762e069b0dbf7b5fce13bc"
+            "file": "aha-introduction/qa/video/en/encoded/frame-042.png",
+            "sha256": "d274af64251ca224f930153cfec2c3b0f1fd6798a36ee6e9e057f805336f0ede"
           },
           {
-            "file": "aha-introduction/qa/video/preview/1-research-skill-end.png",
-            "sha256": "0ec18690b2bdf9c0f83cd357c464491dd291ad257a3ed94ac1059cb73f05bb0b"
+            "file": "aha-introduction/qa/video/en/encoded/frame-043.png",
+            "sha256": "3ea6e3a72c7ca01c29cab0d86f22863dfa407add7403e9543e38d12b89fd9040"
           },
           {
-            "file": "aha-introduction/qa/video/preview/1-research-skill-start.png",
-            "sha256": "9dba44d7f502b4a92d26db52a087db418e934386bdaee3c5d47a0dd87107d49f"
+            "file": "aha-introduction/qa/video/en/encoded/frame-044.png",
+            "sha256": "19b71c12885230ee6be67730c7cdfb445e725354872feb6a60baba44db5c6113"
           },
           {
-            "file": "aha-introduction/qa/video/preview/10-same-run-a-replay.png",
-            "sha256": "43ce9b0cd45729f9e1b580c42ca5ff8412a8f29b9e79a751708b0a0ade69ab28"
+            "file": "aha-introduction/qa/video/en/encoded/frame-045.png",
+            "sha256": "c8dd5df25913fe9e127b5731367dc04c149b682890af977cbcbf0098c0dd6f06"
           },
           {
-            "file": "aha-introduction/qa/video/preview/10-same-run-a.png",
-            "sha256": "43ce9b0cd45729f9e1b580c42ca5ff8412a8f29b9e79a751708b0a0ade69ab28"
+            "file": "aha-introduction/qa/video/en/encoded/frame-046.png",
+            "sha256": "5dd0395e84df33e069cca8cb9e2b26e87b8d4595dad58e79df36d8f25de68217"
           },
           {
-            "file": "aha-introduction/qa/video/preview/10-same-run-b.png",
-            "sha256": "7bf8657ae287d905a71ca086f17869fb8863ea64eb0725758cd11a8a9746f394"
+            "file": "aha-introduction/qa/video/en/encoded/frame-047.png",
+            "sha256": "e1ae3c7b2cefd498813d29404d061cc388966c0a69f5509caac186f3650a5e23"
           },
           {
-            "file": "aha-introduction/qa/video/preview/10-same-run-end.png",
-            "sha256": "7bf8657ae287d905a71ca086f17869fb8863ea64eb0725758cd11a8a9746f394"
+            "file": "aha-introduction/qa/video/en/encoded/frame-048.png",
+            "sha256": "eac8df1659cccb932fc985aef63bd144a02b2baa1c303d86c01834d7c030db60"
           },
           {
-            "file": "aha-introduction/qa/video/preview/10-same-run-start.png",
-            "sha256": "43ce9b0cd45729f9e1b580c42ca5ff8412a8f29b9e79a751708b0a0ade69ab28"
+            "file": "aha-introduction/qa/video/en/encoded/frame-049.png",
+            "sha256": "e8547325432e04c6b346154a77bb4af6b9ba914578d2a048488e74ab1ae56d3a"
           },
           {
-            "file": "aha-introduction/qa/video/preview/11-saved-html-image-a-replay.png",
-            "sha256": "479f000b139bc4ba0f94bafa2cb88622e93cc155ef66278e88d8b61bbd2e99b2"
+            "file": "aha-introduction/qa/video/en/encoded/frame-050.png",
+            "sha256": "cb8522468fcf1ce27dc74425d8d6df596c332b9981db635c74bdac45a098da85"
           },
           {
-            "file": "aha-introduction/qa/video/preview/11-saved-html-image-a.png",
-            "sha256": "479f000b139bc4ba0f94bafa2cb88622e93cc155ef66278e88d8b61bbd2e99b2"
+            "file": "aha-introduction/qa/video/en/encoded/frame-051.png",
+            "sha256": "00541a6855f11d03ae02711fefc18d9fbe3c8a3c87c21b014cf0847f023a32f4"
           },
           {
-            "file": "aha-introduction/qa/video/preview/11-saved-html-image-b.png",
-            "sha256": "e32e83b5ff3b75dade05a5df4c3521cba11302691ced3cbbc3d11faf86f7c75d"
+            "file": "aha-introduction/qa/video/en/encoded/frame-052.png",
+            "sha256": "fb3e3ed60008286db7cca0ce336b16f3eadb8db537f10a51ea490e1cafaea909"
           },
           {
-            "file": "aha-introduction/qa/video/preview/11-saved-html-image-end.png",
-            "sha256": "fbb27977f8f6741108308068a1fb04935ddc0a72bab3cb9af2740a11fcd234a0"
+            "file": "aha-introduction/qa/video/en/encoded/frame-053.png",
+            "sha256": "88da061c522ee985a6799ac263163a4e3da15b7cac928ddca3853f27edfae4a3"
           },
           {
-            "file": "aha-introduction/qa/video/preview/11-saved-html-image-start.png",
-            "sha256": "032a37859135a207d52e7e59604ab048425542d678a8bbd362cf6c9e3cb26d8d"
+            "file": "aha-introduction/qa/video/en/encoded/frame-054.png",
+            "sha256": "2833d18b9c4a74cd44dcb685557f370b22077f428c923cdf2ea6b8ed2521957a"
           },
           {
-            "file": "aha-introduction/qa/video/preview/12-saved-slides-video-a-replay.png",
-            "sha256": "355b2e659b4095683a933b8c7dce3d165114478206691adcdb18b7db845923f2"
+            "file": "aha-introduction/qa/video/en/encoded/frame-055.png",
+            "sha256": "b62bbabdcedde1163f80cc101cd90815a02d2c89ffec576c4289c01a410e12b1"
           },
           {
-            "file": "aha-introduction/qa/video/preview/12-saved-slides-video-a.png",
-            "sha256": "355b2e659b4095683a933b8c7dce3d165114478206691adcdb18b7db845923f2"
+            "file": "aha-introduction/qa/video/en/encoded/frame-056.png",
+            "sha256": "38cd919c6cefa04f91ad1aa1e0b8785eb9db84ccad874c92a72480321291f3d7"
           },
           {
-            "file": "aha-introduction/qa/video/preview/12-saved-slides-video-b.png",
-            "sha256": "1d3f9c9ea6a1fb30262302a5d15ac128f44155293eea7d3401c0828ce65aec0f"
+            "file": "aha-introduction/qa/video/en/encoded/frame-057.png",
+            "sha256": "82955f308fd4e702f8f00ee0771fde02d89ac179cc198c09743c17d6fc9c51c5"
           },
           {
-            "file": "aha-introduction/qa/video/preview/12-saved-slides-video-end.png",
-            "sha256": "35a1ac18ec2a94adad20d383f65c4eff36db78d35999b6aedbdcb2f5f2bbb682"
+            "file": "aha-introduction/qa/video/en/encoded/frame-058.png",
+            "sha256": "b52bc5b36df9f16699ff2df7d51acbafb44f6eeb2f25b5e70aa1998de62dec6e"
           },
           {
-            "file": "aha-introduction/qa/video/preview/12-saved-slides-video-start.png",
-            "sha256": "34174ae7b92a7938d73529e6c03998890db47412759f9166070a7583744b55eb"
+            "file": "aha-introduction/qa/video/en/encoded/frame-059.png",
+            "sha256": "6c0f81e6214cc2aa786ecf3aeb4ecd67e0a03ea750133872bc939689ad17b71a"
           },
           {
-            "file": "aha-introduction/qa/video/preview/13-evidence-visible-a-replay.png",
-            "sha256": "8821e68b4808b035faee23b8ed897b0c69dfdefb4ee71c890f45181772dd8600"
+            "file": "aha-introduction/qa/video/en/encoded/frame-060.png",
+            "sha256": "9e735dff57b5fdf08e558d295243a759798c3f5587de404450f2161cd732f77a"
           },
           {
-            "file": "aha-introduction/qa/video/preview/13-evidence-visible-a.png",
-            "sha256": "8821e68b4808b035faee23b8ed897b0c69dfdefb4ee71c890f45181772dd8600"
+            "file": "aha-introduction/qa/video/en/encoded/frame-061.png",
+            "sha256": "aed85217a9caba6412d4c704e52feda8dc8615b00864ba89852d474d77960deb"
           },
           {
-            "file": "aha-introduction/qa/video/preview/13-evidence-visible-b.png",
-            "sha256": "53c33fa7c4023ea1625203cd8a1a7ec33fb49a433fa922f01c45cfc76e423ecd"
+            "file": "aha-introduction/qa/video/en/encoded/frame-062.png",
+            "sha256": "aed85217a9caba6412d4c704e52feda8dc8615b00864ba89852d474d77960deb"
           },
           {
-            "file": "aha-introduction/qa/video/preview/13-evidence-visible-end.png",
-            "sha256": "53c33fa7c4023ea1625203cd8a1a7ec33fb49a433fa922f01c45cfc76e423ecd"
+            "file": "aha-introduction/qa/video/en/encoded/playback.json",
+            "sha256": "16b69bad1a51a08b599f92b593aafc2d40742e31baf681d7bf8ce4a33e5c78ca"
           },
           {
-            "file": "aha-introduction/qa/video/preview/13-evidence-visible-start.png",
-            "sha256": "8821e68b4808b035faee23b8ed897b0c69dfdefb4ee71c890f45181772dd8600"
+            "file": "aha-introduction/qa/video/en/encoded/technical-review.json",
+            "sha256": "6ed419592b755166fc2009bc2d7cc9d93cdc8570da949d236c5d3c59369a6b88"
           },
           {
-            "file": "aha-introduction/qa/video/preview/2-explanation-skill-a-replay.png",
-            "sha256": "b9d9c235929153c34acb900ea53b890249ef87518ca3617e90abcf8f063e61e3"
+            "file": "aha-introduction/qa/video/en/encoded/visual-review.json",
+            "sha256": "f04e7aa0ca39a8fb9d292bf2a4b5b17f6ccf395da5bde39d2822b7384a544b6c"
           },
           {
-            "file": "aha-introduction/qa/video/preview/2-explanation-skill-a.png",
-            "sha256": "b9d9c235929153c34acb900ea53b890249ef87518ca3617e90abcf8f063e61e3"
+            "file": "aha-introduction/qa/video/en/preview/01-purpose-0.png",
+            "sha256": "d5c42f8d4cccc08f66afc3faee276fbf90f8abd8e621010962227f816039305f"
           },
           {
-            "file": "aha-introduction/qa/video/preview/2-explanation-skill-b.png",
-            "sha256": "567367d17ef4cc5211036c988a0b3f9942656b9733b0a4651c6c9109e8feae87"
+            "file": "aha-introduction/qa/video/en/preview/01-purpose-1000.png",
+            "sha256": "6c3a8a1d9cd94e8210e29ab19a708c78b1706b72c5675c4dee09d7f982ddc077"
           },
           {
-            "file": "aha-introduction/qa/video/preview/2-explanation-skill-end.png",
-            "sha256": "af55c5e7326744923beb5c67510750d722af7c9258a8739e0b620d295ab00f21"
+            "file": "aha-introduction/qa/video/en/preview/01-purpose-240.png",
+            "sha256": "e402ce4a2137f919d49e28c0c41880d5156e6ad96f64b3390209b31bab7f5809"
           },
           {
-            "file": "aha-introduction/qa/video/preview/2-explanation-skill-start.png",
-            "sha256": "ab2f9dcf38af025cdbd8d17f0962295a121841f23eeb90a6421bc4ade0f0781f"
+            "file": "aha-introduction/qa/video/en/preview/01-purpose-500.png",
+            "sha256": "6c3a8a1d9cd94e8210e29ab19a708c78b1706b72c5675c4dee09d7f982ddc077"
           },
           {
-            "file": "aha-introduction/qa/video/preview/3-three-examples-a-replay.png",
-            "sha256": "3fd5ca10e291eacd4fddcf21f593746f87de1d3b92789e9cd0d1f2c6636158c1"
+            "file": "aha-introduction/qa/video/en/preview/01-purpose-750.png",
+            "sha256": "6c3a8a1d9cd94e8210e29ab19a708c78b1706b72c5675c4dee09d7f982ddc077"
           },
           {
-            "file": "aha-introduction/qa/video/preview/3-three-examples-a.png",
-            "sha256": "3fd5ca10e291eacd4fddcf21f593746f87de1d3b92789e9cd0d1f2c6636158c1"
+            "file": "aha-introduction/qa/video/en/preview/02-research-scope-0.png",
+            "sha256": "7cc145204b2016f07aee33c0d0ae530515ef64f95d498c7d27852726047db3fb"
           },
           {
-            "file": "aha-introduction/qa/video/preview/3-three-examples-b.png",
-            "sha256": "bc7af7f7f08c6fd9e1fa22643f6b2ed71e67a03aab3e49ffe211c2f8395d82e3"
+            "file": "aha-introduction/qa/video/en/preview/02-research-scope-1000.png",
+            "sha256": "2ba785d486c8c66ffb3082551df6211a59c0b4c1e0421c57cc6bedbe13095857"
           },
           {
-            "file": "aha-introduction/qa/video/preview/3-three-examples-end.png",
-            "sha256": "bc7af7f7f08c6fd9e1fa22643f6b2ed71e67a03aab3e49ffe211c2f8395d82e3"
+            "file": "aha-introduction/qa/video/en/preview/02-research-scope-240.png",
+            "sha256": "1a3327ec4f2f5e7ee48ffc6fbc0a38609502bbaad74067d3e403d9e4e419e3c0"
           },
           {
-            "file": "aha-introduction/qa/video/preview/3-three-examples-start.png",
-            "sha256": "2ecad286bacff32c2e692f29f7f476296cf1b2dba598b7027691f416691c60fb"
+            "file": "aha-introduction/qa/video/en/preview/02-research-scope-500.png",
+            "sha256": "2ba785d486c8c66ffb3082551df6211a59c0b4c1e0421c57cc6bedbe13095857"
           },
           {
-            "file": "aha-introduction/qa/video/preview/4-mercator-question-a-replay.png",
-            "sha256": "037ac57e99742bbb35d349ca75ee62c63ed25d7c62c073ba8857b5f44399a28c"
+            "file": "aha-introduction/qa/video/en/preview/02-research-scope-750.png",
+            "sha256": "2ba785d486c8c66ffb3082551df6211a59c0b4c1e0421c57cc6bedbe13095857"
           },
           {
-            "file": "aha-introduction/qa/video/preview/4-mercator-question-a.png",
-            "sha256": "037ac57e99742bbb35d349ca75ee62c63ed25d7c62c073ba8857b5f44399a28c"
+            "file": "aha-introduction/qa/video/en/preview/03-research-loop-0.png",
+            "sha256": "818313d099937eb460e81dd94c62eba421d95436a66d58a8f70490124fedf9e5"
           },
           {
-            "file": "aha-introduction/qa/video/preview/4-mercator-question-b.png",
-            "sha256": "874a66bcac5314823c88caecf7f6ad606edd6d4605f43f959ae981b968b3df12"
+            "file": "aha-introduction/qa/video/en/preview/03-research-loop-1000.png",
+            "sha256": "f618cfc8f3ac1f15a53c2e591bc5c2bd680d634b59937a81797db76dbb36d3db"
           },
           {
-            "file": "aha-introduction/qa/video/preview/4-mercator-question-end.png",
-            "sha256": "874a66bcac5314823c88caecf7f6ad606edd6d4605f43f959ae981b968b3df12"
+            "file": "aha-introduction/qa/video/en/preview/03-research-loop-239.png",
+            "sha256": "818313d099937eb460e81dd94c62eba421d95436a66d58a8f70490124fedf9e5"
           },
           {
-            "file": "aha-introduction/qa/video/preview/4-mercator-question-start.png",
-            "sha256": "df1d26bd2b527f00faa40f5b27f3b494d744d68c1a77d5562836ba696679b01c"
+            "file": "aha-introduction/qa/video/en/preview/03-research-loop-240.png",
+            "sha256": "b96d2d493945fd0757d763f078f4d96fa96daade6f574dce563811d2343f2e5e"
           },
           {
-            "file": "aha-introduction/qa/video/preview/5-spherical-rotation-a-replay.png",
-            "sha256": "441364211f7c35fd5f2f09c778d4024566aae74998a83bb1907aef5915856d91"
+            "file": "aha-introduction/qa/video/en/preview/03-research-loop-241.png",
+            "sha256": "b96d2d493945fd0757d763f078f4d96fa96daade6f574dce563811d2343f2e5e"
           },
           {
-            "file": "aha-introduction/qa/video/preview/5-spherical-rotation-a.png",
-            "sha256": "441364211f7c35fd5f2f09c778d4024566aae74998a83bb1907aef5915856d91"
+            "file": "aha-introduction/qa/video/en/preview/03-research-loop-439.png",
+            "sha256": "b96d2d493945fd0757d763f078f4d96fa96daade6f574dce563811d2343f2e5e"
           },
           {
-            "file": "aha-introduction/qa/video/preview/5-spherical-rotation-b.png",
-            "sha256": "287cdd5b59cd93f5d044d1cc98679d40cfdf71adfbe1bd5b8410afbd80b41653"
+            "file": "aha-introduction/qa/video/en/preview/03-research-loop-441.png",
+            "sha256": "786adfcfee9fd2f1ab7e8204ef42c55b1df6cb31814794e124324b452b92f049"
           },
           {
-            "file": "aha-introduction/qa/video/preview/5-spherical-rotation-end.png",
-            "sha256": "91de39235c645f98fa96491a43d26053252cf060e6d1e45647885869fda68316"
+            "file": "aha-introduction/qa/video/en/preview/03-research-loop-500.png",
+            "sha256": "82d1c0fa2d468dcb93bf35ce1bc2de7e078eae648310ea566473736c8de32a03"
           },
           {
-            "file": "aha-introduction/qa/video/preview/5-spherical-rotation-start.png",
-            "sha256": "98ddc310f9b1d1029c01a685eb8d7ed7d79c75f461e605bb2ba2ced9c9b95fe7"
+            "file": "aha-introduction/qa/video/en/preview/03-research-loop-699.png",
+            "sha256": "a7ecc3fa6e246db19818122a86cec8baba634b7bdd5712d66c55477efa8dee25"
           },
           {
-            "file": "aha-introduction/qa/video/preview/6-new-string-a-replay.png",
-            "sha256": "011bdf608e265271d66028c09336dd84fd4f6b21859f6ace02b95cdf35c2ea7f"
+            "file": "aha-introduction/qa/video/en/preview/03-research-loop-701.png",
+            "sha256": "f618cfc8f3ac1f15a53c2e591bc5c2bd680d634b59937a81797db76dbb36d3db"
           },
           {
-            "file": "aha-introduction/qa/video/preview/6-new-string-a.png",
-            "sha256": "011bdf608e265271d66028c09336dd84fd4f6b21859f6ace02b95cdf35c2ea7f"
+            "file": "aha-introduction/qa/video/en/preview/03-research-loop-750.png",
+            "sha256": "f618cfc8f3ac1f15a53c2e591bc5c2bd680d634b59937a81797db76dbb36d3db"
           },
           {
-            "file": "aha-introduction/qa/video/preview/6-new-string-b.png",
-            "sha256": "83f7854c0958ecdc419159154dd6fc640829b9d7ccd6bca5db4436033e8d636f"
+            "file": "aha-introduction/qa/video/en/preview/04-research-boundaries-0.png",
+            "sha256": "26e814e76c7c5d7dd9012b4d9f8f0db9b2a1f83a704dddc4f4f693d94c532247"
           },
           {
-            "file": "aha-introduction/qa/video/preview/6-new-string-end.png",
-            "sha256": "83f7854c0958ecdc419159154dd6fc640829b9d7ccd6bca5db4436033e8d636f"
+            "file": "aha-introduction/qa/video/en/preview/04-research-boundaries-1000.png",
+            "sha256": "f5beb184f5e883e11b8fd152051351b3d81238083ed16a1ef6481be7c07316fa"
           },
           {
-            "file": "aha-introduction/qa/video/preview/6-new-string-start.png",
-            "sha256": "98d1b456bbd8d7f48f540a2a7bc401cd7299f27e87ce394cb6dc7ace5bce764e"
+            "file": "aha-introduction/qa/video/en/preview/04-research-boundaries-240.png",
+            "sha256": "4cee967b01f78647e2d2d370379a28d3420e8c7ee227442f5b4bbe30a4ef7407"
           },
           {
-            "file": "aha-introduction/qa/video/preview/7-utf8-contrast-a-replay.png",
-            "sha256": "56920650aa7580372bafd54149c1a07bb10ac8b05d8cb953df96410d80ed7ec6"
+            "file": "aha-introduction/qa/video/en/preview/04-research-boundaries-500.png",
+            "sha256": "f5beb184f5e883e11b8fd152051351b3d81238083ed16a1ef6481be7c07316fa"
           },
           {
-            "file": "aha-introduction/qa/video/preview/7-utf8-contrast-a.png",
-            "sha256": "56920650aa7580372bafd54149c1a07bb10ac8b05d8cb953df96410d80ed7ec6"
+            "file": "aha-introduction/qa/video/en/preview/04-research-boundaries-750.png",
+            "sha256": "f5beb184f5e883e11b8fd152051351b3d81238083ed16a1ef6481be7c07316fa"
           },
           {
-            "file": "aha-introduction/qa/video/preview/7-utf8-contrast-b.png",
-            "sha256": "8bd16d6b1ef98fa97cd2ba2127a3278831ecf56dc1d944b82dbf0ff7e838ec49"
+            "file": "aha-introduction/qa/video/en/preview/05-research-delivery-0.png",
+            "sha256": "312f499e765b1156ba4da53e392ccbce2982965e282bb4c0715a9f44d0a0d82a"
           },
           {
-            "file": "aha-introduction/qa/video/preview/7-utf8-contrast-end.png",
-            "sha256": "8bd16d6b1ef98fa97cd2ba2127a3278831ecf56dc1d944b82dbf0ff7e838ec49"
+            "file": "aha-introduction/qa/video/en/preview/05-research-delivery-1000.png",
+            "sha256": "83b7feb2abf31bc08420135452ea43f467140f3702f6843b5361f7f7374fab6e"
           },
           {
-            "file": "aha-introduction/qa/video/preview/7-utf8-contrast-start.png",
-            "sha256": "56920650aa7580372bafd54149c1a07bb10ac8b05d8cb953df96410d80ed7ec6"
+            "file": "aha-introduction/qa/video/en/preview/05-research-delivery-240.png",
+            "sha256": "f3c95dd8f2d0409d3d7d3002e0a4e7b52b39f41932252bb680be5e1aa0cd8b60"
           },
           {
-            "file": "aha-introduction/qa/video/preview/8-layer-created-a-replay.png",
-            "sha256": "353d990f627236d635aa16b3df6d888fedc1b7db52359f24d4d7c8a70c8a13ea"
+            "file": "aha-introduction/qa/video/en/preview/05-research-delivery-500.png",
+            "sha256": "83b7feb2abf31bc08420135452ea43f467140f3702f6843b5361f7f7374fab6e"
           },
           {
-            "file": "aha-introduction/qa/video/preview/8-layer-created-a.png",
-            "sha256": "353d990f627236d635aa16b3df6d888fedc1b7db52359f24d4d7c8a70c8a13ea"
+            "file": "aha-introduction/qa/video/en/preview/05-research-delivery-750.png",
+            "sha256": "83b7feb2abf31bc08420135452ea43f467140f3702f6843b5361f7f7374fab6e"
           },
           {
-            "file": "aha-introduction/qa/video/preview/8-layer-created-b.png",
-            "sha256": "c805b413adc70811495255198ccc2f948127f1db16a77900b2685d2797822e8f"
+            "file": "aha-introduction/qa/video/en/preview/06-explain-purpose-0.png",
+            "sha256": "8aaf611214c79fb3d860a19722945d675d93c6827cbabd403dad0f0917962873"
           },
           {
-            "file": "aha-introduction/qa/video/preview/8-layer-created-end.png",
-            "sha256": "c805b413adc70811495255198ccc2f948127f1db16a77900b2685d2797822e8f"
+            "file": "aha-introduction/qa/video/en/preview/06-explain-purpose-1000.png",
+            "sha256": "b82e52314f166a4352df6b1534baed5539d101a530f3b42a6df77aae40b00026"
           },
           {
-            "file": "aha-introduction/qa/video/preview/8-layer-created-start.png",
-            "sha256": "9b6af41712f835ff08c5f350a0e246b46f88758e3ab09df10d24d7d3daa85437"
+            "file": "aha-introduction/qa/video/en/preview/06-explain-purpose-240.png",
+            "sha256": "8aaf611214c79fb3d860a19722945d675d93c6827cbabd403dad0f0917962873"
           },
           {
-            "file": "aha-introduction/qa/video/preview/9-later-whiteout-a-replay.png",
-            "sha256": "e4ae4da1e8402f26e251ef40be186bcd3740112ccd93c3d02dbb2638eef01e6c"
+            "file": "aha-introduction/qa/video/en/preview/06-explain-purpose-500.png",
+            "sha256": "16bdd760a5ca0036ae7473df7f6d02f500a42a916abf8c9b737ab3b4821d11a1"
           },
           {
-            "file": "aha-introduction/qa/video/preview/9-later-whiteout-a.png",
-            "sha256": "e4ae4da1e8402f26e251ef40be186bcd3740112ccd93c3d02dbb2638eef01e6c"
+            "file": "aha-introduction/qa/video/en/preview/06-explain-purpose-750.png",
+            "sha256": "b82e52314f166a4352df6b1534baed5539d101a530f3b42a6df77aae40b00026"
           },
           {
-            "file": "aha-introduction/qa/video/preview/9-later-whiteout-b.png",
-            "sha256": "ca3be4a5f1bce3d857dd7de71b8c99fe42900e517f90400de355ad08708edaa1"
+            "file": "aha-introduction/qa/video/en/preview/07-explain-language-0.png",
+            "sha256": "5779f330a7df090ba8d7a8ccd9a0b4378446a3e0c804d703abaff6fa477efba7"
           },
           {
-            "file": "aha-introduction/qa/video/preview/9-later-whiteout-end.png",
-            "sha256": "ca3be4a5f1bce3d857dd7de71b8c99fe42900e517f90400de355ad08708edaa1"
+            "file": "aha-introduction/qa/video/en/preview/07-explain-language-1000.png",
+            "sha256": "d79858b348aab22ebc80df3fc2bfbe02e14e8802ce1f4cae234fa4e54bc81187"
           },
           {
-            "file": "aha-introduction/qa/video/preview/9-later-whiteout-start.png",
-            "sha256": "e4ae4da1e8402f26e251ef40be186bcd3740112ccd93c3d02dbb2638eef01e6c"
+            "file": "aha-introduction/qa/video/en/preview/07-explain-language-240.png",
+            "sha256": "d79858b348aab22ebc80df3fc2bfbe02e14e8802ce1f4cae234fa4e54bc81187"
           },
           {
-            "file": "aha-introduction/qa/video/preview/report.json",
-            "sha256": "c7fedf936ace8c09227f415f370e9dc96d594c14f2f4fec621a425cb4c176761"
+            "file": "aha-introduction/qa/video/en/preview/07-explain-language-500.png",
+            "sha256": "d79858b348aab22ebc80df3fc2bfbe02e14e8802ce1f4cae234fa4e54bc81187"
           },
           {
-            "file": "aha-introduction/qa/video/speech-approval.json",
-            "sha256": "48524b860952c32eb1efbe36ccd8b0a7186096c4963e88a88f51a1bbc6561304"
+            "file": "aha-introduction/qa/video/en/preview/07-explain-language-750.png",
+            "sha256": "d79858b348aab22ebc80df3fc2bfbe02e14e8802ce1f4cae234fa4e54bc81187"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/08-format-html-0.png",
+            "sha256": "860510987e12896123adc248391dc28f2770389b17e26fae0c7534bd334cbaf2"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/08-format-html-1000.png",
+            "sha256": "a716053e51436e0f962a396f8cabbeac88bfed3c72a6d77ca91c16994457f41f"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/08-format-html-240.png",
+            "sha256": "96380787bb9477afd21f3701901948c1b3dc590b2ce1d9914575f18c53810f16"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/08-format-html-500.png",
+            "sha256": "8fc7eb8d961b835f365beba58c09ffa492348f528b075630e555e8aa917b7c9b"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/08-format-html-750.png",
+            "sha256": "c2f14fe9cbe5960b3358fd68c63635933ff56192c306a0e1cd33c39f06e2f6bf"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/09-format-image-0.png",
+            "sha256": "e9f4ab76db1ce0876ef0c284c6a032fb34f1d1affcdf2b793b0f3301096a1b2f"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/09-format-image-1000.png",
+            "sha256": "51a819d51d5d2df17d4d10d5209aefe5d4c573403ce1ecab4d6ac0df82b4dcd4"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/09-format-image-240.png",
+            "sha256": "b2f4f447a1ff2ed289bb885de1b9c74b28292e8a44cb81e8ec4ebf53fedab8dd"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/09-format-image-500.png",
+            "sha256": "51a819d51d5d2df17d4d10d5209aefe5d4c573403ce1ecab4d6ac0df82b4dcd4"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/09-format-image-750.png",
+            "sha256": "51a819d51d5d2df17d4d10d5209aefe5d4c573403ce1ecab4d6ac0df82b4dcd4"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/10-format-slides-0.png",
+            "sha256": "040ccbda325b5f1661e4a9cfbe5456cc8f059adb1630fa3afaee0fb4ba4a842c"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/10-format-slides-1000.png",
+            "sha256": "0bf418178aeb2ab1643803a38f4449c2aa61088c23baac9d1b026fe886fbca84"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/10-format-slides-240.png",
+            "sha256": "040ccbda325b5f1661e4a9cfbe5456cc8f059adb1630fa3afaee0fb4ba4a842c"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/10-format-slides-500.png",
+            "sha256": "040ccbda325b5f1661e4a9cfbe5456cc8f059adb1630fa3afaee0fb4ba4a842c"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/10-format-slides-519.png",
+            "sha256": "040ccbda325b5f1661e4a9cfbe5456cc8f059adb1630fa3afaee0fb4ba4a842c"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/10-format-slides-521.png",
+            "sha256": "040ccbda325b5f1661e4a9cfbe5456cc8f059adb1630fa3afaee0fb4ba4a842c"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/10-format-slides-750.png",
+            "sha256": "0bf418178aeb2ab1643803a38f4449c2aa61088c23baac9d1b026fe886fbca84"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/11-format-video-0.png",
+            "sha256": "fb6017e93e62437c2f40903356c8b5192c2e37502426b61a4ea55f4b0b010100"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/11-format-video-1000.png",
+            "sha256": "0bf7bf59e15e9a165a79839953d9f69b27d5c35f5105dfd549b0e0a827a8c626"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/11-format-video-240.png",
+            "sha256": "1edaa32d22733731f4d98db8a9c03a959ea2e1dc6359ba9df8178b04aa38ddcc"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/11-format-video-500.png",
+            "sha256": "bd7fea8b9066b840809d8aba179594c4b982cf1f16f8b46ee204d484e581684d"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/11-format-video-750.png",
+            "sha256": "d1130640b1d90f61eb7e7eb52f4ef4674d555ca8cc8589a42e6d61f579dbd17d"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/12-summary-0.png",
+            "sha256": "1784cfc8a9d6b3a1fa1c8b0597b911916a25e9440e438106f280549c3085e5be"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/12-summary-1000.png",
+            "sha256": "0d7ead2cf356deb568e3578ca788df56912b7ca34a0ba53dde2884037829d0bb"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/12-summary-240.png",
+            "sha256": "1784cfc8a9d6b3a1fa1c8b0597b911916a25e9440e438106f280549c3085e5be"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/12-summary-500.png",
+            "sha256": "0d7ead2cf356deb568e3578ca788df56912b7ca34a0ba53dde2884037829d0bb"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/12-summary-750.png",
+            "sha256": "0d7ead2cf356deb568e3578ca788df56912b7ca34a0ba53dde2884037829d0bb"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/13-install-0.png",
+            "sha256": "53eb8e5866b4b68a08286a23bfd99a0788bda6cd1622685556865fcb9226e65c"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/13-install-1000.png",
+            "sha256": "53eb8e5866b4b68a08286a23bfd99a0788bda6cd1622685556865fcb9226e65c"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/13-install-240.png",
+            "sha256": "53eb8e5866b4b68a08286a23bfd99a0788bda6cd1622685556865fcb9226e65c"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/13-install-500.png",
+            "sha256": "53eb8e5866b4b68a08286a23bfd99a0788bda6cd1622685556865fcb9226e65c"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/13-install-750.png",
+            "sha256": "53eb8e5866b4b68a08286a23bfd99a0788bda6cd1622685556865fcb9226e65c"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/preview/observations.json",
+            "sha256": "2acb89e91a096c02e5cc2ef1b4a4727af123b9213a2ae3a51ce6110de505eccd"
+          },
+          {
+            "file": "aha-introduction/qa/video/en/speech-approval.json",
+            "sha256": "14880e3a34bc97bca36730f98b536177be09fcccaa45ec19dfdedc9dc968a98c"
+          }
+        ]
+      }
+    },
+    {
+      "topic": "aha-introduction",
+      "format": "video",
+      "language": "zh",
+      "file": "aha-introduction/aha-introduction.zh.mp4",
+      "bytes": 4592089,
+      "sha256": "9d2972cecdfdd45e32fa0e84644aedc5ad6d5d57706375219b1f25c2a32825eb",
+      "sourceProject": "aha-introduction/projects/video/zh",
+      "sourceHash": "e03c96ff51213748aeb733884f0216d50a09e34b8fd307a004e4f0912d196877",
+      "researchHash": "1abf999481ab65abe18ac4dd88f015c9562b1737c7abebf38d2dae91381aeda1",
+      "report": "aha-introduction/research-video/report.md",
+      "receipt": "aha-introduction/aha-introduction.zh.mp4.receipt.json",
+      "receiptHash": "ca01ffa992c0a1469cebb559b2a4ede739afade2ce18ab472b66ec14bc25aaa6",
+      "videoPlan": "aha-introduction/video-plans/zh.json",
+      "audioDirectory": "aha-introduction/audio/zh",
+      "durationSeconds": 151.06666666666666,
+      "frames": 4532,
+      "provider": "provided-audio",
+      "qa": {
+        "directory": "aha-introduction/qa/video/zh",
+        "status": "bounded-evidence",
+        "evidence": [
+          {
+            "file": "aha-introduction/qa/video/zh/approval.json",
+            "sha256": "c2db8b417c65f9ef38504a56c13734777c347a95b54ef567fe035fee4391d42b"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/asset-provenance.json",
+            "sha256": "252f478abefac54989c3d65a2541b7b7b2f87d8408b32542940b39e604c53a78"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-000.png",
+            "sha256": "0b2ea5cbefb35922df88cfd57c464d41057496d614380b08269c0b7e6972e16d"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-001.png",
+            "sha256": "b7877b15231f272e0dee3e80e62cc94f8a7521ae5e5d9e3ac24095b6c061b4e9"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-002.png",
+            "sha256": "36686aa610a153b8f2b6fe2025706be03d08a379baf53f37f0c687a9dbf5fded"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-003.png",
+            "sha256": "990b8577fe078f9e721db450ef1400fbd45f1e194f90de936d5470a7c978d24e"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-004.png",
+            "sha256": "9f83570e390e246a3765e02401ffc8fc9123ff85458049e191fea5372181b8a3"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-005.png",
+            "sha256": "59c94f692180d25c64f2f52f3e3861f5c5cf52a61d196b53789ce4ba51e677b0"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-006.png",
+            "sha256": "400185e479734b122b055d81bbc8d90173b616bfca140a82fd83f6486a3ad635"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-007.png",
+            "sha256": "7453fd12cc4ffbf1a7256cc6eeef79d033f33b92a7eac4cccb1853ec2ddb90ad"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-008.png",
+            "sha256": "234832b58c84fde8b1003216ae056cf758d51d3b15d92f01af275efbe2cdcba1"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-009.png",
+            "sha256": "2c9e2161352560fe96701c03babf61b01191d3172dd50a69ac7255487989e83f"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-010.png",
+            "sha256": "88418217a45a41d79293c994e2f63a7608cab20b0f278b936713de30fd1aac20"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-011.png",
+            "sha256": "66f0b50111b65310b4500870db9123ff30720adff7154e654e23ad784816a4ed"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-012.png",
+            "sha256": "ab54ca5048fe363c57b585808cf1ba277bf6136e46894c9a898e69756a9cc0a5"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-013.png",
+            "sha256": "ad90d2b175a0caa619a8cd2a7263e3fff9cfbd476d419eff70e16318b891e21f"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-014.png",
+            "sha256": "0102b2c95ed0aa999dcb1ca364ef9d1647449953ae2508452771ceb816e540de"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-015.png",
+            "sha256": "4c2880ada6b95ce91675ff278bd0ef6d389ac85a8c582e4f676ab9eeffb5a31b"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-016.png",
+            "sha256": "4c9a42fbc8a7c47dd3925df585904c7b83f4f946b85ef7f227065a5352590206"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-017.png",
+            "sha256": "6134c43002cca721a448f6c0d0121c0a9384597ff35305b3efcdc14b53f089d1"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-018.png",
+            "sha256": "009f7e42f2a360f6848b36d20152c5e6b7f47b6d3736b2653f3bd186ade416d0"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-019.png",
+            "sha256": "2a91989d7aa73e3a6f4c91f62948fd9dab1ea131c53d4fcbe841af03932452b0"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-020.png",
+            "sha256": "e00d4c12b566ad45ed00943e6bb02aebdb609be8aa34369d128d091f7265e4a2"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-021.png",
+            "sha256": "3b2982b7bb1fcc621ad8c02b10cdd0ca8c1c64e5b7634a8f1bad2618fe336b8b"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-022.png",
+            "sha256": "6076e6c2b124341bd0cce16708fc08bf03c29f84648226f93b9c42553b30be76"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-023.png",
+            "sha256": "b6e9b690b2d1181b4bad84ff518a960e305673711eef0dbc1af74f11308c65a5"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-024.png",
+            "sha256": "567b2007139782981d2cf123c4e8b321c407220b8298ac13d210a4e2c73c537f"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-025.png",
+            "sha256": "5e96e0b0eaec4d76943d01df01fec3a8f42b97cf90fcc1484a9571e5c29722e0"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-026.png",
+            "sha256": "0e8736988b9fdb8f4a51dd2e4e2e4deb4bd4161edff3fe4de2ac47f3b64dc6ac"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-027.png",
+            "sha256": "c4263f4ec6d7c158c8c15feafb0747349e4000fcc1f093e3a80475e5c97c2c9d"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-028.png",
+            "sha256": "6c23333ffd969252d75c1affc139746f07f280cc510e35865a63f871885e238a"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-029.png",
+            "sha256": "12552a353b9c88b8a551fd399faca8a115f363af5002bd07e2504e1edfb0482e"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-030.png",
+            "sha256": "841ae05c2224cb257b2db60a2435d98f2a2a4b76ce9a73a19897d5d0d794cea7"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-031.png",
+            "sha256": "ef3243f565170b6b069c089410b823c0ea00f6984fde2b3a5c0c990a650d7e3a"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-032.png",
+            "sha256": "70981e4331b16896840323606e537268e026828d0d99a725764619b078a491e9"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-033.png",
+            "sha256": "52d4f9050b0934f5cea23859868082ab4b28c4b1d855f509704f385dabefb77b"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-034.png",
+            "sha256": "ae554405ccdd22f339b0d29095647ceb6d286cc961b0bc5cfe7c7b3458aa7583"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-035.png",
+            "sha256": "666415a5dea61216e8f5befab2d41b3c126f8fcd1d3d29d171cf89a453e4d2f2"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-036.png",
+            "sha256": "4b8cabdd9dadf22a259d8deb5cb31876ea58acd669559d35a56ac1908fad6172"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-037.png",
+            "sha256": "6ef410c77bce25800c78cc964364dc043f2ea3e7bf694463efff3ccb540f81e6"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-038.png",
+            "sha256": "e3633ae282a45419587901f8215dfe65fb20584f2c8645e378b5057f2e2b8de1"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-039.png",
+            "sha256": "fc12f9da7c0a2d654782e87766f7060770e6d55fa55322c64740c9351d1fe6c1"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-040.png",
+            "sha256": "fac79859b8af49dc2cc1b4e4ad7b45de208ab22e61fe3c76eacb48fc56989c37"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-041.png",
+            "sha256": "e691b2922bc7eff0c713330497ac4de33710c84cd48d43ac3b4f4064b7ff54d7"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-042.png",
+            "sha256": "e20161e894f7435173f368e4c928f09946ff0238de4d593c3181c1e6e79b5cac"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-043.png",
+            "sha256": "fa2804055eedb54ca6e69e49c42093dd49afa8b6a06822b59bde5429ee352dd1"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-044.png",
+            "sha256": "fdd9d770e2f7e4fc64f81c483455f8f7b51a46e5656d76da704be6a5c736c6c7"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-045.png",
+            "sha256": "a0290a35295bdc5f1e7f352e63bfc863a61d629f5407f5bd1a0c1f277fe999b9"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-046.png",
+            "sha256": "6912d6f6f2a4c84f0e5395ce641172e600acf16212e18ff0beaa2be8e0145b74"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-047.png",
+            "sha256": "47b0aaafd4bd1ba5612f501efed00260fa5e475c8d0b623fed88fdaeae75c076"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-048.png",
+            "sha256": "e7722192adf515c56c5571fd25c5c5f7e948ee2612f7460233fa5f33895c11f2"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-049.png",
+            "sha256": "54c681b5e73c99a2f5ac9ec640ddaad3376a0201da7c396d7230941158ee71be"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-050.png",
+            "sha256": "3a7109506e38641309011e77a07a7488ab545dd002d2b8adf7bb7cc2be71f02c"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-051.png",
+            "sha256": "33f13557e715cc7f5c6e92d6c6817feb9629ae9e6378a4acfa531111e2771933"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-052.png",
+            "sha256": "4bcfbbb432f6b7707f1f897d3608feb0e27f63343924a2ec611bcf9f27fc8341"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-053.png",
+            "sha256": "6017d7bf907beb262f557d1e66ca9e2e46b8256fdbcced0f2ce72756beec53b6"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-054.png",
+            "sha256": "480081f669227909dddc072675fbf5d9eff9d2927c86027bcb4f2c66be980e9d"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-055.png",
+            "sha256": "256605b7afa6571d32d58b86de6471636ff653ad6c73d05c15ed8f251e4f7791"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-056.png",
+            "sha256": "7a605ad17cdb90e7512f53d8e918f2f10f7b750b54de0c906e2053bd1537299e"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-057.png",
+            "sha256": "9cf82e5ef4d30632e87bda2e36a1c3e45078665842b335d16fd99c062703c7bc"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-058.png",
+            "sha256": "07371d711beb79496a589f4ccce5d3d721596946169605e5b58f9b4b8ba5ab86"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-059.png",
+            "sha256": "a92a289a4f2054874c55a7d4ca38592b4426291ec2ac65ad8dc4351b8beb9381"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-060.png",
+            "sha256": "6c23c427e0b04d23d3a0977d6531ec6bfcdd38e8c14ae790cea8056ca1e6fba0"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-061.png",
+            "sha256": "22ca154db23f3dd3d7be0462e5e5c661f896b927ab11acbc1ac6698ef488b540"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/frame-062.png",
+            "sha256": "22ca154db23f3dd3d7be0462e5e5c661f896b927ab11acbc1ac6698ef488b540"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/playback.json",
+            "sha256": "d6ae8a52ba42d4a19d87c6f6368dac611b48c95c40605a7e69a073c6a27bbe6c"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/technical-review.json",
+            "sha256": "7d484d707cffab85050f3eb379f4855b12769649e81d5f934a1275cbdc284234"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/encoded/visual-review.json",
+            "sha256": "26405fb475ec986efe2a20cb89d6682f00435874652d1277b1db312a4326bc72"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/01-purpose-0.png",
+            "sha256": "a1274a6cf2e807fb271f2d9f2dc27eda00f762da74c0403c5fa685f12ec7dc3e"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/01-purpose-1000.png",
+            "sha256": "98dd4baf63690e4335e015627bf8179ff615f6645868497e53c3a67b0ac84cf5"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/01-purpose-240.png",
+            "sha256": "d3265b039d194694f0ecf771dd7e0b3ef2c27fe4adda7fcae7bccc1a4542ddf6"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/01-purpose-500.png",
+            "sha256": "98dd4baf63690e4335e015627bf8179ff615f6645868497e53c3a67b0ac84cf5"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/01-purpose-750.png",
+            "sha256": "98dd4baf63690e4335e015627bf8179ff615f6645868497e53c3a67b0ac84cf5"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/02-research-scope-0.png",
+            "sha256": "a471402ef5ef130e5b033d41c74b5810fc8943942169b28b24b1591c8d7b06db"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/02-research-scope-1000.png",
+            "sha256": "3081e76138b08418b28f5d39df8b33b75eec4693cc57778fc70526db1afe86e4"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/02-research-scope-240.png",
+            "sha256": "e2fb1d797eef1d11efb203fd0c062a36c698cf5e583e096059385bf1f27b76ed"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/02-research-scope-500.png",
+            "sha256": "3081e76138b08418b28f5d39df8b33b75eec4693cc57778fc70526db1afe86e4"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/02-research-scope-750.png",
+            "sha256": "3081e76138b08418b28f5d39df8b33b75eec4693cc57778fc70526db1afe86e4"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/03-research-loop-0.png",
+            "sha256": "41a383f3b660a0d03c5089f61691c11d4e192674efcb548b5c53b61d01c63f27"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/03-research-loop-1000.png",
+            "sha256": "9d9f3a16ab4206f5ba60e393a682087c08eb3fd90c5a32ac0b0027573e00cedf"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/03-research-loop-239.png",
+            "sha256": "2829a7fc5e52878e83b4ebc5651fa1557492e8af51ee9634743e329701f044f9"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/03-research-loop-240.png",
+            "sha256": "2829a7fc5e52878e83b4ebc5651fa1557492e8af51ee9634743e329701f044f9"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/03-research-loop-241.png",
+            "sha256": "2829a7fc5e52878e83b4ebc5651fa1557492e8af51ee9634743e329701f044f9"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/03-research-loop-439.png",
+            "sha256": "470d0edc962f43e92ac2a6de68538f4a0622a4ea88b2fed86f2124b6b257a4da"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/03-research-loop-441.png",
+            "sha256": "470d0edc962f43e92ac2a6de68538f4a0622a4ea88b2fed86f2124b6b257a4da"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/03-research-loop-500.png",
+            "sha256": "85f6eee188dc6ea1bca4311893c68a9f1948f571ec6cb617759764d79991ecfb"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/03-research-loop-699.png",
+            "sha256": "c92e4bc3cc74bb5d03698ba835a247b7379aa8182ebf1554e5c770f9ba7743f6"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/03-research-loop-701.png",
+            "sha256": "9d9f3a16ab4206f5ba60e393a682087c08eb3fd90c5a32ac0b0027573e00cedf"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/03-research-loop-750.png",
+            "sha256": "9d9f3a16ab4206f5ba60e393a682087c08eb3fd90c5a32ac0b0027573e00cedf"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/04-research-boundaries-0.png",
+            "sha256": "33fb14f032ced9746be33a27fe85aca125bd82fce8143d1fa3843733a6fe3f60"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/04-research-boundaries-1000.png",
+            "sha256": "b703127d3385a3c8a730e2a2025b8fde23bafa495e5842afdf7a16510f515a88"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/04-research-boundaries-240.png",
+            "sha256": "6daace849256de58a07d97203c78f854dbf89ec2398196cd575c5f595dcd0f1a"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/04-research-boundaries-500.png",
+            "sha256": "b703127d3385a3c8a730e2a2025b8fde23bafa495e5842afdf7a16510f515a88"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/04-research-boundaries-750.png",
+            "sha256": "b703127d3385a3c8a730e2a2025b8fde23bafa495e5842afdf7a16510f515a88"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/05-research-delivery-0.png",
+            "sha256": "648a4b7b516aa6edc85a6ebc4ba6ba1b86a0566e0b6836d9c878ea19048a3b8f"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/05-research-delivery-1000.png",
+            "sha256": "b973662f5e7c61e8e9d6a16fc61b319bd02ed0892f4d92a32a8ffc79342b4267"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/05-research-delivery-240.png",
+            "sha256": "5807f8c3b127b851f4f43da02684615ee6b8c117092e531ec091c9a885b622f2"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/05-research-delivery-500.png",
+            "sha256": "b973662f5e7c61e8e9d6a16fc61b319bd02ed0892f4d92a32a8ffc79342b4267"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/05-research-delivery-750.png",
+            "sha256": "b973662f5e7c61e8e9d6a16fc61b319bd02ed0892f4d92a32a8ffc79342b4267"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/06-explain-purpose-0.png",
+            "sha256": "5db111188b5437a49500bf0c8a3b654f0d90f439d5b94d4c89bd7eb7895fa975"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/06-explain-purpose-1000.png",
+            "sha256": "17af6a1fd2fa8f5b852667349e0b6ebc4c1706399098e5ebca59b404f902e0e1"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/06-explain-purpose-240.png",
+            "sha256": "5db111188b5437a49500bf0c8a3b654f0d90f439d5b94d4c89bd7eb7895fa975"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/06-explain-purpose-500.png",
+            "sha256": "1d6e72a24dc801d54276fa6825d0fbc12ef23571477f8fd28be461eb6f4e45ed"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/06-explain-purpose-750.png",
+            "sha256": "17af6a1fd2fa8f5b852667349e0b6ebc4c1706399098e5ebca59b404f902e0e1"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/07-explain-language-0.png",
+            "sha256": "6bc3a1073117c7086fa847c4577a04428fe69d41b32d471a42278ea693e1c4b1"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/07-explain-language-1000.png",
+            "sha256": "c4992b3010ed20935edd5f276b4429049f0134ac0c3bd0dd8987cc8850528c4e"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/07-explain-language-240.png",
+            "sha256": "c4992b3010ed20935edd5f276b4429049f0134ac0c3bd0dd8987cc8850528c4e"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/07-explain-language-500.png",
+            "sha256": "c4992b3010ed20935edd5f276b4429049f0134ac0c3bd0dd8987cc8850528c4e"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/07-explain-language-750.png",
+            "sha256": "c4992b3010ed20935edd5f276b4429049f0134ac0c3bd0dd8987cc8850528c4e"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/08-format-html-0.png",
+            "sha256": "bdd5b8af429674742751f69d6217db21903c30ef0ab841bce378148eb4131079"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/08-format-html-1000.png",
+            "sha256": "70a13e2a658c36cff1994078b64b09ededd91b4ec07dd3d3faa5fc7b62f2378e"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/08-format-html-240.png",
+            "sha256": "0026de0e4df4fb387ccf5891fbcbdd22dd6f2819e7b07835bc3f4a8325e5f8db"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/08-format-html-500.png",
+            "sha256": "8531841fc8111655c18ad1dbab552ef667e2a076109d203752da1c4bf3a9089b"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/08-format-html-750.png",
+            "sha256": "70a13e2a658c36cff1994078b64b09ededd91b4ec07dd3d3faa5fc7b62f2378e"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/09-format-image-0.png",
+            "sha256": "ce471a314d99d7fa55e6d5e40851aeaf945f4a2f93935e2c89f5cb709f51b739"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/09-format-image-1000.png",
+            "sha256": "90238c9d09967fd0e17bba527c55a56ca44b41517e728c413b1d46a7c2ecee0b"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/09-format-image-240.png",
+            "sha256": "6b27cc93ee4208348bbfb93ce8eab99ecddf553d10d08df34f176dae2d00f374"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/09-format-image-500.png",
+            "sha256": "90238c9d09967fd0e17bba527c55a56ca44b41517e728c413b1d46a7c2ecee0b"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/09-format-image-750.png",
+            "sha256": "90238c9d09967fd0e17bba527c55a56ca44b41517e728c413b1d46a7c2ecee0b"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/10-format-slides-0.png",
+            "sha256": "613e0abe88da29babd7c2871ce91443b1e74ff298c33555489dbcf2d565327b3"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/10-format-slides-1000.png",
+            "sha256": "01485824390f8717810f149a355adce57164849a519a3d4db34fae42f06238e3"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/10-format-slides-240.png",
+            "sha256": "613e0abe88da29babd7c2871ce91443b1e74ff298c33555489dbcf2d565327b3"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/10-format-slides-500.png",
+            "sha256": "613e0abe88da29babd7c2871ce91443b1e74ff298c33555489dbcf2d565327b3"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/10-format-slides-519.png",
+            "sha256": "613e0abe88da29babd7c2871ce91443b1e74ff298c33555489dbcf2d565327b3"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/10-format-slides-521.png",
+            "sha256": "613e0abe88da29babd7c2871ce91443b1e74ff298c33555489dbcf2d565327b3"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/10-format-slides-750.png",
+            "sha256": "01485824390f8717810f149a355adce57164849a519a3d4db34fae42f06238e3"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/11-format-video-0.png",
+            "sha256": "368f0dc3f39169af128713c8827deaee90b023d4cd3d78b709d8e91507c5fed6"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/11-format-video-1000.png",
+            "sha256": "85952f3eb57b25e872e88e7553981666bf730ed8d4be59d95683859941b2e4e8"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/11-format-video-240.png",
+            "sha256": "d762605404b919bda6422b17c6fb38859d1e0ef9db683d752ac8f28f4c3ad868"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/11-format-video-500.png",
+            "sha256": "15557de84ec7376d5d1dbe071e0c592c27a7731acbd41ef2b3c8ae3a38acb22d"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/11-format-video-750.png",
+            "sha256": "85952f3eb57b25e872e88e7553981666bf730ed8d4be59d95683859941b2e4e8"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/12-summary-0.png",
+            "sha256": "62ca5f381f5d7421907497b552648d349d2c3450a6dbc5b24a249d0e10c07818"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/12-summary-1000.png",
+            "sha256": "b26fc8f4a92b2bd07e13aa25c79dd6f5295da7887500d5de3901a6d2a1482f74"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/12-summary-240.png",
+            "sha256": "62ca5f381f5d7421907497b552648d349d2c3450a6dbc5b24a249d0e10c07818"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/12-summary-500.png",
+            "sha256": "b26fc8f4a92b2bd07e13aa25c79dd6f5295da7887500d5de3901a6d2a1482f74"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/12-summary-750.png",
+            "sha256": "b26fc8f4a92b2bd07e13aa25c79dd6f5295da7887500d5de3901a6d2a1482f74"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/13-install-0.png",
+            "sha256": "784bcb8975d306ff6e488338f1f2f2e440b46938fd32332bd41e9b6706964e77"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/13-install-1000.png",
+            "sha256": "784bcb8975d306ff6e488338f1f2f2e440b46938fd32332bd41e9b6706964e77"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/13-install-240.png",
+            "sha256": "784bcb8975d306ff6e488338f1f2f2e440b46938fd32332bd41e9b6706964e77"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/13-install-500.png",
+            "sha256": "784bcb8975d306ff6e488338f1f2f2e440b46938fd32332bd41e9b6706964e77"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/13-install-750.png",
+            "sha256": "784bcb8975d306ff6e488338f1f2f2e440b46938fd32332bd41e9b6706964e77"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/preview/observations.json",
+            "sha256": "0a9d37927f4ab5a256af2209e73d9ccfb33c61b435a7e0f26a9a433cde07b767"
+          },
+          {
+            "file": "aha-introduction/qa/video/zh/speech-approval.json",
+            "sha256": "3d50585300430984352e5160791cb6f200286004395a379c0ea3e5ef2cd0d3b7"
           }
         ]
       }
@@ -2356,16 +3092,16 @@
     }
   ],
   "qa": {
-    "structuralSourceAndOutputIdentity": "Twenty outputs across five topics; sixteen newly authored artifacts and four unchanged introduction artifacts. Identity is not semantic proof.",
+    "structuralSourceAndOutputIdentity": "Twenty-one outputs across five topics; two restructured introduction videos and nineteen unchanged artifacts. Research is scoped to each output.",
     "html": "Four regenerated bilingual pages at 1280/390/320px in both themes, plus unchanged introduction evidence.",
     "slides": "Thirty-six native slides; PowerPoint export and saved/reopened copy-edit observations, with bounded agent reviews.",
     "images": "Four independent 1800x1600 infographics inspected at 1200px; unchanged introduction portrait and 390px evidence.",
-    "video": "Fresh authorized Jenny recordings for four topics; exact WAVs imported offline after caption-layout repair. Decode, measured subtitles, muted playback and sampled frames.",
+    "video": "Approved Jenny recordings for four topics, Aria English and Xiaoxiao Chinese introduction recordings. Exact WAVs imported offline; complete decode, measured captions, muted playback and bounded actual-frame review. No listening claim.",
     "completeVideoListeningAndViewing": "Actual listening and continuous human viewing not confirmed.",
     "humanComprehensionStudy": "Not performed.",
-    "layout": "One current manifest; topic-named artifacts and self-contained QA. No prior-version or relocation dependency."
+    "layout": "One current manifest with explicit language variants, scoped research and self-contained QA; necessary original recording permissions retained."
   },
-  "updatedAt": "2026-09-22T11:30:00.375Z",
+  "updatedAt": "2026-09-24T05:58:53.795Z",
   "schemaVersion": 2,
-  "layout": "topic-format-v1"
+  "layout": "topic-format-language-v1"
 }

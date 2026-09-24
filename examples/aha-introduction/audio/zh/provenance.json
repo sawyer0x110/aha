@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 2,
+  "provider": "edge-tts",
+  "version": "7.2.8",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "rate": "+0%",
+  "importedPlanHash": "e527234980d65cbbc168522753125da7ff2db33c99c6f7f93906270fc8838d3a",
+  "recordingPlanHashes": [
+    "19faf0f9acea887199942e2a65df4a7fbb8f201929662b670f57aed287f5b1bd",
+    "22d3e63baf9b59361c1ec8e179f1f28ad0eb4207719ad99359e182129b2210e6",
+    "dce676ebc54e8402a219edd817817fafa0d74a8e513aa8df70cb0f9ec2d769ac"
+  ],
+  "narration": [
+    {
+      "id": "purpose",
+      "text": "Aha，原来如此。它是一组可移植的 AI 技能：把复杂问题研究清楚，再把理解变成看得懂的解释。"
+    },
+    {
+      "id": "research-scope",
+      "text": "Aha Research 先明确问题、范围和授权材料，再拆成可以回答的子问题。公开资料、你提供的文档，或获准访问的代码库，都可以成为研究来源。"
+    },
+    {
+      "id": "research-loop",
+      "text": "它不只是汇总搜索结果，而是围绕关键假设找证据，也检查反证。遇到会影响结论的缺口，就定向补查；证据不够时，收窄结论，说明哪里还不知道。"
+    },
+    {
+      "id": "research-boundaries",
+      "text": "调研默认只读：只用授权材料，不编造证据，也不把推断当事实。材料里的指令不是授权；执行代码、安装软件和对外发送内容，要分别取得相应许可。"
+    },
+    {
+      "id": "research-delivery",
+      "text": "研究结果是可读的报告，以及保留来源、证据和限制的独立研究档案。只要求调研，就到这里；不必为了制作作品，改写研究结论。"
+    },
+    {
+      "id": "explain-purpose",
+      "text": "需要视觉表达时，再使用 Aha Explain。它可以复用检查过的研究档案，也可以先补充研究；然后针对所选媒介组织内容，而不是把同一份稿子套进不同模板。"
+    },
+    {
+      "id": "explain-language",
+      "text": "它支持交互式 HTML、PNG 信息图、原生可编辑的 PPTX，以及配音动态视频。HTML 默认中英双语；其余三种默认英文，也可以明确选择中文。"
+    },
+    {
+      "id": "format-html",
+      "text": "交互式网页适合探索问题。移动格陵兰页面的控件，就能看到地图响应，同时球面面积保持不变。"
+    },
+    {
+      "id": "format-image",
+      "text": "信息图适合集中对照。CPython 的这张图把对象内存和编码字节并排放置，让两种量的区别更清楚。"
+    },
+    {
+      "id": "format-slides",
+      "text": "原生、可编辑的幻灯片，把降噪机制拆成适合向观众逐步讲解的内容。"
+    },
+    {
+      "id": "format-video",
+      "text": "配音视频适合追踪变化。这里展示 Docker 的合并视图如何改变，而先前镜像层中的字节仍然保留。"
+    },
+    {
+      "id": "summary",
+      "text": "先用证据回答问题，再按用途选择表达方式。两个技能由你的 AI 宿主协调；研究可以独立交付，作品只生成你需要的格式。"
+    },
+    {
+      "id": "install",
+      "text": "欢迎使用 Aha。把这个链接交给你的 Agent，让它帮你完成安装。"
+    }
+  ],
+  "recordings": [
+    {
+      "id": "purpose",
+      "file": "segment-001.wav",
+      "sha256": "a6dd8f6bb237a37fb4af83972cd93ef5bf3e426552077d3451ca5b848c919867",
+      "frames": 295,
+      "recordingPlanHash": "22d3e63baf9b59361c1ec8e179f1f28ad0eb4207719ad99359e182129b2210e6"
+    },
+    {
+      "id": "research-scope",
+      "file": "segment-002.wav",
+      "sha256": "0f789140c5fa39923749953fdaed1e4b247766baa6544c7c456d868dbfe40979",
+      "frames": 413,
+      "recordingPlanHash": "22d3e63baf9b59361c1ec8e179f1f28ad0eb4207719ad99359e182129b2210e6"
+    },
+    {
+      "id": "research-loop",
+      "file": "segment-003.wav",
+      "sha256": "9c94e3454ce0610659449d3fa0a32db67ea33fd50f3fc6f9c15561d5d951697f",
+      "frames": 426,
+      "recordingPlanHash": "22d3e63baf9b59361c1ec8e179f1f28ad0eb4207719ad99359e182129b2210e6"
+    },
+    {
+      "id": "research-boundaries",
+      "file": "segment-004.wav",
+      "sha256": "4ec01d7a1079b649be3c5ab12b263492fd48234e5a15e2cbc77f6b3a6820d816",
+      "frames": 452,
+      "recordingPlanHash": "22d3e63baf9b59361c1ec8e179f1f28ad0eb4207719ad99359e182129b2210e6"
+    },
+    {
+      "id": "research-delivery",
+      "file": "segment-005.wav",
+      "sha256": "862f0b39b2a8c8cdc3d5c08b019f58e831a880234fae22fd8186d6d92da1b89b",
+      "frames": 372,
+      "recordingPlanHash": "22d3e63baf9b59361c1ec8e179f1f28ad0eb4207719ad99359e182129b2210e6"
+    },
+    {
+      "id": "explain-purpose",
+      "file": "segment-006.wav",
+      "sha256": "714b305540356507d3b3da240bf518f77e544f25fab016b8a3e95313a42fb1cb",
+      "frames": 434,
+      "recordingPlanHash": "22d3e63baf9b59361c1ec8e179f1f28ad0eb4207719ad99359e182129b2210e6"
+    },
+    {
+      "id": "explain-language",
+      "file": "segment-007.wav",
+      "sha256": "9c9e06b70f83a73f5548520356bc851fb215df5e43ab93787d4726dedf222247",
+      "frames": 461,
+      "recordingPlanHash": "22d3e63baf9b59361c1ec8e179f1f28ad0eb4207719ad99359e182129b2210e6"
+    },
+    {
+      "id": "format-html",
+      "file": "segment-008.wav",
+      "sha256": "eb29a20d057d28912a20a1a775d3eb9e00c390eb5ea174419f730943437628cb",
+      "frames": 297,
+      "recordingPlanHash": "19faf0f9acea887199942e2a65df4a7fbb8f201929662b670f57aed287f5b1bd"
+    },
+    {
+      "id": "format-image",
+      "file": "segment-009.wav",
+      "sha256": "001d9e4faaf043ed900d962549993058edd6bc75ed970f6ee789fb94bb363360",
+      "frames": 305,
+      "recordingPlanHash": "19faf0f9acea887199942e2a65df4a7fbb8f201929662b670f57aed287f5b1bd"
+    },
+    {
+      "id": "format-slides",
+      "file": "segment-010.wav",
+      "sha256": "99ff189bbde8002cb76985df69a7cc80e8fff1db2f498da3fcbf58313b5624b0",
+      "frames": 211,
+      "recordingPlanHash": "19faf0f9acea887199942e2a65df4a7fbb8f201929662b670f57aed287f5b1bd"
+    },
+    {
+      "id": "format-video",
+      "file": "segment-011.wav",
+      "sha256": "d2459e69ee011d5566f7347d66f3e1d25467787f9700baa229aa9e5d62aac5f3",
+      "frames": 301,
+      "recordingPlanHash": "19faf0f9acea887199942e2a65df4a7fbb8f201929662b670f57aed287f5b1bd"
+    },
+    {
+      "id": "summary",
+      "file": "segment-012.wav",
+      "sha256": "0f9c8284676c1dce4b708b948ded63b5ab0bf346c55b561774a87a8e406437be",
+      "frames": 371,
+      "recordingPlanHash": "22d3e63baf9b59361c1ec8e179f1f28ad0eb4207719ad99359e182129b2210e6"
+    },
+    {
+      "id": "install",
+      "file": "segment-013.wav",
+      "sha256": "4e0c72b0a62104d5d55efba028b0c455247e2346de70926f6b0e4f71a4008d5a",
+      "frames": 194,
+      "recordingPlanHash": "dce676ebc54e8402a219edd817817fafa0d74a8e513aa8df70cb0f9ec2d769ac"
+    }
+  ],
+  "method": "Approved offline import of exact WAV bytes. Per-segment plan hashes identify original synthesis, not intermediate imports."
+}

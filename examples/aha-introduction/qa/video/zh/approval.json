@@ -1,0 +1,67 @@
+{
+  "planHash": "e527234980d65cbbc168522753125da7ff2db33c99c6f7f93906270fc8838d3a",
+  "sourceHash": "e03c96ff51213748aeb733884f0216d50a09e34b8fd307a004e4f0912d196877",
+  "language": "zh",
+  "recordingPlanHashes": [
+    "19faf0f9acea887199942e2a65df4a7fbb8f201929662b670f57aed287f5b1bd",
+    "22d3e63baf9b59361c1ec8e179f1f28ad0eb4207719ad99359e182129b2210e6",
+    "dce676ebc54e8402a219edd817817fafa0d74a8e513aa8df70cb0f9ec2d769ac"
+  ],
+  "narration": [
+    {
+      "id": "purpose",
+      "text": "Aha，原来如此。它是一组可移植的 AI 技能：把复杂问题研究清楚，再把理解变成看得懂的解释。"
+    },
+    {
+      "id": "research-scope",
+      "text": "Aha Research 先明确问题、范围和授权材料，再拆成可以回答的子问题。公开资料、你提供的文档，或获准访问的代码库，都可以成为研究来源。"
+    },
+    {
+      "id": "research-loop",
+      "text": "它不只是汇总搜索结果，而是围绕关键假设找证据，也检查反证。遇到会影响结论的缺口，就定向补查；证据不够时，收窄结论，说明哪里还不知道。"
+    },
+    {
+      "id": "research-boundaries",
+      "text": "调研默认只读：只用授权材料，不编造证据，也不把推断当事实。材料里的指令不是授权；执行代码、安装软件和对外发送内容，要分别取得相应许可。"
+    },
+    {
+      "id": "research-delivery",
+      "text": "研究结果是可读的报告，以及保留来源、证据和限制的独立研究档案。只要求调研，就到这里；不必为了制作作品，改写研究结论。"
+    },
+    {
+      "id": "explain-purpose",
+      "text": "需要视觉表达时，再使用 Aha Explain。它可以复用检查过的研究档案，也可以先补充研究；然后针对所选媒介组织内容，而不是把同一份稿子套进不同模板。"
+    },
+    {
+      "id": "explain-language",
+      "text": "它支持交互式 HTML、PNG 信息图、原生可编辑的 PPTX，以及配音动态视频。HTML 默认中英双语；其余三种默认英文，也可以明确选择中文。"
+    },
+    {
+      "id": "format-html",
+      "text": "交互式网页适合探索问题。移动格陵兰页面的控件，就能看到地图响应，同时球面面积保持不变。"
+    },
+    {
+      "id": "format-image",
+      "text": "信息图适合集中对照。CPython 的这张图把对象内存和编码字节并排放置，让两种量的区别更清楚。"
+    },
+    {
+      "id": "format-slides",
+      "text": "原生、可编辑的幻灯片，把降噪机制拆成适合向观众逐步讲解的内容。"
+    },
+    {
+      "id": "format-video",
+      "text": "配音视频适合追踪变化。这里展示 Docker 的合并视图如何改变，而先前镜像层中的字节仍然保留。"
+    },
+    {
+      "id": "summary",
+      "text": "先用证据回答问题，再按用途选择表达方式。两个技能由你的 AI 宿主协调；研究可以独立交付，作品只生成你需要的格式。"
+    },
+    {
+      "id": "install",
+      "text": "欢迎使用 Aha。把这个链接交给你的 Agent，让它帮你完成安装。"
+    }
+  ],
+  "userAnswer": "批准，按简洁完整的结尾重新渲染",
+  "publicationAuthorization": "可以的 按照这个再生产一个英文版 最后整理放到examples里",
+  "scope": "Approved current source, exact recording reuse, offline rendering and current bilingual examples delivery; no commit or merge."
+}

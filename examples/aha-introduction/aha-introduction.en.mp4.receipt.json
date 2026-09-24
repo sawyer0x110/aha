@@ -1,0 +1,230 @@
+{
+  "status": "delivered",
+  "format": "mp4",
+  "output": "aha-introduction.en.mp4",
+  "rendererVersion": "0.3.3",
+  "researchHash": "1abf999481ab65abe18ac4dd88f015c9562b1737c7abebf38d2dae91381aeda1",
+  "sourceHash": "04cc5d0b8adf27b0b15b52f5db5c33e02e57c79ee3157f186cdf9531b74758a2",
+  "planHash": "44c538dad3508375c390bc4f2c16374cf59ff871755df5cf4f481cca24108cb3",
+  "audioManifestHash": "c75a359d3570415488f01f71b3009136571f49e9cab5d8009a29f725f63d15f5",
+  "durationSeconds": 154.53333333333333,
+  "totalFrames": 4636,
+  "codec": "h264",
+  "width": 1280,
+  "height": 720,
+  "fps": 30,
+  "subtitles": "sentence-level-burned-and-srt",
+  "provider": "provided-audio",
+  "renderer": "browser-authored-per-frame-ffmpeg",
+  "sampledSourceFrames": [
+    {
+      "frame": 0,
+      "segmentIndex": 0,
+      "sha256": "05d5e419525ac509e1ff780da6623485725ee620f0e0ae76128ba40834534f81"
+    },
+    {
+      "frame": 148,
+      "segmentIndex": 0,
+      "sha256": "ea869bd8ed2303c560ca411a7121766e0418ea7bd1982ed6e903e1702951f2c6"
+    },
+    {
+      "frame": 296,
+      "segmentIndex": 0,
+      "sha256": "ea869bd8ed2303c560ca411a7121766e0418ea7bd1982ed6e903e1702951f2c6"
+    },
+    {
+      "frame": 297,
+      "segmentIndex": 1,
+      "sha256": "70d66279f804b47e88954348881b332ed5f99ef6fd8de52f48e12494f42adc5e"
+    },
+    {
+      "frame": 527,
+      "segmentIndex": 1,
+      "sha256": "6e2dad0614c04b87b0f4242574778d0e0f9ca076f98ed2861db347c45626cf2a"
+    },
+    {
+      "frame": 756,
+      "segmentIndex": 1,
+      "sha256": "6e2dad0614c04b87b0f4242574778d0e0f9ca076f98ed2861db347c45626cf2a"
+    },
+    {
+      "frame": 757,
+      "segmentIndex": 2,
+      "sha256": "f984bee1c90a688097b123d178df302253c86f1e3c6b846cb5839ae3d5816434"
+    },
+    {
+      "frame": 984,
+      "segmentIndex": 2,
+      "sha256": "b3cb8906d3b977e54f93aa5c5d8e8725db3f273d2f23c72509e34736969b8dbc"
+    },
+    {
+      "frame": 1210,
+      "segmentIndex": 2,
+      "sha256": "8ba388749eda1a2e8cbff19e7143bd85057e2f9502872d00aa2553f9c5aee638"
+    },
+    {
+      "frame": 1211,
+      "segmentIndex": 3,
+      "sha256": "4ad34c43905db4358200374a6dc0f4088b45363087d33c51c0ef87295a059e6f"
+    },
+    {
+      "frame": 1455,
+      "segmentIndex": 3,
+      "sha256": "a849a05246965d207960b3ca9c7f03b8b5ab8d13177054ddba6923cb84f4722c"
+    },
+    {
+      "frame": 1699,
+      "segmentIndex": 3,
+      "sha256": "a849a05246965d207960b3ca9c7f03b8b5ab8d13177054ddba6923cb84f4722c"
+    },
+    {
+      "frame": 1700,
+      "segmentIndex": 4,
+      "sha256": "97d8dfe274744b62d30d53e3b3bd8d1d512ab6d0640daf61d6f719a1bebd219d"
+    },
+    {
+      "frame": 1939,
+      "segmentIndex": 4,
+      "sha256": "553ca5ac49d5cbb353795e052eb9778d8a8b6902589d8661dd36545307d3e51f"
+    },
+    {
+      "frame": 2178,
+      "segmentIndex": 4,
+      "sha256": "553ca5ac49d5cbb353795e052eb9778d8a8b6902589d8661dd36545307d3e51f"
+    },
+    {
+      "frame": 2179,
+      "segmentIndex": 5,
+      "sha256": "51e02bf841abeae1c8c07612e673152fe9ae1ee30d2ee1796fb483d24d593c25"
+    },
+    {
+      "frame": 2414,
+      "segmentIndex": 5,
+      "sha256": "c4df90b491ac6a6a4078e6ad68b5026cad11849abe0b4cf19eccd68e44e3c258"
+    },
+    {
+      "frame": 2649,
+      "segmentIndex": 5,
+      "sha256": "a89dc5d987c63e7fa0b266635e176c18b6da4656f429479816cb5e52cc712bdb"
+    },
+    {
+      "frame": 2650,
+      "segmentIndex": 6,
+      "sha256": "92d1af8f6cbac2d44f932ec95fb3119b31878e283422ecf82718dc38b45a3e40"
+    },
+    {
+      "frame": 2913,
+      "segmentIndex": 6,
+      "sha256": "f233be4ad4ad9b18cda507414220c9ea1380f2a37356a6e13b4a954972802f28"
+    },
+    {
+      "frame": 3175,
+      "segmentIndex": 6,
+      "sha256": "f233be4ad4ad9b18cda507414220c9ea1380f2a37356a6e13b4a954972802f28"
+    },
+    {
+      "frame": 3176,
+      "segmentIndex": 7,
+      "sha256": "4816dafa2b3c2b0aeb48f802afbf1ba70dd357708a0caca1a2f09641b90974fe"
+    },
+    {
+      "frame": 3300,
+      "segmentIndex": 7,
+      "sha256": "3868b02fb0f685c0680c909d68fd4e4d49813185b7f741b26a178eda25c383a9"
+    },
+    {
+      "frame": 3423,
+      "segmentIndex": 7,
+      "sha256": "38243a2a8d579a1c7a0a7c810e09a124512c8d5a3a29554c61932d429c9ae0f7"
+    },
+    {
+      "frame": 3424,
+      "segmentIndex": 8,
+      "sha256": "74da693015106881d7712b7641ccd8f2c2df860c89246393d13bee58bf713d49"
+    },
+    {
+      "frame": 3540,
+      "segmentIndex": 8,
+      "sha256": "b8abfccaf109ce3fc4f32767b86998c2483c1b8ace1b574f931f8793869bb8a1"
+    },
+    {
+      "frame": 3655,
+      "segmentIndex": 8,
+      "sha256": "b8abfccaf109ce3fc4f32767b86998c2483c1b8ace1b574f931f8793869bb8a1"
+    },
+    {
+      "frame": 3656,
+      "segmentIndex": 9,
+      "sha256": "0cf90ae57604033b5dc9e2601e096ef37e1b1fe5cd24b916d51501181e393788"
+    },
+    {
+      "frame": 3747,
+      "segmentIndex": 9,
+      "sha256": "0cf90ae57604033b5dc9e2601e096ef37e1b1fe5cd24b916d51501181e393788"
+    },
+    {
+      "frame": 3837,
+      "segmentIndex": 9,
+      "sha256": "3752404a3482c0854fa3e7c8ff17d86bd51631f27bfc8a34e9983d6c8adbd9b5"
+    },
+    {
+      "frame": 3838,
+      "segmentIndex": 10,
+      "sha256": "c0828fd66268021b2dbc2e8fe55863c666f7047b81c21eb81c239bd2473b955d"
+    },
+    {
+      "frame": 3946,
+      "segmentIndex": 10,
+      "sha256": "5daa8b31cb3b07ca8124c339858f2ca66e6432e6c80208b2368f1c2bded6fbe0"
+    },
+    {
+      "frame": 4053,
+      "segmentIndex": 10,
+      "sha256": "a04bf2050f9526b32c652dbd2c80a04a71a561e35a6eaaebc5b86eba44c589f5"
+    },
+    {
+      "frame": 4054,
+      "segmentIndex": 11,
+      "sha256": "56231e1e59b741dcf8df16f66965d8b8a7838aeb531cb1122662b0248b1d7cad"
+    },
+    {
+      "frame": 4255,
+      "segmentIndex": 11,
+      "sha256": "336288914e3031b535fc8a0d7dfffb756d6bcebb6a4f5523ff7b4ca5b448df3a"
+    },
+    {
+      "frame": 4456,
+      "segmentIndex": 11,
+      "sha256": "336288914e3031b535fc8a0d7dfffb756d6bcebb6a4f5523ff7b4ca5b448df3a"
+    },
+    {
+      "frame": 4457,
+      "segmentIndex": 12,
+      "sha256": "253e5c102929f85f5979e121fe5dc808294897abd5ff6a807ac7a322b7a70484"
+    },
+    {
+      "frame": 4546,
+      "segmentIndex": 12,
+      "sha256": "253e5c102929f85f5979e121fe5dc808294897abd5ff6a807ac7a322b7a70484"
+    },
+    {
+      "frame": 4635,
+      "segmentIndex": 12,
+      "sha256": "253e5c102929f85f5979e121fe5dc808294897abd5ff6a807ac7a322b7a70484"
+    }
+  ],
+  "sampledVisualChange": true,
+  "determinism": "not-verified-author-must-avoid-time-random-and-uncontrolled-state",
+  "audioReuse": "visual-source-edits-invalidate-plan-and-audio-reimport-or-resynthesis-requires-explicit-approval",
+  "visualQuality": "requires-human-review-frame-capability-is-not-art-quality-assurance",
+  "artifactHash": "de1de44fcbd672290fb1d88e9944d3566dfe2437575cb050aa73fa3d7759a5f8",
+  "subtitleHash": "54c82220981b6e19598b8e2452c70759b130bd4b242ba5e6b6b984a67d693051",
+  "checks": [
+    "research-source-plan-identity",
+    "audio-hashes-and-measured-timing",
+    "isolated-offline-frames",
+    "ffprobe-codec-frames-and-audio"
+  ],
+  "narrationTruthReview": "requires-human-source-review",
+  "providerProvenance": "recorded-local-manifest-not-independent-service-attestation"
+}

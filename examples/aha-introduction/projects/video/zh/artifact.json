@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0.0",
+  "format": "video",
+  "language": "zh",
+  "researchHash": "1abf999481ab65abe18ac4dd88f015c9562b1737c7abebf38d2dae91381aeda1",
+  "title": "Aha：研究方法、行为边界与按需视觉表达",
+  "status": "authored",
+  "entry": "html/index.html",
+  "coverage": [
+    {
+      "id": "purpose",
+      "claimIds": [
+        "c-skills"
+      ]
+    },
+    {
+      "id": "research-scope",
+      "claimIds": [
+        "c-research-method"
+      ]
+    },
+    {
+      "id": "research-loop",
+      "claimIds": [
+        "c-research-method"
+      ]
+    },
+    {
+      "id": "research-boundaries",
+      "claimIds": [
+        "c-boundaries"
+      ]
+    },
+    {
+      "id": "research-delivery",
+      "claimIds": [
+        "c-research-delivery"
+      ]
+    },
+    {
+      "id": "explain-purpose",
+      "claimIds": [
+        "c-output"
+      ]
+    },
+    {
+      "id": "explain-language",
+      "claimIds": [
+        "c-output",
+        "c-language"
+      ]
+    },
+    {
+      "id": "format-html",
+      "claimIds": [
+        "c-formats",
+        "c-map"
+      ]
+    },
+    {
+      "id": "format-image",
+      "claimIds": [
+        "c-formats",
+        "c-python",
+        "c-utf8"
+      ]
+    },
+    {
+      "id": "format-slides",
+      "claimIds": [
+        "c-formats"
+      ]
+    },
+    {
+      "id": "format-video",
+      "claimIds": [
+        "c-formats",
+        "c-layer",
+        "c-delete",
+        "c-same"
+      ]
+    },
+    {
+      "id": "summary",
+      "claimIds": [
+        "c-skills",
+        "c-research-delivery",
+        "c-output"
+      ]
+    },
+    {
+      "id": "install",
+      "claimIds": [
+        "c-skills"
+      ]
+    }
+  ],
+  "omissions": [
+    {
+      "claimId": "c-synthesis",
+      "reason": "本片介绍项目和媒介用途；不再展开三个机制的前部讲解，相关细节留在原作品与研究档案。"
+    },
+    {
+      "claimId": "c-intermediate",
+      "reason": "本片介绍项目和媒介用途；不再展开三个机制的前部讲解，相关细节留在原作品与研究档案。"
+    },
+    {
+      "claimId": "c-container",
+      "reason": "本片介绍项目和媒介用途；不再展开三个机制的前部讲解，相关细节留在原作品与研究档案。"
+    },
+    {
+      "claimId": "c-install",
+      "reason": "结尾保留邀请标题、仓库 URL 与 Agent 安装提示；不展开编号步骤、环境要求或安装细节。"
+    }
+  ],
+  "width": 1280,
+  "height": 720
+}

@@ -1,0 +1,66 @@
+{
+  "planHash": "44c538dad3508375c390bc4f2c16374cf59ff871755df5cf4f481cca24108cb3",
+  "sourceHash": "04cc5d0b8adf27b0b15b52f5db5c33e02e57c79ee3157f186cdf9531b74758a2",
+  "language": "en",
+  "recordingPlanHashes": [
+    "97329cdaf7fab23fa82622cb2e3e8343e1e3e1389a7cf9cfcd1452872b8f6592",
+    "e44e654a4b7ee5eeefe31415f1e7c05adc7c87a00fdac747d91ef79f3899cfdf"
+  ],
+  "narration": [
+    {
+      "id": "purpose",
+      "text": "Aha: now it makes sense. These portable AI skills investigate complex questions and turn understanding into clear explanations."
+    },
+    {
+      "id": "research-scope",
+      "text": "Aha Research first defines the question, scope, and authorized material, then breaks the problem into answerable questions. Sources can include public information, supplied documents, or a codebase you have authorized it to inspect."
+    },
+    {
+      "id": "research-loop",
+      "text": "It tests key assumptions against evidence and counterevidence, not just search summaries. It follows gaps that could change the answer. If evidence remains insufficient, it narrows conclusions and states what is unknown."
+    },
+    {
+      "id": "research-boundaries",
+      "text": "Research is read-only by default: use authorized material, separate fact from inference, and never invent evidence. Source instructions are not permission. Code execution, installation, and external sharing need separate approvals."
+    },
+    {
+      "id": "research-delivery",
+      "text": "The result is a readable report and an independent research dossier that preserves sources, evidence, and limitations. If you only asked for research, delivery stops there. Research conclusions are not rewritten to fit an artifact."
+    },
+    {
+      "id": "explain-purpose",
+      "text": "For visual communication, use Aha Explain. It can reuse a checked research dossier or investigate remaining gaps. It organizes the explanation for the chosen medium, rather than putting the same script into different templates."
+    },
+    {
+      "id": "explain-language",
+      "text": "It supports interactive HTML, PNG infographics, native editable slides, and narrated dynamic video. HTML defaults to English and Chinese. The other three default to English, with Chinese available when explicitly requested."
+    },
+    {
+      "id": "format-html",
+      "text": "Explore Greenland in interactive HTML: move the control and watch the map respond while spherical area stays fixed."
+    },
+    {
+      "id": "format-image",
+      "text": "A CPython infographic puts object memory beside encoded bytes, making the distinction easy to compare."
+    },
+    {
+      "id": "format-slides",
+      "text": "Native, editable slides break noise cancellation into steps you can present to an audience."
+    },
+    {
+      "id": "format-video",
+      "text": "Narrated video follows Docker's changing filesystem view, while the earlier layer's bytes remain in place."
+    },
+    {
+      "id": "summary",
+      "text": "Answer the question with evidence, then choose how to explain it. Your AI host coordinates the two skills. Research can stand alone, and artifacts are created only in the formats you need."
+    },
+    {
+      "id": "install",
+      "text": "Welcome to Aha. Give this link to your agent and ask it to help you install."
+    }
+  ],
+  "userAnswer": "批准英文整稿、九段联网配音、原录音复用及本地制作",
+  "publicationAuthorization": "可以的 按照这个再生产一个英文版 最后整理放到examples里",
+  "scope": "Approved current source, exact recording reuse, offline rendering and current bilingual examples delivery; no commit or merge."
+}

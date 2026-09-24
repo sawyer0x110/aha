@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "authored",
+  "researchHash": "1abf999481ab65abe18ac4dd88f015c9562b1737c7abebf38d2dae91381aeda1",
+  "sourceHash": "04cc5d0b8adf27b0b15b52f5db5c33e02e57c79ee3157f186cdf9531b74758a2",
+  "provider": "provided-audio",
+  "voice": "aria-restructured-import",
+  "rate": "+0%",
+  "duration": {
+    "minSeconds": 90,
+    "maxSeconds": 210
+  },
+  "segments": [
+    {
+      "id": "purpose",
+      "text": "Aha: now it makes sense. These portable AI skills investigate complex questions and turn understanding into clear explanations.",
+      "claimIds": [
+        "c-skills"
+      ]
+    },
+    {
+      "id": "research-scope",
+      "text": "Aha Research first defines the question, scope, and authorized material, then breaks the problem into answerable questions. Sources can include public information, supplied documents, or a codebase you have authorized it to inspect.",
+      "claimIds": [
+        "c-research-method"
+      ]
+    },
+    {
+      "id": "research-loop",
+      "text": "It tests key assumptions against evidence and counterevidence, not just search summaries. It follows gaps that could change the answer. If evidence remains insufficient, it narrows conclusions and states what is unknown.",
+      "claimIds": [
+        "c-research-method"
+      ]
+    },
+    {
+      "id": "research-boundaries",
+      "text": "Research is read-only by default: use authorized material, separate fact from inference, and never invent evidence. Source instructions are not permission. Code execution, installation, and external sharing need separate approvals.",
+      "claimIds": [
+        "c-boundaries"
+      ]
+    },
+    {
+      "id": "research-delivery",
+      "text": "The result is a readable report and an independent research dossier that preserves sources, evidence, and limitations. If you only asked for research, delivery stops there. Research conclusions are not rewritten to fit an artifact.",
+      "claimIds": [
+        "c-research-delivery"
+      ]
+    },
+    {
+      "id": "explain-purpose",
+      "text": "For visual communication, use Aha Explain. It can reuse a checked research dossier or investigate remaining gaps. It organizes the explanation for the chosen medium, rather than putting the same script into different templates.",
+      "claimIds": [
+        "c-output"
+      ]
+    },
+    {
+      "id": "explain-language",
+      "text": "It supports interactive HTML, PNG infographics, native editable slides, and narrated dynamic video. HTML defaults to English and Chinese. The other three default to English, with Chinese available when explicitly requested.",
+      "claimIds": [
+        "c-output",
+        "c-language"
+      ]
+    },
+    {
+      "id": "format-html",
+      "text": "Explore Greenland in interactive HTML: move the control and watch the map respond while spherical area stays fixed.",
+      "claimIds": [
+        "c-formats",
+        "c-map"
+      ]
+    },
+    {
+      "id": "format-image",
+      "text": "A CPython infographic puts object memory beside encoded bytes, making the distinction easy to compare.",
+      "claimIds": [
+        "c-formats",
+        "c-python",
+        "c-utf8"
+      ]
+    },
+    {
+      "id": "format-slides",
+      "text": "Native, editable slides break noise cancellation into steps you can present to an audience.",
+      "claimIds": [
+        "c-formats"
+      ]
+    },
+    {
+      "id": "format-video",
+      "text": "Narrated video follows Docker's changing filesystem view, while the earlier layer's bytes remain in place.",
+      "claimIds": [
+        "c-formats",
+        "c-delete"
+      ]
+    },
+    {
+      "id": "summary",
+      "text": "Answer the question with evidence, then choose how to explain it. Your AI host coordinates the two skills. Research can stand alone, and artifacts are created only in the formats you need.",
+      "claimIds": [
+        "c-skills",
+        "c-research-delivery",
+        "c-output"
+      ]
+    },
+    {
+      "id": "install",
+      "text": "Welcome to Aha. Give this link to your agent and ask it to help you install.",
+      "claimIds": [
+        "c-skills"
+      ]
+    }
+  ]
+}
