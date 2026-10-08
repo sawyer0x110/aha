@@ -42,6 +42,8 @@ node "<absolute installed skill>/scripts/aha.mjs" video-plan-check <project-dire
 
 `prepare-video` creates a draft plan with suggested claim text, not a finished script. Replace suggestions with authored complete narration, set the plan's own `status` to `"authored"`, then run `video-plan-check`. Present the **complete current narration** for every segment, provider, voice, rate, disclosure scope, timing strategy, and the current `planHash` to the user. A hash-only summary is insufficient. Preparation or checking is not consent and does not synthesize audio.
 
+`video-plan-check` includes [advisory narration feedback](explanation-writing.md#use-advisory-copy-checks-not-a-compliance-gate) with segment locators, without rewriting text or changing approval. Revise before asking for consent when it improves the spoken explanation; retain necessary conditions and uncertainty. Copy hints do not measure audio pace or replace listening.
+
 Voice defaults and translation behavior are in the language contract; the plan stores an explicit voice. Edge TTS is online. Before choosing synthesis, use `doctor --for speech` for local dependency probes only, verify applicable service terms, and apply the separate narration/network approvals in execution. Transmit only approved narration, not the Dossier, raw source code, or audit notes.
 
 ```text

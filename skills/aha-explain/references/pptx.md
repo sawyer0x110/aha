@@ -4,6 +4,8 @@ Use [artifact authoring](artifact-authoring.md) for project metadata and [execut
 
 Select metadata language under [language](language.md), then author native titles, text, charts, reader-facing notes, citations, and limitations in that language. Copying `research.title` does not translate it. Artifact metadata alone does not prove native text language or presentation-application language settings; inspect authored content and actual rendering.
 
+When checking exported visible text with `--format pptx`, load [advisory copy-check details](readability-checks.md); review speaker notes separately. `explain-check` does not execute or guess text from the author module, and explicitly marks that copy review unperformed. Length hints do not prove slide fit.
+
 Design varied layouts for comparison, mechanism, sequence, data, code, conclusions, and references. Use [visual design](visual-design.md) and optionally one [theme section](design-themes.md). Translate semantic color/type roles into native slide properties; HTML CSS variables and root theme preferences do not style PPTX objects. Use locally available licensed fonts, test CJK fallback, and disclose cross-machine substitutions. Use readable native text, shapes, tables, connectors, and charts for core content. A complex SVG or image may be appropriate, but disclose its editing limits; whole-slide screenshots are not native editable slides.
 
 Pilot two contrasting compositions, such as an annotated mechanism and an evidence comparison, in the actual presentation application. Keep a shared visual grammar without repeating one card grid; expand coverage through useful pages rather than shrinking text.

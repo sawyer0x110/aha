@@ -9,11 +9,12 @@ import { ResearchKindSchema } from '../research/schema.js';
 import { createResearchDraft, checkResearchDraft, buildDossier, readDossier, writeDossier } from '../research/dossier.js';
 import { FORMATS, LANGUAGES, type Format, type ArtifactLanguage, initArtifact, checkArtifact } from '../artifacts/project.js';
 import { renderHtml, renderImage, renderPptx, checkBrowser, runPptxWorker } from '../artifacts/render.js';
-import { prepareVideoPlan, validateVideoPlan, type VideoPlan } from '../media/plan.js';
+import { prepareVideoPlan, validateVideoPlan, checkPlan, type VideoPlan } from '../media/plan.js';
+import { lintHtml, lintText, lintNarration } from '../artifacts/readability.js';
 import { importAudio, synthesize } from '../media/audio.js';
 import { renderVideo } from '../media/video.js';
 import { doctorRequirements, inspectDependencies } from './doctor.js';
-import { assertOutsideSource, limitedJsonText, readJson, writeNewFile } from './files.js';
+import { assertOutsideSource, limitedJsonText, readJson, readText, writeNewFile } from './files.js';
 
 const USAGE = [
   'doctor [--for research|html|browser|image|pptx|video|speech | --media]',
@@ -23,6 +24,7 @@ const USAGE = [
   'research-validate <research-directory>',
   'explain-init <research-directory> <html|image|pptx|video> <new-project-directory> [--language en|zh|bilingual]',
   'explain-check <project-directory>',
+  'explain-lint <copy.txt|copy.md|source.html|plan.json> [--format html|image|pptx|video]',
   'render-html <project-directory> <new-output.html>',
   'render-image <project-directory> <new-output.png> --allow-code',
   'render-pptx <project-directory> <new-output.pptx> --allow-code',
@@ -144,6 +146,24 @@ async function execute(command: string, args: string[]): Promise<object> {
       if ('ready' in result && result.ready === false) process.exitCode = 1;
       return result;
     }
+    case 'explain-lint': {
+      const { at, values } = parse(args, 1, ['--format']);
+      const file = path.resolve(at(0));
+      const suffix = path.extname(file).toLowerCase();
+      const format = values['--format'] ?? (suffix === '.json' ? 'video' : 'html');
+      if (!FORMATS.includes(format as Format)) fail('ARTIFACT_FORMAT', 'Choose html, image, pptx or video.');
+      if (suffix === '.json') {
+        if (format !== 'video') fail('READABILITY_INPUT', 'JSON input must be a video plan with --format video.', file);
+        return lintNarration(checkPlan(await readJson(file)).segments, file);
+      }
+      if (!['.txt', '.md', '.html', '.htm'].includes(suffix)) {
+        fail('READABILITY_INPUT', 'Use UTF-8 .txt/.md copy, static .html/.htm, or a video plan .json. Author code and binary media are not executed or read as prose.', file);
+      }
+      const source = await readText(file);
+      return ['.html', '.htm'].includes(suffix)
+        ? lintHtml(source, format as Format, file)
+        : lintText(source, format as Format, file, suffix === '.md');
+    }
     case 'render-html': {
       const { at } = parse(args, 2);
       extension(at(1), '.html');
@@ -179,7 +199,10 @@ async function execute(command: string, args: string[]): Promise<object> {
         await assertOutsideSource(at(0), at(1));
         await writeNewFile(at(1), limitedJsonText(plan, at(1)));
       }
-      return { status: 'awaiting-review', planHash, provider: plan.provider, plan, approvalRecorded: false };
+      return {
+        status: 'awaiting-review', planHash, provider: plan.provider, plan, approvalRecorded: false,
+        ...(command === 'video-plan-check' ? { readability: lintNarration(plan.segments, path.resolve(at(1))) } : {}),
+      };
     }
     case 'synthesize': {
       const { at, values, enabled } = parse(args, 3, ['--approve'], ['--allow-network']);

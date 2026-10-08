@@ -12,6 +12,8 @@ Choose the reading structure from the question: a diagram-led single view, a dir
 
 Choose relationships deliberately: architecture/topology, sequence, comparison, timeline, data, or argument. Mix structures when useful. Use consistent arrow meanings, object identities, type hierarchy, spacing, and color semantics. Keep natural source links near supported claims.
 
+Use [optional diagram recipes](diagram-recipes.md) for a sequence, state transition or aligned comparison when they save repetitive code. They are source fragments, not required layouts. Review [advisory copy feedback](explanation-writing.md#use-advisory-copy-checks-not-a-compliance-gate) before polishing; export generated labels separately when static extraction cannot see them.
+
 At composition, follow [visual design](visual-design.md) for runtime `--cp-*` roles, light/dark selectors, author/system preference, and `scoutTheme` overrides; optionally read only a chosen [theme section](design-themes.md). Give prose a comfortable measure; let wide tables and complex diagrams expand independently instead of squeezing them into the text column or turning the whole article into a slideshow.
 
 Author SVG or local Mermaid diagrams as appropriate. The built-in path recognizes `.mermaid` elements (normally `<pre class="mermaid">`) and embeds the installed local Mermaid runtime, which initializes strict mode, renders SVG in the browser, and provides figure captions and zoom/pan/expansion controls. Keep diagram text properly escaped; never add a CDN or a competing initialization/control wrapper. This is browser-time rendering, not precomputed SVG.
@@ -22,6 +24,10 @@ For a static SVG deliverable, you may instead use already available, reviewed bu
 
 Interactive features must serve understanding: zoom/pan/reset, expandable detail, table filtering, code-path highlighting, or a well-grounded parameter model. Provide keyboard controls, focus states, useful labels, and reduced-motion behavior. A recorded sequence or diagram navigation is not an observed experiment; do not invent a causal slider just to be interactive.
 
+## Optional reader feedback
+
+To let readers hand back questions or objections, set `data-aha-feedback="on"` on the authored `html` root. The default is off. The packager adds a collapsed local feedback area with preview, copy and Markdown download; it does not send, persist or treat feedback as approval. Both language branches share the typed fields with localized controls. Follow [reader feedback](reader-feedback.md) for privacy, export boundaries, stale-revision checks and the source-first correction loop. This is HTML-only, not a required form or learner test.
+
 ## Offline packaging boundary
 
 The runtime packages local CSS, classic `.js`/`.cjs` scripts, supported images, and fonts into the output; source resource paths must stay within the allowed project tree. Plain local references have no query strings or encoded paths. Use a locally prebundled classic script rather than module scripts, import maps, or dynamic imports.
@@ -29,6 +35,8 @@ The runtime packages local CSS, classic `.js`/`.cjs` scripts, supported images, 
 External classic scripts with `defer` or `async` are embedded as self-contained `data:` script sources, preserving native scheduling and separate global script executions. Deferred scripts still run after parsing, in document order, before `DOMContentLoaded`; `async` retains its native nondeterministic ordering. Ordinary scripts remain inline. This requires no network access and does not enable remote script sources; author local paths rather than supplying data URLs yourself.
 
 Author inline SVG for complex graphics; external SVG assets must be inert and self-contained. Embedded frames/objects/media, authored `http-equiv` metadata, `srcset`, CSS imports/escapes, and SVG animation elements are unsupported. Use deterministic JavaScript for scene animation. Natural HTTP(S)/mailto citation links are allowed, but asset fetching and active network access are not. Aha inserts its offline CSP; do not weaken it or describe resource checks as a universal code sandbox.
+
+CSS declaration checks reject the legacy `behavior` and `-moz-binding` properties, not `scroll-behavior` or quoted mentions. Reduced-motion rules may retain `scroll-behavior: auto`; packaging does not remove or rewrite that preference.
 
 ## Build and inspect
 

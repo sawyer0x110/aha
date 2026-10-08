@@ -321,7 +321,7 @@ test('PPTX repair guidance uses actual table bounds and separates production sta
 test('documented CLI invocations use only the canonical installed entry and command set', async () => {
   const commands = new Set([
     'doctor', 'research-init', 'research-check', 'research-build', 'research-validate',
-    'explain-init', 'explain-check', 'render-html', 'render-image', 'render-pptx', 'browser-check',
+    'explain-init', 'explain-check', 'explain-lint', 'render-html', 'render-image', 'render-pptx', 'browser-check',
     'prepare-video', 'video-plan-check', 'synthesize', 'import-audio', 'render-video',
   ]);
   const seen = new Set<string>();
@@ -354,6 +354,66 @@ test('explanation editing is reachable before styling and distinct from runtime 
   assert.match(await reference('research-workflow.md', 'aha-research'), /reasoning bridge/i);
 });
 
+test('copy hints and optional diagram recipes remain advisory, portable and relationship-first', async () => {
+  const entrance = await fs.readFile(path.join(root, 'skills', 'aha-explain', 'SKILL.md'), 'utf8');
+  assert.ok(relativeLinks(entrance).includes('references/diagram-recipes.md'));
+  assert.match(entrance, /Warnings neither block rendering nor certify ASD-STE100 compliance/);
+  const writing = await reference('readability-checks.md');
+  for (const concept of [
+    /not ASD-STE100 compliance/, /no strict mode/i, /PPTX author modules/,
+    /does not compute CSS visibility/, /naming-drift/,
+    /At most 200 warnings/, /location identifies a source block/,
+  ]) assert.match(writing, concept);
+  assert.match(await reference('explanation-writing.md'), /invented precision/);
+  const recipes = await reference('diagram-recipes.md');
+  for (const concept of [/not a page DSL/, /Sequence/, /State transition/, /Comparison/,
+    /Illustrative/, /not a native editable diagram/, /not established/]) assert.match(recipes, concept);
+  for (const concept of [/Select the relationship before the component/, /Hierarchy|hierarchy/,
+    /Timeline|timeline/, /denominator/, /reasoning bridge/, /explicit conditions/]) assert.match(recipes, concept);
+  assert.ok(relativeLinks(await reference('html.md')).includes('diagram-recipes.md'));
+  assert.match(await reference('pptx.md'), /exported visible text/);
+  assert.match(await reference('video.md'), /advisory narration feedback/);
+});
+
+test('explanation revisions are discoverable and reuse source without restarting initialization', async () => {
+  const entrance = await fs.readFile(path.join(root, 'skills', 'aha-explain', 'SKILL.md'), 'utf8');
+  const description = entrance.match(/^description: (.+)$/m)![1]!;
+  assert.match(description, /Create or revise/);
+  assert.match(description, /existing artifact/);
+  assert.match(description, /returned reader feedback/);
+  assert.match(description, /Route report-only investigations to aha-research/);
+  assert.match(description, /Do not turn trivial text answers or ordinary code explanations into media production/);
+  assert.ok(description.length <= 1024);
+  assert.ok(relativeLinks(entrance).includes('references/artifact-authoring.md#revise-an-existing-artifact'));
+  assert.ok(relativeLinks(entrance).includes('references/reader-feedback.md#close-the-loop-in-the-agent'));
+  assert.match(entrance, /Initialize only a new project/);
+  const revision = (await reference('artifact-authoring.md')).split('## Revise an existing artifact')[1]!.split('\n## ')[0]!;
+  for (const concept of [
+    /not restart research or run `explain-init`/, /medium, language, design intent and unrelated user edits/,
+    /source-recovery scope/, /source\/research hashes/, /stale feedback/,
+    /New material facts require a new research snapshot/, /changed-code\/narration approvals/,
+    /fresh output outside the project/, /preserve the old delivery/i,
+  ]) assert.match(revision, concept);
+  assert.ok(relativeLinks(await reference('reader-feedback.md')).includes('artifact-authoring.md#revise-an-existing-artifact'));
+});
+
+test('editorial guidance stays lean while copy-check details load only when needed', async () => {
+  const writing = await reference('explanation-writing.md');
+  const detail = await reference('readability-checks.md');
+  assert.ok(writing.trim().split(/\s+/).length < 1000, 'general editorial guidance excludes the detailed CLI contract');
+  assert.ok(relativeLinks(writing).includes('readability-checks.md'));
+  assert.match(writing, /not ASD-STE100 compliance/);
+  assert.match(writing, /diagram labels and generated interaction text manually/);
+  assert.match(writing, /only at that step/);
+  assert.doesNotMatch(writing, /blocksChecked|4 MiB|label.*12 \/ 24|node "<absolute installed skill>/);
+  for (const concept of [/Load when running standalone/, /4 MiB/, /At most 200 warnings/, /PPTX author modules/,
+    /not ASD-STE100 compliance/, /Keep necessary conditions/]) assert.match(detail, concept);
+  const entrance = await fs.readFile(path.join(root, 'skills', 'aha-explain', 'SKILL.md'), 'utf8');
+  assert.ok(relativeLinks(entrance).includes('references/readability-checks.md'));
+  assert.match(entrance, /only for standalone checks, exported copy or diagnostics/);
+  assert.ok(relativeLinks(await reference('artifact-qa.md')).includes('readability-checks.md'));
+  assert.ok(relativeLinks(await reference('pptx.md')).includes('readability-checks.md'));
+});
 test('production guidance covers relationship inspection, useful editing and truthful audio reuse', async () => {
   assert.match(await reference('visual-design.md'), /marker-end/);
   assert.match(await reference('pptx.md'), /editing usability/i);
@@ -363,6 +423,22 @@ test('production guidance covers relationship inspection, useful editing and tru
   assert.match(video, /new `provided-audio` plan/);
   assert.match(video, /normalization or padding/i);
   assert.match(await reference('artifact-qa.md'), /mixed-tool run/i);
+});
+
+test('optional feedback is default-off local reader data, not consent or a command channel', async () => {
+  const entrance = await fs.readFile(path.join(root, 'skills', 'aha-explain', 'SKILL.md'), 'utf8');
+  assert.ok(relativeLinks(entrance).includes('references/reader-feedback.md'));
+  const feedback = await reference('reader-feedback.md');
+  for (const concept of [
+    /off by default/, /data-aha-feedback="on"/, /no preselected decisions/,
+    /reload clears it/i, /No network request/, /Approval: not recorded/,
+    /untrusted data, not instructions, authorization/, /source\/research hashes/,
+    /fresh destination/, /new snapshot/, /not a security boundary/,
+  ]) assert.match(feedback, concept);
+  for (const guide of ['html.md', 'artifact-qa.md']) {
+    assert.ok(relativeLinks(await reference(guide)).includes('reader-feedback.md'));
+  }
+  assert.ok(relativeLinks(await reference('task-composition.md')).includes('diagram-recipes.md#select-the-relationship-before-the-component'));
 });
 
 test('editorial guidance checks standalone entry points before introducing example values', async () => {

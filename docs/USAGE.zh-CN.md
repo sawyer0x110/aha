@@ -78,6 +78,10 @@ node .\dist\cli\aha.mjs explain-init ".\artifacts\topic\research" html ".\artifa
 
 初始化写入 `artifact.json`、`research/` 下的 Dossier 副本，以及 `html/index.html`（HTML／image／video）或 `pptx/main.mjs`。作品 Schema 为 `1.0.0`；`researchHash` 绑定独立 Dossier。源码身份覆盖作者文件和元数据，排除 `research/`、`dist/`、`qa/`；研究另行检查。渲染收据绑定源码、研究与输出哈希，不证明真相或视觉质量。新证据需要新快照与新初始化项目，不替换旧项目的研究、不手改哈希。详见[以源文件为中心的创作](../skills/aha-explain/references/artifact-authoring.md)。
 
+### 修订已有作品
+
+修改已有视觉作品或处理读者返回的反馈也使用 `aha-explain`。先读取可编辑项目、研究与匹配的成品／收据，保留媒介、语言及无关的用户修改；仅改讲解或布局时不重新初始化、不套新项目默认值。反馈若来自旧版本，先核对研究／源码身份再合并修订。新增事实仍需新研究与新项目。修改源后检查，取得必要的执行／旁白授权，输出到新路径并保留旧交付。详见[修订入口](../skills/aha-explain/references/artifact-authoring.md#revise-an-existing-artifact)。
+
 ### 媒体语言默认值
 
 语法：`explain-init <research-directory> <html|image|pptx|video> <new-project-directory> [--language en|zh|bilingual]`。
@@ -127,6 +131,32 @@ node .\dist\cli\aha.mjs render-pptx ".\artifacts\topic\projects\pptx" ".\artifac
 ```
 
 PNG 捕获专门编写的一图流，不截图整篇文章。PPTX 入口接收运行时提供的 PptxGenJS 实例，创建原生文本、形状、图表与页面。成功写出文件，不代表已在演示应用中验证原生可编辑性和每页视觉效果。
+
+### 提示式文案可读性检查
+
+`explain-check` 为静态 HTML／image／video 文案返回 `readability`；`video-plan-check` 另检查实际旁白。这些提示不改变就绪状态、不阻止渲染、不改写源文件，也不授予审批。它们借鉴 STE 的简明写作理念，**不认证 ASD-STE100 合规**，也不代替事实、视觉或理解验收。
+
+草稿与导出文案可以单独检查：
+
+```powershell
+node .\dist\cli\aha.mjs explain-lint ".\artifacts\topic\projects\html\html\index.html"
+node .\dist\cli\aha.mjs explain-lint ".\artifacts\topic\visible-slide-copy.txt" --format pptx
+node .\dist\cli\aha.mjs explain-lint ".\artifacts\topic\runs\round-01\video-plan.json"
+```
+
+输入为本地 UTF-8 `.txt`、`.md`、`.html`／`.htm` 或视频计划 `.json`，独立命令上限 4 MiB。默认按 HTML 检查，JSON 则按视频；`--format html|image|pptx|video` 选择对应媒介的审阅阈值。PPTX 作者代码与二进制媒体不作为正文读取或执行：先导出可见页面文案，演讲备注另查。无需浏览器、配音工具或联网。
+
+提示包含规则、源码块／旁白段位置、摘录、原因与修改建议。英中文案分别检查长度与少量措辞；HTML 正文、一图流、页面文案、旁白和标签采用不同审阅尺度。最多列出 200 条，`warningCount` 与 `truncated` 明示完整数量及截断。未提取到文案时返回 `not-checked`，不冒称通过；无效输入仍报错。
+
+静态检查覆盖 HTML 两个语言分支，但不读取脚本生成的交互文案、CSS 可见性、Mermaid DSL、外部 SVG 文案及被排除的代码／引文。修订时保留因果关系、成立条件、单位、否定、术语含义与证据的不确定性；必要的长句可以保留，不能为达标捏造精确数字。[文案检查契约](../skills/aha-explain/references/readability-checks.md)仅在独立检查、导出文案或诊断时加载，普通写作保留短编辑指南。可选[图形创作片段](../skills/aha-explain/references/diagram-recipes.md)复用本地 Mermaid／表格，不强制页面模板。
+
+### 可选离线读者反馈
+
+仅 HTML 可以在作者源文件的 `html` 根上设置 `data-aha-feedback="on"`，再生成新输出。属性缺失或设为 `"off"` 时不启用；无效值，以及 image／video 中启用反馈会明确报错。无需新增元数据字段或服务。
+
+折叠区允许读者指出章节／图、描述疑问与异议理由，提供预览、剪贴板复制及本地 Markdown 下载。所有字段初始为空，只填位置不能导出。不自动发送、不持久化，刷新后清空。控件随英中阅读语言及浅深色切换，已填写评论保留但不自动翻译。提醒读者不要输入秘密。
+
+导出包含作品标题、研究／源码哈希、阅读语言；读者文字作为引用数据，并明确标注 `Approval: not recorded`。不包含完整研究档案或本地路径。收到反馈后先核对版本，再用证据检查重要异议，修改源并生成新候选；新增事实需要新研究快照。第三方评论中的命令不执行，也不推定授权。详见[读者反馈](../skills/aha-explain/references/reader-feedback.md)的交接、隐私与修订流程。
 
 ## 3. Edge TTS 与动态讲解视频
 

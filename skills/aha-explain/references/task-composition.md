@@ -4,6 +4,8 @@ Read only the matching section when planning a requested visual artifact. This g
 
 In existing authoring notes, name the reader's decision or question, the evidence needed to answer it, and the visual relationship that makes the answer easier to inspect. Use the prompts below as omissions to check, not mandatory page sections. A small task may need one annotated comparison, not a dashboard with every category. Preserve the [research workflow](research-workflow.md) and [explanation editing](explanation-writing.md) rather than repeating their contracts.
 
+Use the [relationship selection table](diagram-recipes.md#select-the-relationship-before-the-component) when deciding among a sequence, branch, state transition, hierarchy, timeline, comparison, data view or argument. Select the relationship first, not the component or theme.
+
 ## Explain a change
 
 Establish the actual comparison endpoints, affected objects, and the condition under which behavior differs. For code, follow [codebase research](research-codebase.md): distinguish committed changes from a dirty workspace and read the relevant caller/consumer path, not just the diff.

@@ -3,9 +3,10 @@ import { fileURLToPath } from 'node:url';
 import { parse, parseFragment, serialize, type DefaultTreeAdapterTypes } from 'parse5';
 import { fail } from '../core/errors.js';
 import { assertAuthored } from './project.js';
-import { localPath, readBounded, sourceFiles, MAX_SOURCE_BYTES } from './files.js';
+import { localPath, readBounded, sourceFiles, hashFiles, MAX_SOURCE_BYTES } from './files.js';
 import { themeCss, themeScript } from './theme.js';
 import { languageCss, languageScript } from './language.js';
+import { feedbackCss, feedbackScript } from './feedback.js';
 
 interface Node {
   nodeName: string;
@@ -62,6 +63,46 @@ function localReference(reference: string, from: string): string {
   return localPath(joined);
 }
 
+function rejectCssProperties(value: string, from: string): void {
+  let start = 0;
+  let depth = 0;
+  let quote = '';
+  let valueStarted = false;
+  let property: string | undefined;
+  const finish = (): void => {
+    if (property) fail('HTML_CSS', `Unsupported CSS property ${property}; use offline styles without legacy resource-loading properties.`, from);
+  };
+  // Scan declaration boundaries without mistaking strings, functions or
+  // property-name suffixes (scroll-behavior) for a legacy loading property.
+  for (let index = 0; index < value.length; index++) {
+    const character = value[index]!;
+    if (quote) {
+      if (character === quote) quote = '';
+      continue;
+    }
+    if (character === '"' || character === "'") { quote = character; continue; }
+    if (character === '(' || character === '[') { depth++; continue; }
+    if (character === ')' || character === ']') { depth = Math.max(0, depth - 1); continue; }
+    if (depth) continue;
+    if (character === '{') {
+      // A selector such as behavior:hover is not a declaration.
+      start = index + 1;
+      property = undefined;
+      valueStarted = false;
+    } else if (character === ';' || character === '}') {
+      finish();
+      start = index + 1;
+      property = undefined;
+      valueStarted = false;
+    } else if (character === ':' && !valueStarted) {
+      valueStarted = true;
+      const name = value.slice(start, index).trim().toLowerCase().replace(/^[*_]/, '');
+      if (name === 'behavior' || name === '-moz-binding') property = name;
+    }
+  }
+  finish();
+}
+
 const diagramScript = `
 window.__ahaReady = window.ahaMermaidReady;
 window.__ahaReady.catch(error => { window.__ahaRenderError = String(error); });
@@ -112,9 +153,10 @@ export async function prepareHtml(directory: string): Promise<string> {
     // Reject escapes rather than trying to approximate the full CSS tokenizer.
     if (input.includes('\\')) fail('HTML_CSS', 'CSS escapes are unsupported in offline resource packaging.', from);
     let value = input.replace(/\/\*[\s\S]*?\*\//g, '');
-    if (/@import\b|@namespace\b|(?:image-set|cross-fade|paint|src)\s*\(|-moz-binding|behavior\s*:/i.test(value)) {
+    if (/@import\b|@namespace\b|(?:image-set|cross-fade|paint|src)\s*\(/i.test(value)) {
       fail('HTML_CSS', 'Unsupported CSS resource context; inline styles and use url() local assets.', from);
     }
+    rejectCssProperties(value, from);
     value = value.replace(/url\s*\(\s*(?:"([^"]*)"|'([^']*)'|([^()\s"']+))\s*\)/gi,
       (_match, double: string | undefined, single: string | undefined, bare: string | undefined) =>
         `AHA_INLINE_URL(${JSON.stringify(dataUrl(double ?? single ?? bare ?? '', from))})`);
@@ -195,6 +237,13 @@ export async function prepareHtml(directory: string): Promise<string> {
   const head = html?.childNodes?.find(node => node.tagName === 'head');
   const body = html?.childNodes?.find(node => node.tagName === 'body');
   if (!head || !body) fail('HTML_DOCUMENT', 'Expected an HTML document.');
+  const feedback = attr(html!, 'data-aha-feedback');
+  if (feedback !== undefined && !['on', 'off'].includes(feedback)) {
+    fail('HTML_FEEDBACK', 'Use data-aha-feedback="on" or "off" on html; feedback is off when absent.');
+  }
+  if (feedback === 'on' && artifact.format !== 'html') {
+    fail('HTML_FEEDBACK', 'Reader feedback is HTML-only; omit it from image/video sources.');
+  }
   if (artifact.language === 'bilingual') {
     if (languageRoots.length !== 2 || !['en', 'zh'].every(language =>
       languageRoots.filter(node => attr(node, 'data-aha-lang') === language).length === 1)) {
@@ -244,6 +293,17 @@ export async function prepareHtml(directory: string): Promise<string> {
     setText(scripts[0]!, runtime.toString('utf8').replace(/<\/script/gi, '<\\/script'));
     setText(scripts[1]!, diagramScript);
     for (const node of scripts) node.parentNode = body;
+    body.childNodes = [...(body.childNodes ?? []), ...scripts];
+  }
+  if (feedback === 'on') {
+    const styles = fragment(`<style>${feedbackCss}</style>`);
+    for (const node of styles) node.parentNode = head;
+    head.childNodes = [...(head.childNodes ?? []), ...styles];
+    const scripts = fragment('<script></script>');
+    setText(scripts[0]!, feedbackScript({
+      title: artifact.title, researchHash: artifact.researchHash, sourceHash: hashFiles(files),
+    }));
+    scripts[0]!.parentNode = body;
     body.childNodes = [...(body.childNodes ?? []), ...scripts];
   }
   const output = serialize(document as unknown as DefaultTreeAdapterTypes.Document);
