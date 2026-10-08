@@ -8,6 +8,7 @@ import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import JSZip from 'jszip';
 import { researchFixture } from './helpers/research.js';
+import { hashValue } from '../src/core/identity.js';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const cli = path.join(root, 'dist', 'cli', 'aha.mjs');
@@ -177,6 +178,10 @@ test('HTML publication is stable and refuses overwrite, wrong extension and sour
 
 test('native PPTX authoring accepts more than twelve slides and requires code permission', async () => temp(async dir => {
   const project = await author(dir, 'pptx');
+  const checked = JSON.parse(invoke(dir, ['explain-check', project]));
+  assert.equal(checked.ready, true);
+  assert.equal(checked.readability.status, 'not-checked');
+  assert.match(checked.readability.reason, /not executed/);
   assert.match(invoke(dir, ['render-pptx', project, 'deck.pptx'], cli, 1), /allow-code/);
   await assert.rejects(fs.stat(path.join(dir, 'deck.pptx')), { code: 'ENOENT' });
   invoke(dir, ['render-pptx', project, 'deck.pptx', '--allow-code']);
@@ -197,6 +202,92 @@ test('legacy aliases and invalid options fail without substitutes', async () => 
   assert.deepEqual(await fs.readdir(dir), []);
 }));
 
+test('advisory copy lint has machine-readable warnings, preserves files and rejects code or invalid input', async () => temp(async dir => {
+  const text = 'Utilize the cache in order to show the result.';
+  await fs.writeFile(path.join(dir, 'copy.txt'), text);
+  const result = JSON.parse(invoke(dir, ['explain-lint', 'copy.txt', '--format', 'pptx']));
+  assert.equal(result.status, 'checked');
+  assert.equal(result.mode, 'advisory');
+  assert.equal(result.format, 'pptx');
+  assert.equal(result.warningCount, 2);
+  assert.equal(result.warnings[0].location.line, 1);
+  assert.equal(result.warnings[0].location.file, path.join(dir, 'copy.txt'));
+  assert.equal(await fs.readFile(path.join(dir, 'copy.txt'), 'utf8'), text);
+  await fs.writeFile(path.join(dir, 'unsafe.mjs'), 'throw new Error("never execute copy lint input");');
+  await fs.writeFile(path.join(dir, 'plan.json'), '{}');
+  await fs.writeFile(path.join(dir, 'invalid.txt'), Buffer.from([0xff]));
+  assert.match(invoke(dir, ['explain-lint', 'unsafe.mjs'], cli, 1), /READABILITY_INPUT/);
+  assert.match(invoke(dir, ['explain-lint', 'copy.txt', '--format', 'all'], cli, 1), /ARTIFACT_FORMAT/);
+  assert.match(invoke(dir, ['explain-lint', 'copy.txt', '--strict'], cli, 1), /USAGE/);
+  assert.match(invoke(dir, ['explain-lint', 'plan.json'], cli, 1), /SCHEMA_INVALID/);
+  assert.match(invoke(dir, ['explain-lint', 'plan.json', '--format', 'html'], cli, 1), /READABILITY_INPUT/);
+  assert.match(invoke(dir, ['explain-lint', 'invalid.txt'], cli, 1), /FILE_ENCODING/);
+  assert.match(invoke(dir, ['explain-lint', 'missing.txt'], cli, 1), /ENOENT/);
+}));
+
+test('project checks include advisory copy feedback without changing readiness, source or publication', async () => temp(async dir => {
+  const project = await author(dir, 'html');
+  const file = path.join(dir, project, 'html', 'index.html');
+  const source = (await fs.readFile(file, 'utf8')).replace('</main>', '<p>Utilize the cache.</p></main>');
+  await fs.writeFile(file, source);
+  const result = JSON.parse(invoke(dir, ['explain-check', project]));
+  assert.equal(result.ready, true);
+  assert.equal(result.readability.mode, 'advisory');
+  assert.equal(result.readability.warningCount, 1);
+  assert.equal(result.readability.warnings[0].location.file, 'html/index.html');
+  const receipt = JSON.parse(invoke(dir, ['render-html', project, 'linted.html']));
+  assert.equal(receipt.sourceHash, result.sourceHash);
+  assert.equal(await fs.readFile(file, 'utf8'), source);
+}));
+
+test('bundled CLI accepts scroll-behavior without weakening actual legacy-property rejection', async () => temp(async dir => {
+  const project = await author(dir, 'html');
+  const file = path.join(dir, project, 'html', 'index.html');
+  const original = await fs.readFile(file, 'utf8');
+  for (const [index, entry] of [
+    cli,
+    path.join(root, 'dist', 'skills', 'aha-explain', 'scripts', 'aha.mjs'),
+  ].entries()) {
+    const source = original.replace('</main>', '<style>@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }</style></main>');
+    await fs.writeFile(file, source);
+    const checked = JSON.parse(invoke(dir, ['explain-check', project], entry));
+    assert.equal(checked.ready, true);
+    const delivered = JSON.parse(invoke(dir, ['render-html', project, `motion-${index}.html`], entry));
+    assert.equal(delivered.codeExecuted, false);
+    assert.match(await fs.readFile(path.join(dir, `motion-${index}.html`), 'utf8'), /scroll-behavior: auto/);
+    assert.equal(await fs.readFile(file, 'utf8'), source);
+    for (const property of ['behavior', '-moz-binding']) {
+      await fs.writeFile(file, original.replace('</main>', `<p style="${property}:none">No legacy loader.</p></main>`));
+      const failed = JSON.parse(invoke(dir, ['explain-check', project], entry, 1));
+      assert.equal(failed.error.code, 'HTML_CSS');
+      assert.match(failed.error.message, new RegExp(`Unsupported CSS property ${property}`));
+    }
+  }
+}));
+
+test('video-plan checks lint narration without changing the plan hash or recording approval', async () => temp(async dir => {
+  const draft = await research(dir);
+  invoke(dir, ['explain-init', 'topic.research', 'video', 'video-project']);
+  const metadata = path.join(dir, 'video-project', 'artifact.json');
+  const artifact = JSON.parse(await fs.readFile(metadata, 'utf8'));
+  artifact.coverage = draft.claims.map(claim => ({ id: `section-${claim.id}`, claimIds: [claim.id] }));
+  await fs.writeFile(metadata, JSON.stringify(artifact));
+  invoke(dir, ['prepare-video', 'video-project', 'plan.json']);
+  const file = path.join(dir, 'plan.json');
+  const plan = JSON.parse(await fs.readFile(file, 'utf8'));
+  plan.segments[0].text = 'Utilize the cache.';
+  await fs.writeFile(file, JSON.stringify(plan));
+  const original = await fs.readFile(file);
+  const result = JSON.parse(invoke(dir, ['video-plan-check', 'video-project', 'plan.json']));
+  assert.equal(result.approvalRecorded, false);
+  assert.equal(result.readability.warningCount, 1);
+  assert.equal(result.readability.warnings[0].location.locator, '/segments/0/text (sentence-1)');
+  assert.equal(result.planHash, await hashValue(plan));
+  assert.deepEqual(await fs.readFile(file), original);
+  const standalone = JSON.parse(invoke(dir, ['explain-lint', 'plan.json']));
+  assert.deepEqual(standalone.warnings, result.readability.warnings);
+}));
+
 test('both packaged skills operate from an unrelated directory with their bundled runtime', async () => temp(async dir => {
   const names = ['aha-research', 'aha-explain'];
   assert.deepEqual((await fs.readdir(path.join(root, 'dist', 'skills'))).sort(), [...names].sort());
@@ -214,6 +305,9 @@ test('both packaged skills operate from an unrelated directory with their bundle
     assert.equal(doctor.capabilities.pptx, true);
     assert.equal(doctor.capabilities.realExecution, false);
     const project = await author(cwd, 'html', entry);
+    const copy = JSON.parse(invoke(cwd, ['explain-lint', path.join(project, 'html', 'index.html')], entry));
+    assert.equal(copy.mode, 'advisory');
+    assert.equal(copy.codeExecuted, false);
     invoke(cwd, ['render-html', project, 'explanation.html'], entry);
     const manifest = JSON.parse(await fs.readFile(path.join(install, 'runtime-manifest.json'), 'utf8'));
     const { version } = JSON.parse(await fs.readFile(path.join(root, 'package.json'), 'utf8'));

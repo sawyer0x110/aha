@@ -164,6 +164,36 @@ test('source identity excludes dist and qa but includes all source assets and me
   assert.notEqual(original, await sourceHash(project));
 }));
 
+test('reader feedback is explicitly opted in, binds source identity and escapes metadata without execution', async () => fixture(async (_root, project) => {
+  for (const setting of ['', ' data-aha-feedback="off"']) {
+    await author(project, `<!doctype html><html${setting}><body><p>Monday plan.</p></body></html>`);
+    assert.doesNotMatch(await prepareHtml(project), /aha-feedback-actions|Feedback export preview/);
+  }
+  await author(project, '<!doctype html><html data-aha-feedback="on"><body><p>Monday plan.</p></body></html>');
+  await metadata(project, a => { a.title = '</script><script>throw new Error("unsafe title")</script>'; });
+  const original = await fs.readFile(path.join(project, 'html', 'index.html'));
+  const { artifact } = await readArtifact(project);
+  const hash = await sourceHash(project);
+  const html = await prepareHtml(project);
+  assert.match(html, /aha-feedback-actions/);
+  assert.match(html, /Approval: not recorded/);
+  assert.ok(html.includes(`"sourceHash":"${hash}"`));
+  assert.ok(html.includes(`"researchHash":"${artifact.researchHash}"`));
+  assert.doesNotMatch(html, /<\/script><script>throw new Error\("unsafe title"\)/);
+  assert.match(html, /\\u003c\/script>/);
+  assert.equal(await sourceHash(project), hash);
+  assert.deepEqual(await fs.readFile(path.join(project, 'html', 'index.html')), original);
+  await author(project, '<html data-aha-feedback="yes"><body><p>Plan.</p></body></html>');
+  await assert.rejects(prepareHtml(project), code('HTML_FEEDBACK'));
+}));
+
+test('reader feedback cannot accidentally appear in image or video capture', async () => {
+  for (const format of ['image', 'video'] as const) await fixture(async (_root, project) => {
+    await author(project, '<html data-aha-feedback="on"><body><p>Plan.</p></body></html>');
+    await assert.rejects(prepareHtml(project), code('HTML_FEEDBACK'));
+  }, format);
+});
+
 test('stylesheets, scripts and images are inlined with source-text injection handled safely', async () => fixture(async (_root, project) => {
   await author(project, '<!doctype html><head><link rel="stylesheet" href="../assets/style.css"><script src="../assets/logic.js"></script></head><body><img src="../assets/pixel.png"><h1>Free layout</h1></body>');
   await fs.mkdir(path.join(project, 'assets'));
@@ -175,6 +205,60 @@ test('stylesheets, scripts and images are inlined with source-text injection han
   assert.doesNotMatch(html, /<script src/);
   assert.match(html, /<\\\/script>/);
   assert.doesNotMatch(html, /<link rel="stylesheet"/);
+}));
+
+test('CSS property checks allow scroll-behavior, quoted text and custom names across all style surfaces', async () => fixture(async (_root, project) => {
+  const stylesheet = `@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+  @supports (scroll-behavior: smooth) {
+    behavior:hover { color: var(--cp-text); }
+  }
+  .note::after { content: ";behavior: none; -moz-binding: none"; }
+  body { --scroll-behavior: auto; --note: behavior: none; --note-function: example(behavior: none); }`;
+  await author(project, `<!doctype html><head><style>${stylesheet}</style><link rel="stylesheet" href="motion.css"></head>
+    <body><main style="color:var(--cp-text); ScRoLl-BeHaViOr /**/ : auto; --note: ';behavior: none'">
+    <p>A source-backed explanation.</p></main></body>`);
+  await fs.writeFile(path.join(project, 'html', 'motion.css'), stylesheet);
+  const original = await fs.readFile(path.join(project, 'html', 'index.html'));
+  const packaged = await prepareHtml(project);
+  assert.match(packaged, /scroll-behavior: auto/);
+  assert.match(packaged, /ScRoLl-BeHaViOr\s+: auto/);
+  assert.match(packaged, /behavior:hover/);
+  assert.match(packaged, /content: ";behavior: none; -moz-binding: none"/);
+  assert.doesNotMatch(packaged, /<link rel="stylesheet"/);
+  await checkArtifact(project);
+  assert.deepEqual(await fs.readFile(path.join(project, 'html', 'index.html')), original);
+}));
+
+test('CSS property checks still reject actual legacy properties with comments, case, whitespace and nesting', async () => fixture(async (_root, project) => {
+  for (const declaration of [
+    'behavior:none',
+    'color:red; BeHaViOr \n : none;',
+    'behavior/**/:/**/none',
+    '-MoZ-BiNdInG: none',
+    '*behavior:none',
+    '_behavior:none',
+    'color:rgb(0,0,0); behavior:url(legacy.htc)',
+    'content:";scroll-behavior:auto"; -moz-binding : url(legacy.xml)',
+  ]) {
+    for (const surface of ['style', 'attribute', 'stylesheet'] as const) {
+      const source = surface === 'style'
+        ? `<style>@media screen { .note { ${declaration} } }</style><p>Argument.</p>`
+        : surface === 'attribute'
+          ? `<p style='${declaration}'>Argument.</p>`
+          : '<link rel="stylesheet" href="legacy.css"><p>Argument.</p>';
+      await author(project, source);
+      if (surface === 'stylesheet') await fs.writeFile(path.join(project, 'html', 'legacy.css'), `body { ${declaration} }`);
+      await assert.rejects(prepareHtml(project), error => {
+        assert.ok(error instanceof AhaError);
+        assert.equal(error.code, 'HTML_CSS');
+        assert.match(error.message, /Unsupported CSS property (?:behavior|-moz-binding)/);
+        assert.equal(error.path, surface === 'stylesheet' ? 'html/legacy.css' : 'html/index.html');
+        return true;
+      });
+    }
+  }
 }));
 
 test('offline parser rejects remote, hidden, missing and unsupported resource contexts without execution', async () => fixture(async (_root, project) => {

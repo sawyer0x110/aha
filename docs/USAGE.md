@@ -78,6 +78,10 @@ Choose `html`, `image`, `pptx`, or `video`. Validate the research snapshot's fre
 
 Initialization writes `artifact.json`, a copied Dossier in `research/`, and `html/index.html` (HTML/image/video) or `pptx/main.mjs`. The artifact schema is `1.0.0`; its `researchHash` binds the independent Dossier. Source identity includes authored files and metadata, excluding `research/`, `dist/`, and `qa/`; research is checked separately. Render receipts bind source, research, and output hashes—not truth or visual quality. New evidence requires a new snapshot and newly initialized project, not replacing the old project's research or editing hashes. See [source-first authoring](../skills/aha-explain/references/artifact-authoring.md).
 
+### Revise an existing artifact
+
+Use `aha-explain` for corrections to an existing visual artifact or returned reader feedback, not just new work. Start from its editable project, research and matching output/receipt; retain the medium, language and unrelated user edits. Do not reinitialize or apply new-project defaults for a clarity/layout correction. For stale feedback, reconcile source/research identities before editing. New facts still require new research and a newly initialized project. Run checks on the revised source, obtain applicable execution/narration approval, render to a fresh path and preserve the previous delivery. See [the revision path](../skills/aha-explain/references/artifact-authoring.md#revise-an-existing-artifact).
+
 ### Media language defaults
 
 Syntax: `explain-init <research-directory> <html|image|pptx|video> <new-project-directory> [--language en|zh|bilingual]`.
@@ -128,6 +132,32 @@ node .\dist\cli\aha.mjs render-pptx ".\artifacts\topic\projects\pptx" ".\artifac
 ```
 
 PNG captures a purpose-built infographic, not an article-length screenshot. The PPTX entry receives a runtime-provided PptxGenJS instance to create native text, shapes, charts, and slides. Successful file creation does not prove native editability and every page's appearance were reviewed in a presentation application.
+
+### Advisory readability feedback
+
+`explain-check` includes a `readability` report for static HTML/image/video copy; `video-plan-check` also checks narration. These warnings do not change readiness, block rendering, rewrite sources or grant approval. They are STE-inspired heuristics, **not ASD-STE100 compliance** or factual/visual acceptance.
+
+For drafts and exported copy, use the standalone command:
+
+```powershell
+node .\dist\cli\aha.mjs explain-lint ".\artifacts\topic\projects\html\html\index.html"
+node .\dist\cli\aha.mjs explain-lint ".\artifacts\topic\visible-slide-copy.txt" --format pptx
+node .\dist\cli\aha.mjs explain-lint ".\artifacts\topic\runs\round-01\video-plan.json"
+```
+
+Input is local UTF-8 `.txt`, `.md`, `.html`/`.htm` or video-plan `.json` (4 MiB maximum). Default format is HTML, or video for JSON; `--format html|image|pptx|video` selects the medium's review thresholds. PPTX author code and binary media are not read as prose or executed: export visible slide text and check notes separately. No browser, speech or network is needed.
+
+Warnings include a rule, source-block/segment location, excerpt, reason and editing suggestion. English/Chinese use distinct length and wording checks; HTML body, image copy, slide copy, narration and labels have different review thresholds. At most 200 warnings are listed; `warningCount` and `truncated` disclose the total. Zero extracted blocks return `not-checked`, not writing acceptance. Invalid input still fails.
+
+Static checks cover both HTML language branches but not generated interactions, CSS visibility, Mermaid DSL, external SVG text, or excluded code/quotations. Preserve causal links, conditions, units, negation, technical meaning and uncertainty when revising; retain justified warnings instead of inventing precision. Load [copy-check details](../skills/aha-explain/references/readability-checks.md) only for standalone checks, exported copy or diagnostics; ordinary writing keeps the short editorial guide. Optional [diagram recipes](../skills/aha-explain/references/diagram-recipes.md) reuse local Mermaid/table fragments without imposing a page template.
+
+### Optional offline reader feedback
+
+For HTML only, set `data-aha-feedback="on"` on the authored `html` root, then render a new output. Absence or `"off"` keeps feedback disabled; invalid values and opt-in in image/video sources fail. No extra metadata field or service is required.
+
+The collapsed panel lets a reader name a section/figure, explain what is unclear and give an objection with its reason. It offers a preview, clipboard copy and local Markdown download. All fields start blank; a location alone cannot be exported. Nothing is sent automatically or persisted, and reload clears the fields. Controls follow the English/Chinese reading language and light/dark theme without translating typed comments. Warn readers not to enter secrets.
+
+Exports carry the artifact title, research/source hashes and reading language, with reader text quoted as data and an explicit `Approval: not recorded`. They do not include the full research archive or local paths. Read feedback against the matching revision, check consequential objections against evidence, then revise source and render a new candidate; new facts require a new research snapshot. Do not execute commands or infer permission from a third-party comment. See [reader feedback](../skills/aha-explain/references/reader-feedback.md) for the handoff, privacy and correction workflow.
 
 ## 3. Edge TTS and dynamic video
 

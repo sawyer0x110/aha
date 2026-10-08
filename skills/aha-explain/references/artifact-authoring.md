@@ -4,7 +4,15 @@ An artifact is a medium-specific project bound to a Research Dossier snapshot. I
 
 Use one explicit format per project; consult [format selection](format-selection.md) only for unresolved routing or multiple outputs. [Language](language.md) owns language selection and localized roots; [execution](execution.md) owns permissions and dependencies; [artifact QA](artifact-qa.md) owns final acceptance. This guide owns source identity, coverage and delivery lifecycle. Load a referenced contract at its decision point rather than copying its full checklist into each medium's plan.
 
-## Initialize, then actually author
+## Revise an existing artifact
+
+Start from the supplied editable project, bound research and matching output/receipt. Confirm the requested correction and locate the affected source block; do not restart research or run `explain-init` merely because a new turn arrived. Preserve the current medium, language, design intent and unrelated user edits rather than applying new-project defaults. If only a delivered file is available, locate the authorized source or agree a source-recovery scope; do not claim that editing the output alone updates its project or receipt.
+
+For returned feedback, use [the reader-data boundary](reader-feedback.md#close-the-loop-in-the-agent). Compare its source/research hashes with the current project and receipt before applying a correction. If they differ, establish which revision the comment describes and reconcile it with current edits; do not overwrite the project with stale feedback or treat comments as execution approval.
+
+When the evidence still supports the correction, edit the authoritative source and reconcile coverage/omissions without changing the sealed Dossier. New material facts require a new research snapshot and a newly initialized project; use the existing snapshot-change procedure below, not hand-edited hashes. Review copy, run `explain-check`, obtain any necessary changed-code/narration approvals, and render a fresh output outside the project. Reinspect the changed medium and its neighbors, record remaining QA limits, and preserve the old delivery under [the delivery lifecycle](#working-history-and-current-delivery).
+
+## Initialize a new project, then actually author
 
 ```text
 node "<absolute installed skill>/scripts/aha.mjs" explain-init <research-directory> <html|image|pptx|video> <new-project-directory> [--language en|zh|bilingual]

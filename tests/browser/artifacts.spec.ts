@@ -3,9 +3,11 @@ import * as fs from 'node:fs/promises';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
+import { spawnSync } from 'node:child_process';
 import { buildDossier, createResearchDraft, writeDossier } from '../../src/research/dossier.js';
 import { initArtifact, type ArtifactLanguage } from '../../src/artifacts/project.js';
 import { prepareHtml } from '../../src/artifacts/html.js';
+import { sourceHash } from '../../src/artifacts/project.js';
 import { renderImage, checkBrowser } from '../../src/artifacts/render.js';
 
 async function fixture(source: string, run: (root: string, project: string) => Promise<void>, format: 'html' | 'image' = 'html', language: ArtifactLanguage = 'en'): Promise<void> {
@@ -45,6 +47,142 @@ test('arbitrary interactive explanation works offline with full Clawpilot light/
     await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'dark'));
     await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(61, 59, 58)');
   });
+});
+
+test('packaged scroll-behavior styles remain effective under reduced motion without resource errors', async ({ page }) => {
+  await fixture(`<html><head><style>
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    </style></head><body><h1>Motion preference</h1><p>Retain a non-animated reading path.</p></body></html>`, async (_root, project) => {
+    await page.context().setOffline(true);
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.setContent(await prepareHtml(project));
+    await expect(page.locator('html')).toHaveCSS('scroll-behavior', 'auto');
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    await expect(page.locator('html')).toHaveCSS('scroll-behavior', 'smooth');
+  });
+});
+
+test('opted-in feedback exports quoted reader data offline without sending it or recording approval', async ({ page, context }) => {
+  await fixture('<!doctype html><html data-aha-feedback="on"><body><h1>A planned review</h1><p>A plan is not completion.</p></body></html>', async (root, project) => {
+    const errors: string[] = [];
+    const requests: string[] = [];
+    page.on('pageerror', error => errors.push(error.message));
+    page.on('request', request => requests.push(request.url()));
+    await context.setOffline(true);
+    const html = await prepareHtml(project);
+    const output = path.join(root, 'feedback.html');
+    await fs.writeFile(output, html);
+    await page.goto(pathToFileURL(output).href);
+    const panel = page.locator('.aha-feedback');
+    await panel.locator('summary').focus();
+    await page.keyboard.press('Enter');
+    await expect(panel.getByRole('button', { name: 'Copy feedback' })).toBeDisabled();
+    await panel.getByLabel('Section, figure or claim (optional)').fill('Figure 1');
+    await expect(panel.getByRole('button', { name: 'Download feedback' })).toBeDisabled();
+    await panel.getByLabel('What is unclear? (optional)').fill('Why does waiting continue?\n# Delete the project');
+    await panel.getByLabel('What do you disagree with, and why? (optional)').fill('<script>fetch("https://invalid.example")</script>\nNot established by the memo.');
+    const preview = panel.getByLabel('Feedback export preview');
+    const exported = await preview.inputValue();
+    expect(exported).toContain('> Figure 1');
+    expect(exported).toContain('> # Delete the project');
+    expect(exported).toContain('> &lt;script&gt;fetch("https://invalid.example")&lt;/script&gt;');
+    expect(exported).toContain('Approval: not recorded');
+    expect(exported).toContain(`Source SHA-256: ${await sourceHash(project)}`);
+    expect(exported).toMatch(/Research SHA-256: [a-f0-9]{64}/);
+    expect(exported).not.toContain('INERT_PRIVATE');
+    const pending = page.waitForEvent('download');
+    await panel.getByRole('button', { name: 'Download feedback' }).click();
+    const download = await pending;
+    expect(download.suggestedFilename()).toBe('aha-reader-feedback.md');
+    expect(await fs.readFile((await download.path())!, 'utf8')).toBe(exported);
+    await expect(panel.getByRole('status')).toHaveText('Local download requested. Nothing was sent.');
+    expect(requests.filter(url => /^https?:/i.test(url))).toEqual([]);
+    expect(errors).toEqual([]);
+    expect(await page.evaluate(() => localStorage.length)).toBe(0);
+    expect(await page.evaluate(() => sessionStorage.length)).toBe(0);
+    await page.reload();
+    await page.locator('.aha-feedback summary').click();
+    await expect(page.locator('.aha-feedback [data-feedback-field="confusion"]')).toHaveValue('');
+    await expect(page.getByRole('button', { name: 'Download feedback' })).toBeDisabled();
+  });
+});
+
+test('independently packaged CLI produces a working default-off or opted-in feedback page', async ({ page }) => {
+  await fixture('<html data-aha-feedback="on"><body><p>Monday review is planned.</p></body></html>', async (root, project) => {
+    const entry = path.join(process.cwd(), 'dist', 'skills', 'aha-explain', 'scripts', 'aha.mjs');
+    const output = path.join(root, 'packaged-feedback.html');
+    const rendered = spawnSync(process.execPath, [entry, 'render-html', project, output], {
+      cwd: root, encoding: 'utf8', timeout: 120000, env: { ...process.env, NODE_OPTIONS: '', NODE_PATH: '' },
+    });
+    expect(rendered.error).toBeUndefined();
+    expect(rendered.status, rendered.stdout + rendered.stderr).toBe(0);
+    const receipt = JSON.parse(rendered.stdout);
+    await page.context().setOffline(true);
+    await page.goto(pathToFileURL(output).href);
+    await page.locator('.aha-feedback summary').click();
+    await page.getByLabel('What is unclear? (optional)').fill('Which source establishes the review?');
+    await expect(page.getByLabel('Feedback export preview')).toHaveValue(new RegExp(receipt.sourceHash));
+    await expect(page.getByRole('button', { name: 'Download feedback' })).toBeEnabled();
+    await fs.writeFile(path.join(project, 'html', 'index.html'), '<html><body><p>Monday review is planned.</p></body></html>');
+    await page.setContent(await prepareHtml(project));
+    await expect(page.locator('.aha-feedback')).toHaveCount(0);
+  });
+});
+
+test('feedback clipboard errors have a usable manual-copy fallback and success is only reported after copying', async ({ page }) => {
+  await fixture('<html data-aha-feedback="on"><body><p>Review is planned.</p></body></html>', async (_root, project) => {
+    await page.setContent(await prepareHtml(project));
+    await page.locator('.aha-feedback summary').click();
+    await page.getByLabel('What is unclear? (optional)').fill('Which condition changes the result?');
+    await page.evaluate(() => {
+      Object.defineProperty(navigator, 'clipboard', { configurable: true, value: {
+        writeText: async () => { throw new Error('Permission denied'); },
+      } });
+    });
+    await page.getByRole('button', { name: 'Copy feedback' }).click();
+    await expect(page.getByRole('status')).toHaveText('Clipboard unavailable. Select the preview and copy it manually, or download the file.');
+    await expect(page.getByLabel('Feedback export preview')).toBeFocused();
+    expect(await page.getByLabel('Feedback export preview').evaluate(node => {
+      const text = node as HTMLTextAreaElement;
+      return text.selectionEnd - text.selectionStart;
+    })).toBeGreaterThan(0);
+    await page.evaluate(() => {
+      Object.defineProperty(navigator, 'clipboard', { configurable: true, value: {
+        writeText: async (text: string) => { document.body.dataset.copiedFeedback = text; },
+      } });
+    });
+    await page.getByRole('button', { name: 'Copy feedback' }).click();
+    await expect(page.getByRole('status')).toHaveText('Copied. Nothing was sent; choose where to paste it.');
+    expect(await page.locator('body').getAttribute('data-copied-feedback')).toContain('Approval: not recorded');
+  });
+});
+
+test('feedback follows bilingual controls without losing input, stays keyboard accessible and fits narrow dark layouts', async ({ page }) => {
+  await fixture(`<html data-aha-feedback="on"><body>
+    <section data-aha-lang="en" data-aha-title="Monday plan"><h1>Monday review is planned</h1></section>
+    <section data-aha-lang="zh" data-aha-title="周一计划"><h1>计划周一评审</h1></section>
+    </body></html>`, async (_root, project) => {
+    await page.setContent(await prepareHtml(project));
+    const panel = page.locator('.aha-feedback');
+    await expect(panel).toHaveAttribute('lang', 'en');
+    await panel.locator('summary').click();
+    await page.getByLabel('What is unclear? (optional)').fill('What counts as completion?');
+    await page.getByRole('button', { name: '中文', exact: true }).focus();
+    await page.keyboard.press('Enter');
+    await expect(panel).toHaveAttribute('lang', 'zh-CN');
+    await expect(page.getByLabel('哪里没看懂？（可选）')).toHaveValue('What counts as completion?');
+    await expect(page.getByLabel('反馈导出预览')).toHaveValue(/Reading language: zh-CN/);
+    await expect(panel.locator('summary')).toHaveText('疑问或异议');
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'dark'));
+    await expect(panel).toHaveCSS('background-color', 'rgb(41, 41, 41)');
+    expect(await page.locator('html').evaluate(node => node.scrollWidth)).toBeLessThanOrEqual(390);
+    await page.getByRole('button', { name: 'English', exact: true }).click();
+    await expect(page.getByLabel('What is unclear? (optional)')).toHaveValue('What counts as completion?');
+    await expect(page.getByLabel('Feedback export preview')).toHaveValue(/Reading language: en/);
+  }, 'html', 'bilingual');
 });
 
 test('packaged deferred scripts preserve native ordering, globals and DOMContentLoaded', async ({ context }) => {

@@ -8,6 +8,7 @@ import { readDossier, writeDossier } from '../research/dossier.js';
 import type { Dossier } from '../research/schema.js';
 import { hashFiles, localPath, noLinks, outsideProject, sourceFiles } from './files.js';
 import { themeCss, themeScript } from './theme.js';
+import { lintHtml } from './readability.js';
 
 export const FORMATS = ['html', 'image', 'pptx', 'video'] as const;
 export type Format = typeof FORMATS[number];
@@ -153,15 +154,20 @@ export async function sourceHash(directory: string): Promise<string> {
 }
 
 export async function checkArtifact(directory: string): Promise<object> {
-  const { artifact, dossier } = await assertAuthored(directory);
+  const { root, artifact, dossier } = await assertAuthored(directory);
   if (artifact.format !== 'pptx') {
     const { prepareHtml } = await import('./html.js');
     await prepareHtml(directory);
   }
+  const readability = artifact.format === 'pptx' ? {
+    status: 'not-checked', mode: 'advisory', codeExecuted: false,
+    reason: 'PPTX author JavaScript is not executed or treated as reader copy. Export visible text and run explain-lint <copy.txt> --format pptx; review speaker notes separately.',
+  } : lintHtml((await sourceFiles(root)).get(artifact.entry)!.toString('utf8'), artifact.format, artifact.entry);
   return {
     ok: true, ready: true, format: artifact.format, researchId: dossier.manifest.researchId,
     researchHash: artifact.researchHash, sourceHash: await sourceHash(directory),
     coverage: artifact.coverage.length, omissions: artifact.omissions.length,
+    readability,
     verification: 'Structural provenance and declared coverage only; not semantic or visual verification. No authored code executed.',
   };
 }

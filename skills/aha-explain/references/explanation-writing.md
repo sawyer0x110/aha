@@ -1,6 +1,6 @@
 # Explain relationships, not just conclusions
 
-Read before styling and reuse during substantive copy revisions. Apply this to prose, headings, diagram labels, slide text and narration, not only long articles. These are editorial questions, not a required paragraph template, length limit or schema.
+Read before styling and during copy revisions. Apply these editorial questions to prose, headings, diagram labels, slide text and narration, not only articles. They are not a required paragraph template, length limit or schema.
 
 ## Build the missing bridge
 
@@ -17,7 +17,7 @@ For example, given evidence that a cache serves a stored response until expiry a
 | "Freshness is a timing problem. Expiry matters." | "After the source changes, the cache may still return its stored response until that entry expires. A request during that interval can therefore receive the older value." |
 | "The right value, in the right place." | Name the stored response, the source value and the condition under which they differ; do not make the reader guess what "right" means. |
 
-The example demonstrates a writing move, not a fact to reuse in unrelated research or a claim that every cache behaves this way.
+This illustrates editing, not evidence about unrelated research or every cache.
 
 ## Make the entry point self-contained
 
@@ -35,12 +35,20 @@ Remove author-outline fragments and process commentary from reader copy. Keep na
 
 When space is tight, remove a secondary branch or move detail into an appendix or disclosure. Keep the objects, causal or logical bridge, and material condition for the claims that remain. The same research can support an exploratory HTML, a recap image, sequential slides and a short mechanism video without identical wording, screenshots or equal coverage.
 
+## Use advisory copy checks, not a compliance gate
+
+Review `readability` from `explain-check` and `video-plan-check`. These are **STE-inspired editorial heuristics, not ASD-STE100 compliance**. They neither rewrite text nor block rendering; zero warnings do not establish clarity.
+
+Edit only when a warning improves the explanation. Preserve objects, causal links, conditions, negation, units and uncertainty. Record justified long sentences or distinct terms in existing QA notes. Do not ban passive voice, blindly replace technical vocabulary or turn "may", a supported range or an unknown count into invented precision. Hints cannot reliably identify missing reasoning; editorial review remains required.
+
+Review diagram labels and generated interaction text manually when extraction misses them. Load [the copy-check contract](readability-checks.md) only at that step when using standalone `explain-lint`, exported copy or diagnostics, not before ordinary writing.
+
 ## Read without decoration, then with the visual
 
 First read representative copy without its layout, diagram or emphasis. Can a reader at the stated knowledge level follow its claims and transitions? Labels need not become standalone essays: review them with their caption or the sentence that introduces the figure.
 
 Then inspect the actual visual with the text. Point to the objects named in the explanation and follow each claimed relationship. Check whether arrows, state changes and labels demonstrate the explanation rather than merely decorate it. Explicitly pictorial instructions such as "compare the highlighted rows" belong in this second pass.
 
-At final review, cover the full reader-facing copy, including interactive states and compressed summaries. A pilot review does not cover later text. Log specific confusing passages and corrections in existing QA notes with section, slide or time locators; separate explanatory clarity from factual support and visual polish. Reading aloud can reveal awkward phrasing, but silent editorial review is not audio listening or learner testing.
+At final review, cover the full reader-facing copy, including interactive states and summaries; a pilot does not cover later text. Log confusing passages and corrections in existing QA notes with section, slide or time locators. Separate clarity, factual support and visual polish; silent editorial review is not audio listening or learner testing.
 
 For bilingual work, use [language](language.md): natural independent expression first, cross-language fidelity second. A faithful translation of an unclear source can leave both languages unclear. Use [artifact QA](artifact-qa.md) for delivery acceptance and report exactly which review remains unperformed.
