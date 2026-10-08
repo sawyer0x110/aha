@@ -90,7 +90,7 @@
     {
       "id": "aha-introduction",
       "research": "examples/aha-introduction/research",
-      "asset": "examples/aha-introduction/projects/video/assets/git-slide-03.png",
+      "asset": "evals/pptx-first-round/inputs/git-slide-03.png",
       "prompt": "给首次接触 Aha 的读者介绍材料所记录的 2026-09-17 冻结快照：先说明两项技能如何由宿主协调，再通过格陵兰投影、CPython 字符串和 Docker 镜像层的三个机制，解释研究如何成为有依据的视觉讲解。将提供的 Git 历史幻灯片截图作为媒介示例，与可编辑的解释内容一起展示；明确截图不是当前行为的新验证，也不是可编辑的原生对象。材料中的旧作品数量与格式清单不作为当前事实。",
       "rubric": [
         {

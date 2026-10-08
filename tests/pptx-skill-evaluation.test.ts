@@ -57,6 +57,16 @@ test('preparation freezes four paired cases, actual bytes, bundles and evaluator
   assert.deepEqual(corpus.cases.map((item: { id: string }) => item.id), ['cpython-string', 'anc', 'greenland', 'aha-introduction']);
   const introduction = corpus.cases.find((item: { id: string }) => item.id === 'aha-introduction');
   assert.equal(introduction.research, 'examples/aha-introduction/research');
+  assert.equal(introduction.asset, 'evals/pptx-first-round/inputs/git-slide-03.png');
+  const image = await fs.readFile(path.join(root, ...introduction.asset.split('/')));
+  const provenance = await readJson(path.join(harness, 'inputs', 'git-slide-03.provenance.json'));
+  assert.equal(prepare.sha256(image), provenance.sha256);
+  assert.equal(provenance.sha256, 'a6d591c09cc6523fb827a8127239864689561805206adfed5e988c4e27bb7861');
+  assert.equal(image.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
+  assert.deepEqual([image.readUInt32BE(16), image.readUInt32BE(20)], provenance.dimensions);
+  assert.equal(provenance.sourceCommit, 'b94202974fccc3ceec21c5226a8467bc47f45194');
+  assert.equal(provenance.sourcePath, 'examples/aha-introduction/projects/video/assets/git-slide-03.png');
+  assert.match(provenance.scope, /historical slide capture retained solely/);
   const dossier = await readJson(path.join(root, introduction.research, 'manifest.json'));
   assert.equal(dossier.contentHash, '6f94bda3a3e6330d31104e59a332a397ee1e0e79deae0946e4b970d9bc630c8d');
   assert.match(introduction.prompt, /2026-09-17/);
