@@ -1,12 +1,13 @@
 import { test, expect } from '@playwright/test';
-import { access } from 'node:fs/promises';
+import { access, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const examples = fileURLToPath(new URL('../../examples/', import.meta.url));
 const gallery = pathToFileURL(path.join(examples, 'index.html')).href;
-const outputs = ['anc', 'greenland', 'cpython-string', 'docker-layers', 'aha-introduction']
-  .flatMap(topic => ['html', 'png', 'pptx', 'mp4'].map(extension => `${topic}/${topic}.${extension}`)).sort();
+const manifest: { requestedOutputs: { topic: string; format: string; language?: string; file: string }[] } =
+  JSON.parse(await readFile(path.join(examples, 'delivery-manifest.json'), 'utf8'));
+const outputs = manifest.requestedOutputs.map(entry => entry.file).sort();
 
 for (const width of [1280, 390]) {
   for (const theme of ['light', 'dark']) {
@@ -83,7 +84,17 @@ for (const width of [1280, 390]) {
   }
 }
 
-test('both gallery languages retain all twenty local outputs and Chinese topic notes', async ({ page }) => {
+test('both gallery languages retain all twenty-one published outputs, both introduction videos and Chinese topic notes', async ({ page }) => {
+  expect(outputs).toHaveLength(21);
+  expect(new Set(outputs).size).toBe(21);
+  expect([...new Set(manifest.requestedOutputs.map(entry => entry.topic))].sort())
+    .toEqual(['aha-introduction', 'anc', 'cpython-string', 'docker-layers', 'greenland']);
+  expect(manifest.requestedOutputs.filter(entry => entry.topic === 'aha-introduction' && entry.format === 'video')
+    .map(entry => ({ language: entry.language, file: entry.file })).sort((a, b) => a.file.localeCompare(b.file)))
+    .toEqual([
+      { language: 'en', file: 'aha-introduction/aha-introduction.en.mp4' },
+      { language: 'zh', file: 'aha-introduction/aha-introduction.zh.mp4' },
+    ]);
   await page.goto(gallery);
   for (const language of ['en', 'zh-CN']) {
     const section = page.locator(`[data-gallery-lang="${language}"]`);
@@ -97,6 +108,7 @@ test('both gallery languages retain all twenty local outputs and Chinese topic n
       await access(path.join(examples, link));
     }
     expect([...new Set(links.filter(link => /\.(html|png|pptx|mp4)$/.test(link)))].sort()).toEqual(outputs);
+    expect(links).not.toContain('aha-introduction/aha-introduction.mp4');
     const notes = section.locator('article a[href$="/README.md"]');
     await expect(notes).toHaveCount(5);
     for (const text of await notes.allTextContents()) {

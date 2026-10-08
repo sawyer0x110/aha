@@ -1,0 +1,14 @@
+{
+  "file": "git-slide-03.png",
+  "sha256": "a6d591c09cc6523fb827a8127239864689561805206adfed5e988c4e27bb7861",
+  "dimensions": [1600, 900],
+  "sourceCommit": "b94202974fccc3ceec21c5226a8467bc47f45194",
+  "sourcePath": "examples/aha-introduction/projects/video/assets/git-slide-03.png",
+  "sourceBlob": "c888705f1292d31bec235935f4ad54f631b8dcb8",
+  "provenancePathAtSourceCommit": "examples/aha-introduction/projects/video/resource-provenance.json",
+  "originalCapture": "evals/examples/refresh-20260916/git-merge/slides/slide-03.png",
+  "historicalArtifact": "examples/git-merge/git-merge.pptx",
+  "historicalArtifactOutputHash": "e7a5a4533f45f02765f343644fe97dbcc31ec3e376136a947ce6a766f486f015",
+  "scope": "Byte-identical repository-authored historical slide capture retained solely for the PPTX image/native-content evaluation. No new rendering, placeholder image, current example publication or native-editability validation.",
+  "rights": "Original repository example visual under the repository license scope. Installed fonts were used to render the capture; no font software is embedded or redistributed."
+}
