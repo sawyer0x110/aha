@@ -10,6 +10,7 @@ import { createResearchDraft, checkResearchDraft, buildDossier, readDossier, wri
 import { FORMATS, LANGUAGES, type Format, type ArtifactLanguage, initArtifact, checkArtifact } from '../artifacts/project.js';
 import { renderHtml, renderImage, renderPptx, checkBrowser, runPptxWorker } from '../artifacts/render.js';
 import { comparePptx, readPptx } from '../artifacts/pptx-fidelity.js';
+import { exportHtml } from '../artifacts/share.js';
 import { prepareVideoPlan, validateVideoPlan, checkPlan, type VideoPlan } from '../media/plan.js';
 import { lintHtml, lintText, lintNarration } from '../artifacts/readability.js';
 import { importAudio, synthesize } from '../media/audio.js';
@@ -29,6 +30,7 @@ const USAGE = [
   'explain-check <project-directory>',
   'explain-lint <copy.txt|copy.md|source.html|plan.json> [--format html|image|pptx|video]',
   'render-html <project-directory> <new-output.html>',
+  'export-html <project-directory> <new-output-directory> --format pdf|png [--language en|zh|all] [--page-height 240..4096] --allow-code',
   'render-image <project-directory> <new-output.png> --allow-code',
   'render-pptx <project-directory> <new-output.pptx> --allow-code',
   'pptx-compare <before.pptx> <after.pptx> <new-report.json> [--accept <changes.json>]',
@@ -181,6 +183,17 @@ async function execute(command: string, args: string[]): Promise<object> {
       extension(at(1), '.html');
       return renderHtml(at(0), at(1));
     }
+    case 'export-html': {
+      const { at, values, enabled } = parse(args, 2, ['--format', '--language', '--page-height'], ['--allow-code']);
+      const format = values['--format'];
+      if (format !== 'pdf' && format !== 'png') fail('EXPORT_FORMAT', 'Choose --format pdf or png.');
+      const language = values['--language'];
+      if (language !== undefined && language !== 'en' && language !== 'zh' && language !== 'all') fail('ARTIFACT_LANGUAGE', 'Choose en, zh or all.');
+      return exportHtml(at(0), at(1), enabled.has('--allow-code'), {
+        format, ...(language === undefined ? {} : { language }),
+        ...(values['--page-height'] === undefined ? {} : { pageHeight: Number(values['--page-height']) }),
+      });
+    }
     case 'render-image':
     case 'render-pptx': {
       const { at, enabled } = parse(args, 2, [], ['--allow-code']);
@@ -257,7 +270,10 @@ try {
   console.log(JSON.stringify(await execute(command, args)));
 } catch (error) {
   if (error instanceof AhaError) {
-    console.log(JSON.stringify({ status: 'failed', error: { code: error.code, message: error.message, path: error.path } }));
+    console.log(JSON.stringify({
+      status: 'failed', error: { code: error.code, message: error.message, path: error.path },
+      ...(error.diagnostics ? { diagnostics: error.diagnostics } : {}),
+    }));
   } else if (error instanceof Error) {
     const code = 'code' in error && typeof error.code === 'string' ? error.code : 'INTERNAL_ERROR';
     const message = code === 'EEXIST'

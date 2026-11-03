@@ -51,3 +51,18 @@ node "<absolute installed skill>/scripts/aha.mjs" browser-check <project-directo
 `render-html` packages source without executing authored code; it is not evidence of visual quality. Browser execution needs reviewed code approval even when the HTML was packaged without execution. The CLI check does not replace actually opening and interacting with the delivered output.
 
 Follow [artifact QA](artifact-qa.md) for offline desktop/narrow-screen, keyboard, reduced-motion, font and bilingual checks. Inspect every authored interaction and the structures actually present; long prose, wide tables and sequence diagrams are capability-test cases, not mandatory ingredients of every work. Record what was and was not observed.
+
+## Static sharing copies
+
+When asked to share an existing HTML explanation as PDF or PNG slices, reuse its source project rather than reauthoring an infographic:
+
+```text
+node "<absolute installed skill>/scripts/aha.mjs" export-html <project-directory> <new-output-directory> --format pdf --allow-code
+node "<absolute installed skill>/scripts/aha.mjs" export-html <project-directory> <new-output-directory> --format png --page-height 1600 --language all --allow-code
+```
+
+Obtain reviewed browser-execution permission first; use `doctor --for browser` when availability is unknown. This shares the existing isolated, offline renderer and never grants network/upload permission. Outputs must be in a fresh directory outside the project. Preserve previous deliveries; only this operation's newly created files are cleaned on failure. `receipt.json` binds source/research identity and each PDF/PNG hash.
+
+`--language all` (default) produces separate English/Chinese outputs for bilingual HTML; `en` or `zh` selects a present branch. Single-language projects export their declared language; legacy projects without metadata use the `en` filename without translating content. Output names are `en.pdf`/`zh.pdf` or ordered `en-001.png`/`zh-001.png` slices. Width is the project viewport width. Page height is 240–4096 integer CSS pixels, default 1600; each language is limited to 100 pages and 100000 CSS pixels, with 128 MiB total output.
+
+State explicitly that interactions are lost: these are initial reading-state snapshots, not interactive disclosures, feedback, navigation or animations. The reading viewport is extended to document height; layouts that then grow or clip fail with `EXPORT_REFLOW`, not silent truncation. Fixed page boundaries can split text or figures; inspect each boundary and final page in both languages and keep the HTML when interaction matters. PDF/PNG sharing is not new `image` authorship, composition or QA, is not native editable PPTX, and does not certify facts, translation or visual quality.

@@ -134,6 +134,8 @@ node .\dist\cli\aha.mjs render-html ".\artifacts\topic\projects\html" ".\artifac
 
 HTML 打包不执行脚本，内嵌本地资源与本地 Mermaid，不靠 CDN 兜底。默认交付独立离线文件，不自动把完整研究档案塞进页面。
 
+`explain-check` 失败时仍返回退出码 1、`status: "failed"` 和首个 `error`，同时用 `diagnostics` 一次列出相互独立的 Schema 字段或草稿／覆盖错误。每项带路径和可执行修复建议；覆盖项用 `artifact.json` 的 JSON Pointer，scaffold 标记附源文件／行号。按定位局部修复，不重写无关源码。检查分阶段：Schema 无效、入口不安全／缺失、研究身份或快照无效时，停止依赖它们的检查；HTML 资源打包仍在首错停止。失败结果不会成为有效输入，也不执行作者代码。
+
 每种请求的格式单独建立、编写作品源。下列路径代表**已编写好的**项目，不是上面 HTML 初始化命令的产物：
 
 ```powershell
@@ -164,6 +166,22 @@ node .\dist\cli\aha.mjs pptx-compare ".\before.pptx" ".\after.pptx" ".\qa\pptx-c
 已确认差异及理由仍保留。ID 绑定前后文件哈希与精确差异；过期、未知、重复或通配确认报错。`status: "compared"`（退出码 0）只说明提取到的差异为空或已明确记录，且没有剩余提取诊断，**不是事实验证、渲染可见性证明、原生编辑验收或视觉验收**。
 
 输入须为无链接的本地普通 `.pptx` 文件，每份不超过 **16 MiB**；复用 ZIP 边界，解压总量不超过 128 MiB、10000 个条目。报告与确认 JSON 上限 4 MiB；超限明确报错，不截断内容。不覆盖已有输出。无效 ZIP／XML、DTD、不安全／缺失引用部件、外部依赖及有歧义的 AlternateContent 报错。不支持图片／媒体、SmartArt／OLE、扩展图表、母版／版式可见性解析、字体／裁切、动画及内嵌工作簿重算／核对；检测到图片／不支持的图形、继承文本或缓存／工作簿缺口时保留诊断，须另行审阅，`--accept` 不会隐藏诊断。完整限定语仅逐字比较，不语义识别。命令不执行代码或内嵌内容、不联网、不需 `--allow-code`；原有渲染执行授权不变。
+
+### 将已有 HTML 分享为 PDF 或 PNG 切片
+
+针对**已经编写的 HTML 项目**导出静态阅读副本，不是新创作的信息图：
+
+```powershell
+# 先审阅源并批准浏览器执行；这不授予上传权限。
+node .\dist\cli\aha.mjs export-html ".\artifacts\topic\projects\html" ".\artifacts\topic\runs\round-01\outputs\share-pdf" --format pdf --allow-code
+node .\dist\cli\aha.mjs export-html ".\artifacts\topic\projects\html" ".\artifacts\topic\runs\round-01\outputs\share-png" --format png --page-height 1600 --language all --allow-code
+```
+
+需要 `doctor --for browser` 使用的已安装浏览器；复用离线打包和隔离浏览器，不下载浏览器、不取远程资源、不上传、不开放网络。目标必须是**项目之外的新目录**，不覆盖现有目录、成品或收据。`receipt.json` 绑定研究／源码身份和每个成品哈希。失败只清理本次刚创建的文件，不删除历史交付。
+
+默认 `--language all` 为双语 HTML 分别导出 `en.pdf`／`zh.pdf` 或 `en-001.png`／`zh-001.png` 序列。`en` 或 `zh` 选择已有分支；单语项目只导出该语言。旧元数据未声明语言时按 `en` 处理，不翻译内容。宽度沿用 `artifact.width`；`--page-height` 为 240–4096 的整数 CSS 像素（默认 1600），每种语言最多 100 页、总高 100000 CSS 像素，所有输出合计最多 128 MiB。PNG 连续切片，末片缩短；PDF 使用固定高度浏览器分页。
+
+**交互会丢失**：只捕获语言分支的初始状态，不保留已展开内容、悬停、反馈、导航或动画。分享时将阅读视口扩至文档高度；依赖视口高度、在此步骤继续增长或发生裁剪的布局会以 `EXPORT_REFLOW` 失败，不静默截断。固定页边界可能切开正文／图形，须检查每个页边界、字体、两种语言和末页。这条分享路径不能替代 `image` 格式的创作／构图／QA，不创建可编辑 PPTX，不认证翻译或视觉质量。讲解依赖交互时同时保留 HTML。
 
 ### 提示式文案可读性检查
 

@@ -21,3 +21,5 @@ For an existing artifact, start with [the revision path](references/artifact-aut
 All commands use `node "<absolute installed skill>/scripts/aha.mjs" ...`, resolved from this installation, never an assumed working-directory path. When capabilities are unknown, use `doctor --for <current-step>` as described in execution; missing optional tools block only the corresponding step, not unrelated authoring.
 
 Use [artifact authoring's delivery lifecycle](references/artifact-authoring.md#working-history-and-current-delivery) to distinguish current deliverables from working history and provide source, research identity, resource notes and QA limits. Do not expose full private research by default. Metadata consistency is not semantic proof; static checks are not visual review, and the runtime is not a sandbox.
+
+For PDF/PNG sharing of an existing HTML explanation, use [HTML's static sharing path](references/html.md#static-sharing-copies), preserving source identity and both requested languages. Disclose lost interaction and inspect page boundaries; this is not `image`-format authorship or composition/QA.

@@ -134,6 +134,8 @@ node .\dist\cli\aha.mjs render-html ".\artifacts\topic\projects\html" ".\artifac
 
 HTML packaging does not execute scripts. It embeds local resources and local Mermaid, with no CDN fallback. The default delivery is a standalone offline file, not a page containing the entire research archive.
 
+On failure, `explain-check` retains exit code 1, `status: "failed"` and the first `error`, adding `diagnostics` for independent schema fields or draft/coverage repairs. Each diagnostic has a path and actionable suggestion; coverage uses JSON pointers in `artifact.json`, and scaffold markers include source file/line. Repair those locations without rewriting unrelated source. Validation is staged: invalid schema, unsafe/missing entry, invalid research identity or snapshot stops dependent checks; HTML resource packaging still stops at its first error. No failed check becomes valid input, and no authored code is run.
+
 Create and author each requested medium separately. The following paths denote **already authored** projects; they are not produced by the preceding HTML initializer:
 
 ```powershell
@@ -165,6 +167,22 @@ node .\dist\cli\aha.mjs pptx-compare ".\before.pptx" ".\after.pptx" ".\qa\pptx-c
 Accepted changes remain visible with their reasons. IDs bind both file hashes and exact change content; stale, unknown, duplicate or wildcard acceptances fail. `status: "compared"` (exit 0) means only that extracted differences are absent or explicitly recorded and no extraction diagnostics remain—not facts verified, rendered visibility, native editing acceptance or visual QA.
 
 Input must be regular local `.pptx` files without links, each at most **16 MiB**; the shared ZIP checks cap expansion at 128 MiB and 10000 entries. Reports and acceptance JSON are capped at 4 MiB; oversized reports fail explicitly, without truncating content. Existing outputs are never overwritten. Invalid ZIP/XML, DTDs, unsafe/missing referenced parts, external dependencies and ambiguous AlternateContent fail. Images/media, SmartArt/OLE, extended charts, inherited master/layout visibility, fonts/clipping, animation and embedded workbook recalculation/reconciliation are not supported. Detected image/unsupported graphic, inherited text or cache/workbook gaps remain diagnostics requiring separate review; `--accept` does not hide them. Complete extracted qualifiers are compared literally, not semantically identified. This command executes no code or embedded content, performs no network access and requires no `--allow-code`; rendering retains its existing authorization boundary.
+
+### Share existing HTML as PDF or PNG slices
+
+For a static reading copy of an **already authored HTML project**, not a new image composition:
+
+```powershell
+# Review source and approve browser execution first; this does not authorize uploads.
+node .\dist\cli\aha.mjs export-html ".\artifacts\topic\projects\html" ".\artifacts\topic\runs\round-01\outputs\share-pdf" --format pdf --allow-code
+node .\dist\cli\aha.mjs export-html ".\artifacts\topic\projects\html" ".\artifacts\topic\runs\round-01\outputs\share-png" --format png --page-height 1600 --language all --allow-code
+```
+
+Requires the installed browser used by `doctor --for browser`. It reuses offline packaging and the isolated browser; no browser downloads, remote assets, uploads or network opt-in. The destination must be a **new directory outside the project**; existing outputs, directories and receipts are never overwritten. `receipt.json` binds research/source identity and each output hash. A failed export removes only the files it just created, not historical deliveries.
+
+Default `--language all` exports separate `en.pdf`/`zh.pdf` or `en-001.png`/`zh-001.png` sequences for bilingual HTML. `en` or `zh` selects an existing branch; single-language projects export only that language. Legacy metadata without a language is treated as `en`, without translating its content. Width follows `artifact.width`; `--page-height` is an integer 240–4096 CSS pixels (default 1600), at most 100 pages and 100000 CSS pixels per language, with a 128 MiB total output budget. PNG slices are contiguous and the final slice is shortened; PDF uses fixed-height browser pages.
+
+**Interactions are lost**: only the initial language states are captured, not opened disclosures, hover content, feedback, navigation or animation. Sharing extends the reading viewport to the document height; viewport-height-dependent layouts that grow or clip during this step fail with `EXPORT_REFLOW` rather than silently truncating. Fixed-height boundaries can split prose/figures; inspect every page edge, fonts, both languages and the final page. This sharing path does not replace `image` authoring/composition/QA, create editable PPTX, certify translation or prove visual quality. Keep the interactive HTML alongside it when interaction is part of the explanation.
 
 ### Advisory readability feedback
 

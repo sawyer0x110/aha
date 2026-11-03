@@ -60,6 +60,53 @@ test('draft source remains editable, but cannot pass readiness with only status 
   await assert.rejects(checkArtifact(project), code('ARTIFACT_DRAFT'));
 }));
 
+test('explain checks batch independent draft and coverage repairs with exact input locators', async () => fixture(async (_root, project) => {
+  await assert.rejects(checkArtifact(project), (error: unknown) => {
+    assert.ok(error instanceof AhaError);
+    assert.equal(error.code, 'ARTIFACT_DRAFT');
+    assert.equal(error.diagnostics?.filter(item => item.code === 'COVERAGE_MISSING').length, 2);
+    assert.ok(error.diagnostics?.some(item => item.file === 'html/index.html' && item.path.includes(':')));
+    assert.ok(error.diagnostics?.every(item => item.suggestion.length > 10));
+    return true;
+  });
+  await author(project);
+  await metadata(project, artifact => {
+    artifact.coverage = [{ id: 'same', claimIds: ['missing'] }, { id: 'same', claimIds: ['c1'] }];
+    artifact.omissions = [{ claimId: 'c1', reason: 'Conflicting omission' }, { claimId: 'unknown', reason: 'Unknown claim' }];
+  });
+  await assert.rejects(checkArtifact(project), (error: unknown) => {
+    assert.ok(error instanceof AhaError);
+    assert.deepEqual(error.diagnostics?.map(item => item.path),
+      ['/coverage/0/claimIds/0', '/coverage/1/id', '/omissions/0/claimId', '/omissions/1/claimId', '/coverage']);
+    return true;
+  });
+}));
+
+test('invalid metadata batches schema fields but never continues into coverage or authored code', async () => fixture(async (_root, project) => {
+  await metadata(project, artifact => {
+    artifact.width = 0;
+    artifact.height = 0;
+    artifact.title = '';
+  });
+  await assert.rejects(checkArtifact(project), (error: unknown) => {
+    assert.ok(error instanceof AhaError);
+    assert.equal(error.code, 'SCHEMA_INVALID');
+    assert.deepEqual(new Set(error.diagnostics?.map(item => item.path)), new Set(['/width', '/height', '/title']));
+    assert.ok(error.diagnostics?.every(item => item.code === 'SCHEMA_INVALID'));
+    return true;
+  });
+  await metadata(project, artifact => {
+    artifact.width = 1280; artifact.height = 720; artifact.title = 'Fixed';
+    artifact.researchHash = '0'.repeat(64);
+  });
+  await assert.rejects(checkArtifact(project), (error: unknown) => {
+    assert.ok(error instanceof AhaError);
+    assert.equal(error.code, 'RESEARCH_MISMATCH');
+    assert.equal(error.diagnostics, undefined);
+    return true;
+  });
+}));
+
 test('new artifacts default to bilingual HTML or English media and reject unsupported combinations', async () => fixture(async (root) => {
   for (const format of ['html', 'image', 'pptx', 'video'] as const) {
     const project = path.join(root, `default-${format}`);
