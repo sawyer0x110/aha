@@ -70,6 +70,19 @@ No experiment engine, scenarios, slides, or model selection are prerequisites. `
 
 ## 2. Author a medium-specific project
 
+### Optional finite-state mechanism evidence
+
+For a bounded state/event explanation, `mechanism-check <model.json> [--trace trace.json]` checks inert JSON without importing or executing the studied code. Declare manual teaching model, code-derived model or runtime record, plus transition bases, assumptions and omissions. It reports reachable/unreachable states, shortest forbidden-state counterexamples and the first illegal trace step, with model/trace content hashes. Exit 1 with `status: "violated"` means a rule or trace failed; malformed inputs use `status: "failed"`. This is optional, independent of research/artifact schemas and layouts, and is **not proof of a real program's correctness or observed execution**.
+
+```powershell
+node .\dist\cli\aha.mjs mechanism-check ".\examples\mechanism-retry\model.json" --trace ".\examples\mechanism-retry\trace.json"
+node .\dist\cli\aha.mjs mechanism-check ".\examples\mechanism-retry\model.json" --trace ".\examples\mechanism-retry\illegal-trace.json"
+```
+
+The second command deliberately exits 1 at step index 2 (restart after completion). These are source-checkout developer examples, not new gallery deliveries or portable ZIP contents. See the [retry walkthrough](../examples/mechanism-retry/README.md) and [full input/result contract](../skills/aha-explain/references/mechanism-checks.md), including a copyable minimal model for installed users. No `--allow-code` is needed for inert checking; executing authored visual code still needs separate explicit approval and is not OS-sandboxed.
+
+### Initialize the requested medium
+
 ```powershell
 node .\dist\cli\aha.mjs explain-init ".\artifacts\topic\research" html ".\artifacts\topic\projects\html"
 ```
@@ -123,6 +136,8 @@ node .\dist\cli\aha.mjs render-html ".\artifacts\topic\projects\html" ".\artifac
 
 HTML packaging does not execute scripts. It embeds local resources and local Mermaid, with no CDN fallback. The default delivery is a standalone offline file, not a page containing the entire research archive.
 
+On failure, `explain-check` retains exit code 1, `status: "failed"` and the first `error`, adding `diagnostics` for independent schema fields or draft/coverage repairs. Each diagnostic has a path and actionable suggestion; coverage uses JSON pointers in `artifact.json`, and scaffold markers include source file/line. Repair those locations without rewriting unrelated source. Validation is staged: invalid schema, unsafe/missing entry, invalid research identity or snapshot stops dependent checks; HTML resource packaging still stops at its first error. No failed check becomes valid input, and no authored code is run.
+
 Create and author each requested medium separately. The following paths denote **already authored** projects; they are not produced by the preceding HTML initializer:
 
 ```powershell
@@ -134,6 +149,58 @@ node .\dist\cli\aha.mjs render-pptx ".\artifacts\topic\projects\pptx" ".\artifac
 ```
 
 PNG captures a purpose-built infographic, not an article-length screenshot. The PPTX entry receives a runtime-provided PptxGenJS instance to create native text, shapes, charts, and slides. Successful file creation does not prove native editability and every page's appearance were reviewed in a presentation application.
+
+### Compare content before and after a PPTX revision
+
+After rendering a new candidate, compare the actual old and new files, not just their receipts:
+
+```powershell
+node .\dist\cli\aha.mjs pptx-compare ".\before.pptx" ".\after.pptx" ".\qa\pptx-content.json"
+```
+
+This read-only command writes both complete OOXML content inventories and `changes` with old/new values and slide/XML locators. It compares native slide text (including titles and complete qualifiers), native table cells and merge structure, standard chart titles/labels/categories/cached numbers/formulas, and speaker notes **in a separate channel**. Notes cannot compensate for deleted slide text. Slides follow presentation relationship order. Exact decoded text is retained; moving objects, renumbering parts or reflowing paragraphs can produce removal/addition pairs rather than semantic matches.
+
+Unaccepted differences or extraction diagnostics produce `status: "review-required"` and exit **1**, but the report is still saved. Review it before continuing dependent commands. For legitimate changes, write a local JSON file containing only exact report IDs and meaningful reasons, e.g. `{ "changes": [{ "id": "<exact-change-id>", "reason": "Approved removal of the obsolete title." }] }`, then rerun to a **new** report path:
+
+```powershell
+node .\dist\cli\aha.mjs pptx-compare ".\before.pptx" ".\after.pptx" ".\qa\pptx-content-reviewed.json" --accept ".\intentional-changes.json"
+```
+
+Accepted changes remain visible with their reasons. IDs bind both file hashes and exact change content; stale, unknown, duplicate or wildcard acceptances fail. `status: "compared"` (exit 0) means only that extracted differences are absent or explicitly recorded and no extraction diagnostics remain—not facts verified, rendered visibility, native editing acceptance or visual QA.
+
+Input must be regular local `.pptx` files without links, each at most **16 MiB**; the shared ZIP checks cap expansion at 128 MiB and 10000 entries. Reports and acceptance JSON are capped at 4 MiB; oversized reports fail explicitly, without truncating content. Existing outputs are never overwritten. Invalid ZIP/XML, DTDs, unsafe/missing referenced parts, external dependencies and ambiguous AlternateContent fail. Images/media, SmartArt/OLE, extended charts, inherited master/layout visibility, fonts/clipping, animation and embedded workbook recalculation/reconciliation are not supported. Detected image/unsupported graphic, inherited text or cache/workbook gaps remain diagnostics requiring separate review; `--accept` does not hide them. Complete extracted qualifiers are compared literally, not semantically identified. This command executes no code or embedded content, performs no network access and requires no `--allow-code`; rendering retains its existing authorization boundary.
+
+### Share existing HTML as PDF or PNG slices
+
+For a static reading copy of an **already authored HTML project**, not a new image composition:
+
+```powershell
+# Review source and approve browser execution first; this does not authorize uploads.
+node .\dist\cli\aha.mjs export-html ".\artifacts\topic\projects\html" ".\artifacts\topic\runs\round-01\outputs\share-pdf" --format pdf --allow-code
+node .\dist\cli\aha.mjs export-html ".\artifacts\topic\projects\html" ".\artifacts\topic\runs\round-01\outputs\share-png" --format png --page-height 1600 --language all --allow-code
+```
+
+Requires the installed browser used by `doctor --for browser`. It reuses offline packaging and the isolated browser; no browser downloads, remote assets, uploads or network opt-in. The destination must be a **new directory outside the project**; existing outputs, directories and receipts are never overwritten. `receipt.json` binds research/source identity and each output hash. A failed export removes only the files it just created, not historical deliveries.
+
+Default `--language all` exports separate `en.pdf`/`zh.pdf` or `en-001.png`/`zh-001.png` sequences for bilingual HTML. `en` or `zh` selects an existing branch; single-language projects export only that language. Legacy metadata without a language is treated as `en`, without translating its content. Width follows `artifact.width`; `--page-height` is an integer 240–4096 CSS pixels (default 1600), at most 100 pages and 100000 CSS pixels per language, with a 128 MiB total output budget. PNG slices are contiguous and the final slice is shortened; PDF uses fixed-height browser pages.
+
+The packager's language-switch navigation is omitted before measuring and capturing PDF/PNG content, so nonfunctional runtime buttons do not consume page space. The receipt records `runtimeLanguageControls: "omitted"`. Authored controls are not removed; offline HTML keeps its working language switches, and project sources are unchanged.
+
+**Interactions are lost**: only the initial language states are captured, not opened disclosures, hover content, feedback, navigation or animation. Sharing extends the reading viewport to the document height; viewport-height-dependent layouts that grow or clip during this step fail with `EXPORT_REFLOW` rather than silently truncating. Fixed-height boundaries can split prose/figures; inspect every page edge, fonts, both languages and the final page. This sharing path does not replace `image` authoring/composition/QA, create editable PPTX, certify translation or prove visual quality. Keep the interactive HTML alongside it when interaction is part of the explanation.
+
+### Optional HTML layout diagnostics
+
+After reviewing and approving browser execution, request a new report outside the source project:
+
+```powershell
+node .\dist\cli\aha.mjs browser-check ".\artifacts\topic\projects\html" --allow-code --layout-report ".\artifacts\topic\runs\round-01\qa\layout.json"
+```
+
+This uses the existing offline browser isolation at **390×844 and 1280×900 CSS pixels**, in light/reduced-motion mode. Bilingual HTML is checked separately in English and Chinese at both widths. `render-html` still only packages; it never implicitly runs this check. No browser is installed automatically; missing browsers, script errors, broken images or prohibited networking fail rather than returning an empty successful report.
+
+The JSON locates horizontal overflow, clipped text, SVG labels below 12 screen CSS pixels, and SVG label bounding-box overlap above 20%, using CSS selectors, excerpts and document-coordinate boxes. Intentional scroll containers are allowed. Warnings are review candidates, not pixel-perfect proof; intentional ellipsis/clipping may be reported. It does not read raster/canvas text or detect arbitrary occlusion. At most 200 issues are listed per viewport/language; total counts and `truncated` disclose omitted findings. Extremely large DOMs (over 10,000 elements or 1,000 SVG text labels) fail instead of silently checking a subset.
+
+`layout.json.evidence` contains PNGs for the top and up to 12 issue locations per check, with screenshot-to-issue/scroll-offset mappings; it is not full-page coverage. Source/research hashes, PNG hashes and `layout.json.receipt.json` identify this revision. Preserve these files together. All three destinations must be new; nothing is overwritten. Findings persist with `status: "issues-found"`, `ok: false` and exit 1; no findings produce `status: "checked"`, `ok: true`. Errors instead return `failed` without committing a report. Automatic diagnostics do **not** certify visual quality, translation, facts, understanding or every interaction; open and inspect the delivered page separately. See [HTML diagnostics](../skills/aha-explain/references/html.md#build-and-inspect).
 
 ### Advisory readability feedback
 

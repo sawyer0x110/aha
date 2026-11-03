@@ -75,6 +75,8 @@ Before executing source, apply [the execution contract](execution.md), including
 
 Run `explain-check` after actual authoring, then the medium's render command and [artifact QA](artifact-qa.md). Edit the source when revising; do not leave a one-off patched output that cannot be reproduced.
 
+Failed checks retain a nonzero exit and the first `error`; `diagnostics` batches independent schema fields or draft/coverage errors with input paths and local repair suggestions. Use `artifact.json` JSON pointers or scaffold file/line locators to repair only affected source/metadata, preserving unrelated edits and claim meaning. An invalid schema, unsafe/missing entry or invalid research snapshot stops dependent validation; HTML resource packaging remains fail-fast. Do not treat a failure as valid input, delete scaffold markers to feign completion, or rewrite the whole artifact to repair one field. Advisory readability warnings remain separate from blocking errors.
+
 ## Working history and current delivery
 
 Separate three locations, without adding schema fields or a new CLI mode:

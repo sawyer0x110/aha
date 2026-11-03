@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "1.0.0",
+  "title": "One job, at most two attempts: a hand-authored retry model",
+  "provenance": {
+    "kind": "manual-teaching-model",
+    "description": "Original teaching example, not extracted from worker.mjs or an observed execution.",
+    "references": []
+  },
+  "assumptions": [
+    "Exactly one job and one active attempt; events are processed one at a time.",
+    "A failure of attempt 1 permits exactly one retry; a failure of attempt 2 exhausts the budget.",
+    "An active attempt receives either success or failure, not both."
+  ],
+  "omissions": [
+    "No wall clock, overlapping requests, transport cleanup, cancellation, backoff or external side effects.",
+    "Exactly-once delivery and actual implementation behavior are not established."
+  ],
+  "states": [
+    { "id": "queued", "description": "Job waits to start." },
+    { "id": "attempt-1", "description": "First attempt is active." },
+    { "id": "retry-ready", "description": "First attempt failed; one retry remains." },
+    { "id": "attempt-2", "description": "Second and final attempt is active." },
+    { "id": "done", "description": "An attempt succeeded; this model permits no more events." },
+    { "id": "exhausted", "description": "Second attempt failed; this model permits no more events." },
+    { "id": "over-budget", "description": "A forbidden third attempt; intentionally unreachable in this model." }
+  ],
+  "events": [
+    { "id": "start", "description": "Start the queued job." },
+    { "id": "success", "description": "The current attempt succeeds." },
+    { "id": "failure", "description": "The current attempt fails." },
+    { "id": "retry", "description": "Consume the one remaining retry." }
+  ],
+  "initial": "queued",
+  "transitions": [
+    { "id": "start-first", "from": "queued", "event": "start", "to": "attempt-1", "basis": "Teaching rule: only a queued job can start its first attempt." },
+    { "id": "first-success", "from": "attempt-1", "event": "success", "to": "done", "basis": "Teaching rule: success terminates the job." },
+    { "id": "first-failure", "from": "attempt-1", "event": "failure", "to": "retry-ready", "basis": "Teaching rule: the first failure leaves one retry." },
+    { "id": "start-retry", "from": "retry-ready", "event": "retry", "to": "attempt-2", "basis": "Teaching rule: consume the single retry." },
+    { "id": "retry-success", "from": "attempt-2", "event": "success", "to": "done", "basis": "Teaching rule: retry success terminates the job." },
+    { "id": "retry-failure", "from": "attempt-2", "event": "failure", "to": "exhausted", "basis": "Teaching rule: two failures exhaust the budget." }
+  ],
+  "rules": [
+    { "id": "retry-budget", "description": "A third attempt must not be reachable.", "forbiddenStates": ["over-budget"] }
+  ]
+}

@@ -42,8 +42,32 @@ Use `doctor --for html` if packaging capabilities are unknown, or `doctor --for 
 node "<absolute installed skill>/scripts/aha.mjs" explain-check <project-directory>
 node "<absolute installed skill>/scripts/aha.mjs" render-html <project-directory> <new.html>
 node "<absolute installed skill>/scripts/aha.mjs" browser-check <project-directory> --allow-code
+node "<absolute installed skill>/scripts/aha.mjs" browser-check <project-directory> --allow-code --layout-report <new-report.json>
 ```
 
 `render-html` packages source without executing authored code; it is not evidence of visual quality. Browser execution needs reviewed code approval even when the HTML was packaged without execution. The CLI check does not replace actually opening and interacting with the delivered output.
 
+For optional actual-browser HTML layout diagnostics, add `--layout-report` with a new `.json` destination outside the source project. It reuses the offline isolated browser, checks 390×844 and 1280×900 CSS-pixel viewports in light/reduced-motion mode, and visits both English and Chinese for bilingual projects. No browser is downloaded; missing browsers, script errors, broken images and attempted networking fail without a success report. Without this option, existing `browser-check` behavior is unchanged.
+
+The report includes source/research hashes, the source entry, per-viewport/language CSS selectors, text excerpts, document-coordinate boxes, total issue counts and `truncated` indicators (at most 200 listed issues per check). It detects horizontal overflow, text exceeding hidden/clip boxes, SVG text below 12 screen CSS pixels, and SVG label bounding-box overlap above 20%. Intentional scroll containers are not treated as viewport overflow. Ellipsis, intentional clipping and overlapping boxes may still be legitimate: inspect each candidate instead of automatically rewriting it. Raster/canvas text, general occlusion and semantic diagram correctness are not analyzed.
+
+The report's sibling `<report.json>.evidence` directory contains viewport PNGs at the top and up to 12 issue locations per check; `checks[].evidence` maps screenshots to scroll offsets and issue indexes. This is bounded evidence, not full-page coverage. PNG hashes and the report receipt bind evidence to this source revision; do not detach them or reuse after edits. Existing reports, receipts and evidence paths are never replaced. A completed check returns `checked` with `ok: true` only when these heuristics find no issues; findings return `issues-found`, `ok: false` and CLI exit 1 while preserving the report/evidence for repair. Errors return `failed`, not an empty successful check. Automatic diagnostics are not visual, translation, factual or comprehension acceptance, nor interaction coverage.
+
 Follow [artifact QA](artifact-qa.md) for offline desktop/narrow-screen, keyboard, reduced-motion, font and bilingual checks. Inspect every authored interaction and the structures actually present; long prose, wide tables and sequence diagrams are capability-test cases, not mandatory ingredients of every work. Record what was and was not observed.
+
+## Static sharing copies
+
+When asked to share an existing HTML explanation as PDF or PNG slices, reuse its source project rather than reauthoring an infographic:
+
+```text
+node "<absolute installed skill>/scripts/aha.mjs" export-html <project-directory> <new-output-directory> --format pdf --allow-code
+node "<absolute installed skill>/scripts/aha.mjs" export-html <project-directory> <new-output-directory> --format png --page-height 1600 --language all --allow-code
+```
+
+Obtain reviewed browser-execution permission first; use `doctor --for browser` when availability is unknown. This shares the existing isolated, offline renderer and never grants network/upload permission. Outputs must be in a fresh directory outside the project. Preserve previous deliveries; only this operation's newly created files are cleaned on failure. `receipt.json` binds source/research identity and each PDF/PNG hash.
+
+`--language all` (default) produces separate English/Chinese outputs for bilingual HTML; `en` or `zh` selects a present branch. Single-language projects export their declared language; legacy projects without metadata use the `en` filename without translating content. Output names are `en.pdf`/`zh.pdf` or ordered `en-001.png`/`zh-001.png` slices. Width is the project viewport width. Page height is 240–4096 integer CSS pixels, default 1600; each language is limited to 100 pages and 100000 CSS pixels, with 128 MiB total output.
+
+The packager's language-switch navigation is omitted before PDF/PNG measurement and capture; `receipt.json` records `runtimeLanguageControls: "omitted"`. These nonfunctional runtime buttons do not consume static page space. Authored controls remain, project sources are unchanged, and offline HTML keeps working language switches.
+
+State explicitly that interactions are lost: these are initial reading-state snapshots, not interactive disclosures, feedback, navigation or animations. The reading viewport is extended to document height; layouts that then grow or clip fail with `EXPORT_REFLOW`, not silent truncation. Fixed page boundaries can split text or figures; inspect each boundary and final page in both languages and keep the HTML when interaction matters. PDF/PNG sharing is not new `image` authorship, composition or QA, is not native editable PPTX, and does not certify facts, translation or visual quality.

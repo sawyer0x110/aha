@@ -2,7 +2,7 @@ import * as fs from 'node:fs/promises';
 import path from 'node:path';
 import { Type, type Static } from '@sinclair/typebox';
 import { check } from '../core/check.js';
-import { fail } from '../core/errors.js';
+import { fail, failDiagnostics, type Diagnostic } from '../core/errors.js';
 import { limitedJsonText, writeNewFile } from '../cli/files.js';
 import { readDossier, writeDossier } from '../research/dossier.js';
 import type { Dossier } from '../research/schema.js';
@@ -94,7 +94,7 @@ export async function initArtifact(researchDirectory: string, format: Format, de
   return { directory: output, format, language, status: 'draft', entry, researchHash: artifact.researchHash };
 }
 
-export async function readArtifact(directory: string): Promise<{ root: string; artifact: Artifact; dossier: Dossier }> {
+async function loadArtifact(directory: string): Promise<{ root: string; artifact: Artifact; dossier: Dossier }> {
   const root = path.resolve(directory);
   const files = await sourceFiles(root);
   const metadata = files.get('artifact.json');
@@ -115,36 +115,65 @@ export async function readArtifact(directory: string): Promise<{ root: string; a
   if (artifact.format === 'video' && (artifact.width !== 1280 || artifact.height !== 720)) fail('ARTIFACT_SIZE', 'Video projects must be 1280 × 720.');
   const dossier = await readDossier(path.join(root, 'research'));
   if (artifact.researchHash !== dossier.manifest.contentHash) fail('RESEARCH_MISMATCH', 'Artifact researchHash does not match its research snapshot.');
+  return { root, artifact, dossier };
+}
+
+function coverageDiagnostics(artifact: Artifact, dossier: Dossier): Diagnostic[] {
+  const diagnostics: Diagnostic[] = [];
+  const add = (code: string, message: string, locator: string, suggestion: string): void => {
+    diagnostics.push({ code, message, path: locator, file: 'artifact.json', suggestion });
+  };
   const claims = new Set(dossier.research.claims.map(claim => claim.id));
   const ids = new Set<string>();
   const covered = new Set<string>();
-  for (const item of artifact.coverage) {
-    if (ids.has(item.id)) fail('COVERAGE_DUPLICATE', 'Coverage IDs must be unique.', item.id);
+  for (const [index, item] of artifact.coverage.entries()) {
+    if (ids.has(item.id)) add('COVERAGE_DUPLICATE', 'Coverage IDs must be unique.', `/coverage/${index}/id`, 'Give this mapping a unique source section/figure ID.');
     ids.add(item.id);
-    for (const claimId of item.claimIds) {
-      if (!claims.has(claimId)) fail('COVERAGE_UNKNOWN', 'Coverage references an unknown claim.', claimId);
+    for (const [claimIndex, claimId] of item.claimIds.entries()) {
+      if (!claims.has(claimId)) add('COVERAGE_UNKNOWN', `Coverage references an unknown claim: ${claimId}.`, `/coverage/${index}/claimIds/${claimIndex}`, 'Use an existing research claim ID; do not edit the sealed research snapshot.');
       covered.add(claimId);
     }
   }
   const omitted = new Set<string>();
-  for (const omission of artifact.omissions) {
-    if (!claims.has(omission.claimId)) fail('COVERAGE_UNKNOWN', 'Omission references an unknown claim.', omission.claimId);
-    if (omitted.has(omission.claimId) || covered.has(omission.claimId)) fail('COVERAGE_DUPLICATE', 'Claims cannot be omitted twice or both covered and omitted.', omission.claimId);
+  for (const [index, omission] of artifact.omissions.entries()) {
+    if (!claims.has(omission.claimId)) add('COVERAGE_UNKNOWN', `Omission references an unknown claim: ${omission.claimId}.`, `/omissions/${index}/claimId`, 'Use an existing research claim ID; retain the reason for the omission.');
+    if (omitted.has(omission.claimId) || covered.has(omission.claimId)) add('COVERAGE_DUPLICATE', 'Claims cannot be omitted twice or both covered and omitted.', `/omissions/${index}/claimId`, 'Keep either the coverage mapping or one justified omission for this claim, not both.');
     omitted.add(omission.claimId);
   }
-  return { root, artifact, dossier };
+  return diagnostics;
+}
+
+export async function readArtifact(directory: string): Promise<Awaited<ReturnType<typeof loadArtifact>>> {
+  const result = await loadArtifact(directory);
+  failDiagnostics(coverageDiagnostics(result.artifact, result.dossier));
+  return result;
 }
 
 export async function assertAuthored(directory: string): Promise<Awaited<ReturnType<typeof readArtifact>>> {
-  const result = await readArtifact(directory);
+  const result = await loadArtifact(directory);
   const files = await sourceFiles(result.root);
-  if (result.artifact.status !== 'authored' || [...files.values()].some(bytes => bytes.includes(SCAFFOLD_MARKER))) {
-    fail('ARTIFACT_DRAFT', 'Incomplete scaffold: author the source, remove its scaffold marker, and set status to authored.');
+  const diagnostics = coverageDiagnostics(result.artifact, result.dossier);
+  if (result.artifact.status !== 'authored') diagnostics.push({
+    code: 'ARTIFACT_DRAFT', message: 'Incomplete scaffold: project status is draft.', path: '/status', file: 'artifact.json',
+    suggestion: 'Finish authoring and reviewing the actual source before setting status to authored.',
+  });
+  for (const [file, bytes] of files) {
+    if (!bytes.includes(SCAFFOLD_MARKER)) continue;
+    const line = bytes.toString('utf8').split(SCAFFOLD_MARKER)[0]!.split('\n').length;
+    diagnostics.push({
+      code: 'ARTIFACT_DRAFT', message: 'Incomplete scaffold marker remains.', path: `${file}:${line}`, file,
+      suggestion: 'Replace this scaffold with the topic-specific explanation, then remove its marker. Do not merely delete the marker to claim completion.',
+    });
   }
   const mapped = new Set([...result.artifact.coverage.flatMap(item => item.claimIds), ...result.artifact.omissions.map(item => item.claimId)]);
   for (const claim of result.dossier.research.claims) {
-    if (!mapped.has(claim.id)) fail('COVERAGE_MISSING', 'Every research claim needs a coverage mapping or explicit omission.', claim.id);
+    if (!mapped.has(claim.id)) diagnostics.push({
+      code: 'COVERAGE_MISSING', message: `Research claim ${claim.id} needs a coverage mapping or explicit omission.`,
+      path: '/coverage', file: 'artifact.json',
+      suggestion: `Map ${claim.id} to its authored source section/figure, or add an omission with a substantive reason.`,
+    });
   }
+  failDiagnostics(diagnostics);
   return result;
 }
 

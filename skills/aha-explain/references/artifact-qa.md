@@ -33,6 +33,8 @@ When the user requests evidence of understanding, agree a small learner evaluati
 
 Static checks, browser automation receipts, valid OOXML, and successful encoding are separate evidence, not a declaration of aesthetic quality or human acceptance. Do not fabricate human feedback, user sign-off, screenshots, playback, or interaction results.
 
+For optional automatic HTML geometry diagnostics, use approved `browser-check --allow-code --layout-report <new-report.json>` as described in [HTML diagnostics](html.md#build-and-inspect). It records separate mobile/desktop and declared-language findings with revision-bound screenshot evidence. Inspect candidates and repair source, then generate a new report; zero findings do not replace the manual medium/language/visual observations below.
+
 For HTML plan reviews, follow the [composition guidance](task-composition.md) at the intended narrow width: can a reader follow one assumption through evidence and recommendation without repeatedly scrolling sideways? A genuinely two-dimensional comparison may retain horizontal scrolling; check headers and keyboard access rather than treating all scrollable tables as failures.
 
 For video, apply [shot and beat review](video-storyboarding.md) to consequential transitions, intermediate frames, boundaries and result holds in the actual output. Check mutually exclusive labels for overprinting and agreement with the object's state, and persistent comparisons for readable labels at intended playback size with captions present. Check the interval and its neighbors after repair. Intentional static reading time is not a defect by itself; frame changes are not evidence that the intended mechanism is explained.
