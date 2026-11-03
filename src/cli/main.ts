@@ -11,6 +11,7 @@ import { FORMATS, LANGUAGES, type Format, type ArtifactLanguage, initArtifact, c
 import { renderHtml, renderImage, renderPptx, checkBrowser, runPptxWorker } from '../artifacts/render.js';
 import { comparePptx, readPptx } from '../artifacts/pptx-fidelity.js';
 import { exportHtml } from '../artifacts/share.js';
+import { checkBrowserLayout } from '../artifacts/browser-layout.js';
 import { prepareVideoPlan, validateVideoPlan, checkPlan, type VideoPlan } from '../media/plan.js';
 import { lintHtml, lintText, lintNarration } from '../artifacts/readability.js';
 import { importAudio, synthesize } from '../media/audio.js';
@@ -34,7 +35,7 @@ const USAGE = [
   'render-image <project-directory> <new-output.png> --allow-code',
   'render-pptx <project-directory> <new-output.pptx> --allow-code',
   'pptx-compare <before.pptx> <after.pptx> <new-report.json> [--accept <changes.json>]',
-  'browser-check <project-directory> --allow-code',
+  'browser-check <project-directory> --allow-code [--layout-report <new-report.json>]',
   'prepare-video <project-directory> <new-plan.json>',
   'video-plan-check <project-directory> <plan.json>',
   'synthesize <project-directory> <plan.json> <new-audio-directory> --approve <planHash> --allow-network',
@@ -218,7 +219,12 @@ async function execute(command: string, args: string[]): Promise<object> {
       return { status: 'rendered' };
     }
     case 'browser-check': {
-      const { at, enabled } = parse(args, 1, [], ['--allow-code']);
+      const { at, values, enabled } = parse(args, 1, ['--layout-report'], ['--allow-code']);
+      if (values['--layout-report']) {
+        const result = await checkBrowserLayout(at(0), values['--layout-report'], enabled.has('--allow-code'));
+        if (!result.ok) process.exitCode = 1;
+        return result;
+      }
       return checkBrowser(at(0), enabled.has('--allow-code'));
     }
     case 'prepare-video':

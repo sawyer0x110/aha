@@ -10,6 +10,7 @@ import { initArtifact, readArtifact, checkArtifact, sourceHash, type Format, typ
 import { prepareHtml } from '../src/artifacts/html.js';
 import { renderHtml, renderImage, renderPptx, runPptxWorker, checkBrowser } from '../src/artifacts/render.js';
 import { prepareVideoPlan } from '../src/media/plan.js';
+import { checkBrowserLayout } from '../src/artifacts/browser-layout.js';
 
 const code = (value: string) => (error: unknown) => error instanceof AhaError && error.code === value;
 async function fixture(run: (root: string, project: string) => Promise<void>, format: Format = 'html'): Promise<void> {
@@ -388,7 +389,43 @@ test('authored browser and native Node rendering require explicit authorization'
   await assert.rejects(renderImage('not-read', 'image.png', false), code('CODE_AUTHORIZATION'));
   await assert.rejects(renderPptx('not-read', 'deck.pptx', false), code('CODE_AUTHORIZATION'));
   await assert.rejects(checkBrowser('not-read', false), code('CODE_AUTHORIZATION'));
+  await assert.rejects(checkBrowserLayout('not-read', 'report.json', false), code('CODE_AUTHORIZATION'));
 });
+
+test('layout reports preflight output identity and never overwrite report, receipt or evidence', async () => fixture(async (root, project) => {
+  await author(project);
+  await assert.rejects(checkBrowserLayout(project, path.join(project, 'qa', 'report.json'), true), code('OUTPUT_INSIDE_ARTIFACT'));
+  await assert.rejects(checkBrowserLayout(project, path.join(root, 'report.html'), true), code('OUTPUT_EXTENSION'));
+  for (const suffix of ['', '.receipt.json', '.evidence']) {
+    const output = path.join(root, `reserved-${suffix.length}.json`);
+    await fs.writeFile(output + suffix, 'preserve');
+    await assert.rejects(checkBrowserLayout(project, output, true), code('OUTPUT_EXISTS'));
+    assert.equal(await fs.readFile(output + suffix, 'utf8'), 'preserve');
+  }
+  await metadata(project, artifact => { artifact.researchHash = '0'.repeat(64); });
+  await assert.rejects(checkBrowserLayout(project, path.join(root, 'mismatch.json'), true), code('RESEARCH_MISMATCH'));
+}));
+
+test('missing browser fails layout inspection without a success report or evidence', async () => fixture(async (root, project) => {
+  await author(project);
+  const before = process.env.AHA_BROWSER_EXECUTABLE;
+  const output = path.join(root, 'missing-browser.json');
+  try {
+    process.env.AHA_BROWSER_EXECUTABLE = path.join(root, 'nonexistent-browser.exe');
+    await assert.rejects(checkBrowserLayout(project, output, true), code('MEDIA_BROWSER_MISSING'));
+  } finally {
+    if (before === undefined) delete process.env.AHA_BROWSER_EXECUTABLE;
+    else process.env.AHA_BROWSER_EXECUTABLE = before;
+  }
+  await assert.rejects(fs.access(output));
+  await assert.rejects(fs.access(`${output}.receipt.json`));
+  await assert.rejects(fs.access(`${output}.evidence`));
+}));
+
+test('responsive layout diagnostics do not reinterpret image projects as HTML', async () => fixture(async (root, project) => {
+  await author(project);
+  await assert.rejects(checkBrowserLayout(project, path.join(root, 'image.json'), true), code('ARTIFACT_FORMAT'));
+}, 'image'));
 
 test('native PPTX authors can create more than twelve slides without imports or a fixed layout DSL', async () => fixture(async (root, project) => {
   await author(project, `export default async function({pptx, research}) {

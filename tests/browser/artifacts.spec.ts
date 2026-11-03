@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import * as fs from 'node:fs/promises';
 import path from 'node:path';
-import { randomUUID } from 'node:crypto';
+import { randomUUID, createHash } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import { buildDossier, createResearchDraft, writeDossier } from '../../src/research/dossier.js';
@@ -9,6 +9,8 @@ import { initArtifact, type ArtifactLanguage } from '../../src/artifacts/project
 import { prepareHtml } from '../../src/artifacts/html.js';
 import { sourceHash } from '../../src/artifacts/project.js';
 import { renderImage, checkBrowser } from '../../src/artifacts/render.js';
+import { checkBrowserLayout } from '../../src/artifacts/browser-layout.js';
+import { inspectLayout } from '../../src/artifacts/layout.js';
 
 async function fixture(source: string, run: (root: string, project: string) => Promise<void>, format: 'html' | 'image' = 'html', language: ArtifactLanguage = 'en'): Promise<void> {
   const root = path.join(process.cwd(), `.browser-artifact-${randomUUID()}`);
@@ -384,4 +386,134 @@ test('browser QA also inspects the initially hidden Chinese branch', async () =>
     </body></html>`, async (_root, project) => {
     await expect(checkBrowser(project, true)).rejects.toThrow(/clipped/);
   }, 'html', 'bilingual');
+});
+
+test('responsive layout report locates overflow, truncation and SVG label defects with hashed screenshot evidence', async () => {
+  await fixture(`<html><head><style>
+    #wide {width:500px} #clipped {width:30px;white-space:nowrap;overflow:hidden}
+    #below {margin-top:1100px;width:40px;white-space:nowrap;overflow:hidden}
+    </style></head><body><main id="wide">Too wide on mobile only</main>
+    <p id="clipped">This text cannot fit</p>
+    <svg width="300" height="100"><text x="10" y="35" font-size="8">Small label</text>
+    <text x="10" y="70" font-size="20">First label</text><text x="12" y="70" font-size="20">Second label</text></svg>
+    <p id="below">Below-fold clipped evidence</p></body></html>`, async (root, project) => {
+    const output = path.join(root, 'layout.json');
+    const hash = await sourceHash(project);
+    const result = await checkBrowserLayout(project, output, true);
+    expect(result.ok).toBe(false);
+    expect(result.status).toBe('issues-found');
+    expect(result.sourceHash).toBe(hash);
+    expect(await sourceHash(project)).toBe(hash);
+    expect(result.checks.map(check => check.width)).toEqual([390, 1280]);
+    const mobile = result.checks[0]!;
+    expect(new Set(mobile.issues.map(issue => issue.rule))).toEqual(new Set([
+      'horizontal-overflow', 'clipped-text', 'small-diagram-text', 'overlapping-diagram-text',
+    ]));
+    expect(result.checks[1]!.issues.some(issue => issue.rule === 'horizontal-overflow')).toBe(false);
+    expect(mobile.issues.every(issue => issue.selector.startsWith('html > body'))).toBe(true);
+    expect(mobile.evidence.some(evidence => evidence.scrollY > 0 && evidence.issueIndexes.length > 0)).toBe(true);
+    const persisted = JSON.parse(await fs.readFile(output, 'utf8'));
+    const { output: _output, receipt: _receipt, ...report } = result;
+    expect(persisted).toEqual(report);
+    const receipt = JSON.parse(await fs.readFile(result.receipt, 'utf8'));
+    expect(receipt.outputHash).toBe(createHash('sha256').update(await fs.readFile(output)).digest('hex'));
+    for (const screenshot of result.screenshots) {
+      const bytes = await fs.readFile(path.join(`${output}.evidence`, screenshot.file));
+      expect(bytes.subarray(1, 4).toString()).toBe('PNG');
+      expect(screenshot.sha256).toBe(createHash('sha256').update(bytes).digest('hex'));
+      expect([390, 1280]).toContain(bytes.readUInt32BE(16));
+    }
+    await expect(checkBrowserLayout(project, output, true)).rejects.toThrow(/already exists/);
+  });
+});
+
+test('layout checks every declared language at both widths without inspecting hidden branch text', async () => {
+  test.setTimeout(120_000);
+  await fixture(`<html><body>
+    <section data-aha-lang="en" data-aha-title="Plan"><p>A planned review, not completion.</p></section>
+    <section data-aha-lang="zh" data-aha-title="计划"><p style="width:25px;white-space:nowrap;overflow:hidden">计划并不代表完成。</p></section>
+    </body></html>`, async (root, project) => {
+    const result = await checkBrowserLayout(project, path.join(root, 'bilingual.json'), true);
+    expect(result.checks.map(check => `${check.width}-${check.language}`)).toEqual(['390-en', '390-zh', '1280-en', '1280-zh']);
+    for (const check of result.checks) {
+      expect(check.issues.some(issue => issue.rule === 'clipped-text')).toBe(check.language === 'zh');
+      expect(check.evidence.length).toBeGreaterThan(0);
+    }
+  }, 'html', 'bilingual');
+});
+
+test('clean layout reports checked, not visual acceptance, and permits contained horizontal scrolling', async () => {
+  await fixture(`<html><body><h1>A responsive explanation</h1><p>A plan is not completion.</p>
+    <div style="max-width:100%;overflow:auto"><div style="width:1600px">An intentionally scrollable table</div></div>
+    <p hidden style="width:2000px">Hidden text is not checked.</p></body></html>`, async (root, project) => {
+    const result = await checkBrowserLayout(project, path.join(root, 'clean.json'), true);
+    expect(result.ok).toBe(true);
+    expect(result.issueCount).toBe(0);
+    expect(result.status).toBe('checked');
+    expect(result.scope).toContain('no OCR');
+    expect(result.scope).toContain('visual acceptance');
+  });
+});
+
+test('layout reports fail closed on authored exceptions, missing images and blocked networking', async () => {
+  test.setTimeout(120_000);
+  for (const source of [
+    '<h1>Failure</h1><script>throw new Error("layout failure")</script>',
+    '<h1>Offline</h1><script>fetch("https://invalid.example/blocked").catch(()=>{})</script>',
+    '<img src="broken.png">',
+  ]) {
+    await fixture(source, async (root, project) => {
+      if (source.includes('broken.png')) await fs.writeFile(path.join(project, 'html', 'broken.png'), 'not an image');
+      const output = path.join(root, 'failed.json');
+      await expect(checkBrowserLayout(project, output, true)).rejects.toThrow();
+      await expect(fs.access(output)).rejects.toThrow();
+      await expect(fs.access(`${output}.evidence`)).rejects.toThrow();
+    });
+  }
+});
+
+test('layout CLI persists identical reports and uses a nonzero exit for defects in both distributions', async () => {
+  test.setTimeout(120_000);
+  await fixture('<p style="width:20px;white-space:nowrap;overflow:hidden">A clipped explanation</p>', async (root, project) => {
+    for (const [index, entry] of [
+      path.join(process.cwd(), 'dist', 'cli', 'aha.mjs'),
+      path.join(process.cwd(), 'dist', 'skills', 'aha-explain', 'scripts', 'aha.mjs'),
+    ].entries()) {
+      const output = path.join(root, `cli-${index}.json`);
+      const invoke = (approved: boolean) => spawnSync(process.execPath, [entry, 'browser-check', project, '--layout-report', output, ...(approved ? ['--allow-code'] : [])], {
+        cwd: root, encoding: 'utf8', timeout: 120000, env: { ...process.env, NODE_OPTIONS: '', NODE_PATH: '' },
+      });
+
+      const denied = invoke(false);
+      expect(denied.status).toBe(1);
+      expect(JSON.parse(denied.stdout).error.code).toBe('CODE_AUTHORIZATION');
+      const checked = invoke(true);
+      expect(checked.error).toBeUndefined();
+      expect(checked.status, checked.stdout + checked.stderr).toBe(1);
+      const report = JSON.parse(checked.stdout);
+      expect(report.status).toBe('issues-found');
+      expect(report.checks).toEqual(JSON.parse(await fs.readFile(output, 'utf8')).checks);
+    }
+  });
+});
+
+test('layout geometry honors screen-size thresholds and ancestor clipping while disclosing bounded issue lists', async ({ page }) => {
+  await page.setContent(`<style>body{margin:0}</style>
+    <svg width="300" height="120"><text x="0" y="20" font-size="12">At threshold</text>
+      <text x="0" y="45" font-size="11.9">Below threshold</text>
+      <g transform="translate(0 60) scale(.5)"><text x="0" y="20" font-size="20">Scaled below threshold</text></g></svg>
+    <div style="width:25px;height:20px;overflow:hidden"><span style="white-space:nowrap">Ancestor clips this span</span></div>`);
+  const result = await inspectLayout(page.mainFrame());
+  expect(result.issues.filter(issue => issue.rule === 'small-diagram-text').map(issue => issue.text)).toEqual([
+    'Below threshold', 'Scaled below threshold',
+  ]);
+  expect(result.issues.some(issue => issue.rule === 'clipped-text' && issue.relatedSelector)).toBe(true);
+  for (const issue of result.issues) await expect(page.locator(issue.selector)).toHaveCount(1);
+  await page.setContent('<p style="width:2px;white-space:nowrap;overflow:hidden">Clipped label</p>'.repeat(205));
+  const bounded = await inspectLayout(page.mainFrame());
+  expect(bounded.issueCount).toBe(205);
+  expect(bounded.issues).toHaveLength(200);
+  expect(bounded.truncated).toBe(true);
+  await page.setContent('<span>Element</span>'.repeat(10_001));
+  await expect(inspectLayout(page.mainFrame())).rejects.toThrow(/10000/);
 });

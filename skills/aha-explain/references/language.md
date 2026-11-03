@@ -61,3 +61,5 @@ For example, in beginner Git prose, "branch tip" can be introduced as "分支的
 At review, load the full language acceptance checklist in [artifact QA](artifact-qa.md). It covers switching both branches, keyboard/focus behavior, fonts/layouts, and semantic fidelity against the same research. Translation review is separate from schema and render success; report unreviewed content honestly.
 
 The approved `browser-check` also visits both language branches for its existing runtime, image, and clipping checks. Its `checkedLanguages` diagnostics report the visited languages, not semantic translation review or complete visual acceptance.
+
+For HTML, optional `browser-check --allow-code --layout-report <new-report.json>` additionally records separate 390px/1280px layout findings and screenshot evidence for each language. See [HTML diagnostics](html.md#build-and-inspect) for thresholds, output identity and limits; neither branch's automatic result certifies translation or visual acceptance.

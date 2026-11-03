@@ -184,6 +184,20 @@ Default `--language all` exports separate `en.pdf`/`zh.pdf` or `en-001.png`/`zh-
 
 **Interactions are lost**: only the initial language states are captured, not opened disclosures, hover content, feedback, navigation or animation. Sharing extends the reading viewport to the document height; viewport-height-dependent layouts that grow or clip during this step fail with `EXPORT_REFLOW` rather than silently truncating. Fixed-height boundaries can split prose/figures; inspect every page edge, fonts, both languages and the final page. This sharing path does not replace `image` authoring/composition/QA, create editable PPTX, certify translation or prove visual quality. Keep the interactive HTML alongside it when interaction is part of the explanation.
 
+### Optional HTML layout diagnostics
+
+After reviewing and approving browser execution, request a new report outside the source project:
+
+```powershell
+node .\dist\cli\aha.mjs browser-check ".\artifacts\topic\projects\html" --allow-code --layout-report ".\artifacts\topic\runs\round-01\qa\layout.json"
+```
+
+This uses the existing offline browser isolation at **390×844 and 1280×900 CSS pixels**, in light/reduced-motion mode. Bilingual HTML is checked separately in English and Chinese at both widths. `render-html` still only packages; it never implicitly runs this check. No browser is installed automatically; missing browsers, script errors, broken images or prohibited networking fail rather than returning an empty successful report.
+
+The JSON locates horizontal overflow, clipped text, SVG labels below 12 screen CSS pixels, and SVG label bounding-box overlap above 20%, using CSS selectors, excerpts and document-coordinate boxes. Intentional scroll containers are allowed. Warnings are review candidates, not pixel-perfect proof; intentional ellipsis/clipping may be reported. It does not read raster/canvas text or detect arbitrary occlusion. At most 200 issues are listed per viewport/language; total counts and `truncated` disclose omitted findings. Extremely large DOMs (over 10,000 elements or 1,000 SVG text labels) fail instead of silently checking a subset.
+
+`layout.json.evidence` contains PNGs for the top and up to 12 issue locations per check, with screenshot-to-issue/scroll-offset mappings; it is not full-page coverage. Source/research hashes, PNG hashes and `layout.json.receipt.json` identify this revision. Preserve these files together. All three destinations must be new; nothing is overwritten. Findings persist with `status: "issues-found"`, `ok: false` and exit 1; no findings produce `status: "checked"`, `ok: true`. Errors instead return `failed` without committing a report. Automatic diagnostics do **not** certify visual quality, translation, facts, understanding or every interaction; open and inspect the delivered page separately. See [HTML diagnostics](../skills/aha-explain/references/html.md#build-and-inspect).
+
 ### Advisory readability feedback
 
 Author with [stable terminology](../skills/aha-explain/references/explanation-writing.md#keep-one-name-for-one-concept): introduce one name per concept and reuse it across prose, diagrams, controls, captions and narration, including stable English/Chinese mappings. Vary sentence structure rather than synonyms for the same concept. Preserve distinctions, quoted source/UI wording and code identifiers. This is an authoring and manual QA rule, not an automatic terminology lock; the linter only hints at four fixed word groups.

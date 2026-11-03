@@ -183,6 +183,20 @@ node .\dist\cli\aha.mjs export-html ".\artifacts\topic\projects\html" ".\artifac
 
 **交互会丢失**：只捕获语言分支的初始状态，不保留已展开内容、悬停、反馈、导航或动画。分享时将阅读视口扩至文档高度；依赖视口高度、在此步骤继续增长或发生裁剪的布局会以 `EXPORT_REFLOW` 失败，不静默截断。固定页边界可能切开正文／图形，须检查每个页边界、字体、两种语言和末页。这条分享路径不能替代 `image` 格式的创作／构图／QA，不创建可编辑 PPTX，不认证翻译或视觉质量。讲解依赖交互时同时保留 HTML。
 
+### 可选 HTML 实际版式诊断
+
+审阅代码并明确允许浏览器执行后，将新报告写到源项目之外：
+
+```powershell
+node .\dist\cli\aha.mjs browser-check ".\artifacts\topic\projects\html" --allow-code --layout-report ".\artifacts\topic\runs\round-01\qa\layout.json"
+```
+
+检查复用既有离线浏览器隔离，在浅色／减少动画模式下分别运行 **390×844 和 1280×900 CSS 像素**视口。双语 HTML 在两种宽度下分别检查英文、中文。`render-html` 仍然只打包，不隐式执行检查。不自动安装浏览器；缺失浏览器、脚本报错、图片解码失败或尝试受禁联网时明确失败，不以空问题报告冒充通过。
+
+JSON 为横向溢出、截断文字、小于 12 屏幕 CSS 像素的 SVG 标签，以及包围框重叠面积超过较小框 20% 的 SVG 标签提供 CSS 选择器、文字摘录与文档坐标。允许有意设置的横向滚动容器。问题是待复核线索，不是像素级证明；有意的省略号／裁剪也可能被标出。不识别位图／canvas 内文字，不判断任意遮挡。每个视口／语言最多列出 200 项，问题总数与 `truncated` 明示截断；DOM 超过 10,000 个元素或 SVG 文字超过 1,000 个时明确失败，不静默检查子集。
+
+`layout.json.evidence` 保存每次检查的顶部与最多 12 个问题位置的 PNG，并映射到问题索引／滚动偏移，不代表整页截图覆盖。源／研究哈希、PNG 哈希与 `layout.json.receipt.json` 绑定本次修订，请一起保留。三个目标路径都必须全新，不覆盖已有文件。发现问题仍保存证据，返回 `status: "issues-found"`、`ok: false` 与退出码 1；未发现问题返回 `status: "checked"`、`ok: true`。执行错误返回 `failed`，不提交成功报告。自动诊断**不等于视觉、翻译、事实、理解或所有交互的验收**；仍需实际打开交付页面检查。详见 [HTML 诊断](../skills/aha-explain/references/html.md#build-and-inspect)。
+
 ### 提示式文案可读性检查
 
 创作须保持[术语稳定](../skills/aha-explain/references/explanation-writing.md#keep-one-name-for-one-concept)：首次引入概念时明确名称，正文、图示、控件、字幕与旁白沿用同一名称或已介绍的简称，中英术语对应也保持一致。可以变化句式，不为避免重复而轮换同义词；不同概念仍须区分，来源／界面引文及代码标识符保留原样。这是创作与人工验收规则，不是自动术语锁定；检查器仅对四组固定词提供提示。
