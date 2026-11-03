@@ -7,6 +7,7 @@ import { ResearchDraftSchema, DossierSchema } from '../src/research/schema.js';
 import { ArtifactSchema } from '../src/artifacts/project.js';
 import { VideoPlanSchema, AudioManifestSchema } from '../src/media/plan.js';
 import { ProvidedAudioSchema } from '../src/media/audio.js';
+import { MechanismModelSchema, MechanismTraceSchema } from '../src/mechanisms/model.js';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 // Also enforce the persistent producer patch when install scripts were disabled.
@@ -95,6 +96,7 @@ const schemas = {
   'artifact.schema.json': ArtifactSchema,
   'video-plan.schema.json': VideoPlanSchema, 'audio-manifest.schema.json': AudioManifestSchema,
   'provided-audio.schema.json': ProvidedAudioSchema,
+  'mechanism-model.schema.json': MechanismModelSchema, 'mechanism-trace.schema.json': MechanismTraceSchema,
 };
 async function copySkillText(source: string, destination: string): Promise<void> {
   await assertSafePath(source);

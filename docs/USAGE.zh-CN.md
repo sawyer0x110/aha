@@ -70,6 +70,19 @@ node .\dist\cli\aha.mjs research-validate ".\artifacts\topic\research"
 
 ## 2. 按媒介编写作品
 
+### 可选的有限状态机制依据
+
+对于有界的状态／事件解释，`mechanism-check <model.json> [--trace trace.json]` 只检查惰性 JSON，不导入、不执行被研究代码。明确标注手工教学模型、代码推导模型或真实运行记录，保留每条转换依据、假设与省略条件。结果包含可达／不可达状态、到禁止状态的最短反例、轨迹首个非法步骤及模型／轨迹内容哈希。规则或轨迹失败时退出码为 1、`status: "violated"`；输入不合法时为 `status: "failed"`。它是独立于研究／作品 Schema 和版式的可选辅助，**不是整个真实程序的正确性证明，也不证明执行实际发生**。
+
+```powershell
+node .\dist\cli\aha.mjs mechanism-check ".\examples\mechanism-retry\model.json" --trace ".\examples\mechanism-retry\trace.json"
+node .\dist\cli\aha.mjs mechanism-check ".\examples\mechanism-retry\model.json" --trace ".\examples\mechanism-retry\illegal-trace.json"
+```
+
+第二条命令故意在步骤索引 2（完成后重新启动）退出 1。它们是源码开发示例，不是新增作品集交付，也不包含在便携 ZIP 中。详见[重试示例](../examples/mechanism-retry/README.zh-CN.md)和[完整输入／结果契约](../skills/aha-explain/references/mechanism-checks.md)；后者包含供安装用户复制的最小模型。惰性检查不需要 `--allow-code`；执行作者视觉代码仍须另外明确授权，普通 Node 子进程不构成 OS 沙箱。
+
+### 初始化所选媒介
+
 ```powershell
 node .\dist\cli\aha.mjs explain-init ".\artifacts\topic\research" html ".\artifacts\topic\projects\html"
 ```
@@ -121,6 +134,8 @@ node .\dist\cli\aha.mjs render-html ".\artifacts\topic\projects\html" ".\artifac
 
 HTML 打包不执行脚本，内嵌本地资源与本地 Mermaid，不靠 CDN 兜底。默认交付独立离线文件，不自动把完整研究档案塞进页面。
 
+`explain-check` 失败时仍返回退出码 1、`status: "failed"` 和首个 `error`，同时用 `diagnostics` 一次列出相互独立的 Schema 字段或草稿／覆盖错误。每项带路径和可执行修复建议；覆盖项用 `artifact.json` 的 JSON Pointer，scaffold 标记附源文件／行号。按定位局部修复，不重写无关源码。检查分阶段：Schema 无效、入口不安全／缺失、研究身份或快照无效时，停止依赖它们的检查；HTML 资源打包仍在首错停止。失败结果不会成为有效输入，也不执行作者代码。
+
 每种请求的格式单独建立、编写作品源。下列路径代表**已编写好的**项目，不是上面 HTML 初始化命令的产物：
 
 ```powershell
@@ -131,6 +146,58 @@ node .\dist\cli\aha.mjs render-pptx ".\artifacts\topic\projects\pptx" ".\artifac
 ```
 
 PNG 捕获专门编写的一图流，不截图整篇文章。PPTX 入口接收运行时提供的 PptxGenJS 实例，创建原生文本、形状、图表与页面。成功写出文件，不代表已在演示应用中验证原生可编辑性和每页视觉效果。
+
+### 比较 PPTX 修订前后的内容
+
+新候选渲染后，比较两份实际文件，而不只看收据：
+
+```powershell
+node .\dist\cli\aha.mjs pptx-compare ".\before.pptx" ".\after.pptx" ".\qa\pptx-content.json"
+```
+
+只读命令保存两份完整 OOXML 内容清单，以及带旧／新值、页码和 XML 定位的 `changes`。覆盖原生页面文本（包括标题与完整限定语）、原生表格单元格及合并结构、标准图表标题／标签／类别／缓存数值／公式，并将讲者备注放在**独立通道**。备注中的相同文字不能抵消页面正文丢失。页面按演示关系顺序读取。逐字保留解码后的文本，不做语义改写匹配；对象移动、部件重新编号、段落重排可能显示为删除／新增。
+
+有未确认差异或提取诊断时，返回 `status: "review-required"`、退出码 **1**，但仍保存报告；先审阅再继续依赖命令。合法改动可写入本地 JSON，仅列报告中的精确 ID 与具体理由，例如 `{ "changes": [{ "id": "<精确差异ID>", "reason": "已批准删除过时标题。" }] }`，再输出到**新**报告路径：
+
+```powershell
+node .\dist\cli\aha.mjs pptx-compare ".\before.pptx" ".\after.pptx" ".\qa\pptx-content-reviewed.json" --accept ".\intentional-changes.json"
+```
+
+已确认差异及理由仍保留。ID 绑定前后文件哈希与精确差异；过期、未知、重复或通配确认报错。`status: "compared"`（退出码 0）只说明提取到的差异为空或已明确记录，且没有剩余提取诊断，**不是事实验证、渲染可见性证明、原生编辑验收或视觉验收**。
+
+输入须为无链接的本地普通 `.pptx` 文件，每份不超过 **16 MiB**；复用 ZIP 边界，解压总量不超过 128 MiB、10000 个条目。报告与确认 JSON 上限 4 MiB；超限明确报错，不截断内容。不覆盖已有输出。无效 ZIP／XML、DTD、不安全／缺失引用部件、外部依赖及有歧义的 AlternateContent 报错。不支持图片／媒体、SmartArt／OLE、扩展图表、母版／版式可见性解析、字体／裁切、动画及内嵌工作簿重算／核对；检测到图片／不支持的图形、继承文本或缓存／工作簿缺口时保留诊断，须另行审阅，`--accept` 不会隐藏诊断。完整限定语仅逐字比较，不语义识别。命令不执行代码或内嵌内容、不联网、不需 `--allow-code`；原有渲染执行授权不变。
+
+### 将已有 HTML 分享为 PDF 或 PNG 切片
+
+针对**已经编写的 HTML 项目**导出静态阅读副本，不是新创作的信息图：
+
+```powershell
+# 先审阅源并批准浏览器执行；这不授予上传权限。
+node .\dist\cli\aha.mjs export-html ".\artifacts\topic\projects\html" ".\artifacts\topic\runs\round-01\outputs\share-pdf" --format pdf --allow-code
+node .\dist\cli\aha.mjs export-html ".\artifacts\topic\projects\html" ".\artifacts\topic\runs\round-01\outputs\share-png" --format png --page-height 1600 --language all --allow-code
+```
+
+需要 `doctor --for browser` 使用的已安装浏览器；复用离线打包和隔离浏览器，不下载浏览器、不取远程资源、不上传、不开放网络。目标必须是**项目之外的新目录**，不覆盖现有目录、成品或收据。`receipt.json` 绑定研究／源码身份和每个成品哈希。失败只清理本次刚创建的文件，不删除历史交付。
+
+默认 `--language all` 为双语 HTML 分别导出 `en.pdf`／`zh.pdf` 或 `en-001.png`／`zh-001.png` 序列。`en` 或 `zh` 选择已有分支；单语项目只导出该语言。旧元数据未声明语言时按 `en` 处理，不翻译内容。宽度沿用 `artifact.width`；`--page-height` 为 240–4096 的整数 CSS 像素（默认 1600），每种语言最多 100 页、总高 100000 CSS 像素，所有输出合计最多 128 MiB。PNG 连续切片，末片缩短；PDF 使用固定高度浏览器分页。
+
+测量和捕获 PDF/PNG 正文前会省略打包器生成的语言切换导航，避免不能操作的运行时按钮占据分页空间；收据记录 `runtimeLanguageControls: "omitted"`。不移除作者自己的控件；离线 HTML 仍保留可用的语言切换，项目源码不变。
+
+**交互会丢失**：只捕获语言分支的初始状态，不保留已展开内容、悬停、反馈、导航或动画。分享时将阅读视口扩至文档高度；依赖视口高度、在此步骤继续增长或发生裁剪的布局会以 `EXPORT_REFLOW` 失败，不静默截断。固定页边界可能切开正文／图形，须检查每个页边界、字体、两种语言和末页。这条分享路径不能替代 `image` 格式的创作／构图／QA，不创建可编辑 PPTX，不认证翻译或视觉质量。讲解依赖交互时同时保留 HTML。
+
+### 可选 HTML 实际版式诊断
+
+审阅代码并明确允许浏览器执行后，将新报告写到源项目之外：
+
+```powershell
+node .\dist\cli\aha.mjs browser-check ".\artifacts\topic\projects\html" --allow-code --layout-report ".\artifacts\topic\runs\round-01\qa\layout.json"
+```
+
+检查复用既有离线浏览器隔离，在浅色／减少动画模式下分别运行 **390×844 和 1280×900 CSS 像素**视口。双语 HTML 在两种宽度下分别检查英文、中文。`render-html` 仍然只打包，不隐式执行检查。不自动安装浏览器；缺失浏览器、脚本报错、图片解码失败或尝试受禁联网时明确失败，不以空问题报告冒充通过。
+
+JSON 为横向溢出、截断文字、小于 12 屏幕 CSS 像素的 SVG 标签，以及包围框重叠面积超过较小框 20% 的 SVG 标签提供 CSS 选择器、文字摘录与文档坐标。允许有意设置的横向滚动容器。问题是待复核线索，不是像素级证明；有意的省略号／裁剪也可能被标出。不识别位图／canvas 内文字，不判断任意遮挡。每个视口／语言最多列出 200 项，问题总数与 `truncated` 明示截断；DOM 超过 10,000 个元素或 SVG 文字超过 1,000 个时明确失败，不静默检查子集。
+
+`layout.json.evidence` 保存每次检查的顶部与最多 12 个问题位置的 PNG，并映射到问题索引／滚动偏移，不代表整页截图覆盖。源／研究哈希、PNG 哈希与 `layout.json.receipt.json` 绑定本次修订，请一起保留。三个目标路径都必须全新，不覆盖已有文件。发现问题仍保存证据，返回 `status: "issues-found"`、`ok: false` 与退出码 1；未发现问题返回 `status: "checked"`、`ok: true`。执行错误返回 `failed`，不提交成功报告。自动诊断**不等于视觉、翻译、事实、理解或所有交互的验收**；仍需实际打开交付页面检查。详见 [HTML 诊断](../skills/aha-explain/references/html.md#build-and-inspect)。
 
 ### 提示式文案可读性检查
 

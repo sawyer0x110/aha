@@ -33,7 +33,7 @@ export function allowedSkillFile(relative) {
   if (/(^|\/)(?:secrets?|tokens?|credentials?|cookies?)(?:[.-]|$)|\.(?:log|pyc|pem|key|pfx)$/i.test(relative)) return false;
   return /^(SKILL\.md|LICENSE|LICENSE-SCOPE\.md|THIRD-PARTY-NOTICES\.txt|runtime-manifest\.json|scripts\/aha\.mjs)$/.test(relative) ||
     /^references\/[a-z0-9-]+\.md$/.test(relative) ||
-    /^schemas\/(research-draft|dossier|artifact|video-plan|audio-manifest|provided-audio)\.schema\.json$/.test(relative) ||
+    /^schemas\/(research-draft|dossier|artifact|video-plan|audio-manifest|provided-audio|mechanism-model|mechanism-trace)\.schema\.json$/.test(relative) ||
     /^assets\/runtime\/mermaid\.js$/.test(relative) ||
     /^assets\/media\/(edge_speech\.py|requirements-media\.txt)$/.test(relative) ||
     /^node_modules\/playwright-core\/(?!.*\/node_modules\/).+$/.test(relative);

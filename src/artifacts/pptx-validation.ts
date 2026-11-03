@@ -3,8 +3,8 @@ import { SaxesParser, type SaxesTagNS } from 'saxes';
 import { fail } from '../core/errors.js';
 
 const MAX_OUTPUT_BYTES = 128 * 1024 * 1024;
-const P = new Set(['http://schemas.openxmlformats.org/presentationml/2006/main', 'http://purl.oclc.org/ooxml/presentationml/main']);
-const A = new Set(['http://schemas.openxmlformats.org/drawingml/2006/main', 'http://purl.oclc.org/ooxml/drawingml/main']);
+export const P = new Set(['http://schemas.openxmlformats.org/presentationml/2006/main', 'http://purl.oclc.org/ooxml/presentationml/main']);
+export const A = new Set(['http://schemas.openxmlformats.org/drawingml/2006/main', 'http://purl.oclc.org/ooxml/drawingml/main']);
 const REL = 'http://schemas.openxmlformats.org/package/2006/relationships';
 const CT = 'http://schemas.openxmlformats.org/package/2006/content-types';
 const MC = 'http://schemas.openxmlformats.org/markup-compatibility/2006';
@@ -14,17 +14,18 @@ const HYPERLINKS = new Set([
   'http://purl.oclc.org/ooxml/officeDocument/relationships/hyperlink',
 ]);
 
-interface Element {
+export interface Element {
   tag: SaxesTagNS;
   path: string;
   counts: Map<string, number>;
 }
 
-function attribute(node: Element, name: string): string | undefined {
+export function attribute(node: Element, name: string): string | undefined {
   return Object.values(node.tag.attributes).find(attr => attr.uri === '' && attr.local === name)?.value;
 }
 
-function scanXml(xml: string, part: string, visit: (node: Element, ancestors: Element[]) => void): void {
+export function scanXml(xml: string, part: string, visit: (node: Element, ancestors: Element[]) => void,
+  text?: (value: string, ancestors: Element[]) => void): void {
   const parser = new SaxesParser({ xmlns: true });
   const stack: Element[] = [];
   parser.on('doctype', () => fail('PPTX_XML', 'DOCTYPE is not supported in PowerPoint package XML.', part));
@@ -40,6 +41,8 @@ function scanXml(xml: string, part: string, visit: (node: Element, ancestors: El
     stack.push(node);
   });
   parser.on('closetag', () => { stack.pop(); });
+  parser.on('text', value => text?.(value, stack));
+  parser.on('cdata', value => text?.(value, stack));
   parser.write(xml).close();
 }
 
@@ -112,8 +115,8 @@ function validateSlide(xml: string, part: string): void {
   if (!native) fail('PPTX_NATIVE', 'Each slide must contain native text, shapes, charts or tables; screenshot-only slides are not accepted.', part);
 }
 
-/** Targeted generated-output checks, not ECMA schema validation or XML repair. */
-export async function validatePptx(bytes: Buffer): Promise<number> {
+/** Shared bounded ZIP, package identity and external-dependency checks. */
+export async function loadPptxPackage(bytes: Buffer): Promise<JSZip> {
   if (bytes.length < 4 || bytes.length > MAX_OUTPUT_BYTES || bytes.readUInt32LE(0) !== 0x04034b50) fail('PPTX_OUTPUT', 'Expected a true PPTX ZIP file.');
   let zip: JSZip;
   try { zip = await JSZip.loadAsync(bytes); }
@@ -149,7 +152,13 @@ export async function validatePptx(bytes: Buffer): Promise<number> {
       }
     });
   }
-  const slides = entries.filter(entry => /^ppt\/slides\/slide\d+\.xml$/.test(entry.name));
+  return zip;
+}
+
+/** Targeted generated-output checks, not ECMA schema validation or XML repair. */
+export async function validatePptx(bytes: Buffer): Promise<number> {
+  const zip = await loadPptxPackage(bytes);
+  const slides = Object.values(zip.files).filter(entry => /^ppt\/slides\/slide\d+\.xml$/.test(entry.name));
   if (!slides.length) fail('PPTX_EMPTY', 'Author at least one native PowerPoint slide.');
   for (const slide of slides) validateSlide(await slide.async('string'), slide.name);
   return slides.length;

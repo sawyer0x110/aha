@@ -9,12 +9,16 @@ import { ResearchKindSchema } from '../research/schema.js';
 import { createResearchDraft, checkResearchDraft, buildDossier, readDossier, writeDossier } from '../research/dossier.js';
 import { FORMATS, LANGUAGES, type Format, type ArtifactLanguage, initArtifact, checkArtifact } from '../artifacts/project.js';
 import { renderHtml, renderImage, renderPptx, checkBrowser, runPptxWorker } from '../artifacts/render.js';
+import { comparePptx, readPptx } from '../artifacts/pptx-fidelity.js';
+import { exportHtml } from '../artifacts/share.js';
+import { checkBrowserLayout } from '../artifacts/browser-layout.js';
 import { prepareVideoPlan, validateVideoPlan, checkPlan, type VideoPlan } from '../media/plan.js';
 import { lintHtml, lintText, lintNarration } from '../artifacts/readability.js';
 import { importAudio, synthesize } from '../media/audio.js';
 import { renderVideo } from '../media/video.js';
 import { doctorRequirements, inspectDependencies } from './doctor.js';
 import { assertOutsideSource, limitedJsonText, readJson, readText, writeNewFile } from './files.js';
+import { checkMechanism } from '../mechanisms/model.js';
 
 const USAGE = [
   'doctor [--for research|html|browser|image|pptx|video|speech | --media]',
@@ -22,13 +26,16 @@ const USAGE = [
   'research-check <draft.json> [--draft]',
   'research-build <draft.json> <new-research-directory>',
   'research-validate <research-directory>',
+  'mechanism-check <model.json> [--trace trace.json]',
   'explain-init <research-directory> <html|image|pptx|video> <new-project-directory> [--language en|zh|bilingual]',
   'explain-check <project-directory>',
   'explain-lint <copy.txt|copy.md|source.html|plan.json> [--format html|image|pptx|video]',
   'render-html <project-directory> <new-output.html>',
+  'export-html <project-directory> <new-output-directory> --format pdf|png [--language en|zh|all] [--page-height 240..4096] --allow-code',
   'render-image <project-directory> <new-output.png> --allow-code',
   'render-pptx <project-directory> <new-output.pptx> --allow-code',
-  'browser-check <project-directory> --allow-code',
+  'pptx-compare <before.pptx> <after.pptx> <new-report.json> [--accept <changes.json>]',
+  'browser-check <project-directory> --allow-code [--layout-report <new-report.json>]',
   'prepare-video <project-directory> <new-plan.json>',
   'video-plan-check <project-directory> <plan.json>',
   'synthesize <project-directory> <plan.json> <new-audio-directory> --approve <planHash> --allow-network',
@@ -130,6 +137,14 @@ async function execute(command: string, args: string[]): Promise<object> {
       const dossier = await readDossier(at(0));
       return { status: 'validated', researchHash: dossier.manifest.contentHash, externalTruthVerified: false };
     }
+    case 'mechanism-check': {
+      const { at, values } = parse(args, 1, ['--trace']);
+      const model = await readJson(at(0));
+      const trace = values['--trace'] === undefined ? undefined : await readJson(values['--trace']);
+      const result = await checkMechanism(model, trace);
+      if (result.status === 'violated') process.exitCode = 1;
+      return result;
+    }
     case 'explain-init': {
       const { at, values } = parse(args, 3, ['--language']);
       const format = at(1);
@@ -169,6 +184,17 @@ async function execute(command: string, args: string[]): Promise<object> {
       extension(at(1), '.html');
       return renderHtml(at(0), at(1));
     }
+    case 'export-html': {
+      const { at, values, enabled } = parse(args, 2, ['--format', '--language', '--page-height'], ['--allow-code']);
+      const format = values['--format'];
+      if (format !== 'pdf' && format !== 'png') fail('EXPORT_FORMAT', 'Choose --format pdf or png.');
+      const language = values['--language'];
+      if (language !== undefined && language !== 'en' && language !== 'zh' && language !== 'all') fail('ARTIFACT_LANGUAGE', 'Choose en, zh or all.');
+      return exportHtml(at(0), at(1), enabled.has('--allow-code'), {
+        format, ...(language === undefined ? {} : { language }),
+        ...(values['--page-height'] === undefined ? {} : { pageHeight: Number(values['--page-height']) }),
+      });
+    }
     case 'render-image':
     case 'render-pptx': {
       const { at, enabled } = parse(args, 2, [], ['--allow-code']);
@@ -177,6 +203,15 @@ async function execute(command: string, args: string[]): Promise<object> {
         ? renderImage(at(0), at(1), enabled.has('--allow-code'))
         : renderPptx(at(0), at(1), enabled.has('--allow-code'));
     }
+    case 'pptx-compare': {
+      const { at, values } = parse(args, 3, ['--accept']);
+      extension(at(2), '.json');
+      const [before, after] = await Promise.all([readPptx(at(0)), readPptx(at(1))]);
+      const report = await comparePptx(before, after, values['--accept'] ? await readJson(values['--accept']) : undefined);
+      await writeNewFile(at(2), limitedJsonText(report, at(2)));
+      if (report.status !== 'compared') process.exitCode = 1;
+      return { ...report, output: path.resolve(at(2)) };
+    }
     case '_pptx-worker': {
       const { at, enabled } = parse(args, 2, [], ['--allow-code']);
       if (!enabled.has('--allow-code')) fail('CODE_PERMISSION', 'PPTX author code needs explicit --allow-code.');
@@ -184,7 +219,12 @@ async function execute(command: string, args: string[]): Promise<object> {
       return { status: 'rendered' };
     }
     case 'browser-check': {
-      const { at, enabled } = parse(args, 1, [], ['--allow-code']);
+      const { at, values, enabled } = parse(args, 1, ['--layout-report'], ['--allow-code']);
+      if (values['--layout-report']) {
+        const result = await checkBrowserLayout(at(0), values['--layout-report'], enabled.has('--allow-code'));
+        if (!result.ok) process.exitCode = 1;
+        return result;
+      }
       return checkBrowser(at(0), enabled.has('--allow-code'));
     }
     case 'prepare-video':
@@ -236,7 +276,10 @@ try {
   console.log(JSON.stringify(await execute(command, args)));
 } catch (error) {
   if (error instanceof AhaError) {
-    console.log(JSON.stringify({ status: 'failed', error: { code: error.code, message: error.message, path: error.path } }));
+    console.log(JSON.stringify({
+      status: 'failed', error: { code: error.code, message: error.message, path: error.path },
+      ...(error.diagnostics ? { diagnostics: error.diagnostics } : {}),
+    }));
   } else if (error instanceof Error) {
     const code = 'code' in error && typeof error.code === 'string' ? error.code : 'INTERNAL_ERROR';
     const message = code === 'EEXIST'

@@ -84,7 +84,7 @@ interface BrowserResult {
   diagnostics: { width: number; height: number; scrollWidth: number; scrollHeight: number; clipped: number; missingImages: number; checkedLanguages?: string[] };
 }
 
-async function inspectPage(page: Page | Frame): Promise<BrowserResult['diagnostics']> {
+export async function inspectPage(page: Page | Frame): Promise<BrowserResult['diagnostics']> {
   return page.evaluate(() => {
     const root = document.documentElement;
     const clipped = [...document.querySelectorAll('h1,h2,h3,h4,p,li,td,th,figcaption')].filter(node => {
@@ -100,14 +100,19 @@ async function inspectPage(page: Page | Frame): Promise<BrowserResult['diagnosti
   });
 }
 
-async function browserRender(html: string, artifact: Artifact, capture: boolean): Promise<BrowserResult> {
+export interface BrowserInspection {
+  viewport?: { width: number; height: number };
+  inspect?: (frame: Frame, page: Page, language: string) => Promise<void>;
+}
+
+export async function browserRender(html: string, artifact: Artifact, capture: boolean, inspection: BrowserInspection = {}): Promise<BrowserResult> {
   const browser = await openBrowser();
   let timer: ReturnType<typeof setTimeout> | undefined;
   try {
     const run = async (): Promise<BrowserResult> => {
       const context = await browser.newContext({
         offline: true, serviceWorkers: 'block', acceptDownloads: false,
-        viewport: { width: artifact.width, height: artifact.height }, deviceScaleFactor: 1,
+        viewport: inspection.viewport ?? { width: artifact.width, height: artifact.height }, deviceScaleFactor: 1,
         colorScheme: 'light', reducedMotion: 'reduce', permissions: [],
       });
       const external: string[] = [];
@@ -145,6 +150,7 @@ async function browserRender(html: string, artifact: Artifact, capture: boolean)
           if (failure) throw new Error(failure);
         });
         const diagnostics = await inspectPage(frame);
+        await inspection.inspect?.(frame, page, artifact.language === 'bilingual' ? 'en' : artifact.language ?? 'en');
         if (artifact.language === 'bilingual') {
           await frame.locator('.aha-language-controls button[data-language="zh"]').click();
           await frame.evaluate(async () => {
@@ -152,6 +158,7 @@ async function browserRender(html: string, artifact: Artifact, capture: boolean)
             await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
           });
           const chinese = await inspectPage(frame);
+          await inspection.inspect?.(frame, page, 'zh');
           diagnostics.clipped += chinese.clipped;
           diagnostics.missingImages = Math.max(diagnostics.missingImages, chinese.missingImages);
           diagnostics.scrollWidth = Math.max(diagnostics.scrollWidth, chinese.scrollWidth);
@@ -161,7 +168,7 @@ async function browserRender(html: string, artifact: Artifact, capture: boolean)
         }
         if (external.length || errors.length) fail('ARTIFACT_BROWSER_ERROR', 'Authored page attempted blocked networking or raised a browser error.', [...external, ...errors].slice(0, 5).join('\n'));
         if (diagnostics.missingImages) fail('ARTIFACT_IMAGE_MISSING', 'One or more packaged images failed to decode.');
-        if (diagnostics.clipped || (artifact.format === 'image' && (diagnostics.scrollWidth > artifact.width + 1 || diagnostics.scrollHeight > artifact.height + 1))) {
+        if (!inspection.inspect && (diagnostics.clipped || (artifact.format === 'image' && (diagnostics.scrollWidth > artifact.width + 1 || diagnostics.scrollHeight > artifact.height + 1)))) {
           fail('ARTIFACT_LAYOUT', 'Authored content is clipped or exceeds the requested image dimensions.');
         }
         const bytes = capture ? await page.screenshot({ type: 'png', animations: 'disabled', timeout: 15_000 }) : undefined;

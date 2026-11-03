@@ -115,6 +115,21 @@ test('draft scaffolds cannot masquerade as completed research or authored output
   await assert.rejects(fs.stat(path.join(dir, 'not-ready.html')), { code: 'ENOENT' });
 }));
 
+test('explain-check keeps a nonzero failure and first error while reporting independent local repairs', async () => temp(async dir => {
+  await research(dir);
+  invoke(dir, ['explain-init', 'topic.research', 'html', 'draft']);
+  const result = JSON.parse(invoke(dir, ['explain-check', 'draft'], cli, 1));
+  assert.equal(result.status, 'failed');
+  assert.equal(result.error.code, 'ARTIFACT_DRAFT');
+  assert.ok(result.diagnostics.some((item: { code: string }) => item.code === 'COVERAGE_MISSING'));
+  assert.ok(result.diagnostics.every((item: { suggestion: string }) => item.suggestion.length > 0));
+  const denied = JSON.parse(invoke(dir, ['export-html', 'draft', 'sharing', '--format', 'pdf'], cli, 1));
+  assert.equal(denied.error.code, 'CODE_AUTHORIZATION');
+  await assert.rejects(fs.stat(path.join(dir, 'sharing')), { code: 'ENOENT' });
+  const invalidHeight = JSON.parse(invoke(dir, ['export-html', 'draft', 'sharing', '--format', 'png', '--page-height', 'NaN', '--allow-code'], cli, 1));
+  assert.equal(invalidHeight.error.code, 'EXPORT_SIZE');
+}));
+
 test('research import rejects malformed UTF-8 before creating a dossier', async () => temp(async dir => {
   const text = JSON.stringify({ ...researchFixture(), title: 'encoding-marker' });
   const marker = text.indexOf('encoding-marker');
