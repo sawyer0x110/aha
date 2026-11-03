@@ -135,6 +135,8 @@ PNG captures a purpose-built infographic, not an article-length screenshot. The 
 
 ### Advisory readability feedback
 
+Author with [stable terminology](../skills/aha-explain/references/explanation-writing.md#keep-one-name-for-one-concept): introduce one name per concept and reuse it across prose, diagrams, controls, captions and narration, including stable English/Chinese mappings. Vary sentence structure rather than synonyms for the same concept. Preserve distinctions, quoted source/UI wording and code identifiers. This is an authoring and manual QA rule, not an automatic terminology lock; the linter only hints at four fixed word groups.
+
 `explain-check` includes a `readability` report for static HTML/image/video copy; `video-plan-check` also checks narration. These warnings do not change readiness, block rendering, rewrite sources or grant approval. They are STE-inspired heuristics, **not ASD-STE100 compliance** or factual/visual acceptance.
 
 For drafts and exported copy, use the standalone command:

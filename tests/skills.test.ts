@@ -375,6 +375,35 @@ test('copy hints and optional diagram recipes remain advisory, portable and rela
   assert.match(await reference('video.md'), /advisory narration feedback/);
 });
 
+test('stable terminology spans authoring, translation and manual QA without a glossary gate', async () => {
+  const entrance = await fs.readFile(path.join(root, 'skills', 'aha-explain', 'SKILL.md'), 'utf8');
+  assert.match(entrance, /including stable terminology/);
+  const writing = await reference('explanation-writing.md');
+  for (const concept of [
+    /canonical name/, /established project\/source terminology/, /plain-language definition/,
+    /introduced abbreviation/, /Do not rotate synonyms/, /Vary sentence structure, not concept names/,
+    /diagram labels, controls, captions, slides and narration/, /Keep distinct concepts distinct/,
+    /Preserve quoted source\/UI wording and code identifiers/, /cache entry is not interchangeable/,
+    /existing authoring\/QA notes/, /not a mandatory reader-facing glossary/,
+  ]) assert.match(writing, concept);
+  assert.ok(relativeLinks(writing).includes('language.md#write-naturally-in-each-language'));
+  const language = await reference('language.md');
+  for (const concept of [/stable English\/Chinese term pair/, /established project translations/,
+    /not alternating translations/, /first use/, /do not force distinct concepts/]) assert.match(language, concept);
+  const qa = await reference('artifact-qa.md');
+  for (const concept of [/each recurring concept's name/, /generated feedback/,
+    /English\/Chinese mappings/, /output locators/, /zero `term-consistency` warnings/,
+    /not arbitrary specialist vocabulary/]) assert.match(qa, concept);
+  const checks = await reference('readability-checks.md');
+  assert.match(checks, /only four fixed groups/);
+  assert.match(checks, /do not discover topic-specific synonyms/);
+  assert.ok(relativeLinks(checks).includes('explanation-writing.md#keep-one-name-for-one-concept'));
+  for (const name of ['USAGE.md', 'USAGE.zh-CN.md']) {
+    const usage = await fs.readFile(path.join(root, 'docs', name), 'utf8');
+    assert.ok(relativeLinks(usage).includes('../skills/aha-explain/references/explanation-writing.md#keep-one-name-for-one-concept'));
+  }
+});
+
 test('explanation revisions are discoverable and reuse source without restarting initialization', async () => {
   const entrance = await fs.readFile(path.join(root, 'skills', 'aha-explain', 'SKILL.md'), 'utf8');
   const description = entrance.match(/^description: (.+)$/m)![1]!;

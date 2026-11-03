@@ -8,7 +8,7 @@ Start with the reader's question and a direct answer. For each necessary step, i
 
 Words such as "match", "coordinate", "component", "effective" and "important" can hide the explanation. Specify what matches what, along which property; what is being coordinated; or how a condition changes the result. Prefer a concrete verb over a vague claim of importance. Preserve differences such as position versus timing, pressure versus perceived loudness, and textual compatibility versus program behavior.
 
-Use a contrast, worked example or analogy when it resolves a likely misunderstanding. Bound it where the analogy stops applying. Do not invent a mechanism to make prose flow: if the bridge is not supported by the bound research, narrow the statement or return to research for a new snapshot.
+Use contrasts, examples or bounded analogies to resolve misunderstandings. Do not invent mechanisms for fluency: if the bound research does not support the bridge, narrow the statement or return to research for a new snapshot.
 
 For example, given evidence that a cache serves a stored response until expiry and may not observe an origin update:
 
@@ -17,19 +17,25 @@ For example, given evidence that a cache serves a stored response until expiry a
 | "Freshness is a timing problem. Expiry matters." | "After the source changes, the cache may still return its stored response until that entry expires. A request during that interval can therefore receive the older value." |
 | "The right value, in the right place." | Name the stored response, the source value and the condition under which they differ; do not make the reader guess what "right" means. |
 
-This illustrates editing, not evidence about unrelated research or every cache.
+This illustrates editing, not evidence about every cache.
+
+## Keep one name for one concept
+
+Choose a canonical name for each recurring object, action or specialist concept, following established project/source terminology. Introduce it with a plain-language definition and any needed abbreviation; then reuse that name or introduced abbreviation. Do not rotate synonyms merely to avoid repetition. Vary sentence structure, not concept names, across prose, headings, diagram labels, controls, captions, slides and narration.
+
+Keep distinct concepts distinct. Preserve quoted source/UI wording and code identifiers; explain their correspondence to the chosen name rather than silently renaming them. For example, a cache entry is not interchangeable with its stored response. Track ambiguous aliases in existing authoring/QA notes, not a mandatory reader-facing glossary. Apply [bilingual term mapping](language.md#write-naturally-in-each-language) when translating.
 
 ## Make the entry point self-contained
 
-Read the title alone, without the prompt, research notes, subtitle or diagram. Can the intended reader name the subject and the question? Create curiosity about the explanation, not about what an unexplained number, acronym or pronoun refers to. A headline can withhold the answer, but should not withhold the object needed to understand the question.
+Read the title alone, without the prompt, notes, subtitle or diagram. Can the intended reader identify the subject and question? Create curiosity about the explanation, not an unexplained number, acronym or pronoun. Withhold the answer, not the subject.
 
-Introduce example values in the lead after naming the entity or configuration field, then describe its initial state, change and consequence. State units when supported; do not invent them to make a bare number meaningful. Revert a change, not a number; distinguish an operation from the value it affects. For example, "Why did 42 return?" hides the subject; "Why can a cache keep serving an old response?" names the mechanism and phenomenon without requiring the example first.
+Introduce values after naming the entity or configuration field, then describe its initial state, change and consequence. State supported units; do not invent them. Revert a change, not a number. For example, replace "Why did 42 return?" with "Why can a cache keep serving an old response?"
 
-Apply this cold-reader check separately in each language and to browser titles, gallery labels, covers and other entry points that may appear without the body. Synchronize these surfaces after revising the main headline. Then inspect wrapping at the intended size: shorten phrasing or adjust composition without deleting the context that makes the title intelligible.
+Check entry points separately in each language, including browser titles, gallery labels and covers. Synchronize them after headline revisions. Inspect wrapping at intended size without deleting necessary context.
 
 ## Compress detail, not reasoning
 
-A short title may attract attention, but its nearby explanation should resolve the question it raises. Read titles and emphasized phrases alone: do they imply a guarantee, equal split, exclusive cause or universal rule that the body later retracts? Revise the headline rather than relying on a distant caveat to undo it.
+Nearby text should resolve the title's question. Read titles and emphasized phrases alone: do they imply a guarantee, equal split, exclusive cause or universal rule that the body later retracts? Revise the headline rather than relying on a distant caveat to undo it.
 
 Remove author-outline fragments and process commentary from reader copy. Keep natural sources and material limitations close to the relevant claim; move audit details to QA notes. A useful caveat says what cannot be concluded and why, rather than repeatedly declaring that no promises are made.
 
@@ -45,7 +51,7 @@ Review diagram labels and generated interaction text manually when extraction mi
 
 ## Read without decoration, then with the visual
 
-First read representative copy without its layout, diagram or emphasis. Can a reader at the stated knowledge level follow its claims and transitions? Labels need not become standalone essays: review them with their caption or the sentence that introduces the figure.
+Read representative copy without decoration. Can the intended reader follow its claims and transitions? Review labels with their caption or introductory sentence, not as standalone essays.
 
 Then inspect the actual visual with the text. Point to the objects named in the explanation and follow each claimed relationship. Check whether arrows, state changes and labels demonstrate the explanation rather than merely decorate it. Explicitly pictorial instructions such as "compare the highlighted rows" belong in this second pass.
 
