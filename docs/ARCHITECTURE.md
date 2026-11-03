@@ -1,6 +1,6 @@
 # Aha 架构与实现边界
 
-当前源码 runtime 为 `0.3.4`，研究及作品协议为 `1.0.0`。产品行为见 [PRD](PRD.md)，命令见[使用指南](USAGE.zh-CN.md)，安装见[安装指南](INSTALL.zh-CN.md)，文档导航见[目录](README.zh-CN.md)，实际发布状态见 [Releases](https://github.com/sawyer0x110/aha/releases)。
+当前源码 runtime 为 `0.3.5`，研究及作品协议为 `1.0.0`。产品行为见 [PRD](PRD.md)，命令见[使用指南](USAGE.zh-CN.md)，安装见[安装指南](INSTALL.zh-CN.md)，文档导航见[目录](README.zh-CN.md)，实际发布状态见 [Releases](https://github.com/sawyer0x110/aha/releases)。
 
 ## 仓库目录导航
 
@@ -41,8 +41,6 @@ README 配图只介绍项目，不包含案例。英文入口使用 `docs/assets
 `src/artifacts/readability.ts` 提供不执行作者代码的提示式文案检查。`explain-check` 附带静态 HTML 文案结果；`video-plan-check` 附带实际旁白结果；`explain-lint` 可独立检查 UTF-8 草稿或导出的 PPTX 文案。规则按媒介与英中文案区分，保留源码块／JSON 段定位及修改建议，不改写来源、不改变审批或渲染门槛，不认证 ASD-STE100 合规。动态文本、图形 DSL 与作者模块不冒充已检查；可选图形片段复用现有本地 Mermaid，不添加统一作品 DSL。
 
 `explain-check` 对可独立判断的元数据字段、草稿占位与主张覆盖问题聚合 `diagnostics`，保留首个错误及失败退出码，并附 JSON pointer／文件行号与局部修复建议。Schema、路径、入口与研究身份等前置条件失败后不继续解释依赖数据；HTML 资源打包仍可首错停止，不承诺所有校验器都已聚合。
-
-`src/artifacts/feedback.ts` 是 HTML 显式启用的离线读者反馈运行时。`html[data-aha-feedback="on"]` 让打包器注入折叠控件；默认不启用，image／video 不支持。文字仅保留在当前标签页，复制或下载由读者触发，无自动外发或持久化。导出带研究／源码哈希及“不记录批准”的边界，不带完整 Dossier；英中控件随阅读语言切换。它不是遥测、授权通道或来自其他作者脚本的安全隔离。
 
 `src/mechanisms/model.ts` 提供可选的 `mechanism-check`：只读取显式有限状态图与可选事件轨迹，返回可达性、禁止状态规则的最短反例及轨迹首错。模型声明假设、省略与转换依据，教学模型、代码推导和运行记录都只是作者来源声明；工具不执行代码、不认证来源，也不证明未声明的真实行为。该能力不改变研究／作品协议，不要求统一页面或动画引擎。用法及上限见[机制检查](../skills/aha-explain/references/mechanism-checks.md)。
 

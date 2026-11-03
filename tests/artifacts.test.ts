@@ -212,33 +212,18 @@ test('source identity excludes dist and qa but includes all source assets and me
   assert.notEqual(original, await sourceHash(project));
 }));
 
-test('reader feedback is explicitly opted in, binds source identity and escapes metadata without execution', async () => fixture(async (_root, project) => {
-  for (const setting of ['', ' data-aha-feedback="off"']) {
-    await author(project, `<!doctype html><html${setting}><body><p>Monday plan.</p></body></html>`);
-    assert.doesNotMatch(await prepareHtml(project), /aha-feedback-actions|Feedback export preview/);
-  }
-  await author(project, '<!doctype html><html data-aha-feedback="on"><body><p>Monday plan.</p></body></html>');
-  await metadata(project, a => { a.title = '</script><script>throw new Error("unsafe title")</script>'; });
-  const original = await fs.readFile(path.join(project, 'html', 'index.html'));
-  const { artifact } = await readArtifact(project);
-  const hash = await sourceHash(project);
-  const html = await prepareHtml(project);
-  assert.match(html, /aha-feedback-actions/);
-  assert.match(html, /Approval: not recorded/);
-  assert.ok(html.includes(`"sourceHash":"${hash}"`));
-  assert.ok(html.includes(`"researchHash":"${artifact.researchHash}"`));
-  assert.doesNotMatch(html, /<\/script><script>throw new Error\("unsafe title"\)/);
-  assert.match(html, /\\u003c\/script>/);
-  assert.equal(await sourceHash(project), hash);
-  assert.deepEqual(await fs.readFile(path.join(project, 'html', 'index.html')), original);
-  await author(project, '<html data-aha-feedback="yes"><body><p>Plan.</p></body></html>');
-  await assert.rejects(prepareHtml(project), code('HTML_FEEDBACK'));
-}));
-
-test('reader feedback cannot accidentally appear in image or video capture', async () => {
-  for (const format of ['image', 'video'] as const) await fixture(async (_root, project) => {
-    await author(project, '<html data-aha-feedback="on"><body><p>Plan.</p></body></html>');
-    await assert.rejects(prepareHtml(project), code('HTML_FEEDBACK'));
+test('packaging no longer injects reader feedback, including legacy opt-in sources', async () => {
+  for (const format of ['html', 'image', 'video'] as const) await fixture(async (_root, project) => {
+    for (const setting of ['', ' data-aha-feedback="on"', ' data-aha-feedback="off"', ' data-aha-feedback="yes"']) {
+      await author(project, `<html${setting}><body><p>Monday plan.</p></body></html>`);
+      const original = await fs.readFile(path.join(project, 'html', 'index.html'));
+      const hash = await sourceHash(project);
+      const html = await prepareHtml(project);
+      assert.match(html, /Monday plan\./);
+      assert.doesNotMatch(html, /aha-feedback-actions|Feedback export preview|Approval: not recorded|data-feedback-field/);
+      assert.equal(await sourceHash(project), hash);
+      assert.deepEqual(await fs.readFile(path.join(project, 'html', 'index.html')), original);
+    }
   }, format);
 });
 

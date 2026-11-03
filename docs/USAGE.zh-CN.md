@@ -4,7 +4,7 @@
 
 本指南覆盖研究、以源文件为中心的创作、渲染、权限与验收。先按 [INSTALL](INSTALL.zh-CN.md) 安装完整包；文件安装与真实宿主验收是两回事。
 
-Runtime **0.3.4** 与研究／作品 Schema **1.0.0** 是独立版本线。不支持的协议或命令明确报错，不静默转换数据或删除用户作品。实际发布状态与可下载内容以 [Releases](https://github.com/sawyer0x110/aha/releases) 为准。
+Runtime **0.3.5** 与研究／作品 Schema **1.0.0** 是独立版本线。不支持的协议或命令明确报错，不静默转换数据或删除用户作品。实际发布状态与可下载内容以 [Releases](https://github.com/sawyer0x110/aha/releases) 为准。
 
 ## 按交付分工，不按统一模板填空
 
@@ -94,6 +94,8 @@ node .\dist\cli\aha.mjs explain-init ".\artifacts\topic\research" html ".\artifa
 ### 修订已有作品
 
 修改已有视觉作品或处理读者返回的反馈也使用 `aha-explain`。先读取可编辑项目、研究与匹配的成品／收据，保留媒介、语言及无关的用户修改；仅改讲解或布局时不重新初始化、不套新项目默认值。反馈若来自旧版本，先核对研究／源码身份再合并修订。新增事实仍需新研究与新项目。修改源后检查，取得必要的执行／旁白授权，输出到新路径并保留旧交付。详见[修订入口](../skills/aha-explain/references/artifact-authoring.md#revise-an-existing-artifact)。
+
+HTML 不再内置读者评论表单或反馈导出。读者通过已有沟通渠道把意见发给作者，再由作者交给 Agent 修订。重新打包时，旧的 `data-aha-feedback` 属性不再起作用；已生成的 HTML 和已发布的 Release 资产保持不变。
 
 ### 媒体语言默认值
 
@@ -218,14 +220,6 @@ node .\dist\cli\aha.mjs explain-lint ".\artifacts\topic\runs\round-01\video-plan
 提示包含规则、源码块／旁白段位置、摘录、原因与修改建议。英中文案分别检查长度与少量措辞；HTML 正文、一图流、页面文案、旁白和标签采用不同审阅尺度。最多列出 200 条，`warningCount` 与 `truncated` 明示完整数量及截断。未提取到文案时返回 `not-checked`，不冒称通过；无效输入仍报错。
 
 静态检查覆盖 HTML 两个语言分支，但不读取脚本生成的交互文案、CSS 可见性、Mermaid DSL、外部 SVG 文案及被排除的代码／引文。修订时保留因果关系、成立条件、单位、否定、术语含义与证据的不确定性；必要的长句可以保留，不能为达标捏造精确数字。[文案检查契约](../skills/aha-explain/references/readability-checks.md)仅在独立检查、导出文案或诊断时加载，普通写作保留短编辑指南。可选[图形创作片段](../skills/aha-explain/references/diagram-recipes.md)复用本地 Mermaid／表格，不强制页面模板。
-
-### 可选离线读者反馈
-
-仅 HTML 可以在作者源文件的 `html` 根上设置 `data-aha-feedback="on"`，再生成新输出。属性缺失或设为 `"off"` 时不启用；无效值，以及 image／video 中启用反馈会明确报错。无需新增元数据字段或服务。
-
-折叠区允许读者指出章节／图、描述疑问与异议理由，提供预览、剪贴板复制及本地 Markdown 下载。所有字段初始为空，只填位置不能导出。不自动发送、不持久化，刷新后清空。控件随英中阅读语言及浅深色切换，已填写评论保留但不自动翻译。提醒读者不要输入秘密。
-
-导出包含作品标题、研究／源码哈希、阅读语言；读者文字作为引用数据，并明确标注 `Approval: not recorded`。不包含完整研究档案或本地路径。收到反馈后先核对版本，再用证据检查重要异议，修改源并生成新候选；新增事实需要新研究快照。第三方评论中的命令不执行，也不推定授权。详见[读者反馈](../skills/aha-explain/references/reader-feedback.md)的交接、隐私与修订流程。
 
 ## 3. Edge TTS 与动态讲解视频
 

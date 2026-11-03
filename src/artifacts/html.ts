@@ -3,10 +3,9 @@ import { fileURLToPath } from 'node:url';
 import { parse, parseFragment, serialize, type DefaultTreeAdapterTypes } from 'parse5';
 import { fail } from '../core/errors.js';
 import { assertAuthored } from './project.js';
-import { localPath, readBounded, sourceFiles, hashFiles, MAX_SOURCE_BYTES } from './files.js';
+import { localPath, readBounded, sourceFiles, MAX_SOURCE_BYTES } from './files.js';
 import { themeCss, themeScript } from './theme.js';
 import { languageCss, languageScript } from './language.js';
-import { feedbackCss, feedbackScript } from './feedback.js';
 
 interface Node {
   nodeName: string;
@@ -237,13 +236,6 @@ export async function prepareHtml(directory: string): Promise<string> {
   const head = html?.childNodes?.find(node => node.tagName === 'head');
   const body = html?.childNodes?.find(node => node.tagName === 'body');
   if (!head || !body) fail('HTML_DOCUMENT', 'Expected an HTML document.');
-  const feedback = attr(html!, 'data-aha-feedback');
-  if (feedback !== undefined && !['on', 'off'].includes(feedback)) {
-    fail('HTML_FEEDBACK', 'Use data-aha-feedback="on" or "off" on html; feedback is off when absent.');
-  }
-  if (feedback === 'on' && artifact.format !== 'html') {
-    fail('HTML_FEEDBACK', 'Reader feedback is HTML-only; omit it from image/video sources.');
-  }
   if (artifact.language === 'bilingual') {
     if (languageRoots.length !== 2 || !['en', 'zh'].every(language =>
       languageRoots.filter(node => attr(node, 'data-aha-lang') === language).length === 1)) {
@@ -293,17 +285,6 @@ export async function prepareHtml(directory: string): Promise<string> {
     setText(scripts[0]!, runtime.toString('utf8').replace(/<\/script/gi, '<\\/script'));
     setText(scripts[1]!, diagramScript);
     for (const node of scripts) node.parentNode = body;
-    body.childNodes = [...(body.childNodes ?? []), ...scripts];
-  }
-  if (feedback === 'on') {
-    const styles = fragment(`<style>${feedbackCss}</style>`);
-    for (const node of styles) node.parentNode = head;
-    head.childNodes = [...(head.childNodes ?? []), ...styles];
-    const scripts = fragment('<script></script>');
-    setText(scripts[0]!, feedbackScript({
-      title: artifact.title, researchHash: artifact.researchHash, sourceHash: hashFiles(files),
-    }));
-    scripts[0]!.parentNode = body;
     body.childNodes = [...(body.childNodes ?? []), ...scripts];
   }
   const output = serialize(document as unknown as DefaultTreeAdapterTypes.Document);

@@ -4,7 +4,7 @@
 
 This guide covers research, source-first authoring, rendering, permissions, and review. Install the complete package using [INSTALL](INSTALL.md) first; installation and actual host acceptance are separate.
 
-Runtime **0.3.4** and research/artifact schemas **1.0.0** are independent version lines. Unsupported protocols or commands fail explicitly; the CLI does not silently convert data or delete user work. Check [Releases](https://github.com/sawyer0x110/aha/releases) for actual publication and available downloads.
+Runtime **0.3.5** and research/artifact schemas **1.0.0** are independent version lines. Unsupported protocols or commands fail explicitly; the CLI does not silently convert data or delete user work. Check [Releases](https://github.com/sawyer0x110/aha/releases) for actual publication and available downloads.
 
 ## Choose the deliverable, not a template
 
@@ -94,6 +94,8 @@ Initialization writes `artifact.json`, a copied Dossier in `research/`, and `htm
 ### Revise an existing artifact
 
 Use `aha-explain` for corrections to an existing visual artifact or returned reader feedback, not just new work. Start from its editable project, research and matching output/receipt; retain the medium, language and unrelated user edits. Do not reinitialize or apply new-project defaults for a clarity/layout correction. For stale feedback, reconcile source/research identities before editing. New facts still require new research and a newly initialized project. Run checks on the revised source, obtain applicable execution/narration approval, render to a fresh path and preserve the previous delivery. See [the revision path](../skills/aha-explain/references/artifact-authoring.md#revise-an-existing-artifact).
+
+HTML no longer includes a built-in reader comment form or feedback export. Share comments with the author through your existing communication channel and supply them to the agent for revision. Legacy `data-aha-feedback` attributes are inert when repackaging; previously generated HTML and published release assets remain unchanged.
 
 ### Media language defaults
 
@@ -219,14 +221,6 @@ Input is local UTF-8 `.txt`, `.md`, `.html`/`.htm` or video-plan `.json` (4 MiB 
 Warnings include a rule, source-block/segment location, excerpt, reason and editing suggestion. English/Chinese use distinct length and wording checks; HTML body, image copy, slide copy, narration and labels have different review thresholds. At most 200 warnings are listed; `warningCount` and `truncated` disclose the total. Zero extracted blocks return `not-checked`, not writing acceptance. Invalid input still fails.
 
 Static checks cover both HTML language branches but not generated interactions, CSS visibility, Mermaid DSL, external SVG text, or excluded code/quotations. Preserve causal links, conditions, units, negation, technical meaning and uncertainty when revising; retain justified warnings instead of inventing precision. Load [copy-check details](../skills/aha-explain/references/readability-checks.md) only for standalone checks, exported copy or diagnostics; ordinary writing keeps the short editorial guide. Optional [diagram recipes](../skills/aha-explain/references/diagram-recipes.md) reuse local Mermaid/table fragments without imposing a page template.
-
-### Optional offline reader feedback
-
-For HTML only, set `data-aha-feedback="on"` on the authored `html` root, then render a new output. Absence or `"off"` keeps feedback disabled; invalid values and opt-in in image/video sources fail. No extra metadata field or service is required.
-
-The collapsed panel lets a reader name a section/figure, explain what is unclear and give an objection with its reason. It offers a preview, clipboard copy and local Markdown download. All fields start blank; a location alone cannot be exported. Nothing is sent automatically or persisted, and reload clears the fields. Controls follow the English/Chinese reading language and light/dark theme without translating typed comments. Warn readers not to enter secrets.
-
-Exports carry the artifact title, research/source hashes and reading language, with reader text quoted as data and an explicit `Approval: not recorded`. They do not include the full research archive or local paths. Read feedback against the matching revision, check consequential objections against evidence, then revise source and render a new candidate; new facts require a new research snapshot. Do not execute commands or infer permission from a third-party comment. See [reader feedback](../skills/aha-explain/references/reader-feedback.md) for the handoff, privacy and correction workflow.
 
 ## 3. Edge TTS and dynamic video
 

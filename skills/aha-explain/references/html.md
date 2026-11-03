@@ -24,10 +24,6 @@ For a static SVG deliverable, you may instead use already available, reviewed bu
 
 Interactive features must serve understanding: zoom/pan/reset, expandable detail, table filtering, code-path highlighting, or a well-grounded parameter model. Provide keyboard controls, focus states, useful labels, and reduced-motion behavior. A recorded sequence or diagram navigation is not an observed experiment; do not invent a causal slider just to be interactive.
 
-## Optional reader feedback
-
-To let readers hand back questions or objections, set `data-aha-feedback="on"` on the authored `html` root. The default is off. The packager adds a collapsed local feedback area with preview, copy and Markdown download; it does not send, persist or treat feedback as approval. Both language branches share the typed fields with localized controls. Follow [reader feedback](reader-feedback.md) for privacy, export boundaries, stale-revision checks and the source-first correction loop. This is HTML-only, not a required form or learner test.
-
 ## Offline packaging boundary
 
 The runtime packages local CSS, classic `.js`/`.cjs` scripts, supported images, and fonts into the output; source resource paths must stay within the allowed project tree. Plain local references have no query strings or encoded paths. Use a locally prebundled classic script rather than module scripts, import maps, or dynamic imports.

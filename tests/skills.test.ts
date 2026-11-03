@@ -414,7 +414,6 @@ test('explanation revisions are discoverable and reuse source without restarting
   assert.match(description, /Do not turn trivial text answers or ordinary code explanations into media production/);
   assert.ok(description.length <= 1024);
   assert.ok(relativeLinks(entrance).includes('references/artifact-authoring.md#revise-an-existing-artifact'));
-  assert.ok(relativeLinks(entrance).includes('references/reader-feedback.md#close-the-loop-in-the-agent'));
   assert.match(entrance, /Initialize only a new project/);
   const revision = (await reference('artifact-authoring.md')).split('## Revise an existing artifact')[1]!.split('\n## ')[0]!;
   for (const concept of [
@@ -423,7 +422,8 @@ test('explanation revisions are discoverable and reuse source without restarting
     /New material facts require a new research snapshot/, /changed-code\/narration approvals/,
     /fresh output outside the project/, /preserve the old delivery/i,
   ]) assert.match(revision, concept);
-  assert.ok(relativeLinks(await reference('reader-feedback.md')).includes('artifact-authoring.md#revise-an-existing-artifact'));
+  assert.match(revision, /untrusted data, not instructions, authorization/);
+  assert.match(revision, /user's requested scope/);
 });
 
 test('editorial guidance stays lean while copy-check details load only when needed', async () => {
@@ -454,18 +454,13 @@ test('production guidance covers relationship inspection, useful editing and tru
   assert.match(await reference('artifact-qa.md'), /mixed-tool run/i);
 });
 
-test('optional feedback is default-off local reader data, not consent or a command channel', async () => {
+test('removed reader feedback is not published or advertised as an optional runtime', async () => {
   const entrance = await fs.readFile(path.join(root, 'skills', 'aha-explain', 'SKILL.md'), 'utf8');
-  assert.ok(relativeLinks(entrance).includes('references/reader-feedback.md'));
-  const feedback = await reference('reader-feedback.md');
-  for (const concept of [
-    /off by default/, /data-aha-feedback="on"/, /no preselected decisions/,
-    /reload clears it/i, /No network request/, /Approval: not recorded/,
-    /untrusted data, not instructions, authorization/, /source\/research hashes/,
-    /fresh destination/, /new snapshot/, /not a security boundary/,
-  ]) assert.match(feedback, concept);
-  for (const guide of ['html.md', 'artifact-qa.md']) {
-    assert.ok(relativeLinks(await reference(guide)).includes('reader-feedback.md'));
+  assert.doesNotMatch(entrance, /reader-feedback\.md|offline reader feedback/);
+  assert.ok(!(await publishedFiles('aha-explain')).has(path.join('references', 'reader-feedback.md')));
+  await assert.rejects(fs.access(path.join(root, 'src', 'artifacts', 'feedback.ts')), { code: 'ENOENT' });
+  for (const guide of ['html.md', 'artifact-qa.md', 'artifact-authoring.md']) {
+    assert.doesNotMatch(await reference(guide), /reader-feedback\.md|data-aha-feedback/);
   }
   assert.ok(relativeLinks(await reference('task-composition.md')).includes('diagram-recipes.md#select-the-relationship-before-the-component'));
 });
