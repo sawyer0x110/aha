@@ -9,6 +9,7 @@ import { ResearchKindSchema } from '../research/schema.js';
 import { createResearchDraft, checkResearchDraft, buildDossier, readDossier, writeDossier } from '../research/dossier.js';
 import { FORMATS, LANGUAGES, type Format, type ArtifactLanguage, initArtifact, checkArtifact } from '../artifacts/project.js';
 import { renderHtml, renderImage, renderPptx, checkBrowser, runPptxWorker } from '../artifacts/render.js';
+import { comparePptx, readPptx } from '../artifacts/pptx-fidelity.js';
 import { prepareVideoPlan, validateVideoPlan, checkPlan, type VideoPlan } from '../media/plan.js';
 import { lintHtml, lintText, lintNarration } from '../artifacts/readability.js';
 import { importAudio, synthesize } from '../media/audio.js';
@@ -30,6 +31,7 @@ const USAGE = [
   'render-html <project-directory> <new-output.html>',
   'render-image <project-directory> <new-output.png> --allow-code',
   'render-pptx <project-directory> <new-output.pptx> --allow-code',
+  'pptx-compare <before.pptx> <after.pptx> <new-report.json> [--accept <changes.json>]',
   'browser-check <project-directory> --allow-code',
   'prepare-video <project-directory> <new-plan.json>',
   'video-plan-check <project-directory> <plan.json>',
@@ -186,6 +188,15 @@ async function execute(command: string, args: string[]): Promise<object> {
       return command === 'render-image'
         ? renderImage(at(0), at(1), enabled.has('--allow-code'))
         : renderPptx(at(0), at(1), enabled.has('--allow-code'));
+    }
+    case 'pptx-compare': {
+      const { at, values } = parse(args, 3, ['--accept']);
+      extension(at(2), '.json');
+      const [before, after] = await Promise.all([readPptx(at(0)), readPptx(at(1))]);
+      const report = await comparePptx(before, after, values['--accept'] ? await readJson(values['--accept']) : undefined);
+      await writeNewFile(at(2), limitedJsonText(report, at(2)));
+      if (report.status !== 'compared') process.exitCode = 1;
+      return { ...report, output: path.resolve(at(2)) };
     }
     case '_pptx-worker': {
       const { at, enabled } = parse(args, 2, [], ['--allow-code']);

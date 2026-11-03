@@ -146,6 +146,26 @@ node .\dist\cli\aha.mjs render-pptx ".\artifacts\topic\projects\pptx" ".\artifac
 
 PNG captures a purpose-built infographic, not an article-length screenshot. The PPTX entry receives a runtime-provided PptxGenJS instance to create native text, shapes, charts, and slides. Successful file creation does not prove native editability and every page's appearance were reviewed in a presentation application.
 
+### Compare content before and after a PPTX revision
+
+After rendering a new candidate, compare the actual old and new files, not just their receipts:
+
+```powershell
+node .\dist\cli\aha.mjs pptx-compare ".\before.pptx" ".\after.pptx" ".\qa\pptx-content.json"
+```
+
+This read-only command writes both complete OOXML content inventories and `changes` with old/new values and slide/XML locators. It compares native slide text (including titles and complete qualifiers), native table cells and merge structure, standard chart titles/labels/categories/cached numbers/formulas, and speaker notes **in a separate channel**. Notes cannot compensate for deleted slide text. Slides follow presentation relationship order. Exact decoded text is retained; moving objects, renumbering parts or reflowing paragraphs can produce removal/addition pairs rather than semantic matches.
+
+Unaccepted differences or extraction diagnostics produce `status: "review-required"` and exit **1**, but the report is still saved. Review it before continuing dependent commands. For legitimate changes, write a local JSON file containing only exact report IDs and meaningful reasons, e.g. `{ "changes": [{ "id": "<exact-change-id>", "reason": "Approved removal of the obsolete title." }] }`, then rerun to a **new** report path:
+
+```powershell
+node .\dist\cli\aha.mjs pptx-compare ".\before.pptx" ".\after.pptx" ".\qa\pptx-content-reviewed.json" --accept ".\intentional-changes.json"
+```
+
+Accepted changes remain visible with their reasons. IDs bind both file hashes and exact change content; stale, unknown, duplicate or wildcard acceptances fail. `status: "compared"` (exit 0) means only that extracted differences are absent or explicitly recorded and no extraction diagnostics remain—not facts verified, rendered visibility, native editing acceptance or visual QA.
+
+Input must be regular local `.pptx` files without links, each at most **16 MiB**; the shared ZIP checks cap expansion at 128 MiB and 10000 entries. Reports and acceptance JSON are capped at 4 MiB; oversized reports fail explicitly, without truncating content. Existing outputs are never overwritten. Invalid ZIP/XML, DTDs, unsafe/missing referenced parts, external dependencies and ambiguous AlternateContent fail. Images/media, SmartArt/OLE, extended charts, inherited master/layout visibility, fonts/clipping, animation and embedded workbook recalculation/reconciliation are not supported. Detected image/unsupported graphic, inherited text or cache/workbook gaps remain diagnostics requiring separate review; `--accept` does not hide them. Complete extracted qualifiers are compared literally, not semantically identified. This command executes no code or embedded content, performs no network access and requires no `--allow-code`; rendering retains its existing authorization boundary.
+
 ### Advisory readability feedback
 
 Author with [stable terminology](../skills/aha-explain/references/explanation-writing.md#keep-one-name-for-one-concept): introduce one name per concept and reuse it across prose, diagrams, controls, captions and narration, including stable English/Chinese mappings. Vary sentence structure rather than synonyms for the same concept. Preserve distinctions, quoted source/UI wording and code identifiers. This is an authoring and manual QA rule, not an automatic terminology lock; the linter only hints at four fixed word groups.

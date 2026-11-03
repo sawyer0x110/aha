@@ -145,6 +145,26 @@ node .\dist\cli\aha.mjs render-pptx ".\artifacts\topic\projects\pptx" ".\artifac
 
 PNG 捕获专门编写的一图流，不截图整篇文章。PPTX 入口接收运行时提供的 PptxGenJS 实例，创建原生文本、形状、图表与页面。成功写出文件，不代表已在演示应用中验证原生可编辑性和每页视觉效果。
 
+### 比较 PPTX 修订前后的内容
+
+新候选渲染后，比较两份实际文件，而不只看收据：
+
+```powershell
+node .\dist\cli\aha.mjs pptx-compare ".\before.pptx" ".\after.pptx" ".\qa\pptx-content.json"
+```
+
+只读命令保存两份完整 OOXML 内容清单，以及带旧／新值、页码和 XML 定位的 `changes`。覆盖原生页面文本（包括标题与完整限定语）、原生表格单元格及合并结构、标准图表标题／标签／类别／缓存数值／公式，并将讲者备注放在**独立通道**。备注中的相同文字不能抵消页面正文丢失。页面按演示关系顺序读取。逐字保留解码后的文本，不做语义改写匹配；对象移动、部件重新编号、段落重排可能显示为删除／新增。
+
+有未确认差异或提取诊断时，返回 `status: "review-required"`、退出码 **1**，但仍保存报告；先审阅再继续依赖命令。合法改动可写入本地 JSON，仅列报告中的精确 ID 与具体理由，例如 `{ "changes": [{ "id": "<精确差异ID>", "reason": "已批准删除过时标题。" }] }`，再输出到**新**报告路径：
+
+```powershell
+node .\dist\cli\aha.mjs pptx-compare ".\before.pptx" ".\after.pptx" ".\qa\pptx-content-reviewed.json" --accept ".\intentional-changes.json"
+```
+
+已确认差异及理由仍保留。ID 绑定前后文件哈希与精确差异；过期、未知、重复或通配确认报错。`status: "compared"`（退出码 0）只说明提取到的差异为空或已明确记录，且没有剩余提取诊断，**不是事实验证、渲染可见性证明、原生编辑验收或视觉验收**。
+
+输入须为无链接的本地普通 `.pptx` 文件，每份不超过 **16 MiB**；复用 ZIP 边界，解压总量不超过 128 MiB、10000 个条目。报告与确认 JSON 上限 4 MiB；超限明确报错，不截断内容。不覆盖已有输出。无效 ZIP／XML、DTD、不安全／缺失引用部件、外部依赖及有歧义的 AlternateContent 报错。不支持图片／媒体、SmartArt／OLE、扩展图表、母版／版式可见性解析、字体／裁切、动画及内嵌工作簿重算／核对；检测到图片／不支持的图形、继承文本或缓存／工作簿缺口时保留诊断，须另行审阅，`--accept` 不会隐藏诊断。完整限定语仅逐字比较，不语义识别。命令不执行代码或内嵌内容、不联网、不需 `--allow-code`；原有渲染执行授权不变。
+
 ### 提示式文案可读性检查
 
 创作须保持[术语稳定](../skills/aha-explain/references/explanation-writing.md#keep-one-name-for-one-concept)：首次引入概念时明确名称，正文、图示、控件、字幕与旁白沿用同一名称或已介绍的简称，中英术语对应也保持一致。可以变化句式，不为避免重复而轮换同义词；不同概念仍须区分，来源／界面引文及代码标识符保留原样。这是创作与人工验收规则，不是自动术语锁定；检查器仅对四组固定词提供提示。
