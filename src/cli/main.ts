@@ -15,6 +15,7 @@ import { importAudio, synthesize } from '../media/audio.js';
 import { renderVideo } from '../media/video.js';
 import { doctorRequirements, inspectDependencies } from './doctor.js';
 import { assertOutsideSource, limitedJsonText, readJson, readText, writeNewFile } from './files.js';
+import { checkMechanism } from '../mechanisms/model.js';
 
 const USAGE = [
   'doctor [--for research|html|browser|image|pptx|video|speech | --media]',
@@ -22,6 +23,7 @@ const USAGE = [
   'research-check <draft.json> [--draft]',
   'research-build <draft.json> <new-research-directory>',
   'research-validate <research-directory>',
+  'mechanism-check <model.json> [--trace trace.json]',
   'explain-init <research-directory> <html|image|pptx|video> <new-project-directory> [--language en|zh|bilingual]',
   'explain-check <project-directory>',
   'explain-lint <copy.txt|copy.md|source.html|plan.json> [--format html|image|pptx|video]',
@@ -129,6 +131,14 @@ async function execute(command: string, args: string[]): Promise<object> {
       const { at } = parse(args, 1);
       const dossier = await readDossier(at(0));
       return { status: 'validated', researchHash: dossier.manifest.contentHash, externalTruthVerified: false };
+    }
+    case 'mechanism-check': {
+      const { at, values } = parse(args, 1, ['--trace']);
+      const model = await readJson(at(0));
+      const trace = values['--trace'] === undefined ? undefined : await readJson(values['--trace']);
+      const result = await checkMechanism(model, trace);
+      if (result.status === 'violated') process.exitCode = 1;
+      return result;
     }
     case 'explain-init': {
       const { at, values } = parse(args, 3, ['--language']);

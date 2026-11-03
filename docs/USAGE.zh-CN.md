@@ -70,6 +70,19 @@ node .\dist\cli\aha.mjs research-validate ".\artifacts\topic\research"
 
 ## 2. 按媒介编写作品
 
+### 可选的有限状态机制依据
+
+对于有界的状态／事件解释，`mechanism-check <model.json> [--trace trace.json]` 只检查惰性 JSON，不导入、不执行被研究代码。明确标注手工教学模型、代码推导模型或真实运行记录，保留每条转换依据、假设与省略条件。结果包含可达／不可达状态、到禁止状态的最短反例、轨迹首个非法步骤及模型／轨迹内容哈希。规则或轨迹失败时退出码为 1、`status: "violated"`；输入不合法时为 `status: "failed"`。它是独立于研究／作品 Schema 和版式的可选辅助，**不是整个真实程序的正确性证明，也不证明执行实际发生**。
+
+```powershell
+node .\dist\cli\aha.mjs mechanism-check ".\examples\mechanism-retry\model.json" --trace ".\examples\mechanism-retry\trace.json"
+node .\dist\cli\aha.mjs mechanism-check ".\examples\mechanism-retry\model.json" --trace ".\examples\mechanism-retry\illegal-trace.json"
+```
+
+第二条命令故意在步骤索引 2（完成后重新启动）退出 1。它们是源码开发示例，不是新增作品集交付，也不包含在便携 ZIP 中。详见[重试示例](../examples/mechanism-retry/README.zh-CN.md)和[完整输入／结果契约](../skills/aha-explain/references/mechanism-checks.md)；后者包含供安装用户复制的最小模型。惰性检查不需要 `--allow-code`；执行作者视觉代码仍须另外明确授权，普通 Node 子进程不构成 OS 沙箱。
+
+### 初始化所选媒介
+
 ```powershell
 node .\dist\cli\aha.mjs explain-init ".\artifacts\topic\research" html ".\artifacts\topic\projects\html"
 ```

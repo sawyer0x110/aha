@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0.0",
+  "provenance": {
+    "kind": "manual-teaching-model",
+    "description": "Deliberately invalid teaching trace: tries to restart a completed job, not an observed bug.",
+    "references": []
+  },
+  "initial": "queued",
+  "steps": [
+    { "event": "start", "to": "attempt-1" },
+    { "event": "success", "to": "done" },
+    { "event": "start", "to": "attempt-1" }
+  ]
+}

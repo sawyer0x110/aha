@@ -320,7 +320,7 @@ test('PPTX repair guidance uses actual table bounds and separates production sta
 });
 test('documented CLI invocations use only the canonical installed entry and command set', async () => {
   const commands = new Set([
-    'doctor', 'research-init', 'research-check', 'research-build', 'research-validate',
+    'doctor', 'research-init', 'research-check', 'research-build', 'research-validate', 'mechanism-check',
     'explain-init', 'explain-check', 'explain-lint', 'render-html', 'render-image', 'render-pptx', 'browser-check',
     'prepare-video', 'video-plan-check', 'synthesize', 'import-audio', 'render-video',
   ]);

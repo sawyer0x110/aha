@@ -65,6 +65,8 @@ stateDiagram-v2
 
 Keep state names stable across diagram, prose and controls. Draw cleanup or a race separately when it changes the explanation; an arrow labeled "cancel" does not prove pending work stops immediately.
 
+When the mechanism needs a checkable finite state walk rather than only a diagram, optionally use [mechanism checks](mechanism-checks.md). Declare whether it is a manual teaching model, code-derived model or runtime record; retain transition bases, assumptions and omissions beside the visual. The inert JSON checker reports reachability, shortest forbidden-state counterexamples and trace mismatches. It does not extract code, observe execution, animate Mermaid or prove the whole program correct.
+
 ## Comparison
 
 ```html

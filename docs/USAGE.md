@@ -70,6 +70,19 @@ No experiment engine, scenarios, slides, or model selection are prerequisites. `
 
 ## 2. Author a medium-specific project
 
+### Optional finite-state mechanism evidence
+
+For a bounded state/event explanation, `mechanism-check <model.json> [--trace trace.json]` checks inert JSON without importing or executing the studied code. Declare manual teaching model, code-derived model or runtime record, plus transition bases, assumptions and omissions. It reports reachable/unreachable states, shortest forbidden-state counterexamples and the first illegal trace step, with model/trace content hashes. Exit 1 with `status: "violated"` means a rule or trace failed; malformed inputs use `status: "failed"`. This is optional, independent of research/artifact schemas and layouts, and is **not proof of a real program's correctness or observed execution**.
+
+```powershell
+node .\dist\cli\aha.mjs mechanism-check ".\examples\mechanism-retry\model.json" --trace ".\examples\mechanism-retry\trace.json"
+node .\dist\cli\aha.mjs mechanism-check ".\examples\mechanism-retry\model.json" --trace ".\examples\mechanism-retry\illegal-trace.json"
+```
+
+The second command deliberately exits 1 at step index 2 (restart after completion). These are source-checkout developer examples, not new gallery deliveries or portable ZIP contents. See the [retry walkthrough](../examples/mechanism-retry/README.md) and [full input/result contract](../skills/aha-explain/references/mechanism-checks.md), including a copyable minimal model for installed users. No `--allow-code` is needed for inert checking; executing authored visual code still needs separate explicit approval and is not OS-sandboxed.
+
+### Initialize the requested medium
+
 ```powershell
 node .\dist\cli\aha.mjs explain-init ".\artifacts\topic\research" html ".\artifacts\topic\projects\html"
 ```

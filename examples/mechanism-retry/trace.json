@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0.0",
+  "provenance": {
+    "kind": "manual-teaching-model",
+    "description": "Authored illustration of a first failure followed by a successful retry, not a runtime log.",
+    "references": []
+  },
+  "initial": "queued",
+  "steps": [
+    { "event": "start", "to": "attempt-1" },
+    { "event": "failure", "to": "retry-ready" },
+    { "event": "retry", "to": "attempt-2" },
+    { "event": "success", "to": "done" }
+  ]
+}
