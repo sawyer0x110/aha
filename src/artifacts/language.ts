@@ -8,6 +8,7 @@ export const languageScript = `(() => {
   const roots = Array.from(document.querySelectorAll("[data-aha-lang]"));
   const controls = document.createElement("nav");
   controls.className = "aha-language-controls";
+  controls.setAttribute("data-aha-language-controls", "");
   controls.setAttribute("aria-label", "Language / 语言");
   const buttons = [];
   function select(language) {

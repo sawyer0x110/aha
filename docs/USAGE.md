@@ -182,6 +182,8 @@ Requires the installed browser used by `doctor --for browser`. It reuses offline
 
 Default `--language all` exports separate `en.pdf`/`zh.pdf` or `en-001.png`/`zh-001.png` sequences for bilingual HTML. `en` or `zh` selects an existing branch; single-language projects export only that language. Legacy metadata without a language is treated as `en`, without translating its content. Width follows `artifact.width`; `--page-height` is an integer 240–4096 CSS pixels (default 1600), at most 100 pages and 100000 CSS pixels per language, with a 128 MiB total output budget. PNG slices are contiguous and the final slice is shortened; PDF uses fixed-height browser pages.
 
+The packager's language-switch navigation is omitted before measuring and capturing PDF/PNG content, so nonfunctional runtime buttons do not consume page space. The receipt records `runtimeLanguageControls: "omitted"`. Authored controls are not removed; offline HTML keeps its working language switches, and project sources are unchanged.
+
 **Interactions are lost**: only the initial language states are captured, not opened disclosures, hover content, feedback, navigation or animation. Sharing extends the reading viewport to the document height; viewport-height-dependent layouts that grow or clip during this step fail with `EXPORT_REFLOW` rather than silently truncating. Fixed-height boundaries can split prose/figures; inspect every page edge, fonts, both languages and the final page. This sharing path does not replace `image` authoring/composition/QA, create editable PPTX, certify translation or prove visual quality. Keep the interactive HTML alongside it when interaction is part of the explanation.
 
 ### Optional HTML layout diagnostics

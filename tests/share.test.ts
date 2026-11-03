@@ -4,9 +4,12 @@ import * as fs from 'node:fs/promises';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
+import { pathToFileURL } from 'node:url';
 import { buildDossier, writeDossier } from '../src/research/dossier.js';
 import { initArtifact, sourceHash, type Artifact } from '../src/artifacts/project.js';
 import { exportHtml, shareSlices } from '../src/artifacts/share.js';
+import { renderHtml } from '../src/artifacts/render.js';
+import { openBrowser } from '../src/media/browser.js';
 import { researchFixture } from './helpers/research.js';
 
 async function fixture(run: (root: string, project: string) => Promise<void>): Promise<void> {
@@ -23,7 +26,7 @@ async function fixture(run: (root: string, project: string) => Promise<void>): P
     artifact.coverage = [{ id: 'explanation', claimIds: ['c1'] }];
     await fs.writeFile(metadata, JSON.stringify(artifact));
     await fs.writeFile(path.join(project, artifact.entry), `<!doctype html><html><head><meta charset="utf-8"><style>
-      html,body{margin:0} .aha-language-controls{position:absolute;top:0;right:0;padding:0!important}
+      html,body{margin:0}
       section{height:1100px;background:linear-gradient(#fff,#ddd)}
       p{margin:0;height:500px} h1{margin:0}
       </style></head><body>
@@ -72,6 +75,7 @@ test('offline bilingual PNG slices preserve language, dimensions, final page and
   assert.equal(await sourceHash(project), before);
   assert.equal(receipt.sourceFormat, 'html');
   assert.equal(receipt.purpose, 'html-sharing');
+  assert.equal(receipt.runtimeLanguageControls, 'omitted');
   assert.match(receipt.interactions, /lost/);
   assert.deepEqual(receipt.languages, ['en', 'zh']);
   assert.equal(receipt.outputs.length, 6);
@@ -102,6 +106,80 @@ test('legacy single-source exports stay single-language and retain source bytes'
   assert.deepEqual(receipt.languages, ['en']);
   assert.deepEqual((await fs.readdir(destination)).sort(), ['en.pdf', 'receipt.json']);
   assert.equal(await fs.readFile(path.join(project, artifact.entry), 'utf8'), source);
+}));
+
+test('static sharing omits only packaged language controls while offline HTML keeps working switches', async () => fixture(async (root, project) => {
+  const file = path.join(project, 'html', 'index.html');
+  const source = (await fs.readFile(file, 'utf8'))
+    .replace('FIRST ENGLISH PAGE', 'FIRST ENGLISH PAGE<button class="aha-language-controls">AUTHORED ACTION</button>')
+    .replace('第一页中文', '第一页中文<button class="aha-language-controls">AUTHORED ACTION</button>');
+  await fs.writeFile(file, source);
+  const before = await sourceHash(project);
+  const destination = path.join(root, 'static-pdf');
+  await exportHtml(project, destination, true, { format: 'pdf', pageHeight: 480 });
+  for (const language of ['en', 'zh']) {
+    const pdf = path.join(destination, `${language}.pdf`);
+    const extracted = spawnSync('pdftotext', ['-enc', 'UTF-8', '-layout', pdf, '-'], { encoding: 'utf8', windowsHide: true });
+    if (!extracted.error) {
+      assert.equal(extracted.status, 0, extracted.stderr);
+      assert.doesNotMatch(extracted.stdout, /\bEnglish\b/, 'Nonfunctional runtime language buttons must not appear in static copies.');
+      assert.match(extracted.stdout, /AUTHORED ACTION/, 'Authored controls must not be hidden just because they share a CSS class.');
+      assert.match(extracted.stdout, language === 'en' ? /LAST ENGLISH PAGE/ : /最后一页中文/);
+    }
+  }
+  const html = path.join(root, 'interactive.html');
+  await renderHtml(project, html);
+  const browser = await openBrowser();
+  try {
+    const context = await browser.newContext({ offline: true });
+    const page = await context.newPage();
+    await page.goto(pathToFileURL(html).href);
+    const controls = page.locator('nav[data-aha-language-controls]');
+    assert.equal(await controls.count(), 1);
+    assert.equal(await controls.isVisible(), true);
+    await controls.getByRole('button', { name: '中文', exact: true }).click();
+    assert.equal(await page.title(), '中文快照');
+    assert.equal(await page.locator('[data-aha-lang="zh"]').isVisible(), true);
+    await controls.getByRole('button', { name: 'English', exact: true }).click();
+    assert.equal(await page.title(), 'English snapshot');
+    assert.equal(await page.locator('[data-aha-lang="en"]').isVisible(), true);
+  } finally { await browser.close(); }
+  assert.equal(await sourceHash(project), before);
+}));
+
+test('PNG sharing paints the content of every slice below the original iframe viewport', async () => fixture(async (root, project) => {
+  const file = path.join(project, 'html', 'index.html');
+  await fs.appendFile(file, '<style>section{background:linear-gradient(to bottom,#f00 0px 500px,#0f0 500px 1000px,#00f 1000px 1100px)}</style>');
+  const browser = await openBrowser();
+  try {
+    const page = await browser.newPage();
+    for (const pageHeight of [240, 480, 720, 1600]) {
+      const destination = path.join(root, `painted-png-${pageHeight}`);
+      await exportHtml(project, destination, true, { format: 'png', pageHeight });
+      for (const language of ['en', 'zh']) {
+        for (const [index, slice] of shareSlices(1100, pageHeight).entries()) {
+          const bytes = await fs.readFile(path.join(destination, `${language}-${String(index + 1).padStart(3, '0')}.png`));
+          assert.equal(bytes.readUInt32BE(16), 640);
+          assert.equal(bytes.readUInt32BE(20), slice.height);
+          const y = Math.min(slice.height - 1, 240);
+          const position = slice.y + y;
+          const color = position < 500 ? [255, 0, 0] : position < 1000 ? [0, 255, 0] : [0, 0, 255];
+          const pixel = await page.evaluate(async ({ image, y }) => {
+            const element = new Image();
+            element.src = image;
+            await element.decode();
+            const canvas = document.createElement('canvas');
+            canvas.width = element.width;
+            canvas.height = element.height;
+            const context = canvas.getContext('2d')!;
+            context.drawImage(element, 0, 0);
+            return [...context.getImageData(639, y, 1, 1).data].slice(0, 3);
+          }, { image: `data:image/png;base64,${bytes.toString('base64')}`, y });
+          assert.deepEqual(pixel, color, `${language} page ${index + 1} at ${pageHeight}px must contain its actual offscreen content, not a blank capture`);
+        }
+      }
+    }
+  } finally { await browser.close(); }
 }));
 
 test('bundled CLI publishes a selected-language sharing receipt and refuses reuse', async () => fixture(async (root, project) => {

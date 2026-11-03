@@ -67,6 +67,7 @@ export async function exportHtml(directory: string, output: string, allowCode: b
     await browserRender(html, artifact, false, {
       inspect: async (frame, page, language) => {
         if (!languages.includes(language)) return;
+        const staticStyles = await frame.addStyleTag({ content: 'nav[data-aha-language-controls]{display:none!important}' });
         await frame.evaluate(async () => {
           for (const animation of document.getAnimations()) animation.pause();
           await document.fonts.ready;
@@ -96,20 +97,30 @@ export async function exportHtml(directory: string, output: string, allowCode: b
             });
             await save(`${language}.pdf`, bytes, { language, width: artifact.width, height: pageHeight });
           } else {
+            await page.setViewportSize({ width: artifact.width, height: Math.min(pageHeight, dimensions.scrollHeight) });
             for (const [index, slice] of slices.entries()) {
+              // Chromium must paint the iframe's offscreen tiles before capture.
+              const scrollY = await page.evaluate(async y => {
+                scrollTo(0, y);
+                await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+                return window.scrollY;
+              }, slice.y);
               const bytes = await page.screenshot({
-                type: 'png', fullPage: true, animations: 'disabled', timeout: 15_000,
-                clip: { x: 0, y: slice.y, width: artifact.width, height: slice.height },
+                type: 'png', animations: 'disabled', timeout: 15_000,
+                clip: { x: 0, y: slice.y - scrollY, width: artifact.width, height: slice.height },
               });
               await save(`${language}-${String(index + 1).padStart(3, '0')}.png`, bytes,
                 { language, page: index + 1, y: slice.y, width: artifact.width, height: slice.height });
             }
           }
         } finally {
+          await page.evaluate(() => scrollTo(0, 0));
           await iframe.evaluate((node, style) => {
             if (style === null) node.removeAttribute('style');
             else node.setAttribute('style', style);
           }, previous);
+          await page.setViewportSize({ width: artifact.width, height: artifact.height });
+          await staticStyles.evaluate(node => { node.parentNode?.removeChild(node); });
         }
       },
     });
@@ -118,6 +129,7 @@ export async function exportHtml(directory: string, output: string, allowCode: b
       schemaVersion: '1.0.0', status: 'delivered', purpose: 'html-sharing', sourceFormat: 'html', format: options.format,
       title: artifact.title, researchHash: artifact.researchHash, sourceHash: hash,
       languages, width: artifact.width, pageHeight, outputs, codeExecuted: true,
+      runtimeLanguageControls: 'omitted',
       interactions: 'lost: static snapshots of initial language states; no hover, disclosure, animation, feedback or navigation behavior is preserved.',
       pagination: 'Fixed-height reading pages/slices; boundaries may split text or figures. Review every boundary. This is not an image-format composition or visual QA.',
       verification: 'Source/output hashes only, not factual, semantic or visual acceptance. No upload or network authorization.',
