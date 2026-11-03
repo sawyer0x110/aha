@@ -5,7 +5,7 @@ import { randomUUID, createHash } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import { buildDossier, createResearchDraft, writeDossier } from '../../src/research/dossier.js';
-import { initArtifact, type ArtifactLanguage } from '../../src/artifacts/project.js';
+import { initArtifact, sourceHash, type ArtifactLanguage } from '../../src/artifacts/project.js';
 import { prepareHtml } from '../../src/artifacts/html.js';
 import { renderImage, checkBrowser } from '../../src/artifacts/render.js';
 import { checkBrowserLayout } from '../../src/artifacts/browser-layout.js';
