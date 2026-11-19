@@ -1,0 +1,61 @@
+{
+  "skill_name": "aha-explain",
+  "protocol": "explanation-voice-v1",
+  "scope": "Editorial-component pilot using supplied synthetic facts, not full skill routing, autonomous research, HTML generation, speech synthesis, listening or human comprehension. One run per case and condition is exploratory, not stable uplift.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "cold-cup-page",
+      "prompt": "给普通读者的双语科普网页写文案，回答：杯子好好的，冷饮杯外为什么会有水珠？只交中文和英文各一个标题、两到三段正文，不写 HTML，不联网。只依据这些已核实的材料：讨论完整、不漏水的杯子；冷饮使杯壁变冷；空气含水蒸气，外壁温度低于周围空气的露点时，水蒸气可在外壁凝结成液滴；露点是给定空气开始凝结所对应的温度；水珠来自周围空气，不是饮料穿过杯壁；湿度条件不同，是否凝结也不同。不能推出所有冷杯都会有水珠，也不能排除破损杯子真正漏水。作者工作记录：本轮只阅读材料，没有测量温度或录制实验。读者没有看过这些材料，需要能直接读懂成稿。",
+      "expected_output": "Independently readable Chinese and English copy explaining where droplets come from and when they form, without turning production notes into the explanation.",
+      "files": [],
+      "assertions": [
+        "Each language traces outside droplets to airborne water vapor, through cooling of the cup wall, rather than liquid passing through an intact wall.",
+        "Each language explains the dew-point condition accessibly and retains that condensation depends on conditions, rather than claiming every cold cup gets wet.",
+        "The intact-cup scope is intelligible without ruling out actual leaks from damaged cups; no numerical threshold or performed experiment is invented.",
+        "Both versions preserve the same mechanism, conditionality and scope without adding material facts."
+      ],
+      "qualitative_checks": [
+        "Read each language without the prompt: does it answer a recognizable question before becoming a glossary, with clear connections between paragraphs?",
+        "Judge natural phrasing for ordinary readers, not literal translation, forced chat, or a quota of short sentences. Cite awkward or helpful passages.",
+        "Distinguish useful limits from author self-report. Do not penalize a necessary condition merely because it sounds cautious."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "retry-narration",
+      "prompt": "写一段中文技术解释视频旁白，给刚接触接口调用的开发者讲：支付请求超时了，为什么不能立刻再付一次？只交完整旁白正文，不分镜、不生成视频、不联网。依据这个虚构教学系统的固定事实：客户端发起付款，服务端可能已扣款，但成功回包在途中丢失；客户端超时只表示没有及时收到结果，不能据此确定付款没发生。这个系统支持幂等键：同一笔操作重试时沿用同一个键，服务端可识别重复请求并返回同一笔操作的结果，避免再扣一次；换一个键会被当作新操作。该系统只保留幂等记录 24 小时，不能把这个办法说成所有支付接口都支持、永久有效或网络永不出错。不要补充材料外的实现。作者工作记录：这是合成材料，本轮没有调用真实支付接口。听众只听旁白也要跟得上。",
+      "expected_output": "A coherent spoken Chinese explanation connecting timeout ambiguity to the need for the same operation key, preserving the system-specific retention limit.",
+      "files": [],
+      "assertions": [
+        "Explains that a server may have charged while the reply was lost, so client timeout is not proof of failure.",
+        "Connects reuse of the same idempotency key with recognizing a retry of the same operation and avoiding another charge; changing the key means a new operation.",
+        "Keeps the 24-hour record limit and system-specific support; does not promise universal or permanent duplicate prevention.",
+        "Does not claim a real payment was sent or measured, invent implementation steps, or imply these synthetic facts certify a real service."
+      ],
+      "qualitative_checks": [
+        "Does the reason to retry carefully arise before the technical label, and does each thought make the next necessary?",
+        "Could a listener follow references and clauses on one hearing? Record text-review judgments, not invented listening or TTS results.",
+        "Does it resolve the payment question without a compulsory agenda, recap, farewell, alarmism or casual catchphrases?"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "migration-handoff",
+      "prompt": "Write English copy for a visual release handoff to experienced backend engineers. Answer: can we enable the new order read path yet? Return a headline and two or three paragraphs only, not HTML or a checklist. Use only these fixed facts from a fictional release: the previous reader uses orders_v1; the proposed reader uses orders_v2; writers currently write both tables; the historical backfill is incomplete; read parity was checked only for rows created after dual writes began; a feature flag can select either reader; the parity check passed for that checked set, but historical reads and production latency have not been verified. Explain a scoped recommendation, not an authorization to deploy. No code execution or new research. Preserve identifiers. The audience knows what dual writes, backfill, and a feature flag mean.",
+      "expected_output": "Direct professional handoff connecting incomplete historical coverage to a scoped recommendation, without unnecessary beginner definitions or invented guarantees.",
+      "files": [],
+      "assertions": [
+        "Distinguishes the orders_v1 and orders_v2 readers and relates current dual writes to the still-incomplete historical backfill.",
+        "Limits the passing parity result to rows created after dual writes began; does not use it to establish historical read correctness or latency.",
+        "Gives a recommendation bounded by the unresolved historical coverage and latency, without treating it as deployment authorization.",
+        "Preserves code identifiers and does not invent a successful rollout, automatic fallback, completed backfill or new measurement."
+      ],
+      "qualitative_checks": [
+        "Is the recommendation clear before supporting detail, with a causal explanation rather than an inventory of release facts?",
+        "Does it respect expert knowledge instead of explaining familiar terms, forcing an analogy, or adopting a chatty beginner persona?",
+        "Are unverified historical reads and latency clearly connected to the decision without repetitive generic disclaimers?"
+      ]
+    }
+  ]
+}
