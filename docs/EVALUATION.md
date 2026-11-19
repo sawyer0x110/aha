@@ -23,6 +23,21 @@
 
 `tests\fixtures\explanation-writing-evals.json` 用于改写回归，与这里的独立作者评估分开，不能据此推断技能主动补足推理的能力。
 
+### 自然表达的独立试写
+
+[`evals/explanation-voice/evals.json`](../evals/explanation-voice/evals.json) 另设三项原创、虚构材料的文案试写：冷饮杯水珠的中英网页正文、支付重试的中文旁白、面向资深工程师的英文迁移交接。事实断言与口吻评价分开；不按禁词数量或句子长度判定“说人话”。它只检查解释写作这一环，不测试完整 Skill 路由、主动研究、网页制作、合成语音或真人理解，也不改动四个固定案例及其 lock。
+
+先构建并保存修改前后的完整 `aha-explain` bundle，再准备新目录：
+
+```powershell
+node evals\explanation-voice\prepare.mjs "<new absolute run root>" "<absolute baseline aha-explain>" "<absolute candidate aha-explain>"
+node --import tsx --test tests\explanation-voice.test.ts
+```
+
+准备器冻结两个 bundle 的实际字节、题目和判据，拒绝覆盖及混入运行时或无关指导差异。作者仅收到自己的 `task.json` 和指定写作指导，不收到评分答案；按同一宿主设置分别生成 `outputs/copy.md`，不联网或执行作品。目录隔离不是沙箱。每个条件每题先运行一次，保留首稿和失败；修订另存，不代写后冒称首次收益。
+
+评价时先逐条核对事实、范围、否定和数字，再单独记录口吻、段落衔接、听一遍能否跟上的文本判断及面向专家的简洁程度，引用具体段落，不把这些判断混成理解得分。需要盲评时，用每题独立打乱的中性标签和单独保存的映射；评阅材料不能泄露条件、评分或作者记录。使用 skill-creator 的 `eval-viewer/generate_review.py` 生成审阅页，适配接口以所选版本实际帮助为准。`grading.json` 只记录有证据的断言结果；`benchmark.json` 写明实际次数和未执行项。不可获得的模型、token、耗时保持未知，不能用输出字符数或零伪装。每条件一次、模型评价和文本默读均不证明稳定提升、实际听感或真人理解。产物留在会话目录或忽略的 `artifacts/`，不覆盖封存示例。
+
 `evals\skills\scenarios.json` 单独保存宿主运行的广泛技能场景，包含原始提示、材料要求、参考文档和人工检查项；`tests\skills.test.ts` 校验其结构、覆盖与参考链接。它不是 `evals.json` 中四个固定案例的扩展，不属于 `fixture-lock.json`，也不由 `prepare.mjs` 暂存。固定案例的题目、材料与锁保持独立。
 
 图片尺寸选择的宿主评估用例也在 `evals\skills\scenarios.json` 中：`landscape-image-comparison`（电脑一屏横版对比）、`mobile-scroll-image`（手机滚动竖图）和 `explicit-image-dimensions`（严格遵循指定尺寸）。运行时由主持人提供匹配的已审阅 Dossier、素材与目标容器信息，为基线和候选保持输入一致；分别评价尺寸选择、实际 PNG 尺寸和缩放后的可读性。用例定义及静态测试通过不代表已完成作者生成或视觉评估。动态生成和预览仍需独立执行授权；未运行项保持未验证。

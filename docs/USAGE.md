@@ -27,6 +27,8 @@ For HTML, `--cp-*` variables provide runtime chart/control color roles and can b
 
 Read references at the relevant stage: source route during research, selected medium during authoring, selected theme section during composition, and full QA at acceptance—not every reference at startup.
 
+For [natural explanations](../skills/aha-explain/references/explanation-writing.md#sound-like-someone-explaining-this), start from the reader's question, explain unfamiliar ideas before naming them where useful, and connect paragraphs through the reasoning. Keep meaningful limits beside claims and production records in QA notes. A conversational voice is not forced jokes or fewer technical facts; copy checks do not certify naturalness.
+
 ## Command paths and setup
 
 **Installed users:** resolve the absolute script path from the installed skill, regardless of the current working directory:
